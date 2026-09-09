@@ -483,8 +483,9 @@ witness is also an unrestricted one, while a unit-margin refutation is weaker th
 unrestricted one. Only an unrestricted refutation bounds $N(5)$.
 
 All runs in this section were performed on a single laptop (Apple M-series, 14 cores, 24 GB RAM),
-using at most 11 cores concurrently, with two exceptions that ran on a compute cluster: the
-census of regular tournaments on $15$ vertices below, and the computation of Appendix C. Costs are collected in one table at the end of this section and
+using at most 11 cores concurrently, with three exceptions that used a compute cluster: the
+census of regular tournaments on $15$ vertices below, the self-converse census of order $13$
+below, which was split between the two machines, and the computation of Appendix C. Costs are collected in one table at the end of this section and
 reported in *core-hours*, the product of wall time and the number of workers; they are not
 repeated in the text. Core-hours are comparable across our own runs but are **not**
 machine-independent: Appendix A.5 records this laptop running $2.6$ to $3.3$ times faster per core
@@ -767,7 +768,13 @@ doubly regular tournaments of order $19$, which is the strongest form of critica
 and matches Paley(23)'s behaviour at unrestricted margin. Third, every regular tournament on at
 most $15$ vertices is inducible at unit margin, over all $R_{15} \approx 1.8 \times 10^{10}$ of those on $15$
 vertices, with no instance left capped and with the instance counts of the $6{,}000$ residues of
-`nauty`'s tournament generator [20] summing to OEIS A096368(7) [21] exactly. Across the structured families swept here, ten tournaments are
+`nauty`'s tournament generator [20] summing to OEIS A096368(7) [21] exactly. Fourth, every
+self-converse tournament on $13$ vertices is inducible at unit margin, over all
+$S_{13} \approx 9.5 \times 10^{7}$ of them, with nothing capped; the sweep was split across the
+cluster and the laptop, and the listing of hosts is gated to exactly $S_{13}$ lines before any of
+it is swept, so a truncated or duplicated catalogue stops the run rather than shrinking the claim.
+With the order-$11$ census of [2] and the order-$12$ analysis of Appendix C, that settles every
+self-converse tournament on at most $13$ vertices. Across the structured families swept here, ten tournaments are
 unit-margin obstructions, six of them proved majority-inducible as well: two at $19$ vertices,
 four at $21$, and four at $23$, of which only Paley(23) is settled at both margins. That count is
 a census of these families and not of every obstruction known — the arc reversals of Section 3.4
@@ -785,8 +792,8 @@ obstruction with an arc lying in at most five cyclic triangles.
 
 **Costs.** Every computation reported above, with its cost. A core-hour is the product of wall
 time and worker count. All were run on the machine described at the head of this section except
-the last row, which is a cluster figure and so is not comparable with the others; Appendix A.5
-records the factor between the two machines.
+the last two rows, which include cluster time and so are not comparable with the others;
+Appendix A.5 records the factor between the two machines.
 
 | computation | margin | verdict | core-hours |
 |-------------------------------------------------------|--------------|---------------|-----------:|
@@ -800,6 +807,7 @@ records the factor between the two machines.
 | second doubly regular $19$, all $57$ arc reversals | unit | all inducible | $3.59$ |
 | the $15$ obstruction reversals at $21$, every vertex deletion | unit | all inducible | $14.3$ |
 | regular tournaments on $15$ vertices | unit | all inducible | $3{,}106$ |
+| self-converse tournaments on $13$ vertices | unit | all inducible | *[PLACEHOLDER]* |
 
 ---
 
@@ -1498,7 +1506,7 @@ and $D_{11}$ is the completeness gate of Appendix C.4.
 | $10$ | $9{,}733{,}056$ | — | $8{,}784$ |
 | $11$ | $903{,}753{,}248$ | $1{,}223$ | not published |
 | $12$ | $154{,}108{,}311{,}168$ | — | — |
-| $13$ | — | $1{,}495{,}297$ | — |
+| $13$ | — | $1{,}495{,}297$ | $95{,}458{,}560$ |
 | $15$ | — | $18{,}400{,}989{,}629$ | — |
 
 A dash marks a value this paper does not use; [2] follows the same convention and collects its

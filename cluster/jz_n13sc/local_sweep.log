@@ -1,0 +1,8 @@
+[00:33:23] === GATE: comparing this machine's partition with the cluster's ===
+[00:33:30]   all 21 buckets match line for line -- tags are transferable
+  tags cover 15,238,214 hosts of 95,128,053 rigid (16.02%)
+[00:33:31] === sweeping: 81 shards, 10 cores, margin 1, k=5, n=13 ===
+[05:14:54] === swept 81 of 81 shards in 281 min ===
+[05:14:54] hosts: 15238214
+[05:14:54] UNSAT: 0
+[05:14:54] ABORTED: 0

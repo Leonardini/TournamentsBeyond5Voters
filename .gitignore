@@ -21,3 +21,9 @@ __pycache__/
 proofs/
 
 .DS_Store
+
+# Helper binaries the cluster kits build in place; their .c files ship instead.
+freearc
+order_sym
+rigid
+tri

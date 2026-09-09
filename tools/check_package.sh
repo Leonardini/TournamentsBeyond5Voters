@@ -203,6 +203,38 @@ else
   warn "arc-reversal witness or verifier absent"
 fi
 
+echo
+echo "== 5b. the order-13 self-converse partition sums to the catalogue total =="
+# Three independently counted parts -- regular (excluded, settled elsewhere),
+# possibly-symmetric (swept in full), and provably rigid (the sharded sweep) --
+# must sum to S_13 = 95,458,560, which comes from McKay's catalogue and not from
+# us.  Three counts agreeing with an outside total is a real cross-check; the
+# same aggregate also reports honestly how much of the sweep this package holds.
+if [ -f "$ROOT/cluster/jz_n13sc/aggregate.sh" ] && [ -d "$ROOT/cluster/jz_n13sc/results_local/done" ]; then
+  a=$(cd "$ROOT/cluster/jz_n13sc" && timeout 600 bash aggregate.sh results_local 2>&1)
+  if echo "$a" | grep -q 'no gap, no overlap'; then
+    tot=$(echo "$a" | grep -oE '= [0-9,]+$' | tr -d '=, ' | head -1)
+    ok "partition reconciles with the catalogue total exactly (S_13 = $tot)"
+  else
+    bad "the order-13 partition does not reconcile"; echo "$a" | sed 's/^/        /' | tail -6
+  fi
+  if echo "$a" | grep -q 'HITS (UNSAT)  : 0'; then
+    ok "order-13 self-converse: no obstruction in the shards held here"
+  else
+    bad "order-13 self-converse: aggregate does not report zero hits"
+  fi
+  # This SHOULD say incomplete: the cluster's 407 shards are gap 2.  A sudden
+  # "complete" here without those markers arriving would mean the roll-up had
+  # stopped counting what it needs, not that the package had improved.
+  if echo "$a" | grep -q 'INCOMPLETE'; then
+    ok "roll-up reports the cluster half absent, matching gap 2"
+  else
+    bad "roll-up no longer reports INCOMPLETE -- did the shard universe change?"
+  fi
+else
+  warn "order-13 self-converse kit or local results absent"
+fi
+
 if [ "$QUICK" = 1 ]; then
   echo
   echo "== 6-7. catalogue sweeps skipped (--quick) =="

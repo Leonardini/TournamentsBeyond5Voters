@@ -121,13 +121,34 @@ find "$K/run_evidence" -maxdepth 1 -type f -exec cp {} "$DST/evidence/" \;
 [ -d "$K/run_evidence/arcrev" ] && cp -R "$K/run_evidence/arcrev" "$DST/evidence/"
 
 # ---------------------------------------------------------------- cluster
-# The two computations that did not run on the laptop.
+# The three computations that used the cluster -- the 15-vertex regular census,
+# the order-13 self-converse census (split between the two machines) and the
+# order-12 analysis of Appendix C -- plus the independent-reproduction kit.
+# Sources and records only.  These kits build helper binaries in place
+# (freearc, rigid, order_sym, tri, kcover) and copying them would ship 35 MB of
+# other-architecture executables that the .c files beside them regenerate.
 mkdir -p "$DST/cluster"
-for j in jz_n15 jz_n12cover jz_reproduce; do
+for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce; do
   [ -d "$K/$j" ] || continue
   mkdir -p "$DST/cluster/$j"
-  find "$K/$j" -maxdepth 1 -type f -exec cp {} "$DST/cluster/$j/" \;
+  find "$K/$j" -maxdepth 1 -type f \
+       \( -name '*.sh' -o -name '*.py' -o -name '*.c' -o -name '*.md' \
+          -o -name '*.txt' -o -name '*.tsv' -o -name '*.slurm' \
+          -o -name '*.log' -o -name '*.conf' -o -name '*.json' \) \
+       -exec cp {} "$DST/cluster/$j/" \;
 done
+# jz_n13sc keeps its accounting one level down: state/ holds the per-bucket
+# rigid counts that both machines must match line for line, which is the
+# cross-check that makes the split sweep auditable at all.
+if [ -d "$K/jz_n13sc/state" ]; then
+  mkdir -p "$DST/cluster/jz_n13sc/state"
+  find "$K/jz_n13sc/state" -maxdepth 1 -type f \
+       -exec cp {} "$DST/cluster/jz_n13sc/state/" \;
+fi
+# The laptop half's 81 shard markers.  One line each, and they ARE the evidence
+# for the part of that sweep this package can vouch for; the kit's own
+# aggregate reads them and reports how much of the family is still outstanding.
+[ -d "$K/jz_n13sc/results_local" ] && cp -R "$K/jz_n13sc/results_local" "$DST/cluster/jz_n13sc/"
 
 # ------------------------------------------------------------------ notes
 cp "$K/RESEARCH_LOG.md" "$DST/notes_research_log.md"
