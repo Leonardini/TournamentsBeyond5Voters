@@ -1501,9 +1501,11 @@ and $D_{11}$ is the completeness gate of Appendix C.4.
 | $13$ | — | $1{,}495{,}297$ | — |
 | $15$ | — | $18{,}400{,}989{,}629$ | — |
 
-Regular tournaments exist only in odd order, so the even rows of that column are empty; the
-$R_n$ column is OEIS A096368 [21], whose $n = 13$ term our own exhaustive run reproduces, which is
-what anchors the indexing. A dash elsewhere marks a value this paper does not use. $S_{11}$ is
+A dash marks a value this paper does not use; [2] follows the same convention and collects its
+own censuses in its Appendix H, with which this table agrees where the two overlap. Note that
+[2] reads $R_n$ as *semi*-regular in even order, and that we need it in odd order only. The
+$R_n$ column is OEIS A096368 [21], whose $n = 13$ term our own exhaustive run reproduces, which
+is what anchors the indexing. $S_{11}$ is
 not published and we do not need it: the converse-halving check of Appendix C.4 compares the
 number of tournaments kept against $(D_{11} + S_{11})/2$, and since $S_n / D_n$ is falling
 through $176/6{,}880$, $2{,}752/191{,}536$ and $8{,}784/9{,}733{,}056$, the resulting factor is
