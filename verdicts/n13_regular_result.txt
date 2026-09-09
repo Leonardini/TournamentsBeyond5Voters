@@ -1,0 +1,6 @@
+# Regular n=13 exhaustive 5-inducibility screen, 2026-09-02
+# generator: nauty-2.8.6 gentourng -d6 -D6 13   (1,495,297 = OEIS A096368)
+# engine:    kinduce20 --order mrv --inc, one process per margin
+BATCH_SUMMARY n=13 K=5 margin=exact1 order=mrv instances=1495297 SAT=1495297 UNSAT=0 ABORTED=0 wall=123.0s
+BATCH_SUMMARY n=13 K=5 margin=majority order=mrv instances=1495297 SAT=1495297 UNSAT=0 ABORTED=0 wall=188.7s
+# margin-1 SAT => majority SAT held on all 1,495,297 (checked instance by instance)

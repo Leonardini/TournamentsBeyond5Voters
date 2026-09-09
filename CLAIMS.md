@@ -85,7 +85,8 @@ wrong conclusion. Run it; it takes seconds.
 | The closure survives one-arc perturbation: all **40** orbit representatives of the four obstructions are majority-inducible | `tournaments/vt21_arcflip/out/*.majority.txt` | — |
 | Every regular tournament on at most **13** vertices is inducible at both margins (15, 1,223, 1,495,297 instances) | `verdicts/verdict_ledger.tsv`, and re-run in `tools/check_package.sh` check 6 | `kinduce --batch <chunk> --n <n> --k 5 --margin exact --order mrv --inc` |
 | Every regular tournament on **15** vertices is inducible at unit margin, all 18,400,989,629, none capped, residue counts summing to OEIS A096368(7) | **gap 2 — no verdict artifact in this package** | `cluster/jz_n15/` |
-| Every **self-converse** tournament on **13** vertices is inducible at unit margin — all $S_{13}$ = 95,458,560, 0 UNSAT, 0 aborted, 488 shards split between cluster and laptop | `cluster/jz_n13sc/state/jz_counts.tsv` (the per-bucket cross-check both machines must match), `cluster/jz_n13sc/local_sweep.log` (the 81 shards run here: 15,238,214 hosts, 16.02%, 0 UNSAT) — **cluster half: see gap 2** | `cluster/jz_n13sc/COMMANDS.md`; `cluster/jz_n13sc/prepare.sh` refuses to sweep unless the listing has exactly 95,458,560 lines |
+| Every **self-converse** tournament on **13** vertices is inducible at unit margin — all $S_{13}$ = 95,458,560, 0 UNSAT, 0 aborted | the family splits three ways, each with its own record: **not provably rigid** (319,270) in `cluster/jz_n13sc/results_excluded/done/` — 77 chunks, all SAT, nothing capped; **regular** (11,237) by `verdicts/n13_regular_result.txt`, which clears all 1,495,297 regular order-13 tournaments at margin 1; **rigid** (95,128,053) across 488 shards, of which `cluster/jz_n13sc/results_local/done/` holds 81 — **the other 407 are gap 2** | `cluster/jz_n13sc/sweep_excluded.sh` then `cluster/jz_n13sc/report_excluded.sh`; `cluster/jz_n13sc/prepare.sh` refuses to sweep unless the listing has exactly 95,458,560 lines |
+| The three parts are exactly the family, with no gap and no overlap | `cluster/jz_n13sc/state/partition.tsv` (per-bucket, and the per-bucket rigid counts are identical on both machines), checked by `cluster/jz_n13sc/aggregate.sh` | the regular count is anchored by `cluster/jz_n13sc/selfconverse_regular_n13.log`, produced by `verify/selfconverse_regular_count.py` from the **other** direction |
 | **Refuted conjecture:** triangle load does not decide unit-margin inducibility — among 23-vertex vertex-transitive tournaments with t = 4, three are obstructions and 36 are inducible | `verdicts/n23_tmin4/`, `tournaments/vt23/manifest.tsv` | `verify/tri_per_arc.py` computes t; `tournaments/vt23_gen.py` builds the family |
 | The unrestricted form survives: every majority obstruction we have has t ≥ 6 | `verdicts/verdict_ledger.tsv` | `verify/tri_per_arc.py` |
 | Appendix D's exact enumeration counts $D_n$, $R_n$, $S_n$ | `verdicts/verdict_ledger.tsv` for our own sweeps; the $R_n$ column is OEIS A096368 and `gentourng` reproduces it | `tools/check_package.sh` check 6 regenerates $R_9$ and $R_{11}$ and compares against the published values |
@@ -194,13 +195,17 @@ matches the 95,458,560 total EXACTLY -- no gap, no overlap
     407 shards / 79,889,839 hosts still to sweep
 ```
 
-The partition is exact and is worth reading twice: the 11,237 excluded ones are
+The partition is exact and is worth reading twice. The 11,237 excluded ones are
 the *regular* self-converse tournaments, already settled by the order-13 regular
-sweep, and the 319,270 symmetric ones are a provable superset of every
-self-converse 13-tournament with non-trivial automorphism group, since colour
-refinement discretising *is* a proof that Aut is trivial. So an obstruction
-surviving the rigid sweep would necessarily have trivial Aut — unlike both
-obstructions known at order 19.
+sweep. The 319,270 are the hosts **not provably rigid** — the label `symmetric`
+in the roll-up's output and the `sym/` directory name are both loose, because
+colour refinement failing to discretise does not show that Aut is non-trivial,
+it only fails to show that Aut is trivial. The implication runs one way:
+discretising *is* a proof of triviality, so the 319,270 are a provable superset
+of every order-13 self-converse tournament with non-trivial Aut, and an
+obstruction surviving the rigid sweep would necessarily be rigid — unlike both
+obstructions known at order 19. Getting this backwards would turn a sound
+argument into a claim about 319,270 tournaments that nothing established.
 
 What is missing is the cluster's 407 shards. The 81 run on the laptop are here
 in full — 15,238,214 hosts, 0 UNSAT, 0 aborted — and

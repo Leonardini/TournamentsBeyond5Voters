@@ -60,15 +60,32 @@ printf "  shards done   : %d\n"   "$SHARDS"
 printf "  hosts swept   : %d\n"   "$HOSTS"
 printf "  ABORTED       : %d  (capped at 300 s -- NOT verdicts, re-run these)\n" "$ABORTED"
 printf "  HITS (UNSAT)  : %d  <== the only interesting number\n" "$UNSAT"
-# 1,026,306, NOT the naive 1,028,787.  COMMANDS.md records that two buckets were
-# swept in full, so their 534 and 1,947 possibly-symmetric members are already
-# inside those bucket counts and must not be added again -- the naive sum
-# double-counts by exactly 2,481.  This line printed the wrong one, which is the
-# worst place for it: a reported number is the version that gets quoted.
-echo "  already settled separately, not in the above: 1,026,306"
-echo "    (this is a SUPERSET of every self-converse 13-tournament with"
-echo "     non-trivial Aut, so an obstruction surviving the sweep below would"
-echo "     necessarily have trivial Aut -- see COMMANDS.md)"
+# DERIVED, not written down.  This line has now been wrong twice: first as the
+# naive 1,028,787, which double-counts the not-provably-rigid members of the two
+# buckets swept in full; then as 1,026,306, which is that figure corrected for
+# the double-count but with the 11,237 REGULAR hosts silently folded in, and
+# those were settled by the separate order-13 regular sweep rather than by this
+# campaign.  A reported number is the version that gets quoted, so it is now
+# computed from state/partition.tsv every time and nothing here is a constant.
+PART=state/partition.tsv
+if [ -f "$PART" ]; then
+  eval "$(awk -F'\t' '!/^#/{s+=$2; r+=$3; t+=$4;
+            if ($1==4 || $1==8) { full+=$4; fullsym+=$2 }}
+          END{printf "P_SYM=%d P_RIG=%d P_TOT=%d P_FULL=%d P_FULLSYM=%d\n",
+                     s, r, t, full, fullsym}' "$PART")"
+  # buckets 4 and 8 were swept in full, so their not-provably-rigid members are
+  # already inside those totals; adding all of P_SYM again would count them twice.
+  SETTLED=$(( P_FULL + P_SYM - P_FULLSYM ))
+  printf "  already settled separately, not in the above: %d\n" "$SETTLED"
+  printf "    = buckets 4 and 8 in full (%d) + not provably rigid (%d)\n" "$P_FULL" "$P_SYM"
+  printf "      - their overlap (%d), all read from %s\n" "$P_FULLSYM" "$PART"
+  echo "    (NOT PROVABLY RIGID is the accurate label: colour refinement"
+  echo "     discretising proves Aut is trivial, but failing to discretise"
+  echo "     proves nothing, so this set is a SUPERSET of the non-trivial-Aut"
+  echo "     ones -- an obstruction surviving the sweep below must be rigid)"
+else
+  echo "  already settled separately: UNKNOWN -- $PART absent, cannot derive it"
+fi
 # COMPLETENESS IDENTITY, asserted rather than described.  The self-converse
 # 13-tournaments partition into three parts, and if they do not sum to the total
 # then something has been dropped and no clean sweep means the family is closed.
@@ -83,19 +100,53 @@ echo "     necessarily have trivial Aut -- see COMMANDS.md)"
 # lost.  Running it from inside this directory is the one shape that cannot catch it.
 CNT=state/jz_counts.tsv
 [ -f "$CNT" ] || { echo "FATAL: no $CNT in $PWD -- cannot check completeness" >&2; exit 1; }
-python3 - "$CNT" "$HOSTS" "$SHARDS" "${N13_PER:-200000}" <<'PYEOF'
-import sys
-TOTAL   = 95_458_560   # self-converse tournaments on 13 vertices
-REGULAR = 11_237       # imbalance 0: EXCLUDED, every regular tournament on n <= 13
-                       # is already known 5-inducible at both margins
-SYM     = 319_270      # possibly-symmetric across all buckets, swept locally.
-                       # Colour refinement discretising is a THEOREM that Aut is
-                       # trivial, so this is a superset of every self-converse
-                       # 13-tournament with non-trivial Aut.
+python3 - "$CNT" "$HOSTS" "$SHARDS" "${N13_PER:-200000}" state/partition.tsv <<'PYEOF'
+import sys, os
+# TOTAL is the one number written down here, and it is an ASSERTED cross-check
+# rather than a bare constant: it is McKay's listing count, prepare.sh refuses
+# to sweep a listing that does not have exactly this many lines, and the
+# identity below fails loudly if the parts stop summing to it.  Everything else
+# is DERIVED -- REGULAR and the not-provably-rigid count used to be constants
+# here, and one of them silently absorbed the other for a while.
+TOTAL = 95_458_560     # self-converse tournaments on 13 vertices (McKay)
 counts, hosts, shards, per = sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4])
+part = sys.argv[5]
 buckets = [(int(l.split()[0]), int(l.split()[1])) for l in open(counts) if l.strip()]
 rigid = sum(c for _, c in buckets)
-print(f"  completeness: {REGULAR:,} regular (excluded) + {SYM:,} symmetric (swept)"
+if not os.path.exists(part):
+    sys.exit(f"FATAL: no {part} -- the partition cannot be derived, only guessed")
+rows = [l.split('\t') for l in open(part) if l.strip() and not l.startswith('#')]
+SYM = sum(int(r[1]) for r in rows)
+part_rigid = sum(int(r[2]) for r in rows)
+# Two files that must agree.  They are maintained separately -- jz_counts.tsv is
+# the cluster's own record -- so a mismatch means one has been edited alone.
+assert part_rigid == rigid, \
+    f"FATAL: {part} says {part_rigid:,} rigid, {counts} says {rigid:,}"
+# REGULAR must come from OUTSIDE this identity, or the identity cannot fail.
+# Deriving it as TOTAL - (SYM + rigid) makes the assertion below vacuous: any
+# error in SYM is absorbed into REGULAR and the sum still lands on TOTAL.  That
+# was checked by perturbing SYM by one and watching the check pass, which is the
+# whole reason this reads from a measurement instead.
+#
+# The anchor is selfconverse_regular_count.py, which counts the self-converse
+# regular tournaments starting from gentourng's regular catalogue and comparing
+# canon(T) with canon(T^rev) -- no shared input file and no shared filtering code
+# with this listing.  It reports 11,237, matching the subtraction exactly.
+anchor = os.path.join(os.path.dirname(part) or '.', '..', 'selfconverse_regular_n13.log')
+REGULAR = None
+for cand in (anchor, 'selfconverse_regular_n13.log'):
+    if os.path.exists(cand):
+        for line in open(cand):
+            if 'SELF-CONVERSE' in line:
+                REGULAR = int(line.split(':')[1].strip().replace(',', ''))
+if REGULAR is None:
+    sys.exit("FATAL no independent regular count; run selfconverse_regular_count.py "
+             "-- deriving it here would make the identity below unable to fail")
+implied = TOTAL - (SYM + rigid)
+assert REGULAR == implied, (
+    f"FATAL the two routes disagree: the independent count says {REGULAR:,} regular, "
+    f"but TOTAL - (not-provably-rigid + rigid) = {implied:,}")
+print(f"  completeness: {REGULAR:,} regular + {SYM:,} not provably rigid"
       f" + {rigid:,} rigid = {REGULAR+SYM+rigid:,}")
 assert REGULAR + SYM + rigid == TOTAL, \
     f"FATAL: parts sum to {REGULAR+SYM+rigid:,}, not the {TOTAL:,} self-converse " \

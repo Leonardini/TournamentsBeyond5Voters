@@ -138,13 +138,24 @@ for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce; do
        -exec cp {} "$DST/cluster/$j/" \;
 done
 # jz_n13sc keeps its accounting one level down: state/ holds the per-bucket
-# rigid counts that both machines must match line for line, which is the
+# partition that both machines must match line for line, which is the
 # cross-check that makes the split sweep auditable at all.
 if [ -d "$K/jz_n13sc/state" ]; then
   mkdir -p "$DST/cluster/jz_n13sc/state"
   find "$K/jz_n13sc/state" -maxdepth 1 -type f \
        -exec cp {} "$DST/cluster/jz_n13sc/state/" \;
 fi
+# The not-provably-rigid class: 77 chunk summaries, one line each.  These are
+# the verdicts for 319,270 of the family, and until this sweep they existed
+# only as a hard-coded figure in aggregate.sh -- which was wrong twice.
+if [ -d "$K/jz_n13sc/results_excluded/done" ]; then
+  mkdir -p "$DST/cluster/jz_n13sc/results_excluded/done"
+  find "$K/jz_n13sc/results_excluded/done" -type f \
+       -exec cp {} "$DST/cluster/jz_n13sc/results_excluded/done/" \;
+fi
+cp "$K/jz_n13sc/selfconverse_regular_n13.log" "$DST/cluster/jz_n13sc/" 2>/dev/null || true
+cp "$K/n13_regular_result.txt" "$DST/verdicts/" 2>/dev/null || true
+cp "$K/selfconverse_regular_count.py" "$DST/verify/" 2>/dev/null || true
 # The laptop half's 81 shard markers.  One line each, and they ARE the evidence
 # for the part of that sweep this package can vouch for; the kit's own
 # aggregate reads them and reports how much of the family is still outstanding.

@@ -71,29 +71,30 @@ def delete(A, v):
     ks = [i for i in range(len(A)) if i != v]
     return [[A[i][j] for j in ks] for i in ks]
 
-host_del = {}
-for h in ("h01", "h02", "h04", "h05"):
-    n, A = read_bits(f"vt21_hosts/{h}.bits")
-    # |Aut| = 21 acting regularly, so every deletion is isomorphic: take vertex 0
-    host_del[h] = canon([d6(delete(A, 0))])[0]
+if __name__ == "__main__":
+    host_del = {}
+    for h in ("h01", "h02", "h04", "h05"):
+        n, A = read_bits(f"vt21_hosts/{h}.bits")
+        # |Aut| = 21 acting regularly, so every deletion is isomorphic: take vertex 0
+        host_del[h] = canon([d6(delete(A, 0))])[0]
 
-seen, total = {}, 0
-print(f"{len(FLIPS)} reversals that remain obstructions: {' '.join(FLIPS)}\n")
-for tag in FLIPS:
-    n, A = read_bits(f"vt21_arcflip/{tag}.bits")
-    forms = canon([d6(delete(A, v)) for v in range(n)])
-    total += len(forms)
-    hc = host_del[tag[:3]]
-    nhost = sum(1 for c in forms if c == hc)
-    d = len(set(forms))
-    print(f"  {tag}: {n} deletions -> {d} distinct, {nhost} of them {tag[:3]} - v")
-    assert d == 20 and nhost == 2, f"{tag}: expected 20 distinct with 2 host-deletions"
-    for c in forms: seen.setdefault(c, []).append(tag)
+    seen, total = {}, 0
+    print(f"{len(FLIPS)} reversals that remain obstructions: {' '.join(FLIPS)}\n")
+    for tag in FLIPS:
+        n, A = read_bits(f"vt21_arcflip/{tag}.bits")
+        forms = canon([d6(delete(A, v)) for v in range(n)])
+        total += len(forms)
+        hc = host_del[tag[:3]]
+        nhost = sum(1 for c in forms if c == hc)
+        d = len(set(forms))
+        print(f"  {tag}: {n} deletions -> {d} distinct, {nhost} of them {tag[:3]} - v")
+        assert d == 20 and nhost == 2, f"{tag}: expected 20 distinct with 2 host-deletions"
+        for c in forms: seen.setdefault(c, []).append(tag)
 
-extra = [h for h in ("h04", "h05") if host_del[h] not in seen]
-print(f"\n{total} deletions of the reversals -> {len(seen)} classes")
-print(f"  + the hosts' own deletions not already among them: {' '.join(f'{h} - v' for h in extra)}")
-print(f"  = {len(seen) + len(extra)} distinct tournaments on 20 vertices")
-assert len(seen) == 15 * 19 + 2, f"expected 15*19+2 = 287 classes, got {len(seen)}"
-assert len(seen) + len(extra) == 289
-print("\nmatches Section 3.4: 15 x 19 + 2 = 287, and 289 with h04 - v and h05 - v")
+    extra = [h for h in ("h04", "h05") if host_del[h] not in seen]
+    print(f"\n{total} deletions of the reversals -> {len(seen)} classes")
+    print(f"  + the hosts' own deletions not already among them: {' '.join(f'{h} - v' for h in extra)}")
+    print(f"  = {len(seen) + len(extra)} distinct tournaments on 20 vertices")
+    assert len(seen) == 15 * 19 + 2, f"expected 15*19+2 = 287 classes, got {len(seen)}"
+    assert len(seen) + len(extra) == 289
+    print("\nmatches Section 3.4: 15 x 19 + 2 = 287, and 289 with h04 - v and h05 - v")

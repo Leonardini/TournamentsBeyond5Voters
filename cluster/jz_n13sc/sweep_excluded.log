@@ -1,0 +1,17 @@
+  regular hosts (imbalance 0): NOT swept, verdicts already exist
+    n13_regular_result.txt: all 1,495,297 regular order-13 tournaments,
+    margin 1, SAT=1495297 UNSAT=0 ABORTED=0; these 11,237 are a subset.
+    Their count is anchored independently by selfconverse_regular_count.py,
+    which reaches 11,237 from gentourng rather than from this listing.
+  building chunks of 5000 ...
+  77 chunks covering 319270 hosts, 10 workers, per-instance cap 300s
+  queue: 77 chunks outstanding of 77
+
+=== roll-up ===
+  notrigid   77 chunks  instances   319270  SAT   319270  UNSAT 0  ABORTED 0
+  regular     0 chunks  instances        0  SAT        0  UNSAT 0  ABORTED 0
+./report_excluded.sh: line 42: results_excluded/regular_hosts.txt: No such file or directory
+
+  total     instances 319270 of 319270 expected (COMPLETE)
+  SAT 319270  UNSAT 0  ABORTED 0
+  every host in both excluded classes is margin-1 5-inducible, nothing capped
