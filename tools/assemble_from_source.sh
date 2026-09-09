@@ -51,7 +51,7 @@ for f in vt21_hosts vt21_arcflip dr19_arcflip vt15 vt17 vt19 vt23 drt23 \
   find "$K/$f" -maxdepth 1 -type f \
        \( -name '*.bits' -o -name '*.tsv' -o -name '*.md' -o -name '*.sh' \
           -o -name '*.log' \) \
-       -exec cp {} "$DST/tournaments/$f/" \;
+       -exec sh -c 'cp "$@" "$0"' "$DST/tournaments/$f/" {} +
 done
 # per-orbit outcome files behind the arc-flip spectrum table of Section 3.4
 [ -d "$K/vt21_arcflip/out" ] && cp -R "$K/vt21_arcflip/out" "$DST/tournaments/vt21_arcflip/"
@@ -99,7 +99,7 @@ for d in m1_family m1_arcrev vt21_majority vt21_margin1 n23_tmin4 \
   find "$K/$d" -maxdepth 1 -type f \
        \( -name '*.md' -o -name '*.tsv' -o -name '*.txt' -o -name '*.sh' \
           -o -name '*.log' \) \
-       -exec cp {} "$DST/verdicts/$d/" \;
+       -exec sh -c 'cp "$@" "$0"' "$DST/verdicts/$d/" {} +
 done
 # Section 3.4's arc-flip spectrum and the n=20 deletion descent: the run logs
 # carry the witnesses, so they are the evidence for "every one of the 289 has
@@ -110,13 +110,13 @@ done
 if [ -d "$K/vt20_descent_shard" ]; then
   mkdir -p "$DST/verdicts/vt20_descent_shard"
   find "$K/vt20_descent_shard" -maxdepth 1 -type f -name '*.log' \
-       -exec cp {} "$DST/verdicts/vt20_descent_shard/" \;
+       -exec sh -c 'cp "$@" "$0"' "$DST/verdicts/vt20_descent_shard/" {} +
 fi
 
 # --------------------------------------------------------------- evidence
 # Chunk logs compress about 100x, which is what makes them trackable.
 mkdir -p "$DST/evidence"
-find "$K/run_evidence" -maxdepth 1 -type f -exec cp {} "$DST/evidence/" \;
+find "$K/run_evidence" -maxdepth 1 -type f -exec sh -c 'cp "$@" "$0"' "$DST/evidence/" {} +
 [ -d "$K/run_evidence/measurements" ] && cp -R "$K/run_evidence/measurements" "$DST/evidence/"
 [ -d "$K/run_evidence/arcrev" ] && cp -R "$K/run_evidence/arcrev" "$DST/evidence/"
 
@@ -135,7 +135,7 @@ for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce; do
        \( -name '*.sh' -o -name '*.py' -o -name '*.c' -o -name '*.md' \
           -o -name '*.txt' -o -name '*.tsv' -o -name '*.slurm' \
           -o -name '*.log' -o -name '*.conf' -o -name '*.json' \) \
-       -exec cp {} "$DST/cluster/$j/" \;
+       -exec sh -c 'cp "$@" "$0"' "$DST/cluster/$j/" {} +
 done
 # jz_n13sc keeps its accounting one level down: state/ holds the per-bucket
 # partition that both machines must match line for line, which is the
@@ -143,7 +143,7 @@ done
 if [ -d "$K/jz_n13sc/state" ]; then
   mkdir -p "$DST/cluster/jz_n13sc/state"
   find "$K/jz_n13sc/state" -maxdepth 1 -type f \
-       -exec cp {} "$DST/cluster/jz_n13sc/state/" \;
+       -exec sh -c 'cp "$@" "$0"' "$DST/cluster/jz_n13sc/state/" {} +
 fi
 # The not-provably-rigid class: 77 chunk summaries, one line each.  These are
 # the verdicts for 319,270 of the family, and until this sweep they existed
@@ -151,7 +151,7 @@ fi
 if [ -d "$K/jz_n13sc/results_excluded/done" ]; then
   mkdir -p "$DST/cluster/jz_n13sc/results_excluded/done"
   find "$K/jz_n13sc/results_excluded/done" -type f \
-       -exec cp {} "$DST/cluster/jz_n13sc/results_excluded/done/" \;
+       -exec sh -c 'cp "$@" "$0"' "$DST/cluster/jz_n13sc/results_excluded/done/" {} +
 fi
 cp "$K/jz_n13sc/selfconverse_regular_n13.log" "$DST/cluster/jz_n13sc/" 2>/dev/null || true
 cp "$K/n13_regular_result.txt" "$DST/verdicts/" 2>/dev/null || true

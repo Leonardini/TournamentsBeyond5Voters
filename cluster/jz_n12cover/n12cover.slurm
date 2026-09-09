@@ -65,6 +65,7 @@ else
   DEADLINE=68400                                           # not under SLURM at all
 fi
 mkdir -p KInduceDFS/jz_n12cover/slurm "$OUT"
+t0_epoch=$(date +%s)
 echo "task $T of $A  MOD=$MOD  out=$OUT  host=$(hostname)  start=$(date)"
 n=0; fail=0; t0=$SECONDS
 # "Cannot plausibly finish" has to be measured, not assumed.  A residue is a few
@@ -74,15 +75,45 @@ n=0; fail=0; t0=$SECONDS
 # have actually cost in this results directory -- the markers carry secs= -- and
 # keep updating it as this task finishes its own.  A campaign that has run before
 # therefore prices itself, and shortening --time becomes safe rather than a trap.
-MAXRES=$(awk -F'[= ]' '{for(i=1;i<=NF;i++) if($i=="secs" && $(i+1)+0>m) m=$(i+1)+0}
-                       END{print m+0}' "$OUT"/done/* 2>/dev/null || echo 0)
-echo "longest residue on record: ${MAXRES}s -- a task will not start one with less than that left"
+# The gate below used to key off the MAXIMUM residue cost ever recorded, times
+# 1.2.  That is monotone and global, so ONE pathological residue permanently
+# raised the bar for every task in every later submission: with a ~42,500 s
+# residue on record, tasks refused to start anything with less than ~14 h left
+# and idled two thirds of a 20 h wall.  Measured on the 2026-09-09 run: 20,022
+# residues done across 1000 tasks, 5.84 h of work per task against a 19 h
+# budget, i.e. of order 14,000 core-hours idle against 5,838 useful -- and it
+# ratchets, since MAXRES only ever grows.
+#
+# Two changes.  Key off a high PERCENTILE rather than the max, so one outlier
+# cannot set policy; and CAP the reservation at a fraction of the budget, so the
+# gate can never idle most of an allocation whatever the data says.
+#
+# The trade this gets right: an unfinished residue costs only its own wasted
+# time.  No marker is written unless it completed, so a resubmit retries it and
+# nothing is corrupted.  Reserving 14 h to avoid losing 4 is the wrong way round.
+#
+# find -exec, not "$OUT"/done/* : at 20,000+ markers on a long Lustre path the
+# glob approaches ARG_MAX, and if it blew, awk would fail, MAXRES would fall
+# back to 0 and the gate would vanish silently.
+PCTL=${N12_PCTL:-90}
+P_RES=$(find "$OUT/done" -type f -exec cat {} + 2>/dev/null |
+        tr ' ' '\n' | grep '^secs=' | cut -d= -f2 | sort -n |
+        awk -v p="$PCTL" '{a[n++]=$1} END{if(n==0){print 0; exit}
+                           i=int((p/100)*(n-1)+0.5); print a[i]+0}')
+MAXRES=${P_RES:-0}
+echo "p${PCTL} residue cost on record: ${MAXRES}s (was keyed off the maximum, which one outlier could set)"
 for ((RES=T; RES<MOD; RES+=A)); do
   # Time left, from the scheduler where it knows and from the deadline otherwise.
   if [ -n "${SLURM_JOB_END_TIME:-}" ]; then REMAIN=$(( SLURM_JOB_END_TIME - $(date +%s) ))
   else                                      REMAIN=$(( DEADLINE - (SECONDS - t0) )); fi
-  NEED=$(( MAXRES * 12 / 10 ))               # 20% over the worst seen
+  NEED=$(( MAXRES * 12 / 10 ))               # 20% over the p90
   [ "$NEED" -ge 900 ] || NEED=900            # and never less than a quarter hour
+  # Never reserve more than this share of the budget: beyond it the task spends
+  # more time refusing work than a lost residue could ever cost.
+  BUDGET=${SLURM_JOB_END_TIME:+$(( SLURM_JOB_END_TIME - t0_epoch ))}
+  BUDGET=${BUDGET:-$DEADLINE}
+  CAP=$(( BUDGET * ${N12_RESERVE_PCT:-30} / 100 ))
+  [ "$NEED" -le "$CAP" ] || { echo "reservation ${NEED}s capped to ${CAP}s (${N12_RESERVE_PCT:-30}% of budget)"; NEED=$CAP; }
   if [ "$REMAIN" -lt "$NEED" ]; then
     echo "${REMAIN}s left, ${NEED}s needed for a residue: stopping cleanly with $((MOD-RES)) residues left for the next submission"
     break

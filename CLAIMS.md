@@ -28,7 +28,7 @@ is the stronger statement. **Only an unrestricted refutation bounds N(5).**
 | 3.3 | Paley(43) − v is not 5-inducible, so N(5) ≤ 43 is **re-derived by a second method** | `evidence/p43_majority.tar.zst`, `verdicts/p43_minus1v_VERDICT.txt` | `REPRODUCE.md` § "Paley(43) is not vertex-critical" |
 
 The two Paley(23) refutations are independent in base and anchor, not merely
-repeated runs. The cluster reproduction of the certificate is gap 3.
+repeated runs. The cluster reproduction of the certificate is gap 2.
 
 ## 2. The rest of the Paley family
 
@@ -84,8 +84,8 @@ wrong conclusion. Run it; it takes seconds.
 | All **110** vertex-transitive tournaments on 21 vertices are 5-inducible — 106 at unit margin, the other four by exhibited majority witnesses. So that family holds no candidate below 23 | `verdicts/vt21_majority/`, `verdicts/vt21_margin1/`, `verdicts/verdict_ledger.tsv` | `tournaments/vt21_family.py`, `tournaments/vt21_all_reps.npy` |
 | The closure survives one-arc perturbation: all **40** orbit representatives of the four obstructions are majority-inducible | `tournaments/vt21_arcflip/out/*.majority.txt` | — |
 | Every regular tournament on at most **13** vertices is inducible at both margins (15, 1,223, 1,495,297 instances) | `verdicts/verdict_ledger.tsv`, and re-run in `tools/check_package.sh` check 6 | `kinduce --batch <chunk> --n <n> --k 5 --margin exact --order mrv --inc` |
-| Every regular tournament on **15** vertices is inducible at unit margin, all 18,400,989,629, none capped, residue counts summing to OEIS A096368(7) | **gap 2 — no verdict artifact in this package** | `cluster/jz_n15/` |
-| Every **self-converse** tournament on **13** vertices is inducible at unit margin — all $S_{13}$ = 95,458,560, 0 UNSAT, 0 aborted | the family splits three ways, each with its own record: **not provably rigid** (319,270) in `cluster/jz_n13sc/results_excluded/done/` — 77 chunks, all SAT, nothing capped; **regular** (11,237) by `verdicts/n13_regular_result.txt`, which clears all 1,495,297 regular order-13 tournaments at margin 1; **rigid** (95,128,053) across 488 shards, of which `cluster/jz_n13sc/results_local/done/` holds 81 — **the other 407 are gap 2** | `cluster/jz_n13sc/sweep_excluded.sh` then `cluster/jz_n13sc/report_excluded.sh`; `cluster/jz_n13sc/prepare.sh` refuses to sweep unless the listing has exactly 95,458,560 lines |
+| Every regular tournament on **15** vertices is inducible at unit margin, all 18,400,989,629, none capped, residue counts summing to OEIS A096368(7) | `cluster/jz_n15/results_margin1/done/` — 6,000 residue markers, an exact cover of `r0..r5999` with none missing, extra or duplicated, summing to 18,400,989,629 instances with 0 UNSAT and 0 aborted; re-checked by `tools/check_package.sh` check 5c | `cluster/jz_n15/`, and `cluster/jz_n15/aggregate.sh` rolls the markers up |
+| Every **self-converse** tournament on **13** vertices is inducible at unit margin — all $S_{13}$ = 95,458,560, 0 UNSAT, 0 aborted | the family splits three ways, each with its own record: **not provably rigid** (319,270) in `cluster/jz_n13sc/results_excluded/done/` — 77 chunks, all SAT, nothing capped; **regular** (11,237) by `verdicts/n13_regular_result.txt`, which clears all 1,495,297 regular order-13 tournaments at margin 1; **rigid** (95,128,053) across all 488 shards, the cluster's 407 in `cluster/jz_n13sc/results/done/` and the laptop's 81 in `cluster/jz_n13sc/results_local/done/`, whose union `cluster/jz_n13sc/aggregate.sh` reports as `COVERED IN FULL` | `cluster/jz_n13sc/sweep_excluded.sh` then `cluster/jz_n13sc/report_excluded.sh`; `cluster/jz_n13sc/prepare.sh` refuses to sweep unless the listing has exactly 95,458,560 lines |
 | The three parts are exactly the family, with no gap and no overlap | `cluster/jz_n13sc/state/partition.tsv` (per-bucket, and the per-bucket rigid counts are identical on both machines), checked by `cluster/jz_n13sc/aggregate.sh` | the regular count is anchored by `cluster/jz_n13sc/selfconverse_regular_n13.log`, produced by `verify/selfconverse_regular_count.py` from the **other** direction |
 | **Refuted conjecture:** triangle load does not decide unit-margin inducibility — among 23-vertex vertex-transitive tournaments with t = 4, three are obstructions and 36 are inducible | `verdicts/n23_tmin4/`, `tournaments/vt23/manifest.tsv` | `verify/tri_per_arc.py` computes t; `tournaments/vt23_gen.py` builds the family |
 | The unrestricted form survives: every majority obstruction we have has t ≥ 6 | `verdicts/verdict_ledger.tsv` | `verify/tri_per_arc.py` |
@@ -163,6 +163,38 @@ cost-weighted paired ratio against a completed run.
 
 ---
 
+# A note on the order-13 partition
+
+**The order-13 partition, and why the middle class is named as it is.** The
+family splits three ways and the aggregate reconciles them against a total it
+did not compute:
+
+```
+completeness: 11,237 regular (excluded) + 319,270 symmetric (swept)
+              + 95,128,053 rigid = 95,458,560
+matches the 95,458,560 total EXACTLY -- no gap, no overlap
+```
+
+The 11,237 excluded ones are the *regular* self-converse tournaments, already
+settled by the order-13 regular sweep. The 319,270 are the hosts **not provably
+rigid** — the label `symmetric` in the roll-up's output, and the name of the
+working directory it reads (sym, under the scratch area, not in this package),
+are both loose, because colour refinement failing to discretise does not
+show that Aut is non-trivial, it only fails to show that Aut is trivial. The
+implication runs one way: discretising *is* a proof of triviality, so the
+319,270 are a provable superset of every order-13 self-converse tournament with
+non-trivial Aut, and an obstruction surviving the rigid sweep would necessarily
+be rigid — unlike both obstructions known at order 19. Getting this backwards
+would turn a sound argument into a claim about 319,270 tournaments that nothing
+established.
+
+`cluster/jz_n13sc/state/jz_counts.tsv` holds the per-bucket rigid counts, and
+they are identical on both machines. That is what makes a sweep split across two
+machines auditable at all: the two halves agree on what the universe *is* before
+either reports a verdict about it. The regular count is anchored from the other
+direction as well, by `verify/selfconverse_regular_count.py`, which reaches
+11,237 from `gentourng` and a converse test rather than from the catalogue.
+
 # Gaps — what this package does not establish
 
 Stated plainly, because a reproduction package that overstates its coverage is
@@ -175,57 +207,14 @@ count and the total cost. `grep -c PLACEHOLDER manuscript/*.md` returning
 nonzero means the appendix is not ready. What is here is the kit that ran, the
 aggregation and its self-test; the verdict markers are not.
 
-**Gap 2 — the n = 15 regular census has no verdict artifact.** §3.5's claim over
-all 18,400,989,629 regular tournaments on 15 vertices, and the 3,106 core-hour
-row of the cost table, rest on an aggregate reported from the cluster;
-`cluster/jz_n15/results_margin1/{done,unsat}/` are empty here. The `done/`
-markers are the completeness certificate for that sweep — a marker is written
-only on a finished residue, so their index cover is what makes the claim
-exhaustive — and they have not been brought back. **This is the largest single
-computation in the paper and the one with the least evidence in hand.**
-
-The order-13 self-converse census has the same shape, and its own aggregate
-says so out loud. Run it on what is here and it reports
-
-```
-completeness: 11,237 regular (excluded) + 319,270 symmetric (swept)
-              + 95,128,053 rigid = 95,458,560
-matches the 95,458,560 total EXACTLY -- no gap, no overlap
-==> INCOMPLETE: 81 of 488 shards, 15,238,214 of 95,128,053 hosts;
-    407 shards / 79,889,839 hosts still to sweep
-```
-
-The partition is exact and is worth reading twice. The 11,237 excluded ones are
-the *regular* self-converse tournaments, already settled by the order-13 regular
-sweep. The 319,270 are the hosts **not provably rigid** — the label `symmetric`
-in the roll-up's output and the `sym/` directory name are both loose, because
-colour refinement failing to discretise does not show that Aut is non-trivial,
-it only fails to show that Aut is trivial. The implication runs one way:
-discretising *is* a proof of triviality, so the 319,270 are a provable superset
-of every order-13 self-converse tournament with non-trivial Aut, and an
-obstruction surviving the rigid sweep would necessarily be rigid — unlike both
-obstructions known at order 19. Getting this backwards would turn a sound
-argument into a claim about 319,270 tournaments that nothing established.
-
-What is missing is the cluster's 407 shards. The 81 run on the laptop are here
-in full — 15,238,214 hosts, 0 UNSAT, 0 aborted — and
-`cluster/jz_n13sc/state/jz_counts.tsv` holds the per-bucket rigid counts that
-both machines must match line for line, which is what makes a split sweep
-auditable at all. The sweep did complete; its cluster half's markers were not
-brought back, and until they are, this package's own roll-up reports the family
-as 16.02% swept. The paper's cost row is a `PLACEHOLDER` for the related
-reason: the laptop half measured 46.8 core-hours for that 16.02%, and adding a
-laptop rate to a cluster rate is precisely the error that table's note warns
-about.
-
-**Gap 3 — the cluster reproduction of the Paley(23) certificate is not
+**Gap 2 — the cluster reproduction of the Paley(23) certificate is not
 recorded here.** §5.2 rests the independent-implementation claim partly on the
 cluster regenerating the same cube set and matching ROOT (CNF) bit for bit. The
 Paley(19) instance did this (job 1829004, `PORTABLE ROOT MATCHES`); the
 Paley(23) recertification was still running. `cluster/jz_reproduce/` holds the
 kit and the Paley(19) log.
 
-**Gap 4 — `versions/REGRESSION.md` is missing.** `REPRODUCE.md` closes by citing
+**Gap 3 — `versions/REGRESSION.md` is missing.** `REPRODUCE.md` closes by citing
 it for the node-for-node agreement of the consolidated engine against each of
 the 25 historical versions. The file does not exist. The 24 historical sources
 are here, so the comparison can be run, but it is not recorded. Note also that
@@ -234,12 +223,12 @@ produced any published result; each result names its original version in
 `REPRODUCE.md`, and the two agreeing is exactly what the absent file was meant
 to document.
 
-**Gap 5 — two coverage proofs are too large to ship and are not here.**
+**Gap 4 — two coverage proofs are too large to ship and are not here.**
 `cover_p19_d6.cnf` (34 MB), its DRAT (383 MB) and its LRAT (222 MB) exceed
 GitHub's per-file limit and are regenerable from `sat/cover_check.py`; the
 verification output is preserved in `certificates/p19_coverage_cert.txt`.
 
-**Gap 6 — external tools are not vendored.** Versions used:
+**Gap 5 — external tools are not vendored.** Versions used:
 
 | tool | version | role |
 |---|---|---|

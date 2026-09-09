@@ -211,7 +211,9 @@ echo "== 5b. the order-13 self-converse partition sums to the catalogue total ==
 # us.  Three counts agreeing with an outside total is a real cross-check; the
 # same aggregate also reports honestly how much of the sweep this package holds.
 if [ -f "$ROOT/cluster/jz_n13sc/aggregate.sh" ] && [ -d "$ROOT/cluster/jz_n13sc/results_local/done" ]; then
-  a=$(cd "$ROOT/cluster/jz_n13sc" && timeout 600 bash aggregate.sh results_local 2>&1)
+  # The census ran on two machines, so the claim is about the UNION of the two
+  # marker sets -- 407 cluster shards and 81 laptop shards.  Roll up the union.
+  a=$(cd "$ROOT/cluster/jz_n13sc" && timeout 600 bash aggregate.sh results results_local 2>&1)
   if echo "$a" | grep -q 'no gap, no overlap'; then
     tot=$(echo "$a" | grep -oE '= [0-9,]+$' | tr -d '=, ' | head -1)
     ok "partition reconciles with the catalogue total exactly (S_13 = $tot)"
@@ -219,20 +221,71 @@ if [ -f "$ROOT/cluster/jz_n13sc/aggregate.sh" ] && [ -d "$ROOT/cluster/jz_n13sc/
     bad "the order-13 partition does not reconcile"; echo "$a" | sed 's/^/        /' | tail -6
   fi
   if echo "$a" | grep -q 'HITS (UNSAT)  : 0'; then
-    ok "order-13 self-converse: no obstruction in the shards held here"
+    ok "order-13 self-converse: no obstruction anywhere in the family"
   else
     bad "order-13 self-converse: aggregate does not report zero hits"
   fi
-  # This SHOULD say incomplete: the cluster's 407 shards are gap 2.  A sudden
-  # "complete" here without those markers arriving would mean the roll-up had
-  # stopped counting what it needs, not that the package had improved.
-  if echo "$a" | grep -q 'INCOMPLETE'; then
-    ok "roll-up reports the cluster half absent, matching gap 2"
+  if echo "$a" | grep -q 'COVERED IN FULL'; then
+    ok "the union of the two halves covers the rigid universe exactly"
   else
-    bad "roll-up no longer reports INCOMPLETE -- did the shard universe change?"
+    bad "the union does not cover the rigid universe"
+    echo "$a" | sed 's/^/        /' | tail -8
+  fi
+  # NEGATIVE CONTROL for the line above.  One half alone must NOT read as
+  # covered; if it does, the completeness test is measuring nothing and a
+  # missing set of shards would pass unnoticed.
+  h=$(cd "$ROOT/cluster/jz_n13sc" && timeout 600 bash aggregate.sh results_local 2>&1)
+  if echo "$h" | grep -q 'INCOMPLETE'; then
+    ok "control: the laptop half alone still reads INCOMPLETE"
+  else
+    bad "control failed: 81 of 488 shards read as complete, so the test is blind"
   fi
 else
   warn "order-13 self-converse kit or local results absent"
+fi
+
+echo
+echo "== 5c. the 15-vertex regular census covers its range exactly =="
+# Three quantities from independent sources must agree: the marker count, the
+# index cover of r0..r(MOD-1), and the instance total against OEIS A096368(7),
+# which is not ours.  A sweep can be complete and wrong, or exact and partial;
+# only all three together say it is both.
+D15="$ROOT/cluster/jz_n15/results_margin1/done"
+if [ -d "$D15" ]; then
+  MOD15=6000
+  ls -1 "$D15" | grep -oE '[0-9]+$' | sed 's/^0*//;s/^$/0/' | sort -n > "$TMP/g15"
+  seq 0 $((MOD15-1)) > "$TMP/w15"
+  miss15=$(comm -13 "$TMP/g15" "$TMP/w15" | wc -l | tr -d ' ')
+  extra15=$(comm -23 "$TMP/g15" "$TMP/w15" | wc -l | tr -d ' ')
+  dup15=$(sort "$TMP/g15" | uniq -d | wc -l | tr -d ' ')
+  # No process substitution: this script is /bin/sh, and `read < <(...)` is a
+  # bashism that dash rejects outright -- a portability break in a gate is worse
+  # than the check it guards, because it fails for the reader rather than for us.
+  find "$D15" -type f -exec cat {} + 2>/dev/null |
+    awk '{for(i=1;i<=NF;i++){split($i,a,"=");v[a[1]]+=a[2]}}
+         END{print v["instances"]+0, v["unsat"]+0, v["aborted"]+0}' > "$TMP/n15sum"
+  ni=$(awk '{print $1}' "$TMP/n15sum"); nu=$(awk '{print $2}' "$TMP/n15sum")
+  na=$(awk '{print $3}' "$TMP/n15sum")
+  # A096368(7); asserted because it is a published census, not something we
+  # computed -- and the whole point is that our sum must land on it.
+  A096368_7=18400989629
+  if [ "$miss15" = 0 ] && [ "$extra15" = 0 ] && [ "$dup15" = 0 ]; then
+    ok "n15: exact cover of $MOD15 residues, none missing, extra or duplicated"
+  else
+    bad "n15: cover is not exact (missing $miss15, extra $extra15, duplicated $dup15)"
+  fi
+  if [ "$ni" = "$A096368_7" ]; then
+    ok "n15: instances sum to $ni = OEIS A096368(7)"
+  else
+    bad "n15: instances sum to $ni, OEIS A096368(7) is $A096368_7"
+  fi
+  if [ "$nu" = 0 ] && [ "$na" = 0 ]; then
+    ok "n15: 0 UNSAT and 0 aborted, so every regular 15-tournament is unit-margin inducible"
+  else
+    bad "n15: $nu UNSAT and $na aborted -- an aborted instance is not a verdict"
+  fi
+else
+  warn "n15 census markers absent"
 fi
 
 if [ "$QUICK" = 1 ]; then

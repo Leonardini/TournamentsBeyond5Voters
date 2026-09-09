@@ -223,8 +223,10 @@ $N(5) \le 43$ explicitly. Bachmeier et
 al. [1] is the prior art for the *problem and the method*: it introduces the computational study of
 $k$-majority digraphs, characterises the $3$-majority case building on Dushnik and Miller [9], and
 establishes hardness results for voting with a constant number of voters. Their
-explicit non-$5$-inducible tournament rests on Alon et al.'s [4] dominating-set bound $F(k)$, on
-Fidler's $F(5) \le 12$ [6], and on Graham and Spencer's construction. The case $k = 3$ is settled, and it is worth
+explicit non-$5$-inducible tournament rests on the dominating-set function $F$ of Alon et al.
+[4], on Fidler's bound of $12$ for five voters [6], and on Graham and Spencer's construction [5].
+Both [4] and [6] index $F$ by the majority parameter rather than the voter count, so the bound
+they state is $F(3) \le 12$; we quote it by voter count throughout, following [1]. The case $k = 3$ is settled, and it is worth
 separating the two halves. Shepardson and Tovey [8] introduced the *predictability*
 $\alpha^{*}(T)$: the largest threshold $\alpha$ for which $T$ can be realised by a profile in
 which every arc is supported by at least an $\alpha$ fraction of the voters. A $3$-voter profile
@@ -237,15 +239,17 @@ $3$-inducible — so $\alpha^{*} \ge \tfrac{2}{3}$ throughout $n \le 7$ does not
 Eggermont, Hurkens and Woeginger [7] close that half by direct computation: every tournament on
 $7$ vertices is $3$-inducible, exactly $96$ of the $6{,}880$ on $8$ vertices are not, and every
 tournament on $8$ or $9$ vertices is $5$-inducible. Hence $N(3) = 8$ and $N(5) \ge 10$. The count
-of $96$ is independently reported by [1], and our engine reproduces it as a known-answer test. Milosz, Hamel and Pierrot [17] studied the structure of minimum feedback arc sets in
-tournaments, which supplies the counting arguments underlying the screen of [2].
+of $96$ is independently reported by [1], and our engine reproduces it as a known-answer test. Milosz, Hamel and Pierrot [17] proved that for three voters, every minimum-weight feedback arc
+set of the majority tournament is a minimal hitting set of its directed $3$-cycles; [2] strengthens
+this to arbitrary tournaments and refutes both of their conjectures.
 
 Our certified computation (Appendix B.1) is standard in shape: it splits the problem into
 independent subproblems, in the manner of *cube-and-conquer* [10] — a SAT instance is split by
 fixing a few variables at a time, giving many partial assignments called *cubes*, and each cube is
 handed to the solver as a problem of its own — and it adopts the standard of evidence set by
 the Boolean Pythagorean triples proof [3, 12], in which every subproblem emits a machine-checkable
-refutation in LRAT [11] that an independent checker validates. Appendix B.1 says what we take from
+refutation that an independent checker validates. Our refutations are in the LRAT format [11],
+where [3] emitted DRAT and [12] used its verified GRIT pipeline. Appendix B.1 says what we take from
 that line of work and in which two respects our artifact is weaker.
 
 ---
@@ -253,63 +257,54 @@ that line of work and in which two respects our artifact is weaker.
 ## 2. Preliminaries
 
 Throughout, $T$ is a tournament on $V = \{1, \dots, n\}$ and $k = 5$ unless stated otherwise. We
-write $N^{+}(v)$ and $N^{-}(v)$ for the out- and in-neighbourhoods of $v$.
+write $N^{+}(v)$ and $N^{-}(v)$ for the out- and in-neighbourhoods of $v$. Vertices are numbered
+from $1$ in all prose and tables; the software numbers them from $0$, and the shift is applied
+consistently in the repository's verification scripts.
 
-Vertices are numbered from $1$ in all prose and tables. The accompanying software numbers them
-from $0$; the translation is the obvious shift and is applied consistently in the repository's
-verification scripts.
+The *support* of an arc $e = (i \to j)$ under a profile is the number of voters ranking $i$ above
+$j$, written $c(e)$. A profile is a witness for $T$ when $c(e) \ge (k+1)/2$ for every arc, and the
+*margin* of $e$ is $2c(e) - k$. The three regimes for $k = 5$ are margin $1$ (every $c(e) = 3$),
+margin $3$ ($c(e) \in \{3,4\}$) and margin $5$ (no constraint beyond being a witness).
 
-**Enumeration counts.** Several of the families swept here are large enough that their sizes are
-better named than written out. Following [2], $D_n$, $R_n$ and $S_n$ denote the numbers of
-isomorphism classes of, respectively, all tournaments, regular tournaments and self-converse
-tournaments on $n$ vertices. In the text we give these to two significant figures; Appendix D
-tabulates the exact values, which are what the completeness gates of Appendix C are checked
-against.
+Several families swept here are large enough that their sizes are better named than written out.
+Following [2], $D_n$, $R_n$ and $S_n$ denote the numbers of isomorphism classes of, respectively,
+all tournaments, regular tournaments and self-converse tournaments on $n$ vertices. The text gives
+these to two significant figures; Appendix D tabulates the exact values, which are what the
+completeness gates of Appendix C are checked against.
 
-**Notation for support and margin.** Recall from Section 1 that the *support* of an arc
-$e = (i \to j)$ under a profile is the number of voters ranking $i$ above $j$; we write it $c(e)$.
-A profile is a witness for $T$ when $c(e) \ge (k+1)/2$ for every arc, and the *margin* of $e$ is
-$2c(e) - k$, positive for every arc of a witness. The three regimes for $k = 5$ are margin $1$
-(every $c(e) = 3$), margin $3$ ($c(e) \in \{3,4\}$) and margin $5$ (no constraint beyond being a
-witness).
+### 2.1 Base states
 
-**The base and its base states.** Every search in this paper starts by fixing how the voters
-rank a handful of vertices, and then looks for ways to fit the rest around that. Choose a *base*
-$B \subseteq V$ of a few vertices — five or six in practice — and write $T|_B$ for the
-subtournament *induced* on $B$: the tournament on the vertex set $B$ that keeps exactly those arcs
-of $T$ whose endpoints both lie in $B$.
+Every search here starts by fixing how the voters rank a handful of vertices and then looks for
+ways to fit the rest around that. Choose a *base* $B \subseteq V$ of a few vertices — five or six
+in practice — and write $T|_B$ for the subtournament induced on $B$. A **base state** is one way
+for the $k$ voters to rank $B$ that is already consistent with what $T$ demands there: $k$
+orderings of $B$ whose majorities reproduce $T|_B$ at the margin being asked for. Base states
+differing only by a relabelling of the voters are counted once, which Lemma 2.3 shows is
+legitimate.
 
-A **base state** is one way for the $k$ voters to rank $B$ that is already consistent with what
-$T$ demands there: $k$ orderings of $B$ whose majorities on $B$ reproduce $T|_B$, at the margin
-being asked for. Base states that differ only by relabelling the voters are counted once, which
-Lemma 2.3 below shows is legitimate.
+Base states are the unit of work, and the loop over them is the **outer loop**. Each is a
+self-contained subproblem — the rankings of $B$ are given, and the question is whether the
+remaining $n - |B|$ vertices can be inserted so that every arc of $T$ comes out right — so the
+search splits across base states with no communication, and $T$ fails to be $k$-inducible exactly
+when every base state fails. How many there are depends only on $|B|$, on $T|_B$ and on the margin
+regime, and *not* on $n$: with the five-vertex base we use on the Paley tournaments there are
+$8{,}031$ of them whether the tournament has $23$ vertices or $47$. Enlarging the base therefore
+adds work inside each subproblem without creating more of them.
 
-Base states are the unit of work, and the loop over them is what we call the **outer loop**.
-Each one is a self-contained subproblem — the voters' rankings
-of $B$ are given, and the question is whether the remaining $n - |B|$ vertices can be inserted
-into those rankings so that every arc of $T$ comes out right — so the search splits across base
-states with no communication between them, and $T$ fails to be $k$-inducible exactly when every
-base state fails. How many there are depends only on $|B|$, on $T|_B$ and on the margin regime,
-and *not* on $n$: with the five-vertex base we use on the Paley tournaments there are $8{,}031$ of them
-whether the tournament has $23$ vertices or $47$. Growing it therefore adds work inside each
-subproblem but does not create more of them.
+### 2.2 Symmetry reductions
 
-**Group-theoretic notation.** An *automorphism* of a digraph $D$ is a permutation of its vertices
-carrying every arc to an arc; these form the **automorphism group** $\mathrm{Aut}(D)$ under
-composition, and $D$ is **rigid** when $\mathrm{Aut}(D)$ contains only the identity. For a group
-$\Gamma$ of permutations of a set $X$, the **orbit** of $x \in X$ is
-$\Gamma x = \{\gamma(x) : \gamma \in \Gamma\}$, and the orbits partition $X$. We use orbits
-of $\mathrm{Aut}(T)$ acting on three different sets: on the vertices, on the arcs, and — in
-Lemma 2.1 below — on the **ordered pairs of distinct vertices**, where $\gamma$ sends $(u,v)$ to
-$(\gamma(u), \gamma(v))$. An ordered pair is either an arc or the reverse of one, so that third
-action has at least two orbits and refines neither of the first two.
+An *automorphism* of a digraph $D$ is a permutation of its vertices carrying every arc to an arc;
+these form $\mathrm{Aut}(D)$ under composition, and $D$ is **rigid** when $\mathrm{Aut}(D)$ is
+trivial. For a permutation group $\Gamma$ on a set $X$, the **orbit** of $x$ is
+$\Gamma x = \{\gamma(x) : \gamma \in \Gamma\}$, and the orbits partition $X$. We use orbits of
+$\mathrm{Aut}(T)$ on the vertices, on the arcs, and on the **ordered pairs** of distinct vertices,
+where $\gamma$ sends $(u,v)$ to $(\gamma(u), \gamma(v))$. An ordered pair is either an arc or the
+reverse of one, so that third action has at least two orbits.
 
-**Symmetry.** Two symmetries act on witnesses, and both are exploited by every method in this
-paper. The first is the $k!$ relabellings of the voters; the second is $\mathrm{Aut}(T)$ acting on
-the vertices. Each yields a reduction that is without loss of generality.
-
-The point of the second one is that a witness can be pushed around by an automorphism, so we may
-decide in advance what some voter's top two vertices are going to be.
+Two symmetries act on witnesses and both are exploited by every method here: the $k!$ relabellings
+of the voters, and $\mathrm{Aut}(T)$ acting on the vertices. Each yields a reduction without loss
+of generality. The point of the second is that a witness can be pushed around by an automorphism,
+so we may decide in advance what some voter's top two vertices are.
 
 **Lemma 2.1 (orbit anchoring).** *Let $\mathrm{Aut}(T)$ act on the ordered pairs of distinct
 vertices, and choose one representative pair from each orbit, say $(a_1, b_1), \dots, (a_m, b_m)$.
@@ -317,62 +312,44 @@ If $T$ is $k$-inducible, then $T$ has a witness in which, for at least one index
 ranks $a_i$ first and $b_i$ second.*
 
 *Proof.* Let $\pi_1, \dots, \pi_k$ be a witness and let $(u, w)$ be the top two vertices of
-$\pi_1$. The pair $(u,w)$ lies in one of the orbits; let $(a_i, b_i)$ be that orbit's chosen
+$\pi_1$. The pair $(u,w)$ lies in one of the orbits; let $(a_i, b_i)$ be that orbit's
 representative, so there is $g \in \mathrm{Aut}(T)$ with $g(u) = a_i$ and $g(w) = b_i$. Applying
-$g$ to every voter gives a profile $g\pi_1, \dots, g\pi_k$ whose majority tournament is
-$g(T) = T$, so it is again a witness, and its first voter ranks $a_i$ first and $b_i$ second.
-$\blacksquare$
+$g$ to every voter gives a profile whose majority tournament is $g(T) = T$, so it is again a
+witness, and its first voter ranks $a_i$ first and $b_i$ second. $\blacksquare$
 
-Read it as a restriction we are entitled to impose. Before the lemma, the top two vertices of a
-voter's ranking could be any of the $n(n-1)$ ordered pairs; after it, we may search only for
-witnesses whose top two are one of the $m$ chosen pairs, and lose nothing — if any witness exists,
-one of that restricted form does. The saving is the ratio $n(n-1)/m$, and for a Paley tournament
-$m = 2$. The price is that **all $m$ representatives must be searched**: the lemma guarantees that
-*some* $i$ works, not any particular one, so a run covering only one representative proves
-nothing.
-
-Why $m = 2$ for Paley: an ordered pair is either an arc or a non-arc, and $\mathrm{Aut}(P_q)$ is
-transitive on each of the two sets, so there are exactly two orbits.
-
-The same argument applied to the action on *vertices* gives a weaker restriction, which we also
-use and therefore state.
+So we may search only for witnesses whose top pair is one of the $m$ chosen pairs, a saving of
+$n(n-1)/m$. The price is that **all $m$ representatives must be searched**: the lemma guarantees
+that *some* $i$ works, not any particular one, so a run covering only one representative proves
+nothing. For a Paley tournament $m = 2$, since an ordered pair is either an arc or a non-arc and
+$\mathrm{Aut}(P_q)$ is transitive on each set. The two representatives can be exhibited without
+computing the group: $x \mapsto a(x - t)$ with $a$ a quadratic residue sends $(t,s)$ to
+$(0, a(s-t))$, and $a(s-t)$ sweeps the coset $\mathrm{QR}\cdot(s-t)$, so one representative per
+coset suffices, the two cosets being mutually exclusive and exhaustive.
 
 **Corollary 2.2 (vertex anchoring).** *Let $\mathrm{Aut}(T)$ act on the vertices and choose one
 representative $v_1, \dots, v_r$ from each orbit. If $T$ is $k$-inducible, then $T$ has a witness
 in which some voter ranks some $v_i$ first.*
 
 *Proof.* The proof of Lemma 2.1 verbatim, with the action on vertices in place of the action on
-ordered pairs: the top vertex of $\pi_1$ lies in some orbit, and applying an automorphism carrying
-it to that orbit's representative gives another witness. $\blacksquare$
+ordered pairs. $\blacksquare$
 
-A witness meeting either restriction — some voter's top *pair* is one of the chosen pairs, or some
-voter's top *vertex* is one of the chosen vertices — is called **anchored**. The two are
-alternatives rather than a sequence, each on its own without loss of generality, and which is the
-better break depends on the tournament: for a vertex-transitive one the vertex form says only that some
-voter ranks vertex $1$ first, a factor of about $n$, against $|\mathrm{Aut}(T)|$ for the pair
-form, but the pair form costs more to test at every node, and where the vertex stabilisers are
-trivial the vertex form is already as strong as anchoring can be.
+A witness meeting either restriction is called **anchored**. The two are alternatives rather than
+a sequence, each without loss of generality, and which is better depends on the tournament: for a
+vertex-transitive one the vertex form says only that some voter ranks vertex $1$ first, a factor of
+about $n$, against $|\mathrm{Aut}(T)|$ for the pair form — but the pair form costs more to test at
+every node, and where the vertex stabilisers are trivial the vertex form is already as strong as
+anchoring can be.
 
-For $P_q$ the pair form can be made concrete without computing the group. The map
-$x \mapsto a(x - t)$ with $a$ a quadratic residue sends $(t,s)$ to $(0, a(s-t))$, and $a(s-t)$
-sweeps the whole coset $\mathrm{QR}\cdot(s-t)$, so one representative per coset suffices; the two
-cosets — top beats second, or does not — are mutually exclusive and exhaustive. **Both
-representatives must be run, and completeness is the union of the two**; a single one is not a
-valid break.
-
-**Lemma 2.1 is only as good as the orbits it is given.** It licenses a search restricted to the
-chosen representatives *provided* those representatives really do meet every orbit. Suppose they
-miss one. Then every witness whose anchoring lies in the missed orbit is discarded unexamined, and
-the search can report that no witness exists when in fact one does — the one error that would
-matter here, since the results we are after are negative. Nothing inside the search can detect
-this, because from the inside a discarded branch and an impossible branch look the same.
-
-The check therefore has to happen outside the search. For every tournament we compute
-$\mathrm{Aut}(T)$ separately, with `nauty`, and record its orbits alongside the run. When only a
-subgroup $\Gamma \le \mathrm{Aut}(T)$ is known, using the orbits of $\Gamma$ is safe rather than
-risky: $\Gamma$-orbits are finer, so a representative set meeting all of them meets every
-$\mathrm{Aut}(T)$-orbit too. Such a set may be larger than necessary, and the only cost of that is
-searching more than we had to.
+**Lemma 2.1 is only as good as the orbits it is given.** It licenses the restricted search
+*provided* the representatives meet every orbit. Suppose they miss one. Then every witness
+anchored in the missed orbit is discarded unexamined, and the search can report that no witness
+exists when one does — the one error that would matter here, since the results we are after are
+negative. Nothing inside the search can detect this, because from the inside a discarded branch
+and an impossible branch look alike. The check therefore happens outside: for every tournament we
+compute $\mathrm{Aut}(T)$ separately, with `nauty` [20], and record its orbits alongside the run.
+Using the orbits of a known subgroup $\Gamma \le \mathrm{Aut}(T)$ is safe rather than risky, since
+$\Gamma$-orbits are finer and a representative set meeting all of them meets every
+$\mathrm{Aut}(T)$-orbit; the only cost is searching more than we had to.
 
 **Lemma 2.3 (voter lex-ordering).** *If $T$ is $k$-inducible, then $T$ has a witness whose $k$
 orders are non-decreasing under any fixed total order on linear orders.*
@@ -381,96 +358,73 @@ orders are non-decreasing under any fixed total order on linear orders.*
 profile with the same multiset of orders induces the same tournament. Sorting the multiset gives
 the required witness. $\blacksquare$
 
-**What the two lemmas do to the base states.** The two lemmas reduce the running time by more
-than two orders of magnitude, and it is worth seeing where each one bites.
+Together the two lemmas reduce the running time by more than two orders of magnitude, and they
+bite in different places. Lemma 2.3 acts first and is absorbed into the definition of a base state:
+the $k$ orderings of $B$ are held sorted and each multiset counted once, dividing the count by a
+factor approaching $k! = 120$. Lemma 2.1 acts second and *deletes* base states outright, since a
+base state can extend to an anchored witness only if one of its voters already ranks a chosen
+representative pair at the top of $B$ — a property of the base state alone, testable before any
+search begins. What survives is **live**. For the five-vertex base on the Paley tournaments the
+representatives we run leave $2{,}591$ of the $8{,}031$ live, and the best available choice would
+leave $2{,}537$; the remaining three quarters are discarded for free.
 
-Lemma 2.3 acts first, and it is absorbed into the definition of a base state itself. Since
-permuting the voters changes no support, the $k$ orderings of $B$ can be held in a fixed sorted
-order and each multiset counted once, which divides the count by a factor approaching
-$k! = 120$. Lemma 2.1 acts second, and it *deletes* base states outright. A base state can extend
-to an anchored witness only if one of its voters already ranks one of the chosen representative
-pairs at the very top of $B$ — and that is a property of the base state alone, so it can be
-tested before any search begins. What survives we call the **live** base states. For the
-five-vertex base we use on the Paley tournaments, the representatives we run leave $2{,}591$ of the
-$8{,}031$ live, and the best available choice of representatives would leave $2{,}537$; the
-remaining three quarters are discarded for free.
+What makes the two lemmas compose rather than conflict is that every condition above is phrased as
+"*some* voter ranks …", never "voter $1$ ranks …". A condition on a particular voter would be
+destroyed by the re-sorting of Lemma 2.3, whereas one invariant under permuting the voters survives
+it, so the reductions multiply. Both are available to every formulation compared in Appendix A,
+which is what makes that a comparison of search strategies rather than of symmetry handling; the
+routes differ only in *when* the Lemma 2.1 condition is tested. Our depth-first search tests it
+inside the search rather than at the leaves, which is sound because the condition is monotone: once
+a partial profile has lost the chance to satisfy it, inserting further vertices cannot restore it.
+The SAT route tests it once, at the root, where it decides which cubes reach the solver at all.
 
-Both reductions are available to all three formulations we compare, which is what makes
-Appendix A a comparison of search strategies rather than of symmetry handling. Where they differ
-is when the Lemma 2.1 condition is checked. Our depth-first search tests it *inside* the search
-rather than only at the leaves, which it may do because the condition is monotone: once a partial
-profile has lost the chance to satisfy it, inserting further vertices cannot restore it, so
-failing the test is a sound reason to abandon a whole subtree. It also chooses per tournament between
-anchoring an ordered pair and anchoring a single vertex, whichever is stronger there. The SAT
-route checks the same condition once, at the root, where it decides which cubes are handed to the
-solver at all. In an integer program it would appear as a disjunction over representatives, one
-indicator per orbit summing to at least one, with lexicographic constraints between consecutive
-voter blocks for Lemma 2.3 — though our ILP arm imposes neither, for reasons given in
-Appendix A.1; we record the encodings only to show that nothing in the comparison turns on their
-absence.
+### 2.3 The search in five steps
 
-One point of hygiene is what makes the two lemmas compose rather than conflict. Every condition
-above is phrased as "*some* voter ranks …", never "voter $1$ ranks …". A condition on a
-*particular* voter would be destroyed by the re-sorting of Lemma 2.3, whereas one invariant under
-permuting the voters survives it, so the two reductions multiply. The two engines therefore rest
-on the same two reductions while sharing no implementation, and where they agree the agreement is
-evidence about the implementations rather than about the lemmas.
+The engine extends base states. A base state fixes how the $k$ voters rank $B$; the search inserts
+the remaining $n - |B|$ vertices into those rankings one at a time, backtracking as soon as the
+arcs already decided contradict $T$. A base state extended to $k$ full rankings yields a witness;
+one that cannot be is eliminated; and $T$ fails to be $k$-inducible exactly when every base state
+is eliminated. Read as a pipeline, with $T$ and the margin regime as inputs:
 
-**The search in five steps.** What the engine does, in one sentence, is *extend base states*.
-A base state fixes how the $k$ voters rank the base $B$; the search then inserts the remaining
-$n - |B|$ vertices into those $k$ rankings, one vertex at a time, and backtracks as soon as the
-arcs already decided contradict $T$. A base state that can be extended all the way to $k$ full
-rankings yields a witness; one that cannot is eliminated; and $T$ fails to be $k$-inducible exactly
-when every base state is eliminated. That is the whole algorithm, and the rest of this paper is
-about how to choose the base, how to cut the number of base states down, and how to make the
-insertion step cheap.
-
-The engine of Appendix A is then easiest to read as a fixed pipeline, in which the tournament $T$ and
-the margin regime are the inputs and everything below is a choice made about them.
-
-1. **Pick a size.** Choose $b$, the number of vertices of the base. In practice $b = 5$ or
-   $b = 6$: the work of steps 3 and 4 grows steeply in $b$ while the depth it removes from step 5
-   grows only linearly, so there is an optimum and it is small.
-2. **Pick a subtournament.** Choose a base $B \subseteq V$ with $|B| = b$. Only the induced
-   $T|_B$ matters for what follows, which is why the choice can be optimised cheaply
-   (Appendix A.4) — and it should be, since the base-state count varies by more than two orders
-   of magnitude across the twelve isomorphism classes at $b = 5$.
-3. **Find its bases.** Enumerate the base states of $B$: the $k$-tuples of linear orders of $B$
-   whose induced supports agree with $T|_B$, counted up to voter permutation by Lemma 2.3. Their
-   number depends only on $|B|$, on $T|_B$ and on the margin regime — not on $n$.
+1. **Pick a size.** Choose $b = |B|$, in practice $5$ or $6$: the work of steps 3 and 4 grows
+   steeply in $b$ while the depth it removes from step 5 grows only linearly.
+2. **Pick a subtournament.** Choose $B$ with $|B| = b$. Only $T|_B$ matters for what follows, so
+   the choice can be optimised cheaply (Appendix A.4) — and should be, since the base-state count
+   varies by more than two orders of magnitude across the twelve isomorphism classes at $b = 5$.
+3. **Find its base states.** Enumerate the $k$-tuples of linear orders of $B$ whose supports agree
+   with $T|_B$, counted up to voter permutation by Lemma 2.3.
 4. **Determine the usable symmetries.** Compute $\mathrm{Aut}(T)$, or a subgroup, and its orbits,
-   then choose one of three things to impose: the ordered-pair anchoring of Lemma 2.1, the vertex
-   anchoring of Corollary 2.2, or neither. Whichever is imposed, discard the base states that no
-   anchored witness can use; those that remain are the *live* ones. Imposing neither is sometimes
-   the right choice. At unit margin the anchoring rules out so few partial profiles that it does
-   not repay the cost of testing it at every node, and anchoring is the only step in the engine
-   that discards profiles at all — a risk not worth running when the verdict being chased is a
-   negative one.
-5. **Run to completion, in parallel across base states.** Each live base state is an independent
-   subproblem, so the outer loop parallelises with no communication. The verdict is positive as
-   soon as any base state yields a witness. It is negative — $T$ is not $k$-inducible — only when
-   *every* live base state has been searched to exhaustion and no search was stopped by its node
-   or time cap. A run that hit a cap is not a verdict.
+   then impose the ordered-pair anchoring of Lemma 2.1, the vertex anchoring of Corollary 2.2, or
+   neither, discarding the base states no anchored witness can use. Imposing neither is sometimes
+   right: at unit margin the anchoring rules out so few partial profiles that it does not repay
+   testing at every node, and anchoring is the only step that discards profiles at all — a risk
+   not worth running when the verdict being chased is negative.
+5. **Run to completion, in parallel across base states.** The verdict is positive as soon as any
+   base state yields a witness. It is negative only when *every* live base state has been searched
+   to exhaustion and no search was stopped by its node or time cap. A run that hit a cap is not a
+   verdict.
 
 Steps 1–4 are cheap and are what a human chooses; step 5 is the computation. The same five steps
-describe the SAT route, with step 5 replaced by "hand each live base state to a CDCL solver as a
-*cube*, the partial assignment that fixes the voters' rankings of $B$" — which is why the two share their decomposition and their two lemmas, and differ only in
-what refutes a leaf.
+describe the SAT route, with step 5 replaced by handing each live base state to a CDCL solver as a
+*cube* — the partial assignment fixing the voters' rankings of $B$ — so the two share their
+decomposition and their two lemmas and differ only in what refutes a leaf.
 
-**Paley tournaments.** For $q \equiv 3 \pmod 4$ a prime power, $P_q$ is as defined in Section 1.1.
-For prime $q$ the construction over $\mathbb{Z}/q$ is valid; for a prime power such as $q = 27$ it
-is not, and the tournament must be built over $\mathbb{F}_q$. We note this because the naive
-$\mathbb{Z}/27$ construction silently fails to be a tournament — 81 pairs receive no arc — and
-searching such an object produces confident nonsense. Our implementation refuses it. Built over
-$\mathbb{F}_{3^3}$, the tournament is, by canonical form, the unique most symmetric doubly regular
-tournament on $27$ vertices.
+### 2.4 Paley tournaments of prime-power order
+
+For $q \equiv 3 \pmod 4$ a prime power, $P_q$ is as defined in Section 1.1. For prime $q$ the
+construction over $\mathbb{Z}/q$ is valid; for a prime power such as $q = 27$ it is not, and the
+tournament must be built over $\mathbb{F}_q$. We note this because the naive $\mathbb{Z}/27$
+construction silently fails to be a tournament — $81$ pairs receive no arc — and searching such an
+object produces confident nonsense; our implementation refuses it. Built over $\mathbb{F}_{3^3}$,
+the tournament is, by canonical form, the unique most symmetric doubly regular tournament on $27$
+vertices.
 
 The automorphism count also changes, and Section 1.1 states it for primes only. In general
 $|\mathrm{Aut}(P_q)| = q(q-1)e/2$ with $e = [\mathbb{F}_q : \mathbb{F}_p]$, since the field
-automorphisms contribute, so the coincidence with the arc count $q(q-1)/2$ is special to
-prime $q$. At $q = 27$ the group has order $1053$ and is still transitive on arcs, which is all
-Lemma 2.1 needs, on arcs and on non-arcs, and that holds at every $q$; we verified all of these
-group orders independently.
+automorphisms contribute, so the coincidence with the arc count $q(q-1)/2$ is special to prime $q$.
+At $q = 27$ the group has order $1053$ and is still transitive on arcs and on non-arcs, which is
+all Lemma 2.1 needs, and that transitivity holds at every $q$; we verified all of these group
+orders independently.
 
 ---
 
@@ -489,7 +443,8 @@ below, which was split between the two machines, and the computation of Appendix
 reported in *core-hours*, the product of wall time and the number of workers; they are not
 repeated in the text. Core-hours are comparable across our own runs but are **not**
 machine-independent: Appendix A.5 records this laptop running $2.6$ to $3.3$ times faster per core
-than the cluster we also used. The
+than the cluster we also used on the computations measured there, and $5.1$ times faster on the
+self-converse census, so the ratio is workload-dependent and not a constant to extrapolate with. The
 quantity that does not depend on the machine is the *node count*, which we give wherever it was
 recorded; Section 5.3 sets out exactly what a replication must hold fixed for it to match.
 
@@ -531,7 +486,7 @@ rules out arc-criticality.
 | 31 | not vertex-critical | open |
 | 43 | not vertex-critical | **not vertex-critical** (Section 3.3) |
 
-Three remarks. Paley(19) is the only member critical at either margin, and it is critical in the
+Three remarks. Paley(19) is the only member critical at margin $1$, and it is critical in the
 strongest sense: reversing any one arc makes it margin-1 inducible, which by the implication also
 gives vertex-criticality. At the other end, Paley(43) fails to be vertex-critical at *both*
 margins, so the obstruction there is not concentrated at a vertex in either regime.
@@ -543,10 +498,14 @@ margin $1$, since Paley(23) $-\,v$ is not margin-1 inducible either. Criticality
 monotone in the margin, and a tournament can be a minimal obstruction in one regime and not in the
 other.
 
-The two open cells are open by choice, not by obstacle: reversing an arc destroys the symmetry
-that makes these tournaments tractable, so every base state becomes live and the scan is a large
-multiple of the $q = 23$ one (Section 3.4), while neither answer would move $N(5)$ or bear on any
-other statement here.
+The two open cells are open by choice, not by obstacle, and two separate questions sit behind
+each. Vertex-criticality asks whether the tournament minus a vertex is $5$-inducible; both
+Paley(27) and Paley(31) are vertex-transitive, so a single deletion decides all $q$ of them, and
+the computation has the same shape as the Paley(43) $-\,v$ sweep of Section 3.3. Arc-criticality
+is the more expensive question: reversing an arc destroys the symmetry that makes these
+tournaments tractable, so every base state becomes live and the scan is a large multiple of the
+$q = 23$ one (Section 3.4). Neither answer would move $N(5)$ or bear on any other statement here,
+so we have not run them.
 
 
 ### 3.2 Paley(19) is 5-inducible, but not with unit margin
@@ -571,9 +530,9 @@ ten different base states, with no base state refuted; the support histogram of 
 is $159$ arcs at $3$–$2$ and $12$ at $4$–$1$, with none unanimous.
 
 Both negative results in this section are additionally certified formally, by cube-and-conquer
-computations in which every leaf is refuted by CaDiCaL [18] in LRAT and rechecked by `lrat-trim`,
-a different program by a different author, with the solver's own proof checking deliberately
-disabled. Both are complete on *both* halves — the
+computations in which every leaf is refuted by CaDiCaL [18, 24] in LRAT and rechecked by
+`lrat-trim` [24], a separate program that shares no code with the solver, with the solver's own
+proof checking deliberately disabled. Both are complete on *both* halves — the
 leaves and the claim that the leaves are exhaustive — and both reduce to the same two human
 lemmas, 2.1 and 2.2. Appendix B gives the construction, the published root hashes, the two
 respects in which our artifact is weaker than the Boolean Pythagorean triples proof it is modelled
@@ -807,7 +766,7 @@ Appendix A.5 records the factor between the two machines.
 | second doubly regular $19$, all $57$ arc reversals | unit | all inducible | $3.59$ |
 | the $15$ obstruction reversals at $21$, every vertex deletion | unit | all inducible | $14.3$ |
 | regular tournaments on $15$ vertices | unit | all inducible | $3{,}106$ |
-| self-converse tournaments on $13$ vertices | unit | all inducible | *[PLACEHOLDER]* |
+| self-converse tournaments on $13$ vertices | unit | all inducible | $1{,}310$ |
 
 ---
 
@@ -944,7 +903,9 @@ from its Cayley presentation need not carry the numbering we used, and two of th
 tournaments of Section 3.4 are in fact *not* in the canonical labelling that a fresh
 isomorphism-class enumeration produces. *Wall-clock and core-hours* replicate only in order of
 magnitude; Appendix A.5 measures a factor of $2.6$ to $3.3$ per core between the two machines we
-used, and a loaded machine distorts them further.
+used, though the self-converse census of Section 3.5 ran at $5.1$, so that ratio is
+workload-dependent rather than a property of the pair of machines, and a loaded machine distorts
+them further.
 
 One practical note for anyone rerunning the checker: `lrat-trim` signals success with
 `s VERIFIED` and exit code $20$, following the SAT-solver convention, not exit code $0$.
@@ -992,7 +953,7 @@ $k$-majority tournaments. *Journal of Combinatorial Theory, Series B*, 96(3):374
 *Canadian Mathematical Bulletin*, 14(1):45–48, 1971.
 
 [6] D. Fidler. A recurrence for bounds on dominating sets in $k$-majority tournaments.
-*Electronic Journal of Combinatorics*, 18(1):P138, 2011.
+*Electronic Journal of Combinatorics*, 18(1):P166, 2011.
 
 [7] C. Eggermont, C. Hurkens, G. J. Woeginger. Realizing small tournaments through few
 permutations. *Acta Cybernetica*, 21(2):267–271, 2013.
@@ -1016,11 +977,11 @@ This is the paper introducing the LRAT format that `lrat-trim` consumes.
 Boolean Pythagorean triples problem. *Journal of Automated Reasoning*, 63(3):695–722, 2019.
 doi:10.1007/s10817-018-9490-4.
 
-[13] M. J. H. Heule. Solving and verifying the Boolean Pythagorean triples problem. ACL2 Seminar,
-University of Texas at Austin, 9 September 2016.
+[13] M. J. H. Heule. Everything's bigger in Texas: the largest math proof ever. ACL2 Seminar,
+University of Texas at Austin, 9 September 2016. Joint work with O. Kullmann and V. W. Marek.
 `https://www.cs.utexas.edu/~moore/acl2/seminar/2016.09.09-heule/ACL2.pdf`
-Source of the scale and validation-cost figures quoted in Appendix B.1, which are not stated in
-[3] or [12]; the talk is their citable origin.
+Cited for the compressed size of the published cube certificate; the
+re-verification costs quoted in Appendix B.1 are stated in [3] itself.
 
 [14] M. J. H. Heule. Schur number five. In *AAAI 2018*, pages 6598–6606, 2018.
 
@@ -1034,22 +995,39 @@ In *Automated Reasoning (IJCAR 2020)*, LNCS 12166, pages 48–65, 2020.
 problem. In *Combinatorial Algorithms (IWOCA 2018)*, LNCS 10979, pages 224–236, 2018.
 
 [18] A. Biere, K. Fazekas, M. Fleury, M. Heisinger. CaDiCaL, Kissat, Paracooba, Plingeling and
-Treengeling entering the SAT Competition 2020. In *Proceedings of SAT Competition 2020*, pages
-51–53, 2020. We use CaDiCaL as the leaf solver and Biere's `lrat-trim` as the independent
-checker.
+Treengeling entering the SAT Competition 2020. In *Proceedings of SAT Competition 2020: Solver and Benchmark
+Descriptions*, volume B-2020-1 of *Department of Computer Science Series of Publications B*,
+pages 50–53. University of Helsinki, 2020. The solver description; for the LRAT support we use,
+and for `lrat-trim`, see [24].
 
 [19] M. J. H. Heule, W. A. Hunt Jr., N. Wetzler. Trimming while checking clausal proofs. In
-*Formal Methods in Computer-Aided Design (FMCAD 2013)*, pages 181–188, 2013. The `drat-trim`
-checker.
+*Formal Methods in Computer-Aided Design (FMCAD 2013)*, pages 181–188, 2013. The `drup-trim` checker, predecessor of
+`drat-trim`; the tool itself is [23].
 
 [20] B. D. McKay, A. Piperno. Practical graph isomorphism, II. *Journal of Symbolic Computation*,
 60:94–112, 2014. The `nauty` and `gentourng` tools, used for all tournament enumeration.
 
-[21] OEIS Foundation Inc. Entry A096368, *Number of regular tournaments on $2n+1$ labeled nodes*.
+[21] OEIS Foundation Inc. Entry A096368, *Number of unlabeled regular tournaments with $2n+1$ nodes*.
 The On-Line Encyclopedia of Integer Sequences, `https://oeis.org/A096368`.
 
 [22] D. E. Knuth. Dancing links. In J. Davies, B. Roscoe, J. Woodcock, editors, *Millennial
 Perspectives in Computer Science*, pages 187–214. Palgrave, 2000. arXiv:cs/0011047.
+
+[23] N. Wetzler, M. J. H. Heule, W. A. Hunt Jr. DRAT-trim: efficient checking and trimming using
+expressive clausal proofs. In *Theory and Applications of Satisfiability Testing (SAT 2014)*,
+LNCS 8561, pages 422–429, 2014. doi:10.1007/978-3-319-09284-3_31.
+
+[24] F. Pollitt, M. Fleury, A. Biere. Faster LRAT checking than solving with CaDiCaL. In
+*Theory and Applications of Satisfiability Testing (SAT 2023)*, LIPIcs 271, pages 21:1–21:12,
+2023. doi:10.4230/LIPIcs.SAT.2023.21. Introduces `lrat-trim` and CaDiCaL's native LRAT output,
+which is the capability we use; it postdates the solver description [18].
+
+[25] OEIS Foundation Inc. Entry A000568, *Number of outcomes of unlabeled $n$-team round-robin
+tournaments*. The On-Line Encyclopedia of Integer Sequences, `https://oeis.org/A000568`.
+
+[26] OEIS Foundation Inc. Entry A002785, *Number of self-complementary oriented graphs with $n$
+nodes*. The On-Line Encyclopedia of Integer Sequences, `https://oeis.org/A002785`. McKay's note
+on that entry records that these are also the self-converse tournaments.
 
 
 
@@ -1319,14 +1297,16 @@ independent checker rather than trusted. We claim no methodological novelty.
 Two departures are worth stating, both consequences of our setting. Our cubes are not produced by
 lookahead splitting but are *base states*, a combinatorial decomposition we have independently from
 Appendix A — which is what lets the coverage of the cube set be certified separately (B.2) instead
-of resting on a splitting heuristic. And where [3] published its proof, we *verify and discard*:
+of resting on a splitting heuristic. And where [3] published a cube certificate from which its
+refutations can be regenerated, we *verify and discard*:
 each LRAT proof is checked, hashed and deleted, so peak storage is one proof per worker rather than
 terabytes, and what we publish is a hash commitment. That is the weaker artifact — a reader cannot
 re-check our proofs without regenerating them — and Section 5.3 says which published hashes a third
 party must reproduce. The choice suits the scale. Re-verifying the Boolean Pythagorean triples
-proof costs about $13{,}000$ CPU-hours to decompress and $16{,}000$ to validate [13], so at that
-scale publishing the bytes is essential because no referee will reproduce the search. Our
-certificates are three orders of magnitude smaller: $25.1$ core-hours for Paley(19) and $236.0$ for
+proof costs about $13{,}000$ CPU-hours to regenerate the refutations from the published cube
+certificate, $68$ gigabytes compressed [13], and about $16{,}000$ to check them [3], which is why that proof ships as a certificate
+to re-solve rather than as its $200$ terabytes of proof bytes. Our
+certificates are two to three orders of magnitude smaller: $25.1$ core-hours for Paley(19) and $236.0$ for
 Paley(23) cover solving *and* checking from nothing, so a reader who distrusts our hashes can
 regenerate an entire computation for between a thousandth and a hundredth of what validating that
 proof costs, and compare portable roots — which is exactly the check Section 5.3 supports.
@@ -1339,7 +1319,7 @@ break — and each is handed whole to CaDiCaL with `--lrat=true --checkproof=0`.
 must never be permitted to validate its own work. Each LRAT proof is checked by `lrat-trim`, then
 hashed and discarded. The cost was $24.3$ core-hours to solve and $0.8$ to check, $2.64$ hours wall
 on ten workers. We chose LRAT over DRAT on measurement: on real leaves from this instance, Glucose
-with DRAT plus `drat-trim` cost $1.043$ s per leaf against CaDiCaL with LRAT plus `lrat-trim` at
+with DRAT plus `drat-trim` [23], which trims while it checks [19], cost $1.043$ s per leaf against CaDiCaL with LRAT plus `lrat-trim` at
 $0.295$ s — a factor of $3.5$ end to end and of $29$ in checking alone, because LRAT carries
 explicit clause hints and the checker performs no backward search. Because the cubes are base
 states, no *deepening* step is involved and no uncertified enumeration enters the trust chain.
@@ -1365,7 +1345,7 @@ The trust chain has four links:
 | link | status |
 |-------------------------------------------------------|-------------------------------------------------------|
 | every live cube is unsatisfiable | machine: CaDiCaL, rechecked by `lrat-trim` |
-| the cubes cover every lex-canonical base assignment | machine: DRAT, verified by `drat-trim` [19] |
+| the cubes cover every lex-canonical base assignment | machine: DRAT, verified by `drat-trim` [23] |
 | (L1) orbit anchoring loses no generality | human (Lemma 2.1) |
 | (L2) lex-ordering the voters loses no generality | human (Lemma 2.3) |
 
@@ -1397,7 +1377,7 @@ hardware.
 Every tournament on $12$ vertices is $5$-inducible, so $N(5) \ge 13$. This appendix describes that
 computation. It is the one result in this paper that was not run on the laptop of Section 3: it ran
 on a shared cluster, and its cost is reported in cluster core-hours, which Appendix A.5 records as
-$2.6$ to $3.3$ times more per unit of work than this laptop's.
+$2.6$ to $3.3$ times more per unit of work than this laptop's on the computations measured here; the self-converse census of Section 3.5 ran at $5.1$, so we report the range rather than a single factor and size new work by the worst of them.
 
 ### C.1 Reduction to one-vertex extensions
 
@@ -1504,21 +1484,27 @@ and $D_{11}$ is the completeness gate of Appendix C.4.
 | $8$ | $6{,}880$ | — | $176$ |
 | $9$ | $191{,}536$ | $15$ | $2{,}752$ |
 | $10$ | $9{,}733{,}056$ | — | $8{,}784$ |
-| $11$ | $903{,}753{,}248$ | $1{,}223$ | not published |
-| $12$ | $154{,}108{,}311{,}168$ | — | — |
+| $11$ | $903{,}753{,}248$ | $1{,}223$ | $279{,}968$ |
+| $12$ | $154{,}108{,}311{,}168$ | — | $1{,}492{,}288$ |
 | $13$ | — | $1{,}495{,}297$ | $95{,}458{,}560$ |
 | $15$ | — | $18{,}400{,}989{,}629$ | — |
 
 A dash marks a value this paper does not use; [2] follows the same convention and collects its
-own censuses in its Appendix H, with which this table agrees where the two overlap. Note that
+own censuses in its Appendix H, with which this table agrees where the two overlap. The $D_n$
+column is OEIS A000568 [25] and the $S_n$ column is OEIS A002785 [26]; we checked the latter
+against our own exhaustive count at $n = 10$, which found $8{,}784$ self-converse classes among
+all $9{,}733{,}056$, and its $n = 12$ term is the size of the family Appendix C sweeps. Note that
 [2] reads $R_n$ as *semi*-regular in even order, and that we need it in odd order only. The
-$R_n$ column is OEIS A096368 [21], whose $n = 13$ term our own exhaustive run reproduces, which
-is what anchors the indexing. $S_{11}$ is
-not published and we do not need it: the converse-halving check of Appendix C.4 compares the
-number of tournaments kept against $(D_{11} + S_{11})/2$, and since $S_n / D_n$ is falling
-through $176/6{,}880$, $2{,}752/191{,}536$ and $8{,}784/9{,}733{,}056$, the resulting factor is
-pinned between $1.99$ and $2$ — which is a tight enough bracket to catch the failure the check
-exists for, namely a keep rule that halves nothing or halves twice.
+$R_n$ column is OEIS A096368 [21], which is indexed so that its term $m$ counts the regular
+tournaments on $2m+1$ vertices; the value for $13$ vertices is therefore the term $m = 6$, and
+that is the one our own exhaustive run reproduces, which is what anchors the indexing.
+
+The converse-halving check of Appendix C.4 compares the number of tournaments kept against
+$(D_{11} + S_{11})/2 = 452{,}016{,}608$, which the table makes exact. That the two counts have the
+same parity is itself a necessary condition, and it holds. The check exists to catch a keep rule
+that halves nothing or halves twice, and an exact target catches more than that: it also catches a
+rule that halves correctly on all but a handful of converse pairs, which the factor $1.999$ would
+not distinguish from correct.
 
 For the record, the explicit tournament of [1] mentioned in Section 1 has $603{,}979{,}799$
 vertices.

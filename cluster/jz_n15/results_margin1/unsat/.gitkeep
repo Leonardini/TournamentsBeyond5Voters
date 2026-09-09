@@ -1,0 +1,2 @@
+# keep this directory in git: SLURM opens --output BEFORE the job body
+# runs, so it must exist at submit time (the in-script mkdir is too late).

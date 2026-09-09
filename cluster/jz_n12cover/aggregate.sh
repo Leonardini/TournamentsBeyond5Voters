@@ -19,6 +19,10 @@ D="$OUT/done"
 # down because it is a published census value, and therefore ASSERTED below rather
 # than trusted: the campaign's whole claim is that every one of them was reached.
 D11=903753248
+S11=279968                      # OEIS A002785(11), self-converse tournaments at n=11
+KEEP_EXPECTED=$(( (D11 + S11) / 2 ))
+[ $(( (D11 + S11) % 2 )) -eq 0 ] || {
+  echo "FATAL D11 + S11 is odd, so one of the two counts is wrong" >&2; exit 1; }
 # ONE snapshot of the markers, taken once and reused by every consumer below.
 # Two independent reasons, both learned the hard way on 2026-09-09:
 #
@@ -36,6 +40,11 @@ D11=903753248
 #    above and "375,923,510 generated, 174,180,620 screened" below -- the same two
 #    quantities, 1.7% apart, because ~150 residues landed in between.
 SNAP=$(mktemp); trap 'rm -f "$SNAP"' EXIT
+# Announce the read BEFORE doing it.  On a parallel filesystem this find walks
+# tens of thousands of small marker files and takes minutes, during which the
+# script used to print nothing whatever -- which reads as a hang and invites
+# killing a roll-up that was working fine.
+printf "reading %s (tens of thousands of small files; this takes a while) ...\n" "$D"
 find "$D" -type f -exec cat {} + > "$SNAP" 2>/dev/null || true
 # awk, not `grep -c ... || echo 0`: grep -c PRINTS its zero and then exits 1, so the
 # fallback would append a second line and `[ "$n" -eq 0 ]` below would die on "0\n0".
@@ -82,10 +91,17 @@ echo "candidate uncovered-mask lines: ${C:-0}"
 # the converse map, so its keep rate is meaningless (see screen_residue.sh).
 # Across all residues, "keep iff canon(T) <= canon(conv(T))" keeps exactly one of
 # each converse pair plus every self-converse host, so
-#     instances == (D11 + S)/2,  S = the self-converse count at n=11.
-# S is not published here; the measured trend is 176/6,880 at n=8, 2,752/191,536
-# at n=9 and 8,784/9,733,056 at n=10, a falling fraction, so the factor must come
-# out just under 2 and above 1.99.
+#     instances == (D11 + S11)/2,  S11 = the self-converse count at n=11.
+# S11 IS published: OEIS A002785(11) = 279,968, so the target is EXACT rather
+# than a bracket.  This was a factor bracketed in [1.98, 2.001] until 2026-09-09,
+# on the belief that S11 was unpublished; a keep rule correct on all but a handful
+# of converse pairs sits at 1.999 and would have passed that bracket.  Corroborated
+# three ways before being trusted: our own exhaustive n=10 count found 8,784
+# self-converse among all 9,733,056 (= A002785(10)); A002785(12) = 1,492,288 is the
+# size of the order-12 self-converse family we swept; and D11 + S11 is even, as it
+# must be, since D11 counts converse pairs with the self-converse ones as fixed
+# points.  Both this file and Appendix D of the paper must state the same target,
+# so it is derived here from D11 and S11 rather than written down.
 LOGS=${N12_LOGS:-slurm}      # overridable so the recovery path below is testable
 G=$(awk -F'[= ]' '{for(i=1;i<=NF;i++)if($i=="generated")G+=$(i+1)}END{print G+0}' "$SNAP")
 I=$(awk -F'[= ]' '{for(i=1;i<=NF;i++)if($i=="instances")I+=$(i+1)}END{print I+0}' "$SNAP")
@@ -102,14 +118,15 @@ if [ "${G:-0}" -eq 0 ] && [ "${I:-0}" -gt 0 ]; then
   [ "${G:-0}" -gt 0 ] && echo "  (generated= recovered from slurm/*.out: these markers predate the field)"
 fi
 if [ "${G:-0}" -gt 0 ] && [ "${I:-0}" -gt 0 ]; then
-  awk -v g="$G" -v i="$I" -v d11="$D11" 'BEGIN{
+  awk -v g="$G" -v i="$I" -v d11="$D11" -v s11="$S11" -v keep="$KEEP_EXPECTED" 'BEGIN{
     printf "converse halving: %d generated, %d screened, factor %.4f\n", g, i, g/i
     if (g == d11) {
       printf "  ALL %d order-11 classes generated -- census gate PASSED\n", d11
-      if (g/i < 1.98 || g/i > 2.001) {
-        printf "FATAL: halving factor %.4f outside [1.98, 2.001] -- the filter is wrong\n", g/i
+      if (i != keep) {
+        printf "FATAL: kept %d but (D11 + S11)/2 = %d -- the converse filter is wrong\n", i, keep
+        printf "  off by %d; factor %.6f where 2*D11/(D11+S11) = %.6f\n", i-keep, g/i, 2*d11/(d11+s11)
         exit 1 }
-      print "  halving CONFIRMED against the A000568 total"
+      printf "  halving EXACT: kept %d = (D11 + S11)/2, D11 from A000568, S11 from A002785\n", i
     } else if (g > d11) {
       printf "FATAL: generated %d EXCEEDS the %d order-11 classes -- residues overlap\n", g, d11
       exit 1
