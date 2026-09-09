@@ -1,0 +1,14 @@
+[09:11] PHASE circulant: hosts 01, 40 slices/host, 10 cores, deadline 18:00
+[09:12]   host 01: base=(0 1 2 9 14), 8031 base states -> 40 slices
+[09:14]   host 01: SAT (slice 6) -- cancelling its remaining slices
+[09:14] PHASE circulant verdicts:
+[09:14]   vt21i_01: SAT -- 5-INDUCIBLE at majority (witness in its slice log)
+[09:14] PHASE non-circulant: hosts 04 05, 40 slices/host, 10 cores, deadline 06:00
+[09:14]   host 04: base=(0 1 2 13 14), 8031 base states -> 40 slices
+[09:15]   host 05: base=(0 1 2 15 16), 8031 base states -> 40 slices
+[09:15]   host 04: SAT (slice 3) -- cancelling its remaining slices
+[09:16]   host 05: SAT (slice 6) -- cancelling its remaining slices
+[09:16] PHASE non-circulant verdicts:
+[09:16]   vt21i_04: SAT -- 5-INDUCIBLE at majority (witness in its slice log)
+[09:16]   vt21i_05: SAT -- 5-INDUCIBLE at majority (witness in its slice log)
+[09:16] RUNNER DONE

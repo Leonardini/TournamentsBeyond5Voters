@@ -1,0 +1,23 @@
+15 reversals that remain obstructions: h01_f00 h01_f01 h01_f02 h01_f03 h01_f04 h01_f05 h01_f06 h01_f07 h01_f08 h01_f09 h02_f00 h02_f02 h02_f05 h02_f06 h02_f09
+
+  h01_f00: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f01: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f02: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f03: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f04: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f05: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f06: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f07: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f08: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h01_f09: 21 deletions -> 20 distinct, 2 of them h01 - v
+  h02_f00: 21 deletions -> 20 distinct, 2 of them h02 - v
+  h02_f02: 21 deletions -> 20 distinct, 2 of them h02 - v
+  h02_f05: 21 deletions -> 20 distinct, 2 of them h02 - v
+  h02_f06: 21 deletions -> 20 distinct, 2 of them h02 - v
+  h02_f09: 21 deletions -> 20 distinct, 2 of them h02 - v
+
+315 deletions of the reversals -> 287 classes
+  + the hosts' own deletions not already among them: h04 - v h05 - v
+  = 289 distinct tournaments on 20 vertices
+
+matches Section 3.4: 15 x 19 + 2 = 287, and 289 with h04 - v and h05 - v

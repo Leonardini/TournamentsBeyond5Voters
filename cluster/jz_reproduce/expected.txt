@@ -1,0 +1,45 @@
+# Values today's local runs produced.  Every one is ASSERTED by check.sh, not
+# printed for a human to compare -- a mismatch exits non-zero.
+#
+# WHY THIS EXISTS: on 2026-09-05 the certification workflow changed in several
+# places (dead constant removed from cubes.py, a stale label fixed in
+# cover_check.py, wall-clock timings removed from the hashed records, a
+# streaming path added to cover_check.py).  Each change was validated locally,
+# but local validation of a local change is weak evidence.  Reproducing on
+# different hardware with a different compiler is the real test.
+#
+# key                     value
+p19_q                     19
+p19_k                     5
+p19_margin                exact
+p19_base                  0 1 2 3 4 11
+p19_arc                   0 1
+p19_non                   2 1
+p19_base_states           142251
+p19_cubes                 22876
+p19_root_cnf              0eeb9dd53956fec2c77b752d74b89b12c7d1dddd6dc4047405ecb7907896a78a
+p19_cover_clauses         143032
+
+p23_q                     23
+p23_k                     5
+p23_margin                majority
+p23_base                  0 1 2 5 6 3
+p23_arc                   2 6
+p23_non                   1 6
+p23_base_states           3414729
+p23_cubes                 343896
+p23_root_cnf              7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb
+
+# known answers independent of our runs (published censuses)
+n8_k3_unsat               96
+n7_cover_uncovered        808
+n11_regular_all           1223
+
+# NOT reproducible off this machine, and check.sh does not test them:
+#   p19_root_proofs        8b49aa2d5c84c47ba3aa32be07a658db6c123307df2f4a57fa0e02e13e5d9d2c
+#   p23_root_proofs        01e52ba56cacd1c2746902052aaa6d56cb6b4ab49f07cdd34827ce621db4bf1e
+# These commit to LRAT bytes.  cadical is deterministic on a FIXED binary, but a
+# different version, architecture or optimisation level may search differently
+# and emit a different, EQUALLY VALID proof.  A mismatch there is not an error;
+# it is the expected outcome of an independent build, which is why the portable
+# root exists.

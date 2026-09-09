@@ -1,0 +1,146 @@
+#!/bin/sh
+# Assemble this reproduction package from the working repository.
+#
+# Every file here came from KemenyMedian by way of this script, so the
+# provenance of the package is one readable list rather than a recollection.
+# Re-running it is idempotent: it copies over whatever is present.
+#
+#   usage: tools/assemble_from_source.sh [path-to-KemenyMedian]
+#
+# The default source path is the sibling checkout.
+
+set -eu
+
+SRC=${1:-$(cd "$(dirname "$0")/../.." && pwd)/KemenyMedian}
+DST=$(cd "$(dirname "$0")/.." && pwd)
+K="$SRC/KInduceDFS"
+
+[ -d "$K" ] || { echo "FATAL no KInduceDFS under $SRC" >&2; exit 1; }
+echo "source: $SRC"
+echo "dest:   $DST"
+
+# ---------------------------------------------------------------- engine
+mkdir -p "$DST/engine/versions"
+cp "$K/kinduce.c" "$K/kinduce.1" "$DST/engine/"
+cp "$K/kcover.c" "$DST/engine/"          # order-12 witness extension (Appendix C)
+cp "$K"/versions/kinduce[0-2][0-9].c "$DST/engine/versions/"
+# kinduce25.c carries the --pin machinery that no published result used, and
+# REPRODUCE.md excludes it from the package by name.  Drop it rather than ship
+# a version the reproduction table never refers to.
+rm -f "$DST/engine/versions/kinduce25.c"
+
+# ---------------------------------------------------------- tournaments
+# Vertex numbering is part of the input, not a detail: node counts only
+# replicate against the numbering we used, and two of the 21-vertex hosts are
+# not in the canonical labelling a fresh enumeration produces.  So the bit
+# strings ship, and the generators ship beside them for checking.
+mkdir -p "$DST/tournaments"
+cp "$K"/*.bits "$DST/tournaments/"
+for g in paley_bits.py make_paley_gf.py make_paley_minus.py vt21_family.py \
+         vt_census.py vt_small_gen.py vt23_gen.py drt23_gen.py drt15_gen.py \
+         gen_regular.py cayley_census.py deletion_classes.py; do
+  [ -f "$K/$g" ] && cp "$K/$g" "$DST/tournaments/"
+done
+cp "$K/vt21_all_reps.npy" "$DST/tournaments/" 2>/dev/null || true
+
+# families: the swept catalogues, with their verdict tables
+for f in vt21_hosts vt21_arcflip dr19_arcflip vt15 vt17 vt19 vt23 drt23 \
+         drt15 drt19 drt_small vt20_descent; do
+  [ -d "$K/$f" ] || continue
+  mkdir -p "$DST/tournaments/$f"
+  find "$K/$f" -maxdepth 1 -type f \
+       \( -name '*.bits' -o -name '*.tsv' -o -name '*.md' -o -name '*.sh' \
+          -o -name '*.log' \) \
+       -exec cp {} "$DST/tournaments/$f/" \;
+done
+# per-orbit outcome files behind the arc-flip spectrum table of Section 3.4
+[ -d "$K/vt21_arcflip/out" ] && cp -R "$K/vt21_arcflip/out" "$DST/tournaments/vt21_arcflip/"
+
+# ------------------------------------------------------------- SAT route
+mkdir -p "$DST/sat"
+for s in cubes.py cube_sat.py certify_d6.py certify_p19_m1.py cover_check.py \
+         cover_deep.py certroot.py reroot.py run_cubes.py verify_root.py \
+         verify_p19_root.py deepen.py cfg_hash.py leaf_bench.py \
+         base_survivors.py registry.py; do
+  [ -f "$K/$s" ] && cp "$K/$s" "$DST/sat/"
+done
+
+# ------------------------------------------------- independent verifiers
+# These share no code with the search.  A witness is read back from its run
+# log, the tournament from its bit string, and every arc's support recomputed.
+mkdir -p "$DST/verify"
+for v in verify_witness.py verify_witness_bits.py \
+         verify_paley_minus_witness.py tri_per_arc.py tri_ceiling.py; do
+  [ -f "$K/$v" ] && cp "$K/$v" "$DST/verify/"
+done
+
+# ---------------------------------------------------------- certificates
+# The LRAT proof bytes were verified and discarded by design; what ships is
+# the per-cube sha256 chain in log/, from which both published roots rebuild
+# (tools/check_package.sh does exactly that).
+mkdir -p "$DST/certificates"
+for c in p19cert_d6 p23cert_d6; do
+  [ -d "$K/$c" ] && cp -R "$K/$c" "$DST/certificates/"
+done
+cp "$K/p19_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
+cp "$K/p23cert_run.log" "$DST/certificates/" 2>/dev/null || true
+
+# --------------------------------------------------------------- verdicts
+mkdir -p "$DST/verdicts"
+for v in verdict_ledger.tsv verdict_ledger.py p19_margin1_VERDICT.txt \
+         p43_minus1v_VERDICT.txt WITNESSES_paley_minus_vertex.md \
+         WITNESSES_paley_arcrev.md WITNESSES_margin_hierarchy.md; do
+  [ -f "$K/$v" ] && cp "$K/$v" "$DST/verdicts/"
+done
+for d in m1_family m1_arcrev vt21_majority vt21_margin1 n23_tmin4 \
+         vt21_recover vt23_recover p27p31_probe drt19_wit; do
+  [ -d "$K/$d" ] || continue
+  mkdir -p "$DST/verdicts/$d"
+  find "$K/$d" -maxdepth 1 -type f \
+       \( -name '*.md' -o -name '*.tsv' -o -name '*.txt' -o -name '*.sh' \
+          -o -name '*.log' \) \
+       -exec cp {} "$DST/verdicts/$d/" \;
+done
+# Section 3.4's arc-flip spectrum and the n=20 deletion descent: the run logs
+# carry the witnesses, so they are the evidence for "every one of the 289 has
+# an exhibited unit-margin witness" and not merely a record that it ran.
+for f in arcflip_spectrum.log arcflip_spectrum.sh vt20_descent.log; do
+  [ -f "$K/$f" ] && cp "$K/$f" "$DST/verdicts/"
+done
+if [ -d "$K/vt20_descent_shard" ]; then
+  mkdir -p "$DST/verdicts/vt20_descent_shard"
+  find "$K/vt20_descent_shard" -maxdepth 1 -type f -name '*.log' \
+       -exec cp {} "$DST/verdicts/vt20_descent_shard/" \;
+fi
+
+# --------------------------------------------------------------- evidence
+# Chunk logs compress about 100x, which is what makes them trackable.
+mkdir -p "$DST/evidence"
+find "$K/run_evidence" -maxdepth 1 -type f -exec cp {} "$DST/evidence/" \;
+[ -d "$K/run_evidence/measurements" ] && cp -R "$K/run_evidence/measurements" "$DST/evidence/"
+[ -d "$K/run_evidence/arcrev" ] && cp -R "$K/run_evidence/arcrev" "$DST/evidence/"
+
+# ---------------------------------------------------------------- cluster
+# The two computations that did not run on the laptop.
+mkdir -p "$DST/cluster"
+for j in jz_n15 jz_n12cover jz_reproduce; do
+  [ -d "$K/$j" ] || continue
+  mkdir -p "$DST/cluster/$j"
+  find "$K/$j" -maxdepth 1 -type f -exec cp {} "$DST/cluster/$j/" \;
+done
+
+# ------------------------------------------------------------------ notes
+cp "$K/RESEARCH_LOG.md" "$DST/notes_research_log.md"
+cp "$K/REPRODUCE.md" "$DST/REPRODUCE.md"
+
+# ------------------------------------------------------------- manuscript
+mkdir -p "$DST/manuscript"
+for m in Tournaments_not_inducible_by_five_voters.md \
+         Tournaments_not_inducible_by_five_voters.pdf; do
+  [ -f "$SRC/$m" ] && cp "$SRC/$m" "$DST/manuscript/"
+done
+cp "$SRC/check_manuscript_tables.py" "$DST/tools/" 2>/dev/null || true
+
+echo "assembled."
+find "$DST" -type f | wc -l | sed 's/^/files: /'
+du -sh "$DST" | sed 's/^/size:  /'

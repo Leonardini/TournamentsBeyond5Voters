@@ -1,0 +1,17 @@
+name	n	tmin	margin	verdict	verified	seconds
+c000	17	3	exact	SAT	1	4.3
+c010	17	2	exact	SAT	1	1.0
+c001	17	3	exact	SAT	1	5.4
+c002	17	3	exact	SAT	1	5.9
+c005	17	3	exact	SAT	1	5.9
+c011	17	2	exact	SAT	1	2.7
+c015	17	1	exact	SAT	1	0.3
+c012	17	2	exact	SAT	1	3.5
+c007	17	3	exact	SAT	1	9.3
+c013	17	2	exact	SAT	1	3.6
+c003	17	3	exact	SAT	1	9.9
+c004	17	3	exact	SAT	1	10.2
+c009	17	3	exact	SAT	1	10.3
+c006	17	3	exact	SAT	1	10.7
+c008	17	3	exact	SAT	1	11.2
+c014	17	2	exact	SAT	1	6.4

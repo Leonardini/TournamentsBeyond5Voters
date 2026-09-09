@@ -1,0 +1,14 @@
+### queue armed 2026-09-03 07:30:58; waiting for the P31 run to finish
+### P31 landed 2026-09-03 09:02:31
+VERDICT P31: UNSAT on all 21009 base states => Paley(31) NOT 5-inducible
+--- P31 coverage audit ---
+  chunks with a RESULT: 5253
+  coverage: [0,21009)  gaps: NONE
+  complete over [0,21009): True
+  ABORTED chunks: 0   SAT chunks: 0
+  total cpu: 96802.1 s = 26.89 core-h
+
+### P43 start 2026-09-03 09:02:31  base 0 1 2 3 10, toppair 0 10 2 1, nb=8031 (mask 217, 2537 survivors)
+  2008 chunks covering [0,8031), contiguous, shuffled
+### P43 done 2026-09-03 11:21:47
+VERDICT P43: UNSAT on all 8031 base states => Paley(43) NOT 5-inducible -- CONFIRMS the co-backing screen independently

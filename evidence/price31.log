@@ -1,0 +1,21 @@
+arm   bases    n  mean s/b    +-90% cens   predicted core-h     base             toppair
+I      4007   40      17.0      4.0    0     18.9 +- 4.5       [0, 1, 2, 3, 6]  (2, 3)+(0, 3)
+C      2537   10      29.6     13.7    0     20.9 +- 9.6       [0, 1, 3, 7, 15] (0, 1)+(15, 7)
+B      2537   10      30.1     11.9    0     21.2 +- 8.4       [0, 1, 2, 3, 12] (0, 2)+(3, 1)
+E      2537   40      31.4      6.0    0     22.1 +- 4.3       [0, 1, 3, 11, 18] (0, 1)+(3, 18)
+J      7357   10      12.7      8.3    0     25.9 +- 16.9      [0, 1, 2, 3, 5]  (5, 2)+(2, 5)
+A      2537   40      38.6      6.1    0     27.2 +- 4.3       [0, 1, 6, 13, 19] (0, 19)+(6, 1)
+D      2537   10      40.5     18.8    0     28.6 +- 13.2      [0, 1, 3, 9, 13] (0, 9)+(3, 1)
+A27    2537   40      40.6      6.7    0     28.6 +- 4.7       [0, 1, 2, 3, 14] (0, 14)+(2, 1)
+H      3722   10      30.6      8.3    0     31.7 +- 8.6       [0, 1, 2, 3, 16] (1, 3)+(0, 3)
+F      2537   10      46.8     16.3    0     33.0 +- 11.5      [0, 1, 3, 18, 21] (0, 1)+(3, 18)
+G      3246   10      38.9      8.2    0     35.0 +- 7.4       [0, 1, 2, 3, 4]  (2, 4)+(1, 4)
+
+PAIRED ANCHOR, arm A vs the completed Paley(27) run (40 bit-identical base states)
+  per-base ratio P31/P27: median 0.879 mean 0.975 sd 0.281  range 0.619-2.033
+  cost-weighted R = 0.9505  (P31 1544 s vs P27 1625 s over the sample)
+  => arm A full run = 29.5 core-h, 90% CI [27.2, 31.8]
+  => at 10 workers: 2.95 h wall, 90% CI [2.72, 3.18]
+
+KNOWN-ANSWER CONTROL: naive 40-sample estimate of Paley(27) = 28.6 core-h; TRUTH = 31.04 core-h  (naive estimator off by -8%)
+  => trust the paired ratio, and read the table's absolute column as +-25-30%%.

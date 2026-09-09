@@ -1,0 +1,4 @@
+  toporb reps: 0  -- SOUND ONLY IF these meet EVERY Aut(T)-orbit on V; the engine cannot check that
+n=21 K=5 margin=majority order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 defect_R=0 base_sz=5 base=0,1,2,15,16 base_mask=355 base_states=8031
+  static_tail=3,4,5,6,7,8,9,10,11,12,13,14,17,18,19,20
+  base_state_slice=[200,401)

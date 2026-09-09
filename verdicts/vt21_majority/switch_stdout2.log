@@ -1,0 +1,28 @@
+[09:07] waiting for q=19 margin1-obj to finish (its 3 h cap expires 09:00)
+[09:07] q=19 margin1 recorded
+[09:07] bounds ledger at handover:
+      q mode          target        lower    upper      secs      nodes  verdict
+    ----------------------------------------------------------------------------
+      7 majority          --           --       --      0.01          0  feasible (majority-inducible)
+     11 majority          --           --       --      0.01          0  feasible (majority-inducible)
+     19 majority          --           --       --  10800.01    1572278  undecided (cap hit)
+     23 majority          --           --       --  10800.02     187348  undecided (cap hit)
+      7 margin1-obj       63           63       63      0.00          0  margin-1 INDUCIBLE (witness)
+     11 margin1-obj      165          165      165      0.10          0  margin-1 INDUCIBLE (witness)
+     19 margin1-obj      513          513      521  10800.76     985476  undecided (cap hit)
+    
+    (no paired arms yet: run the same q/mode with and without --symbreak)
+    
+    7 instance(s) run; 4 decided, 3 undecided.
+    NOTE: the 'agrees' field in ilp_margin1.log is computed against MAJORITY
+          ground truth and is NOT meaningful for margin-1.  Read the bounds.
+[09:07] PHASE circulant: hosts 01 02, 5 shards each, deadline 18:00
+[09:07]   host 01: base=(0 1 2 9 14), 8031 base states -> 5 shards
+[09:08]   host 02: base=(0 1 2 9 13), 8031 base states -> 5 shards
+[09:08]   host 02: SAT -- witness found, killing its remaining shards
+[09:10]   host 01: SAT -- witness found, killing its remaining shards
+[09:11] PHASE circulant: all shards finished
+[09:11] PHASE circulant verdicts:
+[09:11]   vt21i_01: SAT -- 5-INDUCIBLE at majority (witness; VERIFY line in its shard log)
+[09:11]   vt21i_02: SAT -- 5-INDUCIBLE at majority (witness; VERIFY line in its shard log)
+[09:11] PHASE non-circulant: hosts 04 05, 5 shards each, deadline 06:00

@@ -1,0 +1,7 @@
+n=23 K=5 margin=exact1 order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 defect_R=0 base_sz=5 base=0,1,2,7,8 base_mask=947 base_states=2200
+  static_tail=3,4,5,6,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+  base_state_slice=[1430,1485)
+PROGRESS b=1462/1485 cleared=32 capped=0 nodes=79190871 time=337.5s
+PROGRESS b=1485/1485 cleared=55 capped=0 nodes=154170447 time=651.3s
+SLICE cleared=55 capped=0 of [1430,1485)  => SLICE EXHAUSTED, no witness
+RESULT UNSAT nodes=154170447 sols=0 base_states=2200 dom_calls=990 dom_nodes=390725 mrv_fails=230395389 top0_fails=0 bound_fails=0 fas_fails=0/0 refine_tuples=56470348213 time=651.265s

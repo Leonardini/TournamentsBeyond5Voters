@@ -1,0 +1,16 @@
+  base {0, 1, 2, 3, 4, 17}    live=18,826  s/cube mean= 5.64 med= 5.53 range 2.38-10.98  ->  29.5 core-h
+  base {0, 1, 2, 3, 4, 6}     live=18,976  s/cube mean= 4.35 med= 4.82 range 1.20-6.03  ->  23.0 core-h
+  base {0, 1, 2, 3, 6, 10}    live=20,954  s/cube mean= 5.85 med= 4.88 range 1.82-19.07  ->  34.1 core-h
+  base {0, 1, 2, 3, 4, 11}    live=22,876  s/cube mean= 2.87 med= 2.78 range 0.93-5.02  ->  18.3 core-h
+
+rank     live  s/cube   core-h  base
+   1   22,876    2.87     18.3  {0, 1, 2, 3, 4, 11}
+   2   18,976    4.35     23.0  {0, 1, 2, 3, 4, 6}
+   3   18,826    5.64     29.5  {0, 1, 2, 3, 4, 17}
+   4   20,954    5.85     34.1  {0, 1, 2, 3, 6, 10}
+
+CHOSEN: base [0, 1, 2, 3, 4, 11]  arc [0, 1]  non [2, 1]
+  22,876 live cubes x 2.87 s = 18.3 core-h (1.8 h on 10 cores)
+  NB ranking by live cubes alone would have picked {0, 1, 2, 3, 4, 17} (29.5 core-h) -- 1.62x worse
+
+written /tmp/chosen_config.json

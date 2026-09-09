@@ -1,0 +1,4 @@
+name	n	tmin	margin	verdict	verified	seconds
+p03	3	1	exact	SAT	1	0.000
+p07	7	2	exact	SAT	1	0.000
+p11	11	3	exact	SAT	1	0.000

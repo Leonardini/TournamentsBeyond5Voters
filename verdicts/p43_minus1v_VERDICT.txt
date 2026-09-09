@@ -1,0 +1,75 @@
+Paley(43) - v is NOT 5-inducible, and therefore
+Paley(43) is NOT VERTEX-CRITICAL.
+
+date            2026-09-04 15:15 BST
+host            p43_minus1v.bits  = Paley(43) less vertex 0, n = 42
+engine          kinduce24, --max-margin 3 --order mrv --inc --pool-mb 512
+base            {0,1,2,3,10}, 8031 base states
+break           --toporb 0 1
+driver          p43mv_majority/, 10 workers, shuffled order, per-base markers
+
+COMPLETE        8031 / 8031 base states, indices 0..8030 exactly
+                0 missing, 0 extra, 0 capped, 0 aborted, 0 leftover logs
+                (a run that did not end in RESULT UNSAT leaves no marker, so
+                 the exact index cover IS the completeness certificate)
+cost            185.5 core-h, mean 83.2 s/base, max 313.2 s, ~19 h wall
+result          NO WITNESS.  RESULT UNSAT on every base state.
+
+--------------------------------------------------------------------------
+WHY THIS DECIDES MAJORITY, NOT JUST MARGIN<=3
+--------------------------------------------------------------------------
+The sweep ran at --max-margin 3.  That is nevertheless a MAJORITY verdict, by
+the 3-cycle bound (RESEARCH_LOG.md 2026-09-04 08:30):
+
+  In a 3-cycle u->v->w->u any LINEAR order agrees with at most 2 of the 3 arcs,
+  so over k voters  c(u,v)+c(v,w)+c(w,u) <= 2k = 10.  Majority forces each term
+  >= 3, hence no support exceeds 4.  An arc in ANY 3-cycle can never be
+  unanimous, so majority == margin<=3.
+
+Every arc of Paley(43)-v lies in 10 three-cycles (minimum over arcs; 0 arcs lie
+in none).  So margin<=3 and majority are THE SAME QUESTION here, and the
+refutation above is a refutation at majority.
+
+--------------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------------
+Paley(43) is not 5-inducible (already known, 2026-07-10).  Vertex-criticality
+would require every one-vertex deletion to BE 5-inducible.  Paley(43) is
+vertex-transitive, so all 43 deletions are isomorphic and one run settles them
+all.  That run is UNSAT.  Hence Paley(43) is NOT vertex-critical.
+
+This REFUTES the conjecture that Paley(43) is vertex-critical.
+
+What it does NOT give: any improvement to N(5) <= 23.  Non-inducibility
+propagates upward, and 42 > 23.
+
+--------------------------------------------------------------------------
+THE ONE REMAINING HUMAN LEMMA
+--------------------------------------------------------------------------
+--toporb 0 1 is caller-discharged: it is sound iff {0,1} meet every
+Aut(Paley(43)-v)-orbit on V.  VERIFIED here, not assumed --
+Stab_Aut(P43)(0) has order 21 and splits the 42 survivors into exactly two
+orbits of size 21 (the QR / non-QR cosets), with 0 and 1 in different ones.
+The check is conservative in the SAFE direction: Stab is a SUBGROUP of
+Aut(P43-v), so its orbits refine the true ones and a set meeting every
+Stab-orbit meets every Aut-orbit.
+
+Unlike the margin-1 case (where the same break was worth 0.0007% of nodes and
+was simply dropped), at margin<=3 the break does real work -- about 20% -- so a
+no-break confirmation would cost roughly 225 core-h.  Not run.  This is the
+single step in the verdict that is human rather than machine.
+
+Separately: kinduce24's --max-margin never capped base-INTERNAL arcs, so the
+margin<=3 space enumerated was a strict SUPERSET.  Harmless twice over -- UNSAT
+over a superset implies UNSAT over the subset, and by the 3-cycle bound the gap
+is vacuous here anyway.  Fixed in kinduce25.c.
+
+--------------------------------------------------------------------------
+NEXT
+--------------------------------------------------------------------------
+Is Paley(43)-v vertex-critical?  Equivalent to: is Paley(43)-2v 5-inducible?
+Aut(Paley(43)) is regular on arcs, hence transitive on 2-subsets, so
+Paley(43)-2v is UNIQUE up to isomorphism and ONE run answers it.
+Priced at 229 core-h (22.9 h on ten cores); no symmetry break exists there
+(the setwise stabiliser of every 2-subset is trivial), and the known-obstacle
+embedding screen found nothing, so the cost is not avoidable.

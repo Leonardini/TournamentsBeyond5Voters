@@ -1,0 +1,25 @@
+# Coverage certificate for the Paley(19) margin-1 certification, 2026-09-02
+# base {0,1,2,3,4,11}, |B|=6, margin-1, k=5
+#
+# CLAIM: the 142,251 cubes cover EVERY lex-canonical base assignment, so
+# nothing can bypass them.  F_B & SB & AND_i not-C_i is UNSAT.
+#
+# CNF    143,032 clauses = 425 F_B + 356 SB + 142,251 negated cubes, 135 vars
+# solve  RESULT UNSAT time=8.48s proof_lines=2,132,709
+#
+# Artifacts gitignored (certs/, bulk and regenerable):
+#   cover_p19_d6.cnf 35.3 MB | .drat 401.2 MB | .lrat 232.7 MB
+#
+# drat-trim INDEPENDENT verification (verbatim):
+#   c parsing input formula with 135 variables and 143032 clauses
+#   c finished parsing
+#   c detected empty clause; start verification via backward checking
+#   c 142841 of 143032 clauses in core
+#   c 848185 of 995105 lemmas in core using 9967958 resolution steps
+#   c 0 RAT lemmas in core; 328 redundant literals in core lemmas
+#   s VERIFIED
+#   c verification time: 124.536 seconds
+#
+# cover_check.py separately verified that the 425 base-local clauses of F_B
+# are EXACTLY the clauses of F over the 75 base variables, so the base-local
+# encoding is the genuine restriction of the full one, not a re-derivation.

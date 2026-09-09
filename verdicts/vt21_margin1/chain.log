@@ -1,0 +1,24 @@
+[10:52] queued behind the symbreak ILP; waiting for its SYMBREAK CHAIN DONE line
+[15:17] PHASE margin1: hosts 01 02 04 05, margin=exact, toporb=OFF, 40 slices/host, 10 cores, deadline Mon 15:17
+[15:17]   host 01: base=(0 1 2 9 14), 2200 base states -> 40 slices
+[15:17]   host 02: base=(0 1 2 9 13), 2200 base states -> 40 slices
+[15:18]   host 04: base=(0 1 2 13 14), 2200 base states -> 40 slices
+[15:18]   host 05: base=(0 1 2 15 16), 2200 base states -> 40 slices
+[17:14] PHASE margin1 verdicts:
+[17:14]   vt21i_01: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[17:14]       all 40 slices exhausted, none capped
+[17:14]       => a margin-1 obstruction at n=21 (the host IS majority-inducible,
+[17:14]          so this is the Paley(19)-style separation, not an N(5) result)
+[17:14]   vt21i_02: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[17:14]       all 40 slices exhausted, none capped
+[17:14]       => a margin-1 obstruction at n=21 (the host IS majority-inducible,
+[17:14]          so this is the Paley(19)-style separation, not an N(5) result)
+[17:14]   vt21i_04: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[17:14]       all 40 slices exhausted, none capped
+[17:14]       => a margin-1 obstruction at n=21 (the host IS majority-inducible,
+[17:14]          so this is the Paley(19)-style separation, not an N(5) result)
+[17:14]   vt21i_05: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[17:14]       all 40 slices exhausted, none capped
+[17:14]       => a margin-1 obstruction at n=21 (the host IS majority-inducible,
+[17:14]          so this is the Paley(19)-style separation, not an N(5) result)
+[17:14] RUNNER DONE

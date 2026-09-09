@@ -1,0 +1,4 @@
+p27e: UNSAT, all 2200 base states refuted
+./sweep.sh: line 28: 53422 Done                    seq 0 2199
+     53423 Terminated: 15          | xargs -P 10 -I{} bash -c 'one {}'
+p27mv: INCOMPLETE, 50/2200

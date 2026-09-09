@@ -1,0 +1,326 @@
+[09:22] hosts: h01
+[09:22] 10 flips, breadth-first across hosts; ~30 min each on 10 cores if UNSAT, minutes if SAT
+[09:22] worst case 50 core-h = 5.0 h wall
+[09:22] === h01_f00 ===
+[09:22] PHASE h01_f00: hosts h01_f00, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 11:52
+[09:22]   host h01_f00: already UNSAT on the logs (72 clean slices tile [0,2200) exactly, none capped) -- SKIPPING
+[09:22] PHASE h01_f00 verdicts:
+[09:23]   h01_f00: AUDIT from the slice logs: UNSAT -- 72 clean slices tile [0,2200) exactly, none capped
+[09:23]   h01_f00: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[09:23]       72 clean slices tile [0,2200) exactly, none capped  [skipped this run]
+[09:23]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[09:23]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[09:23]          is separately known majority-inducible it is a Paley(19)-style
+[09:23]          separation; otherwise its majority status is OPEN. Check the ledger.
+[09:23] RUNNER DONE
+[09:23] === h01_f01 ===
+[09:23] PHASE h01_f01: hosts h01_f01, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 11:53
+[09:23]   host h01_f01: already UNSAT on the logs (124 clean slices tile [0,2200) exactly, none capped) -- SKIPPING
+[09:23] PHASE h01_f01 verdicts:
+[09:23]   h01_f01: AUDIT from the slice logs: UNSAT -- 124 clean slices tile [0,2200) exactly, none capped
+[09:23]   h01_f01: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[09:23]       124 clean slices tile [0,2200) exactly, none capped  [skipped this run]
+[09:23]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[09:23]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[09:23]          is separately known majority-inducible it is a Paley(19)-style
+[09:23]          separation; otherwise its majority status is OPEN. Check the ledger.
+[09:23] RUNNER DONE
+[09:23] === h01_f02 ===
+[09:23] PHASE h01_f02: hosts h01_f02, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 11:53
+[09:23]   host h01_f02: already UNSAT on the logs (72 clean slices tile [0,2200) exactly, none capped) -- SKIPPING
+[09:23] PHASE h01_f02 verdicts:
+[09:23]   h01_f02: AUDIT from the slice logs: UNSAT -- 72 clean slices tile [0,2200) exactly, none capped
+[09:23]   h01_f02: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[09:23]       72 clean slices tile [0,2200) exactly, none capped  [skipped this run]
+[09:23]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[09:23]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[09:23]          is separately known majority-inducible it is a Paley(19)-style
+[09:23]          separation; otherwise its majority status is OPEN. Check the ledger.
+[09:23] RUNNER DONE
+[09:23] === h01_f03 ===
+[09:23] PHASE h01_f03: hosts h01_f03, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 11:53
+[09:24]   host h01_f03: already UNSAT on the logs (72 clean slices tile [0,2200) exactly, none capped) -- SKIPPING
+[09:24] PHASE h01_f03 verdicts:
+[09:24]   h01_f03: AUDIT from the slice logs: UNSAT -- 72 clean slices tile [0,2200) exactly, none capped
+[09:24]   h01_f03: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[09:24]       72 clean slices tile [0,2200) exactly, none capped  [skipped this run]
+[09:24]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[09:24]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[09:24]          is separately known majority-inducible it is a Paley(19)-style
+[09:24]          separation; otherwise its majority status is OPEN. Check the ledger.
+[09:24] RUNNER DONE
+[09:24] === h01_f04 ===
+[09:24] PHASE h01_f04: hosts h01_f04, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 11:54
+[09:24]   host h01_f04: already UNSAT on the logs (72 clean slices tile [0,2200) exactly, none capped) -- SKIPPING
+[09:24] PHASE h01_f04 verdicts:
+[09:25] hosts: h02 h04 h05
+[09:25] 30 flips, breadth-first across hosts; ~30 min each on 10 cores if UNSAT, minutes if SAT
+[09:25] worst case 150 core-h = 15.0 h wall
+[09:25] === h02_f00 ===
+[09:25] PHASE h02_f00: hosts h02_f00, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 11:55
+[09:25]   host h02_f00: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[10:03] PHASE h02_f00 verdicts:
+[10:03]   h02_f00: AUDIT from the slice logs: UNSAT -- 72 clean slices tile [0,2200) exactly, none capped
+[10:03]   h02_f00: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[10:03]       72 clean slices tile [0,2200) exactly, none capped  [72/72 slices this run]
+[10:03]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[10:03]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[10:03]          is separately known majority-inducible it is a Paley(19)-style
+[10:03]          separation; otherwise its majority status is OPEN. Check the ledger.
+[10:03] RUNNER DONE
+[10:03] === h04_f00 ===
+[10:03] PHASE h04_f00: hosts h04_f00, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 12:33
+[10:03]   host h04_f00: base=(0 1 2 5 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[10:10]   host h04_f00: SAT (slice 17) -- cancelling its remaining slices
+[10:10] PHASE h04_f00 verdicts:
+[10:11]   h04_f00: AUDIT from the slice logs: SAT -- witness in h04_f00_q00519_00550.log
+[10:11]   h04_f00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[10:11] RUNNER DONE
+[10:11] === h05_f00 ===
+[10:11] PHASE h05_f00: hosts h05_f00, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 12:41
+[10:11]   host h05_f00: base=(0 1 2 4 11), 2200 base states, sweeping [0,2200) -> 72 slices
+[10:16]   host h05_f00: SAT (slice 15) -- cancelling its remaining slices
+[10:16] PHASE h05_f00 verdicts:
+[10:17]   h05_f00: AUDIT from the slice logs: SAT -- witness in h05_f00_q00458_00488.log
+[10:17]   h05_f00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[10:17] RUNNER DONE
+[10:17] === h02_f01 ===
+[10:17] PHASE h02_f01: hosts h02_f01, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 12:47
+[10:17]   host h02_f01: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 72 slices
+[10:31]   host h02_f01: SAT (slice 23) -- cancelling its remaining slices
+[10:31] PHASE h02_f01 verdicts:
+[10:31]   h02_f01: AUDIT from the slice logs: SAT -- witness in h02_f01_q00702_00733.log
+[10:31]   h02_f01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[10:31] RUNNER DONE
+[10:31] === h04_f01 ===
+[10:31] PHASE h04_f01: hosts h04_f01, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 13:01
+[10:31]   host h04_f01: base=(0 1 2 8 14), 2200 base states, sweeping [0,2200) -> 72 slices
+[10:35]   host h04_f01: SAT (slice 9) -- cancelling its remaining slices
+[10:36] PHASE h04_f01 verdicts:
+[10:36]   h04_f01: AUDIT from the slice logs: SAT -- witness in h04_f01_q00275_00305.log
+[10:36]   h04_f01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[10:36] RUNNER DONE
+[10:36] === h05_f01 ===
+[10:36] PHASE h05_f01: hosts h05_f01, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 13:06
+[10:36]   host h05_f01: base=(0 1 2 4 18), 2200 base states, sweeping [0,2200) -> 72 slices
+[11:03]   host h05_f01: SAT (slice 51) -- cancelling its remaining slices
+[11:03] PHASE h05_f01 verdicts:
+[11:03]   h05_f01: AUDIT from the slice logs: SAT -- witness in h05_f01_q01558_01588.log
+[11:03]   h05_f01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[11:03] RUNNER DONE
+[11:03] === h02_f02 ===
+[11:03] PHASE h02_f02: hosts h02_f02, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 13:33
+[11:03]   host h02_f02: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 72 slices
+[11:40] PHASE h02_f02 verdicts:
+[11:41]   h02_f02: AUDIT from the slice logs: UNSAT -- 72 clean slices tile [0,2200) exactly, none capped
+[11:41]   h02_f02: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[11:41]       72 clean slices tile [0,2200) exactly, none capped  [72/72 slices this run]
+[11:41]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[11:41]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[11:41]          is separately known majority-inducible it is a Paley(19)-style
+[11:41]          separation; otherwise its majority status is OPEN. Check the ledger.
+[11:41] RUNNER DONE
+[11:41] === h04_f02 ===
+[11:41] PHASE h04_f02: hosts h04_f02, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:11
+[11:41]   host h04_f02: base=(0 1 2 3 14), 2200 base states, sweeping [0,2200) -> 72 slices
+[11:47]   host h04_f02: SAT (slice 16) -- cancelling its remaining slices
+[11:47] PHASE h04_f02 verdicts:
+[11:47]   h04_f02: AUDIT from the slice logs: SAT -- witness in h04_f02_q00488_00519.log
+[11:47]   h04_f02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[11:47] RUNNER DONE
+[11:47] === h05_f02 ===
+[11:47] PHASE h05_f02: hosts h05_f02, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:17
+[11:47]   host h05_f02: base=(0 1 2 3 14), 2200 base states, sweeping [0,2200) -> 72 slices
+[11:48]   host h05_f02: SAT (slice 0) -- cancelling its remaining slices
+[11:48] PHASE h05_f02 verdicts:
+[11:48]   h05_f02: AUDIT from the slice logs: SAT -- witness in h05_f02_q00000_00030.log
+[11:48]   h05_f02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[11:48] RUNNER DONE
+[11:48] === h02_f03 ===
+[11:48] PHASE h02_f03: hosts h02_f03, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:18
+[11:49]   host h02_f03: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 72 slices
+[11:59]   host h02_f03: SAT (slice 28) -- cancelling its remaining slices
+[11:59] PHASE h02_f03 verdicts:
+[12:00]   h02_f03: AUDIT from the slice logs: SAT -- witness in h02_f03_q00855_00886.log
+[12:00]   h02_f03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[12:00] RUNNER DONE
+[12:00] === h04_f03 ===
+[12:00] PHASE h04_f03: hosts h04_f03, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:30
+[12:00]   host h04_f03: base=(0 1 2 4 18), 2200 base states, sweeping [0,2200) -> 72 slices
+[12:06]   host h04_f03: SAT (slice 10) -- cancelling its remaining slices
+[12:06] PHASE h04_f03 verdicts:
+[12:06]   h04_f03: AUDIT from the slice logs: SAT -- witness in h04_f03_q00305_00336.log
+[12:06]   h04_f03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[12:06] RUNNER DONE
+[12:06] === h05_f03 ===
+[12:06] PHASE h05_f03: hosts h05_f03, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:36
+[12:06]   host h05_f03: base=(0 1 2 4 17), 2200 base states, sweeping [0,2200) -> 72 slices
+[12:11]   host h05_f03: SAT (slice 8) -- cancelling its remaining slices
+[12:11] PHASE h05_f03 verdicts:
+[12:11]   h05_f03: AUDIT from the slice logs: SAT -- witness in h05_f03_q00244_00275.log
+[12:11]   h05_f03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[12:11] RUNNER DONE
+[12:11] === h02_f04 ===
+[12:11] PHASE h02_f04: hosts h02_f04, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:41
+[12:11]   host h02_f04: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[12:13]   host h02_f04: SAT (slice 3) -- cancelling its remaining slices
+[12:13] PHASE h02_f04 verdicts:
+[12:13]   h02_f04: AUDIT from the slice logs: SAT -- witness in h02_f04_q00091_00122.log
+[12:13]   h02_f04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[12:13] RUNNER DONE
+[12:13] === h04_f04 ===
+[12:13] PHASE h04_f04: hosts h04_f04, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:43
+[12:13]   host h04_f04: base=(0 1 2 13 14), 2200 base states, sweeping [0,2200) -> 72 slices
+[12:21]   host h04_f04: SAT (slice 14) -- cancelling its remaining slices
+[12:21] PHASE h04_f04 verdicts:
+[12:21]   h04_f04: AUDIT from the slice logs: SAT -- witness in h04_f04_q00427_00458.log
+[12:21]   h04_f04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[12:21] RUNNER DONE
+[12:21] === h05_f04 ===
+[12:21] PHASE h05_f04: hosts h05_f04, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:51
+[12:21]   host h05_f04: base=(0 1 2 15 16), 2200 base states, sweeping [0,2200) -> 72 slices
+[12:21]   host h05_f04: SAT (slice 0) -- cancelling its remaining slices
+[12:21] PHASE h05_f04 verdicts:
+[12:22]   h05_f04: AUDIT from the slice logs: SAT -- witness in h05_f04_q00000_00030.log
+[12:22]   h05_f04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[12:22] RUNNER DONE
+[12:22] === h02_f05 ===
+[12:22] PHASE h02_f05: hosts h02_f05, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 14:52
+[12:22]   host h02_f05: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[12:57] PHASE h02_f05 verdicts:
+[12:57]   h02_f05: AUDIT from the slice logs: UNSAT -- 72 clean slices tile [0,2200) exactly, none capped
+[12:57]   h02_f05: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[12:57]       72 clean slices tile [0,2200) exactly, none capped  [72/72 slices this run]
+[12:57]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[12:57]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[12:57]          is separately known majority-inducible it is a Paley(19)-style
+[12:57]          separation; otherwise its majority status is OPEN. Check the ledger.
+[12:57] RUNNER DONE
+[12:57] === h04_f05 ===
+[12:57] PHASE h04_f05: hosts h04_f05, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 15:27
+[12:58]   host h04_f05: base=(0 1 2 13 14), 2200 base states, sweeping [0,2200) -> 72 slices
+[13:12]   host h04_f05: SAT (slice 23) -- cancelling its remaining slices
+[13:12] PHASE h04_f05 verdicts:
+[13:12]   h04_f05: AUDIT from the slice logs: SAT -- witness in h04_f05_q00702_00733.log
+[13:12]   h04_f05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[13:12] RUNNER DONE
+[13:12] === h05_f05 ===
+[13:12] PHASE h05_f05: hosts h05_f05, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 15:42
+[13:13]   host h05_f05: base=(0 1 2 15 16), 2200 base states, sweeping [0,2200) -> 72 slices
+[13:15]   host h05_f05: SAT (slice 7) -- cancelling its remaining slices
+[13:15] PHASE h05_f05 verdicts:
+[13:15]   h05_f05: AUDIT from the slice logs: SAT -- witness in h05_f05_q00213_00244.log
+[13:15]   h05_f05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[13:15] RUNNER DONE
+[13:15] === h02_f06 ===
+[13:15] PHASE h02_f06: hosts h02_f06, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 15:45
+[13:16]   host h02_f06: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[13:53] PHASE h02_f06 verdicts:
+[13:53]   h02_f06: AUDIT from the slice logs: UNSAT -- 72 clean slices tile [0,2200) exactly, none capped
+[13:53]   h02_f06: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[13:53]       72 clean slices tile [0,2200) exactly, none capped  [72/72 slices this run]
+[13:53]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[13:53]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[13:53]          is separately known majority-inducible it is a Paley(19)-style
+[13:53]          separation; otherwise its majority status is OPEN. Check the ledger.
+[13:53] RUNNER DONE
+[13:53] === h04_f06 ===
+[13:53] PHASE h04_f06: hosts h04_f06, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 16:23
+[13:54]   host h04_f06: base=(0 1 2 13 14), 2200 base states, sweeping [0,2200) -> 72 slices
+[14:11]   host h04_f06: SAT (slice 41) -- cancelling its remaining slices
+[14:11] PHASE h04_f06 verdicts:
+[14:12]   h04_f06: AUDIT from the slice logs: SAT -- witness in h04_f06_q01252_01283.log
+[14:12]   h04_f06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[14:12] RUNNER DONE
+[14:12] === h05_f06 ===
+[14:12] PHASE h05_f06: hosts h05_f06, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 16:42
+[14:12]   host h05_f06: base=(0 1 2 7 14), 2200 base states, sweeping [0,2200) -> 72 slices
+[14:21]   host h05_f06: SAT (slice 13) -- cancelling its remaining slices
+[14:21] PHASE h05_f06 verdicts:
+[14:21]   h05_f06: AUDIT from the slice logs: SAT -- witness in h05_f06_q00397_00427.log
+[14:21]   h05_f06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[14:21] RUNNER DONE
+[14:21] === h02_f07 ===
+[14:21] PHASE h02_f07: hosts h02_f07, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 16:51
+[14:21]   host h02_f07: base=(0 1 2 10 14), 2200 base states, sweeping [0,2200) -> 72 slices
+[14:25]   host h02_f07: SAT (slice 0) -- cancelling its remaining slices
+[14:25] PHASE h02_f07 verdicts:
+[14:25]   h02_f07: AUDIT from the slice logs: SAT -- witness in h02_f07_q00000_00030.log
+[14:25]   h02_f07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[14:25] RUNNER DONE
+[14:25] === h04_f07 ===
+[14:25] PHASE h04_f07: hosts h04_f07, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 16:55
+[14:25]   host h04_f07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[14:26]   host h04_f07: SAT (slice 3) -- cancelling its remaining slices
+[14:26] PHASE h04_f07 verdicts:
+[14:26]   h04_f07: AUDIT from the slice logs: SAT -- witness in h04_f07_q00091_00122.log
+[14:26]   h04_f07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[14:26] RUNNER DONE
+[14:26] === h05_f07 ===
+[14:26] PHASE h05_f07: hosts h05_f07, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 16:56
+[14:26]   host h05_f07: base=(0 1 2 15 16), 2200 base states, sweeping [0,2200) -> 72 slices
+[14:28]   host h05_f07: SAT (slice 6) -- cancelling its remaining slices
+[14:28] PHASE h05_f07 verdicts:
+[14:28]   h05_f07: AUDIT from the slice logs: SAT -- witness in h05_f07_q00183_00213.log
+[14:28]   h05_f07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[14:28] RUNNER DONE
+[14:28] === h02_f08 ===
+[14:28] PHASE h02_f08: hosts h02_f08, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 16:58
+[14:29]   host h02_f08: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[14:29]   host h02_f08: SAT (slice 8) -- cancelling its remaining slices
+[14:29] PHASE h02_f08 verdicts:
+[14:29]   h02_f08: AUDIT from the slice logs: SAT -- witness in h02_f08_q00244_00275.log
+[14:29]   h02_f08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[14:29] RUNNER DONE
+[14:29] === h04_f08 ===
+[14:29] PHASE h04_f08: hosts h04_f08, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 16:59
+[14:29]   host h04_f08: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[14:34]   host h04_f08: SAT (slice 8) -- cancelling its remaining slices
+[14:34] PHASE h04_f08 verdicts:
+[14:34]   h04_f08: AUDIT from the slice logs: SAT -- witness in h04_f08_q00244_00275.log
+[14:34]   h04_f08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[14:34] RUNNER DONE
+[14:34] === h05_f08 ===
+[14:34] PHASE h05_f08: hosts h05_f08, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 17:04
+[14:34]   host h05_f08: base=(0 1 2 15 16), 2200 base states, sweeping [0,2200) -> 72 slices
+[14:39]   host h05_f08: SAT (slice 8) -- cancelling its remaining slices
+[14:39] PHASE h05_f08 verdicts:
+[14:39]   h05_f08: AUDIT from the slice logs: SAT -- witness in h05_f08_q00244_00275.log
+[14:39]   h05_f08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[14:39] RUNNER DONE
+[14:39] === h02_f09 ===
+[14:39] PHASE h02_f09: hosts h02_f09, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 17:09
+[14:39]   host h02_f09: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 72 slices
+[15:09] PHASE h02_f09 verdicts:
+[15:09]   h02_f09: AUDIT from the slice logs: UNSAT -- 72 clean slices tile [0,2200) exactly, none capped
+[15:09]   h02_f09: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[15:09]       72 clean slices tile [0,2200) exactly, none capped  [72/72 slices this run]
+[15:09]       => a margin-1 obstruction at n=21. This does NOT settle the majority
+[15:09]          question: margin-1 UNSAT does not imply majority UNSAT. If this host
+[15:09]          is separately known majority-inducible it is a Paley(19)-style
+[15:09]          separation; otherwise its majority status is OPEN. Check the ledger.
+[15:09] RUNNER DONE
+[15:09] === h04_f09 ===
+[15:09] PHASE h04_f09: hosts h04_f09, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 17:39
+[15:09]   host h04_f09: base=(0 1 2 10 15), 2200 base states, sweeping [0,2200) -> 72 slices
+[15:10]   host h04_f09: SAT (slice 2) -- cancelling its remaining slices
+[15:10] PHASE h04_f09 verdicts:
+[15:11]   h04_f09: AUDIT from the slice logs: SAT -- witness in h04_f09_q00061_00091.log
+[15:11]   h04_f09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[15:11] RUNNER DONE
+[15:11] === h05_f09 ===
+[15:11] PHASE h05_f09: hosts h05_f09, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 17:41
+[15:11]   host h05_f09: base=(0 1 2 10 15), 2200 base states, sweeping [0,2200) -> 72 slices
+[15:11]   host h05_f09: SAT (slice 9) -- cancelling its remaining slices
+[15:11] PHASE h05_f09 verdicts:
+[15:12]   h05_f09: AUDIT from the slice logs: SAT -- witness in h05_f09_q00275_00305.log
+[15:12]   h05_f09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[15:12] RUNNER DONE
+[15:12] === SPECTRUM (audited from the slice logs) ===
+  h01: UUUUUUUUUU   U=obstruction  S=inducible  .=not yet decided
+  h02: USUSSUUSSU   U=obstruction  S=inducible  .=not yet decided
+  h04: SSSSSSSSSS   U=obstruction  S=inducible  .=not yet decided
+  h05: SSSSSSSSSS   U=obstruction  S=inducible  .=not yet decided
+
+  HYPOTHESIS REFUTED: h02 is mixed (USUSSUUSSU)
+[15:20] DONE

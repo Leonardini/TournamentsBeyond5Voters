@@ -1,0 +1,31 @@
+{
+ "question": "is Paley(23) arc-critical for 5-inducibility (majority)?",
+ "status": "OPEN",
+ "witnesses_scanned": 5928928,
+ "base_states_with_witnesses": [
+  [
+   6560,
+   3068928
+  ],
+  [
+   6564,
+   2860000
+  ]
+ ],
+ "base_states_with_none": [
+  6556,
+  6557,
+  6558,
+  6559,
+  6561,
+  6562,
+  6563,
+  6565,
+  6566,
+  6567
+ ],
+ "distance1_extensions_found": 0,
+ "note": "A witness for Paley(23) with one arc reversed, restricted to an endpoint of that arc, is a witness for Paley(23)-v.  So arc-criticality holds iff SOME Paley(23)-v witness extends by re-inserting the deleted vertex with exactly one arc at it flipped.  The reduction is COMPLETE but not cheaper: most base states hold zero witnesses and proving that is the refutation work.",
+ "refutation_price_core_h": 253,
+ "refutation_price_basis": "113 s per base state x 8031, measured; lower bound (early completions are biased cheap)"
+}

@@ -1,0 +1,38 @@
+{
+ "host": "p43_paley.bits",
+ "n": 43,
+ "k": 5,
+ "margin": "majority",
+ "base": [
+  0,
+  1,
+  2,
+  3,
+  10
+ ],
+ "toppair": [
+  0,
+  10,
+  2,
+  1
+ ],
+ "base_mask": 217,
+ "base_states": 8031,
+ "survivors": 2537,
+ "chunks": 2008,
+ "chunks_missing_result": 0,
+ "coverage_lo": 0,
+ "coverage_hi": 8031,
+ "gaps": [],
+ "all_base_states_covered": true,
+ "all_survivors_covered": true,
+ "aborted": 0,
+ "sat": 0,
+ "nodes": 1432588652,
+ "cpu_s": 82313.3,
+ "core_h": 22.865,
+ "verdict": "UNSAT",
+ "priced_core_h": 22.9,
+ "price_error_pct": -0.2,
+ "confirms": "the 2026-07-10 co-backing screen (independent method)"
+}

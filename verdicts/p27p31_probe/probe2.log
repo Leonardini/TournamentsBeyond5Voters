@@ -1,0 +1,3 @@
+=== p27  host=p27_minus1v.bits n=26 base={0 1 2 6 12} base_states=8031  budget=1500s cap=90s ===
+    p27: 18 base states of 8031 tried (.224%), 17 capped at 90s, NO WITNESS -- not a verdict, a sample
+=== p31  host=p31_minus1v.bits n=30 base={0 1 2 3 12} base_states=8031  budget=1500s cap=90s ===

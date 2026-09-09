@@ -1,0 +1,309 @@
+id	n	tmin	margin1	majority	witness_on_disk	sources
+t3_000	3	1	SAT	SAT (implied by margin-1)	exact	drt_small/verdicts.tsv
+t7_000	7	2	SAT	SAT (implied by margin-1)	exact	drt_small/verdicts.tsv
+t11_000	11	3	SAT	SAT (implied by margin-1)	exact	drt_small/verdicts.tsv
+t15_000	15	1	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_001	15	1	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_002	15	1	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_003	15	2	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_004	15	2	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_005	15	2	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_006	15	2	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_007	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_008	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_009	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_010	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_011	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_012	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_013	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_014	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_015	15	3	SAT	SAT (implied by margin-1)	exact	vt15/verdicts.tsv
+t15_016	15	4	SAT	SAT (implied by margin-1)	exact	drt15/verdicts.tsv
+t15_017	15	4	SAT	SAT (implied by margin-1)	exact	drt15/verdicts.tsv
+t17_000	17	1	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_001	17	2	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_002	17	2	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_003	17	2	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_004	17	2	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_005	17	2	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_006	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_007	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_008	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_009	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_010	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_011	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_012	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_013	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_014	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t17_015	17	3	SAT	SAT (implied by margin-1)	exact	vt17/verdicts.tsv
+t19_000	19	1	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_001	19	2	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_002	19	2	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_003	19	2	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_004	19	2	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_005	19	2	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_006	19	2	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_007	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_008	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_009	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_010	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_011	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_012	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_013	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_014	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_015	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_016	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_017	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_018	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_019	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_020	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_021	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_022	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_023	19	3	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_024	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_025	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_026	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_027	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_028	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
+t19_029	19	5	UNSAT	SAT	exact+majority	sweep_queue.log (aggregate only);vt19/verdicts.tsv
+t19_030	19	5	UNSAT	SAT	exact+majority	drt19/verdicts.tsv;drt19_wit/verdicts.tsv
+t21_000	21	1	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_001	21	1	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_002	21	1	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_003	21	1	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_004	21	2	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_005	21	2	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_006	21	2	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_007	21	2	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_008	21	2	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_009	21	2	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_010	21	2	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_011	21	2	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_012	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_013	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_014	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_015	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_016	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_017	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_018	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_019	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_020	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_021	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_022	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_023	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_024	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_025	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_026	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_027	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_028	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_029	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_030	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_031	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_032	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_033	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_034	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_035	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_036	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_037	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_038	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_039	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_040	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_041	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_042	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_043	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_044	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_045	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_046	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_047	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_048	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_049	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_050	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_051	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_052	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_053	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_054	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_055	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_056	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_057	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_058	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_059	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_060	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_061	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_062	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_063	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_064	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_065	21	3	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_066	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_067	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_068	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_069	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_070	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_071	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_072	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_073	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_074	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_075	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_076	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_077	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_078	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_079	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_080	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_081	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_082	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_083	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_084	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_085	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_086	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_087	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_088	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_089	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_090	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_091	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_092	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_093	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_094	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_095	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_096	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_097	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_098	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_099	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_100	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_101	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_102	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
+t21_103	21	5	UNSAT	SAT	-	vt21_hosts/verdicts.tsv
+t21_104	21	5	UNSAT	SAT	-	vt21_hosts/verdicts.tsv
+t21_105	21	5	SAT	SAT (implied by margin-1)	exact	vt21_certs/verdicts.tsv
+t21_106	21	5	SAT	SAT (implied by margin-1)	exact	vt21_certs/verdicts.tsv
+t21_107	21	5	UNSAT	SAT	-	vt21_hosts/verdicts.tsv
+t21_108	21	5	UNSAT	SAT	-	vt21_hosts/verdicts.tsv
+t21_109	21	5	SAT	SAT (implied by margin-1)	exact	vt21_hosts/verdicts.tsv
+t23_000	23	1	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_001	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_002	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_003	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_004	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_005	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_006	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_007	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_008	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_009	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_010	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_011	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_012	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_013	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_014	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_015	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_016	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_017	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_018	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_019	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_020	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_021	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_022	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_023	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_024	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_025	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_026	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_027	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_028	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_029	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_030	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_031	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_032	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_033	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_034	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_035	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_036	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_037	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_038	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_039	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_040	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_041	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_042	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_043	23	4	UNSAT	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_044	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_045	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_046	23	4	unresolved	SAT	exact+majority	vt23_recover/verdicts.tsv
+t23_047	23	4	unresolved	not run	-	vt23_sweep.log (aggregate only)
+t23_048	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_049	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_050	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_051	23	4	unresolved	not run	-	vt23_sweep.log (aggregate only)
+t23_052	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_053	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_054	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_055	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_056	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_057	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_058	23	4	SAT	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_059	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_060	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_061	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_062	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_063	23	4	UNSAT	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_064	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_065	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_066	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_067	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_068	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_069	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_070	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_071	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_072	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_073	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_074	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_075	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_076	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_077	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_078	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_079	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_080	23	4	SAT	SAT (implied by margin-1)	exact	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_081	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_082	23	4	UNSAT	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_083	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_084	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_085	23	5	unresolved	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_086	23	5	unresolved	not run	-	vt23_sweep.log (aggregate only)
+t23_087	23	5	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_088	23	5	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
+t23_089	23	5	unresolved	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_090	23	5	unresolved	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_091	23	5	unresolved	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_092	23	5	unresolved	not run	-	vt23_sweep.log (aggregate only)
+t23_093	23	6	UNSAT	UNSAT	-	vt23/verdicts.tsv
+t23_094	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_095	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_096	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_097	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_098	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_099	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_100	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_101	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_102	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_103	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_104	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_105	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_106	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_107	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_108	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_109	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_110	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_111	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_112	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_113	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_114	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_115	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_116	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_117	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_118	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_119	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_120	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_121	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_122	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_123	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_124	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_125	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_126	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_127	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_128	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_129	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)

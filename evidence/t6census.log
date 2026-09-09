@@ -1,0 +1,77 @@
+  1/56  SKIPPED transitive (known 1,510,046)
+  2/56  mask=24575 scores=[1, 1, 1, 3, 4, 5] bases=983,904
+  3/56  mask=32759 scores=[0, 2, 2, 3, 4, 4] bases=558,665
+  4/56  mask=32743 scores=[1, 2, 2, 3, 3, 4] bases=256,684
+  5/56  mask=32503 scores=[1, 2, 2, 3, 3, 4] bases=208,574
+  6/56  mask=30711 scores=[1, 2, 2, 2, 4, 4] bases=272,808
+  7/56  mask=24567 scores=[1, 1, 2, 3, 4, 4] bases=381,024
+  8/56  mask=16375 scores=[1, 1, 2, 3, 4, 4] bases=441,852
+  9/56  mask=32639 scores=[0, 2, 2, 3, 3, 5] bases=720,764
+  10/56  mask=32623 scores=[1, 2, 2, 3, 3, 4] bases=202,129
+  11/56  mask=32383 scores=[1, 2, 2, 2, 3, 5] bases=415,347
+  12/56  mask=30591 scores=[1, 2, 2, 2, 3, 5] bases=359,097
+  13/56  mask=24447 scores=[1, 1, 2, 3, 3, 5] bases=505,293
+  14/56  mask=16255 scores=[1, 1, 2, 3, 3, 5] bases=558,665
+  15/56  mask=30335 scores=[2, 2, 2, 2, 2, 5] bases=275,845
+  16/56  mask=31743 scores=[0, 2, 2, 2, 4, 5] bases=983,904
+  17/56  mask=31727 scores=[1, 2, 2, 2, 4, 4] bases=283,173
+  18/56  mask=31487 scores=[1, 2, 2, 2, 3, 5] bases=352,941
+  19/56  mask=29695 scores=[1, 1, 2, 2, 4, 5] bases=720,764
+  20/56  mask=32763 scores=[0, 1, 3, 3, 4, 4] bases=720,764
+  21/56  mask=32755 scores=[0, 2, 3, 3, 3, 4] bases=415,347
+  22/56  mask=32739 scores=[1, 2, 2, 3, 3, 4] bases=256,684
+  23/56  mask=32499 scores=[1, 2, 3, 3, 3, 3] bases=164,873
+  24/56  mask=30707 scores=[1, 2, 2, 3, 3, 4] bases=227,977
+  25/56  mask=24563 scores=[1, 2, 2, 3, 3, 4] bases=207,623
+  26/56  mask=16371 scores=[1, 1, 3, 3, 3, 4] bases=297,917
+  27/56  mask=30691 scores=[2, 2, 2, 2, 3, 4] bases=164,873
+  28/56  mask=30451 scores=[2, 2, 2, 3, 3, 3] bases=159,855
+  29/56  mask=24547 scores=[2, 2, 2, 2, 3, 4] bases=159,084
+  30/56  mask=24307 scores=[2, 2, 2, 3, 3, 3] bases=104,403
+  31/56  mask=32635 scores=[0, 2, 3, 3, 3, 4] bases=359,097
+  32/56  mask=32619 scores=[1, 2, 3, 3, 3, 3] bases=142,251
+  33/56  mask=32379 scores=[1, 2, 2, 3, 3, 4] bases=207,623
+  34/56  mask=30587 scores=[1, 2, 2, 3, 3, 4] bases=188,792
+  35/56  mask=24443 scores=[1, 2, 2, 3, 3, 4] bases=206,788
+  36/56  mask=16251 scores=[1, 1, 3, 3, 3, 4] bases=272,808
+  37/56  mask=30571 scores=[2, 2, 2, 3, 3, 3] bases=96,198
+  38/56  mask=30331 scores=[2, 2, 2, 2, 3, 4] bases=154,635
+  39/56  mask=24187 scores=[2, 2, 2, 2, 3, 4] bases=142,251
+  40/56  mask=32627 scores=[0, 3, 3, 3, 3, 3] bases=275,845
+  41/56  mask=32611 scores=[1, 2, 3, 3, 3, 3] bases=154,635
+  42/56  mask=32355 scores=[2, 2, 2, 3, 3, 3] bases=128,031
+  43/56  mask=30563 scores=[2, 2, 2, 3, 3, 3] bases=104,403
+  44/56  mask=32703 scores=[0, 1, 3, 3, 3, 5] bases=983,904
+  45/56  mask=32695 scores=[0, 2, 3, 3, 3, 4] bases=352,941
+  46/56  mask=32679 scores=[1, 2, 3, 3, 3, 3] bases=159,084
+  47/56  mask=32439 scores=[1, 2, 2, 3, 3, 4] bases=186,131
+  48/56  mask=16311 scores=[1, 1, 3, 3, 3, 4] bases=283,173
+  49/56  mask=32765 scores=[0, 1, 2, 4, 4, 4] bases=983,904
+  50/56  mask=24573 scores=[1, 1, 1, 4, 4, 4] bases=651,825
+  51/56  mask=32757 scores=[0, 2, 2, 3, 4, 4] bases=505,293
+  52/56  mask=32741 scores=[1, 2, 2, 2, 4, 4] bases=297,917
+  53/56  mask=32501 scores=[1, 2, 2, 3, 3, 4] bases=206,788
+  54/56  mask=30709 scores=[1, 2, 2, 3, 3, 4] bases=186,131
+  55/56  mask=24565 scores=[1, 1, 2, 3, 4, 4] bases=362,325
+  56/56  mask=16373 scores=[1, 1, 2, 3, 4, 4] bases=381,024
+
+=== FEWEST margin-1 BASES over 55 non-transitive 6-vertex tournaments ===
+rank        bases   mask  score sequence
+   1       96,198  30571  [2, 2, 2, 3, 3, 3]
+   2      104,403  24307  [2, 2, 2, 3, 3, 3]
+   3      104,403  30563  [2, 2, 2, 3, 3, 3]
+   4      128,031  32355  [2, 2, 2, 3, 3, 3]
+   5      142,251  32619  [1, 2, 3, 3, 3, 3]
+   6      142,251  24187  [2, 2, 2, 2, 3, 4]
+   7      154,635  30331  [2, 2, 2, 2, 3, 4]
+   8      154,635  32611  [1, 2, 3, 3, 3, 3]
+  ...
+          983,904  32703  [0, 1, 3, 3, 3, 5]
+          983,904  32765  [0, 1, 2, 4, 4, 4]
+
+MINIMISER: 96,198 bases, scores [2, 2, 2, 3, 3, 3], mask 30571
+  bits 110101101110111
+spread over the class: 96,198 .. 983,904 (10.2x), transitive 1,510,046 (15.7x the minimum)
+
+note: n=6 admits no REGULAR tournament (out-degree 2.5), so the minimiser
+should be near-regular, scores (2,2,2,3,3,3) -- check against the table.

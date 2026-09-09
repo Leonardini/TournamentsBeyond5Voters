@@ -1,0 +1,10 @@
+name	n	tmin	margin	verdict	verified	seconds
+h01	21	5	exact	UNSAT	1	complete-sweep-40-slices
+h02	21	5	exact	UNSAT	1	complete-sweep-40-slices
+h04	21	5	exact	UNSAT	1	complete-sweep-40-slices
+h05	21	5	exact	UNSAT	1	complete-sweep-40-slices
+h00	21	5	exact	SAT	1	13.0
+h04	21	5	majority	SAT	1	0.0
+h05	21	5	majority	SAT	1	0.0
+h02	21	5	majority	SAT	1	0.0
+h01	21	5	majority	SAT	1	0.0

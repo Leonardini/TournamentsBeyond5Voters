@@ -1,0 +1,27 @@
+P23 base {0, 4, 5, 11, 16} mask=217 base_states=8031 opt=2537 toppair (0, 16)+(5, 4)
+P27 base {0, 1, 2, 3, 14} mask=217 base_states=8031 opt=2537 toppair (0, 14)+(2, 1)
+=> identical base-state list (8031), identical survivor optimum (2537)
+
+gate cleared 2026-09-02 19:17:18; 120 runs, cap 900.0s, 8 workers
+
+=== P23 ===
+  windows 60 x 4 base states = 240 sampled of 8031
+  completed windows 60, hit the 900s cap 0
+  per-window secs: median 0.0, mean 73.3, max 390.9
+  survivors in the sample ~76
+  => 58.0 s per surviving base state
+  => full run 41 core-h
+=== P27 ===
+  windows 60 x 4 base states = 240 sampled of 8031
+  completed windows 60, hit the 900s cap 0
+  per-window secs: median 0.0, mean 73.1, max 335.8
+  survivors in the sample ~76
+  => 57.8 s per surviving base state
+  => full run 41 core-h
+
+CONTROL  P23 measured 58.0 s/survivor (two full runs gave 47.3 and 47.7 -- protocol VALIDATED)
+RATIO    n=27 costs 1.0x n=23 per surviving base state (1.00x per vertex)
+PRICE    Paley(27) majority ~= 41 core-h
+         earlier extrapolation was ~970 core-h at 2.2x/vertex
+
+WRITTEN /tmp/price27.json

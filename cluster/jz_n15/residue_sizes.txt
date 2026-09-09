@@ -1,0 +1,42 @@
+# Measured sizes of gentourng -d7 -D7 15 <res>/6000 output classes.
+# Counted with `gentourng -u` on the laptop, 2026-09-03.  These are EXACT
+# per-residue counts, not estimates; the estimate is only the extrapolation
+# to the 6000-residue total at the bottom.
+#
+# Method validated first: at n=13, mod 8, the eight residue counts sum to
+# 1,495,297 exactly (= OEIS A096368), so res/mod partitions the output.
+res instances
+0 3205018
+1 3339076
+2 2179958
+137 3557114
+500 3513228
+913 3153011
+1300 3018024
+1750 3957804
+2200 2467380
+2650 5018501
+2999 3975021
+3400 2706118
+3800 2329368
+4200 2358897
+4600 3142193
+5000 3502894
+5400 3980592
+5700 2155033
+5998 2636401
+5999 4416330
+# n = 20 residues, mean 3,230,598, sd 782,154, se 174,895
+# => total estimate 1.94e10 (2 se +/- 0.21e9).  The AUTHORITATIVE figure is
+#    OEIS A096368(7) = 18,400,989,629 (sequence 1, 1, 1, 3, 15, 1223, 1495297,
+#    18400989629, ... indexed by 2n+1 nodes; A096368(6) = 1,495,297 matches our
+#    own exhaustive n=13 run, which anchors the offset).  The sample sits
+#    within 1 se of it, so it is a fair cross-check -- but it is NOT the
+#    12,007,554,066 that HANDOFF.md and COMMANDS.md carried before 2026-09-03,
+#    which appears in no term of the sequence and was simply wrong.
+#    NOTE (Leonid): gentourng splits by INPUT chunk, with no guarantee at all
+#    on output-class sizes -- order-of-magnitude spreads have been seen
+#    elsewhere.  20 residues is a weak estimator of the total and is kept only
+#    as a cross-check; size the job from the OEIS value.
+# Spread is 2.16M..5.02M (2.3x), so per-task wall time must budget for the
+# fattest residue, not the mean.  Same shape at n=13/mod 8: 121k..237k (1.96x).

@@ -1,0 +1,3 @@
+name	n	tmin	margin	verdict	verified	seconds
+g2	19	5	exact	CAPPED	0	972.8
+g2	19	5	majority	SAT	1	184.5

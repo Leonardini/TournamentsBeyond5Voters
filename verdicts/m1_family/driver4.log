@@ -1,0 +1,9 @@
+p43mv: UNSAT, all 2200 base states refuted
+./sweep.sh: line 28: 10721 Done                    seq 0 2199
+     10722 Terminated: 15          | xargs -P 10 -I{} bash -c 'one {}'
+p31mv: INCOMPLETE, 583/2200
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1

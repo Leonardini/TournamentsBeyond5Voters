@@ -1,0 +1,35 @@
+{
+ "host": "p31_paley.bits",
+ "n": 31,
+ "k": 5,
+ "margin": "majority",
+ "base": [
+  0,
+  1,
+  2,
+  3,
+  6
+ ],
+ "toppair": [
+  2,
+  3,
+  0,
+  3
+ ],
+ "base_mask": 499,
+ "base_states": 21009,
+ "survivors": 4007,
+ "chunks": 5253,
+ "chunks_missing_result": 0,
+ "coverage_lo": 0,
+ "coverage_hi": 21009,
+ "gaps": [],
+ "all_base_states_covered": true,
+ "all_survivors_covered": true,
+ "aborted": 0,
+ "sat": 0,
+ "nodes": 3434678266,
+ "cpu_s": 96802.1,
+ "core_h": 26.889,
+ "verdict": "UNSAT"
+}

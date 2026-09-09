@@ -1,0 +1,48 @@
+p23mv: UNSAT, all 2200 base states refuted
+./sweep.sh: line 28: 81392 Done                    seq 0 2199
+     81393 Terminated: 15          | xargs -P 10 -I{} bash -c 'one {}'
+p27: INCOMPLETE, 691/2200
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+p27e: UNSAT, all 2200 base states refuted
+./sweep.sh: line 28: 53422 Done                    seq 0 2199
+     53423 Terminated: 15          | xargs -P 10 -I{} bash -c 'one {}'
+p27mv: INCOMPLETE, 50/2200
+./sweep.sh: line 28: 54947 Done                    seq 0 2199
+     54948 Terminated: 15          | xargs -P 10 -I{} bash -c 'one {}'
+p43mv: INCOMPLETE, 1187/2200
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+p43mv: UNSAT, all 2200 base states refuted
+./sweep.sh: line 28: 10721 Done                    seq 0 2199
+     10722 Terminated: 15          | xargs -P 10 -I{} bash -c 'one {}'
+p31mv: INCOMPLETE, 583/2200
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+p43mv: UNSAT, all 2200 base states refuted
+p31mv: UNSAT, all 2200 base states refuted
+p27mv: UNSAT, all 2200 base states refuted
+./sweep.sh: line 28: 28695 Done                    seq 0 2199
+     28696 Terminated: 15          | xargs -P 10 -I{} bash -c 'one {}'
+p31e: INCOMPLETE, 30/2200
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1
+Terminated: 15             ./kinduce24 --bits $HOST --n $N --k 5 --margin exact --order mrv --inc --pool-mb 512 --base $BASE --bs-from $B --bs-to $((B+1)) > $D/log/b$B.log 2>&1

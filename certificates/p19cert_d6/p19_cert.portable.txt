@@ -1,0 +1,11 @@
+CERT-v1 portable
+q=19
+k=5
+margin=exact
+base=0,1,2,3,4,11
+arc=0,1
+non=2,1
+cubes=22876
+search_root_cnf=0eeb9dd53956fec2c77b752d74b89b12c7d1dddd6dc4047405ecb7907896a78a
+split_cover_cnf=603424316b68f66f7455afd46881a0f70685dac140e97172e3d0ecb09cdb5f20
+CERT_PORTABLE=8eb20a1d9e814aabb8782c7d34fd8a436ab52db690852ed856a2b1bbd4c65ffa

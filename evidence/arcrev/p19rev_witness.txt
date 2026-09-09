@@ -1,0 +1,14 @@
+VERIFIED: all 171 arcs at exactly 3:2, 5 valid permutations -- witness is GENUINE
+WITNESS VERIFIED in [1460,1464)
+n=19 K=5 margin=exact1 order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 base_sz=5 base=0,1,2,9,16 base_mask=668 base_states=2200
+  static_tail=8,10,12,18,3,5,6,7,13,14,15,17,4,11
+  base_state_slice=[1460,1464)
+WITNESS
+  voter 0: 13 10 7 8 14 18 0 5 6 11 12 16 17 4 15 2 3 9 1
+  voter 1: 13 15 3 1 12 17 0 4 5 7 2 11 18 16 8 9 6 10 14
+  voter 2: 5 3 14 4 1 6 10 2 11 0 8 17 9 15 7 16 12 13 18
+  voter 3: 9 16 17 14 11 1 2 6 18 3 7 4 8 15 5 12 13 0 10
+  voter 4: 12 9 18 10 15 16 8 2 0 6 7 4 13 11 1 17 5 3 14
+VERIFY bad_arcs=0 support_min=3 support_max=3 OK
+SLICE cleared=0 capped=0 of [1460,1464)
+RESULT SAT nodes=673336 sols=1 base_states=2200 dom_calls=14 dom_nodes=5253 mrv_fails=981901 top0_fails=0 bound_fails=0 fas_fails=0/0 refine_tuples=149526459 time=1.749s

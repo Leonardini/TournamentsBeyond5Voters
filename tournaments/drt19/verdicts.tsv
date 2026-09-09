@@ -1,0 +1,3 @@
+name	n	tmin	margin	verdict	verified	seconds
+g2	19	5	exact	UNSAT	1	complete-sweep-2200-of-2200+no-break-rerun
+g2	19	5	majority	SAT	1	176.0

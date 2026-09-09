@@ -1,0 +1,10 @@
+n=21 K=5 margin=exact1 order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 defect_R=0 base_sz=5 base=0,1,2,11,12 base_mask=668 base_states=2200 (most restrictive of C(21,5))
+  static_tail=8,10,13,17,3,4,5,6,9,14,16,18,19,20,7,15
+  base_state_slice=[0,2200)
+PROGRESS b=32/2200 cleared=32 capped=0 nodes=126488067 time=424.9s
+PROGRESS b=64/2200 cleared=64 capped=0 nodes=223963563 time=753.1s
+PROGRESS b=96/2200 cleared=96 capped=0 nodes=331762372 time=1131.9s
+PROGRESS b=128/2200 cleared=128 capped=0 nodes=411820719 time=1407.8s
+PROGRESS b=160/2200 cleared=160 capped=0 nodes=479673312 time=1645.1s
+SLICE cleared=183 capped=0 of [0,2200)
+RESULT ABORTED nodes=524025856 sols=0 base_states=2200 dom_calls=2944 dom_nodes=1111830 mrv_fails=782105758 top0_fails=0 bound_fails=0 fas_fails=0/0 refine_tuples=151644760451 time=1800.315s

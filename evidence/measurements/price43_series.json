@@ -1,0 +1,372 @@
+{
+ "note": "Three-host paired cost series on BIT-IDENTICAL mask-217 base states (state-list hash aca0e59525a20e27, survivor-set hash e855c30ec80223d6 on all three). Measured 2026-09-03 on one core alongside a saturated 10-worker pool; the P27 arm is the known-answer control against the completed 111727.3 s sweep.",
+ "configs": {
+  "P27": {
+   "base": [
+    0,
+    1,
+    2,
+    3,
+    14
+   ],
+   "arc": [
+    0,
+    14
+   ],
+   "non": [
+    2,
+    1
+   ]
+  },
+  "P31": {
+   "base": [
+    0,
+    1,
+    6,
+    13,
+    19
+   ],
+   "arc": [
+    0,
+    19
+   ],
+   "non": [
+    6,
+    1
+   ]
+  },
+  "P43": {
+   "base": [
+    0,
+    1,
+    2,
+    3,
+    10
+   ],
+   "arc": [
+    0,
+    10
+   ],
+   "non": [
+    2,
+    1
+   ]
+  }
+ },
+ "base_states": 8031,
+ "survivors": 2537,
+ "anchor_P27_total_s": 111727.3,
+ "measurements": {
+  "P43": {
+   "662": {
+    "status": "UNSAT",
+    "nodes": 688583,
+    "secs": 38.408
+   },
+   "264": {
+    "status": "UNSAT",
+    "nodes": 389967,
+    "secs": 23.445
+   },
+   "1369": {
+    "status": "UNSAT",
+    "nodes": 792328,
+    "secs": 48.839
+   },
+   "1426": {
+    "status": "UNSAT",
+    "nodes": 871983,
+    "secs": 46.826
+   },
+   "4760": {
+    "status": "UNSAT",
+    "nodes": 699002,
+    "secs": 40.378
+   },
+   "1353": {
+    "status": "UNSAT",
+    "nodes": 454426,
+    "secs": 28.795
+   },
+   "5082": {
+    "status": "UNSAT",
+    "nodes": 709598,
+    "secs": 39.433
+   },
+   "1296": {
+    "status": "UNSAT",
+    "nodes": 503265,
+    "secs": 28.963
+   },
+   "4847": {
+    "status": "UNSAT",
+    "nodes": 77529,
+    "secs": 4.352
+   },
+   "213": {
+    "status": "UNSAT",
+    "nodes": 871787,
+    "secs": 45.037
+   },
+   "4461": {
+    "status": "UNSAT",
+    "nodes": 525485,
+    "secs": 29.865
+   },
+   "1451": {
+    "status": "UNSAT",
+    "nodes": 121579,
+    "secs": 7.578
+   },
+   "1497": {
+    "status": "UNSAT",
+    "nodes": 860988,
+    "secs": 54.222
+   },
+   "1472": {
+    "status": "UNSAT",
+    "nodes": 257738,
+    "secs": 15.601
+   },
+   "5006": {
+    "status": "UNSAT",
+    "nodes": 564578,
+    "secs": 30.145
+   },
+   "223": {
+    "status": "UNSAT",
+    "nodes": 623734,
+    "secs": 31.315
+   },
+   "1528": {
+    "status": "UNSAT",
+    "nodes": 58095,
+    "secs": 2.967
+   },
+   "5261": {
+    "status": "UNSAT",
+    "nodes": 1221853,
+    "secs": 69.445
+   },
+   "5274": {
+    "status": "UNSAT",
+    "nodes": 745786,
+    "secs": 40.192
+   },
+   "3605": {
+    "status": "UNSAT",
+    "nodes": 233169,
+    "secs": 12.855
+   },
+   "4430": {
+    "status": "UNSAT",
+    "nodes": 705206,
+    "secs": 42.791
+   }
+  },
+  "P27": {
+   "223": {
+    "status": "UNSAT",
+    "nodes": 3029240,
+    "secs": 61.918
+   },
+   "4430": {
+    "status": "UNSAT",
+    "nodes": 3829612,
+    "secs": 77.081
+   },
+   "3605": {
+    "status": "UNSAT",
+    "nodes": 1333641,
+    "secs": 25.198
+   },
+   "5261": {
+    "status": "UNSAT",
+    "nodes": 4563953,
+    "secs": 91.033
+   },
+   "1528": {
+    "status": "UNSAT",
+    "nodes": 427079,
+    "secs": 8.944
+   },
+   "1472": {
+    "status": "UNSAT",
+    "nodes": 1429383,
+    "secs": 27.263
+   },
+   "5006": {
+    "status": "UNSAT",
+    "nodes": 2082355,
+    "secs": 38.611
+   },
+   "1497": {
+    "status": "UNSAT",
+    "nodes": 2958390,
+    "secs": 60.321
+   },
+   "662": {
+    "status": "UNSAT",
+    "nodes": 3680185,
+    "secs": 75.139
+   },
+   "4461": {
+    "status": "UNSAT",
+    "nodes": 2359827,
+    "secs": 44.525
+   },
+   "1451": {
+    "status": "UNSAT",
+    "nodes": 635071,
+    "secs": 13.093
+   },
+   "4847": {
+    "status": "UNSAT",
+    "nodes": 333808,
+    "secs": 6.482
+   },
+   "264": {
+    "status": "UNSAT",
+    "nodes": 1596367,
+    "secs": 28.593
+   },
+   "1296": {
+    "status": "UNSAT",
+    "nodes": 2207073,
+    "secs": 40.951
+   },
+   "1353": {
+    "status": "UNSAT",
+    "nodes": 1369394,
+    "secs": 27.743
+   },
+   "5082": {
+    "status": "UNSAT",
+    "nodes": 2381920,
+    "secs": 45.794
+   },
+   "1426": {
+    "status": "UNSAT",
+    "nodes": 3239996,
+    "secs": 58.834
+   },
+   "4760": {
+    "status": "UNSAT",
+    "nodes": 2893026,
+    "secs": 56.05
+   },
+   "1369": {
+    "status": "UNSAT",
+    "nodes": 3252560,
+    "secs": 63.046
+   },
+   "213": {
+    "status": "UNSAT",
+    "nodes": 3283335,
+    "secs": 62.208
+   }
+  },
+  "P31": {
+   "662": {
+    "status": "UNSAT",
+    "nodes": 2396768,
+    "secs": 76.055
+   },
+   "264": {
+    "status": "UNSAT",
+    "nodes": 823423,
+    "secs": 23.24
+   },
+   "4430": {
+    "status": "UNSAT",
+    "nodes": 2215220,
+    "secs": 68.95
+   },
+   "3605": {
+    "status": "UNSAT",
+    "nodes": 797279,
+    "secs": 24.943
+   },
+   "5261": {
+    "status": "UNSAT",
+    "nodes": 2517618,
+    "secs": 78.294
+   },
+   "213": {
+    "status": "UNSAT",
+    "nodes": 1941975,
+    "secs": 55.23
+   },
+   "5006": {
+    "status": "UNSAT",
+    "nodes": 1523852,
+    "secs": 45.635
+   },
+   "1472": {
+    "status": "UNSAT",
+    "nodes": 1010817,
+    "secs": 30.216
+   },
+   "1528": {
+    "status": "UNSAT",
+    "nodes": 260824,
+    "secs": 7.103
+   },
+   "1451": {
+    "status": "UNSAT",
+    "nodes": 338693,
+    "secs": 9.359
+   },
+   "4461": {
+    "status": "UNSAT",
+    "nodes": 1501924,
+    "secs": 50.315
+   },
+   "4847": {
+    "status": "UNSAT",
+    "nodes": 191724,
+    "secs": 5.491
+   },
+   "1296": {
+    "status": "UNSAT",
+    "nodes": 1015271,
+    "secs": 32.147
+   },
+   "223": {
+    "status": "UNSAT",
+    "nodes": 1801419,
+    "secs": 49.72
+   },
+   "1497": {
+    "status": "UNSAT",
+    "nodes": 2398829,
+    "secs": 65.877
+   },
+   "4760": {
+    "status": "UNSAT",
+    "nodes": 1194137,
+    "secs": 34.591
+   },
+   "1426": {
+    "status": "UNSAT",
+    "nodes": 2540415,
+    "secs": 67.37
+   },
+   "1369": {
+    "status": "UNSAT",
+    "nodes": 1855600,
+    "secs": 55.671
+   },
+   "5082": {
+    "status": "UNSAT",
+    "nodes": 1437525,
+    "secs": 42.34
+   },
+   "1353": {
+    "status": "UNSAT",
+    "nodes": 728580,
+    "secs": 22.664
+   }
+  }
+ }
+}

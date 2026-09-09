@@ -1,0 +1,329 @@
+.TH KINDUCE 1 "September 2026" "kinduce" "Tournament inducibility"
+.SH NAME
+kinduce \- decide whether a tournament is inducible by k voters
+.SH SYNOPSIS
+.B kinduce
+.RB { \-\-paley
+.IR q " | " \fB\-\-bits\fR " " \fIfile\fR " " \fB\-\-n\fR " " \fIn " | " \fB\-\-batch\fR " " \fIfile\fR " " \fB\-\-n\fR " " \fIn }
+.RB [ \-\-k
+.IR k ]
+.RB [ \-\-margin
+.IR mode ]
+.RB [ \-\-max\-margin
+.IR M ]
+.RB [ \-\-order
+.IR mode ]
+.RB [ \-\-inc ]
+.RB [ \-\-base
+.IR "v ..." ]
+.RB [ \-\-bs\-from
+.IR a ]
+.RB [ \-\-bs\-to
+.IR b ]
+.RI [ break ]
+.RI [ options ]
+.SH DESCRIPTION
+.B kinduce
+decides whether a given tournament
+.I T
+on
+.I n
+vertices is the majority tournament of some
+.I k
+linear orders: that is, whether there are
+.I k
+rankings of the vertices such that for every arc
+.IR "u \(-> v" ,
+a majority of the rankings place
+.I u
+above
+.IR v .
+Such a set of rankings is a
+.IR witness .
+.PP
+The search is a depth\-first placement of vertices into a partial profile. It
+starts from a
+.I base state
+\(em the restriction of all
+.I k
+voters to a small base set, taken up to the relabelling of voters \(em and
+inserts one vertex at a time. For each unplaced vertex it maintains the set of
+slot tuples still consistent with every arc to the placed set, chooses the most
+constrained vertex at every node, and refines those sets incrementally rather
+than recomputing them.
+.PP
+The base states partition the search space, so a run may be sliced with
+.B \-\-bs\-from
+and
+.B \-\-bs\-to
+and the slices distributed across workers. A slice that is exhausted without a
+witness refutes
+.I T
+on that slice; the union of all slices refutes
+.I T
+outright.
+.SH OPTIONS
+.SS Instance
+.TP
+.BI \-\-paley " q"
+Build the Paley tournament on
+.I q
+vertices, for
+.I q
+a prime with
+.IR "q \(== 3 (mod 4)" .
+Refuses composite or prime\-power
+.IR q ,
+where the
+.RI Z/ q
+construction does not yield a tournament; use
+.B \-\-bits
+with a proper field build in that case.
+.TP
+.BI \-\-bits " file " \-\-n " n"
+Read
+.I T
+from a file holding the upper\-triangular adjacency bit string, row major:
+.RI C( n ,2)
+characters, a
+.B 1
+at position
+.RI ( i , j )
+meaning the arc runs
+.IR "i \(-> j" .
+.TP
+.BI \-\-batch " file " \-\-n " n"
+Read many tournaments, one bit string per line, and decide each in turn.
+.TP
+.BI \-\-k " k"
+Number of voters. Must be odd. Default 5.
+.SS Margin
+.TP
+.BI \-\-margin " majority|exact"
+.B majority
+requires every arc to be supported by at least
+.RI ( k +1)/2
+voters.
+.B exact
+requires exactly that many \(em every arc decided by the narrowest possible
+margin.
+.TP
+.BI \-\-max\-margin " M"
+Require every arc's support
+.I s
+to satisfy
+.RI | 2 s - k | " \(<= " M .
+.I M
+must have the same parity as
+.I k
+and lie in
+.RI [1, k ].
+.RB "For " k " = 5, " "\-\-max\-margin 1"
+is equivalent to
+.B "\-\-margin exact"
+and
+.B "\-\-max\-margin 5"
+to
+.BR "\-\-margin majority" .
+.SS Search
+.TP
+.BI \-\-order " mrv"
+Choose the next vertex per node by minimum remaining values. Recomputed at
+every node, not fixed once per base state.
+.TP
+.B \-\-inc
+Refine each unplaced vertex's domain from its parent's rather than
+re\-enumerating. Worth roughly a factor of 110 and effectively required at
+.IR n " \(>= 19."
+.TP
+.BI \-\-pool\-mb " M"
+Size in megabytes of the arena holding incremental domains. Default 256.
+Raise it if the run aborts with a pool\-exhausted error.
+.TP
+.BI \-\-mrv\-cap " N"
+Stop counting a domain once
+.I N
+tuples have been seen, for the purpose of ranking candidates. Default 20000.
+A cap only affects which vertex is chosen, never correctness.
+.TP
+.BI \-\-select " cheap|hybrid"
+Rank candidates by the cheap per\-voter agreement score instead of, or blended
+with, the full domain size.
+.TP
+.B \-\-fas
+Enable the tier\-1 dead\-node test, which compares the dissent already committed
+against
+.RI k \(mu minFAS
+of the unplaced part. Needs the subset DP table and therefore
+.IR n " \(<= 26."
+.TP
+.BI \-\-fas2 " d"
+Tier\-2 lookahead to depth
+.IR d .
+.TP
+.BI \-\-tie\-fas " max|min"
+Break ties in the vertex order by the FAS statistic. Implies
+.BR \-\-fas .
+.SS Decomposition
+.TP
+.BI \-\-base " v ..."
+Name the base set explicitly. Without it the base is selected automatically by
+scanning subsets, which at large
+.I n
+costs more than it saves and should be avoided in production runs.
+.TP
+.BI \-\-bs\-from " a" ", " \-\-bs\-to " b"
+Restrict to base states with index in
+.RI [ a , b ).
+Slices are disjoint and their union is the whole space, so a set of slices
+covering
+.RI [0, "base_states" )
+is a complete run.
+.SS Symmetry breaking
+See
+.B SOUNDNESS
+below: every option here carries an obligation the program cannot check.
+.TP
+.BI \-\-top0rr " r " r2
+Require some voter to rank vertex 0 first and one of
+.IR r ", " r2
+second.
+.TP
+.BI \-\-toporb " r1 r2 ..."
+Require some voter to rank one of
+.IR r1 ", " r2 ", ..."
+first. The representatives must meet every orbit of
+.RI Aut( T )
+on vertices.
+.TP
+.BI \-\-toppair " u1 v1 u2 v2"
+Require some voter's (first, second) pair to be
+.RI ( u1 , v1 )
+or
+.RI ( u2 , v2 ).
+The two representatives must lie in
+.I different
+arc orbits \(em one an arc of
+.IR T ,
+the other a non\-arc. The program checks that much and refuses otherwise.
+.SS Defect mode
+.TP
+.BI \-\-defect " file"
+Look for a profile whose majority tournament is
+.I T
+with exactly one arc reversed, that arc confined to the set
+.I R
+read from
+.IR file .
+Used to decide arc\-criticality in a single run. Incompatible with
+.BR \-\-fas / \-\-fas2 ,
+because reversing an arc changes minFAS; the program refuses the combination.
+.TP
+.BI \-\-defect\-support " lo hi"
+Constrain the reversed arc's support, measured in
+.IR T "'s own direction, to [" lo , hi ].
+.SS Output and limits
+.TP
+.B \-\-count
+Count witnesses instead of halting at the first.
+.TP
+.B \-\-emit
+With
+.BR \-\-count ,
+print every witness as it is found rather than only the total.
+.TP
+.BI \-\-time " s"
+Abort after
+.I s
+seconds. An aborted run is
+.I not
+a refutation: check for a nonzero capped count before drawing any conclusion.
+.SH OUTPUT
+A run prints a configuration header, periodic
+.B PROGRESS
+lines, and one terminal line:
+.PP
+.RS
+.B RESULT SAT
+\(em a witness was found, and is printed above the result line together with a
+.B VERIFY
+line recomputing every arc's support independently of the search.
+.br
+.B RESULT UNSAT
+\(em the slice was exhausted with no witness.
+.RE
+.PP
+The
+.B SLICE
+line reports how many base states were cleared and how many were
+.IR capped .
+.B "A capped count above zero means the slice is incomplete"
+and the run refutes nothing.
+.SH SOUNDNESS
+Three obligations rest on the caller, not on the program.
+.TP
+.B "Orbit representatives"
+.B \-\-toporb
+is sound only if the given representatives meet every orbit of
+.RI Aut( T )
+on vertices. The program cannot compute
+.RI Aut( T )
+and so cannot check this; a set that misses an orbit silently discards every
+profile whose top vertices lie in it. Compute the orbits separately. Using the
+orbits of a
+.I subgroup
+is safe, since they refine the true ones.
+.TP
+.B "Spending the group once"
+The vertex breaks and the defect set
+.I R
+both consume
+.RI Aut( T ).
+Combining a full\-strength break with a restriction on where the defect may lie
+spends the same group twice and is unsound; the program refuses an
+.I R
+that meets the base for this reason.
+.TP
+.B "Completeness of a distributed run"
+A refutation requires every base state in
+.RI [0, "base_states" )
+to have been cleared, with none capped and none missing. Verify the index
+cover, not merely the count.
+.SH EXAMPLES
+Refute 5\-inducibility of Paley(23), one slice:
+.PP
+.RS
+.nf
+kinduce \-\-paley 23 \-\-k 5 \-\-margin majority \-\-order mrv \-\-inc \\
+        \-\-pool\-mb 512 \-\-base 0 1 2 5 11 \-\-top0rr 2 5 \\
+        \-\-bs\-from 0 \-\-bs\-to 100
+.fi
+.RE
+.PP
+Decide Paley(43) minus a vertex at margin at most 3:
+.PP
+.RS
+.nf
+kinduce \-\-bits p43_minus1v.bits \-\-n 42 \-\-k 5 \-\-max\-margin 3 \\
+        \-\-order mrv \-\-inc \-\-pool\-mb 512 \-\-base 0 1 2 3 10 \\
+        \-\-toporb 0 1 \-\-bs\-from 0 \-\-bs\-to 8031
+.fi
+.RE
+.PP
+Enumerate every witness rather than stopping at the first:
+.PP
+.RS
+.nf
+kinduce \-\-bits p23_minus1v.bits \-\-n 22 \-\-k 5 \-\-margin majority \\
+        \-\-order mrv \-\-inc \-\-count \-\-emit
+.fi
+.RE
+.SH EXIT STATUS
+0 on a completed run, whatever the verdict; 1 on a usage or soundness refusal;
+2 on an internal limit being exceeded, such as an exhausted domain pool.
+.SH SEE ALSO
+.BR REPRODUCE.md ,
+which maps each published result to a single command line, and
+.BR versions/ ,
+which retains the historical implementations each result was originally
+produced with.

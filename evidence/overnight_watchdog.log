@@ -1,0 +1,2187 @@
+2026-09-02 21:17:18 swap=497M (delta 497M) rss_total=0M procs=0
+2026-09-02 21:17:49 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:18:19 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:18:49 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:19:20 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:19:50 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:20:21 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:20:51 swap=497M (delta 0M) rss_total=25M procs=1
+    pid 18921 rss 26M /tmp/TC.lrat
+2026-09-02 21:21:21 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:21:52 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:22:22 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:22:52 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:23:23 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:23:53 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:24:24 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:24:54 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:25:24 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:25:55 swap=497M (delta 0M) rss_total=41M procs=1
+    pid 20428 rss 42M /tmp/TC.lrat
+2026-09-02 21:26:25 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:26:56 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:27:26 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:27:56 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:28:27 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:28:57 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:29:27 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:29:58 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:30:28 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:30:59 swap=497M (delta 0M) rss_total=71M procs=1
+    pid 21638 rss 72M /tmp/TC.lrat
+2026-09-02 21:31:29 swap=497M (delta 0M) rss_total=215M procs=1
+    pid 21775 rss 215M (lrat-trim)
+2026-09-02 21:31:59 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:32:30 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:33:00 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:33:31 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:34:01 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:34:31 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:35:02 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:35:32 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:36:02 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:36:33 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:37:03 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:37:34 swap=497M (delta 0M) rss_total=24M procs=1
+    pid 23262 rss 25M /tmp/TC.lrat
+2026-09-02 21:38:04 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:38:34 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:39:05 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:39:35 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:40:05 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:40:36 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:41:06 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:41:37 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:42:07 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:42:37 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:43:08 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:43:38 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:44:08 swap=497M (delta 0M) rss_total=352M procs=1
+    pid 25099 rss 352M certs/cover_p19_d6.lrat
+2026-09-02 21:44:39 swap=497M (delta 0M) rss_total=418M procs=1
+    pid 25099 rss 419M certs/cover_p19_d6.lrat
+2026-09-02 21:45:09 swap=497M (delta 0M) rss_total=506M procs=1
+    pid 25099 rss 507M certs/cover_p19_d6.lrat
+2026-09-02 21:45:40 swap=497M (delta 0M) rss_total=428M procs=1
+    pid 25099 rss 428M certs/cover_p19_d6.lrat
+2026-09-02 21:46:10 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:46:41 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:47:11 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:47:42 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:48:12 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:48:42 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:49:13 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:49:43 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:50:13 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:50:44 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:51:14 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:51:45 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:52:15 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:52:45 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:53:16 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:53:46 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:54:17 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:54:47 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:55:17 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:55:48 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:56:18 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:56:48 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:57:19 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:57:49 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:58:20 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:58:50 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:59:20 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 21:59:51 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:00:21 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:00:52 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:01:22 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:01:52 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:02:23 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:02:53 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:03:23 swap=497M (delta 0M) rss_total=2M procs=1
+    pid 30404 rss 3M /tmp/claude-da7f-cwd
+2026-09-02 22:03:54 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:04:24 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:04:55 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:05:25 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:05:55 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:06:26 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:06:56 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:07:27 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:07:57 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:08:27 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-02 22:08:58 swap=497M (delta 0M) rss_total=385M procs=10
+    pid 33019 rss 85M /tmp/p19cert_d6/work/k0001600.lrat
+    pid 32977 rss 61M /tmp/p19cert_d6/work/k0001200.lrat
+2026-09-02 22:09:28 swap=497M (delta 0M) rss_total=403M procs=10
+    pid 33212 rss 102M /tmp/p19cert_d6/work/k0000000.lrat
+    pid 33241 rss 75M /tmp/p19cert_d6/work/k0001200.lrat
+2026-09-02 22:09:59 swap=497M (delta 0M) rss_total=256M procs=10
+    pid 33565 rss 51M /tmp/p19cert_d6/work/k0000400.lrat
+    pid 33579 rss 33M /tmp/p19cert_d6/work/k0000600.lrat
+2026-09-02 22:10:30 swap=497M (delta 0M) rss_total=270M procs=10
+    pid 33870 rss 43M /tmp/p19cert_d6/work/k0000000.lrat
+    pid 33874 rss 38M /tmp/p19cert_d6/work/k0001200.lrat
+2026-09-02 22:11:01 swap=497M (delta 0M) rss_total=342M procs=10
+    pid 34149 rss 66M /tmp/p19cert_d6/work/k0001600.lrat
+    pid 34151 rss 54M /tmp/p19cert_d6/work/k0001000.lrat
+2026-09-02 22:11:31 swap=497M (delta 0M) rss_total=306M procs=10
+    pid 34426 rss 62M /tmp/p19cert_d6/work/k0000400.lrat
+    pid 34439 rss 43M /tmp/p19cert_d6/work/k0000200.lrat
+2026-09-02 22:12:02 swap=497M (delta 0M) rss_total=345M procs=10
+    pid 34712 rss 56M /tmp/p19cert_d6/work/k0000000.lrat
+    pid 34721 rss 44M /tmp/p19cert_d6/work/k0000800.lrat
+2026-09-02 22:12:33 swap=497M (delta 0M) rss_total=252M procs=10
+    pid 35002 rss 41M /tmp/p19cert_d6/work/k0001000.lrat
+    pid 35003 rss 37M /tmp/p19cert_d6/work/k0000400.lrat
+2026-09-02 22:13:03 swap=497M (delta 0M) rss_total=295M procs=10
+    pid 35264 rss 82M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 35305 rss 34M /tmp/p19cert_d6/work/k0001200.lrat
+2026-09-02 22:13:34 swap=497M (delta 0M) rss_total=299M procs=10
+    pid 35557 rss 46M /tmp/p19cert_d6/work/k0000400.lrat
+    pid 35566 rss 36M /tmp/p19cert_d6/work/k0001600.lrat
+2026-09-02 22:14:05 swap=497M (delta 0M) rss_total=307M procs=10
+    pid 35770 rss 100M /tmp/p19cert_d6/work/k0000400.lrat
+    pid 35887 rss 48M /tmp/p19cert_d6/work/k0000200.lrat
+2026-09-02 22:14:36 swap=497M (delta 0M) rss_total=301M procs=10
+    pid 36134 rss 86M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 36177 rss 38M /tmp/p19cert_d6/work/k0001800.lrat
+2026-09-02 22:15:06 swap=497M (delta 0M) rss_total=290M procs=10
+    pid 36486 rss 55M /tmp/p19cert_d6/work/k0000400.lrat
+    pid 36494 rss 45M /tmp/p19cert_d6/work/k0000200.lrat
+2026-09-02 22:15:37 swap=497M (delta 0M) rss_total=419M procs=10
+    pid 36831 rss 99M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 36853 rss 83M /tmp/p19cert_d6/work/k0001000.lrat
+2026-09-02 22:16:08 swap=497M (delta 0M) rss_total=366M procs=10
+    pid 37254 rss 84M /tmp/p19cert_d6/work/k0000000.lrat
+    pid 37287 rss 61M /tmp/p19cert_d6/work/k0000200.lrat
+2026-09-02 22:16:38 swap=497M (delta 0M) rss_total=340M procs=10
+    pid 37458 rss 121M /tmp/p19cert_d6/work/k0000000.lrat
+    pid 37650 rss 59M (cadical)
+2026-09-02 22:17:09 swap=497M (delta 0M) rss_total=299M procs=10
+    pid 38040 rss 71M /tmp/p19cert_d6/work/k0001200.lrat
+    pid 37974 rss 56M /tmp/p19cert_d6/work/k0000400.lrat
+2026-09-02 22:17:40 swap=497M (delta 0M) rss_total=330M procs=10
+    pid 38271 rss 60M /tmp/p19cert_d6/work/k0000000.lrat
+    pid 38288 rss 50M /tmp/p19cert_d6/work/k0000400.lrat
+2026-09-02 22:18:11 swap=497M (delta 0M) rss_total=397M procs=10
+    pid 38535 rss 70M /tmp/p19cert_d6/work/k0001000.lrat
+    pid 38554 rss 56M /tmp/p19cert_d6/work/k0000000.lrat
+2026-09-02 22:18:41 swap=497M (delta 0M) rss_total=315M procs=10
+    pid 38809 rss 76M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 38833 rss 37M /tmp/p19cert_d6/work/k0001400.lrat
+2026-09-02 22:19:12 swap=497M (delta 0M) rss_total=382M procs=10
+    pid 39313 rss 70M /tmp/p19cert_d6/work/k0001600.lrat
+    pid 39270 rss 50M /tmp/p19cert_d6/work/k0000400.lrat
+2026-09-02 22:19:43 swap=497M (delta 0M) rss_total=302M procs=10
+    pid 39611 rss 52M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 39615 rss 45M /tmp/p19cert_d6/work/k0000000.lrat
+2026-09-02 22:20:13 swap=497M (delta 0M) rss_total=492M procs=10
+    pid 40014 rss 132M /tmp/p19cert_d6/work/k0000400.lrat
+    pid 40005 rss 131M /tmp/p19cert_d6/work/k0000200.lrat
+2026-09-02 22:20:44 swap=497M (delta 0M) rss_total=289M procs=10
+    pid 40355 rss 85M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 40505 rss 32M /tmp/p19cert_d6/work/k0002000.lrat
+2026-09-02 22:21:15 swap=497M (delta 0M) rss_total=246M procs=10
+    pid 40898 rss 34M /tmp/p19cert_d6/work/k0002600.lrat
+    pid 40900 rss 30M /tmp/p19cert_d6/work/k0002400.lrat
+2026-09-02 22:21:45 swap=497M (delta 0M) rss_total=249M procs=10
+    pid 41453 rss 46M /tmp/p19cert_d6/work/k0002000.lrat
+    pid 41457 rss 31M /tmp/p19cert_d6/work/k0002200.lrat
+2026-09-02 22:22:16 swap=497M (delta 0M) rss_total=439M procs=10
+    pid 41793 rss 113M /tmp/p19cert_d6/work/k0000000.lrat
+    pid 41957 rss 65M /tmp/p19cert_d6/work/k0002800.lrat
+2026-09-02 22:22:47 swap=497M (delta 0M) rss_total=408M procs=10
+    pid 42474 rss 113M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 42481 rss 75M /tmp/p19cert_d6/work/k0003000.lrat
+2026-09-02 22:23:18 swap=497M (delta 0M) rss_total=385M procs=10
+    pid 42656 rss 87M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 42687 rss 59M /tmp/p19cert_d6/work/k0002600.lrat
+2026-09-02 22:23:49 swap=497M (delta 0M) rss_total=288M procs=10
+    pid 42962 rss 46M /tmp/p19cert_d6/work/k0002600.lrat
+    pid 42968 rss 39M /tmp/p19cert_d6/work/k0002400.lrat
+2026-09-02 22:24:19 swap=497M (delta 0M) rss_total=262M procs=10
+    pid 43253 rss 59M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 43266 rss 33M /tmp/p19cert_d6/work/k0002200.lrat
+2026-09-02 22:24:50 swap=497M (delta 0M) rss_total=321M procs=10
+    pid 43560 rss 56M (lrat-trim)
+    pid 43529 rss 44M /tmp/p19cert_d6/work/k0002200.lrat
+2026-09-02 22:25:21 swap=497M (delta 0M) rss_total=335M procs=10
+    pid 43792 rss 73M /tmp/p19cert_d6/work/k0002400.lrat
+    pid 43857 rss 60M /tmp/p19cert_d6/work/k0002600.lrat
+2026-09-02 22:25:51 swap=497M (delta 0M) rss_total=283M procs=10
+    pid 44031 rss 82M /tmp/p19cert_d6/work/k0000000.lrat
+    pid 44084 rss 39M /tmp/p19cert_d6/work/k0002000.lrat
+2026-09-02 22:26:22 swap=497M (delta 0M) rss_total=326M procs=9
+    pid 44287 rss 83M /tmp/p19cert_d6/work/k0002000.lrat
+    pid 44329 rss 53M (cadical)
+2026-09-02 22:26:53 swap=497M (delta 0M) rss_total=318M procs=10
+    pid 44570 rss 83M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 44656 rss 61M /tmp/p19cert_d6/work/k0002800.lrat
+2026-09-02 22:27:23 swap=497M (delta 0M) rss_total=289M procs=10
+    pid 44856 rss 54M /tmp/p19cert_d6/work/k0002200.lrat
+    pid 44865 rss 48M /tmp/p19cert_d6/work/k0002600.lrat
+2026-09-02 22:27:54 swap=497M (delta 0M) rss_total=317M procs=10
+    pid 45129 rss 65M /tmp/p19cert_d6/work/k0002400.lrat
+    pid 45142 rss 35M /tmp/p19cert_d6/work/k0003400.lrat
+2026-09-02 22:28:25 swap=497M (delta 0M) rss_total=307M procs=10
+    pid 45390 rss 56M /tmp/p19cert_d6/work/k0002600.lrat
+    pid 45403 rss 46M /tmp/p19cert_d6/work/k0002400.lrat
+2026-09-02 22:28:55 swap=497M (delta 0M) rss_total=223M procs=10
+    pid 45666 rss 36M /tmp/p19cert_d6/work/k0003000.lrat
+    pid 45669 rss 32M /tmp/p19cert_d6/work/k0002800.lrat
+2026-09-02 22:29:26 swap=497M (delta 0M) rss_total=233M procs=10
+    pid 45907 rss 42M /tmp/p19cert_d6/work/k0003000.lrat
+    pid 45906 rss 34M /tmp/p19cert_d6/work/k0002800.lrat
+2026-09-02 22:29:57 swap=497M (delta 0M) rss_total=284M procs=10
+    pid 46167 rss 61M /tmp/p19cert_d6/work/k0003400.lrat
+    pid 46176 rss 36M /tmp/p19cert_d6/work/k0002200.lrat
+2026-09-02 22:30:28 swap=497M (delta 0M) rss_total=256M procs=10
+    pid 46495 rss 70M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 46450 rss 44M /tmp/p19cert_d6/work/k0003400.lrat
+2026-09-02 22:30:58 swap=497M (delta 0M) rss_total=331M procs=10
+    pid 46731 rss 47M /tmp/p19cert_d6/work/k0003400.lrat
+    pid 46786 rss 45M /tmp/p19cert_d6/work/k0003000.lrat
+2026-09-02 22:31:29 swap=497M (delta 0M) rss_total=335M procs=10
+    pid 47008 rss 45M /tmp/p19cert_d6/work/k0004000.lrat
+    pid 47004 rss 43M /tmp/p19cert_d6/work/k0002800.lrat
+2026-09-02 22:32:00 swap=497M (delta 0M) rss_total=333M procs=10
+    pid 47202 rss 100M /tmp/p19cert_d6/work/k0003200.lrat
+    pid 47276 rss 38M /tmp/p19cert_d6/work/k0003800.lrat
+2026-09-02 22:32:30 swap=497M (delta 0M) rss_total=288M procs=10
+    pid 47617 rss 49M /tmp/p19cert_d6/work/k0004000.lrat
+    pid 47619 rss 45M /tmp/p19cert_d6/work/k0003800.lrat
+2026-09-02 22:33:01 swap=497M (delta 0M) rss_total=246M procs=10
+    pid 47888 rss 35M /tmp/p19cert_d6/work/k0003000.lrat
+    pid 47891 rss 28M /tmp/p19cert_d6/work/k0004000.lrat
+2026-09-02 22:33:32 swap=497M (delta 0M) rss_total=282M procs=10
+    pid 48127 rss 45M /tmp/p19cert_d6/work/k0003800.lrat
+    pid 48124 rss 41M /tmp/p19cert_d6/work/k0000200.lrat
+2026-09-02 22:34:02 swap=497M (delta 0M) rss_total=361M procs=10
+    pid 48346 rss 79M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 48377 rss 50M /tmp/p19cert_d6/work/k0003600.lrat
+2026-09-02 22:34:33 swap=497M (delta 0M) rss_total=329M procs=10
+    pid 48620 rss 47M /tmp/p19cert_d6/work/k0000200.lrat
+    pid 48628 rss 44M /tmp/p19cert_d6/work/k0003600.lrat
+2026-09-02 22:35:04 swap=497M (delta 0M) rss_total=240M procs=10
+    pid 48889 rss 37M /tmp/p19cert_d6/work/k0003200.lrat
+    pid 48891 rss 30M /tmp/p19cert_d6/work/k0002600.lrat
+2026-09-02 22:35:34 swap=497M (delta 0M) rss_total=314M procs=10
+    pid 49163 rss 45M /tmp/p19cert_d6/work/k0004200.lrat
+    pid 49161 rss 45M /tmp/p19cert_d6/work/k0003400.lrat
+2026-09-02 22:36:05 swap=497M (delta 0M) rss_total=287M procs=10
+    pid 49438 rss 54M /tmp/p19cert_d6/work/k0003200.lrat
+    pid 49451 rss 33M /tmp/p19cert_d6/work/k0003600.lrat
+2026-09-02 22:36:36 swap=497M (delta 0M) rss_total=282M procs=9
+    pid 49712 rss 45M (cadical)
+    pid 49722 rss 41M /tmp/p19cert_d6/work/k0004000.lrat
+2026-09-02 22:37:07 swap=497M (delta 0M) rss_total=252M procs=10
+    pid 49972 rss 42M /tmp/p19cert_d6/work/k0004000.lrat
+    pid 49976 rss 39M /tmp/p19cert_d6/work/k0003400.lrat
+2026-09-02 22:37:37 swap=497M (delta 0M) rss_total=334M procs=10
+    pid 50193 rss 73M /tmp/p19cert_d6/work/k0004400.lrat
+    pid 50217 rss 43M /tmp/p19cert_d6/work/k0003600.lrat
+2026-09-02 22:38:08 swap=497M (delta 0M) rss_total=269M procs=10
+    pid 50454 rss 38M /tmp/p19cert_d6/work/k0004600.lrat
+    pid 50463 rss 33M /tmp/p19cert_d6/work/k0004000.lrat
+2026-09-02 22:38:39 swap=497M (delta 0M) rss_total=308M procs=10
+    pid 50697 rss 47M /tmp/p19cert_d6/work/k0005200.lrat
+    pid 50707 rss 46M /tmp/p19cert_d6/work/k0003400.lrat
+2026-09-02 22:39:09 swap=497M (delta 0M) rss_total=376M procs=10
+    pid 50948 rss 69M /tmp/p19cert_d6/work/k0004200.lrat
+    pid 50967 rss 52M /tmp/p19cert_d6/work/k0003600.lrat
+2026-09-02 22:39:40 swap=497M (delta 0M) rss_total=327M procs=10
+    pid 51217 rss 40M /tmp/p19cert_d6/work/k0005200.lrat
+    pid 51209 rss 40M /tmp/p19cert_d6/work/k0003800.lrat
+2026-09-02 22:40:11 swap=497M (delta 0M) rss_total=355M procs=10
+    pid 51539 rss 62M /tmp/p19cert_d6/work/k0003800.lrat
+    pid 51543 rss 57M /tmp/p19cert_d6/work/k0004600.lrat
+2026-09-02 22:40:41 swap=497M (delta 0M) rss_total=272M procs=10
+    pid 51809 rss 40M /tmp/p19cert_d6/work/k0004400.lrat
+    pid 51806 rss 40M /tmp/p19cert_d6/work/k0003600.lrat
+2026-09-02 22:41:12 swap=497M (delta 0M) rss_total=295M procs=10
+    pid 52055 rss 60M /tmp/p19cert_d6/work/k0003800.lrat
+    pid 52060 rss 53M /tmp/p19cert_d6/work/k0003600.lrat
+2026-09-02 22:41:43 swap=497M (delta 0M) rss_total=394M procs=10
+    pid 52368 rss 116M /tmp/p19cert_d6/work/k0004600.lrat
+    pid 52329 rss 57M /tmp/p19cert_d6/work/k0004800.lrat
+2026-09-02 22:42:14 swap=497M (delta 0M) rss_total=369M procs=10
+    pid 52603 rss 59M /tmp/p19cert_d6/work/k0004800.lrat
+    pid 52549 rss 44M /tmp/p19cert_d6/work/k0003800.lrat
+2026-09-02 22:42:44 swap=497M (delta 0M) rss_total=304M procs=10
+    pid 52799 rss 56M /tmp/p19cert_d6/work/k0004000.lrat
+    pid 52806 rss 51M /tmp/p19cert_d6/work/k0004400.lrat
+2026-09-02 22:43:15 swap=497M (delta 0M) rss_total=293M procs=10
+    pid 53062 rss 39M /tmp/p19cert_d6/work/k0004800.lrat
+    pid 53066 rss 38M /tmp/p19cert_d6/work/k0003600.lrat
+2026-09-02 22:43:46 swap=497M (delta 0M) rss_total=354M procs=10
+    pid 53309 rss 63M /tmp/p19cert_d6/work/k0005000.lrat
+    pid 53314 rss 50M /tmp/p19cert_d6/work/k0004600.lrat
+2026-09-02 22:44:16 swap=497M (delta 0M) rss_total=323M procs=10
+    pid 53583 rss 46M /tmp/p19cert_d6/work/k0004400.lrat
+    pid 53586 rss 44M /tmp/p19cert_d6/work/k0004600.lrat
+2026-09-02 22:44:47 swap=497M (delta 0M) rss_total=309M procs=10
+    pid 53879 rss 73M /tmp/p19cert_d6/work/k0004000.lrat
+    pid 53839 rss 43M /tmp/p19cert_d6/work/k0003800.lrat
+2026-09-02 22:45:18 swap=497M (delta 0M) rss_total=300M procs=10
+    pid 54107 rss 50M /tmp/p19cert_d6/work/k0004000.lrat
+    pid 54109 rss 44M /tmp/p19cert_d6/work/k0004400.lrat
+2026-09-02 22:45:49 swap=497M (delta 0M) rss_total=308M procs=10
+    pid 54343 rss 47M /tmp/p19cert_d6/work/k0004400.lrat
+    pid 54345 rss 39M /tmp/p19cert_d6/work/k0005200.lrat
+2026-09-02 22:46:19 swap=497M (delta 0M) rss_total=233M procs=10
+    pid 54600 rss 46M /tmp/p19cert_d6/work/k0005200.lrat
+    pid 54605 rss 32M /tmp/p19cert_d6/work/k0005400.lrat
+2026-09-02 22:46:50 swap=497M (delta 0M) rss_total=318M procs=10
+    pid 54863 rss 52M /tmp/p19cert_d6/work/k0004200.lrat
+    pid 54857 rss 52M /tmp/p19cert_d6/work/k0005200.lrat
+2026-09-02 22:47:21 swap=497M (delta 0M) rss_total=299M procs=10
+    pid 55204 rss 46M /tmp/p19cert_d6/work/k0004600.lrat
+    pid 55210 rss 40M /tmp/p19cert_d6/work/k0004000.lrat
+2026-09-02 22:47:52 swap=497M (delta 0M) rss_total=271M procs=9
+    pid 55469 rss 63M /tmp/p19cert_d6/work/k0005000.lrat
+    pid 55484 rss 37M /tmp/p19cert_d6/work/k0004200.lrat
+2026-09-02 22:48:22 swap=497M (delta 0M) rss_total=282M procs=10
+    pid 55740 rss 52M /tmp/p19cert_d6/work/k0005000.lrat
+    pid 55787 rss 46M /tmp/p19cert_d6/work/k0004000.lrat
+2026-09-02 22:48:53 swap=497M (delta 0M) rss_total=353M procs=10
+    pid 56005 rss 75M /tmp/p19cert_d6/work/k0005600.lrat
+    pid 56012 rss 52M /tmp/p19cert_d6/work/k0005000.lrat
+2026-09-02 22:49:24 swap=497M (delta 0M) rss_total=274M procs=10
+    pid 56278 rss 49M /tmp/p19cert_d6/work/k0004600.lrat
+    pid 56277 rss 45M /tmp/p19cert_d6/work/k0004000.lrat
+2026-09-02 22:49:54 swap=497M (delta 0M) rss_total=296M procs=10
+    pid 56565 rss 45M /tmp/p19cert_d6/work/k0004600.lrat
+    pid 56560 rss 40M /tmp/p19cert_d6/work/k0005600.lrat
+2026-09-02 22:50:25 swap=497M (delta 0M) rss_total=262M procs=10
+    pid 56875 rss 39M (cadical)
+    pid 56880 rss 35M /tmp/p19cert_d6/work/k0006400.lrat
+2026-09-02 22:50:56 swap=497M (delta 0M) rss_total=327M procs=10
+    pid 57156 rss 51M /tmp/p19cert_d6/work/k0004600.lrat
+    pid 57159 rss 49M /tmp/p19cert_d6/work/k0005600.lrat
+2026-09-02 22:51:26 swap=497M (delta 0M) rss_total=247M procs=10
+    pid 57460 rss 43M /tmp/p19cert_d6/work/k0004600.lrat
+    pid 57464 rss 34M /tmp/p19cert_d6/work/k0006200.lrat
+2026-09-02 22:51:57 swap=497M (delta 0M) rss_total=305M procs=10
+    pid 57795 rss 69M /tmp/p19cert_d6/work/k0005600.lrat
+    pid 57764 rss 41M /tmp/p19cert_d6/work/k0006800.lrat
+2026-09-02 22:52:28 swap=497M (delta 0M) rss_total=191M procs=10
+    pid 58133 rss 32M /tmp/p19cert_d6/work/k0005800.lrat
+    pid 58163 rss 26M /tmp/p19cert_d6/work/k0005200.lrat
+2026-09-02 22:52:58 swap=497M (delta 0M) rss_total=227M procs=10
+    pid 58526 rss 48M /tmp/p19cert_d6/work/k0006800.lrat
+    pid 58548 rss 27M /tmp/p19cert_d6/work/k0006000.lrat
+2026-09-02 22:53:29 swap=497M (delta 0M) rss_total=291M procs=10
+    pid 58967 rss 48M /tmp/p19cert_d6/work/k0007200.lrat
+    pid 58904 rss 48M /tmp/p19cert_d6/work/k0006600.lrat
+2026-09-02 22:54:00 swap=497M (delta 0M) rss_total=253M procs=10
+    pid 59278 rss 41M /tmp/p19cert_d6/work/k0005600.lrat
+    pid 59299 rss 34M /tmp/p19cert_d6/work/k0007000.lrat
+2026-09-02 22:54:31 swap=497M (delta 0M) rss_total=262M procs=10
+    pid 59600 rss 39M /tmp/p19cert_d6/work/k0006600.lrat
+    pid 59619 rss 35M /tmp/p19cert_d6/work/k0007200.lrat
+2026-09-02 22:55:01 swap=497M (delta 0M) rss_total=273M procs=10
+    pid 59908 rss 56M /tmp/p19cert_d6/work/k0006200.lrat
+    pid 59918 rss 43M /tmp/p19cert_d6/work/k0007200.lrat
+2026-09-02 22:55:32 swap=497M (delta 0M) rss_total=264M procs=10
+    pid 60223 rss 50M /tmp/p19cert_d6/work/k0005800.lrat
+    pid 60234 rss 42M /tmp/p19cert_d6/work/k0005600.lrat
+2026-09-02 22:56:03 swap=497M (delta 0M) rss_total=266M procs=10
+    pid 60564 rss 44M /tmp/p19cert_d6/work/k0007200.lrat
+    pid 60569 rss 31M /tmp/p19cert_d6/work/k0006800.lrat
+2026-09-02 22:56:33 swap=497M (delta 0M) rss_total=307M procs=10
+    pid 60934 rss 61M /tmp/p19cert_d6/work/k0006200.lrat
+    pid 60872 rss 53M /tmp/p19cert_d6/work/k0007400.lrat
+2026-09-02 22:57:04 swap=497M (delta 0M) rss_total=243M procs=10
+    pid 61203 rss 41M /tmp/p19cert_d6/work/k0006600.lrat
+    pid 61211 rss 34M /tmp/p19cert_d6/work/k0007200.lrat
+2026-09-02 22:57:35 swap=497M (delta 0M) rss_total=279M procs=10
+    pid 61529 rss 45M /tmp/p19cert_d6/work/k0006000.lrat
+    pid 61531 rss 40M /tmp/p19cert_d6/work/k0006400.lrat
+2026-09-02 22:58:05 swap=497M (delta 0M) rss_total=217M procs=10
+    pid 61888 rss 37M /tmp/p19cert_d6/work/k0007000.lrat
+    pid 61895 rss 33M /tmp/p19cert_d6/work/k0006200.lrat
+2026-09-02 22:58:36 swap=497M (delta 0M) rss_total=246M procs=10
+    pid 62213 rss 37M /tmp/p19cert_d6/work/k0007000.lrat
+    pid 62219 rss 30M /tmp/p19cert_d6/work/k0006600.lrat
+2026-09-02 22:59:07 swap=497M (delta 0M) rss_total=217M procs=10
+    pid 62532 rss 36M /tmp/p19cert_d6/work/k0007400.lrat
+    pid 62534 rss 32M /tmp/p19cert_d6/work/k0007000.lrat
+2026-09-02 22:59:38 swap=497M (delta 0M) rss_total=254M procs=10
+    pid 62836 rss 39M /tmp/p19cert_d6/work/k0007200.lrat
+    pid 62840 rss 34M /tmp/p19cert_d6/work/k0007000.lrat
+2026-09-02 23:00:08 swap=497M (delta 0M) rss_total=211M procs=9
+    pid 63125 rss 36M /tmp/p19cert_d6/work/k0006800.lrat
+    pid 63129 rss 32M /tmp/p19cert_d6/work/k0008200.lrat
+2026-09-02 23:00:39 swap=497M (delta 0M) rss_total=230M procs=10
+    pid 63428 rss 47M /tmp/p19cert_d6/work/k0007200.lrat
+    pid 63445 rss 32M /tmp/p19cert_d6/work/k0007600.lrat
+2026-09-02 23:01:10 swap=497M (delta 0M) rss_total=247M procs=10
+    pid 63784 rss 43M /tmp/p19cert_d6/work/k0008800.lrat
+    pid 63819 rss 31M /tmp/p19cert_d6/work/k0008200.lrat
+2026-09-02 23:01:40 swap=497M (delta 0M) rss_total=239M procs=10
+    pid 64191 rss 46M /tmp/p19cert_d6/work/k0008800.lrat
+    pid 64204 rss 29M /tmp/p19cert_d6/work/k0007200.lrat
+2026-09-02 23:02:11 swap=497M (delta 0M) rss_total=290M procs=10
+    pid 64455 rss 67M /tmp/p19cert_d6/work/k0008200.lrat
+    pid 64471 rss 36M /tmp/p19cert_d6/work/k0009000.lrat
+2026-09-02 23:02:42 swap=497M (delta 0M) rss_total=299M procs=10
+    pid 64753 rss 60M /tmp/p19cert_d6/work/k0007400.lrat
+    pid 64773 rss 45M /tmp/p19cert_d6/work/k0008200.lrat
+2026-09-02 23:03:13 swap=497M (delta 0M) rss_total=286M procs=10
+    pid 65042 rss 56M /tmp/p19cert_d6/work/k0009000.lrat
+    pid 65052 rss 37M /tmp/p19cert_d6/work/k0007800.lrat
+2026-09-02 23:03:43 swap=497M (delta 0M) rss_total=266M procs=10
+    pid 65413 rss 49M /tmp/p19cert_d6/work/k0007800.lrat
+    pid 65377 rss 29M /tmp/p19cert_d6/work/k0007600.lrat
+2026-09-02 23:04:14 swap=497M (delta 0M) rss_total=295M procs=10
+    pid 65704 rss 53M /tmp/p19cert_d6/work/k0008200.lrat
+    pid 65665 rss 36M /tmp/p19cert_d6/work/k0008800.lrat
+2026-09-02 23:04:45 swap=497M (delta 0M) rss_total=238M procs=10
+    pid 65998 rss 36M /tmp/p19cert_d6/work/k0008200.lrat
+    pid 66014 rss 31M /tmp/p19cert_d6/work/k0009400.lrat
+2026-09-02 23:05:15 swap=497M (delta 0M) rss_total=264M procs=10
+    pid 66357 rss 48M /tmp/p19cert_d6/work/k0008800.lrat
+    pid 66360 rss 38M /tmp/p19cert_d6/work/k0008400.lrat
+2026-09-02 23:05:46 swap=497M (delta 0M) rss_total=289M procs=9
+    pid 66726 rss 52M /tmp/p19cert_d6/work/k0009000.lrat
+    pid 66688 rss 37M /tmp/p19cert_d6/work/k0009200.lrat
+2026-09-02 23:06:17 swap=497M (delta 0M) rss_total=277M procs=10
+    pid 66992 rss 43M (cadical)
+    pid 67000 rss 38M /tmp/p19cert_d6/work/k0008400.lrat
+2026-09-02 23:06:47 swap=497M (delta 0M) rss_total=241M procs=10
+    pid 67353 rss 38M /tmp/p19cert_d6/work/k0008000.lrat
+    pid 67344 rss 36M /tmp/p19cert_d6/work/k0008200.lrat
+2026-09-02 23:07:18 swap=497M (delta 0M) rss_total=257M procs=10
+    pid 67641 rss 42M /tmp/p19cert_d6/work/k0009000.lrat
+    pid 67644 rss 42M /tmp/p19cert_d6/work/k0009400.lrat
+2026-09-02 23:07:49 swap=497M (delta 0M) rss_total=285M procs=10
+    pid 68037 rss 46M /tmp/p19cert_d6/work/k0008800.lrat
+    pid 68046 rss 36M /tmp/p19cert_d6/work/k0008000.lrat
+2026-09-02 23:08:20 swap=497M (delta 0M) rss_total=211M procs=10
+    pid 68360 rss 32M /tmp/p19cert_d6/work/k0008600.lrat
+    pid 68353 rss 31M /tmp/p19cert_d6/work/k0008400.lrat
+2026-09-02 23:08:50 swap=497M (delta 0M) rss_total=248M procs=10
+    pid 68666 rss 53M /tmp/p19cert_d6/work/k0008800.lrat
+    pid 68676 rss 34M /tmp/p19cert_d6/work/k0008200.lrat
+2026-09-02 23:09:21 swap=497M (delta 0M) rss_total=249M procs=10
+    pid 68956 rss 42M /tmp/p19cert_d6/work/k0008200.lrat
+    pid 68960 rss 37M (cadical)
+2026-09-02 23:09:52 swap=497M (delta 0M) rss_total=304M procs=10
+    pid 69261 rss 45M /tmp/p19cert_d6/work/k0009000.lrat
+    pid 69262 rss 44M /tmp/p19cert_d6/work/k0008200.lrat
+2026-09-02 23:10:22 swap=497M (delta 0M) rss_total=211M procs=10
+    pid 69578 rss 29M /tmp/p19cert_d6/work/k0008400.lrat
+    pid 69570 rss 29M /tmp/p19cert_d6/work/k0009000.lrat
+2026-09-02 23:10:53 swap=497M (delta 0M) rss_total=223M procs=10
+    pid 69899 rss 43M /tmp/p19cert_d6/work/k0009600.lrat
+    pid 69912 rss 30M /tmp/p19cert_d6/work/k0009800.lrat
+2026-09-02 23:11:24 swap=497M (delta 0M) rss_total=260M procs=10
+    pid 70241 rss 47M /tmp/p19cert_d6/work/k0009400.lrat
+    pid 70243 rss 39M (cadical)
+2026-09-02 23:11:54 swap=497M (delta 0M) rss_total=275M procs=10
+    pid 70534 rss 63M /tmp/p19cert_d6/work/k0008800.lrat
+    pid 70549 rss 45M /tmp/p19cert_d6/work/k0009000.lrat
+2026-09-02 23:12:25 swap=497M (delta 0M) rss_total=246M procs=10
+    pid 70857 rss 36M /tmp/p19cert_d6/work/k0010000.lrat
+    pid 70866 rss 31M /tmp/p19cert_d6/work/k0009200.lrat
+2026-09-02 23:12:56 swap=497M (delta 0M) rss_total=272M procs=10
+    pid 71285 rss 45M /tmp/p19cert_d6/work/k0010600.lrat
+    pid 71347 rss 36M /tmp/p19cert_d6/work/k0009000.lrat
+2026-09-02 23:13:27 swap=497M (delta 0M) rss_total=237M procs=10
+    pid 71591 rss 44M /tmp/p19cert_d6/work/k0009800.lrat
+    pid 71596 rss 40M /tmp/p19cert_d6/work/k0010800.lrat
+2026-09-02 23:13:57 swap=497M (delta 0M) rss_total=320M procs=10
+    pid 71889 rss 52M /tmp/p19cert_d6/work/k0010800.lrat
+    pid 71905 rss 43M /tmp/p19cert_d6/work/k0009200.lrat
+2026-09-02 23:14:28 swap=497M (delta 0M) rss_total=275M procs=10
+    pid 72192 rss 38M /tmp/p19cert_d6/work/k0010400.lrat
+    pid 72196 rss 33M /tmp/p19cert_d6/work/k0011400.lrat
+2026-09-02 23:14:59 swap=497M (delta 0M) rss_total=283M procs=10
+    pid 72490 rss 42M /tmp/p19cert_d6/work/k0010800.lrat
+    pid 72496 rss 34M /tmp/p19cert_d6/work/k0009600.lrat
+2026-09-02 23:15:29 swap=497M (delta 0M) rss_total=302M procs=10
+    pid 72766 rss 51M /tmp/p19cert_d6/work/k0011400.lrat
+    pid 72770 rss 39M /tmp/p19cert_d6/work/k0010200.lrat
+2026-09-02 23:16:00 swap=497M (delta 0M) rss_total=260M procs=10
+    pid 73043 rss 44M /tmp/p19cert_d6/work/k0010600.lrat
+    pid 73048 rss 34M /tmp/p19cert_d6/work/k0011400.lrat
+2026-09-02 23:16:31 swap=497M (delta 0M) rss_total=308M procs=10
+    pid 73365 rss 47M (lrat-trim)
+    pid 73321 rss 40M /tmp/p19cert_d6/work/k0009800.lrat
+2026-09-02 23:17:01 swap=497M (delta 0M) rss_total=249M procs=10
+    pid 73631 rss 47M /tmp/p19cert_d6/work/k0010600.lrat
+    pid 73645 rss 35M /tmp/p19cert_d6/work/k0010400.lrat
+2026-09-02 23:17:32 swap=497M (delta 0M) rss_total=250M procs=10
+    pid 73921 rss 51M /tmp/p19cert_d6/work/k0011200.lrat
+    pid 73920 rss 46M /tmp/p19cert_d6/work/k0010400.lrat
+2026-09-02 23:18:03 swap=497M (delta 0M) rss_total=240M procs=9
+    pid 74209 rss 35M /tmp/p19cert_d6/work/k0009800.lrat
+    pid 74211 rss 33M /tmp/p19cert_d6/work/k0010800.lrat
+2026-09-02 23:18:33 swap=497M (delta 0M) rss_total=306M procs=10
+    pid 74550 rss 48M /tmp/p19cert_d6/work/k0009800.lrat
+    pid 74492 rss 47M /tmp/p19cert_d6/work/k0010800.lrat
+2026-09-02 23:19:04 swap=497M (delta 0M) rss_total=257M procs=10
+    pid 74770 rss 39M /tmp/p19cert_d6/work/k0011000.lrat
+    pid 74782 rss 37M /tmp/p19cert_d6/work/k0011200.lrat
+2026-09-02 23:19:35 swap=497M (delta 0M) rss_total=261M procs=10
+    pid 75077 rss 36M /tmp/p19cert_d6/work/k0011800.lrat
+    pid 75079 rss 33M /tmp/p19cert_d6/work/k0011400.lrat
+2026-09-02 23:20:05 swap=497M (delta 0M) rss_total=247M procs=10
+    pid 75366 rss 45M /tmp/p19cert_d6/work/k0011400.lrat
+    pid 75376 rss 32M /tmp/p19cert_d6/work/k0011800.lrat
+2026-09-02 23:20:36 swap=497M (delta 0M) rss_total=366M procs=10
+    pid 75655 rss 62M /tmp/p19cert_d6/work/k0010400.lrat
+    pid 75668 rss 52M /tmp/p19cert_d6/work/k0009800.lrat
+2026-09-02 23:21:07 swap=497M (delta 0M) rss_total=286M procs=10
+    pid 75961 rss 43M /tmp/p19cert_d6/work/k0010400.lrat
+    pid 75962 rss 38M /tmp/p19cert_d6/work/k0012000.lrat
+2026-09-02 23:21:38 swap=497M (delta 0M) rss_total=261M procs=10
+    pid 76265 rss 39M /tmp/p19cert_d6/work/k0012000.lrat
+    pid 76270 rss 29M /tmp/p19cert_d6/work/k0011000.lrat
+2026-09-02 23:22:08 swap=497M (delta 0M) rss_total=251M procs=10
+    pid 76584 rss 43M /tmp/p19cert_d6/work/k0011400.lrat
+    pid 76590 rss 38M /tmp/p19cert_d6/work/k0011600.lrat
+2026-09-02 23:22:39 swap=497M (delta 0M) rss_total=315M procs=10
+    pid 76928 rss 76M /tmp/p19cert_d6/work/k0010800.lrat
+    pid 76964 rss 46M /tmp/p19cert_d6/work/k0010400.lrat
+2026-09-02 23:23:10 swap=497M (delta 0M) rss_total=465M procs=10
+    pid 77259 rss 170M /tmp/p19cert_d6/work/k0010400.lrat
+    pid 77231 rss 52M /tmp/p19cert_d6/work/k0011000.lrat
+2026-09-02 23:23:40 swap=497M (delta 0M) rss_total=297M procs=10
+    pid 77499 rss 61M /tmp/p19cert_d6/work/k0010400.lrat
+    pid 77520 rss 36M /tmp/p19cert_d6/work/k0012200.lrat
+2026-09-02 23:24:11 swap=497M (delta 0M) rss_total=389M procs=10
+    pid 77763 rss 78M /tmp/p19cert_d6/work/k0010600.lrat
+    pid 77777 rss 51M /tmp/p19cert_d6/work/k0011000.lrat
+2026-09-02 23:24:42 swap=497M (delta 0M) rss_total=340M procs=10
+    pid 78019 rss 65M /tmp/p19cert_d6/work/k0010400.lrat
+    pid 78029 rss 57M /tmp/p19cert_d6/work/k0010600.lrat
+2026-09-02 23:25:12 swap=497M (delta 0M) rss_total=288M procs=10
+    pid 78294 rss 58M /tmp/p19cert_d6/work/k0012200.lrat
+    pid 78304 rss 46M /tmp/p19cert_d6/work/k0012000.lrat
+2026-09-02 23:25:43 swap=497M (delta 0M) rss_total=296M procs=10
+    pid 78554 rss 82M /tmp/p19cert_d6/work/k0010800.lrat
+    pid 78584 rss 38M /tmp/p19cert_d6/work/k0011200.lrat
+2026-09-02 23:26:14 swap=497M (delta 0M) rss_total=274M procs=10
+    pid 78844 rss 56M /tmp/p19cert_d6/work/k0011000.lrat
+    pid 78854 rss 34M /tmp/p19cert_d6/work/k0011600.lrat
+2026-09-02 23:26:45 swap=497M (delta 0M) rss_total=255M procs=10
+    pid 79107 rss 55M /tmp/p19cert_d6/work/k0011600.lrat
+    pid 79110 rss 45M /tmp/p19cert_d6/work/k0012600.lrat
+2026-09-02 23:27:15 swap=497M (delta 0M) rss_total=290M procs=10
+    pid 79337 rss 49M /tmp/p19cert_d6/work/k0011200.lrat
+    pid 79354 rss 43M /tmp/p19cert_d6/work/k0011800.lrat
+2026-09-02 23:27:46 swap=497M (delta 0M) rss_total=221M procs=9
+    pid 79626 rss 46M /tmp/p19cert_d6/work/k0012000.lrat
+    pid 79634 rss 35M /tmp/p19cert_d6/work/k0010400.lrat
+2026-09-02 23:28:17 swap=497M (delta 0M) rss_total=285M procs=10
+    pid 79895 rss 60M /tmp/p19cert_d6/work/k0012600.lrat
+    pid 79915 rss 40M /tmp/p19cert_d6/work/k0012000.lrat
+2026-09-02 23:28:47 swap=497M (delta 0M) rss_total=232M procs=9
+    pid 80289 rss 42M /tmp/p19cert_d6/work/k0012000.lrat
+    pid 80293 rss 35M /tmp/p19cert_d6/work/k0013200.lrat
+2026-09-02 23:29:18 swap=497M (delta 0M) rss_total=233M procs=10
+    pid 80584 rss 43M /tmp/p19cert_d6/work/k0013400.lrat
+    pid 80597 rss 29M /tmp/p19cert_d6/work/k0012200.lrat
+2026-09-02 23:29:49 swap=497M (delta 0M) rss_total=315M procs=10
+    pid 80866 rss 70M /tmp/p19cert_d6/work/k0013400.lrat
+    pid 80935 rss 56M /tmp/p19cert_d6/work/k0012800.lrat
+2026-09-02 23:30:19 swap=497M (delta 0M) rss_total=287M procs=10
+    pid 81182 rss 50M /tmp/p19cert_d6/work/k0012200.lrat
+    pid 81191 rss 38M /tmp/p19cert_d6/work/k0012400.lrat
+2026-09-02 23:30:50 swap=497M (delta 0M) rss_total=281M procs=10
+    pid 81500 rss 46M /tmp/p19cert_d6/work/k0013200.lrat
+    pid 81502 rss 41M /tmp/p19cert_d6/work/k0011800.lrat
+2026-09-02 23:31:21 swap=497M (delta 0M) rss_total=272M procs=10
+    pid 81792 rss 47M /tmp/p19cert_d6/work/k0012200.lrat
+    pid 81800 rss 40M /tmp/p19cert_d6/work/k0012000.lrat
+2026-09-02 23:31:51 swap=497M (delta 0M) rss_total=352M procs=10
+    pid 82086 rss 77M (cadical)
+    pid 82155 rss 59M /tmp/p19cert_d6/work/k0013400.lrat
+2026-09-02 23:32:22 swap=497M (delta 0M) rss_total=257M procs=10
+    pid 82434 rss 34M /tmp/p19cert_d6/work/k0012200.lrat
+    pid 82439 rss 34M /tmp/p19cert_d6/work/k0012800.lrat
+2026-09-02 23:32:53 swap=497M (delta 0M) rss_total=313M procs=10
+    pid 82727 rss 69M /tmp/p19cert_d6/work/k0012000.lrat
+    pid 82772 rss 35M /tmp/p19cert_d6/work/k0012800.lrat
+2026-09-02 23:33:24 swap=497M (delta 0M) rss_total=286M procs=10
+    pid 83089 rss 59M /tmp/p19cert_d6/work/k0012200.lrat
+    pid 83042 rss 48M /tmp/p19cert_d6/work/k0013000.lrat
+2026-09-02 23:33:54 swap=497M (delta 0M) rss_total=215M procs=10
+    pid 83386 rss 40M /tmp/p19cert_d6/work/k0012200.lrat
+    pid 83393 rss 27M /tmp/p19cert_d6/work/k0013400.lrat
+2026-09-02 23:34:25 swap=497M (delta 0M) rss_total=230M procs=10
+    pid 83771 rss 30M /tmp/p19cert_d6/work/k0012200.lrat
+    pid 83777 rss 29M /tmp/p19cert_d6/work/k0013200.lrat
+2026-09-02 23:34:56 swap=497M (delta 0M) rss_total=277M procs=10
+    pid 84087 rss 38M /tmp/p19cert_d6/work/k0013800.lrat
+    pid 84092 rss 34M /tmp/p19cert_d6/work/k0013200.lrat
+2026-09-02 23:35:27 swap=497M (delta 0M) rss_total=219M procs=10
+    pid 84392 rss 43M /tmp/p19cert_d6/work/k0012400.lrat
+    pid 84406 rss 27M /tmp/p19cert_d6/work/k0014000.lrat
+2026-09-02 23:35:57 swap=497M (delta 0M) rss_total=242M procs=10
+    pid 84683 rss 42M /tmp/p19cert_d6/work/k0012400.lrat
+    pid 84695 rss 33M /tmp/p19cert_d6/work/k0012600.lrat
+2026-09-02 23:36:28 swap=497M (delta 0M) rss_total=223M procs=9
+    pid 85015 rss 42M /tmp/p19cert_d6/work/k0012600.lrat
+    pid 85016 rss 38M /tmp/p19cert_d6/work/k0013800.lrat
+2026-09-02 23:36:59 swap=497M (delta 0M) rss_total=238M procs=9
+    pid 85346 rss 38M /tmp/p19cert_d6/work/k0013000.lrat
+    pid 85369 rss 31M /tmp/p19cert_d6/work/k0012400.lrat
+2026-09-02 23:37:29 swap=497M (delta 0M) rss_total=274M procs=10
+    pid 85653 rss 41M /tmp/p19cert_d6/work/k0012800.lrat
+    pid 85657 rss 40M /tmp/p19cert_d6/work/k0012400.lrat
+2026-09-02 23:38:00 swap=497M (delta 0M) rss_total=248M procs=10
+    pid 85968 rss 40M /tmp/p19cert_d6/work/k0014200.lrat
+    pid 85975 rss 33M /tmp/p19cert_d6/work/k0012800.lrat
+2026-09-02 23:38:31 swap=497M (delta 0M) rss_total=216M procs=10
+    pid 86371 rss 44M /tmp/p19cert_d6/work/k0014800.lrat
+    pid 86305 rss 35M /tmp/p19cert_d6/work/k0014200.lrat
+2026-09-02 23:39:01 swap=497M (delta 0M) rss_total=306M procs=10
+    pid 86694 rss 65M /tmp/p19cert_d6/work/k0014400.lrat
+    pid 86642 rss 41M /tmp/p19cert_d6/work/k0014800.lrat
+2026-09-02 23:39:32 swap=497M (delta 0M) rss_total=256M procs=10
+    pid 86958 rss 38M /tmp/p19cert_d6/work/k0014600.lrat
+    pid 86962 rss 34M /tmp/p19cert_d6/work/k0014000.lrat
+2026-09-02 23:40:03 swap=497M (delta 0M) rss_total=292M procs=10
+    pid 87241 rss 51M /tmp/p19cert_d6/work/k0015400.lrat
+    pid 87233 rss 47M /tmp/p19cert_d6/work/k0014800.lrat
+2026-09-02 23:40:33 swap=497M (delta 0M) rss_total=236M procs=9
+    pid 87576 rss 40M /tmp/p19cert_d6/work/k0015000.lrat
+    pid 87574 rss 38M /tmp/p19cert_d6/work/k0015800.lrat
+2026-09-02 23:41:04 swap=497M (delta 0M) rss_total=306M procs=10
+    pid 87848 rss 52M /tmp/p19cert_d6/work/k0014600.lrat
+    pid 87854 rss 44M /tmp/p19cert_d6/work/k0015800.lrat
+2026-09-02 23:41:35 swap=497M (delta 0M) rss_total=305M procs=10
+    pid 88173 rss 75M /tmp/p19cert_d6/work/k0015600.lrat
+    pid 88123 rss 46M /tmp/p19cert_d6/work/k0014600.lrat
+2026-09-02 23:42:06 swap=497M (delta 0M) rss_total=297M procs=10
+    pid 88428 rss 46M /tmp/p19cert_d6/work/k0015600.lrat
+    pid 88430 rss 42M /tmp/p19cert_d6/work/k0015800.lrat
+2026-09-02 23:42:36 swap=497M (delta 0M) rss_total=344M procs=10
+    pid 88783 rss 65M /tmp/p19cert_d6/work/k0015400.lrat
+    pid 88713 rss 43M /tmp/p19cert_d6/work/k0014800.lrat
+2026-09-02 23:43:07 swap=497M (delta 0M) rss_total=326M procs=10
+    pid 89120 rss 66M /tmp/p19cert_d6/work/k0014800.lrat
+    pid 89073 rss 51M /tmp/p19cert_d6/work/k0015600.lrat
+2026-09-02 23:43:38 swap=497M (delta 0M) rss_total=248M procs=10
+    pid 89357 rss 46M /tmp/p19cert_d6/work/k0015400.lrat
+    pid 89363 rss 37M /tmp/p19cert_d6/work/k0015200.lrat
+2026-09-02 23:44:08 swap=497M (delta 0M) rss_total=285M procs=10
+    pid 89629 rss 42M /tmp/p19cert_d6/work/k0014600.lrat
+    pid 89634 rss 40M /tmp/p19cert_d6/work/k0015000.lrat
+2026-09-02 23:44:39 swap=497M (delta 0M) rss_total=317M procs=10
+    pid 89924 rss 46M (cadical)
+    pid 89929 rss 42M /tmp/p19cert_d6/work/k0015800.lrat
+2026-09-02 23:45:10 swap=497M (delta 0M) rss_total=258M procs=10
+    pid 90215 rss 52M /tmp/p19cert_d6/work/k0015800.lrat
+    pid 90228 rss 40M /tmp/p19cert_d6/work/k0014000.lrat
+2026-09-02 23:45:40 swap=497M (delta 0M) rss_total=298M procs=10
+    pid 90517 rss 50M /tmp/p19cert_d6/work/k0014000.lrat
+    pid 90525 rss 48M /tmp/p19cert_d6/work/k0014600.lrat
+2026-09-02 23:46:11 swap=497M (delta 0M) rss_total=426M procs=10
+    pid 90818 rss 90M (lrat-trim)
+    pid 90789 rss 58M /tmp/p19cert_d6/work/k0014200.lrat
+2026-09-02 23:46:42 swap=497M (delta 0M) rss_total=322M procs=10
+    pid 91096 rss 57M /tmp/p19cert_d6/work/k0015200.lrat
+    pid 91052 rss 53M /tmp/p19cert_d6/work/k0015400.lrat
+2026-09-02 23:47:12 swap=497M (delta 0M) rss_total=265M procs=10
+    pid 91321 rss 51M /tmp/p19cert_d6/work/k0014800.lrat
+    pid 91329 rss 35M /tmp/p19cert_d6/work/k0015800.lrat
+2026-09-02 23:47:43 swap=497M (delta 0M) rss_total=239M procs=10
+    pid 91599 rss 38M /tmp/p19cert_d6/work/k0015000.lrat
+    pid 91601 rss 33M /tmp/p19cert_d6/work/k0016200.lrat
+2026-09-02 23:48:14 swap=497M (delta 0M) rss_total=276M procs=10
+    pid 91878 rss 39M /tmp/p19cert_d6/work/k0015000.lrat
+    pid 91871 rss 39M /tmp/p19cert_d6/work/k0016000.lrat
+2026-09-02 23:48:45 swap=497M (delta 0M) rss_total=305M procs=10
+    pid 92162 rss 74M /tmp/p19cert_d6/work/k0016400.lrat
+    pid 92118 rss 57M /tmp/p19cert_d6/work/k0014800.lrat
+2026-09-02 23:49:15 swap=497M (delta 0M) rss_total=367M procs=10
+    pid 92372 rss 56M /tmp/p19cert_d6/work/k0015800.lrat
+    pid 92374 rss 50M /tmp/p19cert_d6/work/k0016400.lrat
+2026-09-02 23:49:46 swap=497M (delta 0M) rss_total=272M procs=10
+    pid 92638 rss 44M /tmp/p19cert_d6/work/k0015800.lrat
+    pid 92643 rss 38M /tmp/p19cert_d6/work/k0014600.lrat
+2026-09-02 23:50:17 swap=497M (delta 0M) rss_total=246M procs=10
+    pid 92909 rss 40M /tmp/p19cert_d6/work/k0016600.lrat
+    pid 92913 rss 30M /tmp/p19cert_d6/work/k0015600.lrat
+2026-09-02 23:50:47 swap=497M (delta 0M) rss_total=390M procs=10
+    pid 93140 rss 83M /tmp/p19cert_d6/work/k0016600.lrat
+    pid 93161 rss 61M /tmp/p19cert_d6/work/k0015000.lrat
+2026-09-02 23:51:18 swap=497M (delta 0M) rss_total=320M procs=10
+    pid 93444 rss 48M /tmp/p19cert_d6/work/k0015600.lrat
+    pid 93445 rss 44M /tmp/p19cert_d6/work/k0014600.lrat
+2026-09-02 23:51:49 swap=497M (delta 0M) rss_total=270M procs=10
+    pid 93757 rss 65M /tmp/p19cert_d6/work/k0014600.lrat
+    pid 93719 rss 33M /tmp/p19cert_d6/work/k0016000.lrat
+2026-09-02 23:52:19 swap=497M (delta 0M) rss_total=296M procs=10
+    pid 94114 rss 58M /tmp/p19cert_d6/work/k0014600.lrat
+    pid 94109 rss 56M /tmp/p19cert_d6/work/k0015400.lrat
+2026-09-02 23:52:50 swap=497M (delta 0M) rss_total=298M procs=10
+    pid 94405 rss 59M /tmp/p19cert_d6/work/k0016400.lrat
+    pid 94367 rss 45M /tmp/p19cert_d6/work/k0014800.lrat
+2026-09-02 23:53:21 swap=497M (delta 0M) rss_total=297M procs=10
+    pid 94637 rss 45M /tmp/p19cert_d6/work/k0016400.lrat
+    pid 94641 rss 41M /tmp/p19cert_d6/work/k0016800.lrat
+2026-09-02 23:53:51 swap=497M (delta 0M) rss_total=212M procs=10
+    pid 94957 rss 30M /tmp/p19cert_d6/work/k0016000.lrat
+    pid 94964 rss 27M /tmp/p19cert_d6/work/k0017200.lrat
+2026-09-02 23:54:22 swap=497M (delta 0M) rss_total=271M procs=10
+    pid 95223 rss 69M /tmp/p19cert_d6/work/k0015600.lrat
+    pid 95307 rss 39M /tmp/p19cert_d6/work/k0016600.lrat
+2026-09-02 23:54:53 swap=497M (delta 0M) rss_total=261M procs=10
+    pid 95550 rss 40M /tmp/p19cert_d6/work/k0016000.lrat
+    pid 95552 rss 37M /tmp/p19cert_d6/work/k0016600.lrat
+2026-09-02 23:55:23 swap=497M (delta 0M) rss_total=287M procs=10
+    pid 95780 rss 84M /tmp/p19cert_d6/work/k0017800.lrat
+    pid 95913 rss 51M /tmp/p19cert_d6/work/k0017600.lrat
+2026-09-02 23:55:54 swap=497M (delta 0M) rss_total=231M procs=10
+    pid 96176 rss 39M /tmp/p19cert_d6/work/k0016400.lrat
+    pid 96174 rss 34M (cadical)
+2026-09-02 23:56:25 swap=497M (delta 0M) rss_total=273M procs=10
+    pid 96453 rss 52M /tmp/p19cert_d6/work/k0016000.lrat
+    pid 96465 rss 37M /tmp/p19cert_d6/work/k0017800.lrat
+2026-09-02 23:56:56 swap=497M (delta 0M) rss_total=217M procs=10
+    pid 96775 rss 43M /tmp/p19cert_d6/work/k0016200.lrat
+    pid 96784 rss 43M /tmp/p19cert_d6/work/k0017800.lrat
+2026-09-02 23:57:26 swap=497M (delta 0M) rss_total=249M procs=10
+    pid 97126 rss 47M /tmp/p19cert_d6/work/k0016000.lrat
+    pid 97065 rss 46M /tmp/p19cert_d6/work/k0017400.lrat
+2026-09-02 23:57:57 swap=497M (delta 0M) rss_total=264M procs=10
+    pid 97344 rss 52M /tmp/p19cert_d6/work/k0017600.lrat
+    pid 97358 rss 40M /tmp/p19cert_d6/work/k0017800.lrat
+2026-09-02 23:58:28 swap=497M (delta 0M) rss_total=341M procs=10
+    pid 97590 rss 74M /tmp/p19cert_d6/work/k0017400.lrat
+    pid 97624 rss 53M /tmp/p19cert_d6/work/k0017800.lrat
+2026-09-02 23:58:58 swap=497M (delta 0M) rss_total=286M procs=10
+    pid 97913 rss 49M /tmp/p19cert_d6/work/k0018000.lrat
+    pid 97916 rss 47M /tmp/p19cert_d6/work/k0017600.lrat
+2026-09-02 23:59:29 swap=497M (delta 0M) rss_total=257M procs=10
+    pid 98285 rss 52M /tmp/p19cert_d6/work/k0017600.lrat
+    pid 98308 rss 27M /tmp/p19cert_d6/work/k0017000.lrat
+2026-09-03 00:00:00 swap=497M (delta 0M) rss_total=314M procs=10
+    pid 98527 rss 70M /tmp/p19cert_d6/work/k0017400.lrat
+    pid 98567 rss 55M /tmp/p19cert_d6/work/k0017600.lrat
+2026-09-03 00:00:31 swap=497M (delta 0M) rss_total=349M procs=10
+    pid 98783 rss 103M /tmp/p19cert_d6/work/k0017400.lrat
+    pid 98861 rss 33M /tmp/p19cert_d6/work/k0016200.lrat
+2026-09-03 00:01:02 swap=497M (delta 0M) rss_total=394M procs=10
+    pid 99035 rss 151M /tmp/p19cert_d6/work/k0017400.lrat
+    pid 99101 rss 66M /tmp/p19cert_d6/work/k0017800.lrat
+2026-09-03 00:01:32 swap=497M (delta 0M) rss_total=251M procs=10
+    pid 99410 rss 48M /tmp/p19cert_d6/work/k0016400.lrat
+    pid 99416 rss 42M /tmp/p19cert_d6/work/k0017400.lrat
+2026-09-03 00:02:03 swap=497M (delta 0M) rss_total=356M procs=10
+    pid 99701 rss 61M /tmp/p19cert_d6/work/k0018400.lrat
+    pid 99709 rss 48M /tmp/p19cert_d6/work/k0018000.lrat
+2026-09-03 00:02:34 swap=497M (delta 0M) rss_total=270M procs=10
+    pid 99998 rss 64M (lrat-trim)
+    pid 99974 rss 45M /tmp/p19cert_d6/work/k0018000.lrat
+2026-09-03 00:03:04 swap=497M (delta 0M) rss_total=332M procs=10
+    pid 344 rss 54M /tmp/p19cert_d6/work/k0017600.lrat
+    pid 348 rss 46M /tmp/p19cert_d6/work/k0017400.lrat
+2026-09-03 00:03:35 swap=497M (delta 0M) rss_total=323M procs=10
+    pid 921 rss 60M (lrat-trim)
+    pid 822 rss 52M /tmp/p19cert_d6/work/k0018600.lrat
+2026-09-03 00:04:06 swap=497M (delta 0M) rss_total=292M procs=10
+    pid 1225 rss 58M /tmp/p19cert_d6/work/k0018400.lrat
+    pid 1239 rss 34M /tmp/p19cert_d6/work/k0018200.lrat
+2026-09-03 00:04:36 swap=497M (delta 0M) rss_total=361M procs=10
+    pid 1494 rss 60M /tmp/p19cert_d6/work/k0017800.lrat
+    pid 1490 rss 59M /tmp/p19cert_d6/work/k0018400.lrat
+2026-09-03 00:05:07 swap=497M (delta 0M) rss_total=297M procs=10
+    pid 1759 rss 52M /tmp/p19cert_d6/work/k0018600.lrat
+    pid 1770 rss 45M /tmp/p19cert_d6/work/k0017800.lrat
+2026-09-03 00:05:38 swap=497M (delta 0M) rss_total=339M procs=10
+    pid 2164 rss 53M /tmp/p19cert_d6/work/k0017400.lrat
+    pid 2162 rss 45M /tmp/p19cert_d6/work/k0017600.lrat
+2026-09-03 00:06:09 swap=497M (delta 0M) rss_total=301M procs=10
+    pid 2449 rss 54M /tmp/p19cert_d6/work/k0017600.lrat
+    pid 2458 rss 39M /tmp/p19cert_d6/work/k0018800.lrat
+2026-09-03 00:06:39 swap=497M (delta 0M) rss_total=257M procs=10
+    pid 2726 rss 49M /tmp/p19cert_d6/work/k0018400.lrat
+    pid 2733 rss 38M /tmp/p19cert_d6/work/k0017400.lrat
+2026-09-03 00:07:10 swap=497M (delta 0M) rss_total=386M procs=10
+    pid 2983 rss 96M /tmp/p19cert_d6/work/k0018000.lrat
+    pid 3106 rss 61M /tmp/p19cert_d6/work/k0019000.lrat
+2026-09-03 00:07:41 swap=497M (delta 0M) rss_total=320M procs=10
+    pid 3324 rss 59M /tmp/p19cert_d6/work/k0017600.lrat
+    pid 3330 rss 43M /tmp/p19cert_d6/work/k0018400.lrat
+2026-09-03 00:08:11 swap=497M (delta 0M) rss_total=300M procs=10
+    pid 3593 rss 39M /tmp/p19cert_d6/work/k0018400.lrat
+    pid 3595 rss 38M /tmp/p19cert_d6/work/k0017400.lrat
+2026-09-03 00:08:42 swap=497M (delta 0M) rss_total=402M procs=10
+    pid 3832 rss 80M /tmp/p19cert_d6/work/k0018000.lrat
+    pid 3827 rss 75M /tmp/p19cert_d6/work/k0019000.lrat
+2026-09-03 00:09:13 swap=497M (delta 0M) rss_total=339M procs=10
+    pid 4071 rss 65M /tmp/p19cert_d6/work/k0018800.lrat
+    pid 4080 rss 47M /tmp/p19cert_d6/work/k0018600.lrat
+2026-09-03 00:09:43 swap=497M (delta 0M) rss_total=270M procs=10
+    pid 4320 rss 51M /tmp/p19cert_d6/work/k0019200.lrat
+    pid 4327 rss 38M /tmp/p19cert_d6/work/k0018800.lrat
+2026-09-03 00:10:14 swap=497M (delta 0M) rss_total=369M procs=10
+    pid 4549 rss 58M /tmp/p19cert_d6/work/k0018800.lrat
+    pid 4557 rss 48M /tmp/p19cert_d6/work/k0018000.lrat
+2026-09-03 00:10:45 swap=497M (delta 0M) rss_total=297M procs=10
+    pid 4885 rss 50M /tmp/p19cert_d6/work/k0017400.lrat
+    pid 4899 rss 43M /tmp/p19cert_d6/work/k0018800.lrat
+2026-09-03 00:11:15 swap=497M (delta 0M) rss_total=356M procs=10
+    pid 5141 rss 80M /tmp/p19cert_d6/work/k0018400.lrat
+    pid 5208 rss 58M /tmp/p19cert_d6/work/k0018800.lrat
+2026-09-03 00:11:46 swap=497M (delta 0M) rss_total=442M procs=10
+    pid 5463 rss 90M /tmp/p19cert_d6/work/k0018800.lrat
+    pid 5467 rss 85M /tmp/p19cert_d6/work/k0018200.lrat
+2026-09-03 00:12:17 swap=497M (delta 0M) rss_total=331M procs=10
+    pid 5683 rss 64M /tmp/p19cert_d6/work/k0019200.lrat
+    pid 5677 rss 63M /tmp/p19cert_d6/work/k0018800.lrat
+2026-09-03 00:12:48 swap=497M (delta 0M) rss_total=341M procs=10
+    pid 5990 rss 111M /tmp/p19cert_d6/work/k0018800.lrat
+    pid 5957 rss 38M /tmp/p19cert_d6/work/k0019400.lrat
+2026-09-03 00:13:18 swap=497M (delta 0M) rss_total=315M procs=10
+    pid 6194 rss 74M /tmp/p19cert_d6/work/k0018800.lrat
+    pid 6221 rss 36M /tmp/p19cert_d6/work/k0019400.lrat
+2026-09-03 00:13:49 swap=497M (delta 0M) rss_total=317M procs=10
+    pid 6479 rss 49M /tmp/p19cert_d6/work/k0019200.lrat
+    pid 6481 rss 45M /tmp/p19cert_d6/work/k0019800.lrat
+2026-09-03 00:14:20 swap=497M (delta 0M) rss_total=277M procs=10
+    pid 6722 rss 55M /tmp/p19cert_d6/work/k0019400.lrat
+    pid 6737 rss 39M /tmp/p19cert_d6/work/k0018400.lrat
+2026-09-03 00:14:50 swap=497M (delta 0M) rss_total=374M procs=10
+    pid 6947 rss 85M /tmp/p19cert_d6/work/k0019000.lrat
+    pid 6984 rss 46M /tmp/p19cert_d6/work/k0020000.lrat
+2026-09-03 00:15:21 swap=497M (delta 0M) rss_total=375M procs=9
+    pid 7223 rss 63M /tmp/p19cert_d6/work/k0018600.lrat
+    pid 7233 rss 57M /tmp/p19cert_d6/work/k0019600.lrat
+2026-09-03 00:15:52 swap=497M (delta 0M) rss_total=368M procs=10
+    pid 7520 rss 84M /tmp/p19cert_d6/work/k0018400.lrat
+    pid 7477 rss 50M /tmp/p19cert_d6/work/k0019200.lrat
+2026-09-03 00:16:22 swap=497M (delta 0M) rss_total=349M procs=10
+    pid 7709 rss 62M /tmp/p19cert_d6/work/k0019200.lrat
+    pid 7716 rss 49M /tmp/p19cert_d6/work/k0019000.lrat
+2026-09-03 00:16:53 swap=497M (delta 0M) rss_total=266M procs=10
+    pid 8011 rss 55M /tmp/p19cert_d6/work/k0019400.lrat
+    pid 8030 rss 37M /tmp/p19cert_d6/work/k0020400.lrat
+2026-09-03 00:17:24 swap=497M (delta 0M) rss_total=323M procs=10
+    pid 8370 rss 58M /tmp/p19cert_d6/work/k0018600.lrat
+    pid 8323 rss 43M /tmp/p19cert_d6/work/k0020000.lrat
+2026-09-03 00:17:54 swap=497M (delta 0M) rss_total=323M procs=10
+    pid 8592 rss 56M /tmp/p19cert_d6/work/k0020000.lrat
+    pid 8585 rss 52M /tmp/p19cert_d6/work/k0019200.lrat
+2026-09-03 00:18:25 swap=497M (delta 0M) rss_total=331M procs=10
+    pid 8894 rss 79M /tmp/p19cert_d6/work/k0019800.lrat
+    pid 8977 rss 76M /tmp/p19cert_d6/work/k0019200.lrat
+2026-09-03 00:18:56 swap=497M (delta 0M) rss_total=316M procs=10
+    pid 9264 rss 46M /tmp/p19cert_d6/work/k0019800.lrat
+    pid 9214 rss 37M /tmp/p19cert_d6/work/k0020400.lrat
+2026-09-03 00:19:26 swap=497M (delta 0M) rss_total=290M procs=10
+    pid 9422 rss 91M /tmp/p19cert_d6/work/k0019200.lrat
+    pid 9464 rss 33M /tmp/p19cert_d6/work/k0020600.lrat
+2026-09-03 00:19:57 swap=497M (delta 0M) rss_total=307M procs=10
+    pid 9709 rss 59M /tmp/p19cert_d6/work/k0020000.lrat
+    pid 9722 rss 43M /tmp/p19cert_d6/work/k0020400.lrat
+2026-09-03 00:20:28 swap=497M (delta 0M) rss_total=293M procs=10
+    pid 9997 rss 48M /tmp/p19cert_d6/work/k0019400.lrat
+    pid 10003 rss 34M /tmp/p19cert_d6/work/k0021200.lrat
+2026-09-03 00:20:59 swap=497M (delta 0M) rss_total=323M procs=10
+    pid 10275 rss 65M /tmp/p19cert_d6/work/k0020400.lrat
+    pid 10282 rss 54M /tmp/p19cert_d6/work/k0020000.lrat
+2026-09-03 00:21:29 swap=497M (delta 0M) rss_total=283M procs=10
+    pid 10546 rss 46M /tmp/p19cert_d6/work/k0021000.lrat
+    pid 10553 rss 40M /tmp/p19cert_d6/work/k0020400.lrat
+2026-09-03 00:22:00 swap=497M (delta 0M) rss_total=419M procs=10
+    pid 10759 rss 98M /tmp/p19cert_d6/work/k0020000.lrat
+    pid 10845 rss 98M /tmp/p19cert_d6/work/k0019600.lrat
+2026-09-03 00:22:31 swap=497M (delta 0M) rss_total=230M procs=10
+    pid 11090 rss 44M /tmp/p19cert_d6/work/k0021000.lrat
+    pid 11104 rss 30M /tmp/p19cert_d6/work/k0021200.lrat
+2026-09-03 00:23:02 swap=497M (delta 0M) rss_total=233M procs=10
+    pid 11398 rss 38M /tmp/p19cert_d6/work/k0020000.lrat
+    pid 11387 rss 37M /tmp/p19cert_d6/work/k0020200.lrat
+2026-09-03 00:23:33 swap=497M (delta 0M) rss_total=263M procs=10
+    pid 11671 rss 41M /tmp/p19cert_d6/work/k0020200.lrat
+    pid 11674 rss 37M /tmp/p19cert_d6/work/k0020400.lrat
+2026-09-03 00:24:03 swap=497M (delta 0M) rss_total=313M procs=10
+    pid 11938 rss 46M /tmp/p19cert_d6/work/k0020600.lrat
+    pid 11941 rss 39M /tmp/p19cert_d6/work/k0020800.lrat
+2026-09-03 00:24:34 swap=497M (delta 0M) rss_total=276M procs=10
+    pid 12202 rss 52M /tmp/p19cert_d6/work/k0019400.lrat
+    pid 12212 rss 38M /tmp/p19cert_d6/work/k0020200.lrat
+2026-09-03 00:25:05 swap=497M (delta 0M) rss_total=322M procs=10
+    pid 12470 rss 55M /tmp/p19cert_d6/work/k0021400.lrat
+    pid 12474 rss 42M /tmp/p19cert_d6/work/k0020400.lrat
+2026-09-03 00:25:35 swap=497M (delta 0M) rss_total=251M procs=10
+    pid 12806 rss 51M /tmp/p19cert_d6/work/k0020000.lrat
+    pid 12755 rss 37M /tmp/p19cert_d6/work/k0020800.lrat
+2026-09-03 00:26:06 swap=497M (delta 0M) rss_total=342M procs=10
+    pid 13040 rss 56M /tmp/p19cert_d6/work/k0020000.lrat
+    pid 13002 rss 50M /tmp/p19cert_d6/work/k0020200.lrat
+2026-09-03 00:26:37 swap=497M (delta 0M) rss_total=268M procs=10
+    pid 13252 rss 57M /tmp/p19cert_d6/work/k0020000.lrat
+    pid 13271 rss 30M /tmp/p19cert_d6/work/k0020800.lrat
+2026-09-03 00:27:07 swap=497M (delta 0M) rss_total=242M procs=10
+    pid 13524 rss 38M /tmp/p19cert_d6/work/k0019400.lrat
+    pid 13528 rss 35M /tmp/p19cert_d6/work/k0020200.lrat
+2026-09-03 00:27:38 swap=497M (delta 0M) rss_total=274M procs=10
+    pid 13884 rss 51M /tmp/p19cert_d6/work/k0021400.lrat
+    pid 13922 rss 41M /tmp/p19cert_d6/work/k0020000.lrat
+2026-09-03 00:28:09 swap=497M (delta 0M) rss_total=292M procs=10
+    pid 14198 rss 47M /tmp/p19cert_d6/work/k0021400.lrat
+    pid 14202 rss 38M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:28:39 swap=497M (delta 0M) rss_total=259M procs=10
+    pid 14491 rss 37M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 14485 rss 34M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:29:10 swap=497M (delta 0M) rss_total=331M procs=10
+    pid 14751 rss 50M /tmp/p19cert_d6/work/k0021200.lrat
+    pid 14757 rss 42M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:29:41 swap=497M (delta 0M) rss_total=304M procs=10
+    pid 15019 rss 63M /tmp/p19cert_d6/work/k0022000.lrat
+    pid 15082 rss 49M (lrat-trim)
+2026-09-03 00:30:11 swap=497M (delta 0M) rss_total=344M procs=10
+    pid 15311 rss 59M /tmp/p19cert_d6/work/k0021200.lrat
+    pid 15309 rss 56M /tmp/p19cert_d6/work/k0022000.lrat
+2026-09-03 00:30:42 swap=497M (delta 0M) rss_total=401M procs=10
+    pid 15566 rss 81M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 15552 rss 71M /tmp/p19cert_d6/work/k0021000.lrat
+2026-09-03 00:31:13 swap=497M (delta 0M) rss_total=264M procs=9
+    pid 15853 rss 52M /tmp/p19cert_d6/work/k0022600.lrat
+    pid 15854 rss 45M /tmp/p19cert_d6/work/k0021200.lrat
+2026-09-03 00:31:43 swap=497M (delta 0M) rss_total=284M procs=9
+    pid 16115 rss 47M /tmp/p19cert_d6/work/k0022200.lrat
+    pid 16120 rss 42M /tmp/p19cert_d6/work/k0021200.lrat
+2026-09-03 00:32:14 swap=497M (delta 0M) rss_total=337M procs=9
+    pid 16392 rss 70M /tmp/p19cert_d6/work/k0022200.lrat
+    pid 16410 rss 47M (lrat-trim)
+2026-09-03 00:32:44 swap=497M (delta 0M) rss_total=310M procs=8
+    pid 16756 rss 108M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 16735 rss 46M /tmp/p19cert_d6/work/k0021400.lrat
+2026-09-03 00:33:15 swap=497M (delta 0M) rss_total=235M procs=9
+    pid 16991 rss 40M /tmp/p19cert_d6/work/k0022000.lrat
+    pid 17049 rss 37M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:33:46 swap=497M (delta 0M) rss_total=296M procs=9
+    pid 17234 rss 53M /tmp/p19cert_d6/work/k0021600.lrat
+    pid 17239 rss 42M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:34:16 swap=497M (delta 0M) rss_total=258M procs=9
+    pid 17482 rss 51M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 17484 rss 43M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:34:47 swap=497M (delta 0M) rss_total=239M procs=8
+    pid 17717 rss 40M /tmp/p19cert_d6/work/k0021400.lrat
+    pid 17719 rss 36M /tmp/p19cert_d6/work/k0022000.lrat
+2026-09-03 00:35:17 swap=497M (delta 0M) rss_total=249M procs=8
+    pid 17967 rss 59M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 17979 rss 42M /tmp/p19cert_d6/work/k0022400.lrat
+2026-09-03 00:35:48 swap=497M (delta 0M) rss_total=237M procs=7
+    pid 18218 rss 53M /tmp/p19cert_d6/work/k0021600.lrat
+    pid 18231 rss 38M /tmp/p19cert_d6/work/k0022400.lrat
+2026-09-03 00:36:18 swap=497M (delta 0M) rss_total=206M procs=6
+    pid 18454 rss 44M /tmp/p19cert_d6/work/k0022000.lrat
+    pid 18450 rss 42M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:36:49 swap=497M (delta 0M) rss_total=239M procs=6
+    pid 18632 rss 79M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 18659 rss 66M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:37:19 swap=497M (delta 0M) rss_total=185M procs=6
+    pid 18863 rss 59M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 18865 rss 48M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:37:50 swap=497M (delta 0M) rss_total=233M procs=6
+    pid 19055 rss 76M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 19069 rss 42M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:38:20 swap=497M (delta 0M) rss_total=192M procs=6
+    pid 19252 rss 66M /tmp/p19cert_d6/work/k0021600.lrat
+    pid 19258 rss 53M /tmp/p19cert_d6/work/k0022400.lrat
+2026-09-03 00:38:51 swap=497M (delta 0M) rss_total=135M procs=6
+    pid 19481 rss 40M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 19479 rss 34M /tmp/p19cert_d6/work/k0022600.lrat
+2026-09-03 00:39:21 swap=497M (delta 0M) rss_total=256M procs=6
+    pid 19671 rss 67M /tmp/p19cert_d6/work/k0022200.lrat
+    pid 19672 rss 67M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:39:52 swap=497M (delta 0M) rss_total=184M procs=6
+    pid 19981 rss 39M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 19977 rss 38M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:40:22 swap=497M (delta 0M) rss_total=177M procs=6
+    pid 20190 rss 47M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 20187 rss 45M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:40:53 swap=497M (delta 0M) rss_total=200M procs=6
+    pid 20380 rss 79M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 20407 rss 31M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:41:23 swap=497M (delta 0M) rss_total=188M procs=6
+    pid 20597 rss 63M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 20602 rss 47M /tmp/p19cert_d6/work/k0022200.lrat
+2026-09-03 00:41:54 swap=497M (delta 0M) rss_total=111M procs=5
+    pid 20815 rss 29M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 20812 rss 28M /tmp/p19cert_d6/work/k0022400.lrat
+2026-09-03 00:42:24 swap=497M (delta 0M) rss_total=92M procs=3
+    pid 20983 rss 39M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 20988 rss 28M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:42:55 swap=497M (delta 0M) rss_total=84M procs=3
+    pid 21153 rss 34M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 21154 rss 29M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:43:25 swap=497M (delta 0M) rss_total=109M procs=3
+    pid 21306 rss 50M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 21310 rss 33M /tmp/p19cert_d6/work/k0021600.lrat
+2026-09-03 00:43:56 swap=497M (delta 0M) rss_total=80M procs=2
+    pid 21471 rss 56M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 21475 rss 25M /tmp/p19cert_d6/work/k0022400.lrat
+2026-09-03 00:44:26 swap=497M (delta 0M) rss_total=90M procs=2
+    pid 21615 rss 53M /tmp/p19cert_d6/work/k0021800.lrat
+    pid 21617 rss 38M /tmp/p19cert_d6/work/k0022400.lrat
+2026-09-03 00:44:56 swap=497M (delta 0M) rss_total=74M procs=2
+    pid 21768 rss 58M /tmp/p19cert_d6/work/k0022400.lrat
+    pid 21771 rss 16M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:45:27 swap=497M (delta 0M) rss_total=29M procs=1
+    pid 21927 rss 29M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:45:57 swap=497M (delta 0M) rss_total=31M procs=1
+    pid 22081 rss 31M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:46:28 swap=497M (delta 0M) rss_total=21M procs=1
+    pid 22275 rss 21M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:46:58 swap=497M (delta 0M) rss_total=5M procs=1
+    pid 22455 rss 6M /tmp/p19cert_d6/work/k0021800.lrat
+2026-09-03 00:47:29 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-03 00:47:59 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-03 00:48:30 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-03 00:49:00 swap=497M (delta 0M) rss_total=0M procs=0
+2026-09-03 00:49:30 swap=497M (delta 0M) rss_total=23M procs=11
+    pid 23537 rss 3M 3580
+    pid 23460 rss 3M /tmp/claude-6df1-cwd
+2026-09-03 00:50:01 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 23537 rss 3M 3580
+    pid 23535 rss 2M 5160
+2026-09-03 00:50:32 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 23537 rss 3M 3580
+    pid 23529 rss 3M 1288
+2026-09-03 00:51:03 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 23537 rss 3M 3580
+    pid 23529 rss 3M 1288
+2026-09-03 00:51:33 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 23537 rss 3M 3580
+    pid 23529 rss 3M 1288
+2026-09-03 00:52:04 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 23537 rss 3M 3580
+    pid 23529 rss 3M 1288
+2026-09-03 00:52:35 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 23537 rss 3M 3580
+    pid 23529 rss 3M 1288
+2026-09-03 00:53:06 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 25299 rss 3M 6324
+    pid 23537 rss 3M 3580
+2026-09-03 00:53:36 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 25299 rss 3M 6324
+    pid 23537 rss 3M 3580
+2026-09-03 00:54:07 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 25299 rss 3M 6324
+    pid 26107 rss 3M 5316
+2026-09-03 00:54:38 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 25299 rss 3M 6324
+    pid 26259 rss 3M 28
+2026-09-03 00:55:08 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 25299 rss 3M 6324
+    pid 26259 rss 3M 28
+2026-09-03 00:55:39 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 26259 rss 3M 28
+    pid 25299 rss 3M 6324
+2026-09-03 00:56:10 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 26259 rss 3M 28
+    pid 25299 rss 3M 6324
+2026-09-03 00:56:40 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 26259 rss 3M 28
+    pid 25299 rss 3M 6324
+2026-09-03 00:57:11 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 26259 rss 3M 28
+    pid 26553 rss 3M 5676
+2026-09-03 00:57:42 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 26259 rss 3M 28
+    pid 26553 rss 3M 5676
+2026-09-03 00:58:12 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 26259 rss 3M 28
+    pid 26553 rss 3M 5676
+2026-09-03 00:58:43 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 27639 rss 3M 5424
+    pid 26553 rss 3M 5676
+2026-09-03 00:59:13 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 27018 rss 3M 280
+    pid 27639 rss 3M 5424
+2026-09-03 00:59:44 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 27018 rss 3M 280
+    pid 27639 rss 3M 5424
+2026-09-03 01:00:15 swap=497M (delta 0M) rss_total=26M procs=10
+    pid 27018 rss 3M 280
+    pid 27639 rss 3M 5424
+2026-09-03 01:00:45 swap=497M (delta 0M) rss_total=26M procs=10
+    pid 27018 rss 3M 280
+    pid 27639 rss 3M 5424
+2026-09-03 01:01:16 swap=497M (delta 0M) rss_total=26M procs=10
+    pid 27928 rss 3M 5004
+    pid 27639 rss 3M 5424
+2026-09-03 01:01:47 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 27639 rss 3M 5424
+    pid 28099 rss 3M 6076
+2026-09-03 01:02:17 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 27639 rss 3M 5424
+    pid 28642 rss 3M 5156
+2026-09-03 01:02:48 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 27639 rss 3M 5424
+    pid 28642 rss 3M 5156
+2026-09-03 01:03:19 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 28642 rss 3M 5156
+    pid 28076 rss 3M 6172
+2026-09-03 01:03:49 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 28882 rss 3M 5228
+    pid 28642 rss 3M 5156
+2026-09-03 01:04:20 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 28882 rss 3M 5228
+    pid 28076 rss 3M 6172
+2026-09-03 01:04:51 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 28882 rss 3M 5228
+    pid 28709 rss 3M 1372
+2026-09-03 01:05:21 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 28882 rss 3M 5228
+    pid 28709 rss 3M 1372
+2026-09-03 01:05:52 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 29541 rss 3M 4892
+    pid 28882 rss 3M 5228
+2026-09-03 01:06:22 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 29541 rss 3M 4892
+    pid 30085 rss 3M 5692
+2026-09-03 01:06:53 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 30085 rss 3M 5692
+    pid 29869 rss 3M 3156
+2026-09-03 01:07:24 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 30085 rss 3M 5692
+    pid 30756 rss 3M 1224
+2026-09-03 01:07:54 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 30756 rss 3M 1224
+    pid 30528 rss 3M 5356
+2026-09-03 01:08:25 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 31143 rss 3M 5888
+    pid 30756 rss 3M 1224
+2026-09-03 01:08:56 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 31143 rss 3M 5888
+    pid 31013 rss 3M 252
+2026-09-03 01:09:26 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 31143 rss 3M 5888
+    pid 31013 rss 3M 252
+2026-09-03 01:09:57 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 30822 rss 3M 5736
+    pid 32370 rss 3M 5212
+2026-09-03 01:10:28 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 32370 rss 3M 5212
+    pid 31143 rss 3M 5888
+2026-09-03 01:10:58 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 32370 rss 3M 5212
+    pid 31143 rss 3M 5888
+2026-09-03 01:11:29 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 32370 rss 3M 5212
+    pid 31143 rss 3M 5888
+2026-09-03 01:12:00 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 32370 rss 3M 5212
+    pid 32744 rss 3M 1248
+2026-09-03 01:12:30 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 32370 rss 3M 5212
+    pid 32744 rss 3M 1248
+2026-09-03 01:13:01 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 32370 rss 3M 5212
+    pid 33708 rss 3M 1280
+2026-09-03 01:13:31 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 32370 rss 3M 5212
+    pid 33708 rss 3M 1280
+2026-09-03 01:14:02 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 33708 rss 3M 1280
+    pid 33741 rss 3M 3144
+2026-09-03 01:14:33 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 33708 rss 3M 1280
+    pid 33741 rss 3M 3144
+2026-09-03 01:15:03 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 33708 rss 3M 1280
+    pid 33741 rss 3M 3144
+2026-09-03 01:15:34 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 33708 rss 3M 1280
+    pid 33741 rss 3M 3144
+2026-09-03 01:16:05 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 33708 rss 3M 1280
+    pid 34257 rss 3M 6320
+2026-09-03 01:16:36 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 33708 rss 3M 1280
+    pid 34621 rss 3M 1316
+2026-09-03 01:17:06 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 33708 rss 3M 1280
+    pid 34621 rss 3M 1316
+2026-09-03 01:17:37 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 33708 rss 3M 1280
+    pid 34621 rss 3M 1316
+2026-09-03 01:18:08 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 34269 rss 3M 5244
+    pid 34621 rss 3M 1316
+2026-09-03 01:18:38 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 34963 rss 3M 5908
+    pid 35261 rss 2M 3584
+2026-09-03 01:19:09 swap=497M (delta 0M) rss_total=21M procs=9
+    pid 34963 rss 3M 5908
+    pid 35683 rss 3M 1304
+2026-09-03 01:19:40 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 34410 rss 3M 5420
+    pid 35261 rss 3M 3584
+2026-09-03 01:20:10 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 34410 rss 3M 5420
+    pid 35261 rss 3M 3584
+2026-09-03 01:20:41 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 34410 rss 3M 5420
+    pid 35626 rss 3M 4376
+2026-09-03 01:21:12 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 34410 rss 3M 5420
+    pid 35626 rss 3M 4376
+2026-09-03 01:21:42 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 34410 rss 3M 5420
+    pid 35626 rss 3M 4376
+2026-09-03 01:22:13 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 34410 rss 3M 5420
+    pid 35626 rss 3M 4376
+2026-09-03 01:22:43 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 35626 rss 3M 4376
+    pid 36336 rss 3M 6340
+2026-09-03 01:23:14 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 35626 rss 3M 4376
+    pid 36336 rss 3M 6340
+2026-09-03 01:23:45 swap=497M (delta 0M) rss_total=20M procs=10
+    pid 37185 rss 2M 1480
+    pid 36669 rss 2M 4436
+2026-09-03 01:24:15 swap=497M (delta 0M) rss_total=20M procs=10
+    pid 36669 rss 2M 4436
+    pid 37002 rss 2M 4976
+2026-09-03 01:24:46 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 37400 rss 3M 224
+    pid 37002 rss 2M 4976
+2026-09-03 01:25:17 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 37221 rss 3M 5688
+    pid 36971 rss 3M 5448
+2026-09-03 01:25:47 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 36971 rss 3M 5448
+    pid 37857 rss 3M 244
+2026-09-03 01:26:18 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 36971 rss 3M 5448
+    pid 37857 rss 3M 244
+2026-09-03 01:26:49 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 38377 rss 3M 5500
+    pid 37857 rss 3M 244
+2026-09-03 01:27:19 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 38377 rss 3M 5500
+    pid 37857 rss 3M 244
+2026-09-03 01:27:50 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 38012 rss 3M 5580
+    pid 38536 rss 3M 1252
+2026-09-03 01:28:20 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 38012 rss 3M 5580
+    pid 38536 rss 3M 1252
+2026-09-03 01:28:51 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 38012 rss 3M 5580
+    pid 38536 rss 3M 1252
+2026-09-03 01:29:22 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 38807 rss 3M 5184
+    pid 38012 rss 3M 5580
+2026-09-03 01:29:52 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 38807 rss 3M 5184
+    pid 38012 rss 3M 5580
+2026-09-03 01:30:23 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 38807 rss 3M 5184
+    pid 39277 rss 3M 1116
+2026-09-03 01:30:54 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 38807 rss 3M 5184
+    pid 39277 rss 3M 1116
+2026-09-03 01:31:24 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 38807 rss 3M 5184
+    pid 39277 rss 3M 1116
+2026-09-03 01:31:55 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 39714 rss 3M 284
+    pid 39407 rss 3M 32
+2026-09-03 01:32:26 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 39714 rss 3M 284
+    pid 39407 rss 3M 32
+2026-09-03 01:32:56 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 39714 rss 3M 284
+    pid 40268 rss 3M 4988
+2026-09-03 01:33:27 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 39714 rss 3M 284
+    pid 39399 rss 3M 6128
+2026-09-03 01:33:58 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 39714 rss 3M 284
+    pid 39399 rss 3M 6128
+2026-09-03 01:34:28 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 40268 rss 3M 4988
+    pid 40647 rss 3M 3164
+2026-09-03 01:34:59 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 40626 rss 3M 6344
+    pid 40647 rss 3M 3164
+2026-09-03 01:35:30 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 40626 rss 3M 6344
+    pid 40276 rss 3M 4120
+2026-09-03 01:36:00 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 40276 rss 3M 4120
+    pid 41372 rss 3M 4268
+2026-09-03 01:36:31 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 40106 rss 3M 5260
+    pid 41040 rss 3M 5752
+2026-09-03 01:37:01 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 40106 rss 3M 5260
+    pid 41040 rss 3M 5752
+2026-09-03 01:37:32 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 40106 rss 3M 5260
+    pid 42022 rss 3M 1536
+2026-09-03 01:38:03 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 42022 rss 3M 1536
+    pid 42210 rss 3M 660
+2026-09-03 01:38:33 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 42022 rss 3M 1536
+    pid 42210 rss 3M 660
+2026-09-03 01:39:04 swap=497M (delta 0M) rss_total=20M procs=9
+    pid 41040 rss 3M 5752
+    pid 41664 rss 3M 1468
+2026-09-03 01:39:35 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 41040 rss 3M 5752
+    pid 42610 rss 3M 6196
+2026-09-03 01:40:05 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 41040 rss 3M 5752
+    pid 42610 rss 3M 6196
+2026-09-03 01:40:36 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 43039 rss 3M 6160
+    pid 41040 rss 3M 5752
+2026-09-03 01:41:07 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 42610 rss 3M 6196
+    pid 42809 rss 3M 5596
+2026-09-03 01:41:37 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 42610 rss 3M 6196
+    pid 43039 rss 3M 6160
+2026-09-03 01:42:08 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 43039 rss 3M 6160
+    pid 42809 rss 3M 5596
+2026-09-03 01:42:39 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 43039 rss 3M 6160
+    pid 43752 rss 3M 1548
+2026-09-03 01:43:09 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 43752 rss 3M 1548
+    pid 43199 rss 3M 5152
+2026-09-03 01:43:40 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 43752 rss 3M 1548
+    pid 43888 rss 3M 3560
+2026-09-03 01:44:11 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 43888 rss 3M 3560
+    pid 43752 rss 3M 1548
+2026-09-03 01:44:41 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 43888 rss 3M 3560
+    pid 43507 rss 3M 220
+2026-09-03 01:45:12 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 43888 rss 3M 3560
+    pid 43507 rss 3M 220
+2026-09-03 01:45:43 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 44720 rss 3M 1236
+    pid 43888 rss 3M 3560
+2026-09-03 01:46:13 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 44720 rss 3M 1236
+    pid 44740 rss 3M 5680
+2026-09-03 01:46:44 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 44720 rss 3M 1236
+    pid 44286 rss 3M 5536
+2026-09-03 01:47:15 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 44720 rss 3M 1236
+    pid 44740 rss 3M 5680
+2026-09-03 01:47:45 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 44720 rss 3M 1236
+    pid 44740 rss 3M 5680
+2026-09-03 01:48:16 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 44740 rss 3M 5680
+    pid 44913 rss 3M 4928
+2026-09-03 01:48:47 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 44441 rss 3M 4868
+    pid 45103 rss 3M 5684
+2026-09-03 01:49:17 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 45583 rss 3M 1348
+    pid 44441 rss 3M 4868
+2026-09-03 01:49:48 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 45583 rss 3M 1348
+    pid 44441 rss 3M 4868
+2026-09-03 01:50:18 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 45850 rss 3M 5964
+    pid 46322 rss 2M 7640
+2026-09-03 01:50:49 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 45850 rss 3M 5964
+    pid 46443 rss 2M 7932
+2026-09-03 01:51:20 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 45850 rss 3M 5964
+    pid 46443 rss 2M 7932
+2026-09-03 01:51:50 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 46932 rss 3M 5988
+    pid 45850 rss 3M 5964
+2026-09-03 01:52:21 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 46932 rss 3M 5988
+    pid 45850 rss 3M 5964
+2026-09-03 01:52:52 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 46932 rss 3M 5988
+    pid 45850 rss 3M 5964
+2026-09-03 01:53:22 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 46905 rss 3M 5796
+    pid 46932 rss 3M 5988
+2026-09-03 01:53:53 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 46905 rss 3M 5796
+    pid 47121 rss 3M 3136
+2026-09-03 01:54:23 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 47087 rss 3M 3140
+    pid 46905 rss 3M 5796
+2026-09-03 01:54:54 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 47087 rss 3M 3140
+    pid 48106 rss 2M 5944
+2026-09-03 01:55:25 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 48106 rss 3M 5944
+    pid 47325 rss 3M 5848
+2026-09-03 01:55:55 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 48106 rss 3M 5944
+    pid 48332 rss 2M 5280
+2026-09-03 01:56:26 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 48106 rss 3M 5944
+    pid 48535 rss 3M 3040
+2026-09-03 01:56:57 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 48106 rss 3M 5944
+    pid 47790 rss 3M 4884
+2026-09-03 01:57:27 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 48106 rss 3M 5944
+    pid 47790 rss 3M 4884
+2026-09-03 01:57:58 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 47790 rss 3M 4884
+    pid 48869 rss 3M 5632
+2026-09-03 01:58:29 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 47790 rss 3M 4884
+    pid 48869 rss 3M 5632
+2026-09-03 01:58:59 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 47790 rss 3M 4884
+    pid 48869 rss 3M 5632
+2026-09-03 01:59:30 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 47790 rss 3M 4884
+    pid 48869 rss 3M 5632
+2026-09-03 02:00:00 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 47790 rss 3M 4884
+    pid 48869 rss 3M 5632
+2026-09-03 02:00:31 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 50048 rss 3M 6156
+    pid 47790 rss 3M 4884
+2026-09-03 02:01:02 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 50227 rss 3M 5200
+    pid 49678 rss 3M 5808
+2026-09-03 02:01:32 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 50227 rss 3M 5200
+    pid 49678 rss 3M 5808
+2026-09-03 02:02:03 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 50227 rss 3M 5200
+    pid 49678 rss 3M 5808
+2026-09-03 02:02:34 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 50227 rss 3M 5200
+    pid 49678 rss 3M 5808
+2026-09-03 02:03:04 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 50227 rss 3M 5200
+    pid 50048 rss 3M 6156
+2026-09-03 02:03:35 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 50227 rss 3M 5200
+    pid 50048 rss 3M 6156
+2026-09-03 02:04:06 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 50048 rss 3M 6156
+    pid 50885 rss 3M 6372
+2026-09-03 02:04:36 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 50048 rss 3M 6156
+    pid 50885 rss 3M 6372
+2026-09-03 02:05:07 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 51375 rss 3M 6108
+    pid 50913 rss 2M 4284
+2026-09-03 02:05:38 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 51631 rss 3M 6276
+    pid 50913 rss 2M 4284
+2026-09-03 02:06:08 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 51967 rss 3M 1352
+    pid 50913 rss 2M 4284
+2026-09-03 02:06:39 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 51539 rss 3M 5268
+    pid 51967 rss 3M 1352
+2026-09-03 02:07:09 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 51539 rss 3M 5268
+    pid 51967 rss 3M 1352
+2026-09-03 02:07:40 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 51539 rss 3M 5268
+    pid 52097 rss 2M 5628
+2026-09-03 02:08:11 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 51539 rss 3M 5268
+    pid 52097 rss 2M 5628
+2026-09-03 02:08:41 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 51539 rss 3M 5268
+    pid 52097 rss 3M 5628
+2026-09-03 02:09:12 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 51539 rss 3M 5268
+    pid 52659 rss 2M 8020
+2026-09-03 02:09:43 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 51539 rss 3M 5268
+    pid 52947 rss 3M 5092
+2026-09-03 02:10:13 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 52991 rss 3M 6148
+    pid 52509 rss 3M 5864
+2026-09-03 02:10:44 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 52991 rss 3M 6148
+    pid 53125 rss 3M 1556
+2026-09-03 02:11:15 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 52991 rss 3M 6148
+    pid 53313 rss 3M 5704
+2026-09-03 02:11:45 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 52991 rss 3M 6148
+    pid 53693 rss 3M 292
+2026-09-03 02:12:16 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 52991 rss 3M 6148
+    pid 53313 rss 3M 5704
+2026-09-03 02:12:47 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 53684 rss 3M 5196
+    pid 53136 rss 2M 6328
+2026-09-03 02:13:17 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 53684 rss 3M 5196
+    pid 53136 rss 2M 6328
+2026-09-03 02:13:48 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 53994 rss 3M 4388
+    pid 54478 rss 3M 4104
+2026-09-03 02:14:19 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 54478 rss 3M 4104
+    pid 54233 rss 3M 4860
+2026-09-03 02:14:49 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 54478 rss 3M 4104
+    pid 54133 rss 3M 3068
+2026-09-03 02:15:20 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 54647 rss 3M 3572
+    pid 54478 rss 3M 4104
+2026-09-03 02:15:51 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 54647 rss 3M 3572
+    pid 54478 rss 3M 4104
+2026-09-03 02:16:21 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 54647 rss 3M 3572
+    pid 54478 rss 3M 4104
+2026-09-03 02:16:52 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 54647 rss 3M 3572
+    pid 54233 rss 3M 4860
+2026-09-03 02:17:23 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 54647 rss 3M 3572
+    pid 55729 rss 3M 5096
+2026-09-03 02:17:53 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 55574 rss 3M 4920
+    pid 56092 rss 3M 5216
+2026-09-03 02:18:24 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 56076 rss 3M 3568
+    pid 56092 rss 3M 5216
+2026-09-03 02:18:54 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 56076 rss 3M 3568
+    pid 56092 rss 3M 5216
+2026-09-03 02:19:25 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 56076 rss 3M 3568
+    pid 56092 rss 3M 5216
+2026-09-03 02:19:56 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 56076 rss 3M 3568
+    pid 56092 rss 3M 5216
+2026-09-03 02:20:26 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 56076 rss 3M 3568
+    pid 56092 rss 3M 5216
+2026-09-03 02:20:57 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 56076 rss 3M 3568
+    pid 56525 rss 3M 5248
+2026-09-03 02:21:28 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 56076 rss 3M 3568
+    pid 56525 rss 3M 5248
+2026-09-03 02:21:58 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 56076 rss 3M 3568
+    pid 56525 rss 3M 5248
+2026-09-03 02:22:29 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 56386 rss 3M 36
+    pid 57497 rss 3M 5636
+2026-09-03 02:23:00 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 56386 rss 3M 36
+    pid 57497 rss 3M 5636
+2026-09-03 02:23:30 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 57310 rss 3M 5480
+    pid 56386 rss 3M 36
+2026-09-03 02:24:01 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 57310 rss 3M 5480
+    pid 56386 rss 3M 36
+2026-09-03 02:24:32 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 57310 rss 3M 5480
+    pid 57860 rss 3M 5112
+2026-09-03 02:25:02 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 57310 rss 3M 5480
+    pid 57462 rss 3M 5144
+2026-09-03 02:25:33 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 58488 rss 3M 4900
+    pid 58003 rss 3M 5056
+2026-09-03 02:26:04 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 58488 rss 3M 4900
+    pid 58567 rss 3M 4396
+2026-09-03 02:26:34 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 58488 rss 3M 4900
+    pid 58567 rss 3M 4396
+2026-09-03 02:27:05 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 58488 rss 3M 4900
+    pid 58567 rss 3M 4396
+2026-09-03 02:27:35 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 58488 rss 3M 4900
+    pid 58592 rss 3M 668
+2026-09-03 02:28:06 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 58592 rss 3M 668
+    pid 58713 rss 3M 1276
+2026-09-03 02:28:37 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 59380 rss 3M 1244
+    pid 58592 rss 3M 668
+2026-09-03 02:29:07 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 59380 rss 3M 1244
+    pid 59502 rss 3M 5432
+2026-09-03 02:29:38 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 59351 rss 3M 1232
+    pid 59380 rss 3M 1244
+2026-09-03 02:30:09 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 59351 rss 3M 1232
+    pid 59380 rss 3M 1244
+2026-09-03 02:30:39 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 59380 rss 3M 1244
+    pid 59502 rss 3M 5432
+2026-09-03 02:31:10 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 59380 rss 3M 1244
+    pid 59642 rss 3M 5776
+2026-09-03 02:31:41 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 60398 rss 3M 3596
+    pid 60570 rss 3M 5872
+2026-09-03 02:32:11 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 60398 rss 3M 3596
+    pid 60570 rss 3M 5872
+2026-09-03 02:32:42 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 60398 rss 3M 3596
+    pid 60570 rss 3M 5872
+2026-09-03 02:33:13 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 60398 rss 3M 3596
+    pid 60270 rss 3M 5572
+2026-09-03 02:33:43 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 60398 rss 3M 3596
+    pid 60875 rss 3M 6376
+2026-09-03 02:34:14 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 61425 rss 3M 4404
+    pid 61083 rss 3M 5920
+2026-09-03 02:34:45 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 61425 rss 3M 4404
+    pid 61083 rss 3M 5920
+2026-09-03 02:35:15 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 61455 rss 3M 1344
+    pid 61425 rss 3M 4404
+2026-09-03 02:35:46 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 61425 rss 3M 4404
+    pid 61455 rss 3M 1344
+2026-09-03 02:36:17 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 61425 rss 3M 4404
+    pid 61622 rss 3M 4372
+2026-09-03 02:36:47 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 61425 rss 3M 4404
+    pid 61622 rss 3M 4372
+2026-09-03 02:37:18 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 61425 rss 3M 4404
+    pid 62507 rss 3M 5224
+2026-09-03 02:37:48 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 62507 rss 3M 5224
+    pid 61425 rss 3M 4404
+2026-09-03 02:38:19 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 62507 rss 3M 5224
+    pid 61425 rss 3M 4404
+2026-09-03 02:38:50 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 62507 rss 3M 5224
+    pid 61425 rss 3M 4404
+2026-09-03 02:39:21 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 61425 rss 3M 4404
+    pid 63068 rss 3M 240
+2026-09-03 02:39:51 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 61425 rss 3M 4404
+    pid 62814 rss 3M 5868
+2026-09-03 02:40:22 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 62814 rss 3M 5868
+    pid 63345 rss 3M 4100
+2026-09-03 02:40:53 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 62814 rss 3M 5868
+    pid 63835 rss 3M 1340
+2026-09-03 02:41:23 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 63470 rss 3M 5564
+    pid 62814 rss 3M 5868
+2026-09-03 02:41:54 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 63470 rss 3M 5564
+    pid 62814 rss 3M 5868
+2026-09-03 02:42:25 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 63621 rss 3M 6060
+    pid 63470 rss 3M 5564
+2026-09-03 02:42:55 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 64465 rss 3M 4940
+    pid 63621 rss 3M 6060
+2026-09-03 02:43:26 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 64465 rss 3M 4940
+    pid 64020 rss 3M 4760
+2026-09-03 02:43:57 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 64465 rss 3M 4940
+    pid 64535 rss 3M 1308
+2026-09-03 02:44:27 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 64535 rss 3M 1308
+    pid 64522 rss 3M 232
+2026-09-03 02:44:58 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 64535 rss 3M 1308
+    pid 64522 rss 3M 232
+2026-09-03 02:45:28 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 64535 rss 3M 1308
+    pid 64522 rss 3M 232
+2026-09-03 02:45:59 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 64535 rss 3M 1308
+    pid 64522 rss 3M 232
+2026-09-03 02:46:30 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 64961 rss 3M 5016
+    pid 64822 rss 3M 5844
+2026-09-03 02:47:00 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 65235 rss 3M 1376
+    pid 64822 rss 3M 5844
+2026-09-03 02:47:31 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 65235 rss 3M 1376
+    pid 64822 rss 3M 5844
+2026-09-03 02:48:02 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 65235 rss 3M 1376
+    pid 64822 rss 3M 5844
+2026-09-03 02:48:32 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 65235 rss 3M 1376
+    pid 65679 rss 3M 664
+2026-09-03 02:49:03 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 65679 rss 3M 664
+    pid 65871 rss 3M 6120
+2026-09-03 02:49:34 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 66760 rss 3M 1496
+    pid 65679 rss 3M 664
+2026-09-03 02:50:04 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 66760 rss 3M 1496
+    pid 66947 rss 3M 3148
+2026-09-03 02:50:35 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 66760 rss 3M 1496
+    pid 66947 rss 3M 3148
+2026-09-03 02:51:06 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 66760 rss 3M 1496
+    pid 66947 rss 3M 3148
+2026-09-03 02:51:36 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 66760 rss 3M 1496
+    pid 66935 rss 3M 5192
+2026-09-03 02:52:07 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 66760 rss 3M 1496
+    pid 66935 rss 3M 5192
+2026-09-03 02:52:38 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 66760 rss 3M 1496
+    pid 66935 rss 3M 5192
+2026-09-03 02:53:08 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 66760 rss 3M 1496
+    pid 66935 rss 3M 5192
+2026-09-03 02:53:39 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 66760 rss 3M 1496
+    pid 66747 rss 3M 5860
+2026-09-03 02:54:10 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 66760 rss 3M 1496
+    pid 66747 rss 3M 5860
+2026-09-03 02:54:41 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 66747 rss 3M 5860
+    pid 67740 rss 3M 5064
+2026-09-03 02:55:11 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 66747 rss 3M 5860
+    pid 68424 rss 3M 5252
+2026-09-03 02:55:42 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 68424 rss 3M 5252
+    pid 68742 rss 3M 6020
+2026-09-03 02:56:13 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 68424 rss 3M 5252
+    pid 68742 rss 3M 6020
+2026-09-03 02:56:43 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 68734 rss 3M 5208
+    pid 68424 rss 3M 5252
+2026-09-03 02:57:14 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 69233 rss 3M 5036
+    pid 68734 rss 3M 5208
+2026-09-03 02:57:45 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 68734 rss 3M 5208
+    pid 68415 rss 3M 5540
+2026-09-03 02:58:15 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 68734 rss 3M 5208
+    pid 68728 rss 3M 5008
+2026-09-03 02:58:46 swap=497M (delta 0M) rss_total=19M procs=9
+    pid 68742 rss 3M 6020
+    pid 69691 rss 2M 7928
+2026-09-03 02:59:17 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 69793 rss 3M 5236
+    pid 68742 rss 3M 6020
+2026-09-03 02:59:48 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 69793 rss 3M 5236
+    pid 68742 rss 3M 6020
+2026-09-03 03:00:18 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 69960 rss 3M 5484
+    pid 69793 rss 3M 5236
+2026-09-03 03:00:49 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 69960 rss 3M 5484
+    pid 69825 rss 3M 5492
+2026-09-03 03:01:20 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 69960 rss 3M 5484
+    pid 69825 rss 3M 5492
+2026-09-03 03:01:51 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 69960 rss 3M 5484
+    pid 69825 rss 3M 5492
+2026-09-03 03:02:21 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 69960 rss 3M 5484
+    pid 70189 rss 3M 5240
+2026-09-03 03:02:52 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 70189 rss 3M 5240
+    pid 70987 rss 3M 4300
+2026-09-03 03:03:23 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 70189 rss 3M 5240
+    pid 70987 rss 3M 4300
+2026-09-03 03:03:54 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 70189 rss 3M 5240
+    pid 71291 rss 3M 288
+2026-09-03 03:04:24 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 71134 rss 3M 5916
+    pid 70189 rss 3M 5240
+2026-09-03 03:04:55 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 71134 rss 3M 5916
+    pid 71291 rss 3M 288
+2026-09-03 03:05:26 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 71134 rss 3M 5916
+    pid 71291 rss 3M 288
+2026-09-03 03:05:56 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 71134 rss 3M 5916
+    pid 71952 rss 3M 5060
+2026-09-03 03:06:27 swap=497M (delta 0M) rss_total=22M procs=9
+    pid 71134 rss 3M 5916
+    pid 71952 rss 3M 5060
+2026-09-03 03:06:58 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 72593 rss 3M 5784
+    pid 72500 rss 3M 1364
+2026-09-03 03:07:28 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 72593 rss 3M 5784
+    pid 72500 rss 3M 1364
+2026-09-03 03:07:59 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 72593 rss 3M 5784
+    pid 72500 rss 3M 1364
+2026-09-03 03:08:30 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 72500 rss 3M 1364
+    pid 73027 rss 3M 4184
+2026-09-03 03:09:00 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 72207 rss 3M 1388
+    pid 73044 rss 3M 5032
+2026-09-03 03:09:31 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 73044 rss 3M 5032
+    pid 72771 rss 3M 5664
+2026-09-03 03:10:02 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 73044 rss 3M 5032
+    pid 73338 rss 3M 1220
+2026-09-03 03:10:32 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 72771 rss 3M 5664
+    pid 73338 rss 3M 1220
+2026-09-03 03:11:03 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 72771 rss 3M 5664
+    pid 73552 rss 2M 5552
+2026-09-03 03:11:34 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 73552 rss 3M 5552
+    pid 74042 rss 2M 5900
+2026-09-03 03:12:04 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 74457 rss 3M 5560
+    pid 73386 rss 3M 5720
+2026-09-03 03:12:35 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 74457 rss 3M 5560
+    pid 74444 rss 3M 5232
+2026-09-03 03:13:05 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 74457 rss 3M 5560
+    pid 74539 rss 3M 5436
+2026-09-03 03:13:36 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 74457 rss 3M 5560
+    pid 74444 rss 3M 5232
+2026-09-03 03:14:07 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 74457 rss 3M 5560
+    pid 74444 rss 3M 5232
+2026-09-03 03:14:37 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 75021 rss 3M 4056
+    pid 74539 rss 3M 5436
+2026-09-03 03:15:08 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 74539 rss 3M 5436
+    pid 75426 rss 3M 5640
+2026-09-03 03:15:39 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 75426 rss 3M 5640
+    pid 74539 rss 3M 5436
+2026-09-03 03:16:09 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 75426 rss 3M 5640
+    pid 74644 rss 3M 6044
+2026-09-03 03:16:40 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 75426 rss 3M 5640
+    pid 75619 rss 3M 672
+2026-09-03 03:17:11 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 75426 rss 3M 5640
+    pid 76055 rss 3M 5876
+2026-09-03 03:17:41 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 75426 rss 3M 5640
+    pid 76055 rss 3M 5876
+2026-09-03 03:18:12 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 76015 rss 3M 3592
+    pid 76055 rss 3M 5876
+2026-09-03 03:18:43 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 76913 rss 3M 5460
+    pid 76055 rss 3M 5876
+2026-09-03 03:19:13 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 76913 rss 3M 5460
+    pid 76055 rss 3M 5876
+2026-09-03 03:19:44 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 76913 rss 3M 5460
+    pid 77276 rss 3M 5584
+2026-09-03 03:20:14 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 76913 rss 3M 5460
+    pid 77276 rss 3M 5584
+2026-09-03 03:20:45 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 76913 rss 3M 5460
+    pid 77276 rss 3M 5584
+2026-09-03 03:21:16 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 76913 rss 3M 5460
+    pid 77276 rss 3M 5584
+2026-09-03 03:21:46 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 76913 rss 3M 5460
+    pid 77276 rss 3M 5584
+2026-09-03 03:22:17 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 76913 rss 3M 5460
+    pid 77276 rss 3M 5584
+2026-09-03 03:22:48 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 76913 rss 3M 5460
+    pid 77276 rss 3M 5584
+2026-09-03 03:23:18 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 77276 rss 3M 5584
+    pid 77592 rss 3M 5024
+2026-09-03 03:23:49 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 77265 rss 3M 1500
+    pid 77276 rss 3M 5584
+2026-09-03 03:24:20 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 77265 rss 3M 1500
+    pid 78236 rss 3M 560
+2026-09-03 03:24:50 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 77265 rss 3M 1500
+    pid 78236 rss 3M 560
+2026-09-03 03:25:21 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 77265 rss 3M 1500
+    pid 77902 rss 2M 5272
+2026-09-03 03:25:52 swap=497M (delta 0M) rss_total=21M procs=10
+    pid 79161 rss 3M 4112
+    pid 77902 rss 2M 5272
+2026-09-03 03:26:22 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 79161 rss 3M 4112
+    pid 79283 rss 3M 5256
+2026-09-03 03:26:53 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 79161 rss 3M 4112
+    pid 79283 rss 3M 5256
+2026-09-03 03:27:24 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 79283 rss 3M 5256
+    pid 79161 rss 3M 4112
+2026-09-03 03:27:54 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 79283 rss 3M 5256
+    pid 79589 rss 3M 5840
+2026-09-03 03:28:25 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 79283 rss 3M 5256
+    pid 79589 rss 3M 5840
+2026-09-03 03:28:56 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 79909 rss 3M 4400
+    pid 79589 rss 3M 5840
+2026-09-03 03:29:26 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 79909 rss 3M 4400
+    pid 79589 rss 3M 5840
+2026-09-03 03:29:57 swap=497M (delta 0M) rss_total=22M procs=9
+    pid 79909 rss 3M 4400
+    pid 79589 rss 3M 5840
+2026-09-03 03:30:28 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 79909 rss 3M 4400
+    pid 80396 rss 3M 44
+2026-09-03 03:30:58 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 79909 rss 3M 4400
+    pid 80396 rss 3M 44
+2026-09-03 03:31:29 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 80606 rss 3M 1296
+    pid 79909 rss 3M 4400
+2026-09-03 03:32:00 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 80606 rss 3M 1296
+    pid 79909 rss 3M 4400
+2026-09-03 03:32:30 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 80606 rss 3M 1296
+    pid 79746 rss 3M 4108
+2026-09-03 03:33:01 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 79746 rss 3M 4108
+    pid 80847 rss 3M 6312
+2026-09-03 03:33:32 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 80847 rss 3M 6312
+    pid 81825 rss 3M 5932
+2026-09-03 03:34:02 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 81291 rss 3M 6292
+    pid 80847 rss 3M 6312
+2026-09-03 03:34:33 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 81291 rss 3M 6292
+    pid 80847 rss 3M 6312
+2026-09-03 03:35:04 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 81782 rss 3M 4780
+    pid 81291 rss 3M 6292
+2026-09-03 03:35:34 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 81782 rss 3M 4780
+    pid 81291 rss 3M 6292
+2026-09-03 03:36:05 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 81782 rss 3M 4780
+    pid 82527 rss 3M 5220
+2026-09-03 03:36:36 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 82527 rss 3M 5220
+    pid 82272 rss 3M 6040
+2026-09-03 03:37:06 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 82527 rss 3M 5220
+    pid 82272 rss 3M 6040
+2026-09-03 03:37:37 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 82527 rss 3M 5220
+    pid 83263 rss 3M 3604
+2026-09-03 03:38:08 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 82527 rss 3M 5220
+    pid 83263 rss 3M 3604
+2026-09-03 03:38:38 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 82527 rss 3M 5220
+    pid 83263 rss 3M 3604
+2026-09-03 03:39:09 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 83263 rss 3M 3604
+    pid 83371 rss 3M 5452
+2026-09-03 03:39:40 swap=497M (delta 0M) rss_total=22M procs=10
+    pid 83263 rss 3M 3604
+    pid 83380 rss 3M 4064
+2026-09-03 03:40:10 swap=497M (delta 0M) rss_total=23M procs=10
+    pid 83380 rss 3M 4064
+    pid 83263 rss 3M 3604
+2026-09-03 03:40:41 swap=497M (delta 0M) rss_total=24M procs=10
+    pid 83380 rss 3M 4064
+    pid 83263 rss 3M 3604
+2026-09-03 03:41:12 swap=497M (delta 0M) rss_total=25M procs=10
+    pid 83380 rss 3M 4064
+    pid 83263 rss 3M 3604
+2026-09-03 03:41:42 swap=497M (delta 0M) rss_total=26M procs=10
+    pid 84555 rss 3M 6184
+    pid 83371 rss 3M 5452
+2026-09-03 03:42:13 swap=489M (delta -8M) rss_total=25M procs=10
+    pid 84555 rss 3M 6184
+    pid 83380 rss 3M 4064
+2026-09-03 03:42:43 swap=489M (delta 0M) rss_total=25M procs=10
+    pid 84555 rss 3M 6184
+    pid 84897 rss 3M 6068
+2026-09-03 03:43:14 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 84897 rss 3M 6068
+    pid 84583 rss 3M 5072
+2026-09-03 03:43:45 swap=489M (delta 0M) rss_total=22M procs=10
+    pid 85016 rss 3M 268
+    pid 84567 rss 3M 5488
+2026-09-03 03:44:15 swap=489M (delta 0M) rss_total=22M procs=10
+    pid 85016 rss 3M 268
+    pid 85222 rss 3M 4984
+2026-09-03 03:44:46 swap=489M (delta 0M) rss_total=24M procs=10
+    pid 85016 rss 3M 268
+    pid 85222 rss 3M 4984
+2026-09-03 03:45:17 swap=489M (delta 0M) rss_total=24M procs=10
+    pid 85577 rss 3M 1540
+    pid 85016 rss 3M 268
+2026-09-03 03:45:47 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 86128 rss 3M 5132
+    pid 85577 rss 3M 1540
+2026-09-03 03:46:18 swap=489M (delta 0M) rss_total=24M procs=10
+    pid 86128 rss 3M 5132
+    pid 85577 rss 3M 1540
+2026-09-03 03:46:49 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 86128 rss 3M 5132
+    pid 85577 rss 3M 1540
+2026-09-03 03:47:19 swap=489M (delta 0M) rss_total=20M procs=9
+    pid 85577 rss 3M 1540
+    pid 86165 rss 3M 4272
+2026-09-03 03:47:50 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 87072 rss 3M 5924
+    pid 86527 rss 3M 1404
+2026-09-03 03:48:21 swap=489M (delta 0M) rss_total=22M procs=10
+    pid 87072 rss 3M 5924
+    pid 87214 rss 3M 5164
+2026-09-03 03:48:51 swap=489M (delta 0M) rss_total=24M procs=10
+    pid 87072 rss 3M 5924
+    pid 87274 rss 3M 6016
+2026-09-03 03:49:22 swap=489M (delta 0M) rss_total=24M procs=10
+    pid 87072 rss 3M 5924
+    pid 87274 rss 3M 6016
+2026-09-03 03:49:52 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 87072 rss 3M 5924
+    pid 87274 rss 3M 6016
+2026-09-03 03:50:23 swap=489M (delta 0M) rss_total=22M procs=10
+    pid 87072 rss 3M 5924
+    pid 87274 rss 3M 6016
+2026-09-03 03:50:54 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 87072 rss 3M 5924
+    pid 87274 rss 3M 6016
+2026-09-03 03:51:24 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 87072 rss 3M 5924
+    pid 87274 rss 3M 6016
+2026-09-03 03:51:55 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 87072 rss 3M 5924
+    pid 87274 rss 3M 6016
+2026-09-03 03:52:26 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 87072 rss 3M 5924
+    pid 87891 rss 3M 5188
+2026-09-03 03:52:56 swap=489M (delta 0M) rss_total=24M procs=10
+    pid 88590 rss 3M 1516
+    pid 87072 rss 3M 5924
+2026-09-03 03:53:27 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 88590 rss 3M 1516
+    pid 88643 rss 3M 5732
+2026-09-03 03:53:58 swap=489M (delta 0M) rss_total=23M procs=10
+    pid 88590 rss 3M 1516
+    pid 88643 rss 3M 5732
+2026-09-03 03:54:28 swap=489M (delta 0M) rss_total=19M procs=8
+    pid 88590 rss 3M 1516
+    pid 88643 rss 3M 5732
+2026-09-03 03:54:59 swap=489M (delta 0M) rss_total=16M procs=7
+    pid 88643 rss 3M 5732
+    pid 87891 rss 3M 5188
+2026-09-03 03:55:29 swap=489M (delta 0M) rss_total=14M procs=6
+    pid 88643 rss 3M 5732
+    pid 88622 rss 3M 5744
+2026-09-03 03:56:00 swap=489M (delta 0M) rss_total=7M procs=3
+    pid 88643 rss 3M 5732
+    pid 88622 rss 3M 5744
+2026-09-03 03:56:30 swap=489M (delta 0M) rss_total=4M procs=2
+    pid 88622 rss 3M 5744
+    pid 88582 rss 2M 3072
+2026-09-03 03:57:01 swap=489M (delta 0M) rss_total=4M procs=2
+    pid 88622 rss 3M 5744
+    pid 88582 rss 2M 3072
+2026-09-03 03:57:31 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 03:58:01 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 03:58:32 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 03:59:02 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 03:59:33 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:00:03 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:00:34 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:01:04 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:01:35 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:02:05 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:02:35 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:03:06 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:03:36 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:04:07 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:04:37 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:05:08 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:05:38 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:06:09 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:06:39 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:07:09 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:07:40 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:08:10 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:08:41 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:09:11 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:09:42 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:10:12 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:10:43 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:11:13 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:11:43 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:12:14 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:12:44 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:13:15 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:13:45 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:14:16 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:14:46 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:15:17 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:15:47 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:16:18 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:16:48 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:17:18 swap=489M (delta 0M) rss_total=0M procs=0
+2026-09-03 04:17:19 no ramsey pythons for 10 samples; watchdog exiting

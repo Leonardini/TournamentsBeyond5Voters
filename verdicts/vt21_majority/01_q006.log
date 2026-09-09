@@ -1,0 +1,13 @@
+  toporb reps: 0  -- SOUND ONLY IF these meet EVERY Aut(T)-orbit on V; the engine cannot check that
+n=21 K=5 margin=majority order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 defect_R=0 base_sz=5 base=0,1,2,9,14 base_mask=821 base_states=8031
+  static_tail=3,4,5,6,7,8,10,11,12,13,15,16,17,18,19,20
+  base_state_slice=[1204,1405)
+WITNESS
+  voter 0: 8 3 6 10 19 11 12 0 1 4 16 20 9 13 5 18 7 2 14 17 15
+  voter 1: 0 11 9 14 3 15 18 4 19 5 12 7 20 1 8 6 10 13 16 17 2
+  voter 2: 12 2 15 6 16 7 11 1 17 4 5 9 10 19 20 3 13 8 18 14 0
+  voter 3: 13 2 5 17 18 10 20 4 14 6 0 1 16 3 19 8 7 9 12 15 11
+  voter 4: 13 7 14 17 8 15 16 20 18 9 19 1 2 10 0 5 3 11 12 4 6
+VERIFY bad_arcs=0 reversed=0 off_R=0 support_min=3 support_max=4 OK
+SLICE cleared=0 capped=0 of [1204,1405)
+RESULT SAT nodes=16998116 sols=1 base_states=8031 dom_calls=16 dom_nodes=12225 mrv_fails=43499895 top0_fails=1120965 bound_fails=0 fas_fails=0/0 refine_tuples=19425889550 time=135.126s

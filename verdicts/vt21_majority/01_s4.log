@@ -1,0 +1,57 @@
+  toporb reps: 0  -- SOUND ONLY IF these meet EVERY Aut(T)-orbit on V; the engine cannot check that
+n=21 K=5 margin=majority order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 defect_R=0 base_sz=5 base=0,1,2,9,14 base_mask=821 base_states=8031
+  static_tail=3,4,5,6,7,8,10,11,12,13,15,16,17,18,19,20
+  base_state_slice=[6424,8031)
+PROGRESS b=6456/8031 cleared=32 capped=0 nodes=32 time=0.0s
+PROGRESS b=6488/8031 cleared=64 capped=0 nodes=64 time=0.0s
+PROGRESS b=6520/8031 cleared=96 capped=0 nodes=96 time=0.0s
+PROGRESS b=6552/8031 cleared=128 capped=0 nodes=128 time=0.0s
+PROGRESS b=6584/8031 cleared=160 capped=0 nodes=160 time=0.0s
+PROGRESS b=6616/8031 cleared=192 capped=0 nodes=192 time=0.0s
+PROGRESS b=6648/8031 cleared=224 capped=0 nodes=224 time=0.0s
+PROGRESS b=6680/8031 cleared=256 capped=0 nodes=256 time=0.0s
+PROGRESS b=6712/8031 cleared=288 capped=0 nodes=288 time=0.0s
+PROGRESS b=6744/8031 cleared=320 capped=0 nodes=320 time=0.0s
+PROGRESS b=6776/8031 cleared=352 capped=0 nodes=352 time=0.0s
+PROGRESS b=6808/8031 cleared=384 capped=0 nodes=384 time=0.1s
+PROGRESS b=6840/8031 cleared=416 capped=0 nodes=416 time=0.1s
+PROGRESS b=6872/8031 cleared=448 capped=0 nodes=448 time=0.1s
+PROGRESS b=6904/8031 cleared=480 capped=0 nodes=480 time=0.1s
+PROGRESS b=6936/8031 cleared=512 capped=0 nodes=512 time=0.1s
+PROGRESS b=6968/8031 cleared=544 capped=0 nodes=544 time=0.1s
+PROGRESS b=7000/8031 cleared=576 capped=0 nodes=576 time=0.1s
+PROGRESS b=7032/8031 cleared=608 capped=0 nodes=608 time=0.1s
+PROGRESS b=7064/8031 cleared=640 capped=0 nodes=640 time=0.1s
+PROGRESS b=7096/8031 cleared=672 capped=0 nodes=672 time=0.1s
+PROGRESS b=7128/8031 cleared=704 capped=0 nodes=704 time=0.1s
+PROGRESS b=7160/8031 cleared=736 capped=0 nodes=736 time=0.1s
+PROGRESS b=7192/8031 cleared=768 capped=0 nodes=768 time=0.1s
+PROGRESS b=7224/8031 cleared=800 capped=0 nodes=800 time=0.1s
+PROGRESS b=7256/8031 cleared=832 capped=0 nodes=832 time=0.1s
+PROGRESS b=7288/8031 cleared=864 capped=0 nodes=864 time=0.1s
+PROGRESS b=7320/8031 cleared=896 capped=0 nodes=896 time=0.1s
+PROGRESS b=7352/8031 cleared=928 capped=0 nodes=928 time=0.1s
+PROGRESS b=7384/8031 cleared=960 capped=0 nodes=960 time=0.1s
+PROGRESS b=7416/8031 cleared=992 capped=0 nodes=992 time=0.1s
+PROGRESS b=7448/8031 cleared=1024 capped=0 nodes=1024 time=0.1s
+PROGRESS b=7480/8031 cleared=1056 capped=0 nodes=1056 time=0.1s
+PROGRESS b=7512/8031 cleared=1088 capped=0 nodes=1088 time=0.1s
+PROGRESS b=7544/8031 cleared=1120 capped=0 nodes=1120 time=0.2s
+PROGRESS b=7576/8031 cleared=1152 capped=0 nodes=1152 time=0.2s
+PROGRESS b=7608/8031 cleared=1184 capped=0 nodes=1184 time=0.2s
+PROGRESS b=7640/8031 cleared=1216 capped=0 nodes=1216 time=0.2s
+PROGRESS b=7672/8031 cleared=1248 capped=0 nodes=1248 time=0.2s
+PROGRESS b=7704/8031 cleared=1280 capped=0 nodes=1280 time=0.2s
+PROGRESS b=7736/8031 cleared=1312 capped=0 nodes=1312 time=0.2s
+PROGRESS b=7768/8031 cleared=1344 capped=0 nodes=1344 time=0.2s
+PROGRESS b=7800/8031 cleared=1376 capped=0 nodes=1376 time=0.2s
+PROGRESS b=7832/8031 cleared=1408 capped=0 nodes=1408 time=0.2s
+PROGRESS b=7864/8031 cleared=1440 capped=0 nodes=1440 time=0.2s
+PROGRESS b=7896/8031 cleared=1472 capped=0 nodes=1472 time=0.2s
+PROGRESS b=7928/8031 cleared=1504 capped=0 nodes=1504 time=0.2s
+PROGRESS b=7960/8031 cleared=1536 capped=0 nodes=1536 time=0.2s
+PROGRESS b=7992/8031 cleared=1568 capped=0 nodes=1568 time=0.2s
+PROGRESS b=8024/8031 cleared=1600 capped=0 nodes=1600 time=0.2s
+PROGRESS b=8031/8031 cleared=1607 capped=0 nodes=1607 time=0.2s
+SLICE cleared=1607 capped=0 of [6424,8031)  => SLICE EXHAUSTED, no witness
+RESULT UNSAT nodes=1607 sols=0 base_states=8031 dom_calls=25712 dom_nodes=19019992 mrv_fails=0 top0_fails=1607 bound_fails=0 fas_fails=0/0 refine_tuples=0 time=0.214s

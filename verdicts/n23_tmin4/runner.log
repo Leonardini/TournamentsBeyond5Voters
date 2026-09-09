@@ -1,0 +1,21 @@
+[22:17] PHASE tmin4: hosts v010 v016 v017 v038, margin=exact, toporb=OFF, 40 slices/host, 10 cores, deadline Mon 07:35
+[22:17]   host v010: base=(0 1 2 8 9), 2200 base states -> 40 slices
+[22:17]   host v016: base=(0 1 2 7 8), 2200 base states -> 40 slices
+[22:17]   host v017: base=(0 1 2 7 8), 2200 base states -> 40 slices
+[22:17]   host v038: base=(0 1 2 5 6), 2200 base states -> 40 slices
+[22:17]   host v010: SAT (slice 5) -- cancelling its remaining slices
+[02:29] PHASE tmin4 verdicts:
+[02:29]   vt21i_v010: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[02:29]   vt21i_v016: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[02:29]       all 40 slices exhausted, none capped
+[02:29]       => a margin-1 obstruction at n=21 (the host IS majority-inducible,
+[02:29]          so this is the Paley(19)-style separation, not an N(5) result)
+[02:29]   vt21i_v017: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[02:29]       all 40 slices exhausted, none capped
+[02:29]       => a margin-1 obstruction at n=21 (the host IS majority-inducible,
+[02:29]          so this is the Paley(19)-style separation, not an N(5) result)
+[02:29]   vt21i_v038: *** UNSAT -- NOT 5-INDUCIBLE at margin=exact ***
+[02:29]       all 40 slices exhausted, none capped
+[02:29]       => a margin-1 obstruction at n=21 (the host IS majority-inducible,
+[02:29]          so this is the Paley(19)-style separation, not an N(5) result)
+[02:29] RUNNER DONE

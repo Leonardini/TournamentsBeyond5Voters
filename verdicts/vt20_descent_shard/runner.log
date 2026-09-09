@@ -1,0 +1,1405 @@
+[16:04] PHASE descent: hosts h02_mv00, margin=exact, toporb=OFF, 72 slices/host, 10 cores, deadline Tue 19:04
+[16:04]   host h02_mv00: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 72 slices
+[16:04]   host h02_mv00: SAT (slice 0) -- cancelling its remaining slices
+[16:04] PHASE descent verdicts:
+[16:04]   h02_mv00: AUDIT from the slice logs: SAT -- witness in h02_mv00_q00000_00030.log
+[16:04]   h02_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[16:04] RUNNER DONE
+[16:05] PHASE h01f00_descent: hosts h01_f00_mv00 h01_f00_mv02 h01_f00_mv03 h01_f00_mv04 h01_f00_mv05 h01_f00_mv06 h01_f00_mv07 h01_f00_mv08 h01_f00_mv09 h01_f00_mv10 h01_f00_mv11 h01_f00_mv12 h01_f00_mv13 h01_f00_mv14 h01_f00_mv15 h01_f00_mv16 h01_f00_mv17 h01_f00_mv18 h01_f00_mv19 h01_f00_mv20 , margin=exact, toporb=OFF, 40 slices/host, 10 cores, deadline Tue 19:05
+[17:10] PHASE h01f00_descent: hosts h01_f00_mv00 h01_f00_mv02 h01_f00_mv03 h01_f00_mv04 h01_f00_mv05 h01_f00_mv06 h01_f00_mv07 h01_f00_mv08 h01_f00_mv09 h01_f00_mv10 h01_f00_mv11 h01_f00_mv12 h01_f00_mv13 h01_f00_mv14 h01_f00_mv15 h01_f00_mv16 h01_f00_mv17 h01_f00_mv18 h01_f00_mv19 h01_f00_mv20, margin=exact, toporb=OFF, 40 slices/host, 10 cores, deadline Tue 21:10
+[17:10]   host h01_f00_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:10]   host h01_f00_mv02: base=(0 1 2 5 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:11]   host h01_f00_mv03: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:11]   host h01_f00_mv04: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:11]   host h01_f00_mv05: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:11]   host h01_f00_mv06: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:11]   host h01_f00_mv07: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:12]   host h01_f00_mv08: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:12]   host h01_f00_mv09: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:12]   host h01_f00_mv10: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:12]   host h01_f00_mv11: base=(0 1 3 6 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:12]   host h01_f00_mv12: base=(0 1 3 6 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:13]   host h01_f00_mv13: base=(0 1 2 11 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:13]   host h01_f00_mv14: base=(0 1 2 11 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:13]   host h01_f00_mv15: base=(0 1 2 11 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:13]   host h01_f00_mv16: base=(0 1 2 11 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:13]   host h01_f00_mv17: base=(0 1 2 11 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:14]   host h01_f00_mv18: base=(0 1 2 11 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:14]   host h01_f00_mv19: base=(0 1 2 11 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:14]   host h01_f00_mv20: base=(0 1 2 11 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:14]   host h01_f00_mv00: SAT (slice 6) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv02: SAT (slice 0) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv03: SAT (slice 1) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv04: SAT (slice 1) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv05: SAT (slice 0) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv06: SAT (slice 0) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv07: SAT (slice 0) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv08: SAT (slice 2) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv09: SAT (slice 1) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv10: SAT (slice 1) -- cancelling its remaining slices
+[17:14]   host h01_f00_mv11: SAT (slice 4) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv12: SAT (slice 2) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv13: SAT (slice 1) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv14: SAT (slice 0) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv15: SAT (slice 7) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv16: SAT (slice 0) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv17: SAT (slice 1) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv18: SAT (slice 4) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv19: SAT (slice 1) -- cancelling its remaining slices
+[17:15]   host h01_f00_mv20: SAT (slice 6) -- cancelling its remaining slices
+[17:15] PHASE h01f00_descent verdicts:
+[17:15]   h01_f00_mv00: AUDIT from the slice logs: SAT -- witness in h01_f00_mv00_q00330_00385.log
+[17:15]   h01_f00_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:15]   h01_f00_mv02: AUDIT from the slice logs: SAT -- witness in h01_f00_mv02_q00000_00055.log
+[17:15]   h01_f00_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:15]   h01_f00_mv03: AUDIT from the slice logs: SAT -- witness in h01_f00_mv03_q00055_00110.log
+[17:15]   h01_f00_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:16]   h01_f00_mv04: AUDIT from the slice logs: SAT -- witness in h01_f00_mv04_q00055_00110.log
+[17:16]   h01_f00_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:16]   h01_f00_mv05: AUDIT from the slice logs: SAT -- witness in h01_f00_mv05_q00000_00055.log
+[17:16]   h01_f00_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:16]   h01_f00_mv06: AUDIT from the slice logs: SAT -- witness in h01_f00_mv06_q00000_00055.log
+[17:16]   h01_f00_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:16]   h01_f00_mv07: AUDIT from the slice logs: SAT -- witness in h01_f00_mv07_q00000_00055.log
+[17:16]   h01_f00_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:17]   h01_f00_mv08: AUDIT from the slice logs: SAT -- witness in h01_f00_mv08_q00110_00165.log
+[17:17]   h01_f00_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:17]   h01_f00_mv09: AUDIT from the slice logs: SAT -- witness in h01_f00_mv09_q00055_00110.log
+[17:17]   h01_f00_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:17]   h01_f00_mv10: AUDIT from the slice logs: SAT -- witness in h01_f00_mv10_q00055_00110.log
+[17:17]   h01_f00_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:17]   h01_f00_mv11: AUDIT from the slice logs: SAT -- witness in h01_f00_mv11_q00220_00275.log
+[17:17]   h01_f00_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:17]   h01_f00_mv12: AUDIT from the slice logs: SAT -- witness in h01_f00_mv12_q00110_00165.log
+[17:17]   h01_f00_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:18]   h01_f00_mv13: AUDIT from the slice logs: SAT -- witness in h01_f00_mv13_q00055_00110.log
+[17:18]   h01_f00_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:18]   h01_f00_mv14: AUDIT from the slice logs: SAT -- witness in h01_f00_mv14_q00000_00055.log
+[17:18]   h01_f00_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:18]   h01_f00_mv15: AUDIT from the slice logs: SAT -- witness in h01_f00_mv15_q00385_00440.log
+[17:18]   h01_f00_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:18]   h01_f00_mv16: AUDIT from the slice logs: SAT -- witness in h01_f00_mv16_q00000_00055.log
+[17:18]   h01_f00_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:18]   h01_f00_mv17: AUDIT from the slice logs: SAT -- witness in h01_f00_mv17_q00055_00110.log
+[17:18]   h01_f00_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:19]   h01_f00_mv18: AUDIT from the slice logs: SAT -- witness in h01_f00_mv18_q00220_00275.log
+[17:19]   h01_f00_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:19]   h01_f00_mv19: AUDIT from the slice logs: SAT -- witness in h01_f00_mv19_q00055_00110.log
+[17:19]   h01_f00_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:19]   h01_f00_mv20: AUDIT from the slice logs: SAT -- witness in h01_f00_mv20_q00330_00385.log
+[17:19]   h01_f00_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[17:19] RUNNER DONE
+[17:48] PHASE rest_descent: hosts h01_f01_mv00 h01_f01_mv01 h01_f01_mv02 h01_f01_mv04 h01_f01_mv05 h01_f01_mv06 h01_f01_mv07 h01_f01_mv08 h01_f01_mv09 h01_f01_mv10 h01_f01_mv11 h01_f01_mv12 h01_f01_mv13 h01_f01_mv14 h01_f01_mv15 h01_f01_mv16 h01_f01_mv17 h01_f01_mv18 h01_f01_mv19 h01_f01_mv20 h01_f02_mv00 h01_f02_mv01 h01_f02_mv02 h01_f02_mv03 h01_f02_mv05 h01_f02_mv06 h01_f02_mv07 h01_f02_mv08 h01_f02_mv09 h01_f02_mv10 h01_f02_mv11 h01_f02_mv12 h01_f02_mv13 h01_f02_mv14 h01_f02_mv15 h01_f02_mv16 h01_f02_mv17 h01_f02_mv18 h01_f02_mv19 h01_f02_mv20 h01_f03_mv00 h01_f03_mv01 h01_f03_mv02 h01_f03_mv03 h01_f03_mv04 h01_f03_mv06 h01_f03_mv07 h01_f03_mv08 h01_f03_mv09 h01_f03_mv10 h01_f03_mv11 h01_f03_mv12 h01_f03_mv13 h01_f03_mv14 h01_f03_mv15 h01_f03_mv16 h01_f03_mv17 h01_f03_mv18 h01_f03_mv19 h01_f03_mv20 h01_f04_mv00 h01_f04_mv01 h01_f04_mv02 h01_f04_mv03 h01_f04_mv04 h01_f04_mv05 h01_f04_mv06 h01_f04_mv08 h01_f04_mv09 h01_f04_mv10 h01_f04_mv11 h01_f04_mv12 h01_f04_mv13 h01_f04_mv14 h01_f04_mv15 h01_f04_mv16 h01_f04_mv17 h01_f04_mv18 h01_f04_mv19 h01_f04_mv20 h01_f05_mv00 h01_f05_mv01 h01_f05_mv02 h01_f05_mv03 h01_f05_mv04 h01_f05_mv05 h01_f05_mv06 h01_f05_mv07 h01_f05_mv08 h01_f05_mv10 h01_f05_mv11 h01_f05_mv12 h01_f05_mv13 h01_f05_mv14 h01_f05_mv15 h01_f05_mv16 h01_f05_mv17 h01_f05_mv18 h01_f05_mv19 h01_f05_mv20 h01_f06_mv00 h01_f06_mv01 h01_f06_mv02 h01_f06_mv03 h01_f06_mv04 h01_f06_mv05 h01_f06_mv06 h01_f06_mv07 h01_f06_mv08 h01_f06_mv09 h01_f06_mv10 h01_f06_mv12 h01_f06_mv13 h01_f06_mv14 h01_f06_mv15 h01_f06_mv16 h01_f06_mv17 h01_f06_mv18 h01_f06_mv19 h01_f06_mv20 h01_f07_mv00 h01_f07_mv01 h01_f07_mv02 h01_f07_mv03 h01_f07_mv04 h01_f07_mv05 h01_f07_mv06 h01_f07_mv07 h01_f07_mv08 h01_f07_mv09 h01_f07_mv10 h01_f07_mv11 h01_f07_mv13 h01_f07_mv14 h01_f07_mv15 h01_f07_mv16 h01_f07_mv17 h01_f07_mv18 h01_f07_mv19 h01_f07_mv20 h01_f08_mv00 h01_f08_mv01 h01_f08_mv02 h01_f08_mv03 h01_f08_mv04 h01_f08_mv05 h01_f08_mv06 h01_f08_mv07 h01_f08_mv08 h01_f08_mv09 h01_f08_mv10 h01_f08_mv11 h01_f08_mv12 h01_f08_mv13 h01_f08_mv14 h01_f08_mv16 h01_f08_mv17 h01_f08_mv18 h01_f08_mv19 h01_f08_mv20 h01_f09_mv00 h01_f09_mv01 h01_f09_mv02 h01_f09_mv03 h01_f09_mv04 h01_f09_mv05 h01_f09_mv06 h01_f09_mv07 h01_f09_mv08 h01_f09_mv09 h01_f09_mv10 h01_f09_mv11 h01_f09_mv12 h01_f09_mv13 h01_f09_mv14 h01_f09_mv15 h01_f09_mv17 h01_f09_mv18 h01_f09_mv19 h01_f09_mv20 h02_f00_mv00 h02_f00_mv02 h02_f00_mv03 h02_f00_mv04 h02_f00_mv05 h02_f00_mv06 h02_f00_mv07 h02_f00_mv08 h02_f00_mv09 h02_f00_mv10 h02_f00_mv11 h02_f00_mv12 h02_f00_mv13 h02_f00_mv14 h02_f00_mv15 h02_f00_mv16 h02_f00_mv17 h02_f00_mv18 h02_f00_mv19 h02_f00_mv20 h02_f02_mv00 h02_f02_mv01 h02_f02_mv02 h02_f02_mv03 h02_f02_mv05 h02_f02_mv06 h02_f02_mv07 h02_f02_mv08 h02_f02_mv09 h02_f02_mv10 h02_f02_mv11 h02_f02_mv12 h02_f02_mv13 h02_f02_mv14 h02_f02_mv15 h02_f02_mv16 h02_f02_mv17 h02_f02_mv18 h02_f02_mv19 h02_f02_mv20 h02_f05_mv00 h02_f05_mv01 h02_f05_mv02 h02_f05_mv03 h02_f05_mv04 h02_f05_mv05 h02_f05_mv06 h02_f05_mv07 h02_f05_mv08 h02_f05_mv09 h02_f05_mv11 h02_f05_mv12 h02_f05_mv13 h02_f05_mv14 h02_f05_mv15 h02_f05_mv16 h02_f05_mv17 h02_f05_mv18 h02_f05_mv19 h02_f05_mv20 h02_f06_mv00 h02_f06_mv01 h02_f06_mv02 h02_f06_mv03 h02_f06_mv04 h02_f06_mv05 h02_f06_mv06 h02_f06_mv07 h02_f06_mv08 h02_f06_mv09 h02_f06_mv10 h02_f06_mv12 h02_f06_mv13 h02_f06_mv14 h02_f06_mv15 h02_f06_mv16 h02_f06_mv17 h02_f06_mv18 h02_f06_mv19 h02_f06_mv20 h02_f09_mv00 h02_f09_mv01 h02_f09_mv02 h02_f09_mv03 h02_f09_mv04 h02_f09_mv05 h02_f09_mv06 h02_f09_mv07 h02_f09_mv08 h02_f09_mv09 h02_f09_mv10 h02_f09_mv11 h02_f09_mv12 h02_f09_mv13 h02_f09_mv14 h02_f09_mv15 h02_f09_mv16 h02_f09_mv18 h02_f09_mv19 h02_f09_mv20, margin=exact, toporb=OFF, 40 slices/host, 10 cores, deadline Wed 01:48
+[17:49]   host h01_f01_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:49]   host h01_f01_mv01: base=(0 1 2 6 8), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:49]   host h01_f01_mv02: base=(0 1 2 4 5), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:49]   host h01_f01_mv04: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:49]   host h01_f01_mv05: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:50]   host h01_f01_mv06: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:50]   host h01_f01_mv07: base=(0 1 2 3 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:50]   host h01_f01_mv08: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:50]   host h01_f01_mv09: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:50]   host h01_f01_mv10: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:51]   host h01_f01_mv11: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:51]   host h01_f01_mv12: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:51]   host h01_f01_mv13: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:51]   host h01_f01_mv14: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:51]   host h01_f01_mv15: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:52]   host h01_f01_mv16: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:52]   host h01_f01_mv17: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:52]   host h01_f01_mv18: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:52]   host h01_f01_mv19: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:52]   host h01_f01_mv20: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:53]   host h01_f02_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:53]   host h01_f02_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:53]   host h01_f02_mv02: base=(0 1 2 3 5), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:53]   host h01_f02_mv03: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:53]   host h01_f02_mv05: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:54]   host h01_f02_mv06: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:54]   host h01_f02_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:54]   host h01_f02_mv08: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:54]   host h01_f02_mv09: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:54]   host h01_f02_mv10: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:55]   host h01_f02_mv11: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:55]   host h01_f02_mv12: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:55]   host h01_f02_mv13: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:55]   host h01_f02_mv14: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:55]   host h01_f02_mv15: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:56]   host h01_f02_mv16: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:56]   host h01_f02_mv17: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:56]   host h01_f02_mv18: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:56]   host h01_f02_mv19: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:56]   host h01_f02_mv20: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:57]   host h01_f03_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:57]   host h01_f03_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:57]   host h01_f03_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:57]   host h01_f03_mv03: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:57]   host h01_f03_mv04: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:58]   host h01_f03_mv06: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:58]   host h01_f03_mv07: base=(0 1 2 5 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:58]   host h01_f03_mv08: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:58]   host h01_f03_mv09: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:58]   host h01_f03_mv10: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:59]   host h01_f03_mv11: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:59]   host h01_f03_mv12: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:59]   host h01_f03_mv13: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:59]   host h01_f03_mv14: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[17:59]   host h01_f03_mv15: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:00]   host h01_f03_mv16: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:00]   host h01_f03_mv17: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:00]   host h01_f03_mv18: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:00]   host h01_f03_mv19: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:00]   host h01_f03_mv20: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:01]   host h01_f04_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:01]   host h01_f04_mv01: base=(0 1 2 6 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:01]   host h01_f04_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:01]   host h01_f04_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:01]   host h01_f04_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:02]   host h01_f04_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:02]   host h01_f04_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:02]   host h01_f04_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:02]   host h01_f04_mv09: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:03]   host h01_f04_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:03]   host h01_f04_mv11: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:03]   host h01_f04_mv12: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:03]   host h01_f04_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:03]   host h01_f04_mv14: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:04]   host h01_f04_mv15: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:04]   host h01_f04_mv16: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:04]   host h01_f04_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:04]   host h01_f04_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:04]   host h01_f04_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:05]   host h01_f04_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:05]   host h01_f05_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:05]   host h01_f05_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:05]   host h01_f05_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:05]   host h01_f05_mv03: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:06]   host h01_f05_mv04: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:06]   host h01_f05_mv05: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:06]   host h01_f05_mv06: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:06]   host h01_f05_mv07: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:06]   host h01_f05_mv08: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:07]   host h01_f05_mv10: base=(0 1 2 9 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:07]   host h01_f05_mv11: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:07]   host h01_f05_mv12: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:07]   host h01_f05_mv13: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:07]   host h01_f05_mv14: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:08]   host h01_f05_mv15: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:08]   host h01_f05_mv16: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:08]   host h01_f05_mv17: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:08]   host h01_f05_mv18: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:08]   host h01_f05_mv19: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:09]   host h01_f05_mv20: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:09]   host h01_f06_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:09]   host h01_f06_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:09]   host h01_f06_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:09]   host h01_f06_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:10]   host h01_f06_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:10]   host h01_f06_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:10]   host h01_f06_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:10]   host h01_f06_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:10]   host h01_f06_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:11]   host h01_f06_mv09: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:11]   host h01_f06_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:11]   host h01_f06_mv12: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:11]   host h01_f06_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:11]   host h01_f06_mv14: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:12]   host h01_f06_mv15: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:12]   host h01_f06_mv16: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:12]   host h01_f06_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:12]   host h01_f06_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:12]   host h01_f06_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:13]   host h01_f06_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:13]   host h01_f07_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:13]   host h01_f07_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:13]   host h01_f07_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:14]   host h01_f07_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:14]   host h01_f07_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:14]   host h01_f07_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:14]   host h01_f07_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:14]   host h01_f07_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:15]   host h01_f07_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:15]   host h01_f07_mv09: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:15]   host h01_f07_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:15]   host h01_f07_mv11: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:15]   host h01_f07_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:16]   host h01_f07_mv14: base=(0 1 2 11 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:16]   host h01_f07_mv15: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:16]   host h01_f07_mv16: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:16]   host h01_f07_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:16]   host h01_f07_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:17]   host h01_f07_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:17]   host h01_f07_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:17]   host h01_f08_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:17]   host h01_f08_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:17]   host h01_f08_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:18]   host h01_f08_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:18]   host h01_f08_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:18]   host h01_f08_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:18]   host h01_f08_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:18]   host h01_f08_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:19]   host h01_f08_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:19]   host h01_f08_mv09: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:19]   host h01_f08_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:19]   host h01_f08_mv11: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:19]   host h01_f08_mv12: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:20]   host h01_f08_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:20]   host h01_f08_mv14: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:20]   host h01_f08_mv16: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:20]   host h01_f08_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:20]   host h01_f08_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:21]   host h01_f08_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:21]   host h01_f08_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:21]   host h01_f09_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:21]   host h01_f09_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:21]   host h01_f09_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:22]   host h01_f09_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:22]   host h01_f09_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:22]   host h01_f09_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:22]   host h01_f09_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:22]   host h01_f09_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:23]   host h01_f09_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:23]   host h01_f09_mv09: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:23] PHASE regress: hosts h01_f00_mv00 h01_f00_mv02 h01_f00_mv03 h01_f00_mv04 h01_f00_mv05, margin=exact, toporb=OFF, 40 slices/host, 5 cores, deadline Tue 18:26
+[18:23] probing 5 hosts in parallel over 5 workers
+[18:23]   host h01_f00_mv00: already SAT on the logs (witness in h01_f00_mv00_q00330_00385.log) -- SKIPPING
+[18:23]   host h01_f00_mv02: already SAT on the logs (witness in h01_f00_mv02_q00000_00055.log) -- SKIPPING
+[18:23]   host h01_f00_mv03: already SAT on the logs (witness in h01_f00_mv03_q00055_00110.log) -- SKIPPING
+[18:23]   host h01_f00_mv04: already SAT on the logs (witness in h01_f00_mv04_q00055_00110.log) -- SKIPPING
+[18:23]   host h01_f00_mv05: already SAT on the logs (witness in h01_f00_mv05_q00000_00055.log) -- SKIPPING
+[18:23] PHASE regress verdicts:
+[18:23]   h01_f00_mv00: AUDIT from the slice logs: SAT -- witness in h01_f00_mv00_q00330_00385.log
+[18:23]   h01_f00_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:24]   h01_f00_mv02: AUDIT from the slice logs: SAT -- witness in h01_f00_mv02_q00000_00055.log
+[18:24]   h01_f00_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:24]   h01_f00_mv03: AUDIT from the slice logs: SAT -- witness in h01_f00_mv03_q00055_00110.log
+[18:24]   h01_f00_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:24]   h01_f00_mv04: AUDIT from the slice logs: SAT -- witness in h01_f00_mv04_q00055_00110.log
+[18:24]   h01_f00_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:24]   h01_f00_mv05: AUDIT from the slice logs: SAT -- witness in h01_f00_mv05_q00000_00055.log
+[18:24]   h01_f00_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:24] RUNNER DONE
+[18:25] PHASE rest_descent: hosts h01_f01_mv00 h01_f01_mv01 h01_f01_mv02 h01_f01_mv04 h01_f01_mv05 h01_f01_mv06 h01_f01_mv07 h01_f01_mv08 h01_f01_mv09 h01_f01_mv10 h01_f01_mv11 h01_f01_mv12 h01_f01_mv13 h01_f01_mv14 h01_f01_mv15 h01_f01_mv16 h01_f01_mv17 h01_f01_mv18 h01_f01_mv19 h01_f01_mv20 h01_f02_mv00 h01_f02_mv01 h01_f02_mv02 h01_f02_mv03 h01_f02_mv05 h01_f02_mv06 h01_f02_mv07 h01_f02_mv08 h01_f02_mv09 h01_f02_mv10 h01_f02_mv11 h01_f02_mv12 h01_f02_mv13 h01_f02_mv14 h01_f02_mv15 h01_f02_mv16 h01_f02_mv17 h01_f02_mv18 h01_f02_mv19 h01_f02_mv20 h01_f03_mv00 h01_f03_mv01 h01_f03_mv02 h01_f03_mv03 h01_f03_mv04 h01_f03_mv06 h01_f03_mv07 h01_f03_mv08 h01_f03_mv09 h01_f03_mv10 h01_f03_mv11 h01_f03_mv12 h01_f03_mv13 h01_f03_mv14 h01_f03_mv15 h01_f03_mv16 h01_f03_mv17 h01_f03_mv18 h01_f03_mv19 h01_f03_mv20 h01_f04_mv00 h01_f04_mv01 h01_f04_mv02 h01_f04_mv03 h01_f04_mv04 h01_f04_mv05 h01_f04_mv06 h01_f04_mv08 h01_f04_mv09 h01_f04_mv10 h01_f04_mv11 h01_f04_mv12 h01_f04_mv13 h01_f04_mv14 h01_f04_mv15 h01_f04_mv16 h01_f04_mv17 h01_f04_mv18 h01_f04_mv19 h01_f04_mv20 h01_f05_mv00 h01_f05_mv01 h01_f05_mv02 h01_f05_mv03 h01_f05_mv04 h01_f05_mv05 h01_f05_mv06 h01_f05_mv07 h01_f05_mv08 h01_f05_mv10 h01_f05_mv11 h01_f05_mv12 h01_f05_mv13 h01_f05_mv14 h01_f05_mv15 h01_f05_mv16 h01_f05_mv17 h01_f05_mv18 h01_f05_mv19 h01_f05_mv20 h01_f06_mv00 h01_f06_mv01 h01_f06_mv02 h01_f06_mv03 h01_f06_mv04 h01_f06_mv05 h01_f06_mv06 h01_f06_mv07 h01_f06_mv08 h01_f06_mv09 h01_f06_mv10 h01_f06_mv12 h01_f06_mv13 h01_f06_mv14 h01_f06_mv15 h01_f06_mv16 h01_f06_mv17 h01_f06_mv18 h01_f06_mv19 h01_f06_mv20 h01_f07_mv00 h01_f07_mv01 h01_f07_mv02 h01_f07_mv03 h01_f07_mv04 h01_f07_mv05 h01_f07_mv06 h01_f07_mv07 h01_f07_mv08 h01_f07_mv09 h01_f07_mv10 h01_f07_mv11 h01_f07_mv13 h01_f07_mv14 h01_f07_mv15 h01_f07_mv16 h01_f07_mv17 h01_f07_mv18 h01_f07_mv19 h01_f07_mv20 h01_f08_mv00 h01_f08_mv01 h01_f08_mv02 h01_f08_mv03 h01_f08_mv04 h01_f08_mv05 h01_f08_mv06 h01_f08_mv07 h01_f08_mv08 h01_f08_mv09 h01_f08_mv10 h01_f08_mv11 h01_f08_mv12 h01_f08_mv13 h01_f08_mv14 h01_f08_mv16 h01_f08_mv17 h01_f08_mv18 h01_f08_mv19 h01_f08_mv20 h01_f09_mv00 h01_f09_mv01 h01_f09_mv02 h01_f09_mv03 h01_f09_mv04 h01_f09_mv05 h01_f09_mv06 h01_f09_mv07 h01_f09_mv08 h01_f09_mv09 h01_f09_mv10 h01_f09_mv11 h01_f09_mv12 h01_f09_mv13 h01_f09_mv14 h01_f09_mv15 h01_f09_mv17 h01_f09_mv18 h01_f09_mv19 h01_f09_mv20 h02_f00_mv00 h02_f00_mv02 h02_f00_mv03 h02_f00_mv04 h02_f00_mv05 h02_f00_mv06 h02_f00_mv07 h02_f00_mv08 h02_f00_mv09 h02_f00_mv10 h02_f00_mv11 h02_f00_mv12 h02_f00_mv13 h02_f00_mv14 h02_f00_mv15 h02_f00_mv16 h02_f00_mv17 h02_f00_mv18 h02_f00_mv19 h02_f00_mv20 h02_f02_mv00 h02_f02_mv01 h02_f02_mv02 h02_f02_mv03 h02_f02_mv05 h02_f02_mv06 h02_f02_mv07 h02_f02_mv08 h02_f02_mv09 h02_f02_mv10 h02_f02_mv11 h02_f02_mv12 h02_f02_mv13 h02_f02_mv14 h02_f02_mv15 h02_f02_mv16 h02_f02_mv17 h02_f02_mv18 h02_f02_mv19 h02_f02_mv20 h02_f05_mv00 h02_f05_mv01 h02_f05_mv02 h02_f05_mv03 h02_f05_mv04 h02_f05_mv05 h02_f05_mv06 h02_f05_mv07 h02_f05_mv08 h02_f05_mv09 h02_f05_mv11 h02_f05_mv12 h02_f05_mv13 h02_f05_mv14 h02_f05_mv15 h02_f05_mv16 h02_f05_mv17 h02_f05_mv18 h02_f05_mv19 h02_f05_mv20 h02_f06_mv00 h02_f06_mv01 h02_f06_mv02 h02_f06_mv03 h02_f06_mv04 h02_f06_mv05 h02_f06_mv06 h02_f06_mv07 h02_f06_mv08 h02_f06_mv09 h02_f06_mv10 h02_f06_mv12 h02_f06_mv13 h02_f06_mv14 h02_f06_mv15 h02_f06_mv16 h02_f06_mv17 h02_f06_mv18 h02_f06_mv19 h02_f06_mv20 h02_f09_mv00 h02_f09_mv01 h02_f09_mv02 h02_f09_mv03 h02_f09_mv04 h02_f09_mv05 h02_f09_mv06 h02_f09_mv07 h02_f09_mv08 h02_f09_mv09 h02_f09_mv10 h02_f09_mv11 h02_f09_mv12 h02_f09_mv13 h02_f09_mv14 h02_f09_mv15 h02_f09_mv16 h02_f09_mv18 h02_f09_mv19 h02_f09_mv20, margin=exact, toporb=OFF, 40 slices/host, 9 cores, deadline Wed 02:25
+[18:25] probing 280 hosts in parallel over 9 workers
+[18:32]   host h01_f01_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv01: base=(0 1 2 6 8), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv02: base=(0 1 2 4 5), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv04: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv05: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv06: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv07: base=(0 1 2 3 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv08: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv09: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv10: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv11: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv12: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv13: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv14: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv15: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv16: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv17: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv18: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv19: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv20: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv02: base=(0 1 2 3 5), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv03: base=(0 1 2 3 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv05: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv06: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv08: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv09: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv10: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv11: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv12: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv13: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv14: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv15: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv16: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv17: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv18: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv19: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f02_mv20: base=(0 1 2 4 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv03: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv04: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv06: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv07: base=(0 1 2 5 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv08: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv09: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv10: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv11: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv12: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv13: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv14: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv15: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv16: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv17: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv18: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv19: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f03_mv20: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv01: base=(0 1 2 6 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv09: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv11: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv12: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv14: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv15: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv16: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f04_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv03: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv04: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv05: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv06: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv07: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv08: base=(0 1 2 8 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv10: base=(0 1 2 9 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv11: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv12: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv13: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv14: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv15: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv16: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv17: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv18: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv19: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f05_mv20: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv09: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv12: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv14: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv15: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv16: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f06_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv09: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv11: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv14: base=(0 1 2 11 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv15: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv16: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f07_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv09: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv11: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv12: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv14: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv16: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f08_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv00: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv01: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv02: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv03: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv04: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv05: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv06: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv07: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv08: base=(0 1 2 8 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv09: base=(0 1 2 9 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv10: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv11: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv12: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv13: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv14: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv15: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv17: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv18: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv19: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f09_mv20: base=(0 1 2 9 14), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv00: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv02: base=(0 1 2 5 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv03: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv04: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv05: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv06: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv07: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv08: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv09: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv10: base=(0 1 3 6 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv11: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv12: base=(0 1 2 10 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv13: base=(0 1 3 6 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv14: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv15: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv16: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv17: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv18: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv19: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f00_mv20: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv00: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv01: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv02: base=(0 1 2 3 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv03: base=(0 1 2 3 5), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv05: base=(0 1 2 4 5), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv06: base=(0 1 2 4 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv07: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv08: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv09: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv10: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv11: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv12: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv13: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv14: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv15: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv16: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv17: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv18: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv19: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f02_mv20: base=(0 1 2 4 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv00: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv01: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv02: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv03: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv04: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv05: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv06: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv07: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv08: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv09: base=(0 1 2 9 16), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv11: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv12: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv13: base=(0 1 2 10 16), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv14: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv15: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv16: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv17: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv18: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv19: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f05_mv20: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv00: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv01: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv02: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv03: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv04: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv05: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv06: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv07: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv08: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv09: base=(0 1 2 9 10), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv10: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv12: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv13: base=(0 1 2 10 11), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv14: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv15: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv16: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv17: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv18: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv19: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f06_mv20: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv00: base=(0 1 2 5 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv01: base=(0 1 2 5 6), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv02: base=(0 1 2 6 7), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv03: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv04: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv05: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv06: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv07: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv08: base=(0 1 2 8 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv09: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv10: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv11: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv12: base=(0 1 2 9 12), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv13: base=(0 1 2 10 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv14: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv15: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv16: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv18: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv19: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h02_f09_mv20: base=(0 1 2 9 13), 2200 base states, sweeping [0,2200) -> 40 slices
+[18:32]   host h01_f01_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:32]   host h01_f01_mv01: SAT (slice 3) -- cancelling its remaining slices
+[18:32]   host h01_f01_mv02: SAT (slice 0) -- cancelling its remaining slices
+[18:32]   host h01_f01_mv04: SAT (slice 2) -- cancelling its remaining slices
+[18:32]   host h01_f01_mv05: SAT (slice 7) -- cancelling its remaining slices
+[18:32]   host h01_f01_mv06: SAT (slice 1) -- cancelling its remaining slices
+[18:32]   host h01_f01_mv07: SAT (slice 7) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv08: SAT (slice 3) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv09: SAT (slice 2) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv10: SAT (slice 1) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv11: SAT (slice 2) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv12: SAT (slice 0) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv13: SAT (slice 7) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv14: SAT (slice 1) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv15: SAT (slice 5) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv16: SAT (slice 1) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv17: SAT (slice 2) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv18: SAT (slice 0) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv19: SAT (slice 1) -- cancelling its remaining slices
+[18:33]   host h01_f01_mv20: SAT (slice 0) -- cancelling its remaining slices
+[18:33]   host h01_f02_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:33]   host h01_f02_mv01: SAT (slice 0) -- cancelling its remaining slices
+[18:33]   host h01_f02_mv02: SAT (slice 1) -- cancelling its remaining slices
+[18:33]   host h01_f02_mv03: SAT (slice 1) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv05: SAT (slice 5) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv06: SAT (slice 1) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv07: SAT (slice 3) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv08: SAT (slice 2) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv09: SAT (slice 3) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv10: SAT (slice 1) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv11: SAT (slice 3) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv12: SAT (slice 4) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv13: SAT (slice 6) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv14: SAT (slice 0) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv15: SAT (slice 0) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv16: SAT (slice 1) -- cancelling its remaining slices
+[18:34]   host h01_f02_mv17: SAT (slice 1) -- cancelling its remaining slices
+[18:35]   host h01_f02_mv18: SAT (slice 6) -- cancelling its remaining slices
+[18:35]   host h01_f02_mv19: SAT (slice 6) -- cancelling its remaining slices
+[18:35]   host h01_f02_mv20: SAT (slice 0) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv01: SAT (slice 5) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv02: SAT (slice 6) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv03: SAT (slice 0) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv04: SAT (slice 1) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv06: SAT (slice 0) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv07: SAT (slice 1) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv08: SAT (slice 2) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv09: SAT (slice 1) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv10: SAT (slice 4) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv11: SAT (slice 0) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv12: SAT (slice 6) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv13: SAT (slice 1) -- cancelling its remaining slices
+[18:35]   host h01_f03_mv14: SAT (slice 0) -- cancelling its remaining slices
+[18:36]   host h01_f03_mv15: SAT (slice 2) -- cancelling its remaining slices
+[18:36]   host h01_f03_mv16: SAT (slice 1) -- cancelling its remaining slices
+[18:36]   host h01_f03_mv17: SAT (slice 0) -- cancelling its remaining slices
+[18:36]   host h01_f03_mv18: SAT (slice 1) -- cancelling its remaining slices
+[18:36]   host h01_f03_mv19: SAT (slice 8) -- cancelling its remaining slices
+[18:36]   host h01_f03_mv20: SAT (slice 6) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv01: SAT (slice 5) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv02: SAT (slice 0) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv03: SAT (slice 3) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv04: SAT (slice 4) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv05: SAT (slice 5) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv06: SAT (slice 2) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv08: SAT (slice 0) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv09: SAT (slice 0) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv10: SAT (slice 3) -- cancelling its remaining slices
+[18:36]   host h01_f04_mv11: SAT (slice 3) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv12: SAT (slice 2) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv13: SAT (slice 4) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv14: SAT (slice 0) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv15: SAT (slice 7) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv16: SAT (slice 8) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv17: SAT (slice 3) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv18: SAT (slice 2) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv19: SAT (slice 1) -- cancelling its remaining slices
+[18:37]   host h01_f04_mv20: SAT (slice 3) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv01: SAT (slice 0) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv02: SAT (slice 1) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv03: SAT (slice 0) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv04: SAT (slice 0) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv05: SAT (slice 2) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv06: SAT (slice 0) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv07: SAT (slice 0) -- cancelling its remaining slices
+[18:37]   host h01_f05_mv08: SAT (slice 0) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv10: SAT (slice 2) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv11: SAT (slice 1) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv12: SAT (slice 0) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv13: SAT (slice 0) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv14: SAT (slice 3) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv15: SAT (slice 2) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv16: SAT (slice 2) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv17: SAT (slice 0) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv18: SAT (slice 2) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv19: SAT (slice 0) -- cancelling its remaining slices
+[18:38]   host h01_f05_mv20: SAT (slice 3) -- cancelling its remaining slices
+[18:38]   host h01_f06_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:38]   host h01_f06_mv01: SAT (slice 0) -- cancelling its remaining slices
+[18:38]   host h01_f06_mv02: SAT (slice 7) -- cancelling its remaining slices
+[18:38]   host h01_f06_mv03: SAT (slice 5) -- cancelling its remaining slices
+[18:38]   host h01_f06_mv04: SAT (slice 1) -- cancelling its remaining slices
+[18:38]   host h01_f06_mv05: SAT (slice 4) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv06: SAT (slice 2) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv07: SAT (slice 2) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv08: SAT (slice 3) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv09: SAT (slice 0) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv10: SAT (slice 6) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv12: SAT (slice 0) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv13: SAT (slice 4) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv14: SAT (slice 0) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv15: SAT (slice 7) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv16: SAT (slice 8) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv17: SAT (slice 8) -- cancelling its remaining slices
+[18:39]   host h01_f06_mv18: SAT (slice 2) -- cancelling its remaining slices
+[18:40]   host h01_f06_mv19: SAT (slice 6) -- cancelling its remaining slices
+[18:40]   host h01_f06_mv20: SAT (slice 3) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv01: SAT (slice 4) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv02: SAT (slice 0) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv03: SAT (slice 3) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv04: SAT (slice 3) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv05: SAT (slice 4) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv06: SAT (slice 5) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv07: SAT (slice 3) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv08: SAT (slice 3) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv09: SAT (slice 0) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv10: SAT (slice 0) -- cancelling its remaining slices
+[18:40]   host h01_f07_mv11: SAT (slice 7) -- cancelling its remaining slices
+[18:41]   host h01_f07_mv13: SAT (slice 3) -- cancelling its remaining slices
+[18:41]   host h01_f07_mv14: SAT (slice 0) -- cancelling its remaining slices
+[18:41]   host h01_f07_mv15: SAT (slice 1) -- cancelling its remaining slices
+[18:41]   host h01_f07_mv16: SAT (slice 3) -- cancelling its remaining slices
+[18:41]   host h01_f07_mv17: SAT (slice 1) -- cancelling its remaining slices
+[18:41]   host h01_f07_mv18: SAT (slice 2) -- cancelling its remaining slices
+[18:41]   host h01_f07_mv19: SAT (slice 0) -- cancelling its remaining slices
+[18:41]   host h01_f07_mv20: SAT (slice 3) -- cancelling its remaining slices
+[18:41]   host h01_f08_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:41]   host h01_f08_mv01: SAT (slice 4) -- cancelling its remaining slices
+[18:41]   host h01_f08_mv02: SAT (slice 5) -- cancelling its remaining slices
+[18:41]   host h01_f08_mv03: SAT (slice 5) -- cancelling its remaining slices
+[18:41]   host h01_f08_mv04: SAT (slice 1) -- cancelling its remaining slices
+[18:41]   host h01_f08_mv05: SAT (slice 3) -- cancelling its remaining slices
+[18:41]   host h01_f08_mv06: SAT (slice 2) -- cancelling its remaining slices
+[18:41]   host h01_f08_mv07: SAT (slice 3) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv08: SAT (slice 1) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv09: SAT (slice 2) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv10: SAT (slice 2) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv11: SAT (slice 1) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv12: SAT (slice 3) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv13: SAT (slice 3) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv14: SAT (slice 2) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv16: SAT (slice 2) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv17: SAT (slice 7) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv18: SAT (slice 1) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv19: SAT (slice 0) -- cancelling its remaining slices
+[18:42]   host h01_f08_mv20: SAT (slice 3) -- cancelling its remaining slices
+[18:42]   host h01_f09_mv00: SAT (slice 6) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv01: SAT (slice 6) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv02: SAT (slice 5) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv03: SAT (slice 1) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv04: SAT (slice 5) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv05: SAT (slice 0) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv06: SAT (slice 3) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv07: SAT (slice 3) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv08: SAT (slice 1) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv09: SAT (slice 4) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv10: SAT (slice 5) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv11: SAT (slice 1) -- cancelling its remaining slices
+[18:43]   host h01_f09_mv12: SAT (slice 5) -- cancelling its remaining slices
+[18:44]   host h01_f09_mv13: SAT (slice 7) -- cancelling its remaining slices
+[18:44]   host h01_f09_mv14: SAT (slice 1) -- cancelling its remaining slices
+[18:44]   host h01_f09_mv15: SAT (slice 3) -- cancelling its remaining slices
+[18:44]   host h01_f09_mv17: SAT (slice 2) -- cancelling its remaining slices
+[18:44]   host h01_f09_mv18: SAT (slice 4) -- cancelling its remaining slices
+[18:44]   host h01_f09_mv19: SAT (slice 1) -- cancelling its remaining slices
+[18:44]   host h01_f09_mv20: SAT (slice 3) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv00: SAT (slice 0) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv02: SAT (slice 1) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv03: SAT (slice 0) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv04: SAT (slice 4) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv05: SAT (slice 1) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv06: SAT (slice 0) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv07: SAT (slice 0) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv08: SAT (slice 0) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv09: SAT (slice 0) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv10: SAT (slice 1) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv11: SAT (slice 3) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv12: SAT (slice 0) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv13: SAT (slice 0) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv14: SAT (slice 4) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv15: SAT (slice 3) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv16: SAT (slice 1) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv17: SAT (slice 1) -- cancelling its remaining slices
+[18:44]   host h02_f00_mv18: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f00_mv19: SAT (slice 1) -- cancelling its remaining slices
+[18:45]   host h02_f00_mv20: SAT (slice 4) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv00: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv01: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv02: SAT (slice 1) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv03: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv05: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv06: SAT (slice 3) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv07: SAT (slice 1) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv08: SAT (slice 4) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv09: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv10: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv11: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv12: SAT (slice 2) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv13: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv14: SAT (slice 2) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv15: SAT (slice 1) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv16: SAT (slice 2) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv17: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv18: SAT (slice 1) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv19: SAT (slice 4) -- cancelling its remaining slices
+[18:45]   host h02_f02_mv20: SAT (slice 1) -- cancelling its remaining slices
+[18:45]   host h02_f05_mv00: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f05_mv01: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f05_mv02: SAT (slice 0) -- cancelling its remaining slices
+[18:45]   host h02_f05_mv03: SAT (slice 1) -- cancelling its remaining slices
+[18:45]   host h02_f05_mv04: SAT (slice 1) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv05: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv06: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv07: SAT (slice 1) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv08: SAT (slice 1) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv09: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv11: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv12: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv13: SAT (slice 3) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv14: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv15: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv16: SAT (slice 3) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv17: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv18: SAT (slice 3) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv19: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f05_mv20: SAT (slice 1) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv00: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv01: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv02: SAT (slice 1) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv03: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv04: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv05: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv06: SAT (slice 2) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv07: SAT (slice 4) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv08: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv09: SAT (slice 2) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv10: SAT (slice 0) -- cancelling its remaining slices
+[18:46]   host h02_f06_mv12: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f06_mv13: SAT (slice 5) -- cancelling its remaining slices
+[18:47]   host h02_f06_mv14: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f06_mv15: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f06_mv16: SAT (slice 6) -- cancelling its remaining slices
+[18:47]   host h02_f06_mv17: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f06_mv18: SAT (slice 3) -- cancelling its remaining slices
+[18:47]   host h02_f06_mv19: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f06_mv20: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv00: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv01: SAT (slice 6) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv02: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv03: SAT (slice 6) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv04: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv05: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv06: SAT (slice 2) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv07: SAT (slice 2) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv08: SAT (slice 2) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv09: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv10: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv11: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv12: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv13: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv14: SAT (slice 1) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv15: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv16: SAT (slice 0) -- cancelling its remaining slices
+[18:47]   host h02_f09_mv18: SAT (slice 3) -- cancelling its remaining slices
+[18:48]   host h02_f09_mv19: SAT (slice 4) -- cancelling its remaining slices
+[18:48]   host h02_f09_mv20: SAT (slice 1) -- cancelling its remaining slices
+[18:48] PHASE rest_descent verdicts:
+[18:48]   h01_f01_mv00: AUDIT from the slice logs: SAT -- witness in h01_f01_mv00_q00330_00385.log
+[18:48]   h01_f01_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:48]   h01_f01_mv01: AUDIT from the slice logs: SAT -- witness in h01_f01_mv01_q00165_00220.log
+[18:48]   h01_f01_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:48]   h01_f01_mv02: AUDIT from the slice logs: SAT -- witness in h01_f01_mv02_q00000_00055.log
+[18:48]   h01_f01_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:48]   h01_f01_mv04: AUDIT from the slice logs: SAT -- witness in h01_f01_mv04_q00110_00165.log
+[18:48]   h01_f01_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:49]   h01_f01_mv05: AUDIT from the slice logs: SAT -- witness in h01_f01_mv05_q00385_00440.log
+[18:49]   h01_f01_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:49]   h01_f01_mv06: AUDIT from the slice logs: SAT -- witness in h01_f01_mv06_q00055_00110.log
+[18:49]   h01_f01_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:49]   h01_f01_mv07: AUDIT from the slice logs: SAT -- witness in h01_f01_mv07_q00385_00440.log
+[18:49]   h01_f01_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:49]   h01_f01_mv08: AUDIT from the slice logs: SAT -- witness in h01_f01_mv08_q00165_00220.log
+[18:49]   h01_f01_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:49]   h01_f01_mv09: AUDIT from the slice logs: SAT -- witness in h01_f01_mv09_q00110_00165.log
+[18:49]   h01_f01_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:50]   h01_f01_mv10: AUDIT from the slice logs: SAT -- witness in h01_f01_mv10_q00055_00110.log
+[18:50]   h01_f01_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:50]   h01_f01_mv11: AUDIT from the slice logs: SAT -- witness in h01_f01_mv11_q00110_00165.log
+[18:50]   h01_f01_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:50]   h01_f01_mv12: AUDIT from the slice logs: SAT -- witness in h01_f01_mv12_q00000_00055.log
+[18:50]   h01_f01_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:50]   h01_f01_mv13: AUDIT from the slice logs: SAT -- witness in h01_f01_mv13_q00385_00440.log
+[18:50]   h01_f01_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:51]   h01_f01_mv14: AUDIT from the slice logs: SAT -- witness in h01_f01_mv14_q00055_00110.log
+[18:51]   h01_f01_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:51]   h01_f01_mv15: AUDIT from the slice logs: SAT -- witness in h01_f01_mv15_q00275_00330.log
+[18:51]   h01_f01_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:51]   h01_f01_mv16: AUDIT from the slice logs: SAT -- witness in h01_f01_mv16_q00055_00110.log
+[18:51]   h01_f01_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:51]   h01_f01_mv17: AUDIT from the slice logs: SAT -- witness in h01_f01_mv17_q00110_00165.log
+[18:51]   h01_f01_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:51]   h01_f01_mv18: AUDIT from the slice logs: SAT -- witness in h01_f01_mv18_q00000_00055.log
+[18:51]   h01_f01_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:52]   h01_f01_mv19: AUDIT from the slice logs: SAT -- witness in h01_f01_mv19_q00055_00110.log
+[18:52]   h01_f01_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:52]   h01_f01_mv20: AUDIT from the slice logs: SAT -- witness in h01_f01_mv20_q00000_00055.log
+[18:52]   h01_f01_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:52]   h01_f02_mv00: AUDIT from the slice logs: SAT -- witness in h01_f02_mv00_q00330_00385.log
+[18:52]   h01_f02_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:52]   h01_f02_mv01: AUDIT from the slice logs: SAT -- witness in h01_f02_mv01_q00000_00055.log
+[18:52]   h01_f02_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:52]   h01_f02_mv02: AUDIT from the slice logs: SAT -- witness in h01_f02_mv02_q00055_00110.log
+[18:52]   h01_f02_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:53]   h01_f02_mv03: AUDIT from the slice logs: SAT -- witness in h01_f02_mv03_q00055_00110.log
+[18:53]   h01_f02_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:53]   h01_f02_mv05: AUDIT from the slice logs: SAT -- witness in h01_f02_mv05_q00275_00330.log
+[18:53]   h01_f02_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:53]   h01_f02_mv06: AUDIT from the slice logs: SAT -- witness in h01_f02_mv06_q00055_00110.log
+[18:53]   h01_f02_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:53]   h01_f02_mv07: AUDIT from the slice logs: SAT -- witness in h01_f02_mv07_q00165_00220.log
+[18:53]   h01_f02_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:53]   h01_f02_mv08: AUDIT from the slice logs: SAT -- witness in h01_f02_mv08_q00110_00165.log
+[18:53]   h01_f02_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:54]   h01_f02_mv09: AUDIT from the slice logs: SAT -- witness in h01_f02_mv09_q00165_00220.log
+[18:54]   h01_f02_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:54]   h01_f02_mv10: AUDIT from the slice logs: SAT -- witness in h01_f02_mv10_q00055_00110.log
+[18:54]   h01_f02_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:54]   h01_f02_mv11: AUDIT from the slice logs: SAT -- witness in h01_f02_mv11_q00165_00220.log
+[18:54]   h01_f02_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:54]   h01_f02_mv12: AUDIT from the slice logs: SAT -- witness in h01_f02_mv12_q00220_00275.log
+[18:54]   h01_f02_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:54]   h01_f02_mv13: AUDIT from the slice logs: SAT -- witness in h01_f02_mv13_q00330_00385.log
+[18:54]   h01_f02_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:55]   h01_f02_mv14: AUDIT from the slice logs: SAT -- witness in h01_f02_mv14_q00000_00055.log
+[18:55]   h01_f02_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:55]   h01_f02_mv15: AUDIT from the slice logs: SAT -- witness in h01_f02_mv15_q00000_00055.log
+[18:55]   h01_f02_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:55]   h01_f02_mv16: AUDIT from the slice logs: SAT -- witness in h01_f02_mv16_q00055_00110.log
+[18:55]   h01_f02_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:55]   h01_f02_mv17: AUDIT from the slice logs: SAT -- witness in h01_f02_mv17_q00055_00110.log
+[18:55]   h01_f02_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:55]   h01_f02_mv18: AUDIT from the slice logs: SAT -- witness in h01_f02_mv18_q00330_00385.log
+[18:55]   h01_f02_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:56]   h01_f02_mv19: AUDIT from the slice logs: SAT -- witness in h01_f02_mv19_q00330_00385.log
+[18:56]   h01_f02_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:56]   h01_f02_mv20: AUDIT from the slice logs: SAT -- witness in h01_f02_mv20_q00000_00055.log
+[18:56]   h01_f02_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:56]   h01_f03_mv00: AUDIT from the slice logs: SAT -- witness in h01_f03_mv00_q00330_00385.log
+[18:56]   h01_f03_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:56]   h01_f03_mv01: AUDIT from the slice logs: SAT -- witness in h01_f03_mv01_q00275_00330.log
+[18:56]   h01_f03_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:56]   h01_f03_mv02: AUDIT from the slice logs: SAT -- witness in h01_f03_mv02_q00330_00385.log
+[18:56]   h01_f03_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:57]   h01_f03_mv03: AUDIT from the slice logs: SAT -- witness in h01_f03_mv03_q00000_00055.log
+[18:57]   h01_f03_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:57]   h01_f03_mv04: AUDIT from the slice logs: SAT -- witness in h01_f03_mv04_q00055_00110.log
+[18:57]   h01_f03_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:57]   h01_f03_mv06: AUDIT from the slice logs: SAT -- witness in h01_f03_mv06_q00000_00055.log
+[18:57]   h01_f03_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:57]   h01_f03_mv07: AUDIT from the slice logs: SAT -- witness in h01_f03_mv07_q00055_00110.log
+[18:57]   h01_f03_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:58]   h01_f03_mv08: AUDIT from the slice logs: SAT -- witness in h01_f03_mv08_q00110_00165.log
+[18:58]   h01_f03_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:58]   h01_f03_mv09: AUDIT from the slice logs: SAT -- witness in h01_f03_mv09_q00055_00110.log
+[18:58]   h01_f03_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:58]   h01_f03_mv10: AUDIT from the slice logs: SAT -- witness in h01_f03_mv10_q00220_00275.log
+[18:58]   h01_f03_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:58]   h01_f03_mv11: AUDIT from the slice logs: SAT -- witness in h01_f03_mv11_q00000_00055.log
+[18:58]   h01_f03_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:58]   h01_f03_mv12: AUDIT from the slice logs: SAT -- witness in h01_f03_mv12_q00330_00385.log
+[18:58]   h01_f03_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:59]   h01_f03_mv13: AUDIT from the slice logs: SAT -- witness in h01_f03_mv13_q00055_00110.log
+[18:59]   h01_f03_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:59]   h01_f03_mv14: AUDIT from the slice logs: SAT -- witness in h01_f03_mv14_q00000_00055.log
+[18:59]   h01_f03_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:59]   h01_f03_mv15: AUDIT from the slice logs: SAT -- witness in h01_f03_mv15_q00110_00165.log
+[18:59]   h01_f03_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:59]   h01_f03_mv16: AUDIT from the slice logs: SAT -- witness in h01_f03_mv16_q00055_00110.log
+[18:59]   h01_f03_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[18:59]   h01_f03_mv17: AUDIT from the slice logs: SAT -- witness in h01_f03_mv17_q00000_00055.log
+[18:59]   h01_f03_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:00]   h01_f03_mv18: AUDIT from the slice logs: SAT -- witness in h01_f03_mv18_q00055_00110.log
+[19:00]   h01_f03_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:00]   h01_f03_mv19: AUDIT from the slice logs: SAT -- witness in h01_f03_mv19_q00440_00495.log
+[19:00]   h01_f03_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:00]   h01_f03_mv20: AUDIT from the slice logs: SAT -- witness in h01_f03_mv20_q00330_00385.log
+[19:00]   h01_f03_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:00]   h01_f04_mv00: AUDIT from the slice logs: SAT -- witness in h01_f04_mv00_q00330_00385.log
+[19:00]   h01_f04_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:00]   h01_f04_mv01: AUDIT from the slice logs: SAT -- witness in h01_f04_mv01_q00275_00330.log
+[19:00]   h01_f04_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:01]   h01_f04_mv02: AUDIT from the slice logs: SAT -- witness in h01_f04_mv02_q00000_00055.log
+[19:01]   h01_f04_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:01]   h01_f04_mv03: AUDIT from the slice logs: SAT -- witness in h01_f04_mv03_q00165_00220.log
+[19:01]   h01_f04_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:01]   h01_f04_mv04: AUDIT from the slice logs: SAT -- witness in h01_f04_mv04_q00220_00275.log
+[19:01]   h01_f04_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:01]   h01_f04_mv05: AUDIT from the slice logs: SAT -- witness in h01_f04_mv05_q00275_00330.log
+[19:01]   h01_f04_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:01]   h01_f04_mv06: AUDIT from the slice logs: SAT -- witness in h01_f04_mv06_q00110_00165.log
+[19:01]   h01_f04_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:02]   h01_f04_mv08: AUDIT from the slice logs: SAT -- witness in h01_f04_mv08_q00000_00055.log
+[19:02]   h01_f04_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:02]   h01_f04_mv09: AUDIT from the slice logs: SAT -- witness in h01_f04_mv09_q00000_00055.log
+[19:02]   h01_f04_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:02]   h01_f04_mv10: AUDIT from the slice logs: SAT -- witness in h01_f04_mv10_q00165_00220.log
+[19:02]   h01_f04_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:02]   h01_f04_mv11: AUDIT from the slice logs: SAT -- witness in h01_f04_mv11_q00165_00220.log
+[19:02]   h01_f04_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:03]   h01_f04_mv12: AUDIT from the slice logs: SAT -- witness in h01_f04_mv12_q00110_00165.log
+[19:03]   h01_f04_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:03]   h01_f04_mv13: AUDIT from the slice logs: SAT -- witness in h01_f04_mv13_q00220_00275.log
+[19:03]   h01_f04_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:03]   h01_f04_mv14: AUDIT from the slice logs: SAT -- witness in h01_f04_mv14_q00000_00055.log
+[19:03]   h01_f04_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:03]   h01_f04_mv15: AUDIT from the slice logs: SAT -- witness in h01_f04_mv15_q00385_00440.log
+[19:03]   h01_f04_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:03]   h01_f04_mv16: AUDIT from the slice logs: SAT -- witness in h01_f04_mv16_q00440_00495.log
+[19:03]   h01_f04_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:04]   h01_f04_mv17: AUDIT from the slice logs: SAT -- witness in h01_f04_mv17_q00165_00220.log
+[19:04]   h01_f04_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:04]   h01_f04_mv18: AUDIT from the slice logs: SAT -- witness in h01_f04_mv18_q00110_00165.log
+[19:04]   h01_f04_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:04]   h01_f04_mv19: AUDIT from the slice logs: SAT -- witness in h01_f04_mv19_q00055_00110.log
+[19:04]   h01_f04_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:04]   h01_f04_mv20: AUDIT from the slice logs: SAT -- witness in h01_f04_mv20_q00165_00220.log
+[19:04]   h01_f04_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:04]   h01_f05_mv00: AUDIT from the slice logs: SAT -- witness in h01_f05_mv00_q00330_00385.log
+[19:04]   h01_f05_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:05]   h01_f05_mv01: AUDIT from the slice logs: SAT -- witness in h01_f05_mv01_q00000_00055.log
+[19:05]   h01_f05_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:05]   h01_f05_mv02: AUDIT from the slice logs: SAT -- witness in h01_f05_mv02_q00055_00110.log
+[19:05]   h01_f05_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:05]   h01_f05_mv03: AUDIT from the slice logs: SAT -- witness in h01_f05_mv03_q00000_00055.log
+[19:05]   h01_f05_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:05]   h01_f05_mv04: AUDIT from the slice logs: SAT -- witness in h01_f05_mv04_q00000_00055.log
+[19:05]   h01_f05_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:05]   h01_f05_mv05: AUDIT from the slice logs: SAT -- witness in h01_f05_mv05_q00110_00165.log
+[19:05]   h01_f05_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:06]   h01_f05_mv06: AUDIT from the slice logs: SAT -- witness in h01_f05_mv06_q00000_00055.log
+[19:06]   h01_f05_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:06]   h01_f05_mv07: AUDIT from the slice logs: SAT -- witness in h01_f05_mv07_q00000_00055.log
+[19:06]   h01_f05_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:06]   h01_f05_mv08: AUDIT from the slice logs: SAT -- witness in h01_f05_mv08_q00000_00055.log
+[19:06]   h01_f05_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:06]   h01_f05_mv10: AUDIT from the slice logs: SAT -- witness in h01_f05_mv10_q00110_00165.log
+[19:06]   h01_f05_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:06]   h01_f05_mv11: AUDIT from the slice logs: SAT -- witness in h01_f05_mv11_q00055_00110.log
+[19:06]   h01_f05_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:07]   h01_f05_mv12: AUDIT from the slice logs: SAT -- witness in h01_f05_mv12_q00000_00055.log
+[19:07]   h01_f05_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:07]   h01_f05_mv13: AUDIT from the slice logs: SAT -- witness in h01_f05_mv13_q00000_00055.log
+[19:07]   h01_f05_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:07]   h01_f05_mv14: AUDIT from the slice logs: SAT -- witness in h01_f05_mv14_q00165_00220.log
+[19:07]   h01_f05_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:07]   h01_f05_mv15: AUDIT from the slice logs: SAT -- witness in h01_f05_mv15_q00110_00165.log
+[19:07]   h01_f05_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:07]   h01_f05_mv16: AUDIT from the slice logs: SAT -- witness in h01_f05_mv16_q00110_00165.log
+[19:07]   h01_f05_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:08]   h01_f05_mv17: AUDIT from the slice logs: SAT -- witness in h01_f05_mv17_q00000_00055.log
+[19:08]   h01_f05_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:08]   h01_f05_mv18: AUDIT from the slice logs: SAT -- witness in h01_f05_mv18_q00110_00165.log
+[19:08]   h01_f05_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:08]   h01_f05_mv19: AUDIT from the slice logs: SAT -- witness in h01_f05_mv19_q00000_00055.log
+[19:08]   h01_f05_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:08]   h01_f05_mv20: AUDIT from the slice logs: SAT -- witness in h01_f05_mv20_q00165_00220.log
+[19:08]   h01_f05_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:08]   h01_f06_mv00: AUDIT from the slice logs: SAT -- witness in h01_f06_mv00_q00330_00385.log
+[19:08]   h01_f06_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:09]   h01_f06_mv01: AUDIT from the slice logs: SAT -- witness in h01_f06_mv01_q00000_00055.log
+[19:09]   h01_f06_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:09]   h01_f06_mv02: AUDIT from the slice logs: SAT -- witness in h01_f06_mv02_q00385_00440.log
+[19:09]   h01_f06_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:09]   h01_f06_mv03: AUDIT from the slice logs: SAT -- witness in h01_f06_mv03_q00275_00330.log
+[19:09]   h01_f06_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:09]   h01_f06_mv04: AUDIT from the slice logs: SAT -- witness in h01_f06_mv04_q00055_00110.log
+[19:09]   h01_f06_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:09]   h01_f06_mv05: AUDIT from the slice logs: SAT -- witness in h01_f06_mv05_q00220_00275.log
+[19:09]   h01_f06_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:10]   h01_f06_mv06: AUDIT from the slice logs: SAT -- witness in h01_f06_mv06_q00110_00165.log
+[19:10]   h01_f06_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:10]   h01_f06_mv07: AUDIT from the slice logs: SAT -- witness in h01_f06_mv07_q00110_00165.log
+[19:10]   h01_f06_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:10]   h01_f06_mv08: AUDIT from the slice logs: SAT -- witness in h01_f06_mv08_q00165_00220.log
+[19:10]   h01_f06_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:10]   h01_f06_mv09: AUDIT from the slice logs: SAT -- witness in h01_f06_mv09_q00000_00055.log
+[19:10]   h01_f06_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:11]   h01_f06_mv10: AUDIT from the slice logs: SAT -- witness in h01_f06_mv10_q00330_00385.log
+[19:11]   h01_f06_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:11]   h01_f06_mv12: AUDIT from the slice logs: SAT -- witness in h01_f06_mv12_q00000_00055.log
+[19:11]   h01_f06_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:11]   h01_f06_mv13: AUDIT from the slice logs: SAT -- witness in h01_f06_mv13_q00220_00275.log
+[19:11]   h01_f06_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:11]   h01_f06_mv14: AUDIT from the slice logs: SAT -- witness in h01_f06_mv14_q00000_00055.log
+[19:11]   h01_f06_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:11]   h01_f06_mv15: AUDIT from the slice logs: SAT -- witness in h01_f06_mv15_q00385_00440.log
+[19:11]   h01_f06_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:12]   h01_f06_mv16: AUDIT from the slice logs: SAT -- witness in h01_f06_mv16_q00440_00495.log
+[19:12]   h01_f06_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:12]   h01_f06_mv17: AUDIT from the slice logs: SAT -- witness in h01_f06_mv17_q00440_00495.log
+[19:12]   h01_f06_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:12]   h01_f06_mv18: AUDIT from the slice logs: SAT -- witness in h01_f06_mv18_q00110_00165.log
+[19:12]   h01_f06_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:12]   h01_f06_mv19: AUDIT from the slice logs: SAT -- witness in h01_f06_mv19_q00330_00385.log
+[19:12]   h01_f06_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:12]   h01_f06_mv20: AUDIT from the slice logs: SAT -- witness in h01_f06_mv20_q00165_00220.log
+[19:12]   h01_f06_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:13]   h01_f07_mv00: AUDIT from the slice logs: SAT -- witness in h01_f07_mv00_q00330_00385.log
+[19:13]   h01_f07_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:13]   h01_f07_mv01: AUDIT from the slice logs: SAT -- witness in h01_f07_mv01_q00220_00275.log
+[19:13]   h01_f07_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:13]   h01_f07_mv02: AUDIT from the slice logs: SAT -- witness in h01_f07_mv02_q00000_00055.log
+[19:13]   h01_f07_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:13]   h01_f07_mv03: AUDIT from the slice logs: SAT -- witness in h01_f07_mv03_q00165_00220.log
+[19:13]   h01_f07_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:13]   h01_f07_mv04: AUDIT from the slice logs: SAT -- witness in h01_f07_mv04_q00165_00220.log
+[19:13]   h01_f07_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:14]   h01_f07_mv05: AUDIT from the slice logs: SAT -- witness in h01_f07_mv05_q00220_00275.log
+[19:14]   h01_f07_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:14]   h01_f07_mv06: AUDIT from the slice logs: SAT -- witness in h01_f07_mv06_q00275_00330.log
+[19:14]   h01_f07_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:14]   h01_f07_mv07: AUDIT from the slice logs: SAT -- witness in h01_f07_mv07_q00165_00220.log
+[19:14]   h01_f07_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:14]   h01_f07_mv08: AUDIT from the slice logs: SAT -- witness in h01_f07_mv08_q00165_00220.log
+[19:14]   h01_f07_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:14]   h01_f07_mv09: AUDIT from the slice logs: SAT -- witness in h01_f07_mv09_q00000_00055.log
+[19:14]   h01_f07_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:15]   h01_f07_mv10: AUDIT from the slice logs: SAT -- witness in h01_f07_mv10_q00000_00055.log
+[19:15]   h01_f07_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:15]   h01_f07_mv11: AUDIT from the slice logs: SAT -- witness in h01_f07_mv11_q00385_00440.log
+[19:15]   h01_f07_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:15]   h01_f07_mv13: AUDIT from the slice logs: SAT -- witness in h01_f07_mv13_q00165_00220.log
+[19:15]   h01_f07_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:15]   h01_f07_mv14: AUDIT from the slice logs: SAT -- witness in h01_f07_mv14_q00000_00055.log
+[19:15]   h01_f07_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:15]   h01_f07_mv15: AUDIT from the slice logs: SAT -- witness in h01_f07_mv15_q00055_00110.log
+[19:15]   h01_f07_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:16]   h01_f07_mv16: AUDIT from the slice logs: SAT -- witness in h01_f07_mv16_q00165_00220.log
+[19:16]   h01_f07_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:16]   h01_f07_mv17: AUDIT from the slice logs: SAT -- witness in h01_f07_mv17_q00055_00110.log
+[19:16]   h01_f07_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:16]   h01_f07_mv18: AUDIT from the slice logs: SAT -- witness in h01_f07_mv18_q00110_00165.log
+[19:16]   h01_f07_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:16]   h01_f07_mv19: AUDIT from the slice logs: SAT -- witness in h01_f07_mv19_q00000_00055.log
+[19:16]   h01_f07_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:16]   h01_f07_mv20: AUDIT from the slice logs: SAT -- witness in h01_f07_mv20_q00165_00220.log
+[19:16]   h01_f07_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:17]   h01_f08_mv00: AUDIT from the slice logs: SAT -- witness in h01_f08_mv00_q00330_00385.log
+[19:17]   h01_f08_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:17]   h01_f08_mv01: AUDIT from the slice logs: SAT -- witness in h01_f08_mv01_q00220_00275.log
+[19:17]   h01_f08_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:17]   h01_f08_mv02: AUDIT from the slice logs: SAT -- witness in h01_f08_mv02_q00275_00330.log
+[19:17]   h01_f08_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:17]   h01_f08_mv03: AUDIT from the slice logs: SAT -- witness in h01_f08_mv03_q00275_00330.log
+[19:17]   h01_f08_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:17]   h01_f08_mv04: AUDIT from the slice logs: SAT -- witness in h01_f08_mv04_q00055_00110.log
+[19:17]   h01_f08_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:18]   h01_f08_mv05: AUDIT from the slice logs: SAT -- witness in h01_f08_mv05_q00165_00220.log
+[19:18]   h01_f08_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:18]   h01_f08_mv06: AUDIT from the slice logs: SAT -- witness in h01_f08_mv06_q00110_00165.log
+[19:18]   h01_f08_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:18]   h01_f08_mv07: AUDIT from the slice logs: SAT -- witness in h01_f08_mv07_q00165_00220.log
+[19:18]   h01_f08_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:18]   h01_f08_mv08: AUDIT from the slice logs: SAT -- witness in h01_f08_mv08_q00055_00110.log
+[19:18]   h01_f08_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:18]   h01_f08_mv09: AUDIT from the slice logs: SAT -- witness in h01_f08_mv09_q00110_00165.log
+[19:18]   h01_f08_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:19]   h01_f08_mv10: AUDIT from the slice logs: SAT -- witness in h01_f08_mv10_q00110_00165.log
+[19:19]   h01_f08_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:19]   h01_f08_mv11: AUDIT from the slice logs: SAT -- witness in h01_f08_mv11_q00055_00110.log
+[19:19]   h01_f08_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:19]   h01_f08_mv12: AUDIT from the slice logs: SAT -- witness in h01_f08_mv12_q00165_00220.log
+[19:19]   h01_f08_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:19]   h01_f08_mv13: AUDIT from the slice logs: SAT -- witness in h01_f08_mv13_q00165_00220.log
+[19:19]   h01_f08_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:19]   h01_f08_mv14: AUDIT from the slice logs: SAT -- witness in h01_f08_mv14_q00110_00165.log
+[19:19]   h01_f08_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:20]   h01_f08_mv16: AUDIT from the slice logs: SAT -- witness in h01_f08_mv16_q00110_00165.log
+[19:20]   h01_f08_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:20]   h01_f08_mv17: AUDIT from the slice logs: SAT -- witness in h01_f08_mv17_q00385_00440.log
+[19:20]   h01_f08_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:20]   h01_f08_mv18: AUDIT from the slice logs: SAT -- witness in h01_f08_mv18_q00055_00110.log
+[19:20]   h01_f08_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:20]   h01_f08_mv19: AUDIT from the slice logs: SAT -- witness in h01_f08_mv19_q00000_00055.log
+[19:20]   h01_f08_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:20]   h01_f08_mv20: AUDIT from the slice logs: SAT -- witness in h01_f08_mv20_q00165_00220.log
+[19:20]   h01_f08_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:21]   h01_f09_mv00: AUDIT from the slice logs: SAT -- witness in h01_f09_mv00_q00330_00385.log
+[19:21]   h01_f09_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:21]   h01_f09_mv01: AUDIT from the slice logs: SAT -- witness in h01_f09_mv01_q00330_00385.log
+[19:21]   h01_f09_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:21]   h01_f09_mv02: AUDIT from the slice logs: SAT -- witness in h01_f09_mv02_q00275_00330.log
+[19:21]   h01_f09_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:21]   h01_f09_mv03: AUDIT from the slice logs: SAT -- witness in h01_f09_mv03_q00055_00110.log
+[19:21]   h01_f09_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:21]   h01_f09_mv04: AUDIT from the slice logs: SAT -- witness in h01_f09_mv04_q00275_00330.log
+[19:21]   h01_f09_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:22]   h01_f09_mv05: AUDIT from the slice logs: SAT -- witness in h01_f09_mv05_q00000_00055.log
+[19:22]   h01_f09_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:22]   h01_f09_mv06: AUDIT from the slice logs: SAT -- witness in h01_f09_mv06_q00165_00220.log
+[19:22]   h01_f09_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:22]   h01_f09_mv07: AUDIT from the slice logs: SAT -- witness in h01_f09_mv07_q00165_00220.log
+[19:22]   h01_f09_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:22]   h01_f09_mv08: AUDIT from the slice logs: SAT -- witness in h01_f09_mv08_q00055_00110.log
+[19:22]   h01_f09_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:22]   h01_f09_mv09: AUDIT from the slice logs: SAT -- witness in h01_f09_mv09_q00220_00275.log
+[19:22]   h01_f09_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:23]   h01_f09_mv10: AUDIT from the slice logs: SAT -- witness in h01_f09_mv10_q00275_00330.log
+[19:23]   h01_f09_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:23]   h01_f09_mv11: AUDIT from the slice logs: SAT -- witness in h01_f09_mv11_q00055_00110.log
+[19:23]   h01_f09_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:23]   h01_f09_mv12: AUDIT from the slice logs: SAT -- witness in h01_f09_mv12_q00275_00330.log
+[19:23]   h01_f09_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:23]   h01_f09_mv13: AUDIT from the slice logs: SAT -- witness in h01_f09_mv13_q00385_00440.log
+[19:23]   h01_f09_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:24]   h01_f09_mv14: AUDIT from the slice logs: SAT -- witness in h01_f09_mv14_q00055_00110.log
+[19:24]   h01_f09_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:24]   h01_f09_mv15: AUDIT from the slice logs: SAT -- witness in h01_f09_mv15_q00165_00220.log
+[19:24]   h01_f09_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:24]   h01_f09_mv17: AUDIT from the slice logs: SAT -- witness in h01_f09_mv17_q00110_00165.log
+[19:24]   h01_f09_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:24]   h01_f09_mv18: AUDIT from the slice logs: SAT -- witness in h01_f09_mv18_q00220_00275.log
+[19:24]   h01_f09_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:24]   h01_f09_mv19: AUDIT from the slice logs: SAT -- witness in h01_f09_mv19_q00055_00110.log
+[19:24]   h01_f09_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:25]   h01_f09_mv20: AUDIT from the slice logs: SAT -- witness in h01_f09_mv20_q00165_00220.log
+[19:25]   h01_f09_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:25]   h02_f00_mv00: AUDIT from the slice logs: SAT -- witness in h02_f00_mv00_q00000_00055.log
+[19:25]   h02_f00_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:25]   h02_f00_mv02: AUDIT from the slice logs: SAT -- witness in h02_f00_mv02_q00055_00110.log
+[19:25]   h02_f00_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:25]   h02_f00_mv03: AUDIT from the slice logs: SAT -- witness in h02_f00_mv03_q00000_00055.log
+[19:25]   h02_f00_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:25]   h02_f00_mv04: AUDIT from the slice logs: SAT -- witness in h02_f00_mv04_q00220_00275.log
+[19:25]   h02_f00_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:26]   h02_f00_mv05: AUDIT from the slice logs: SAT -- witness in h02_f00_mv05_q00055_00110.log
+[19:26]   h02_f00_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:26]   h02_f00_mv06: AUDIT from the slice logs: SAT -- witness in h02_f00_mv06_q00000_00055.log
+[19:26]   h02_f00_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:26]   h02_f00_mv07: AUDIT from the slice logs: SAT -- witness in h02_f00_mv07_q00000_00055.log
+[19:26]   h02_f00_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:26]   h02_f00_mv08: AUDIT from the slice logs: SAT -- witness in h02_f00_mv08_q00000_00055.log
+[19:26]   h02_f00_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:26]   h02_f00_mv09: AUDIT from the slice logs: SAT -- witness in h02_f00_mv09_q00000_00055.log
+[19:26]   h02_f00_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:27]   h02_f00_mv10: AUDIT from the slice logs: SAT -- witness in h02_f00_mv10_q00055_00110.log
+[19:27]   h02_f00_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:27]   h02_f00_mv11: AUDIT from the slice logs: SAT -- witness in h02_f00_mv11_q00165_00220.log
+[19:27]   h02_f00_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:27]   h02_f00_mv12: AUDIT from the slice logs: SAT -- witness in h02_f00_mv12_q00000_00055.log
+[19:27]   h02_f00_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:27]   h02_f00_mv13: AUDIT from the slice logs: SAT -- witness in h02_f00_mv13_q00000_00055.log
+[19:27]   h02_f00_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:27]   h02_f00_mv14: AUDIT from the slice logs: SAT -- witness in h02_f00_mv14_q00220_00275.log
+[19:27]   h02_f00_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:28]   h02_f00_mv15: AUDIT from the slice logs: SAT -- witness in h02_f00_mv15_q00165_00220.log
+[19:28]   h02_f00_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:28]   h02_f00_mv16: AUDIT from the slice logs: SAT -- witness in h02_f00_mv16_q00055_00110.log
+[19:28]   h02_f00_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:28]   h02_f00_mv17: AUDIT from the slice logs: SAT -- witness in h02_f00_mv17_q00055_00110.log
+[19:28]   h02_f00_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:28]   h02_f00_mv18: AUDIT from the slice logs: SAT -- witness in h02_f00_mv18_q00000_00055.log
+[19:28]   h02_f00_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:28]   h02_f00_mv19: AUDIT from the slice logs: SAT -- witness in h02_f00_mv19_q00055_00110.log
+[19:28]   h02_f00_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:29]   h02_f00_mv20: AUDIT from the slice logs: SAT -- witness in h02_f00_mv20_q00220_00275.log
+[19:29]   h02_f00_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:29]   h02_f02_mv00: AUDIT from the slice logs: SAT -- witness in h02_f02_mv00_q00000_00055.log
+[19:29]   h02_f02_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:29]   h02_f02_mv01: AUDIT from the slice logs: SAT -- witness in h02_f02_mv01_q00000_00055.log
+[19:29]   h02_f02_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:29]   h02_f02_mv02: AUDIT from the slice logs: SAT -- witness in h02_f02_mv02_q00055_00110.log
+[19:29]   h02_f02_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:29]   h02_f02_mv03: AUDIT from the slice logs: SAT -- witness in h02_f02_mv03_q00000_00055.log
+[19:29]   h02_f02_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:30]   h02_f02_mv05: AUDIT from the slice logs: SAT -- witness in h02_f02_mv05_q00000_00055.log
+[19:30]   h02_f02_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:30]   h02_f02_mv06: AUDIT from the slice logs: SAT -- witness in h02_f02_mv06_q00165_00220.log
+[19:30]   h02_f02_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:30]   h02_f02_mv07: AUDIT from the slice logs: SAT -- witness in h02_f02_mv07_q00055_00110.log
+[19:30]   h02_f02_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:30]   h02_f02_mv08: AUDIT from the slice logs: SAT -- witness in h02_f02_mv08_q00220_00275.log
+[19:30]   h02_f02_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:31]   h02_f02_mv09: AUDIT from the slice logs: SAT -- witness in h02_f02_mv09_q00000_00055.log
+[19:31]   h02_f02_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:31]   h02_f02_mv10: AUDIT from the slice logs: SAT -- witness in h02_f02_mv10_q00000_00055.log
+[19:31]   h02_f02_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:31]   h02_f02_mv11: AUDIT from the slice logs: SAT -- witness in h02_f02_mv11_q00000_00055.log
+[19:31]   h02_f02_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:31]   h02_f02_mv12: AUDIT from the slice logs: SAT -- witness in h02_f02_mv12_q00110_00165.log
+[19:31]   h02_f02_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:31]   h02_f02_mv13: AUDIT from the slice logs: SAT -- witness in h02_f02_mv13_q00000_00055.log
+[19:31]   h02_f02_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:32]   h02_f02_mv14: AUDIT from the slice logs: SAT -- witness in h02_f02_mv14_q00110_00165.log
+[19:32]   h02_f02_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:32]   h02_f02_mv15: AUDIT from the slice logs: SAT -- witness in h02_f02_mv15_q00055_00110.log
+[19:32]   h02_f02_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:32]   h02_f02_mv16: AUDIT from the slice logs: SAT -- witness in h02_f02_mv16_q00110_00165.log
+[19:32]   h02_f02_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:32]   h02_f02_mv17: AUDIT from the slice logs: SAT -- witness in h02_f02_mv17_q00000_00055.log
+[19:32]   h02_f02_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:32]   h02_f02_mv18: AUDIT from the slice logs: SAT -- witness in h02_f02_mv18_q00055_00110.log
+[19:32]   h02_f02_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:33]   h02_f02_mv19: AUDIT from the slice logs: SAT -- witness in h02_f02_mv19_q00220_00275.log
+[19:33]   h02_f02_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:33]   h02_f02_mv20: AUDIT from the slice logs: SAT -- witness in h02_f02_mv20_q00055_00110.log
+[19:33]   h02_f02_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:33]   h02_f05_mv00: AUDIT from the slice logs: SAT -- witness in h02_f05_mv00_q00000_00055.log
+[19:33]   h02_f05_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:33]   h02_f05_mv01: AUDIT from the slice logs: SAT -- witness in h02_f05_mv01_q00000_00055.log
+[19:33]   h02_f05_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:33]   h02_f05_mv02: AUDIT from the slice logs: SAT -- witness in h02_f05_mv02_q00000_00055.log
+[19:33]   h02_f05_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:34]   h02_f05_mv03: AUDIT from the slice logs: SAT -- witness in h02_f05_mv03_q00055_00110.log
+[19:34]   h02_f05_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:34]   h02_f05_mv04: AUDIT from the slice logs: SAT -- witness in h02_f05_mv04_q00055_00110.log
+[19:34]   h02_f05_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:34]   h02_f05_mv05: AUDIT from the slice logs: SAT -- witness in h02_f05_mv05_q00000_00055.log
+[19:34]   h02_f05_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:34]   h02_f05_mv06: AUDIT from the slice logs: SAT -- witness in h02_f05_mv06_q00000_00055.log
+[19:34]   h02_f05_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:34]   h02_f05_mv07: AUDIT from the slice logs: SAT -- witness in h02_f05_mv07_q00055_00110.log
+[19:34]   h02_f05_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:35]   h02_f05_mv08: AUDIT from the slice logs: SAT -- witness in h02_f05_mv08_q00055_00110.log
+[19:35]   h02_f05_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:35]   h02_f05_mv09: AUDIT from the slice logs: SAT -- witness in h02_f05_mv09_q00000_00055.log
+[19:35]   h02_f05_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:35]   h02_f05_mv11: AUDIT from the slice logs: SAT -- witness in h02_f05_mv11_q00000_00055.log
+[19:35]   h02_f05_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:35]   h02_f05_mv12: AUDIT from the slice logs: SAT -- witness in h02_f05_mv12_q00000_00055.log
+[19:35]   h02_f05_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:36]   h02_f05_mv13: AUDIT from the slice logs: SAT -- witness in h02_f05_mv13_q00165_00220.log
+[19:36]   h02_f05_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:36]   h02_f05_mv14: AUDIT from the slice logs: SAT -- witness in h02_f05_mv14_q00000_00055.log
+[19:36]   h02_f05_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:36]   h02_f05_mv15: AUDIT from the slice logs: SAT -- witness in h02_f05_mv15_q00000_00055.log
+[19:36]   h02_f05_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:36]   h02_f05_mv16: AUDIT from the slice logs: SAT -- witness in h02_f05_mv16_q00165_00220.log
+[19:36]   h02_f05_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:36]   h02_f05_mv17: AUDIT from the slice logs: SAT -- witness in h02_f05_mv17_q00000_00055.log
+[19:36]   h02_f05_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:37]   h02_f05_mv18: AUDIT from the slice logs: SAT -- witness in h02_f05_mv18_q00165_00220.log
+[19:37]   h02_f05_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:37]   h02_f05_mv19: AUDIT from the slice logs: SAT -- witness in h02_f05_mv19_q00000_00055.log
+[19:37]   h02_f05_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:37]   h02_f05_mv20: AUDIT from the slice logs: SAT -- witness in h02_f05_mv20_q00055_00110.log
+[19:37]   h02_f05_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:37]   h02_f06_mv00: AUDIT from the slice logs: SAT -- witness in h02_f06_mv00_q00000_00055.log
+[19:37]   h02_f06_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:37]   h02_f06_mv01: AUDIT from the slice logs: SAT -- witness in h02_f06_mv01_q00000_00055.log
+[19:37]   h02_f06_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:38]   h02_f06_mv02: AUDIT from the slice logs: SAT -- witness in h02_f06_mv02_q00055_00110.log
+[19:38]   h02_f06_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:38]   h02_f06_mv03: AUDIT from the slice logs: SAT -- witness in h02_f06_mv03_q00000_00055.log
+[19:38]   h02_f06_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:38]   h02_f06_mv04: AUDIT from the slice logs: SAT -- witness in h02_f06_mv04_q00000_00055.log
+[19:38]   h02_f06_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:38]   h02_f06_mv05: AUDIT from the slice logs: SAT -- witness in h02_f06_mv05_q00000_00055.log
+[19:38]   h02_f06_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:38]   h02_f06_mv06: AUDIT from the slice logs: SAT -- witness in h02_f06_mv06_q00110_00165.log
+[19:38]   h02_f06_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:39]   h02_f06_mv07: AUDIT from the slice logs: SAT -- witness in h02_f06_mv07_q00220_00275.log
+[19:39]   h02_f06_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:39]   h02_f06_mv08: AUDIT from the slice logs: SAT -- witness in h02_f06_mv08_q00000_00055.log
+[19:39]   h02_f06_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:39]   h02_f06_mv09: AUDIT from the slice logs: SAT -- witness in h02_f06_mv09_q00110_00165.log
+[19:39]   h02_f06_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:39]   h02_f06_mv10: AUDIT from the slice logs: SAT -- witness in h02_f06_mv10_q00000_00055.log
+[19:39]   h02_f06_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:39]   h02_f06_mv12: AUDIT from the slice logs: SAT -- witness in h02_f06_mv12_q00000_00055.log
+[19:39]   h02_f06_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:40]   h02_f06_mv13: AUDIT from the slice logs: SAT -- witness in h02_f06_mv13_q00275_00330.log
+[19:40]   h02_f06_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:40]   h02_f06_mv14: AUDIT from the slice logs: SAT -- witness in h02_f06_mv14_q00055_00110.log
+[19:40]   h02_f06_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:40]   h02_f06_mv15: AUDIT from the slice logs: SAT -- witness in h02_f06_mv15_q00055_00110.log
+[19:40]   h02_f06_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:40]   h02_f06_mv16: AUDIT from the slice logs: SAT -- witness in h02_f06_mv16_q00330_00385.log
+[19:40]   h02_f06_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:40]   h02_f06_mv17: AUDIT from the slice logs: SAT -- witness in h02_f06_mv17_q00055_00110.log
+[19:40]   h02_f06_mv17: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:41]   h02_f06_mv18: AUDIT from the slice logs: SAT -- witness in h02_f06_mv18_q00165_00220.log
+[19:41]   h02_f06_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:41]   h02_f06_mv19: AUDIT from the slice logs: SAT -- witness in h02_f06_mv19_q00055_00110.log
+[19:41]   h02_f06_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:41]   h02_f06_mv20: AUDIT from the slice logs: SAT -- witness in h02_f06_mv20_q00055_00110.log
+[19:41]   h02_f06_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:41]   h02_f09_mv00: AUDIT from the slice logs: SAT -- witness in h02_f09_mv00_q00000_00055.log
+[19:41]   h02_f09_mv00: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:42]   h02_f09_mv01: AUDIT from the slice logs: SAT -- witness in h02_f09_mv01_q00330_00385.log
+[19:42]   h02_f09_mv01: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:42]   h02_f09_mv02: AUDIT from the slice logs: SAT -- witness in h02_f09_mv02_q00000_00055.log
+[19:42]   h02_f09_mv02: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:42]   h02_f09_mv03: AUDIT from the slice logs: SAT -- witness in h02_f09_mv03_q00330_00385.log
+[19:42]   h02_f09_mv03: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:42]   h02_f09_mv04: AUDIT from the slice logs: SAT -- witness in h02_f09_mv04_q00055_00110.log
+[19:42]   h02_f09_mv04: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:42]   h02_f09_mv05: AUDIT from the slice logs: SAT -- witness in h02_f09_mv05_q00000_00055.log
+[19:42]   h02_f09_mv05: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:42]   h02_f09_mv06: AUDIT from the slice logs: SAT -- witness in h02_f09_mv06_q00110_00165.log
+[19:42]   h02_f09_mv06: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:43]   h02_f09_mv07: AUDIT from the slice logs: SAT -- witness in h02_f09_mv07_q00110_00165.log
+[19:43]   h02_f09_mv07: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:43]   h02_f09_mv08: AUDIT from the slice logs: SAT -- witness in h02_f09_mv08_q00110_00165.log
+[19:43]   h02_f09_mv08: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:43]   h02_f09_mv09: AUDIT from the slice logs: SAT -- witness in h02_f09_mv09_q00055_00110.log
+[19:43]   h02_f09_mv09: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:43]   h02_f09_mv10: AUDIT from the slice logs: SAT -- witness in h02_f09_mv10_q00055_00110.log
+[19:43]   h02_f09_mv10: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:44]   h02_f09_mv11: AUDIT from the slice logs: SAT -- witness in h02_f09_mv11_q00000_00055.log
+[19:44]   h02_f09_mv11: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:44]   h02_f09_mv12: AUDIT from the slice logs: SAT -- witness in h02_f09_mv12_q00000_00055.log
+[19:44]   h02_f09_mv12: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:44]   h02_f09_mv13: AUDIT from the slice logs: SAT -- witness in h02_f09_mv13_q00000_00055.log
+[19:44]   h02_f09_mv13: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:44]   h02_f09_mv14: AUDIT from the slice logs: SAT -- witness in h02_f09_mv14_q00055_00110.log
+[19:44]   h02_f09_mv14: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:44]   h02_f09_mv15: AUDIT from the slice logs: SAT -- witness in h02_f09_mv15_q00000_00055.log
+[19:44]   h02_f09_mv15: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:45]   h02_f09_mv16: AUDIT from the slice logs: SAT -- witness in h02_f09_mv16_q00000_00055.log
+[19:45]   h02_f09_mv16: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:45]   h02_f09_mv18: AUDIT from the slice logs: SAT -- witness in h02_f09_mv18_q00165_00220.log
+[19:45]   h02_f09_mv18: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:45]   h02_f09_mv19: AUDIT from the slice logs: SAT -- witness in h02_f09_mv19_q00220_00275.log
+[19:45]   h02_f09_mv19: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:45]   h02_f09_mv20: AUDIT from the slice logs: SAT -- witness in h02_f09_mv20_q00055_00110.log
+[19:45]   h02_f09_mv20: SAT -- INDUCIBLE at margin=exact (witness in its slice log)
+[19:45] RUNNER DONE

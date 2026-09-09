@@ -1,0 +1,23 @@
+# Compiled artifacts: build them from engine/*.c, do not track them.
+kinduce
+kcover
+*.o
+*.dSYM/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Regenerable and too large to track.  The coverage CNF for the Paley(19)
+# depth-6 instance is 34 MB and its proofs are 383 MB of DRAT and 222 MB of
+# LRAT, past GitHub's per-file limit; sat/cover_check.py regenerates them and
+# certificates/p19_coverage_cert.txt preserves the verification output.
+*.drat
+*.lrat
+*.cnf
+
+# Per-cube LRAT proofs are verified, hashed and discarded by design.  Only the
+# sha256 chain in certificates/*/log/ is evidence, and that IS tracked.
+proofs/
+
+.DS_Store

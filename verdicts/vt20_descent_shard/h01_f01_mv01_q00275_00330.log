@@ -1,0 +1,12 @@
+n=20 K=5 margin=exact1 order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 defect_R=0 base_sz=5 base=0,1,2,6,8 base_mask=668 base_states=2200
+  static_tail=17,7,18,5,9,12,13,14,3,4,10,11,16,19,15
+  base_state_slice=[275,330)
+WITNESS
+  voter 0: 0 2 11 14 3 5 12 18 15 6 4 10 16 7 19 8 17 1 13 9
+  voter 1: 0 4 17 6 11 9 3 19 13 7 5 15 16 8 2 18 1 10 12 14
+  voter 2: 1 10 8 16 3 4 5 9 18 19 2 12 13 7 11 17 0 15 6 14
+  voter 3: 6 12 1 13 16 14 15 2 19 17 18 7 5 9 0 10 3 8 4 11
+  voter 4: 8 7 14 9 10 15 17 13 18 11 19 12 1 4 2 5 16 3 6 0
+VERIFY bad_arcs=0 reversed=0 off_R=0 support_min=3 support_max=3 OK
+SLICE cleared=0 capped=0 of [275,330)
+RESULT SAT nodes=3388723 sols=1 base_states=2200 dom_calls=15 dom_nodes=5655 mrv_fails=4988467 top0_fails=0 bound_fails=0 fas_fails=0/0 refine_tuples=831640119 time=9.624s

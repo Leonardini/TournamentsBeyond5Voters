@@ -1,0 +1,18 @@
+complete paired triples: 20 of 21 base states sampled
+
+host    n          nodes       secs    us/node
+P27    27       46886215      912.8      19.47
+P31    31       28491893      845.2      29.66
+P43    43       11230893      641.3      57.10
+
+RATIOS on identical base states (cost-weighted):
+  31/27 : time 0.9259   nodes 0.6077 (n^-3.61)   us/node 1.5237 (n^+3.05)
+  43/31 : time 0.7587   nodes 0.3942 (n^-2.85)   us/node 1.9248 (n^+2.00)
+  43/27 : time 0.7025   nodes 0.2395 (n^-3.07)   us/node 2.9328 (n^+2.31)
+
+PAIRED PRICE for Paley(43), mask 217, anchored on the completed P27 sweep:
+  R(43/27) = 0.7025  =>  21.8 core-h   (90% CI [19.9, 23.7])
+  at 10 workers: 2.18 h wall
+
+KNOWN-ANSWER CONTROL: P27 arm here reads 45.6 s/base; the completed P27 run averaged 44.0 s/base over 2537 survivors.
+  ratio 1.036 -- a value near 1.0 says this probe's conditions match the real run.

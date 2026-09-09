@@ -1,0 +1,740 @@
+{
+ "summary": {
+  "P23": {
+   "per": 58.02050608494284,
+   "capped": 0,
+   "total_core_h": 40.88833998263888
+  },
+  "P27": {
+   "per": 57.846321703784,
+   "capped": 0,
+   "total_core_h": 40.76558837847222
+  }
+ },
+ "runs": {
+  "P23": [
+   {
+    "lo": 268,
+    "secs": 187.025,
+    "nodes": 18536468,
+    "capped": 0
+   },
+   {
+    "lo": 296,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 412,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 424,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 568,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 576,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 648,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 672,
+    "secs": 19.511,
+    "nodes": 1807525,
+    "capped": 0
+   },
+   {
+    "lo": 680,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 880,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 992,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 1016,
+    "secs": 47.249,
+    "nodes": 4219398,
+    "capped": 0
+   },
+   {
+    "lo": 1432,
+    "secs": 105.408,
+    "nodes": 10897351,
+    "capped": 0
+   },
+   {
+    "lo": 1472,
+    "secs": 121.27,
+    "nodes": 11642618,
+    "capped": 0
+   },
+   {
+    "lo": 1512,
+    "secs": 137.569,
+    "nodes": 13930802,
+    "capped": 0
+   },
+   {
+    "lo": 1788,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 1852,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 1892,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2048,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2188,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2268,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2368,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2376,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2776,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2992,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3004,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3048,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3068,
+    "secs": 276.543,
+    "nodes": 25759405,
+    "capped": 0
+   },
+   {
+    "lo": 3276,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3484,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3596,
+    "secs": 268.34,
+    "nodes": 26998139,
+    "capped": 0
+   },
+   {
+    "lo": 3740,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3972,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3992,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4224,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4336,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4448,
+    "secs": 129.001,
+    "nodes": 12490640,
+    "capped": 0
+   },
+   {
+    "lo": 4544,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4564,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4976,
+    "secs": 225.869,
+    "nodes": 19121243,
+    "capped": 0
+   },
+   {
+    "lo": 4996,
+    "secs": 210.32,
+    "nodes": 20081452,
+    "capped": 0
+   },
+   {
+    "lo": 5040,
+    "secs": 127.281,
+    "nodes": 12719590,
+    "capped": 0
+   },
+   {
+    "lo": 5160,
+    "secs": 100.97,
+    "nodes": 10566020,
+    "capped": 0
+   },
+   {
+    "lo": 5184,
+    "secs": 334.816,
+    "nodes": 32731525,
+    "capped": 0
+   },
+   {
+    "lo": 5300,
+    "secs": 134.521,
+    "nodes": 12633978,
+    "capped": 0
+   },
+   {
+    "lo": 5400,
+    "secs": 151.337,
+    "nodes": 13852731,
+    "capped": 0
+   },
+   {
+    "lo": 5468,
+    "secs": 114.329,
+    "nodes": 11268113,
+    "capped": 0
+   },
+   {
+    "lo": 5596,
+    "secs": 173.806,
+    "nodes": 16594379,
+    "capped": 0
+   },
+   {
+    "lo": 5640,
+    "secs": 113.627,
+    "nodes": 11538855,
+    "capped": 0
+   },
+   {
+    "lo": 5728,
+    "secs": 204.037,
+    "nodes": 18976814,
+    "capped": 0
+   },
+   {
+    "lo": 5740,
+    "secs": 355.023,
+    "nodes": 33161750,
+    "capped": 0
+   },
+   {
+    "lo": 5920,
+    "secs": 390.935,
+    "nodes": 35968325,
+    "capped": 0
+   },
+   {
+    "lo": 6012,
+    "secs": 223.385,
+    "nodes": 22523010,
+    "capped": 0
+   },
+   {
+    "lo": 6052,
+    "secs": 125.898,
+    "nodes": 12793540,
+    "capped": 0
+   },
+   {
+    "lo": 6244,
+    "secs": 59.827,
+    "nodes": 6270650,
+    "capped": 0
+   },
+   {
+    "lo": 6600,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 6676,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 6972,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 7688,
+    "secs": 0.0,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 7940,
+    "secs": 60.998,
+    "nodes": 6157311,
+    "capped": 0
+   }
+  ],
+  "P27": [
+   {
+    "lo": 268,
+    "secs": 196.514,
+    "nodes": 11636024,
+    "capped": 0
+   },
+   {
+    "lo": 296,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 412,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 424,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 568,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 576,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 648,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 672,
+    "secs": 16.132,
+    "nodes": 869069,
+    "capped": 0
+   },
+   {
+    "lo": 680,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 880,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 992,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 1016,
+    "secs": 36.359,
+    "nodes": 1971692,
+    "capped": 0
+   },
+   {
+    "lo": 1432,
+    "secs": 68.652,
+    "nodes": 4109990,
+    "capped": 0
+   },
+   {
+    "lo": 1472,
+    "secs": 78.195,
+    "nodes": 4566501,
+    "capped": 0
+   },
+   {
+    "lo": 1512,
+    "secs": 134.538,
+    "nodes": 7153754,
+    "capped": 0
+   },
+   {
+    "lo": 1788,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 1852,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 1892,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2048,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2188,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2268,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2368,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2376,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2776,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 2992,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3004,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3048,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3068,
+    "secs": 273.232,
+    "nodes": 15326408,
+    "capped": 0
+   },
+   {
+    "lo": 3276,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3484,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3596,
+    "secs": 240.718,
+    "nodes": 14145274,
+    "capped": 0
+   },
+   {
+    "lo": 3740,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3972,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 3992,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4224,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4336,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4448,
+    "secs": 134.067,
+    "nodes": 7198288,
+    "capped": 0
+   },
+   {
+    "lo": 4544,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4564,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 4976,
+    "secs": 196.915,
+    "nodes": 11214342,
+    "capped": 0
+   },
+   {
+    "lo": 4996,
+    "secs": 171.538,
+    "nodes": 9729198,
+    "capped": 0
+   },
+   {
+    "lo": 5040,
+    "secs": 146.38,
+    "nodes": 8536447,
+    "capped": 0
+   },
+   {
+    "lo": 5160,
+    "secs": 83.301,
+    "nodes": 4919502,
+    "capped": 0
+   },
+   {
+    "lo": 5184,
+    "secs": 298.574,
+    "nodes": 15647085,
+    "capped": 0
+   },
+   {
+    "lo": 5300,
+    "secs": 133.443,
+    "nodes": 7456955,
+    "capped": 0
+   },
+   {
+    "lo": 5400,
+    "secs": 151.568,
+    "nodes": 8302465,
+    "capped": 0
+   },
+   {
+    "lo": 5468,
+    "secs": 203.32,
+    "nodes": 12094255,
+    "capped": 0
+   },
+   {
+    "lo": 5596,
+    "secs": 250.544,
+    "nodes": 14554790,
+    "capped": 0
+   },
+   {
+    "lo": 5640,
+    "secs": 127.491,
+    "nodes": 7401951,
+    "capped": 0
+   },
+   {
+    "lo": 5728,
+    "secs": 208.208,
+    "nodes": 11215197,
+    "capped": 0
+   },
+   {
+    "lo": 5740,
+    "secs": 276.555,
+    "nodes": 15825864,
+    "capped": 0
+   },
+   {
+    "lo": 5920,
+    "secs": 335.82,
+    "nodes": 18207243,
+    "capped": 0
+   },
+   {
+    "lo": 6012,
+    "secs": 226.305,
+    "nodes": 12564027,
+    "capped": 0
+   },
+   {
+    "lo": 6052,
+    "secs": 223.337,
+    "nodes": 12375244,
+    "capped": 0
+   },
+   {
+    "lo": 6244,
+    "secs": 103.478,
+    "nodes": 6236501,
+    "capped": 0
+   },
+   {
+    "lo": 6600,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 6676,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 6972,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 7688,
+    "secs": 0.001,
+    "nodes": 4,
+    "capped": 0
+   },
+   {
+    "lo": 7940,
+    "secs": 70.471,
+    "nodes": 4026017,
+    "capped": 0
+   }
+  ]
+ }
+}

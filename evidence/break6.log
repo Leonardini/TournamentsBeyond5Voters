@@ -1,0 +1,23 @@
+top 5 classes by raw bases: [96198, 104403, 104403, 128031, 142251]
+embeddings found in Paley(19) in 0s: 5/5
+  base {0, 1, 2, 3, 6, 10}    raw= 96,198 live= 20,954 (21.8%)  break (0, 6)+(10, 6)  [enum 270s, 225-break spread 1.88x]
+  base {0, 1, 2, 3, 4, 6}     raw=104,403 live= 18,976 (18.2%)  break (3, 1)+(2, 4)  [enum 252s, 225-break spread 2.48x]
+  base {0, 1, 2, 3, 4, 17}    raw=104,403 live= 18,826 (18.0%)  break (3, 1)+(0, 2)  [enum 254s, 225-break spread 2.70x]
+  base {0, 1, 2, 3, 4, 5}     raw=128,031 live= 24,453 (19.1%)  break (3, 1)+(0, 2)  [enum 293s, 225-break spread 2.75x]
+  base {0, 1, 2, 3, 4, 11}    raw=142,251 live= 22,876 (16.1%)  break (0, 1)+(2, 1)  [enum 326s, 225-break spread 2.96x]
+
+rank  raw bases  live cubes   ret%  core-h @2.8s  base
+   1    104,403      18,826  18.0%         14.6  {0, 1, 2, 3, 4, 17}
+   2    104,403      18,976  18.2%         14.8  {0, 1, 2, 3, 4, 6}
+   3     96,198      20,954  21.8%         16.3  {0, 1, 2, 3, 6, 10}
+   4    142,251      22,876  16.1%         17.8  {0, 1, 2, 3, 4, 11}
+   5    128,031      24,453  19.1%         19.0  {0, 1, 2, 3, 4, 5}
+
+BEST CONFIGURATION
+  base       [0, 1, 2, 3, 4, 17]
+  raw bases  104,403
+  live cubes 18,826  (18.0% retention)
+  break      --toppair 3 1 0 2
+  cost       14.6 core-h = 1.5 h on 10 cores
+
+  NB: ranking by RAW bases would have picked {0, 1, 2, 3, 6, 10} (96,198 raw, 20,954 live) -- 1.11x worse after Aut reduction.
