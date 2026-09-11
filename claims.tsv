@@ -1,0 +1,75 @@
+id	group	sections	status	artifacts	missing	claim
+B1	1. The bound: 13 ≤ N(5) ≤ 23	3.1	established	evidence/rerun1_p23_majority.tar.zst;evidence/anchor2_p23_majority.tar.zst;REPRODUCE.md		**Paley(23) is not 5-inducible**, hence N(5) ≤ 23. Complete over all 8,031 base states of `{1,2,3,6,12}`, of which 2,591 survive the anchor
+B2	1. The bound: 13 ≤ N(5) ≤ 23	3.1;B.1	established	certificates/p23cert_d6/VERDICT.txt;certificates/p23cert_d6/p23_cert.portable.txt;sat/certify_d6.py;sat/reroot.py;tools/check_package.sh		Paley(23), **machine-checked** on both halves
+B3	1. The bound: 13 ≤ N(5) ≤ 23	C	declared_gap	cluster/jz_n12cover/;cluster/jz_n12cover/COMMANDS.md;cluster/jz_n12cover/aggregate.sh		**13 ≤ N(5)**: every order-12 tournament is 5-inducible
+B4	1. The bound: 13 ≤ N(5) ≤ 23	3.4	established	verdicts/p43mv_majority/p43mv_times.txt;verdicts/p43_minus1v_VERDICT.txt;REPRODUCE.md		Paley(43) − v is not 5-inducible, so N(5) ≤ 43 is **re-derived by a second method**
+P1	2. The rest of the Paley family	A.3	established	evidence/p27_majority.tar.zst;REPRODUCE.md;tournaments/p27_paley.bits		Paley(27) is not 5-inducible, 8,031 base states, 2,537 live, 6.22 × 10⁹ nodes
+P2	2. The rest of the Paley family	3.1	established	evidence/p31_majority.tar.zst;evidence/measurements/p31_result.json;REPRODUCE.md		Paley(31) is not 5-inducible, 21,009 base states, 4,007 live, 3.43 × 10⁹ nodes
+P3	2. The rest of the Paley family	3.3	established	verdicts/WITNESSES_margin_hierarchy.md;verify/verify_witness.py		Paley(19) **is** 5-inducible (recovers dim Q₁₉ = 5 of [1])
+P4	2. The rest of the Paley family	3.3	established	verdicts/p19_margin1_VERDICT.txt;certificates/p19cert_d6/;REPRODUCE.md;sat/certify_p19_m1.py		Paley(19) is **not** 5-inducible at unit margin, 2,200 base states of `{1,2,3,4,6}`
+P5	2. The rest of the Paley family	3.3	established	verdicts/WITNESSES_margin_hierarchy.md		The witnesses are abundant, not delicate: ten workers hit at once from ten base states, support histogram 159 arcs at 3–2 and 12 at 4–1, none unanimous
+P6	2. The rest of the Paley family	3.1	established	evidence/n22_p23minusv.tar.zst;verdicts/WITNESSES_paley_minus_vertex.md;REPRODUCE.md		Paley(23) − v **is** 5-inducible, so n = 22 does not improve the bound
+P7	2. The rest of the Paley family	3.4	established	verdicts/p31_minus1v_VERDICT.txt;verdicts/p31mv_majority/p31mv_times.txt;verdicts/p31mv_majority/README.md;REPRODUCE.md		**Paley(31) − v is not 5-inducible**, so Paley(31) is not vertex-critical. 8,031 base states of `{1,2,3,4,13}`, exact index cover, 0 capped
+P8	2. The rest of the Paley family	3.2	established	verdicts/m1_family/VERDICTS.md;REPRODUCE.md		Paley(23), (27), (31), (43) are **not vertex-critical at unit margin**
+K1	3. Criticality	3.2;3.6	established	verdicts/WITNESSES_paley_arcrev.md;tournaments/p19_arcrev.bits		q = 19, **unit margin: arc-critical**. Reversing any arc restores unit-margin inducibility; the reversal is unique up to isomorphism because Aut(P₁₉) is regular on arcs
+K2	3. Criticality	3.2	established			q = 19, unrestricted: 5-inducible, so criticality does not apply
+K3	3. Criticality	3.2	established	verdicts/m1_family/VERDICTS.md		q = 23, unit margin: **not** vertex-critical
+K4	3. Criticality	3.2	established	verdicts/m1_arcrev/VERDICT.md		q = 23, unit margin: not arc-critical either
+K5	3. Criticality	3.2;3.5	established	verdicts/p23_arc_critical_VERDICT.txt;verdicts/p23arc_witness/b1161.witness;tournaments/p23_arcrev.bits		q = 23, **unrestricted: arc-critical**. Reversing any single arc yields a 5-inducible tournament
+K6	3. Criticality	3.5	established	evidence/n22_p23minusv.tar.zst		Consequently Paley(23) is **vertex-critical** unrestricted
+K7	3. Criticality	3.2;3.4	established			q = 31, both margins: **not vertex-critical**
+K8	3. Criticality	3.2;3.4	established			q = 43, both margins: **not vertex-critical**
+K9	3. Criticality	3.6	established	tournaments/dr19_arcflip/;manifest.tsv		The **second** doubly regular tournament on 19 vertices is arc-critical at unit margin: 57 orbits of size 3, 57 witnesses
+K10	3. Criticality	3.6	established	verdicts/WITNESSES_margin_hierarchy.md;verdicts/drt19_wit/;tournaments/dr19_g1.bits;tournaments/dr19_g2.bits		Both DRTs on 19 vertices are unit-margin obstructions and both are majority-inducible
+F1	The 21-vertex picture (§3.5, Appendix F)		established	tournaments/vt21_hosts/manifest.tsv;tournaments/vt21_arcflip/manifest.tsv		Each of the four unit-margin obstructions has \
+F2	The 21-vertex picture (§3.5, Appendix F)		established	verdicts/arcflip_spectrum.log;tournaments/vt21_arcflip/out/*.exact.txt		The spectrum: h₁ `UUUUUUUUUU`, h₂ `USUSSUUSSU`, h₄ and h₅ all `S` — 15 of the 40 reversals stay obstructions
+F3	The 21-vertex picture (§3.5, Appendix F)		established			So **arc-criticality at unit margin is carried by the arc, not the tournament**: h₂ is arc-semi-critical, 105 of 210 arcs each way
+F4	The 21-vertex picture (§3.5, Appendix F)		established	verdicts/arcflip_spectrum.log;tournaments/vt21_arcflip/verdicts.tsv		All 210 single-arc reversals of h₁ remain obstructions — 736 runs, none capped, tiling each range exactly
+F5	The 21-vertex picture (§3.5, Appendix F)		established	tournaments/vt21_hosts/manifest.tsv		Every one of the 15 surviving reversals belongs to a host with **cyclic** automorphism group; all 20 orbits of the two with the nonabelian group of order 21 are inducible
+F6	The 21-vertex picture (§3.5, Appendix F)		established	verdicts/vt20_descent.log;verdicts/vt20_descent_shard/*.log;tournaments/deletion_classes.py		The four hosts and the 15 surviving reversals have **319 one-vertex deletions, 289 pairwise non-isomorphic**, and every one has an exhibited unit-margin witness
+F7	The 21-vertex picture (§3.5, Appendix F)		established			Hence nothing here descends to a unit-margin obstruction on 20 vertices
+S1	4. The structured families (§3.6)		established	verdicts/vt21_majority/;verdicts/vt21_margin1/;verdicts/verdict_ledger.tsv;tournaments/vt21_family.py;tournaments/vt21_all_reps.npy		All **110** vertex-transitive tournaments on 21 vertices are 5-inducible — 106 at unit margin, the other four by exhibited majority witnesses. So that family holds no candidate below 23
+S2	4. The structured families (§3.6)		established	tournaments/vt21_arcflip/out/*.majority.txt		The closure survives one-arc perturbation: all **40** orbit representatives of the four obstructions are majority-inducible
+S3	4. The structured families (§3.6)		established	verdicts/verdict_ledger.tsv;verdicts/n13_regular_result.txt;tools/check_package.sh		Every regular tournament on at most **13** vertices is inducible at both margins (15, 1,223, 1,495,297 instances)
+S4	4. The structured families (§3.6)		established	cluster/jz_n15/results_margin1/done/;tools/check_package.sh;cluster/jz_n15/aggregate.sh		Every regular tournament on **15** vertices is inducible at unit margin, all 18,400,989,629, none capped, residue counts summing to OEIS A096368(7)
+S5	4. The structured families (§3.6)		established	cluster/jz_n13sc/results_excluded/done/;verdicts/n13_regular_result.txt;cluster/jz_n13sc/results/done/;cluster/jz_n13sc/results_local/done/;cluster/jz_n13sc/aggregate.sh;cluster/jz_n13sc/prepare.sh		Every **self-converse** tournament on **13** vertices is inducible at unit margin — all S₁₃ = 95,458,560, 0 UNSAT, 0 aborted
+S6	4. The structured families (§3.6)		established	cluster/jz_n13sc/state/partition.tsv;cluster/jz_n13sc/aggregate.sh;verify/selfconverse_regular_count.py		The three parts are exactly the family, with no gap and no overlap
+S7	4. The structured families (§3.6)		established	verdicts/verdict_ledger.tsv;tools/check_package.sh		These sweeps turn up exactly **ten** tournaments that are not 5-inducible at unit margin: 2 doubly regular at order 19, 4 vertex-transitive at order 21, 4 circulant at order 23
+S8	4. The structured families (§3.6)		established	verify/appendix_e.py		**Every locally transitive tournament is 5-inducible at unit margin**, by construction rather than search (Theorem E.1)
+S9	4. The structured families (§3.6)		established	verdicts/n23_tmin4/;tournaments/vt23/manifest.tsv;verify/triangles_per_arc.py;tournaments/vt23_gen.py		**Refuted conjecture:** triangle load does not decide unit-margin inducibility — among 23-vertex vertex-transitive tournaments with t = 4, three are obstructions and 36 are inducible
+S10	4. The structured families (§3.6)		established	verdicts/verdict_ledger.tsv;verify/triangles_per_arc.py		The unrestricted form survives: every majority obstruction we have has t ≥ 6
+R1	6a. The independent reproduction (§5.2)		established	cluster/jz_reproduce/slurm/recert_1829004.out;cluster/jz_reproduce/slurm/recert_1919064.out		Both refutations were re-solved from scratch on the cluster, under a different compiler and CaDiCaL build, and **ROOT (CNF) matched bit for bit**
+R2	6a. The independent reproduction (§5.2)		established			At 70.9 and 567.6 cluster core-hours against the laptop's 25.1 and 236.0, i.e. 2.8× and 2.4×
+R3	6a. The independent reproduction (§5.2)		declared_gap			Both coverage instances were rebuilt on the cluster to their committed CNF hashes and refuted again
+R4	6a. The independent reproduction (§5.2)		established	cluster/jz_reproduce/slurm/recert_{1827897,1828524,1829003,1843769}.out;cluster/jz_reproduce/COMMANDS.md		The four earlier attempts failed for reasons that say nothing about the result
+M1	7. The method comparison (Appendix A)	A.1	established	evidence/measurements/;tools/check_manuscript.py		Integer programming does not reach these instances; at q = 23 the program has 1,265 binaries, 17,710 transitivity rows and 253 majority rows
+M2	7. The method comparison (Appendix A)	A.1	established	sat/cube_sat.py;evidence/measurements/		SAT alone does not either. The dissent-Boolean encoding cuts CaDiCaL conflicts 26–42× against the order-variable family (2,399 / 1,491 / 57 on doubly regular tests), and with a sound symmetry break on top neither 19-vertex instance still returns a verdict
+M3	7. The method comparison (Appendix A)	A.2	established	evidence/measurements/;sat/leaf_bench.py		The exact domain rule beats the capped one on decision quality alone: 992,378 nodes capped against 294,964 exact, identical verdicts, on a 29-instance Paley(19) benchmark
+M4	7. The method comparison (Appendix A)	B.1	established	sat/leaf_bench.py		LRAT over DRAT on measurement: 0.295 s vs 1.043 s per leaf end to end, 29× in checking alone
+M5	7. The method comparison (Appendix A)	A.2	established	evidence/measurements/probe2_results.json;probe3_results.json;price31.json;evidence/README.md		Choosing the base: four cheap proxies each inverted when measured, so only live-count × measured s/state is the objective. At q = 31 the class with 4,007 live states beat the class with 2,537
+M6	7. The method comparison (Appendix A)	A.3	established	evidence/measurements/price43_series.json;cluster/jz_reproduce/		The cluster runs 2–5× slower per core than the laptop, over six independent experiments
+M7	7. The method comparison (Appendix A)	A.2	established	evidence/measurements/		Incremental refinement is worth about 110× in wall time, against a factor of a few for the dynamic order
+T1	8. The cost and node tables (Appendix A.3 and A.4)		established	certificates/p19cert_d6/log/*.log		A.4 P₁₉ certified refutation, unit
+T2	8. The cost and node tables (Appendix A.3 and A.4)		established	certificates/p23cert_d6/log/*.log		A.4 P₂₃ certified refutation, unrestricted
+T3	8. The cost and node tables (Appendix A.3 and A.4)		established	verdicts/p31mv_majority/p31mv_times.txt		A.4 P₃₁ − v sweep, unrestricted
+T4	8. The cost and node tables (Appendix A.3 and A.4)		established	cluster/jz_p23arc/AGGREGATE_OUTPUT.txt		A.4 P₂₃ one arc reversed, unrestricted
+T5	8. The cost and node tables (Appendix A.3 and A.4)		established	tournaments/dr19_arcflip/sweep.log		A.4 second DRT on 19, all 57 arc reversals, unit
+T6	8. The cost and node tables (Appendix A.3 and A.4)		established	cluster/jz_n15/results_margin1/done/		A.4 regular tournaments on 15, unit
+T7	8. The cost and node tables (Appendix A.3 and A.4)		established	cluster/jz_n13sc/SLURM_COST.txt		A.4 self-converse on 13, unit
+T8	8. The cost and node tables (Appendix A.3 and A.4)		declared_gap			A.4 all tournaments on 12, unit
+T9	8. The cost and node tables (Appendix A.3 and A.4)		established	evidence/{rerun1_p23,p27,p31,p43}_majority.tar.zst		A.3 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87
+T10	8. The cost and node tables (Appendix A.3 and A.4)		established			A.3 live base states 2,591, 2,537, 4,007, 2,537
+T11	8. The cost and node tables (Appendix A.3 and A.4)		established			A.3 seconds per live base state 47.3, 44.0, 24.2, 32.5
+T12	8. The cost and node tables (Appendix A.3 and A.4)		established			A.3 node counts
+T13	8. The cost and node tables (Appendix A.3 and A.4)		established	verdicts/p43mv_majority/p43mv_times.txt		A.3 P₄₃ − v takes 185.5 core-h
+D1	9. Exact enumeration counts (Appendix D)		established	cluster/jz_n12cover/aggregate.sh		D₁₁
+D2	9. Exact enumeration counts (Appendix D)		established			D₁₂
+D3	9. Exact enumeration counts (Appendix D)		established	tools/check_package.sh		R₁₁
+D4	9. Exact enumeration counts (Appendix D)		established	verdicts/n13_regular_result.txt		R₁₃
+D5	9. Exact enumeration counts (Appendix D)		established	cluster/jz_n15/results_margin1/done/		R₁₅
+D6	9. Exact enumeration counts (Appendix D)		established	cluster/jz_n12cover/aggregate.sh		S₁₁
+D7	9. Exact enumeration counts (Appendix D)		established			S₁₂
+D8	9. Exact enumeration counts (Appendix D)		established	cluster/jz_n13sc/aggregate.sh;prepare.sh		S₁₃
+E1	10. The engine itself		established	engine/kinduce.c;REPRODUCE.md;engine/versions/		`engine/kinduce.c` is a **consolidation**; no published number was produced by it. Each result names its original version in `REPRODUCE.md`
+E2	10. The engine itself		established	engine/versions/REGRESSION.md;engine/regression.sh		The consolidated engine agrees with each of those versions **node for node** on the published command lines
+E3	10. The engine itself		established	manuscript/figures/README.md;paley7_trace.py;paley7_figure.py		Figure 1 is drawn from a real trace by a second, independent implementation of the search, which refuses to emit one unless seven cross-checks pass

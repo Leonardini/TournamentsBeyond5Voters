@@ -1,0 +1,106 @@
+Paley(31) - v is NOT 5-inducible, and therefore
+Paley(31) is NOT VERTEX-CRITICAL.
+
+date            2026-09-10 09:33 BST  (started 2026-09-09)
+host            p31_minus1v.bits  = Paley(31) less vertex 0, n = 30
+engine          kinduce (consolidated), --max-margin 3 --order mrv --inc --pool-mb 512
+base            {0,1,2,3,12} 0-indexed = {1,2,3,4,13} as the manuscript writes it,
+                base_mask 947, 8031 base states
+break           --toporb 0 2 on 7,625 base states; 406 searched WITHOUT any break
+                (see MIXED REGIME below).  The break does not reduce the base-state
+                count -- measured, the engine reports 8031 either way -- it prunes
+                inside each state.
+driver          p31mv_majority/, 10 workers, shuffled order, per-base markers
+
+COMPLETE        8031 / 8031 base states, indices 0..8030 exactly
+                0 missing, 0 extra, 0 duplicated, 0 capped, 0 aborted
+                (a run that did not end in RESULT UNSAT leaves no marker, so
+                 the exact index cover IS the completeness certificate)
+cost            239.53 core-h; mean 107.37 s/base, median 97.11 s, max 1374.2 s
+result          NO WITNESS.  RESULT UNSAT on every base state.
+
+record          p31mv_majority/p31mv_times.txt -- one line per base state:
+                index, seconds, base_mask, break.  Rebuild done/ from it with
+                sweep_rehydrate.sh; re-derive this file's cost and coverage from
+                it with nothing but awk.
+
+--------------------------------------------------------------------------
+WHY THIS DECIDES MAJORITY, NOT JUST MARGIN<=3
+--------------------------------------------------------------------------
+The sweep ran at --max-margin 3.  That is nevertheless a MAJORITY verdict, by
+the 3-cycle bound of Section 3:
+
+  In a 3-cycle u->v->w->u any LINEAR order agrees with at most 2 of the 3 arcs,
+  so over k voters  c(u,v)+c(v,w)+c(w,u) <= 2k = 10.  Majority forces each term
+  >= 3, hence no support exceeds 4.  An arc in ANY 3-cycle can never be
+  unanimous, so majority == margin<=3.
+
+Measured on THIS host rather than assumed: every arc of p31_minus1v.bits lies in
+at least 7 cyclic triangles -- which is (q-3)/4 at q = 31 -- and 0 arcs lie in
+none.  So margin<=3 and majority are THE SAME QUESTION here, and the refutation
+above is a refutation at majority.
+
+--------------------------------------------------------------------------
+MIXED REGIME: 406 STATES WITHOUT THE BREAK, 7,625 WITH IT, STILL COMPLETE
+--------------------------------------------------------------------------
+--toporb 0 2 was turned on part-way through, on 2026-09-09.  The union is still
+a complete refutation.  Let W be any witness.  The break is sound here, so some
+g in Aut(P31-v) carries W to a witness W' = gW in which some voter ranks 0 or 2
+first.  W' lies in exactly one base state B, because the base states partition
+the profile space.  Two cases:
+
+  * B was settled WITHOUT the break -- then B was searched exhaustively, so it
+    contains no witness at all, contradicting W' in B;
+  * B was searched WITH the break -- then W' satisfies the break by construction,
+    so it lies inside the searched region.
+
+Either way a witness cannot hide.  Note the direction: an exhaustive search of a
+base state is strictly STRONGER than a broken one, so turning a sound break on
+later never invalidates earlier work -- only the reverse would.  Each marker
+records which regime produced it in its brk= field, so the mixture is visible in
+the record rather than implicit.
+
+--------------------------------------------------------------------------
+THE ONE REMAINING HUMAN LEMMA
+--------------------------------------------------------------------------
+--toporb 0 2 is caller-discharged: it is sound iff {0,2} meet every
+Aut(Paley(31)-v)-orbit on V.  VERIFIED here, not assumed -- |Aut(P31-v)| = 15
+exactly (nauty; = (q-1)/2, the stabiliser of the deleted vertex), and it splits
+the 30 survivors into exactly two orbits of size 15, the QR and non-QR cosets,
+with new labels 0 and 2 being old labels 1 and 3, one in each.  The check is
+conservative in the SAFE direction: Stab is a SUBGROUP of Aut(P31-v), so its
+orbits refine the true ones and a set meeting every Stab-orbit meets every
+Aut-orbit.
+
+The engine cannot perform this calculation for itself; kinduce.1's SOUNDNESS
+section says so.  It is the single step in this verdict that is human rather
+than machine -- and 406 of the 8,031 states do not even rest on it.
+
+--------------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------------
+Paley(31) is not 5-inducible (settled 2026-09-03: 5253/5253 chunks UNSAT, 0
+capped, coverage [0,21009) exact, 26.89 core-h).  Vertex-criticality would
+require every one-vertex deletion to BE 5-inducible.  |Aut(Paley(31))| = 465 =
+C(31,2) = the number of arcs, so Aut is regular on arcs and in particular
+transitive on vertices; all 31 deletions are isomorphic and one run settles them
+all.  That run is UNSAT.  Hence Paley(31) is NOT vertex-critical.
+
+Margin 1 was already refuted for this host (m1_family cell p31mv: 2200/2200 base
+states, exact coverage, no witness, 2.21 core-h), so Paley(31) is not vertex-
+critical at EITHER margin, and by "arc-critical implies vertex-critical" it is
+not arc-critical at either margin.
+
+What it does NOT give: any improvement to N(5) <= 23.  Non-inducibility
+propagates upward, and 30 > 23.
+
+--------------------------------------------------------------------------
+WHAT THIS SETTLES IN THE MANUSCRIPT
+--------------------------------------------------------------------------
+Section 3.4, the q = 31 row of the criticality table in Section 3.2, and the
+"P31 - v, sweep" row of the cost table in Appendix A.4 (239.5 core-h).  Before
+this run the q = 31 unrestricted cell read "open".
+
+Open problem 1 of Section 4.2 remains: whether Paley(31) - 2v is 5-inducible,
+equivalently whether Paley(31) - v is itself vertex-critical, is not settled
+here, and nor is the same question at q = 43.

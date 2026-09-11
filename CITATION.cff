@@ -1,0 +1,58 @@
+cff-version: 1.2.0
+title: >-
+  Reproduction package for "Tournaments not inducible by five voters"
+message: >-
+  If you use this package, please cite the paper it accompanies. The
+  package's own contents are indexed claim by claim in CLAIMS.md, which
+  also lists what the package does not establish.
+type: software
+authors:
+  - given-names: Leonid
+    family-names: Chindelevitch
+    email: lchindel@ic.ac.uk
+    orcid: "https://orcid.org/0000-0002-6619-6013"
+    affiliation: >-
+      MRC Centre for Global Infectious Disease Analysis, School of Public
+      Health, Imperial College London, London, United Kingdom
+  - given-names: Ararat
+    family-names: Harutyunyan
+    email: ararat.harutyunyan@lamsade.dauphine.fr
+    affiliation: >-
+      University of Paris-Dauphine, PSL University, CNRS UMR7243,
+      LAMSADE, Paris, France
+repository-code: "https://github.com/Leonardini/TournamentsBeyond5Voters"
+abstract: >-
+  Code, tournaments, verdicts and machine-checked certificates for the
+  paper "Tournaments not inducible by five voters", which proves
+  13 <= N(5) <= 23, where N(k) is the least order at which some
+  tournament is not the majority tournament of any k linear orders. The
+  upper bound comes from proving that the Paley tournament on 23
+  vertices is not 5-inducible; the lower bound from an exhaustive case
+  analysis at order 12. Includes the depth-first placement search engine,
+  the dissent-Boolean SAT encoding and cube tooling, independent witness
+  verifiers that share no code with the search, and the per-cube sha256
+  chains from which both published certificate roots rebuild.
+keywords:
+  - tournaments
+  - majority voting
+  - k-majority digraphs
+  - Paley tournament
+  - cube and conquer
+  - SAT
+  - LRAT
+  - reproducibility
+license: CC-BY-4.0
+preferred-citation:
+  type: unpublished
+  title: "Tournaments not inducible by five voters"
+  authors:
+    - given-names: Leonid
+      family-names: Chindelevitch
+      orcid: "https://orcid.org/0000-0002-6619-6013"
+    - given-names: Ararat
+      family-names: Harutyunyan
+  year: 2026
+  notes: >-
+    Submitted. A permanent archive of the commit corresponding to the
+    accepted version will be deposited on acceptance and its DOI recorded
+    in Section 5.1 of the paper and in this file.

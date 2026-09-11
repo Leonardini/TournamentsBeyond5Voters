@@ -1,0 +1,103 @@
+Paley(23) with any one arc reversed IS 5-inducible, and therefore
+Paley(23) is ARC-CRITICAL for 5-inducibility at plain majority.
+Consequently it is also VERTEX-CRITICAL.
+
+date            2026-09-06 (witness found on the cluster; re-verified locally)
+host            p23_arcrev.bits = Paley(23) with the arc (0,1) reversed, n = 23
+engine          kinduce (consolidated), --margin majority --order mrv --inc
+driver          jz_p23arc/, SLURM array job 1770832, per-base-state chunks
+result          RESULT SAT at base state 1161, nodes = 5,860,166, 221.722 s
+witness         p23arc_witness/b1161.witness -- the five ballots, verbatim
+cost            210.4 core-h to the point the witness appeared
+                (the figure Appendix A.4 reports; see THE ONE UNRECORDED NUMBER)
+
+--------------------------------------------------------------------------
+WHY ONE REVERSAL SETTLES ALL 253
+--------------------------------------------------------------------------
+|Aut(Paley(23))| = 253 = C(23,2) = the number of arcs (nauty), so Aut acts
+REGULARLY on arcs and in particular transitively: every single-arc reversal of
+Paley(23) is isomorphic to every other.  "Reverse an arc of Paley(23)" therefore
+names ONE tournament up to isomorphism, and one witness settles the family.
+
+Verified constructively rather than from the group order alone: for every one of
+the 253 arcs, the explicit affine map carrying (0,1) to that arc was checked to
+carry the reversed tournament onto the reversed tournament.  0 failures.  See
+WITNESSES_paley_arcrev.md.
+
+--------------------------------------------------------------------------
+WHY A PARTIAL SCAN IS A COMPLETE POSITIVE CERTIFICATE
+--------------------------------------------------------------------------
+The scan was STOPPED once base state 1161 returned SAT; base states 1162..8030
+were never searched.  That is sound here and would not be sound for a
+refutation.  A witness exhibits the object the claim asserts exists, so the
+remaining base states could only produce more witnesses.  A refutation is the
+opposite: it is only as good as the union of its slices, which is why every
+negative verdict in this package audits an exact index cover and every positive
+one does not.
+
+Do not apply the refutation checklist to this file.
+
+--------------------------------------------------------------------------
+NO SYMMETRY BREAK WAS AVAILABLE, AND NONE WAS USED
+--------------------------------------------------------------------------
+Reversing an arc destroys every automorphism: |Aut(T^e)| = 1, and the
+out-degrees go from regular (11 everywhere) to {10,11,12}.  So --toppair,
+--top0 and --toporb are all UNSOUND on this host and none is used; all 8,031
+base states are live, against 2,591 for Paley(23) itself under its anchor.
+That is the whole reason this run costs an order of magnitude more than the
+34.03 core-h refutation of Paley(23).
+
+Only the voter lex-sort applies, and it is a WLOG about voter ordering that is
+independent of the host (Lemma 2.3).  This verdict therefore rests on ONE
+human-checked lemma rather than two: no orbit calculation is involved.
+
+--------------------------------------------------------------------------
+INDEPENDENT VERIFICATION OF THE WITNESS
+--------------------------------------------------------------------------
+verify_witness_bits.py shares no code with the search: it reads the bit string
+and the five ballots and recomputes every arc's support.
+
+  python3 verify/verify_witness_bits.py verdicts/p23arc_witness/b1161.witness \
+          tournaments/p23_arcrev.bits 23 5 --majority
+  VERIFIED: all 253 arcs at at least 3 of 5, 5 valid permutations
+            -- witness is GENUINE
+
+NEGATIVE CONTROL, and it fires.  The same five ballots checked against the
+UNREVERSED Paley(23):
+
+  python3 verify/verify_witness_bits.py verdicts/p23arc_witness/b1161.witness \
+          tournaments/p23_paley.bits 23 5 --majority
+  FAIL: 1 arcs violate the rule, e.g. [(0, 1, 2)]
+
+Exactly one arc fails, and it is (0,1) -- the arc that was reversed, carried at
+support 2 instead of 3.  So the witness is a witness for T^e and demonstrably
+NOT one for Paley(23); if it were one for both, it would contradict Paley(23)
+not being 5-inducible and the whole result would be wrong.
+
+--------------------------------------------------------------------------
+CONCLUSION, AND WHAT IT DOES NOT GIVE
+--------------------------------------------------------------------------
+Paley(23) is not 5-inducible (34.03 core-h, exact coverage, and machine-checked
+in p23cert_d6/).  Every single-arc reversal of it is 5-inducible.  Hence
+Paley(23) is ARC-CRITICAL at plain majority.
+
+Arc-criticality implies vertex-criticality (WITNESSES_paley_arcrev.md carries
+the proof: k-inducibility is hereditary, and T^e - v = T - v when e is incident
+to v), so Paley(23) is vertex-critical too.  That is corroborated independently
+by the direct route: Paley(23) - v has its own witness, from base state 6560, in
+n22_p23minusv.tar.zst.
+
+At UNIT margin the picture is the opposite and is recorded elsewhere: Paley(23)
+is neither vertex-critical (m1_family cell p23mv) nor arc-critical (m1_arcrev/).
+The two margins come apart on this host, which is the point of the q = 23 row of
+the criticality table in Section 3.2.
+
+--------------------------------------------------------------------------
+THE ONE UNRECORDED NUMBER
+--------------------------------------------------------------------------
+The 210.4 core-h that Appendix A.4 reports for this row is the output of
+jz_p23arc/aggregate.sh over the campaign's per-base-state markers, which live on
+the cluster and are not in this package.  The verdict, the witness and its
+independent verification are all here; the COST is not re-derivable from shipped
+bytes, and CLAIMS.md declares that as gap 3 rather than leaving it to be
+discovered.

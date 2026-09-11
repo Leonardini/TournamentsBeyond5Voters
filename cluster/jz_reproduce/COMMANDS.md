@@ -28,8 +28,11 @@ Paley(31) is a new conf file and nothing else**.
 
 Every expected value is **asserted**, not printed for a human to compare. An
 empty expectation in the conf means "record what you observe" — never "assume it
-passed". `p23.conf` deliberately leaves `COVER_CLAUSES` empty because that half
-had not completed when the kit was written.
+passed". Both confs are now fully populated: `COVER_CLAUSES`, `COVER_CNF_SHA`
+and `CERT_PORTABLE` are all present, so every stage asserts and none merely
+reports. `COVER_CNF_SHA` was added on 2026-09-11 — before that the coverage
+stage printed the hash instead of checking it, which is how the cluster's
+coverage comparison came to be made by eye.
 
 ## Tier 1 — cheap (~1 core-h, no cube solving)
 
@@ -103,10 +106,43 @@ Note the coverage instance is **much larger than the search instance**: the
 `--arc`/`--non` filter reduces the search half to the live cubes, but coverage
 must consider *all* base states — 3,414,729 for Paley(23) against 343,896 live.
 
-## Known gap
+## What has actually been reproduced on a second machine
 
-The Paley(23) **split half was still running when this kit was written**. The
-search half (all 343,896 cubes UNSAT) is done and verified. Until coverage
-passes somewhere, that refutation rests on the enumeration being exhaustive by
-construction, which is an argument rather than a machine-checked certificate —
-and `p23.conf` has no `CERT_PORTABLE` recorded for exactly that reason.
+Stated per value, because "the certificate reproduces" is four different claims
+and they did not all happen.
+
+| value | asserted by the script? | reproduced on the cluster? |
+|---|---|---|
+| `ROOT (CNF)`, both instances | yes, `stage_recertify` vs `ROOT_CNF` | **yes** -- `PORTABLE ROOT MATCHES`, jobs 1829004 (p19) and 1919064 (p23) |
+| coverage clauses, UNSAT, `CHECK=VERIFIED` | yes, vs `COVER_CLAUSES` | **yes**, both instances, 2026-09-11 |
+| coverage CNF sha256 vs `split_cover_cnf` | yes *since 2026-09-11*, vs `COVER_CNF_SHA` | matched, but on the day it was **printed and compared by eye** |
+| `CERT (portable)` | yes, `stage_cert` vs `CERT_PORTABLE` | **no -- the `cert` stage has never run there** |
+| `ROOT (proofs)`, `CERT (full)` | no, by design | no, and must not be -- they commit to LRAT bytes |
+
+`CERT (portable)` is a sha256 of a text block whose only non-constant inputs are
+`search_root_cnf` and `split_cover_cnf`, both of which matched. So it is
+*determined* by what did reproduce -- but that is an inference, and binding the
+two halves by inference rather than by running the composition is the exact
+failure `certroot.py` was written to end. Do not write that it reproduced.
+
+**Closing it costs one allocation per instance**, because `$W` is `JOBSCRATCH`
+and is purged at job end: the coverage CNF and its proof cannot survive to a
+later `cert` run, so the two stages must share an allocation.
+
+    KInduceDFS/jz_reproduce/run.sh p19 all      # login node; root + coverage + cert
+    KInduceDFS/jz_reproduce/run.sh p23 all      # compute node, 4 cores, 2 h
+
+`all` is `root`, `coverage`, `cert` in that order. `root` regenerates the cube
+CNFs with no solver; p23's coverage took 41 min of a 2 h wall; `cert` is a hash
+of a text block. Both instances now carry `CERT_PORTABLE` in their conf, so
+`stage_cert` asserts rather than observes, and a `FAIL` is the outcome to watch
+for rather than a line to read.
+
+## Earlier attempts, kept because their failure modes are instructive
+
+`recert_1827897.out` died with `FileNotFoundError` on cadical (step 0 of this
+file, skipped); `1828524` and `1829003` were cancelled by signal; `1843769` hit
+its wall at 93,400 of 343,896 cubes. Chunk records make a resume cheap, which is
+why 1919064 finished the set rather than restarting it. Against the laptop's
+25.1 and 236.0 core-hours, the cluster's 70.9 and 567.6 are 2.8x and 2.4x,
+inside the 2-5x band Appendix A.3 quotes.

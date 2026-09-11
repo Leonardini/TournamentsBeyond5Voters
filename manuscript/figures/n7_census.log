@@ -1,0 +1,9 @@
+k = 3; a base is any subset of order 3 to n-1; both regimes tried
+
+  n  classes  (tournament, base, regime) triples firing all 11 parts
+   4        4  0
+        best any triple manages: 5 of 11, missing empty, keep, mrv, shift, split, tie
+   5       12  0
+        best any triple manages: 9 of 11, missing anchor, deadbase
+   6       56  0
+        best any triple manages: 10 of 11, missing anchor

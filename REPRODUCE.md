@@ -74,6 +74,51 @@ every arc of Paley(43)-v lies in at least 10 directed triangles, and by the
 `--toporb` representatives are the QR and non-QR cosets, the two orbits of the
 order-21 stabiliser; that orbit calculation is the caller's obligation.
 
+### Paley(31) is not vertex-critical
+
+Paley(31) minus a vertex is not 5-inducible. 239.5 core-h, mean 107.4 s and max
+1374.2 s per base state, coverage [0,8031) exactly, 0 capped. Paley(31) is
+vertex-transitive, so this one run settles all 31 deletions.
+
+    ./kinduce --bits p31_minus1v.bits --n 30 --k 5 --max-margin 3 --order mrv \
+              --inc --pool-mb 512 --base 0 1 2 3 12 --toporb 0 2 \
+              --bs-from 0 --bs-to 8031
+
+Run at margin <= 3, which for this host is equivalent to unrestricted majority:
+every arc of Paley(31)-v lies in at least 7 directed triangles, which is
+(q-3)/4 at q = 31, and by the 3-cycle bound an arc in any triangle can never be
+unanimous. `triangles_per_arc.py --expect-paley-minus` checks that on the
+shipped bit string rather than taking it on trust.
+
+The two `--toporb` representatives are the QR and non-QR cosets, the two orbits
+of the order-15 stabiliser; that orbit calculation is the caller's obligation
+and `p31_minus1v_VERDICT.txt` records how it was discharged. **406 of the 8,031
+base states were settled before the break was switched on**, and were therefore
+searched exhaustively; the verdict file gives the argument that the mixture is
+still a complete refutation, and each line of `p31mv_majority/p31mv_times.txt`
+records which regime produced it.
+
+### Paley(23) is arc-critical
+
+Reversing any one arc of Paley(23) yields a 5-inducible tournament. `Aut(P23)`
+is regular on arcs, so one reversal settles all 253. The reversal destroys every
+automorphism (`|Aut| = 1`), so no symmetry break is available and all 8,031 base
+states are live -- which is why this costs 210.4 core-h where refuting Paley(23)
+itself costs 34.03.
+
+    ./kinduce --bits p23_arcrev.bits --n 23 --k 5 --margin majority \
+              --order mrv --inc --pool-mb 512 --bs-from 1160 --bs-to 1164
+
+Base state 1161 returns SAT in 221.7 s, 5,860,166 nodes. The scan was then
+stopped, which is sound for a positive certificate and would not be for a
+refutation. Check the witness against the host, and against the UNREVERSED host
+as a control that must fail on exactly the reversed arc:
+
+    python3 verify_witness_bits.py p23arc_witness/b1161.witness \
+            p23_arcrev.bits 23 5 --majority      # VERIFIED, all 253 arcs
+    python3 verify_witness_bits.py p23arc_witness/b1161.witness \
+            p23_paley.bits 23 5 --majority       # FAIL on (0,1), as it must
+
 ### Paley(23) minus a vertex IS 5-inducible
 
 A witness in about a minute. Originally kinduce21. This closes the descent
@@ -146,4 +191,8 @@ bare count would not, because gaps and duplicates can cancel.
 
 `versions/REGRESSION.md` records the comparison of the consolidated engine
 against each historical version on identical command lines, requiring
-node-for-node agreement.
+node-for-node agreement. **Eleven cases, all five versions that produced a
+published result, 0 failures** — every counter on the `RESULT` line except
+`time=`. Re-run it with `regression.sh`, or `regression.sh --fast` for the five
+cases that finish in about a second, which is what the package's acceptance gate
+runs on every pass.

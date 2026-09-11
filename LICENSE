@@ -1,0 +1,29 @@
+Copyright (c) 2026 Leonid Chindelevitch and Ararat Harutyunyan.
+
+This work -- the code, the tournaments, the verdict files, the certificates and
+the accompanying documentation in this repository -- is licensed under the
+
+    Creative Commons Attribution 4.0 International License (CC BY 4.0)
+
+You are free to share and adapt the material for any purpose, including
+commercially, provided you give appropriate credit, link to the licence, and
+indicate if changes were made.
+
+    Deed:        https://creativecommons.org/licenses/by/4.0/
+    Legal code:  https://creativecommons.org/licenses/by/4.0/legalcode
+    SPDX:        CC-BY-4.0
+
+The canonical and controlling text is the legal code at the URL above; this file
+is a notice of the licence, not a restatement of it. To ship the full legal code
+with the repository, download it from that URL and append it below.
+
+ATTRIBUTION. Please cite the paper this package accompanies rather than the
+repository alone; `CITATION.cff` carries the preferred citation.
+
+WHAT IS NOT COVERED. Three external tools are used but not vendored here, and
+each carries its own licence: CaDiCaL and lrat-trim (Armin Biere and
+co-authors), drat-trim (Nathan Wetzler, Marijn Heule and Warren Hunt), and
+nauty/gentourng/labelg (Brendan McKay and Adolfo Piperno). The locally
+transitive tournament catalogues in `tournaments/locally_transitive/` are
+McKay's combinatorial data, redistributed here for the Appendix E verifier; see
+`https://users.cecs.anu.edu.au/~bdm/data/digraphs.html`.

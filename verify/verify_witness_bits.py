@@ -24,10 +24,18 @@ def main():
             arc[(i, j)] = (s[idx] == '1')      # True iff i -> j
             idx += 1
     txt = open(logp).read()
-    if 'WITNESS' not in txt:
-        print("FAIL: no WITNESS block"); return 1
+    # A run log marks its witness with a WITNESS line; a standalone .witness file
+    # saved from a cluster run is just the ballots under a comment header.  Accept
+    # both, rather than forcing the record to be edited to suit the checker --
+    # editing a verdict file to make a check pass is exactly backwards.
+    if 'WITNESS' in txt:
+        body = txt.split('WITNESS', 1)[1]
+    elif re.search(r'^\s*voter\s+0:', txt, re.M):
+        body = txt[re.search(r'^\s*voter\s+0:', txt, re.M).start():]
+    else:
+        print("FAIL: no WITNESS block and no 'voter 0:' line"); return 1
     orders = []
-    for line in txt.split('WITNESS', 1)[1].splitlines():
+    for line in body.splitlines():
         m = re.match(r'\s*voter\s+(\d+):\s*(.*)$', line)
         if m:
             orders.append([int(x) for x in m.group(2).split()])

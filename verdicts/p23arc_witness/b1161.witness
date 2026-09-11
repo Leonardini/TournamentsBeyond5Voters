@@ -1,0 +1,9 @@
+# Paley(23) with the arc (0,1) reversed -- majority 5-voter witness.
+# JZ array job 1770832, base state 1161, RESULT SAT, nodes=5860166, time=221.722s
+# Independently re-verified locally 2026-09-06: the majority tournament these five
+# ballots induce equals p23_arcrev.bits bit for bit; support range [3,4] on all 253 arcs.
+voter 0: 0 18 4 13 22 8 3 17 12 7 21 16 2 11 20 6 1 15 10 19 5 14 9
+voter 1: 0 6 7 8 9 10 11 12 13 14 15 16 17 18 1 19 2 20 3 21 4 22 5
+voter 2: 16 20 1 5 9 13 17 21 2 6 10 14 18 22 3 7 11 15 19 0 4 8 12
+voter 3: 19 12 22 2 5 15 18 8 11 21 1 14 4 7 17 10 20 13 0 3 16 6 9
+voter 4: 3 19 14 9 4 20 15 10 5 21 16 11 6 22 1 17 12 7 0 2 18 13 8

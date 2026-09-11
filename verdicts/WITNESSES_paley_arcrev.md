@@ -93,9 +93,24 @@ isomorphic to `G_8`.  The degenerate escape route (a reversal isomorphic to the
 original) is therefore real enough to be worth checking, and empty in all three
 cases here.
 
-## Paley(23), arc reversed: majority 5-inducibility -- OPEN
+## Paley(23), arc reversed: majority 5-inducible -- SETTLED 2026-09-06
 
-**Not settled.**  Evidence to date, and the two routes priced.
+**SAT.**  `p23_arcrev.bits` is 5-inducible: SLURM array job 1770832 returned
+`RESULT SAT` at base state 1161, 5,860,166 nodes, 221.722 s.  The five ballots
+are in `p23arc_witness/b1161.witness` and the verdict, with its independent
+re-verification and a negative control that fires, is in
+`p23_arc_critical_VERDICT.txt`.  **So Paley(23) is ARC-CRITICAL at plain
+majority, and hence vertex-critical.**
+
+Everything from here to the end of this section is the PRICING that preceded
+the run, kept because it records why the blind scan was chosen over the
+defect-1 reformulation and what each route was estimated to cost.  It is
+history, not an open question.  This heading read "OPEN -- Not settled" until
+2026-09-11, five days after the answer arrived, which is the failure mode a
+verdict file exists to prevent: the analysis that led to a computation outlived
+the computation's result in the record.
+
+### What the pricing said, before the answer
 
 ### The reduction (complete, but not cheaper)
 

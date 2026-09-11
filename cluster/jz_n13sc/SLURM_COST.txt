@@ -1,0 +1,59 @@
+Cost of the order-13 self-converse census, from the scheduler's accounting,
+recorded 2026-09-11.  This is the source of the 1,310 core-hours Appendix A.4
+reports for the row "self-converse tournaments on 13 vertices".
+
+The job ids come from this kit's own log filenames, which are written as
+n13sc_%A_%a.out, so no date guessing is needed:
+
+    IDS=$(ls KInduceDFS/jz_n13sc/slurm/ | sed -n 's/^n13sc_\([0-9]*\)_.*/\1/p' \
+          | sort -u | paste -sd, -)
+    -> 1837355     ONE array submission, 500 tasks, every one COMPLETED,
+                   no resubmission and no wall-clock kill
+
+    ... -X -n -j "$IDS" -S 2026-08-25 --format=CPUTimeRAW,AllocCPUS |
+      awk '{s += $1/$2} END {printf "%d tasks, %d s = %.1f core-h\n", NR, s, s/3600}'
+    -> 500 tasks, 4542001 s = 1261.7 core-h
+
+--------------------------------------------------------------------------
+DO NOT SUM CPUTimeRAW.  IT IS EXACTLY DOUBLE.
+--------------------------------------------------------------------------
+The accounting reports AllocCPUS = 2 for every task, although n13sc.slurm asks
+for --ntasks=1 --cpus-per-task=1.  This cluster counts LOGICAL cpus, i.e. both
+hyperthreads of the one physical core that --hint=nomultithread reserves.  Since
+CPUTimeRAW = AllocCPUS x Elapsed, summing it gives 9,084,002 core-s = 2,523.3
+core-h, exactly twice the truth.
+
+Appendix A.4 defines core-hours as "the workers' running times summed", and
+there is ONE single-threaded worker per task, so the figure is the sum of
+Elapsed -- equivalently CPUTimeRAW / AllocCPUS.  Taking CPUTimeRAW at face value
+would have overstated this row by 93%.
+
+TotalCPU is 00:00:00 on every task: this cluster's accounting does not populate
+that field for these jobs.  That is not evidence that no CPU was used, and it is
+why Elapsed is the only field to trust here.  The same caution applies to the
+15-vertex and order-12 campaigns if their costs are ever re-derived this way.
+
+--------------------------------------------------------------------------
+THE FULL FAMILY, THREE PIECES ACROSS TWO MACHINES
+--------------------------------------------------------------------------
+  cluster, 407 rigid shards            1261.7 core-h   (this file)
+  laptop,   81 rigid shards              46.8 core-h   (local_sweep.log:
+                                                        81 shards, 281 min, 10 cores)
+  laptop, 319,270 not-provably-rigid      1.0 core-h   (sweep_excluded.log)
+  ----------------------------------------------
+  total                                1309.5 core-h  ->  the 1,310 in A.4
+
+Agreement with the published figure: 99.96%.
+
+The 11,237 regular self-converse hosts are NOT in this row.  They were settled
+by the order-13 regular sweep and are counted there; including them here would
+double count.  The three-way partition is reconciled against S_13 = 95,458,560
+by aggregate.sh, which is gate check 5b.
+
+MIXED MACHINES.  This row blends laptop and cluster time, 96.4% of it cluster,
+which is why the preamble to A.4 names it as one of the three computations that
+did not run on the laptop and flags the row as not comparable with the others.
+
+70 of the 500 tasks finished in under ten seconds: they found every shard they
+were assigned already marked done, and exited.  That is the resume path working
+as intended, and it is why one array submission sufficed.

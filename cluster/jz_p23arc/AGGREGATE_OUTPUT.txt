@@ -1,0 +1,33 @@
+Output of KInduceDFS/jz_p23arc/aggregate.sh on Jean Zay, 2026-09-11, over the
+campaign's per-base-state markers.  Those markers live on the cluster and are
+not in the reproduction package; this file is the record of what they sum to,
+and it is the source of the 210.4 core-hours Appendix A.4 reports for the row
+"P_23, one arc reversed".
+
+    base states screened : 1035 / 8031
+    *** WITNESS FOUND at base state(s): 1161
+    *** Paley(23) IS arc-critical.  Verify with verify_witness_bits.py before believing it.
+    core-hours spent     : 210.4
+    mean per base state  : 731.8 s
+    projected total      : 1633 core-h
+    missing indices      : 6996
+    unexpected indices   : 0
+
+READ "missing indices: 6996" CORRECTLY.  For a REFUTATION that line would void
+the verdict: a refutation is only as good as the union of its slices, and 6,996
+unvisited base states would leave the search incomplete.  This is a WITNESS
+search, and it stopped the moment base state 1161 returned SAT.  A witness
+exhibits the object whose existence is claimed, so the unvisited states could
+only hold more witnesses.  1035 + 6996 = 8031 exactly, so nothing is unaccounted
+for; the scan simply ended early, on purpose.
+
+"projected total 1633 core-h" is what the scan WOULD have cost had it run to
+exhaustion at the observed mean.  It is not a cost that was paid and must not be
+quoted as one.
+
+The arithmetic is self-consistent: 1035 base states x 731.8 s = 757,413 s
+= 210.4 core-h, which is the figure in the table.
+
+The witness itself is in p23arc_witness/b1161.witness and is re-verified, with a
+negative control, by p23_arc_critical_VERDICT.txt and by check 5 of the
+package's acceptance gate.

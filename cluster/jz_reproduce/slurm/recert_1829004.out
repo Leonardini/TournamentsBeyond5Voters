@@ -1,0 +1,132 @@
+
+=== FULL RE-CERTIFICATION -- ~24 core-h [p19: q=19 margin=exact base=0 1 2 3 4 11] ===
+### certify Paley(19) margin=exact by depth-6 cubing 2026-09-07 00:30:06
+  base [0, 1, 2, 3, 4, 11], break arc (0, 1) + non-arc (2, 1)
+  142,251 base states -> 22,876 live (16.1%), enumerated in 1195s
+  115 chunks of <= 200, 10 workers, check-and-discard
+  200/22,876 cubes, 61 min, ETA 6899 min
+  400/22,876 cubes, 77 min, ETA 4313 min
+  600/22,876 cubes, 77 min, ETA 2850 min
+  800/22,876 cubes, 77 min, ETA 2118 min
+  1,000/22,876 cubes, 77 min, ETA 1679 min
+  1,200/22,876 cubes, 77 min, ETA 1386 min
+  1,400/22,876 cubes, 77 min, ETA 1177 min
+  1,600/22,876 cubes, 77 min, ETA 1021 min
+  1,800/22,876 cubes, 77 min, ETA 899 min
+  2,000/22,876 cubes, 77 min, ETA 801 min
+  2,200/22,876 cubes, 77 min, ETA 721 min
+  2,400/22,876 cubes, 77 min, ETA 655 min
+  2,600/22,876 cubes, 79 min, ETA 617 min
+  2,800/22,876 cubes, 79 min, ETA 568 min
+  3,000/22,876 cubes, 79 min, ETA 524 min
+  3,200/22,876 cubes, 79 min, ETA 487 min
+  3,400/22,876 cubes, 82 min, ETA 471 min
+  3,600/22,876 cubes, 99 min, ETA 532 min
+  3,800/22,876 cubes, 108 min, ETA 542 min
+  4,000/22,876 cubes, 114 min, ETA 539 min
+  4,200/22,876 cubes, 117 min, ETA 521 min
+  4,400/22,876 cubes, 117 min, ETA 492 min
+  4,600/22,876 cubes, 117 min, ETA 465 min
+  4,800/22,876 cubes, 126 min, ETA 475 min
+  5,000/22,876 cubes, 126 min, ETA 451 min
+  5,200/22,876 cubes, 126 min, ETA 429 min
+  5,400/22,876 cubes, 126 min, ETA 408 min
+  5,600/22,876 cubes, 128 min, ETA 396 min
+  5,800/22,876 cubes, 143 min, ETA 422 min
+  6,000/22,876 cubes, 143 min, ETA 403 min
+  6,200/22,876 cubes, 143 min, ETA 385 min
+  6,400/22,876 cubes, 144 min, ETA 370 min
+  6,600/22,876 cubes, 144 min, ETA 355 min
+  6,800/22,876 cubes, 150 min, ETA 354 min
+  7,000/22,876 cubes, 150 min, ETA 340 min
+  7,200/22,876 cubes, 152 min, ETA 332 min
+  7,400/22,876 cubes, 159 min, ETA 332 min
+  7,600/22,876 cubes, 159 min, ETA 319 min
+  7,800/22,876 cubes, 162 min, ETA 313 min
+  8,000/22,876 cubes, 171 min, ETA 318 min
+  8,200/22,876 cubes, 174 min, ETA 312 min
+  8,400/22,876 cubes, 178 min, ETA 306 min
+  8,600/22,876 cubes, 178 min, ETA 295 min
+  8,800/22,876 cubes, 178 min, ETA 285 min
+  9,000/22,876 cubes, 181 min, ETA 279 min
+  9,200/22,876 cubes, 186 min, ETA 277 min
+  9,400/22,876 cubes, 187 min, ETA 268 min
+  9,600/22,876 cubes, 187 min, ETA 259 min
+  9,800/22,876 cubes, 195 min, ETA 260 min
+  10,000/22,876 cubes, 204 min, ETA 263 min
+  10,200/22,876 cubes, 204 min, ETA 254 min
+  10,400/22,876 cubes, 204 min, ETA 245 min
+  10,600/22,876 cubes, 228 min, ETA 264 min
+  10,800/22,876 cubes, 228 min, ETA 254 min
+  11,000/22,876 cubes, 228 min, ETA 246 min
+  11,200/22,876 cubes, 229 min, ETA 239 min
+  11,400/22,876 cubes, 229 min, ETA 231 min
+  11,600/22,876 cubes, 229 min, ETA 223 min
+  11,800/22,876 cubes, 229 min, ETA 215 min
+  12,000/22,876 cubes, 234 min, ETA 212 min
+  12,200/22,876 cubes, 246 min, ETA 216 min
+  12,400/22,876 cubes, 246 min, ETA 208 min
+  12,600/22,876 cubes, 254 min, ETA 207 min
+  12,800/22,876 cubes, 257 min, ETA 203 min
+  13,000/22,876 cubes, 258 min, ETA 196 min
+  13,200/22,876 cubes, 258 min, ETA 189 min
+  13,400/22,876 cubes, 258 min, ETA 182 min
+  13,600/22,876 cubes, 258 min, ETA 176 min
+  13,800/22,876 cubes, 258 min, ETA 170 min
+  14,000/22,876 cubes, 258 min, ETA 164 min
+  14,200/22,876 cubes, 274 min, ETA 168 min
+  14,400/22,876 cubes, 281 min, ETA 165 min
+  14,600/22,876 cubes, 281 min, ETA 160 min
+  14,800/22,876 cubes, 298 min, ETA 163 min
+  15,000/22,876 cubes, 303 min, ETA 159 min
+  15,200/22,876 cubes, 303 min, ETA 153 min
+  15,400/22,876 cubes, 303 min, ETA 147 min
+  15,600/22,876 cubes, 303 min, ETA 141 min
+  15,800/22,876 cubes, 303 min, ETA 136 min
+  16,000/22,876 cubes, 303 min, ETA 130 min
+  16,200/22,876 cubes, 311 min, ETA 128 min
+  16,400/22,876 cubes, 319 min, ETA 126 min
+  16,600/22,876 cubes, 322 min, ETA 122 min
+  16,800/22,876 cubes, 322 min, ETA 117 min
+  17,000/22,876 cubes, 329 min, ETA 114 min
+  17,200/22,876 cubes, 329 min, ETA 108 min
+  17,400/22,876 cubes, 329 min, ETA 103 min
+  17,600/22,876 cubes, 346 min, ETA 104 min
+  17,800/22,876 cubes, 349 min, ETA 100 min
+  18,000/22,876 cubes, 355 min, ETA 96 min
+  18,200/22,876 cubes, 355 min, ETA 91 min
+  18,400/22,876 cubes, 360 min, ETA 88 min
+  18,600/22,876 cubes, 362 min, ETA 83 min
+  18,800/22,876 cubes, 365 min, ETA 79 min
+  19,000/22,876 cubes, 368 min, ETA 75 min
+  19,200/22,876 cubes, 368 min, ETA 70 min
+  19,400/22,876 cubes, 372 min, ETA 67 min
+  19,600/22,876 cubes, 397 min, ETA 66 min
+  19,800/22,876 cubes, 397 min, ETA 62 min
+  20,000/22,876 cubes, 397 min, ETA 57 min
+  20,200/22,876 cubes, 401 min, ETA 53 min
+  20,400/22,876 cubes, 401 min, ETA 49 min
+  20,600/22,876 cubes, 401 min, ETA 44 min
+  20,800/22,876 cubes, 401 min, ETA 40 min
+  21,000/22,876 cubes, 401 min, ETA 36 min
+  21,200/22,876 cubes, 406 min, ETA 32 min
+  21,400/22,876 cubes, 418 min, ETA 29 min
+  21,600/22,876 cubes, 423 min, ETA 25 min
+  21,800/22,876 cubes, 444 min, ETA 22 min
+  22,000/22,876 cubes, 459 min, ETA 18 min
+  22,200/22,876 cubes, 459 min, ETA 14 min
+  22,400/22,876 cubes, 459 min, ETA 10 min
+  22,600/22,876 cubes, 459 min, ETA 6 min
+  22,800/22,876 cubes, 459 min, ETA 2 min
+  22,876/22,876 cubes, 459 min, ETA 0 min
+
+### done 7.65 h  solve 68.1 + check 2.8 core-h
+  ROOT (CNF)    0eeb9dd53956fec2c77b752d74b89b12c7d1dddd6dc4047405ecb7907896a78a
+  ROOT (proofs) 6a677910d5823966cdadf0dab19d3c82554d55e89881dddb335a1d99004d6e77
+  VERDICT: Paley(19) is NOT margin-1 5-inducible -> /lustre/fsn1/jobscratch/uex76wa_1829004//recert_p19/VERDICT.txt
+  ROOT (CNF) here     0eeb9dd53956fec2c77b752d74b89b12c7d1dddd6dc4047405ecb7907896a78a
+  ROOT (CNF) expected 0eeb9dd53956fec2c77b752d74b89b12c7d1dddd6dc4047405ecb7907896a78a
+  PORTABLE ROOT MATCHES -- same problems solved, independently
+  (ROOT (proofs) is expected to differ on a different build; not compared)
+
+p19/recertify: PASS

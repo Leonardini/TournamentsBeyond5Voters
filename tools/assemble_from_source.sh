@@ -28,6 +28,11 @@ cp "$K"/versions/kinduce[0-2][0-9].c "$DST/engine/versions/"
 # REPRODUCE.md excludes it from the package by name.  Drop it rather than ship
 # a version the reproduction table never refers to.
 rm -f "$DST/engine/versions/kinduce25.c"
+# The regression that compares the consolidated engine against each of those
+# versions on the published command lines.  Until it existed, REPRODUCE.md cited
+# a versions/REGRESSION.md that was never written.
+cp "$K/regression.sh" "$DST/engine/"
+cp "$K/versions/REGRESSION.md" "$DST/engine/versions/" 2>/dev/null || true
 
 # ---------------------------------------------------------- tournaments
 # Vertex numbering is part of the input, not a detail: node counts only
@@ -42,6 +47,14 @@ for g in paley_bits.py make_paley_gf.py make_paley_minus.py vt21_family.py \
   [ -f "$K/$g" ] && cp "$K/$g" "$DST/tournaments/"
 done
 cp "$K/vt21_all_reps.npy" "$DST/tournaments/" 2>/dev/null || true
+# McKay's locally transitive catalogue, orders 11-14.  Appendix E is the one
+# result settled by construction rather than computation, so its artifact is a
+# verifier plus the family to run it over; these four files are 104 KB.
+mkdir -p "$DST/tournaments/locally_transitive"
+for n in 11 12 13 14; do
+  f="$SRC/Tournaments/SourceFiles/locallytransitivetournaments$n.txt"
+  [ -f "$f" ] && cp "$f" "$DST/tournaments/locally_transitive/"
+done
 
 # families: the swept catalogues, with their verdict tables
 for f in vt21_hosts vt21_arcflip dr19_arcflip vt15 vt17 vt19 vt23 drt23 \
@@ -70,7 +83,8 @@ done
 # log, the tournament from its bit string, and every arc's support recomputed.
 mkdir -p "$DST/verify"
 for v in verify_witness.py verify_witness_bits.py \
-         verify_paley_minus_witness.py tri_per_arc.py tri_ceiling.py; do
+         verify_paley_minus_witness.py tri_per_arc.py tri_ceiling.py \
+         appendix_e.py triangles_per_arc.py; do
   [ -f "$K/$v" ] && cp "$K/$v" "$DST/verify/"
 done
 
@@ -88,17 +102,19 @@ cp "$K/p23cert_run.log" "$DST/certificates/" 2>/dev/null || true
 # --------------------------------------------------------------- verdicts
 mkdir -p "$DST/verdicts"
 for v in verdict_ledger.tsv verdict_ledger.py p19_margin1_VERDICT.txt \
-         p43_minus1v_VERDICT.txt WITNESSES_paley_minus_vertex.md \
+         p43_minus1v_VERDICT.txt p31_minus1v_VERDICT.txt \
+         p23_arc_critical_VERDICT.txt \
+         WITNESSES_paley_minus_vertex.md \
          WITNESSES_paley_arcrev.md WITNESSES_margin_hierarchy.md; do
   [ -f "$K/$v" ] && cp "$K/$v" "$DST/verdicts/"
 done
 for d in m1_family m1_arcrev vt21_majority vt21_margin1 n23_tmin4 \
-         vt21_recover vt23_recover p27p31_probe drt19_wit; do
+         vt21_recover vt23_recover p27p31_probe drt19_wit p23arc_witness; do
   [ -d "$K/$d" ] || continue
   mkdir -p "$DST/verdicts/$d"
   find "$K/$d" -maxdepth 1 -type f \
        \( -name '*.md' -o -name '*.tsv' -o -name '*.txt' -o -name '*.sh' \
-          -o -name '*.log' \) \
+          -o -name '*.log' -o -name '*.witness' \) \
        -exec sh -c 'cp "$@" "$0"' "$DST/verdicts/$d/" {} +
 done
 # Section 3.4's arc-flip spectrum and the n=20 deletion descent: the run logs
@@ -106,6 +122,23 @@ done
 # an exhibited unit-margin witness" and not merely a record that it ran.
 for f in arcflip_spectrum.log arcflip_spectrum.sh vt20_descent.log; do
   [ -f "$K/$f" ] && cp "$K/$f" "$DST/verdicts/"
+done
+# Section 3.4's two deleted-vertex sweeps, P31 - v and P43 - v.  Their 8,031
+# per-base markers each are resumption state and gitignored at the source, so
+# what ships is the condensed times file the kit writes -- one line per base
+# state, from which the exact index cover and the 239.5 and 185.5 core-hours all
+# re-derive with awk.  Before 2026-09-11 neither sweep had an evidence file in
+# this package at all, and CLAIMS.md pointed the P43 - v row at the archive of
+# the Paley(43) sweep, which is a different host.
+for kit in p31mv_majority p43mv_majority; do
+  [ -d "$K/$kit" ] || continue
+  mkdir -p "$DST/verdicts/$kit"
+  for f in README.md one.sh drive.sh setup.sh compete.sh FINISHED \
+           BASE BREAK HOST N NBASE; do
+    [ -f "$K/$kit/$f" ] && cp "$K/$kit/$f" "$DST/verdicts/$kit/"
+  done
+  find "$K/$kit" -maxdepth 1 -type f -name '*_times.txt' \
+       -exec sh -c 'cp "$@" "$0"' "$DST/verdicts/$kit/" {} +
 done
 if [ -d "$K/vt20_descent_shard" ]; then
   mkdir -p "$DST/verdicts/vt20_descent_shard"
@@ -128,7 +161,7 @@ find "$K/run_evidence" -maxdepth 1 -type f -exec sh -c 'cp "$@" "$0"' "$DST/evid
 # (freearc, rigid, order_sym, tri, kcover) and copying them would ship 35 MB of
 # other-architecture executables that the .c files beside them regenerate.
 mkdir -p "$DST/cluster"
-for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce; do
+for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce jz_p23arc; do
   [ -d "$K/$j" ] || continue
   mkdir -p "$DST/cluster/$j"
   find "$K/$j" -maxdepth 1 -type f \
@@ -136,6 +169,15 @@ for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce; do
           -o -name '*.txt' -o -name '*.tsv' -o -name '*.slurm' \
           -o -name '*.log' -o -name '*.conf' -o -name '*.json' \) \
        -exec sh -c 'cp "$@" "$0"' "$DST/cluster/$j/" {} +
+done
+# jz_reproduce keeps two directories one level down: the instance confs, which
+# are the only place a campaign's expected values live, and the SLURM logs that
+# are the evidence for Section 5.2's independent-reproduction claim.
+for sub in instances slurm; do
+  [ -d "$K/jz_reproduce/$sub" ] || continue
+  mkdir -p "$DST/cluster/jz_reproduce/$sub"
+  find "$K/jz_reproduce/$sub" -maxdepth 1 -type f \
+       -exec sh -c 'cp "$@" "$0"' "$DST/cluster/jz_reproduce/$sub/" {} +
 done
 # jz_n13sc keeps its accounting one level down: state/ holds the per-bucket
 # partition that both machines must match line for line, which is the
@@ -168,8 +210,19 @@ cp "$K/REPRODUCE.md" "$DST/REPRODUCE.md"
 # ------------------------------------------------------------- manuscript
 mkdir -p "$DST/manuscript"
 for m in Tournaments_not_inducible_by_five_voters.md \
+         Tournaments_not_inducible_by_five_voters.tex \
          Tournaments_not_inducible_by_five_voters.pdf; do
   [ -f "$SRC/$m" ] && cp "$SRC/$m" "$DST/manuscript/"
+done
+# Figure 1 and the pipeline that draws it.  paley7_trace.py is a second,
+# independent implementation of the placement search whose seven cross-checks
+# must pass before it will emit a trace, and paley7_figure.py --check verifies
+# the caption's numbers against that trace -- so the figure is an artifact, not
+# an illustration.
+mkdir -p "$DST/manuscript/figures"
+for f in paley7_alg1.pdf paley7_alg1.tex paley7_figure.py paley7_trace.py \
+         show_trace.py smallest_instance.py trace_maj.json n7_census.log README.md; do
+  [ -f "$SRC/figures/$f" ] && cp "$SRC/figures/$f" "$DST/manuscript/figures/"
 done
 cp "$SRC/check_manuscript_tables.py" "$DST/tools/" 2>/dev/null || true
 

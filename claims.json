@@ -1,0 +1,1113 @@
+{
+ "source": "CLAIMS.md",
+ "manuscript": "manuscript/Tournaments_not_inducible_by_five_voters.md",
+ "claims": [
+  {
+   "id": "B1",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 23",
+   "sections": [
+    "3.1"
+   ],
+   "claim": "**Paley(23) is not 5-inducible**, hence N(5) \u2264 23. Complete over all 8,031 base states of `{1,2,3,6,12}`, of which 2,591 survive the anchor",
+   "artifacts": [
+    "evidence/rerun1_p23_majority.tar.zst",
+    "evidence/anchor2_p23_majority.tar.zst",
+    "REPRODUCE.md"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "{1,2,3,6,12}"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "B2",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 23",
+   "sections": [
+    "3.1",
+    "B.1"
+   ],
+   "claim": "Paley(23), **machine-checked** on both halves",
+   "artifacts": [
+    "certificates/p23cert_d6/VERDICT.txt",
+    "certificates/p23cert_d6/p23_cert.portable.txt",
+    "sat/certify_d6.py",
+    "sat/reroot.py",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "B3",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 23",
+   "sections": [
+    "C"
+   ],
+   "claim": "**13 \u2264 N(5)**: every order-12 tournament is 5-inducible",
+   "artifacts": [
+    "cluster/jz_n12cover/",
+    "cluster/jz_n12cover/COMMANDS.md",
+    "cluster/jz_n12cover/aggregate.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "declared_gap"
+  },
+  {
+   "id": "B4",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 23",
+   "sections": [
+    "3.4"
+   ],
+   "claim": "Paley(43) \u2212 v is not 5-inducible, so N(5) \u2264 43 is **re-derived by a second method**",
+   "artifacts": [
+    "verdicts/p43mv_majority/p43mv_times.txt",
+    "verdicts/p43_minus1v_VERDICT.txt",
+    "REPRODUCE.md"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "P1",
+   "group": "2. The rest of the Paley family",
+   "sections": [
+    "A.3"
+   ],
+   "claim": "Paley(27) is not 5-inducible, 8,031 base states, 2,537 live, 6.22 \u00d7 10\u2079 nodes",
+   "artifacts": [
+    "evidence/p27_majority.tar.zst",
+    "REPRODUCE.md",
+    "tournaments/p27_paley.bits"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "P2",
+   "group": "2. The rest of the Paley family",
+   "sections": [
+    "3.1"
+   ],
+   "claim": "Paley(31) is not 5-inducible, 21,009 base states, 4,007 live, 3.43 \u00d7 10\u2079 nodes",
+   "artifacts": [
+    "evidence/p31_majority.tar.zst",
+    "evidence/measurements/p31_result.json",
+    "REPRODUCE.md"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "P3",
+   "group": "2. The rest of the Paley family",
+   "sections": [
+    "3.3"
+   ],
+   "claim": "Paley(19) **is** 5-inducible (recovers dim Q\u2081\u2089 = 5 of [1])",
+   "artifacts": [
+    "verdicts/WITNESSES_margin_hierarchy.md",
+    "verify/verify_witness.py"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "kinduce --paley 19 --k 5 --max-margin 3 --order mrv --inc --base 0 1 2 3 5"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "P4",
+   "group": "2. The rest of the Paley family",
+   "sections": [
+    "3.3"
+   ],
+   "claim": "Paley(19) is **not** 5-inducible at unit margin, 2,200 base states of `{1,2,3,4,6}`",
+   "artifacts": [
+    "verdicts/p19_margin1_VERDICT.txt",
+    "certificates/p19cert_d6/",
+    "REPRODUCE.md",
+    "sat/certify_p19_m1.py"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "{1,2,3,4,6}"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "P5",
+   "group": "2. The rest of the Paley family",
+   "sections": [
+    "3.3"
+   ],
+   "claim": "The witnesses are abundant, not delicate: ten workers hit at once from ten base states, support histogram 159 arcs at 3\u20132 and 12 at 4\u20131, none unanimous",
+   "artifacts": [
+    "verdicts/WITNESSES_margin_hierarchy.md"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "--max-margin 3"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "P6",
+   "group": "2. The rest of the Paley family",
+   "sections": [
+    "3.1"
+   ],
+   "claim": "Paley(23) \u2212 v **is** 5-inducible, so n = 22 does not improve the bound",
+   "artifacts": [
+    "evidence/n22_p23minusv.tar.zst",
+    "verdicts/WITNESSES_paley_minus_vertex.md",
+    "REPRODUCE.md"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "P7",
+   "group": "2. The rest of the Paley family",
+   "sections": [
+    "3.4"
+   ],
+   "claim": "**Paley(31) \u2212 v is not 5-inducible**, so Paley(31) is not vertex-critical. 8,031 base states of `{1,2,3,4,13}`, exact index cover, 0 capped",
+   "artifacts": [
+    "verdicts/p31_minus1v_VERDICT.txt",
+    "verdicts/p31mv_majority/p31mv_times.txt",
+    "verdicts/p31mv_majority/README.md",
+    "REPRODUCE.md"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "{1,2,3,4,13}"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "P8",
+   "group": "2. The rest of the Paley family",
+   "sections": [
+    "3.2"
+   ],
+   "claim": "Paley(23), (27), (31), (43) are **not vertex-critical at unit margin**",
+   "artifacts": [
+    "verdicts/m1_family/VERDICTS.md",
+    "REPRODUCE.md"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "p23mv",
+    "p27mv",
+    "p31mv",
+    "p43mv"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "K1",
+   "group": "3. Criticality",
+   "sections": [
+    "3.2",
+    "3.6"
+   ],
+   "claim": "q = 19, **unit margin: arc-critical**. Reversing any arc restores unit-margin inducibility; the reversal is unique up to isomorphism because Aut(P\u2081\u2089) is regular on arcs",
+   "artifacts": [
+    "verdicts/WITNESSES_paley_arcrev.md",
+    "tournaments/p19_arcrev.bits"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "K2",
+   "group": "3. Criticality",
+   "sections": [
+    "3.2"
+   ],
+   "claim": "q = 19, unrestricted: 5-inducible, so criticality does not apply",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "K3",
+   "group": "3. Criticality",
+   "sections": [
+    "3.2"
+   ],
+   "claim": "q = 23, unit margin: **not** vertex-critical",
+   "artifacts": [
+    "verdicts/m1_family/VERDICTS.md"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "p23mv"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "K4",
+   "group": "3. Criticality",
+   "sections": [
+    "3.2"
+   ],
+   "claim": "q = 23, unit margin: not arc-critical either",
+   "artifacts": [
+    "verdicts/m1_arcrev/VERDICT.md"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "K5",
+   "group": "3. Criticality",
+   "sections": [
+    "3.2",
+    "3.5"
+   ],
+   "claim": "q = 23, **unrestricted: arc-critical**. Reversing any single arc yields a 5-inducible tournament",
+   "artifacts": [
+    "verdicts/p23_arc_critical_VERDICT.txt",
+    "verdicts/p23arc_witness/b1161.witness",
+    "tournaments/p23_arcrev.bits"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "K6",
+   "group": "3. Criticality",
+   "sections": [
+    "3.5"
+   ],
+   "claim": "Consequently Paley(23) is **vertex-critical** unrestricted",
+   "artifacts": [
+    "evidence/n22_p23minusv.tar.zst"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "K7",
+   "group": "3. Criticality",
+   "sections": [
+    "3.2",
+    "3.4"
+   ],
+   "claim": "q = 31, both margins: **not vertex-critical**",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [
+    "p31mv"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "K8",
+   "group": "3. Criticality",
+   "sections": [
+    "3.2",
+    "3.4"
+   ],
+   "claim": "q = 43, both margins: **not vertex-critical**",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [
+    "p43mv"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "K9",
+   "group": "3. Criticality",
+   "sections": [
+    "3.6"
+   ],
+   "claim": "The **second** doubly regular tournament on 19 vertices is arc-critical at unit margin: 57 orbits of size 3, 57 witnesses",
+   "artifacts": [
+    "tournaments/dr19_arcflip/",
+    "manifest.tsv"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "sweep.log",
+    "sweep_run2.log"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "K10",
+   "group": "3. Criticality",
+   "sections": [
+    "3.6"
+   ],
+   "claim": "Both DRTs on 19 vertices are unit-margin obstructions and both are majority-inducible",
+   "artifacts": [
+    "verdicts/WITNESSES_margin_hierarchy.md",
+    "verdicts/drt19_wit/",
+    "tournaments/dr19_g1.bits",
+    "tournaments/dr19_g2.bits"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "F1",
+   "group": "The 21-vertex picture (\u00a73.5, Appendix F)",
+   "sections": [],
+   "claim": "Each of the four unit-margin obstructions has \\",
+   "artifacts": [
+    "tournaments/vt21_hosts/manifest.tsv",
+    "tournaments/vt21_arcflip/manifest.tsv"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "F2",
+   "group": "The 21-vertex picture (\u00a73.5, Appendix F)",
+   "sections": [],
+   "claim": "The spectrum: h\u2081 `UUUUUUUUUU`, h\u2082 `USUSSUUSSU`, h\u2084 and h\u2085 all `S` \u2014 15 of the 40 reversals stay obstructions",
+   "artifacts": [
+    "verdicts/arcflip_spectrum.log",
+    "tournaments/vt21_arcflip/out/*.exact.txt"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "UUUUUUUUUU",
+    "USUSSUUSSU",
+    "S"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "F3",
+   "group": "The 21-vertex picture (\u00a73.5, Appendix F)",
+   "sections": [],
+   "claim": "So **arc-criticality at unit margin is carried by the arc, not the tournament**: h\u2082 is arc-semi-critical, 105 of 210 arcs each way",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "F4",
+   "group": "The 21-vertex picture (\u00a73.5, Appendix F)",
+   "sections": [],
+   "claim": "All 210 single-arc reversals of h\u2081 remain obstructions \u2014 736 runs, none capped, tiling each range exactly",
+   "artifacts": [
+    "verdicts/arcflip_spectrum.log",
+    "tournaments/vt21_arcflip/verdicts.tsv"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "F5",
+   "group": "The 21-vertex picture (\u00a73.5, Appendix F)",
+   "sections": [],
+   "claim": "Every one of the 15 surviving reversals belongs to a host with **cyclic** automorphism group; all 20 orbits of the two with the nonabelian group of order 21 are inducible",
+   "artifacts": [
+    "tournaments/vt21_hosts/manifest.tsv"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "F6",
+   "group": "The 21-vertex picture (\u00a73.5, Appendix F)",
+   "sections": [],
+   "claim": "The four hosts and the 15 surviving reversals have **319 one-vertex deletions, 289 pairwise non-isomorphic**, and every one has an exhibited unit-margin witness",
+   "artifacts": [
+    "verdicts/vt20_descent.log",
+    "verdicts/vt20_descent_shard/*.log",
+    "tournaments/deletion_classes.py"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "F7",
+   "group": "The 21-vertex picture (\u00a73.5, Appendix F)",
+   "sections": [],
+   "claim": "Hence nothing here descends to a unit-margin obstruction on 20 vertices",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "S1",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "All **110** vertex-transitive tournaments on 21 vertices are 5-inducible \u2014 106 at unit margin, the other four by exhibited majority witnesses. So that family holds no candidate below 23",
+   "artifacts": [
+    "verdicts/vt21_majority/",
+    "verdicts/vt21_margin1/",
+    "verdicts/verdict_ledger.tsv",
+    "tournaments/vt21_family.py",
+    "tournaments/vt21_all_reps.npy"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "S2",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "The closure survives one-arc perturbation: all **40** orbit representatives of the four obstructions are majority-inducible",
+   "artifacts": [
+    "tournaments/vt21_arcflip/out/*.majority.txt"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "S3",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "Every regular tournament on at most **13** vertices is inducible at both margins (15, 1,223, 1,495,297 instances)",
+   "artifacts": [
+    "verdicts/verdict_ledger.tsv",
+    "verdicts/n13_regular_result.txt",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "kinduce --batch <chunk> --n <n> --k 5 --margin exact --order mrv --inc"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "S4",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "Every regular tournament on **15** vertices is inducible at unit margin, all 18,400,989,629, none capped, residue counts summing to OEIS A096368(7)",
+   "artifacts": [
+    "cluster/jz_n15/results_margin1/done/",
+    "tools/check_package.sh",
+    "cluster/jz_n15/aggregate.sh"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "r0..r5999"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "S5",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "Every **self-converse** tournament on **13** vertices is inducible at unit margin \u2014 all S\u2081\u2083 = 95,458,560, 0 UNSAT, 0 aborted",
+   "artifacts": [
+    "cluster/jz_n13sc/results_excluded/done/",
+    "verdicts/n13_regular_result.txt",
+    "cluster/jz_n13sc/results/done/",
+    "cluster/jz_n13sc/results_local/done/",
+    "cluster/jz_n13sc/aggregate.sh",
+    "cluster/jz_n13sc/prepare.sh"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "COVERED IN FULL"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "S6",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "The three parts are exactly the family, with no gap and no overlap",
+   "artifacts": [
+    "cluster/jz_n13sc/state/partition.tsv",
+    "cluster/jz_n13sc/aggregate.sh",
+    "verify/selfconverse_regular_count.py"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "gentourng"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "S7",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "These sweeps turn up exactly **ten** tournaments that are not 5-inducible at unit margin: 2 doubly regular at order 19, 4 vertex-transitive at order 21, 4 circulant at order 23",
+   "artifacts": [
+    "verdicts/verdict_ledger.tsv",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "margin1 = UNSAT"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "S8",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "**Every locally transitive tournament is 5-inducible at unit margin**, by construction rather than search (Theorem E.1)",
+   "artifacts": [
+    "verify/appendix_e.py"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "python3 verify/appendix_e.py"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "S9",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "**Refuted conjecture:** triangle load does not decide unit-margin inducibility \u2014 among 23-vertex vertex-transitive tournaments with t = 4, three are obstructions and 36 are inducible",
+   "artifacts": [
+    "verdicts/n23_tmin4/",
+    "tournaments/vt23/manifest.tsv",
+    "verify/triangles_per_arc.py",
+    "tournaments/vt23_gen.py"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "S10",
+   "group": "4. The structured families (\u00a73.6)",
+   "sections": [],
+   "claim": "The unrestricted form survives: every majority obstruction we have has t \u2265 6",
+   "artifacts": [
+    "verdicts/verdict_ledger.tsv",
+    "verify/triangles_per_arc.py"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "R1",
+   "group": "6a. The independent reproduction (\u00a75.2)",
+   "sections": [],
+   "claim": "Both refutations were re-solved from scratch on the cluster, under a different compiler and CaDiCaL build, and **ROOT (CNF) matched bit for bit**",
+   "artifacts": [
+    "cluster/jz_reproduce/slurm/recert_1829004.out",
+    "cluster/jz_reproduce/slurm/recert_1919064.out"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "PORTABLE ROOT MATCHES"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "R2",
+   "group": "6a. The independent reproduction (\u00a75.2)",
+   "sections": [],
+   "claim": "At 70.9 and 567.6 cluster core-hours against the laptop's 25.1 and 236.0, i.e. 2.8\u00d7 and 2.4\u00d7",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [
+    "solve 68.1 + check 2.8",
+    "solve 542.0 + check 25.6"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "R3",
+   "group": "6a. The independent reproduction (\u00a75.2)",
+   "sections": [],
+   "claim": "Both coverage instances were rebuilt on the cluster to their committed CNF hashes and refuted again",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "declared_gap"
+  },
+  {
+   "id": "R4",
+   "group": "6a. The independent reproduction (\u00a75.2)",
+   "sections": [],
+   "claim": "The four earlier attempts failed for reasons that say nothing about the result",
+   "artifacts": [
+    "cluster/jz_reproduce/slurm/recert_{1827897,1828524,1829003,1843769}.out",
+    "cluster/jz_reproduce/COMMANDS.md"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "M1",
+   "group": "7. The method comparison (Appendix A)",
+   "sections": [
+    "A.1"
+   ],
+   "claim": "Integer programming does not reach these instances; at q = 23 the program has 1,265 binaries, 17,710 transitivity rows and 253 majority rows",
+   "artifacts": [
+    "evidence/measurements/",
+    "tools/check_manuscript.py"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "M2",
+   "group": "7. The method comparison (Appendix A)",
+   "sections": [
+    "A.1"
+   ],
+   "claim": "SAT alone does not either. The dissent-Boolean encoding cuts CaDiCaL conflicts 26\u201342\u00d7 against the order-variable family (2,399 / 1,491 / 57 on doubly regular tests), and with a sound symmetry break on top neither 19-vertex instance still returns a verdict",
+   "artifacts": [
+    "sat/cube_sat.py",
+    "evidence/measurements/"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "M3",
+   "group": "7. The method comparison (Appendix A)",
+   "sections": [
+    "A.2"
+   ],
+   "claim": "The exact domain rule beats the capped one on decision quality alone: 992,378 nodes capped against 294,964 exact, identical verdicts, on a 29-instance Paley(19) benchmark",
+   "artifacts": [
+    "evidence/measurements/",
+    "sat/leaf_bench.py"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "M4",
+   "group": "7. The method comparison (Appendix A)",
+   "sections": [
+    "B.1"
+   ],
+   "claim": "LRAT over DRAT on measurement: 0.295 s vs 1.043 s per leaf end to end, 29\u00d7 in checking alone",
+   "artifacts": [
+    "sat/leaf_bench.py"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "M5",
+   "group": "7. The method comparison (Appendix A)",
+   "sections": [
+    "A.2"
+   ],
+   "claim": "Choosing the base: four cheap proxies each inverted when measured, so only live-count \u00d7 measured s/state is the objective. At q = 31 the class with 4,007 live states beat the class with 2,537",
+   "artifacts": [
+    "evidence/measurements/probe2_results.json",
+    "probe3_results.json",
+    "price31.json",
+    "evidence/README.md"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "python3 sat/base_survivors.py --q 31 --classes"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "M6",
+   "group": "7. The method comparison (Appendix A)",
+   "sections": [
+    "A.3"
+   ],
+   "claim": "The cluster runs 2\u20135\u00d7 slower per core than the laptop, over six independent experiments",
+   "artifacts": [
+    "evidence/measurements/price43_series.json",
+    "cluster/jz_reproduce/"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "M7",
+   "group": "7. The method comparison (Appendix A)",
+   "sections": [
+    "A.2"
+   ],
+   "claim": "Incremental refinement is worth about 110\u00d7 in wall time, against a factor of a few for the dynamic order",
+   "artifacts": [
+    "evidence/measurements/"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "T1",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.4 P\u2081\u2089 certified refutation, unit",
+   "artifacts": [
+    "certificates/p19cert_d6/log/*.log"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "solve_s + check_s"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "T2",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.4 P\u2082\u2083 certified refutation, unrestricted",
+   "artifacts": [
+    "certificates/p23cert_d6/log/*.log"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "T3",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.4 P\u2083\u2081 \u2212 v sweep, unrestricted",
+   "artifacts": [
+    "verdicts/p31mv_majority/p31mv_times.txt"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "T4",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.4 P\u2082\u2083 one arc reversed, unrestricted",
+   "artifacts": [
+    "cluster/jz_p23arc/AGGREGATE_OUTPUT.txt"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "T5",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.4 second DRT on 19, all 57 arc reversals, unit",
+   "artifacts": [
+    "tournaments/dr19_arcflip/sweep.log"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "T6",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.4 regular tournaments on 15, unit",
+   "artifacts": [
+    "cluster/jz_n15/results_margin1/done/"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "secs="
+   ],
+   "status": "established"
+  },
+  {
+   "id": "T7",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.4 self-converse on 13, unit",
+   "artifacts": [
+    "cluster/jz_n13sc/SLURM_COST.txt"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "T8",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.4 all tournaments on 12, unit",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "declared_gap"
+  },
+  {
+   "id": "T9",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.3 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87",
+   "artifacts": [
+    "evidence/{rerun1_p23,p27,p31,p43}_majority.tar.zst"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "time="
+   ],
+   "status": "established"
+  },
+  {
+   "id": "T10",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.3 live base states 2,591, 2,537, 4,007, 2,537",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [
+    "python3 sat/base_survivors.py",
+    "--selfcheck"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "T11",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.3 seconds per live base state 47.3, 44.0, 24.2, 32.5",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "T12",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.3 node counts",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [
+    "nodes="
+   ],
+   "status": "established"
+  },
+  {
+   "id": "T13",
+   "group": "8. The cost and node tables (Appendix A.3 and A.4)",
+   "sections": [],
+   "claim": "A.3 P\u2084\u2083 \u2212 v takes 185.5 core-h",
+   "artifacts": [
+    "verdicts/p43mv_majority/p43mv_times.txt"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "D1",
+   "group": "9. Exact enumeration counts (Appendix D)",
+   "sections": [],
+   "claim": "D\u2081\u2081",
+   "artifacts": [
+    "cluster/jz_n12cover/aggregate.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "D2",
+   "group": "9. Exact enumeration counts (Appendix D)",
+   "sections": [],
+   "claim": "D\u2081\u2082",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "D3",
+   "group": "9. Exact enumeration counts (Appendix D)",
+   "sections": [],
+   "claim": "R\u2081\u2081",
+   "artifacts": [
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "gentourng"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "D4",
+   "group": "9. Exact enumeration counts (Appendix D)",
+   "sections": [],
+   "claim": "R\u2081\u2083",
+   "artifacts": [
+    "verdicts/n13_regular_result.txt"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "D5",
+   "group": "9. Exact enumeration counts (Appendix D)",
+   "sections": [],
+   "claim": "R\u2081\u2085",
+   "artifacts": [
+    "cluster/jz_n15/results_margin1/done/"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "instances="
+   ],
+   "status": "established"
+  },
+  {
+   "id": "D6",
+   "group": "9. Exact enumeration counts (Appendix D)",
+   "sections": [],
+   "claim": "S\u2081\u2081",
+   "artifacts": [
+    "cluster/jz_n12cover/aggregate.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "D7",
+   "group": "9. Exact enumeration counts (Appendix D)",
+   "sections": [],
+   "claim": "S\u2081\u2082",
+   "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "D8",
+   "group": "9. Exact enumeration counts (Appendix D)",
+   "sections": [],
+   "claim": "S\u2081\u2083",
+   "artifacts": [
+    "cluster/jz_n13sc/aggregate.sh",
+    "prepare.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "E1",
+   "group": "10. The engine itself",
+   "sections": [],
+   "claim": "`engine/kinduce.c` is a **consolidation**; no published number was produced by it. Each result names its original version in `REPRODUCE.md`",
+   "artifacts": [
+    "engine/kinduce.c",
+    "REPRODUCE.md",
+    "engine/versions/"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "E2",
+   "group": "10. The engine itself",
+   "sections": [],
+   "claim": "The consolidated engine agrees with each of those versions **node for node** on the published command lines",
+   "artifacts": [
+    "engine/versions/REGRESSION.md",
+    "engine/regression.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "E3",
+   "group": "10. The engine itself",
+   "sections": [],
+   "claim": "Figure 1 is drawn from a real trace by a second, independent implementation of the search, which refuses to emit one unless seven cross-checks pass",
+   "artifacts": [
+    "manuscript/figures/README.md",
+    "paley7_trace.py",
+    "paley7_figure.py"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "paley7_figure.py --check"
+   ],
+   "status": "established"
+  }
+ ],
+ "gaps": [
+  {
+   "number": 1,
+   "title": "Appendix C (13 \u2264 N(5)) is not yet complete",
+   "status": "open",
+   "detail": "The order-12 census was still running on the cluster when this package was assembled. Appendix C's three quantities \u2014 the phase-1 share of 99.45%, the phase-2 rate of about one extension in 200,000, and the \u224810,000 cluster core-hours of row T8 \u2014 are **projections from the partial roll-up, not measurements**. What is here is the kit that ran, its aggregation and its self-test; the verdict markers are not. The test of readiness is the roll-up itself: `cluster/jz_n12cover/aggregate.sh` must report all 903,753,248 order-11 classes generated, `CANDIDATES: 0`, and a kept count of exactly (D\u2081\u2081 + S\u2081\u2081)/2 = 452,016,608, at which point it switches from `INCOMPLETE` to the exact census gate and exits non-zero on any mismatch. Until then the converse-halving factor it prints is meaningless, because a single residue is not closed under the converse map."
+  },
+  {
+   "number": 2,
+   "title": "the cluster's coverage runs left no artifact (claim R3)",
+   "status": "open",
+   "detail": "The two search halves have their SLURM logs. The two *coverage* halves were run interactively on 2026-09-11, passed, and their output exists only as prose in `cluster/jz_reproduce/COMMANDS.md`. Related, and the reason this is worth closing properly: **CERT (portable) has never been computed on the cluster** \u2014 `recertify.slurm` compares ROOT (CNF) only, and the `cert` stage has not run there. One allocation per instance closes both, because `$JOBSCRATCH` is purged at job end so `coverage` and `cert` must share an allocation: `run.sh p19 all` and `run.sh p23 all`."
+  },
+  {
+   "number": 3,
+   "title": "the two Appendix A.4 cost figures with no artifact, CLOSED 2026-09-11",
+   "status": "closed",
+   "detail": "Both Appendix A.4 figures that had no artifact now have one. Row T4, Paley(23) with one arc reversed at 210.4 core-hours, is in `cluster/jz_p23arc/AGGREGATE_OUTPUT.txt`; note what that file says about its own `missing indices: 6996` line, since the scan stopped at the witness, which is sound for a positive certificate and would void a refutation. Row T7, the order-13 self-converse census at 1,310 core-hours, is in `cluster/jz_n13sc/SLURM_COST.txt`, which also records the trap that would have overstated it by 93%: the scheduler reports `AllocCPUS = 2` for a task that asks for one CPU, because it counts both hyperthreads of the physical core that `--hint=nomultithread` reserves, so `CPUTimeRAW` is exactly twice the worker time Appendix A.4 means."
+  },
+  {
+   "number": 4,
+   "title": "`evidence/arcrev/` is not what its name suggests",
+   "status": "open",
+   "detail": "Those 24 logs are the witness-distance scan that priced the arc-criticality question, not the sweep that answered it. The answer is K5's witness."
+  },
+  {
+   "number": 5,
+   "title": "two coverage proofs are too large to ship and are not here",
+   "status": "open",
+   "detail": "`cover_p19_d6.cnf` (34 MB), its DRAT (383 MB) and its LRAT (222 MB) exceed GitHub's per-file limit and are regenerable from `sat/cover_check.py`; the verification output is preserved in `certificates/p19_coverage_cert.txt`."
+  },
+  {
+   "number": 6,
+   "title": "external tools are not vendored",
+   "status": "open",
+   "detail": "Versions used:"
+  }
+ ],
+ "counts": {
+  "claims": 74,
+  "established": 71,
+  "declared_gap": 3,
+  "missing_artifacts": 0,
+  "gaps": 6,
+  "gaps_open": 5,
+  "gaps_closed": 1
+ }
+}

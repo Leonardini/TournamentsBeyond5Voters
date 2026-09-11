@@ -61,30 +61,20 @@ else
 fi
 
 echo
-echo "== 2. every artifact CLAIMS.md names exists =="
-# CLAIMS.md carries one backticked path per artifact column.  Checking them
-# mechanically is what keeps the index honest as the package changes; a
-# reference that rots is the failure this catches.
+echo "== 2. CLAIMS.md, claims.tsv and claims.json agree, and every artifact exists =="
+# CLAIMS.md is the human index and the single source of truth; claims.tsv and
+# claims.json are DERIVED from it.  Regenerating and diffing is what stops the
+# machine-readable copy drifting from the prose, and the same pass resolves
+# every backticked path -- exact paths, globs, brace lists and bare filenames --
+# so a reference that rots is a failure rather than a quiet lie.
 #
-# Only the claim tables are scanned.  The "Gaps" section deliberately names
-# files that are NOT here -- that is its whole purpose -- so scanning it would
-# turn every honestly declared hole into a spurious failure.
-sed '/^# Gaps/,$d' "$ROOT/CLAIMS.md" > "$TMP/claims.head" 2>/dev/null || true
-miss=0; seen=0
-for p in $(grep -o '`[A-Za-z0-9_][A-Za-z0-9_./-]*`' "$TMP/claims.head" 2>/dev/null \
-           | tr -d '`' | grep -E '/|\.(c|py|sh|md|txt|tsv|bits|zst|json)$' | sort -u); do
-  case "$p" in
-    *' '*|http*) continue ;;
-  esac
-  seen=$((seen+1))
-  [ -e "$ROOT/$p" ] || { echo "        missing: $p"; miss=$((miss+1)); }
-done
-if [ "$seen" -eq 0 ]; then
-  bad "CLAIMS.md named no artifacts -- the extraction found nothing to check"
-elif [ "$miss" -eq 0 ]; then
-  ok "all $seen artifacts named in CLAIMS.md are present"
+# This replaced a looser check that tested `[ -e ]` only on tokens containing a
+# slash, and so passed silently over every glob and every bare filename.
+if out=$(python3 "$ROOT/tools/claims_index.py" --check 2>&1); then
+  ok "$(echo "$out" | head -1)"
 else
-  bad "$miss of $seen artifacts named in CLAIMS.md are missing"
+  bad "CLAIMS.md and its generated index disagree, or an artifact is missing"
+  echo "$out" | sed 's/^/        /' | head -12
 fi
 
 echo
@@ -145,6 +135,20 @@ else
 fi
 
 echo
+echo "== 3c. CERT (portable) recomputes from the block it publishes =="
+# ROOT (CNF) covers the SEARCH half only; the coverage instance's hash is a
+# separate value.  CERT (portable) is the one published value that commits to
+# both halves at once, and the file it lives in is self-auditing.
+if out=$(python3 "$ROOT/tools/check_cert_portable.py" \
+         "$ROOT/certificates/p19cert_d6" "$ROOT/certificates/p23cert_d6" 2>&1); then
+  echo "$out" | sed 's/^  ok    /  ok    /'
+  pass=$((pass+2))
+else
+  bad "a portable certificate does not recompute, or its control did not fire"
+  echo "$out" | sed 's/^/        /'
+fi
+
+echo
 echo "== 4. distributed refutations cover their base-state range exactly =="
 # A refutation is only as good as the union of its slices.  Count is not
 # enough: a missing index and a duplicated one cancel in a count.
@@ -195,10 +199,31 @@ fi
 echo
 echo "== 5. witnesses verify against the tournament, independently of the search =="
 # The verifier shares no code with the engine: it reads the bit string and the
-# ballots and recomputes every arc's support.
-wit="$ROOT/verdicts/WITNESSES_paley_arcrev.md"
-if [ -f "$wit" ] && [ -f "$ROOT/verify/verify_witness_bits.py" ]; then
-  ok "arc-reversal witness and its independent verifier are both present"
+# ballots and recomputes every arc's support.  This used to check only that the
+# two FILES existed, which is not a check of anything -- it would have passed on
+# a witness that verified against nothing.
+wit="$ROOT/verdicts/p23arc_witness/b1161.witness"
+ver="$ROOT/verify/verify_witness_bits.py"
+if [ -f "$wit" ] && [ -f "$ver" ]; then
+  if python3 "$ver" "$wit" "$ROOT/tournaments/p23_arcrev.bits" 23 5 --majority \
+       2>&1 | grep -q '^VERIFIED'; then
+    ok "the Paley(23) arc-reversal witness verifies: all 253 arcs at >= 3 of 5"
+  else
+    bad "the Paley(23) arc-reversal witness does not verify against its host"
+  fi
+  # CONTROL.  The same ballots against the UNREVERSED Paley(23) must fail, and
+  # must fail on exactly the reversed arc (0,1).  If they verified against both,
+  # they would contradict Paley(23) not being 5-inducible -- so a control that
+  # did not fire here would mean the result itself was wrong.
+  cout=$(python3 "$ver" "$wit" "$ROOT/tournaments/p23_paley.bits" 23 5 --majority 2>&1)
+  case "$cout" in
+    *"FAIL: 1 arcs"*"(0, 1, 2)"*)
+      ok "control: the same ballots fail on Paley(23) at exactly the reversed arc (0,1)" ;;
+    *VERIFIED*)
+      bad "control did not fire: the witness verifies against Paley(23) too, which would contradict its refutation" ;;
+    *)
+      bad "control fired in the wrong way: $cout" ;;
+  esac
 else
   warn "arc-reversal witness or verifier absent"
 fi
@@ -352,6 +377,128 @@ else
   else
     bad "Paley(19) at unit margin returned a witness on [0,40) -- contradicts the certificate"
   fi
+fi
+
+echo
+echo "== 8. the deleted-vertex sweeps cover their base-state range exactly =="
+# These two are recorded as one line per base state rather than as slice logs,
+# so the audit is on the index cover of the times file.  A line is written only
+# on RESULT UNSAT, which is what makes an exact cover a completeness
+# certificate: a capped or killed base state leaves nothing behind.
+cover() {
+  cf="$ROOT/$1"; cwant=$2; clabel=$3
+  [ -f "$cf" ] || { warn "$clabel: $1 absent"; return; }
+  awk -F'\t' '!/^#/ && NF>=2 {print $1}' "$cf" | sort -n > "$TMP/got"
+  seq 0 $((cwant-1)) > "$TMP/want"
+  cm=$(comm -13 "$TMP/got" "$TMP/want" | wc -l | tr -d ' ')
+  cx=$(comm -23 "$TMP/got" "$TMP/want" | wc -l | tr -d ' ')
+  cd=$(uniq -d < "$TMP/got" | wc -l | tr -d ' ')
+  ch=$(awk -F'\t' '!/^#/ && NF>=2 {s+=$2} END {printf "%.2f", s/3600}' "$cf")
+  if [ "$cm" = 0 ] && [ "$cx" = 0 ] && [ "$cd" = 0 ]; then
+    ok "$clabel: exact cover of $cwant base states, 0 missing/extra/duplicated, $ch core-h"
+  else
+    bad "$clabel: cover is not exact (missing $cm, extra $cx, duplicated $cd)"
+  fi
+}
+cover verdicts/p31mv_majority/p31mv_times.txt 8031 "P31 - v"
+cover verdicts/p43mv_majority/p43mv_times.txt 8031 "P43 - v"
+
+echo
+echo "== 8b. NEGATIVE CONTROL: a hole in the cover must be noticed =="
+# If deleting a base state left the audit passing, check 8 would measure nothing
+# and a half-finished sweep would read as a complete refutation.
+src="$ROOT/verdicts/p31mv_majority/p31mv_times.txt"
+if [ -f "$src" ]; then
+  grep -v '^4000	' "$src" > "$TMP/holed.txt"
+  awk -F'\t' '!/^#/ && NF>=2 {print $1}' "$TMP/holed.txt" | sort -n > "$TMP/got"
+  seq 0 8030 > "$TMP/want"
+  hm=$(comm -13 "$TMP/got" "$TMP/want" | wc -l | tr -d ' ')
+  if [ "$hm" -ge 1 ]; then
+    ok "removing one base state leaves $hm missing, as it must"
+  else
+    bad "control did not fire: a base state was removed and the cover still read exact"
+  fi
+else
+  warn "P31 - v times file absent, control not run"
+fi
+
+echo
+echo "== 9. every number the manuscript prints that we can re-derive, re-derived =="
+# The manuscript is the source of truth for what is CLAIMED; this recomputes the
+# observed value from shipped bytes and compares.  A figure that changes in the
+# paper and not in the package fails here rather than passing against a copy
+# that drifted with it.
+mout=$(python3 "$ROOT/tools/check_manuscript.py" 2>&1)
+msum=$(echo "$mout" | tail -1)
+if echo "$mout" | grep -q '^ FAIL'; then
+  bad "manuscript figures do not all re-derive: $msum"
+  echo "$mout" | grep -A1 '^ FAIL' | sed 's/^/        /'
+else
+  ok "$msum"
+fi
+
+echo
+echo "== 10. Appendix E's construction, verified on the family it quantifies over =="
+# The one result in the paper settled by construction rather than computation.
+# The verifier builds A, B and C from the appendix's own prose and requires every
+# support to be exactly 2, at every cut point of every locally transitive
+# tournament it can reach, with the family selected by its DEFINITION.
+eout=$(python3 "$ROOT/verify/appendix_e.py" 2>&1)
+if echo "$eout" | grep -q '^OK: 0 problem'; then
+  ok "Appendix E: $(echo "$eout" | awk '/^ *[0-9]+ / {n+=$(NF-3); c+=$(NF-1)} END {printf "%d cut points verified over %d STRONG locally transitive tournaments, orders 3-14", c, n}')"
+  ok "control: $(echo "$eout" | grep 'outside the family' | sed 's/^ *//')"
+else
+  bad "Appendix E's construction did not verify"
+  echo "$eout" | grep 'FAIL' | sed 's/^/        /' | head -5
+fi
+
+echo
+echo "== 11. the 3-cycle hypothesis holds on every host that relied on it =="
+# Several refutations ran at --max-margin 3 and are quoted as MAJORITY verdicts.
+# That step is sound only if every arc of the host lies in a directed triangle,
+# and Section 3.4 states the stronger form (q-3)/4.  Measured, not assumed.
+if [ -f "$ROOT/verify/triangles_per_arc.py" ]; then
+  tout=$(cd "$ROOT/tournaments" && python3 "$ROOT/verify/triangles_per_arc.py" \
+        p23_minus1v.bits p27_minus1v.bits p31_minus1v.bits p43_minus1v.bits \
+        --expect-paley-minus 2>&1)
+  if echo "$tout" | grep -q '^OK: 0 problem'; then
+    ok "every arc of P_q - v lies in at least (q-3)/4 triangles, q = 23, 27, 31, 43"
+  else
+    bad "Section 3.4's (q-3)/4 triangle claim does not hold as stated"
+    echo "$tout" | sed 's/^/        /' | head -8
+  fi
+else
+  warn "triangles_per_arc.py absent"
+fi
+
+echo
+echo "== 12. the consolidated engine still agrees with the historical versions =="
+# kinduce.c produced none of the published numbers; each result names the version
+# that did.  --fast runs the cases that finish in about a second; the full set is
+# recorded in engine/versions/REGRESSION.md.
+if [ -f "$ROOT/engine/regression.sh" ]; then
+  rout=$(sh "$ROOT/engine/regression.sh" --fast 2>&1)
+  rline=$(echo "$rout" | tail -1)
+  case "$rline" in
+    *"failed 0"*) ok "engine regression, fast subset: $rline" ;;
+    *) bad "engine regression: $rline"
+       echo "$rout" | grep -A2 'FAIL' | sed 's/^/        /' | head -10 ;;
+  esac
+else
+  warn "engine regression script absent"
+fi
+
+echo
+echo "== 13. the manifest matches the bytes on disk =="
+if [ -f "$ROOT/MANIFEST.sha256" ]; then
+  if nout=$(cd "$ROOT" && python3 tools/manifest.py --check 2>&1); then
+    ok "$(echo "$nout" | tail -1)"
+  else
+    bad "MANIFEST.sha256 does not match the package"
+    echo "$nout" | sed 's/^/        /' | head -10
+  fi
+else
+  warn "MANIFEST.sha256 absent; run tools/manifest.py"
 fi
 
 echo

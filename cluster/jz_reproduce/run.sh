@@ -55,8 +55,22 @@ stage_coverage() {
   else
     echo "  clause count OBSERVED: $got  (no expectation in $CONF -- record it there)"
   fi
-  echo "  cover_cnf_sha256=$(shasum -a 256 "$out.cnf" | cut -d' ' -f1)"
-  echo "  cover_proof_sha256=$(shasum -a 256 "$out.lrat" | cut -d' ' -f1)"
+  # ASSERT the coverage CNF's hash, do not print it for a human to compare.  This
+  # is the value CERT (portable) commits to as split_cover_cnf, and until
+  # 2026-09-11 it was only echoed -- so the one comparison that closed the
+  # coverage half on the cluster was made by eye, against the kit's own stated
+  # principle.  The proof hash stays informational: it is build-dependent.
+  local csha; csha=$(shasum -a 256 "$out.cnf" | cut -d' ' -f1)
+  if [ -n "${COVER_CNF_SHA:-}" ]; then
+    if [ "$csha" = "$COVER_CNF_SHA" ]; then
+      echo "  cover_cnf_sha256 matches split_cover_cnf inside CERT (portable)"
+    else
+      echo "  FAIL: cover_cnf_sha256=$csha != $COVER_CNF_SHA"; fail=1
+    fi
+  else
+    echo "  cover_cnf_sha256 OBSERVED: $csha  (no expectation in $CONF -- record it there)"
+  fi
+  echo "  cover_proof_sha256=$(shasum -a 256 "$out.lrat" | cut -d' ' -f1)  (build-dependent, not compared)"
 }
 
 stage_cert() {
@@ -109,8 +123,18 @@ stage_recertify() {
   local got; got=$(sed -n 's/^ROOT (CNF) *//p' "$out/VERDICT.txt" 2>/dev/null | tr -d ' ')
   echo "  ROOT (CNF) here     $got"
   echo "  ROOT (CNF) expected $ROOT_CNF"
-  [ "$got" = "$ROOT_CNF" ] && echo "  PORTABLE ROOT MATCHES -- same problems solved, independently" \
-    || { echo "  *** PORTABLE ROOT DIFFERS -- investigate"; fail=1; }
+  # An ABSENT root is a run that died -- job 1827897 had no cadical at all -- and
+  # saying it "DIFFERS" invites someone reading the archive to conclude the
+  # certificate failed to reproduce, which is the opposite of what happened.
+  if [ -z "$got" ]; then
+    echo "  *** NO ROOT PRODUCED -- this run did not finish; nothing was compared"
+    fail=1
+  elif [ "$got" = "$ROOT_CNF" ]; then
+    echo "  PORTABLE ROOT MATCHES -- same problems solved, independently"
+  else
+    echo "  *** PORTABLE ROOT DIFFERS -- investigate"
+    fail=1
+  fi
   echo "  (ROOT (proofs) is expected to differ on a different build; not compared)"
 }
 

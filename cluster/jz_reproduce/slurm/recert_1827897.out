@@ -1,0 +1,34 @@
+
+=== FULL RE-CERTIFICATION -- ~228 core-h [p23: q=23 margin=majority base=0 1 2 5 6 3] ===
+### certify Paley(23) margin=majority by depth-6 cubing 2026-09-06 23:29:07
+  base [0, 1, 2, 5, 6, 3], break arc (2, 6) + non-arc (1, 6)
+  3,414,729 base states -> 343,896 live (10.1%), enumerated in 1714s
+  1720 chunks of <= 200, 10 workers, check-and-discard
+Traceback (most recent call last):
+  File "/lustre/fswork/projects/rech/lia/uex76wa/KemenyMedian/KInduceDFS/certify_d6.py", line 309, in <module>
+    main()
+  File "/lustre/fswork/projects/rech/lia/uex76wa/KemenyMedian/KInduceDFS/certify_d6.py", line 201, in main
+    for lo, s in ex.map(do_chunk, chunks):
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 609, in result_iterator
+    yield fs.pop().result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 446, in result
+    return self.__get_result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/usr/lib64/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/lustre/fswork/projects/rech/lia/uex76wa/KemenyMedian/KInduceDFS/certify_d6.py", line 101, in do_chunk
+    p = subprocess.run([CAD, '-q', '--lrat=true', '--checkproof=0', cnf_p, lrt_p],
+  File "/usr/lib64/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/lib64/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib64/python3.9/subprocess.py", line 1837, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/linkhome/rech/genrjm01/uex76wa/Downloads/DownloadedSoftware/cadical/build/cadical'
+  ROOT (CNF) here     
+  ROOT (CNF) expected 7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb
+  *** PORTABLE ROOT DIFFERS -- investigate
+  (ROOT (proofs) is expected to differ on a different build; not compared)
+
+p23/recertify: FAIL
