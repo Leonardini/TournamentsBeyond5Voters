@@ -30,7 +30,7 @@ trace actually contains before emitting any TikZ.
 The caption lives in the manuscript, so its numbers cannot be checked by
 compiling the figure. They are checked separately:
 
-    python3 paley7_figure.py trace_maj.json --check ../Tournaments_not_inducible_by_five_voters.md
+    python3 paley7_figure.py trace_maj.json --check ../Tournaments_not_inducible_by_five_voters_JCSS.md
 
 which fails unless every quantity the caption quotes matches the trace.
 
@@ -38,6 +38,33 @@ which fails unless every quantity the caption quotes matches the trace.
 
 Build products that do not belong in git: `paley7_alg1.aux`, `paley7_alg1.log`,
 and any `fig_preview*.png` from `pdftoppm`.
+
+## Figure 2 --- the three-voter construction of Appendix E
+
+    python3 roundE_figure.py roundE.tex
+    pdflatex roundE.tex
+
+`roundE_figure.py` holds one worked example -- a round tournament on seven
+vertices with out-degrees $(2,2,2,4,4,4,3)$ -- and derives everything the picture
+shows from it. It is chosen rather than general: the out-degrees are not all
+equal, so the staircase has more than one step, and two ceilings coincide, so the
+tie-break in the key is exercised rather than merely asserted.
+
+Nothing is drawn until the example has been checked:
+
+| | what it pins |
+|---|---|
+| that it is a tournament, and round | each out-neighbourhood is the interval of $d_i$ vertices following its own |
+| that it is locally transitive | checked directly from the definition Appendix E opens with, not inferred from the construction |
+| that it is strongly connected | so the appendix's reduction to that case applies |
+| that $r$ is non-decreasing, and $t_{n-1} < q$ | the two facts the proof asserts about the staircase |
+| that the keys are pairwise distinct | so $C$ is a linear order |
+| that every arc has support exactly $2$ | Theorem E.1 itself, on this instance |
+
+The caption's numbers are checked against the figure separately, the same way
+Figure 1's are:
+
+    python3 roundE_figure.py --check ../Tournaments_not_inducible_by_five_voters_JCSS.md
 
 ## Is Paley(7) the smallest instance that exercises all of Algorithm 1?
 

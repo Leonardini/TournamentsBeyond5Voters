@@ -1,7 +1,7 @@
 id	group	sections	status	artifacts	missing	claim
 B1	1. The bound: 13 ≤ N(5) ≤ 23	3.1	established	evidence/rerun1_p23_majority.tar.zst;evidence/anchor2_p23_majority.tar.zst;REPRODUCE.md		**Paley(23) is not 5-inducible**, hence N(5) ≤ 23. Complete over all 8,031 base states of `{1,2,3,6,12}`, of which 2,591 survive the anchor
 B2	1. The bound: 13 ≤ N(5) ≤ 23	3.1;B.1	established	certificates/p23cert_d6/VERDICT.txt;certificates/p23cert_d6/p23_cert.portable.txt;sat/certify_d6.py;sat/reroot.py;tools/check_package.sh		Paley(23), **machine-checked** on both halves
-B3	1. The bound: 13 ≤ N(5) ≤ 23	C	declared_gap	cluster/jz_n12cover/;cluster/jz_n12cover/COMMANDS.md;cluster/jz_n12cover/aggregate.sh		**13 ≤ N(5)**: every order-12 tournament is 5-inducible
+B3	1. The bound: 13 ≤ N(5) ≤ 23	C	established	cluster/jz_n12cover/FINAL_ROLLUP.txt;cluster/jz_n12cover/COMMANDS.md;cluster/jz_n12cover/aggregate.sh		**13 ≤ N(5)**: every order-12 tournament is 5-inducible. All 903,753,248 order-11 classes generated, 452,016,608 screened after the converse halving, **0 candidates**
 B4	1. The bound: 13 ≤ N(5) ≤ 23	3.4	established	verdicts/p43mv_majority/p43mv_times.txt;verdicts/p43_minus1v_VERDICT.txt;REPRODUCE.md		Paley(43) − v is not 5-inducible, so N(5) ≤ 43 is **re-derived by a second method**
 P1	2. The rest of the Paley family	A.3	established	evidence/p27_majority.tar.zst;REPRODUCE.md;tournaments/p27_paley.bits		Paley(27) is not 5-inducible, 8,031 base states, 2,537 live, 6.22 × 10⁹ nodes
 P2	2. The rest of the Paley family	3.1	established	evidence/p31_majority.tar.zst;evidence/measurements/p31_result.json;REPRODUCE.md		Paley(31) is not 5-inducible, 21,009 base states, 4,007 live, 3.43 × 10⁹ nodes
@@ -56,7 +56,7 @@ T4	8. The cost and node tables (Appendix A.3 and A.4)		established	cluster/jz_p2
 T5	8. The cost and node tables (Appendix A.3 and A.4)		established	tournaments/dr19_arcflip/sweep.log		A.4 second DRT on 19, all 57 arc reversals, unit
 T6	8. The cost and node tables (Appendix A.3 and A.4)		established	cluster/jz_n15/results_margin1/done/		A.4 regular tournaments on 15, unit
 T7	8. The cost and node tables (Appendix A.3 and A.4)		established	cluster/jz_n13sc/SLURM_COST.txt		A.4 self-converse on 13, unit
-T8	8. The cost and node tables (Appendix A.3 and A.4)		declared_gap			A.4 all tournaments on 12, unit
+T8	8. The cost and node tables (Appendix A.3 and A.4)		established	cluster/jz_n12cover/FINAL_ROLLUP.txt;aggregate.sh		A.4 all tournaments on 12, unit
 T9	8. The cost and node tables (Appendix A.3 and A.4)		established	evidence/{rerun1_p23,p27,p31,p43}_majority.tar.zst		A.3 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87
 T10	8. The cost and node tables (Appendix A.3 and A.4)		established			A.3 live base states 2,591, 2,537, 4,007, 2,537
 T11	8. The cost and node tables (Appendix A.3 and A.4)		established			A.3 seconds per live base state 47.3, 44.0, 24.2, 32.5

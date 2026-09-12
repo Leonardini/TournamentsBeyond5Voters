@@ -220,10 +220,15 @@ done
 # the caption's numbers against that trace -- so the figure is an artifact, not
 # an illustration.
 mkdir -p "$DST/manuscript/figures"
-for f in paley7_alg1.pdf paley7_alg1.tex paley7_figure.py paley7_trace.py \
-         show_trace.py smallest_instance.py trace_maj.json n7_census.log README.md; do
-  [ -f "$SRC/figures/$f" ] && cp "$SRC/figures/$f" "$DST/manuscript/figures/"
-done
+# EVERY figure artifact, by extension rather than by a hand-kept list.  The list
+# that used to stand here went stale the moment Appendix E's figure was added:
+# README.md documented Figure 2 and its checks while roundE_figure.py, roundE.tex
+# and roundE.pdf were not shipped at all, so the instructions referred to files
+# the package did not contain.  A list of names is correct exactly once.
+find "$SRC/figures" -maxdepth 1 -type f \
+     \( -name '*.py' -o -name '*.tex' -o -name '*.pdf' -o -name '*.json' \
+        -o -name '*.log' -o -name '*.md' \) \
+     -exec sh -c 'cp "$@" "$0"' "$DST/manuscript/figures/" {} +
 cp "$SRC/check_manuscript_tables.py" "$DST/tools/" 2>/dev/null || true
 
 echo "assembled."

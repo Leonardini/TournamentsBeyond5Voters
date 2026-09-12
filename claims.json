@@ -45,15 +45,15 @@
    "sections": [
     "C"
    ],
-   "claim": "**13 \u2264 N(5)**: every order-12 tournament is 5-inducible",
+   "claim": "**13 \u2264 N(5)**: every order-12 tournament is 5-inducible. All 903,753,248 order-11 classes generated, 452,016,608 screened after the converse halving, **0 candidates**",
    "artifacts": [
-    "cluster/jz_n12cover/",
+    "cluster/jz_n12cover/FINAL_ROLLUP.txt",
     "cluster/jz_n12cover/COMMANDS.md",
     "cluster/jz_n12cover/aggregate.sh"
    ],
    "missing": [],
    "other_tokens": [],
-   "status": "declared_gap"
+   "status": "established"
   },
   {
    "id": "B4",
@@ -856,10 +856,13 @@
    "group": "8. The cost and node tables (Appendix A.3 and A.4)",
    "sections": [],
    "claim": "A.4 all tournaments on 12, unit",
-   "artifacts": [],
+   "artifacts": [
+    "cluster/jz_n12cover/FINAL_ROLLUP.txt",
+    "aggregate.sh"
+   ],
    "missing": [],
    "other_tokens": [],
-   "status": "declared_gap"
+   "status": "established"
   },
   {
    "id": "T9",
@@ -1066,9 +1069,9 @@
  "gaps": [
   {
    "number": 1,
-   "title": "Appendix C (13 \u2264 N(5)) is not yet complete",
-   "status": "open",
-   "detail": "The order-12 census was still running on the cluster when this package was assembled. Appendix C's three quantities \u2014 the phase-1 share of 99.45%, the phase-2 rate of about one extension in 200,000, and the \u224810,000 cluster core-hours of row T8 \u2014 are **projections from the partial roll-up, not measurements**. What is here is the kit that ran, its aggregation and its self-test; the verdict markers are not. The test of readiness is the roll-up itself: `cluster/jz_n12cover/aggregate.sh` must report all 903,753,248 order-11 classes generated, `CANDIDATES: 0`, and a kept count of exactly (D\u2081\u2081 + S\u2081\u2081)/2 = 452,016,608, at which point it switches from `INCOMPLETE` to the exact census gate and exits non-zero on any mismatch. Until then the converse-halving factor it prints is meaningless, because a single residue is not closed under the converse map."
+   "title": "Appendix C (13 \u2264 N(5)) was incomplete, CLOSED 2026-09-12",
+   "status": "closed",
+   "detail": "The order-12 census was still running on the cluster when this package was first assembled, and Appendix C's three quantities were projections from a partial roll-up. It has now finished and passed its gate, and all three are measurements. The verbatim roll-up is `cluster/jz_n12cover/FINAL_ROLLUP.txt`: all 903,753,248 order-11 classes generated, 452,016,608 screened after the converse halving, phase 1 complete on 99.4747% of hosts, 4,317,084 leftover extensions of which every one was 5-inducible at unit margin, phase 3 never invoked, **`CANDIDATES: 0`**, and 10,074.6 core-hours. Appendix C's 99.5%, its \"about one extension in 200,000\" (the measured rate is one in 214,434) and its \u224810,000 core-hours all stand as written."
   },
   {
    "number": 2,
@@ -1103,11 +1106,11 @@
  ],
  "counts": {
   "claims": 74,
-  "established": 71,
-  "declared_gap": 3,
+  "established": 73,
+  "declared_gap": 1,
   "missing_artifacts": 0,
   "gaps": 6,
-  "gaps_open": 5,
-  "gaps_closed": 1
+  "gaps_open": 4,
+  "gaps_closed": 2
  }
 }

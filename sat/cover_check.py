@@ -142,7 +142,28 @@ def main():
         r = subprocess.run([CAD, '-q', '--lrat=true', '--checkproof=0', a.dimacs, prf],
                            capture_output=True, text=True)
         el = time.time() - t0
-        if 'UNSATISFIABLE' not in r.stdout:
+        # THREE outcomes, not two.  CaDiCaL exits 10 for SATISFIABLE and 20 for
+        # UNSATISFIABLE; anything else means it did not decide -- killed by the OOM
+        # killer or the scheduler, crashed, or out of disk part-way through a proof.
+        # This used to read `if 'UNSATISFIABLE' not in r.stdout` and call everything
+        # else SAT, so every such failure was reported as `RESULT SAT *** DOES NOT
+        # COVER -- BUG`: a refuted coverage proof, which is the most alarming thing
+        # this kit can say and was in those cases simply false.  It happened on
+        # 2026-09-12, on a p23 run whose root stage had already been SIGKILLed in the
+        # same allocation, and the giveaway was a suspiciously exact time=1840.00s.
+        # An undecided run must never be reported as a verdict in either direction.
+        unsat = r.returncode == 20 and 'UNSATISFIABLE' in r.stdout
+        sat   = r.returncode == 10 and 'UNSATISFIABLE' not in r.stdout \
+                                   and 'SATISFIABLE' in r.stdout
+        if not (unsat or sat):
+            print(f'RESULT UNKNOWN time={el:.2f}s exit={r.returncode}  '
+                  f'*** the solver did not decide -- this is NOT a verdict on coverage')
+            print(f'  proof file is {os.path.getsize(prf)/2**20:.0f} MiB and is incomplete; '
+                  f'rerun with more memory or a longer wall')
+            if r.stderr.strip():
+                print('  solver stderr:', r.stderr.strip()[:400])
+            return 3
+        if sat:
             tag = 'expected (control)' if a.drop >= 0 else '*** DOES NOT COVER -- BUG'
             print(f'RESULT SAT time={el:.2f}s  {tag}')
             return 0 if a.drop >= 0 else 2

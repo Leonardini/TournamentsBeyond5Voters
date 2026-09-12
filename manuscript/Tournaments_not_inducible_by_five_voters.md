@@ -97,7 +97,9 @@ best non-constructive (counting) as well as the best constructive (explicit) upp
 ### 1.1 Special properties of Paley tournaments
 
 The Paley tournament $P_q$, for a prime $q \equiv 3 \pmod 4$, has vertex set
-$\mathbb{F}_q$ and an arc from $i$ to $j$ whenever $j - i$ is a nonzero square; as everywhere in
+$\mathbb{F}_q$ and an arc from $i$ to $j$ whenever $j - i$ is a nonzero square, or *quadratic
+residue*; we write $\mathrm{QR}$ for the set of these, so that $i \to j$ exactly when $j - i \in
+\mathrm{QR}$. As everywhere in
 this paper, vertices are numbered from $1$, vertex $i + 1$ being the field element $i$. It is
 *doubly regular*: every vertex has out-degree $(q-1)/2$ and every ordered pair of vertices has
 exactly $(q-3)/4$ common out-neighbours. Its automorphism group, written $\mathrm{Aut}(P_q)$ and 
@@ -205,7 +207,9 @@ independent subproblems, using the *cube-and-conquer* paradigm [9]: a SAT instan
 fixing a few variables at a time, giving many partial assignments called *cubes*, and each cube is
 handed to the solver as a problem of its own. We adopt the standard of evidence set by
 the Boolean Pythagorean triples proof [3, 11], in which every subproblem emits a machine-checkable
-refutation that an independent checker validates. Our refutations are in the LRAT format [10] (Appendix B.1).
+refutation that an independent checker validates. Our refutations are in the LRAT format [10]
+(Appendix B.1), a format in which the solver records each clause it derives so that an independent
+checker can replay and confirm the entire derivation.
 
 ---
 
@@ -268,11 +272,21 @@ witness, and its first voter ranks $a_i$ first and $b_i$ second. $\blacksquare$
 
 Thus we may search only for witnesses whose top pair is one of the $m$ chosen pairs. Note that 
 the lemma only guarantees that *some* $i$ works, not any particular one. 
-For a Paley tournament $m = 2$, since an ordered pair is either an arc or a non-arc and
-$\mathrm{Aut}(P_q)$ is transitive on each set. The two representatives can be exhibited without
-computing the group: $x \mapsto a(x - t)$ with $a$ a quadratic residue sends $(t,s)$ to
-$(0, a(s-t))$, and $a(s-t)$ sweeps the coset $\mathrm{QR}\cdot(s-t)$, so one representative per
-coset suffices, the two cosets being mutually exclusive and exhaustive.
+
+For a Paley tournament $m = 2$, and the representatives can be exhibited without computing
+$\mathrm{Aut}(P_q)$. For $a \in \mathrm{QR}$ and any $t$, the map $x \mapsto a(x-t)$ multiplies
+every difference by $a$, which cannot change whether a difference lies in $\mathrm{QR}$, so it is
+an automorphism; it sends the ordered pair $(t,s)$ to $(0, a(s-t))$, and as $a$ ranges over
+$\mathrm{QR}$, $a(s-t)$ ranges over the coset $\mathrm{QR}\cdot(s-t)$. Since $\mathbb{F}_q^{*}$ is
+the disjoint union of $\mathrm{QR}$ and its complement, each of them one such coset, these maps
+alone leave only two orbits, separated by whether the difference lies in $\mathrm{QR}$. The orbits
+of the full group are unions of these, so there are at most two, and since automorphisms carry arcs
+to arcs, at least two. They are therefore exactly the arcs and the non-arcs, and any arc together
+with any non-arc serves as representatives. On $P_7$, worked through in Figure 1 of Appendix A.2,
+$\mathrm{QR} = \{1,2,4\}$, so the representatives are $(1,2)$, whose difference $1$ lies in
+$\mathrm{QR}$, and $(1,4)$, whose difference $3$ does not; both lie inside the base
+$B = \{1,2,4\}$ used there, which is what makes the anchoring decidable from the base state alone,
+and panel (c) rejects an insertion that would lift a vertex above an anchored pair.
 
 **Corollary 2.2 (vertex anchoring).** *Let $\mathrm{Aut}(T)$ act on the vertices and choose one
 representative $v_1, \dots, v_r$ from each orbit. If $T$ is $k$-inducible, then $T$ has a witness
@@ -289,8 +303,7 @@ of vertex pair orbits vs vertex orbits, as well as the relative complexity of te
 *provided* the representatives meet every orbit. For every tournament we
 compute $\mathrm{Aut}(T)$ separately, with `nauty` 2.8.6 [16], and record its orbits alongside the
 run. Every automorphism group, orbit set and canonical form reported in this paper comes from that
-same tool. Note that using the orbits of a known subgroup $\Gamma \le \mathrm{Aut}(T)$ is safe, since
-$\Gamma$-orbits are a refinement of the $\mathrm{Aut}(T)$-orbits with respect to the partition order.
+same tool.
 
 **Lemma 2.3 (voter lex-ordering).** *If $T$ is $k$-inducible, then $T$ has a witness whose $k$
 orders are non-decreasing under any fixed total order on linear orders.*
@@ -299,25 +312,38 @@ orders are non-decreasing under any fixed total order on linear orders.*
 profile with the same multiset of orders induces the same tournament. Sorting the multiset gives
 the required witness. $\blacksquare$
 
-The two lemmas are allowed to be applied simultaneously because the condition in Lemma 2.1 (and 
-Corollary 2.2) is phrased as "*some* voter ranks …", not "voter $1$ ranks …", making it 
-invariant under permuting the voters. Both lemmas are therefore available to every formulation in Appendix A.
+The two lemmas may be applied simultaneously, which is not automatic: each is proved by transforming
+a witness, and the second transformation must not undo the first. Apply Lemma 2.1 to a witness, then
+sort the resulting $k$ orders as in Lemma 2.3. Sorting only permutes the voters, while the property
+Lemma 2.1 delivers — "*some* voter ranks $a_i$ first and $b_i$ second" — depends on the multiset of
+orders and not on which voter carries it, so it survives the sort. Had Lemma 2.1 been phrased as
+"voter $1$ ranks …", the composition would fail. Both lemmas are therefore available to every
+formulation in Appendix A.
 
-Together the two lemmas reduce the running time substantially. Lemma 2.3 is absorbed into the definition of a 
-base state: the $k$ orderings of $B$ are sorted, thus dividing the count by a factor of almost $k! = 120$. 
-Lemma 2.1 *invalidates* base states outright when *all* the representative pairs lie inside $B$: a base
-state can then extend to an anchored witness only if one of its voters already ranks a chosen pair at the
-top of $B$, a property of the base state alone. If even one representative lies outside $B$ this test is
-unavailable, since a base state failing it may still extend to a witness anchored on that representative.
-We call a base state *live* if it respects Lemma 2.1. For instance, on the five-vertex base we use on the 
-Paley tournaments this leaves $2{,}591$ of the $8{,}031$ base states live.
+Together they reduce the running time substantially, in two different places. Lemma 2.3 is absorbed
+into the definition of a base state: the $k$ orderings of $B$ are required to be non-decreasing,
+dividing the count by almost $k! = 120$ — almost, because a tuple with two equal orders is fixed by
+some permutations and so is not counted $k!$ times before sorting.
 
-The search and the certification differ in *when* the condition of Lemma 2.1 is tested. Both test it at
-the start, which is what determines the *live* base states, those the anchoring does not discard. Our algorithmic approach then keeps testing it
-during the search, because the condition constrains the *full* orders while a base state fixes only their
-restriction to $B$: inserting a vertex above an anchored pair breaks it. Pruning on that is sound because
-a partial profile violating the condition has no extension satisfying it. The SAT certification instead
-tests it once, at the root, where it decides which cubes reach the solver.
+Lemma 2.1 acts earlier still, *invalidating* base states outright, but only when *all* the
+representative pairs lie inside $B$. Suppose they do, and that a base state extends to an anchored
+witness, some voter of which ranks $a_i$ first and $b_i$ second overall. As $a_i, b_i \in B$, that
+voter ranks $a_i$ first and $b_i$ second *within* $B$, which the base state alone reveals.
+Contrapositively, a base state no voter of which tops $B$ with a chosen pair extends to no anchored
+witness, hence to no witness at all, and may be discarded. If one representative has an endpoint
+outside $B$ this fails at the first step: a base state failing the test on the representatives it
+sees may still extend to a witness anchored on the one it cannot. We call a base state *live* if it
+survives. On the five-vertex base we use on the Paley tournaments $2{,}591$ of the $8{,}031$ are live.
+
+The search and the certification differ in *when* the condition is tested. Both test it at the
+start, which determines the live base states. Our algorithmic approach keeps testing it during the
+search, since a base state fixes the orders only on $B$ whereas the condition constrains the full
+orders: a voter topping $B$ with $(a_i, b_i)$ ceases to be anchored once a later vertex is inserted
+above $b_i$. Pruning is sound once every representative has both endpoints placed, for then the test
+is monotone — an insertion can destroy an anchor but never create one, the placed vertices' relative
+order being already fixed — so a partial profile with no anchored voter has no extension with one.
+While some representative still has an unplaced endpoint, no pruning is done. The SAT certification
+instead tests the condition once, at the root, where it decides which cubes reach the solver.
 
 ### 2.3 The search in five steps
 
@@ -333,7 +359,7 @@ is eliminated. Algorithmically, with $T$ and the margin regime as inputs, our ap
    varies by more than two orders of magnitude across the $12$ isomorphism classes at $b = 5$.
 3. **Find its base states.** Enumerate the $k$-tuples of linear orders of $B$ whose supports agree
    with $T|_B$, counted up to voter permutation by Lemma 2.3.
-4. **Determine the usable symmetries.** Compute $\mathrm{Aut}(T)$, or a subgroup, and its orbits,
+4. **Determine the usable symmetries.** Compute $\mathrm{Aut}(T)$ with `nauty` and its orbits,
    then impose the ordered-pair anchoring of Lemma 2.1, the vertex anchoring of Corollary 2.2, or
    neither, discarding the base states no anchored witness can use.
 5. **Run to completion, in parallel across base states.** The verdict is positive as soon as any
@@ -430,10 +456,15 @@ non-$5$-inducible tournament [2], is the natural candidate.
 
 **Theorem.** *Neither $P_{31}$ nor $P_{43}$ is vertex-critical for 5-inducibility.*
 
-**The orbit break.** For any $q \equiv 3 \mod 4$, $\mathrm{Aut}(P_{q} - v)$ contains the stabiliser of $v$ 
-in $\mathrm{Aut}(P_{q})$, which is cyclic of order $(q-1)/2$ and splits the remaining $q-1$ vertices into
-exactly two orbits of size $(q-1)/2$, the quadratic residues and the non-residues. Two representatives,
-one from each, therefore meet every orbit, and the vertex anchoring of Corollary 2.2 applies with those two.
+**The orbit break.** For any $q \equiv 3 \mod 4$, $\mathrm{Aut}(P_{q} - v)$ is *exactly* the
+stabiliser of $v$ in $\mathrm{Aut}(P_{q})$. One inclusion is immediate; for the other, deleting $v$
+removes an out-arc from every vertex of $N^{-}(v)$ and from no vertex of $N^{+}(v)$, so $P_q - v$
+has just two out-degrees, $(q-1)/2$ on $N^{+}(v)$ and $(q-1)/2 - 1$ on $N^{-}(v)$, and an
+automorphism preserves out-degree, hence those two sets, hence extends to $P_q$ by fixing $v$.
+Translating so that $v = 0$, that stabiliser is $\{x \mapsto ax : a \in \mathrm{QR}\}$, cyclic
+of order $(q-1)/2$, and it splits the remaining $q - 1$ vertices into exactly two orbits of size
+$(q-1)/2$, namely $\mathrm{QR}$ and its complement. Two representatives, one from each,
+therefore meet every orbit, and the vertex anchoring of Corollary 2.2 applies with those two.
 
 Each sweep runs over all $8{,}031$ base states of a five-vertex base inducing the regular tournament
 on five vertices: $\{1,2,3,4,13\}$ in $P_{31} - v$ and $\{1,2,3,4,11\}$ in $P_{43} - v$. The two counts
@@ -804,6 +835,12 @@ $k$-tuples of slots consistent with every arc between $v$ and $S$. A partial pro
 only if every unplaced vertex has a non-empty domain, and domains shrink monotonically as $S$
 grows, which makes the search a constraint-propagation problem rather than a blind enumeration.
 
+Two decisions in the pseudocode below carry nearly all of its speed. The first is *which* unplaced
+vertex to insert next: the search always takes one of currently smallest domain — the
+minimum-remaining-values rule, marked MRV below — recomputed at every node rather than fixed once
+per base state. The second is that a child's domains are refined from its parent's. Both are
+quantified after Figure 1.
+
 ```
 ALGORITHM 1.  Placement search for k-inducibility of T
 
@@ -979,6 +1016,14 @@ for the Boolean Pythagorean triples problem [3], and Schur number five [13] and 
 conjecture [14] after it: every subproblem emits a machine-checkable refutation, validated by an
 independent checker rather than trusted. We claim no methodological novelty.
 
+**What an LRAT proof is.** A solver's verdict of unsatisfiability is not self-evidently checkable,
+so the solver writes a *proof log*: a file recording, in order, the clauses it derives, each of
+which must follow from the input formula together with the clauses already recorded, the last being
+the empty clause. A separate checker replays that file and confirms every step, so what one trusts
+is the checker rather than the solver. The available formats record essentially this same
+derivation and differ mainly in how much work the replay costs. We use LRAT [10], the format
+CaDiCaL emits natively and `lrat-trim` consumes, in which checking is a single pass over the file.
+
 Two differences are consequences of our setting. Our cubes are *base states*, a combinatorial 
 decomposition, which lets the coverage of the cube set be certified separately (B.2) instead
 of resting on a splitting heuristic. And where [3] published a cube certificate from which its
@@ -1000,7 +1045,7 @@ same construction as the one below, at $143{,}032$ clauses, and solves in $7.56$
 
 For the $P_{23}$ refutation of Section 3.1, the base is $\{1,2,3,4,6,7\}$ with $3{,}414{,}729$ 
 base states, of which $343{,}896$ survive the arc-orbit
-and non-arc-orbit breaks; every one is UNSAT with an LRAT proof independently
+and non-arc-orbit breaks; every one is unsatisfiable, with an LRAT proof independently
 verified by `lrat-trim`. The runtime was $21.72$ hours on eleven cores.
 The coverage half of the proof is a single unsatisfiable instance of $350$ constraint 
 clauses, $356$ symmetry-breaking clauses and $3{,}414{,}729$ negated
@@ -1119,19 +1164,20 @@ inside its out- or in-neighbourhood. A transitive tournament is $1$-inducible, a
 be padded by any linear order together with its reverse to achieve margin 1 with $k = 3$ and, by 
 induction, any other odd $k$.
 
-Let $T$ be strong and round, cut the cyclic order at $v_0$ to get $A = (v_0, \dots, v_{n-1})$,
-write $d_i$ for the out-degree of $v_i$ and $r_i = i + d_i$ for the position of its last
-out-neighbour before reduction. The round condition gives $j \le d_i \iff d_{i+j} \le n-1-j$ for $1 \le j \le n-1$, from
-which $r_0 \le r_1 \le \dots \le r_{n-1}$: the arcs $A$ ranks *wrongly* form a nested staircase.
-Its sources $H = \{i : r_i \ge n\}$ are a suffix $\{q, \dots, n-1\}$, the ceilings
-$t_i = r_i - n$ satisfy $t_q \le \dots \le t_{n-1}$, and $v_i$'s back-targets are exactly
-$v_0, \dots, v_{t_i}$. Writing $L = \{0, \dots, q-1\}$, one checks $t_{n-1} < q$, so $H$ and the
-targets are disjoint, and for $h \in H$, $l \in L$ the round rule reads
-$v_h \to v_l \iff l \le t_h$. Take
+Let $T$ be strong and round. Cutting the cyclic order at $v_0$ yields the linear order
+$A = (v_0, \dots, v_{n-1})$, and we write $d_i$ for the out-degree of $v_i$ and $r_i = i + d_i$ for
+the position of its last out-neighbour before reduction. The round condition says that
+$j \le d_i \iff d_{i+j} \le n-1-j$ for $1 \le j \le n-1$, from which
+$r_0 \le r_1 \le \dots \le r_{n-1}$, so that the arcs $A$ ranks *wrongly* form a nested staircase.
+The sources of that staircase, $H = \{i : r_i \ge n\}$, are a suffix $\{q, \dots, n-1\}$; the
+ceilings $t_i = r_i - n$ satisfy $t_q \le \dots \le t_{n-1}$; and the back-targets of $v_i$ are
+exactly $v_0, \dots, v_{t_i}$. Setting $L = \{0, \dots, q-1\}$, one checks that $t_{n-1} < q$, so
+that $H$ and the back-targets are disjoint, and for $h \in H$ and $l \in L$ the round rule reads
+$v_h \to v_l \iff l \le t_h$. We now take the three orders
 
 $$A = (v_0, \dots, v_{n-1}), \qquad B = (v_q, \dots, v_{n-1}, v_0, \dots, v_{q-1}),$$
 
-and let $C$ list the vertices by *decreasing* key, where $\mathrm{key}(v_l) = l$ for $l \in L$ and
+with $C$ listing the vertices by *decreasing* key, where $\mathrm{key}(v_l) = l$ for $l \in L$ and
 $\mathrm{key}(v_h) = t_h + \tfrac12$ for $h \in H$, ties among equal $t_h$ broken by larger
 index first. The integer and half-integer keys never collide, so only that one tie-break is at
 issue, and by construction $C$ ranks $v_h$ before $v_l$ exactly when $l \le t_h$, that is exactly

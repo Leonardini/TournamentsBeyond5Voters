@@ -148,7 +148,51 @@ arcs. Drop that requirement and `geq(b0,b1,b2,tHI) & placed` **is** the mask. So
 cover mode is a leaf variant of `dom_rec` plus a 2^n accumulator, and needs no
 threshold grid and no cross-off list of its own.
 
-## Open
+## DONE, 2026-09-12: the census closed and the gate passed
+
+The complete roll-up is `FINAL_ROLLUP.txt`. All 903,753,248 order-11 classes
+generated, 452,016,608 screened after the converse halving, **0 candidates**,
+10,074.6 core-hours. So every order-12 tournament is 5-inducible and
+**N(5) >= 13**.
+
+Two things in the "Open" list above are now measured rather than sampled:
+tier 1 left **0.5253%** of hosts incomplete (against the ~0.65% seen on the
+random sample), and the genuine margin-1 failure rate at n=12 is **zero** —
+every one of the 4,317,084 leftover extensions was 5-inducible at unit margin,
+so tier 3 was never invoked and the tier-3 load is nil.
+
+### The one incident, and the two fixes it forced
+
+The first complete pass reported 40,000/40,000 residues but kept only
+443,771,294, which is 8,105,330 **below** the floor D11/2. `mktemp -d` obeys
+`$TMPDIR`, which on a compute node is a small node-local filesystem shared by
+every array task on that node; under that pressure the generator's pipe hit
+ENOSPC, 52 residues were truncated and 46 produced nothing, and the residue
+still wrote a `done` marker. 15,690,562 hosts were never screened.
+
+* **The fix**: `export TMPDIR="$WORK"` in `screen_residue.sh` and
+  `eval_shard.sh`, right after `WORK=${JOBSCRATCH:-...}`, so the scratch a
+  child tool picks is the per-job one; plus caller-side assertions that the
+  filter received exactly as many hosts as the generator emitted, and wrote
+  exactly as many as it kept. A truncated pipe is now a hard failure, not a
+  silent short count.
+* **The gate**: `aggregate.sh` now tests the **floor** first. Keeping T iff
+  canon(T) <= canon(conv(T)) decides a converse pair by comparing the same two
+  canonical forms in opposite order, so exactly one member survives -- two if
+  self-converse, never zero. Hence kept >= D11/2 for any correct run, whatever
+  S11 is, and that inequality needs no published constant at all. S11 is then
+  *measured* as 2*kept - D11, and A002785(11) = 279,968 is an asserted
+  cross-check on the measurement rather than an input to it.
+
+`filter_log_check.sh` reconciles the filter's tallies against the generator's
+from the SLURM logs alone, at no compute cost, and named the 87 residues that
+had to be redone; `rescreen.slurm` redid them, moving each superseded marker to
+`done_superseded/` first. `halving_audit.sh` re-derives generated/kept/self per
+residue if the logs are ever gone. `selftest.sh` T12 drives all three census-gate
+verdicts -- below floor, above floor but off the exact count, and exact -- on
+synthetic markers, so the gate itself is tested and not merely trusted.
+
+## Open at launch -- the first two are answered above
 
 * Sizing, per above.
 * The ~0.65% of random hosts that tier 1 leaves incomplete: on the sample these

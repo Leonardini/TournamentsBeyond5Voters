@@ -36,7 +36,7 @@ assuming it.
 |---|---|---|---|---|
 | B1 | 3.1 | **Paley(23) is not 5-inducible**, hence N(5) ≤ 23. Complete over all 8,031 base states of `{1,2,3,6,12}`, of which 2,591 survive the anchor | `evidence/rerun1_p23_majority.tar.zst` (2,008 slices, 34.03 core-h), `evidence/anchor2_p23_majority.tar.zst` (4,030 slices, a different base and anchor, 43.80 core-h) | `REPRODUCE.md` § "N(5) ≤ 23", both anchors |
 | B2 | 3.1, B.1 | Paley(23), **machine-checked** on both halves | `certificates/p23cert_d6/VERDICT.txt`, roots in `certificates/p23cert_d6/p23_cert.portable.txt` | `sat/certify_d6.py`; roots rebuilt by `sat/reroot.py`; `tools/check_package.sh` checks 3 and 3c |
-| B3 | C | **13 ≤ N(5)**: every order-12 tournament is 5-inducible | `cluster/jz_n12cover/` — **see gap 1, this is the one unfinished computation** | `cluster/jz_n12cover/COMMANDS.md`, rolled up by `cluster/jz_n12cover/aggregate.sh` |
+| B3 | C | **13 ≤ N(5)**: every order-12 tournament is 5-inducible. All 903,753,248 order-11 classes generated, 452,016,608 screened after the converse halving, **0 candidates** | `cluster/jz_n12cover/FINAL_ROLLUP.txt` — the verbatim roll-up of the completed run, 2026-09-12 | `cluster/jz_n12cover/COMMANDS.md`, rolled up by `cluster/jz_n12cover/aggregate.sh`, whose census gate exits non-zero on any mismatch |
 | B4 | 3.4 | Paley(43) − v is not 5-inducible, so N(5) ≤ 43 is **re-derived by a second method** | `verdicts/p43mv_majority/p43mv_times.txt` (8,031 base states, exact cover, 185.54 core-h), `verdicts/p43_minus1v_VERDICT.txt` | `REPRODUCE.md` § "Paley(43) is not vertex-critical" |
 
 The two Paley(23) refutations are independent in base and anchor, not merely
@@ -270,22 +270,24 @@ it caught one (see the note below the table).
 | T5 | A.4 second DRT on 19, all 57 arc reversals, unit | 3.59 core-h | `tournaments/dr19_arcflip/sweep.log` → 3.5900 |
 | T6 | A.4 regular tournaments on 15, unit | 3,106 core-h | `cluster/jz_n15/results_margin1/done/`, `secs=` field → 3,106.0 |
 | T7 | A.4 self-converse on 13, unit | 1,310 core-h | `cluster/jz_n13sc/SLURM_COST.txt` — 1,261.7 cluster + 46.8 laptop + 1.0 laptop = 1,309.5, agreeing to 99.96%. **Sum Elapsed, not CPUTimeRAW**: the accounting reports AllocCPUS = 2 for a single-threaded task, so CPUTimeRAW is exactly double |
-| T8 | A.4 all tournaments on 12, unit | ≈ 10,000 core-h | a projection, not a measurement — **gap 1** |
+| T8 | A.4 all tournaments on 12, unit | ≈ 10,000 core-h | `cluster/jz_n12cover/FINAL_ROLLUP.txt` — 36,268,412 core-seconds = **10,074.6 core-h**, measured, summed from the per-residue markers by `aggregate.sh` |
 | T9 | A.3 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87 | | the `time=` fields of `evidence/{rerun1_p23,p27,p31,p43}_majority.tar.zst` → 34.03, 31.04, 26.89, 22.86 |
 | T10 | A.3 live base states 2,591, 2,537, 4,007, 2,537 | | `python3 sat/base_survivors.py`, search-free, and `--selfcheck` reproduces 8,031 / 2,591 / 16,118 / 2,200 |
 | T11 | A.3 seconds per live base state 47.3, 44.0, 24.2, 32.5 | | T9 × 3600 ÷ T10, arithmetic |
 | T12 | A.3 node counts | | the `nodes=` fields of the same four archives → 1.14e10, **6.22e9**, 3.43e9, 1.43e9 |
 | T13 | A.3 P₄₃ − v takes 185.5 core-h | | `verdicts/p43mv_majority/p43mv_times.txt` → 185.54 |
 
-**T12 is a known discrepancy with the submitted manuscript.** Appendix A.3
-prints 1.14 × 10⁸ for the q = 27 node count. That is the archive's `dom_nodes`
-counter, not its `nodes` counter; the true node count is 6.22 × 10⁹, and the
-q = 31 and q = 43 cells of the same column *are* `nodes` and do match. Corrected,
-the column falls monotonically in q (1.14e10, 6.22e9, 3.44e9, 1.43e9) while the
-work per node rises monotonically (10.8, 18.0, 28.2, 57.4 µs), which is the
-opposite of the mechanism the surrounding paragraph describes and still supports
-its conclusion that the runtime falls in q. `tools/check_cost_table.py` reports
-this as a FAIL against the current manuscript rather than accommodating it.
+**T12 was a discrepancy with an earlier draft, CORRECTED 2026-09-11.** Appendix A.3
+used to print 1.14 × 10⁸ for the q = 27 node count: the archive's `dom_nodes`
+counter, not its `nodes` counter, while the q = 31 and q = 43 cells of the same
+column were `nodes` and did match. The shipped manuscript now prints the true
+6.22 × 10⁹, so the column falls monotonically in q (1.14e10, 6.22e9, 3.44e9,
+1.43e9) while the work per node rises monotonically (10.8, 18.0, 28.2, 57.4 µs) —
+the opposite of the mechanism the surrounding paragraph describes, and still
+supporting its conclusion that the runtime falls in q. `tools/check_manuscript.py`
+re-derives every cell of this column by summing `nodes=` over the archive, and
+names the swap explicitly if a `nodes` cell ever matches `dom_nodes` instead, so
+the check is on the counter and not on the one value that was once wrong.
 
 ## 9. Exact enumeration counts (Appendix D)
 
@@ -346,18 +348,39 @@ refinement.
 Stated plainly, because a reproduction package that overstates its coverage is
 worse than one with a short list of holes.
 
-**Gap 1 — Appendix C (13 ≤ N(5)) is not yet complete.** The order-12 census was
-still running on the cluster when this package was assembled. Appendix C's three
-quantities — the phase-1 share of 99.45%, the phase-2 rate of about one
-extension in 200,000, and the ≈10,000 cluster core-hours of row T8 — are
-**projections from the partial roll-up, not measurements**. What is here is the
-kit that ran, its aggregation and its self-test; the verdict markers are not.
-The test of readiness is the roll-up itself: `cluster/jz_n12cover/aggregate.sh`
-must report all 903,753,248 order-11 classes generated, `CANDIDATES: 0`, and a
-kept count of exactly (D₁₁ + S₁₁)/2 = 452,016,608, at which point it switches
-from `INCOMPLETE` to the exact census gate and exits non-zero on any mismatch.
-Until then the converse-halving factor it prints is meaningless, because a
-single residue is not closed under the converse map.
+**Gap 1 — Appendix C (13 ≤ N(5)) was incomplete, CLOSED 2026-09-12.** The order-12
+census was still running on the cluster when this package was first assembled, and
+Appendix C's three quantities were projections from a partial roll-up. It has now
+finished and passed its gate, and all three are measurements. The verbatim
+roll-up is `cluster/jz_n12cover/FINAL_ROLLUP.txt`: all 903,753,248 order-11
+classes generated, 452,016,608 screened after the converse halving, phase 1
+complete on 99.4747% of hosts, 4,317,084 leftover extensions of which every one
+was 5-inducible at unit margin, phase 3 never invoked, **`CANDIDATES: 0`**, and
+10,074.6 core-hours. Appendix C's 99.5%, its "about one extension in 200,000"
+(the measured rate is one in 214,434) and its ≈10,000 core-hours all stand as
+written.
+
+The gate is not a formality and it caught a real loss. An earlier complete pass
+reported 40,000/40,000 residues but kept 443,771,294, which is 8,105,330 *below*
+D₁₁/2. `mktemp -d` obeys `$TMPDIR`, a small node-local filesystem shared by every
+array task on the node; under that pressure the generator's pipe hit ENOSPC, 52
+residues were truncated and 46 produced nothing, and each still wrote its `done`
+marker. 15,690,562 hosts had never been screened. The kit now exports
+`TMPDIR="$WORK"` so a child tool picks the per-job scratch, and asserts on both
+sides of the filter that it received what the generator emitted and wrote what it
+kept; `filter_log_check.sh` reconciles those tallies from the SLURM logs at no
+compute cost, which is what named the 87 residues, and `rescreen.slurm` redid
+them. `selftest.sh` T12 drives all three census-gate verdicts on synthetic
+markers.
+
+What makes the gate trustworthy is that its first test uses no published
+constant. Keeping `L` iff `canon(L) ≤ canon(L̄)` decides a converse pair by
+comparing the same two canonical forms in opposite order, so exactly one member
+survives — two if self-converse, never zero — hence kept ≥ D₁₁/2 for any correct
+run, whatever S₁₁ is. S₁₁ is then *measured* as 2·kept − D₁₁ = 279,968, and
+A002785(11) is an asserted cross-check on that measurement rather than an input
+to it. Only D₁₁ = 903,753,248 (A000568) is taken from outside, and it is checked
+against the generator's own count.
 
 **Gap 2 — the cluster's coverage runs left no artifact (claim R3).** The two
 search halves have their SLURM logs. The two *coverage* halves were run
@@ -408,11 +431,6 @@ verification output is preserved in `certificates/p19_coverage_cert.txt`.
 loudly naming everything it tried, rather than silently measuring nothing.
 Set `SOFTWARE_DIR`, or `GENTOURNG`/`LABELG` individually, if yours live
 elsewhere.
-
-**Known discrepancy with the submitted manuscript, not a gap in the package:**
-Appendix A.3's q = 27 node count is the `dom_nodes` counter where the rest of the
-column is `nodes`. See the note under table 8. The package holds the correct
-value; the manuscript does not.
 
 **Not a gap, but read §5.2 before comparing numbers.** Verdicts replicate under
 any correct implementation — that is the paper's claim. Node counts replicate

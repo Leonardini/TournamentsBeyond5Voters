@@ -68,6 +68,14 @@ if [ -f "$OUT/done/r$RES" ]; then
 fi
 
 WORK=${JOBSCRATCH:-${SLURM_TMPDIR:-/tmp}}
+# AND THE FILTER'S TEMPORARIES GO THERE TOO.  converse_filter.sh calls mktemp -d,
+# which obeys $TMPDIR and otherwise lands in /tmp -- a small node-local filesystem
+# shared by every array task on the node, NOT the scratch sized for this job.  On
+# 2026-09-12 that filesystem filled: 2,874 "No space left on device" errors across
+# the campaign, 52 residues truncated and 46 that received nothing at all, and
+# 15,690,562 order-11 classes never reached the filter, let alone the screening.
+# The assertions below turn that into a hard failure; this line stops it happening.
+export TMPDIR="$WORK"
 # --check-paths must not share scratch with a live residue.  It runs as residue 0
 # by construction, so on a node where WORK is a shared /tmp it used to compute the
 # SAME temp names as a running residue 0 and then delete them from its EXIT trap:
@@ -195,14 +203,36 @@ else
   # interpreter.  python3 is not in the default PATH on a Jean Zay compute node
   # and this script loads no module, so the .py version killed every residue
   # while the selftest -- which runs on the login node -- passed.
-  if ! ./converse_filter.sh 11 stats < "$B" > "$BH" 2>"$WORK/cf_$RES.err"; then
+  CFC="$WORK/cf_$RES.counts"
+  if ! CF_COUNTS="$CFC" ./converse_filter.sh 11 stats < "$B" > "$BH" 2>"$WORK/cf_$RES.err"; then
     echo "FATAL residue $RES: converse filter failed:" >&2
     sed 's/^/    /' "$WORK/cf_$RES.err" >&2
-    rm -f "$BH" "$WORK/cf_$RES.err"
+    rm -f "$BH" "$WORK/cf_$RES.err" "$CFC"
     exit 1                    # NO done marker.  Never silently skip the halving:
   fi                          # a bypass must be an explicit N12_NOHALVE=1.
   sed 's/^/    /' "$WORK/cf_$RES.err" >&2; rm -f "$WORK/cf_$RES.err"
   NH=$(wc -l < "$BH" | tr -d ' ')
+  # HOSTS MUST NOT GO MISSING BETWEEN THE GENERATOR AND THE PIPELINE, and until
+  # 2026-09-12 nothing checked that they did not.  The completed census reported
+  # 443,771,294 hosts kept out of 903,753,248 generated -- below D11/2, which the
+  # keep rule cannot produce: for a pair (T, conv T) the two decisions compare the
+  # same two canonical forms in opposite order, so exactly one host survives.  A
+  # count below the floor therefore means hosts VANISHED, and the two places they
+  # can vanish are the filter's unchecked read of its input and its write of the
+  # output.  The filter now reports both counts; assert them here, where $NGEN is
+  # known, and leave NO marker if they disagree so a resubmit retries the residue.
+  NIN=$(sed -nE 's/.*in=([0-9]+).*/\1/p'   "$CFC"); NKEPT=$(sed -nE 's/.*kept=([0-9]+).*/\1/p' "$CFC")
+  NSELF=$(sed -nE 's/.*self=([0-9]+).*/\1/p' "$CFC"); rm -f "$CFC"
+  [ -n "$NIN" ] && [ -n "$NKEPT" ] && [ -n "$NSELF" ] || {
+    echo "FATAL residue $RES: the converse filter reported no counts" >&2; exit 1; }
+  [ "$NIN" -eq "$NGEN" ] || {
+    echo "FATAL residue $RES: generated $NGEN hosts but the filter received only $NIN" >&2
+    echo "  the input was truncated -- \$TMPDIR (mktemp -d) is full, over quota, or too small" >&2
+    exit 1; }
+  [ "$NH" -eq "$NKEPT" ] || {
+    echo "FATAL residue $RES: the filter kept $NKEPT hosts but wrote $NH" >&2
+    echo "  the output was truncated -- \$JOBSCRATCH is full or over quota" >&2
+    exit 1; }
   # A RESIDUE IS NOT CLOSED UNDER THE CONVERSE MAP, so the per-residue keep rate is
   # NOT 1/2 and must not be checked against it.  gentourng splits by generation-tree
   # prefix, which correlates with canonical order, so a host's converse usually
@@ -229,7 +259,7 @@ echo "res=$RES generated=$NGEN screened=$NINST"
 # "mean residue size" and reason from it -- the distribution is nowhere near
 # uniform (residue 0 of 4000 holds 7,624 hosts against a mean of 225,938).
 [ "$NINST" -eq 0 ] && { echo "residue $RES: gentourng succeeded but produced NO instances" >&2;
-  echo "res=$RES generated=$NGEN instances=0 tier1all=0 tier2fixed=0 tier3fixed=0 candidates=0 secs=0" > "$OUT/done/r$RES"; exit 0; }
+  echo "res=$RES generated=$NGEN instances=0 self=0 tier1all=0 tier2fixed=0 tier3fixed=0 candidates=0 secs=0" > "$OUT/done/r$RES"; exit 0; }
 
 . "$_KITDIR/tiers.sh"          # the pipeline itself, shared with eval_shard.sh
 run_tiers "$B" "r$RES"
@@ -240,6 +270,6 @@ if [ "$UNRES" -gt 0 ]; then
   echo "res=$RES UNRESOLVED=$UNRES instances hit their time cap -- left unmarked for retry" >&2
   exit 1
 fi
-echo "res=$RES generated=$NGEN instances=$NINST tier1all=$A1 leftover=$NLEFT tier2fixed=$FIX2 tier3fixed=$FIX3 candidates=$CAND secs=$((SECONDS-t0))" > "$OUT/done/r$RES"
+echo "res=$RES generated=$NGEN instances=$NINST self=${NSELF:-0} tier1all=$A1 leftover=$NLEFT tier2fixed=$FIX2 tier3fixed=$FIX3 candidates=$CAND secs=$((SECONDS-t0))" > "$OUT/done/r$RES"
 cat "$OUT/done/r$RES"
 rm -f "$WORK/inc1_$RES" "$WORK/inc2_$RES" "$WORK/t1_$RES.log" "$WORK/t2_$RES.log" "$WORK/t3_$RES.log"

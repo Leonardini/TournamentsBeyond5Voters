@@ -1,0 +1,31 @@
+Final roll-up of the order-12 cover campaign, Jean Zay, 2026-09-12.
+Produced by KInduceDFS/jz_n12cover/aggregate.sh on the complete results/ tree,
+AFTER the 87-residue rescreen that repaired the $TMPDIR ENOSPC losses.
+Verbatim output; exit status 0, i.e. every gate in aggregate.sh passed.
+
+$ KInduceDFS/jz_n12cover/aggregate.sh KInduceDFS/jz_n12cover/results
+reading /lustre/fswork/projects/rech/lia/uex76wa/KemenyMedian/KInduceDFS/jz_n12cover/results/done (tens of thousands of small files; this takes a while) ...
+residues done: 40000
+hosts generated : 903753248
+instances       : 452016608  (evaluated, i.e. AFTER the converse halving)
+tier1 ALL       : 449642130 hosts fully covered (99.4747%)
+leftover masks  : 4317084  (0.01 per host -- each is one order-12 instance)
+tier2 settled   : 4317084  (leftovers 5-inducible at margin 1)
+tier3 settled   : 0  (not margin-1, but inducible at majority)
+CANDIDATES      : 0  <== the only interesting number
+core-seconds    : 36268412  (10074.6 core-h)
+candidate uncovered-mask lines: 0
+converse halving: 903753248 generated, 452016608 screened, factor 1.9994
+  ALL 903753248 order-11 classes generated -- census gate PASSED
+  the run MEASURES S11 = 2*kept - D11 = 279968 self-converse order-11 tournaments
+  (only 87 of 40000 markers carry self=, so the direct count is not usable)
+  halving EXACT: kept 452016608 = (D11 + S11)/2, D11 from A000568, S11 as measured
+
+WHAT IT PROVES.  Every order-12 tournament is 5-inducible, so N(5) >= 13.
+The three constants the gate is anchored on are not taken on trust:
+D11 = 903,753,248 is A000568(11), and the run MEASURES S11 = 279,968, which
+agrees with A002785(11).  The floor argument is independent of both: keeping
+T iff canon(T) <= canon(conv(T)) decides a converse pair by comparing the same
+two canonical forms in opposite order, so exactly one member of each pair
+survives (two if self-converse, never zero), hence kept >= D11/2 for ANY
+correct run.  443,771,294 < D11/2 was what exposed the ENOSPC losses.

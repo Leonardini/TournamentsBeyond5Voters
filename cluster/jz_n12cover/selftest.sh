@@ -330,6 +330,53 @@ else
 fi
 rm -rf "$_T11"
 
+echo "T12 the CENSUS GATE at the finish line, which only fires on a complete run"
+# The gate is unreachable until generated == D11, so it had never executed on real
+# data until 2026-09-12 -- when it fired, and the run it judged had kept 443,771,294
+# of 903,753,248, BELOW the floor D11/2.  A gate that first runs at the finish line
+# is a gate nothing has tested, so drive all three of its verdicts here on synthetic
+# markers.  D11 and the recorded S11 are read out of aggregate.sh, not written down.
+_D11=$(sed -nE 's/^D11=([0-9]+).*/\1/p' ./aggregate.sh)
+_SPUB=$(sed -nE 's/^S11_PUB=([0-9]+).*/\1/p' ./aggregate.sh)
+_T12=$(mktemp -d)
+_gate() {                       # _gate <kept> <self-or-empty> -> prints "exit|line"
+  # SEPARATE assignments: bash expands every word of a `local` before assigning any
+  # of them, so `local _k=$1 _d=$_k` reads the OLD _k -- unset, and `set -u` dies.
+  local _k=$1
+  local _s=$2
+  local _dir="$_T12/case_$_k.$_s"
+  local _d="$_dir/results/done"
+  local _f=""
+  rm -rf "$_dir"; mkdir -p "$_d" "$_dir/results/candidates"
+  [ -n "$_s" ] && _f=" self=$_s"
+  printf 'res=0 generated=%d instances=%d%s tier1all=0 leftover=0 tier2fixed=0 tier3fixed=0 candidates=0 secs=1\n' \
+    "$_D11" "$_k" "$_f" > "$_d/r0"
+  local _out
+  local _rc
+  _out=$(bash ./aggregate.sh "$_dir/results" 2>&1); _rc=$?
+  printf '%s|%s' "$_rc" "$(printf '%s' "$_out" | grep -cE '^(FATAL|  halving EXACT)')"
+}
+# (a) the floor.  Half of D11 minus one host is one host too few, whatever S11 is.
+_r=$(_gate $(( _D11 / 2 - 1 )) "")
+[ "${_r%%|*}" = 1 ] || { echo "    FAIL: kept = D11/2 - 1 passed the gate (exit ${_r%%|*});"; \
+                         echo "          no keep rule can go below the floor, so this must be fatal"; _BAD=1; }
+# (b) exactly the floor is legal only if S11 = 0, so it must trip the published-value
+#     cross-check instead of the floor -- a different FATAL, still exit 1.
+_r=$(_gate $(( _D11 / 2 )) "")
+[ "${_r%%|*}" = 1 ] || { echo "    FAIL: kept = D11/2 implies S11 = 0 and did not fail"; _BAD=1; }
+# (c) the recorded value, with the direct self-converse count agreeing: the only pass.
+_r=$(_gate $(( (_D11 + _SPUB) / 2 )) "$_SPUB")
+if [ "$_r" = "0|1" ]; then
+  echo "    floor and cross-check both fire; kept = (D11 + S11)/2 with a matching self= passes"
+else
+  echo "    FAIL: the one correct run did not pass the gate cleanly (exit|matches = $_r)"; _BAD=1
+fi
+# (d) and the direct count must be able to CONTRADICT the implied one, or it is decoration.
+_r=$(_gate $(( (_D11 + _SPUB) / 2 )) "$(( _SPUB + 2 ))")
+[ "${_r%%|*}" = 1 ] || { echo "    FAIL: a self= count disagreeing with 2*kept-D11 was accepted"; _BAD=1; }
+echo "    a self= count that contradicts 2*kept - D11 is caught"
+rm -rf "$_T12"
+
 [ "$_BAD" = 0 ] || { echo "SELFTEST FAILED"; exit 1; }
 
 echo "SELFTEST PASS" || { echo "SELFTEST FAIL"; exit 1; }

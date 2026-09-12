@@ -19,10 +19,19 @@ D="$OUT/done"
 # down because it is a published census value, and therefore ASSERTED below rather
 # than trusted: the campaign's whole claim is that every one of them was reached.
 D11=903753248
-S11=279968                      # OEIS A002785(11), self-converse tournaments at n=11
-KEEP_EXPECTED=$(( (D11 + S11) / 2 ))
-[ $(( (D11 + S11) % 2 )) -eq 0 ] || {
-  echo "FATAL D11 + S11 is odd, so one of the two counts is wrong" >&2; exit 1; }
+# S11, the self-converse count at n=11.  It is no longer ASSUMED: the run
+# measures it, because kept == (D11 + S11)/2 exactly, so S11 == 2*kept - D11.
+# The gate below reports that measurement and compares it against the published
+# value, rather than deriving a target from the published value and comparing
+# the run to that -- which is what it used to do, and which made a wrong
+# constant and a broken halving produce the same message.
+#
+# The value is right.  Leonid confirmed it on 2026-09-12, against a reading of
+# A002785 that put 315,392 here; that reading was wrong.  Our own measurements
+# of the neighbouring terms all check out: 176 at n=8 and 2,752 at n=9 counted
+# directly by converse_filter.sh, 8,784 at n=10, and 1,492,288 at n=12 being the
+# size of the order-12 self-converse family this project swept.
+S11_PUB=279968                  # OEIS A002785 at n=11; confirmed by Leonid 2026-09-12
 # ONE snapshot of the markers, taken once and reused by every consumer below.
 # Two independent reasons, both learned the hard way on 2026-09-09:
 #
@@ -117,24 +126,59 @@ if [ "${G:-0}" -eq 0 ] && [ "${I:-0}" -gt 0 ]; then
   rm -f "$OUT/.tags"
   [ "${G:-0}" -gt 0 ] && echo "  (generated= recovered from slurm/*.out: these markers predate the field)"
 fi
+# The self-converse hosts are COUNTED by the filter and carried in the markers as
+# self=, so S11 has a second, independent measurement.  Older markers predate the
+# field; only use the sum when every one of them carries it.
+SELF=$(awk -F'[= ]' '{for(i=1;i<=NF;i++)if($i=="self")S+=$(i+1)}END{print S+0}' "$SNAP")
+NSELF=$(grep -c ' self=' "$SNAP" || true)
 if [ "${G:-0}" -gt 0 ] && [ "${I:-0}" -gt 0 ]; then
-  awk -v g="$G" -v i="$I" -v d11="$D11" -v s11="$S11" -v keep="$KEEP_EXPECTED" 'BEGIN{
+  awk -v g="$G" -v i="$I" -v d11="$D11" -v spub="$S11_PUB" \
+      -v self="$SELF" -v nself="${NSELF:-0}" -v n="$n" 'BEGIN{
     printf "converse halving: %d generated, %d screened, factor %.4f\n", g, i, g/i
-    if (g == d11) {
-      printf "  ALL %d order-11 classes generated -- census gate PASSED\n", d11
-      if (i != keep) {
-        printf "FATAL: kept %d but (D11 + S11)/2 = %d -- the converse filter is wrong\n", i, keep
-        printf "  off by %d; factor %.6f where 2*D11/(D11+S11) = %.6f\n", i-keep, g/i, 2*d11/(d11+s11)
-        exit 1 }
-      printf "  halving EXACT: kept %d = (D11 + S11)/2, D11 from A000568, S11 from A002785\n", i
-    } else if (g > d11) {
+    if (g > d11) {
       printf "FATAL: generated %d EXCEEDS the %d order-11 classes -- residues overlap\n", g, d11
-      exit 1
-    } else {
+      exit 1 }
+    if (g < d11) {
       # 4 dp, not 2: at 40,000 markers minus one residue this printed
       # "(100.00%), 33248 to go" -- a rounded 100% next to a nonzero shortfall.
       printf "  INCOMPLETE: %d of %d classes generated (%.4f%%), %d to go\n", g, d11, 100*g/d11, d11-g
-      print "  (the factor is meaningless until every residue is done: residues are"
-      print "   not closed under the converse map)" }}'
+      print  "  (the factor is meaningless until every residue is done: residues are"
+      print  "   not closed under the converse map)"
+      exit 0 }
+    printf "  ALL %d order-11 classes generated -- census gate PASSED\n", d11
+    # THE FLOOR, AND IT NEEDS NO PUBLISHED CONSTANT.  "Keep iff canon(T) <=
+    # canon(conv(T))" decides a pair (T, conv T) by comparing the SAME two
+    # canonical forms in opposite order, so exactly one host of every pair
+    # survives -- two if it is self-converse, none never.  Hence kept >= D11/2
+    # for any correct run whatsoever, and kept == (D11 + S11)/2 identifies S11.
+    # A count below the floor cannot be a wrong S11 and cannot be a wrong keep
+    # rule: it means hosts were LOST between the generator and the marker, i.e.
+    # order-11 classes that nothing ever screened.  That is a hole in the case
+    # analysis, so it is fatal.  (2026-09-12: the completed census reported
+    # 443,771,294, which is 8,105,330 below the floor.)
+    floor = d11 / 2
+    if (i < floor) {
+      printf "FATAL: kept %d, which is %d BELOW the floor D11/2 = %d\n", i, floor-i, floor
+      print  "  No keep rule can do this: one host of every converse pair always survives."
+      print  "  Hosts went MISSING, so that many order-11 classes were never screened and"
+      print  "  the case analysis has a hole.  Run filter_log_check.sh, then halving_audit.sh."
+      exit 1 }
+    s_implied = 2*i - d11
+    printf "  the run MEASURES S11 = 2*kept - D11 = %d self-converse order-11 tournaments\n", s_implied
+    if (nself == n) {
+      printf "  the filters COUNTED %d self-converse hosts directly\n", self
+      if (self != s_implied) {
+        printf "FATAL: the two measurements of S11 disagree, %d counted vs %d implied\n", self, s_implied
+        print  "  They are independent, so one of the halving and the counting is wrong."
+        exit 1 }
+    } else
+      printf "  (only %d of %d markers carry self=, so the direct count is not usable)\n", nself, n
+    if (s_implied != spub) {
+      printf "FATAL: S11 measures %d but A002785 at n=11 is %d\n", s_implied, spub
+      printf "  off by %d.  The published value is confirmed, so it is the HALVING that\n", s_implied-spub
+      print  "  is wrong -- or hosts went missing, which the floor above would have caught\n" \
+             "  only if enough of them had.  Do NOT edit the constant to match the run."
+      exit 1 }
+    printf "  halving EXACT: kept %d = (D11 + S11)/2, D11 from A000568, S11 as measured\n", i }'
 fi
 exit 0

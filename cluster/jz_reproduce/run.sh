@@ -32,13 +32,14 @@ if [ "$DUR" = "$W" ]; then
 fi
 cd "$ROOT"
 fail=0
+root_derived=0      # set by stage_root on success; stage_cert says so if it is still 0
 hdr() { printf "\n=== %s [%s: q=%s margin=%s base=%s] ===\n" "$1" "$I" "$Q" "$MARGIN" "$BASE"; }
 
 stage_root() {
   hdr "ROOT (CNF) -- regenerating $CUBES cube CNFs, no solving"
-  python3 verify_root.py --q "$Q" --k "$K" --margin "$MARGIN" --base $BASE \
+  if python3 verify_root.py --q "$Q" --k "$K" --margin "$MARGIN" --base $BASE \
       --arc $ARC --non $NON --cubes "$CUBES" --root "$ROOT_CNF" \
-      ${ARCHIVE:+--archive "$ARCHIVE"} || fail=1
+      ${ARCHIVE:+--archive "$ARCHIVE"}; then root_derived=1; else fail=1; fi
 }
 
 stage_coverage() {
@@ -81,10 +82,26 @@ stage_cert() {
       --q "$Q" --k "$K" --margin "$MARGIN" --base $BASE --arc $ARC --non $NON \
       --cubes "$CUBES" --root-cnf "$ROOT_CNF" --root-proofs "${ROOT_PROOFS:-none}" \
       --out "$DUR/${I}_cert" || fail=1
+  # SAY WHICH HALF WAS DERIVED.  certroot.py hashes the coverage CNF from disk, so
+  # split_cover_cnf is always computed here, but --root-cnf comes from the CONF FILE.
+  # If the root stage did not pass in this same run, CERT (portable) is binding a
+  # RECORDED search root to a freshly derived coverage hash, and "matches the recorded
+  # value" then means only that the recorded number was re-hashed. On 2026-09-12 a p23
+  # run printed that line with its root stage SIGKILLed at cube 200 of 343,896.
+  if [ "$root_derived" = 0 ]; then
+    echo "  NOTE: search_root_cnf was READ FROM $CONF, not derived in this run."
+    echo "        Only the coverage half below is reproduced here; run the 'all' stage"
+    echo "        to completion for a value that binds both halves independently."
+  fi
   if [ -n "${CERT_PORTABLE:-}" ]; then
     local got; got=$(sed -n 's/^CERT_PORTABLE=//p' "$DUR/${I}_cert.portable.txt")
-    [ "$got" = "$CERT_PORTABLE" ] && echo "  CERT (portable) matches the recorded value" \
-      || { echo "  FAIL: CERT (portable) $got != $CERT_PORTABLE"; fail=1; }
+    if [ "$got" != "$CERT_PORTABLE" ]; then
+      echo "  FAIL: CERT (portable) $got != $CERT_PORTABLE"; fail=1
+    elif [ "$root_derived" = 0 ]; then
+      echo "  CERT (portable) matches the recorded value -- COVERAGE HALF ONLY (see NOTE)"
+    else
+      echo "  CERT (portable) matches the recorded value"
+    fi
   else
     echo "  CERT (portable) OBSERVED -- no expectation recorded yet"
   fi
@@ -143,7 +160,23 @@ case "$STAGE" in
   coverage)  stage_coverage ;;
   cert)      stage_cert ;;
   recertify) stage_recertify ;;
-  all)       stage_root; stage_coverage; stage_cert ;;
+  # SHORT-CIRCUIT.  These ran unconditionally until 2026-09-12, so a p23 run whose
+  # root was SIGKILLed at cube 200 of 343,896 went on to build a certificate anyway,
+  # out of a recorded root and a coverage stage that had itself just failed.  A stage
+  # that did not finish must stop the chain, not be papered over by the next one.
+  all)       stage_root
+             if [ $fail != 0 ]; then
+               echo; echo "  *** ROOT STAGE FAILED -- stopping; coverage and cert not run."
+               echo "      (cert would bind the RECORDED root from $CONF, which is not"
+               echo "       a reproduction of the search half.)"
+             else
+               stage_coverage
+               if [ $fail != 0 ]; then
+                 echo; echo "  *** COVERAGE STAGE FAILED -- stopping; cert not run."
+               else
+                 stage_cert
+               fi
+             fi ;;
   *) echo "unknown stage: $STAGE"; exit 1 ;;
 esac
 printf "\n%s: %s\n" "$I/$STAGE" "$([ $fail = 0 ] && echo PASS || echo FAIL)"

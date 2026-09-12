@@ -54,6 +54,12 @@ function emit(n, a,   i, j, k, v, out, bits, nb) {
 
 TMP=$(mktemp -d) || exit 1
 trap 'rm -rf "$TMP"' EXIT
+# A SHORT INPUT MUST NOT PASS AS A SMALL RESIDUE.  This `cat` is unchecked, and
+# $TMP comes from mktemp -d -- $TMPDIR or /tmp, NOT the job scratch the caller
+# sized.  A full or over-quota $TMPDIR truncates the input here, and every count
+# below is then self-consistently too small, so nothing in this script can
+# notice.  The caller knows how many hosts it sent, so report how many arrived
+# (NI, below) and let the caller be the one to assert that they agree.
 cat > "$TMP/in"
 awk -v n="$N" -v rev=0 "$D6" "$TMP/in" | "$LABELG" -zq > "$TMP/fwd" || exit 1
 awk -v n="$N" -v rev=1 "$D6" "$TMP/in" | "$LABELG" -zq > "$TMP/rev" || exit 1
@@ -68,8 +74,22 @@ fi
 # which MUST be kept: it pairs with nothing, so dropping it loses coverage.
 # ("" $2) forces string comparison rather than awk's numeric guess.
 paste "$TMP/in" "$TMP/fwd" "$TMP/rev" \
-  | awk -F'\t' '{ if (("" $2) <= ("" $3)) { print $1; k++ } }
-                 END { print k + 0 > "/dev/stderr" }' 2> "$TMP/kept"
-K=$(cat "$TMP/kept")
-[ -n "$STATS" ] && echo "converse filter: $NI in, $K out" >&2
+  | awk -F'\t' '{ if (("" $2) <= ("" $3)) { print $1; k++ }
+                  if (("" $2) == ("" $3)) e++ }
+                 END { print (k + 0), (e + 0) > "/dev/stderr" }' 2> "$TMP/kept"
+# The write side matters too: this awk writes the kept hosts to OUR stdout, which
+# is the caller's host file.  A short write there used to be invisible, because
+# the script ended in an unconditional `exit 0`.
+PS=${PIPESTATUS[*]}
+case "$PS" in *[1-9]*) echo "converse_filter: paste|awk failed (status $PS)" >&2; exit 1 ;; esac
+read -r K E < "$TMP/kept"
+[ -n "${K:-}" ] && [ -n "${E:-}" ] || { echo "converse_filter: no tally from awk" >&2; exit 1; }
+# Self-converse hosts are counted, not just kept, because they are the ONLY
+# unknown in the global identity kept == (N + S)/2.  Summed over the residues
+# they measure S, so the census gate can check an equality it derives rather than
+# one it was told.  See aggregate.sh.
+if [ -n "${CF_COUNTS:-}" ]; then
+  printf 'in=%s kept=%s self=%s\n' "$NI" "$K" "$E" > "$CF_COUNTS" || exit 1
+fi
+[ -n "$STATS" ] && echo "converse filter: $NI in, $K out, $E self-converse" >&2
 exit 0

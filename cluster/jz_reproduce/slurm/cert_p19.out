@@ -1,0 +1,73 @@
+Jean Zay, login node, 2026-09-12.  `KInduceDFS/jz_reproduce/run.sh p19 all`.
+
+This is the first time CERT (portable) has been computed anywhere but the laptop.
+recertify.slurm only ever compared ROOT (CNF); the `cert` stage had never run on
+the cluster, so the value binding BOTH halves -- the search cube set and the
+coverage instance -- had only one witness.  It now has two, on different
+compilers and a different CaDiCaL build.
+
+Run as `all` rather than `cert` deliberately: stage_cert reads ROOT_CNF from the
+conf instead of re-deriving it, so `cert` alone would bind a RECORDED search root
+to a freshly computed coverage hash.  `root` regenerates all 22,876 cube CNFs and
+asserts that root first, and `$W` is JOBSCRATCH, purged at job end, so the two
+stages must share one allocation.
+
+--------------------------------------------------------------------------
+[uex76wa@jean-zay1: KemenyMedian]$ KInduceDFS/jz_reproduce/run.sh p19 all
+
+=== ROOT (CNF) -- regenerating 22876 cube CNFs, no solving [p19: q=19 margin=exact base=0 1 2 3 4 11] ===
+  142,251 base states -> 22,876 live  (1136s)
+    200/22,876 cubes  mismatches=0  1142s
+    20,200/22,876 cubes  mismatches=0  1669s
+  regenerated 22,876 cubes   per-cube mismatches 0   per-chunk 0
+  ROOT (CNF) regen    0eeb9dd53956fec2c77b752d74b89b12c7d1dddd6dc4047405ecb7907896a78a
+  ROOT (CNF) expected 0eeb9dd53956fec2c77b752d74b89b12c7d1dddd6dc4047405ecb7907896a78a
+  PASS -- identical
+
+=== SPLIT half -- coverage CNF solved fresh [p19: q=19 margin=exact base=0 1 2 3 4 11] ===
+  F_B check: the 425 base-local clauses of F_B are EXACTLY the clauses of F over the 75 base variables
+q=19 margin=exact base=[0, 1, 2, 3, 4, 11] base_mask=23097 cubes=142251
+coverage CNF: vars=135 (75 base + 60 lex aux) clauses=143032 = 425 F_B + 356 SB + 142251 neg-cubes  [streaming]
+  CNF written in 18s (0.03 GiB)
+RESULT UNSAT time=274.53s proof=80 MiB CHECK=VERIFIED  -> the 142251 cubes cover every lex-canonical base assignment
+  clause count 143032 matches expected
+  cover_cnf_sha256=603424316b68f66f7455afd46881a0f70685dac140e97172e3d0ecb09cdb5f20
+  cover_proof_sha256=a1391fcf6f88d77ac930236c985ae410a9d1e14caeb7f1a4929cae459fa8d9be
+
+=== CERT -- binding split and search [p19: q=19 margin=exact base=0 1 2 3 4 11] ===
+CERT-v1 portable
+q=19
+k=5
+margin=exact
+base=0,1,2,3,4,11
+arc=0,1
+non=2,1
+cubes=22876
+search_root_cnf=0eeb9dd53956fec2c77b752d74b89b12c7d1dddd6dc4047405ecb7907896a78a
+split_cover_cnf=603424316b68f66f7455afd46881a0f70685dac140e97172e3d0ecb09cdb5f20
+=> CERT (portable) 8eb20a1d9e814aabb8782c7d34fd8a436ab52db690852ed856a2b1bbd4c65ffa
+
+CERT-v1 full
+cert_portable=8eb20a1d9e814aabb8782c7d34fd8a436ab52db690852ed856a2b1bbd4c65ffa
+search_root_proofs=8b49aa2d5c84c47ba3aa32be07a658db6c123307df2f4a57fa0e02e13e5d9d2c
+split_cover_proof=a1391fcf6f88d77ac930236c985ae410a9d1e14caeb7f1a4929cae459fa8d9be
+=> CERT (full)     e8326f15470edc38cd175e0bbb233dd884a2f62006db0325b2090bd059c2453a
+
+blocks written: /lustre/fsn1/projects/rech/lia/uex76wa/p19_cert.portable.txt  /lustre/fsn1/projects/rech/lia/uex76wa/p19_cert.full.txt
+  CERT (portable) matches the recorded value
+
+p19/all: PASS
+--------------------------------------------------------------------------
+
+WHAT REPRODUCED AND WHAT DID NOT, AND WHY THAT IS THE POINT
+  ROOT (CNF)      0eeb9dd5...  identical to the laptop, 22,876 cubes, 0 mismatches
+  cover_cnf       603424316...  identical to the laptop and to COVER_CNF_SHA in
+                                instances/p19.conf
+  CERT (portable) 8eb20a1d9...  identical -- it is a function of the two above
+  cover_proof     a1391fcf6...  identical here, but it is NOT required to be:
+                                proof bytes depend on the solver build, and only
+                                CERT (portable) is claimed to be portable (5.2)
+
+Runtimes are cluster runtimes and are not comparable with Appendix A.4's laptop
+figures: the coverage solve took 274.53 s here against 7.56 s on the laptop, and
+the root regeneration 1,669 s.  See the 2x-5x per-core rule in A.4.
