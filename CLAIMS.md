@@ -227,7 +227,7 @@ had actually run did.
 |---|---|---|
 | R1 | Both refutations were re-solved from scratch on the cluster, under a different compiler and CaDiCaL build, and **ROOT (CNF) matched bit for bit** | `cluster/jz_reproduce/slurm/recert_1829004.out` (p19, `PORTABLE ROOT MATCHES`), `cluster/jz_reproduce/slurm/recert_1919064.out` (p23) |
 | R2 | At 70.9 and 567.6 cluster core-hours against the laptop's 25.1 and 236.0, i.e. 2.8× and 2.4× | the same two logs: `solve 68.1 + check 2.8` and `solve 542.0 + check 25.6` |
-| R3 | Both coverage instances were rebuilt on the cluster to their committed CNF hashes and refuted again | **no shipped artifact — see gap 2** |
+| R3 | Both coverage instances were rebuilt on the cluster to their committed CNF hashes and refuted again, and `CERT (portable)` was re-derived there by running the composition rather than inferring it | `cluster/jz_reproduce/slurm/cert_p19.out`, `cert_p23.out` |
 | R4 | The four earlier attempts failed for reasons that say nothing about the result | `cluster/jz_reproduce/slurm/recert_{1827897,1828524,1829003,1843769}.out`, and `cluster/jz_reproduce/COMMANDS.md` says which failed how |
 
 `cluster/jz_reproduce/COMMANDS.md` states per value what has and has not been
@@ -382,15 +382,36 @@ A002785(11) is an asserted cross-check on that measurement rather than an input
 to it. Only D₁₁ = 903,753,248 (A000568) is taken from outside, and it is checked
 against the generator's own count.
 
-**Gap 2 — the cluster's coverage runs left no artifact (claim R3).** The two
-search halves have their SLURM logs. The two *coverage* halves were run
-interactively on 2026-09-11, passed, and their output exists only as prose in
-`cluster/jz_reproduce/COMMANDS.md`. Related, and the reason this is worth
-closing properly: **CERT (portable) has never been computed on the cluster** —
-`recertify.slurm` compares ROOT (CNF) only, and the `cert` stage has not run
-there. One allocation per instance closes both, because `$JOBSCRATCH` is purged
-at job end so `coverage` and `cert` must share an allocation:
-`run.sh p19 all` and `run.sh p23 all`.
+**Gap 2 — the cluster's coverage runs left no artifact (claim R3), CLOSED 2026-09-12.**
+Both instances have now run `run.sh <inst> all` to completion in a single batch
+allocation, and the logs are shipped: `cluster/jz_reproduce/slurm/cert_p19.out`
+and `cert_p23.out`. So `CERT (portable)` — the value that binds the search half
+to the coverage half — is the product of a composition that was actually **run**
+on a second machine, on inputs both computed in that same run.
+
+Until now it was only an *inference*: `CERT (portable)` is a sha256 whose only
+non-constant inputs are `search_root_cnf` and `split_cover_cnf`, and both had
+matched, so the value was determined. True, but unearned — and binding the two
+halves by inference rather than by running the composition is precisely the
+failure `certroot.py` was written to end.
+
+The p23 run is worth reading for how thin the distinction looks in a log.
+`run.sh` prints `NOTE: search_root_cnf was READ FROM <conf>` whenever the root
+came from the conf instead of the current run. An earlier attempt printed
+`CERT (portable) matches the recorded value` with its root stage SIGKILLed at
+cube 200 of 343,896 on a login node — the reassuring line, with half the
+certificate merely re-hashed from a recorded number. That log is kept as
+`cert_p23_loginkill.out` for exactly that reason. The closing run carries no such
+NOTE: 343,896 cubes regenerated with **0 mismatches per cube and per chunk**,
+`ROOT (CNF)` identical, the coverage CNF solved fresh to UNSAT with
+`CHECK=VERIFIED` and its sha256 asserted against `COVER_CNF_SHA` rather than
+eyeballed, 4 h 54 m of wall on 4 cores.
+
+**One value did not reproduce, and must not.** `CERT (full)` commits to LRAT
+proof bytes, which depend on the solver build; §5.2 claims portability only for
+`CERT (portable)`. What is stronger than promised is that `ROOT (proofs)` matched
+byte-for-byte on both instances, so the entire p23 difference comes from
+`split_cover_proof`, for which the conf deliberately records no expectation.
 
 **Gap 3 — the two Appendix A.4 cost figures with no artifact, CLOSED 2026-09-11.** Both Appendix A.4 figures that had no artifact
 now have one. Row T4, Paley(23) with one arc reversed at 210.4 core-hours, is in

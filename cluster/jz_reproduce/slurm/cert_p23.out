@@ -1,24 +1,49 @@
-Jean Zay, 2026-09-12.  `KInduceDFS/jz_reproduce/run.sh p23 all`.
+Jean Zay, 2026-09-12, submitted as a batch job with CERT_INSTANCE=p23 via
+KInduceDFS/jz_reproduce/cert.slurm.
 
-*** THIS RUN FAILED FOR RESOURCE REASONS AND ESTABLISHES NOTHING AGAINST THE  ***
-*** P23 CERTIFICATE.  Do not quote the `RESULT SAT ... DOES NOT COVER -- BUG` ***
-*** line: it is a mislabelled kill, not a verdict.  See the analysis below.   ***
+*** THIS IS THE RUN THAT CLOSES GAP 2.  The root stage ran to completion on a
+*** COMPUTE node, so CERT (portable) below binds a search root DERIVED HERE to a
+*** coverage hash DERIVED HERE.  Note the ABSENCE of the
+*** "NOTE: search_root_cnf was READ FROM ..." line that run.sh prints when the
+*** root came from the conf instead: that line is what made the earlier attempt
+*** (cert_p23_loginkill.out) only half a reproduction.
 
---------------------------------------------------------------------------
-bash-5.1$ KInduceDFS/jz_reproduce/run.sh p23 all
+instance=p23  host=r1i0n1  node=r1i0n1  start=Sat Sep 12 08:23:59 AM CEST 2026
 
 === ROOT (CNF) -- regenerating 343896 cube CNFs, no solving [p23: q=23 margin=majority base=0 1 2 5 6 3] ===
-  3,414,729 base states -> 343,896 live  (2814s)
-    200/343,896 cubes  mismatches=0  2824s
-KInduceDFS/jz_reproduce/run.sh: line 37: 589091 Killed                  python3 verify_root.py --q "$Q" --k "$K" --margin "$MARGIN" --base $BASE --arc $ARC --non $NON --cubes "$CUBES" --root "$ROOT_CNF" ${ARCHIVE:+--archive "$ARCHIVE"}
+  3,414,729 base states -> 343,896 live  (1764s)
+    200/343,896 cubes  mismatches=0  1772s
+    20,200/343,896 cubes  mismatches=0  2517s
+    40,200/343,896 cubes  mismatches=0  3185s
+    60,200/343,896 cubes  mismatches=0  3875s
+    80,200/343,896 cubes  mismatches=0  4564s
+    100,200/343,896 cubes  mismatches=0  5269s
+    120,200/343,896 cubes  mismatches=0  5952s
+    140,200/343,896 cubes  mismatches=0  6644s
+    160,200/343,896 cubes  mismatches=0  7345s
+    180,200/343,896 cubes  mismatches=0  8052s
+    200,200/343,896 cubes  mismatches=0  8750s
+    220,200/343,896 cubes  mismatches=0  9428s
+    240,200/343,896 cubes  mismatches=0  10056s
+    260,200/343,896 cubes  mismatches=0  10676s
+    280,200/343,896 cubes  mismatches=0  11295s
+    300,200/343,896 cubes  mismatches=0  11924s
+    320,200/343,896 cubes  mismatches=0  12544s
+    340,200/343,896 cubes  mismatches=0  13164s
+  regenerated 343,896 cubes   per-cube mismatches 0   per-chunk 0
+  ROOT (CNF) regen    7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb
+  ROOT (CNF) expected 7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb
+  PASS -- identical
 
 === SPLIT half -- coverage CNF solved fresh [p23: q=23 margin=majority base=0 1 2 5 6 3] ===
   F_B check: the 350 base-local clauses of F_B are EXACTLY the clauses of F over the 75 base variables
 q=23 margin=majority base=[0, 1, 2, 5, 6, 3] base_mask=8059 cubes=3414729
 coverage CNF: vars=135 (75 base + 60 lex aux) clauses=3415435 = 350 F_B + 356 SB + 3414729 neg-cubes  [streaming]
-  CNF written in 217s (0.78 GiB)
-RESULT SAT time=1840.00s  *** DOES NOT COVER -- BUG
-  FAIL: coverage not UNSAT+VERIFIED
+  CNF written in 265s (0.78 GiB)
+RESULT UNSAT time=2279.96s proof=1935 MiB CHECK=VERIFIED  -> the 3414729 cubes cover every lex-canonical base assignment
+  clause count 3415435 matches expected
+  cover_cnf_sha256 matches split_cover_cnf inside CERT (portable)
+  cover_proof_sha256=55013059afab220ab3b51f7fdc6ea7c0422cd54081545f75aadc43e5951916da  (build-dependent, not compared)
 
 === CERT -- binding split and search [p23: q=23 margin=majority base=0 1 2 5 6 3] ===
 CERT-v1 portable
@@ -36,60 +61,49 @@ split_cover_cnf=4876f077e85b7b566f996e1f9cfe7701d665e07488c3ed3f4a40ccdd0a3e4f62
 CERT-v1 full
 cert_portable=ff60539e16abf2ecdc1fc822dbb2379abe52fe06f076fe4cf1003bb56ec3bb9e
 search_root_proofs=01e52ba56cacd1c2746902052aaa6d56cb6b4ab49f07cdd34827ce621db4bf1e
-split_cover_proof=9389d0528db8ef4372105d017eac1c03ee769375486d692b882b650aa1a646a9
-=> CERT (full)     07583c9ca02e553de4e134fc61203a93adb8c16891fd24947be37ec4585b317b
+split_cover_proof=55013059afab220ab3b51f7fdc6ea7c0422cd54081545f75aadc43e5951916da
+=> CERT (full)     35db996f2638d8f424253422a9fc21eaadd3a2d38251cec536727287631f27f8
 
-blocks written: /lustre/fsn1/projects/rech/lia/uex76wa/p23_cert.portable.txt  /lustre/fsn1/projects/rech/lia/uex76wa/p23_cert.full.txt
+blocks written: p23_cert.portable.txt and p23_cert.full.txt, in the durable
+scratch named by JZ_DURABLE
   CERT (portable) matches the recorded value
 
-p23/all: FAIL
+p23/all: PASS
+run.sh exit=0  end=Sat Sep 12 01:17:37 PM CEST 2026
+  p23_cert.full.txt      334 bytes  Sep 12 13:17
+  p23_cert.portable.txt  329 bytes  Sep 12 13:17
+
 --------------------------------------------------------------------------
 
-WHAT EACH OF THE THREE STAGES ACTUALLY SHOWS
+WHAT REPRODUCED, AND THE ONE THING THAT DID NOT
 
-1. ROOT: KILLED, not failed.  `589091 Killed` is SIGKILL from the OOM killer.
-   It had enumerated all 3,414,729 base states down to the 343,896 live ones and
-   regenerated 200 cubes, with mismatches=0 on every one of them.  Nothing
-   contradicted the recorded root; the process simply died.
+  ROOT (CNF)      7e6c9c26...  identical.  343,896 cubes, 0 mismatches per cube
+                               AND per chunk, regenerated over 3.7 h on a compute
+                               node.  DERIVED HERE, not read from the conf --
+                               which is the difference between this run and the
+                               previous one, and the reason gap 2 can close.
+  cover_cnf       4876f077...  identical to COVER_CNF_SHA in instances/p23.conf,
+                               ASSERTED by the script rather than compared by eye
+                               as on 2026-09-11.
+  CERT (portable) ff60539e...  identical.  It is a function of the two above and
+                               both were computed in this run, so the composition
+                               was RUN rather than inferred -- which is the whole
+                               reason certroot.py exists.
+  ROOT (proofs)   01e52ba5...  identical, which is STRONGER than section 5.2
+                               promises: proof bytes are build-dependent and are
+                               not required to match.
+  CERT (full)     35db996f...  DIFFERS from the laptop's 0d017c74..., and that is
+                               the CORRECT outcome, not a failure.  It commits to
+                               LRAT bytes.  The search proofs did match, so the
+                               entire difference comes from split_cover_proof
+                               (55013059...), for which the conf deliberately
+                               records no expectation.
 
-2. COVERAGE: UNDECIDED, reported as SAT.  cover_check.py classified the solver's
-   result as `if 'UNSATISFIABLE' not in r.stdout: RESULT SAT`, never looking at
-   CaDiCaL's exit code (10 = SAT, 20 = UNSAT, anything else = did not decide).
-   So an OOM kill, a scheduler kill or a full disk all print the alarming
-   `*** DOES NOT COVER -- BUG`.  The tells that this is what happened:
-     - time=1840.00s, exactly round, which a real solve is not (p19's was 274.53s)
-     - the OOM killer had already taken the root stage in the same allocation
-     - the streaming path prints no witness assignment, so there is no model
-     - the coverage CNF is 0.78 GiB and its LRAT proof is ~2 GiB
-   FIXED 2026-09-12 in cover_check.py: three outcomes now, and an undecided run
-   prints `RESULT UNKNOWN ... exit=N  *** NOT a verdict on coverage` and returns 3.
-   Tested on all four shapes: real UNSAT, real SAT (--drop control), exit 137 with
-   no output, and a silent exit 0.
+COST.  08:23:59 to 13:17:37, 4 h 54 m of wall on 4 cores: root regeneration 3.7 h,
+the coverage CNF written in 265 s (0.78 GiB), the solve 2,280 s with a 1,935 MiB
+proof, CHECK=VERIFIED.  The cores are bought for memory, not parallelism: every
+stage here is single-threaded.
 
-3. CERT: HALF DERIVED, HALF RECORDED.  certroot.py hashes the coverage CNF from
-   disk, so split_cover_cnf=4876f077... IS a real recomputation, and it matched
-   the committed value -- that half of the p23 certificate did reproduce here.
-   But --root-cnf is read from instances/p23.conf, so search_root_cnf was the
-   RECORDED number, the root stage having been killed at cube 200.  "CERT
-   (portable) matches the recorded value" therefore means only that two numbers,
-   one of them copied from the conf, were re-hashed.  It is not a reproduction of
-   the search half.
-   FIXED 2026-09-12 in run.sh: `all` now stops at the first failed stage, and
-   stage_cert states plainly when search_root_cnf was read from the conf rather
-   than derived in the same run.
-
-WHAT TO RERUN, AND HOW BIG
-
-  The stages are single-threaded; the cores below are bought for their MEMORY,
-  which on cpu_p1 is roughly 4 GB per allocated core.
-
-    salloc --account=lia@cpu --partition=cpu_p1 --qos=qos_cpu-t3 \
-           --nodes=1 --ntasks=1 --cpus-per-task=20 --hint=nomultithread --time=06:00:00
-    KInduceDFS/jz_reproduce/run.sh p23 all
-
-  Confirm it is a COMPUTE node, not a login node: a login node's memory cap will
-  SIGKILL the root stage every time.  $JOBSCRATCH needs about 4 GB free for the
-  0.78 GiB CNF plus its ~2 GiB proof.  Expect roughly 50 min for the root stage's
-  base-state enumeration before the first cube, then the cube regeneration, then
-  a coverage solve that took just under 20 minutes on one laptop core and should
-  be taken as 1-3x that here.
+THE 75 BASE VARIABLES are 5 voters x C(6,2) for the six-vertex base -- derived,
+and worth stating because a stale docstring elsewhere in this project once said
+50, which is the five-vertex figure.

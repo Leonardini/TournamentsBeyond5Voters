@@ -116,21 +116,34 @@ and they did not all happen.
 | `ROOT (CNF)`, both instances | yes, `stage_recertify` vs `ROOT_CNF` | **yes** -- `PORTABLE ROOT MATCHES`, jobs 1829004 (p19) and 1919064 (p23) |
 | coverage clauses, UNSAT, `CHECK=VERIFIED` | yes, vs `COVER_CLAUSES` | **yes**, both instances, 2026-09-11 |
 | coverage CNF sha256 vs `split_cover_cnf` | yes *since 2026-09-11*, vs `COVER_CNF_SHA` | matched, but on the day it was **printed and compared by eye** |
-| `CERT (portable)` | yes, `stage_cert` vs `CERT_PORTABLE` | **no -- the `cert` stage has never run there** |
-| `ROOT (proofs)`, `CERT (full)` | no, by design | no, and must not be -- they commit to LRAT bytes |
+| `CERT (portable)` | yes, `stage_cert` vs `CERT_PORTABLE` | **yes**, both instances -- `slurm/cert_p19.out` and `slurm/cert_p23.out` |
+| `ROOT (proofs)` | no, by design | **matched anyway**, both instances, which is stronger than 5.2 claims |
+| `CERT (full)` | no, by design | no, and must not be -- it commits to LRAT bytes |
 
-`CERT (portable)` is a sha256 of a text block whose only non-constant inputs are
-`search_root_cnf` and `split_cover_cnf`, both of which matched. So it is
-*determined* by what did reproduce -- but that is an inference, and binding the
-two halves by inference rather than by running the composition is the exact
-failure `certroot.py` was written to end. Do not write that it reproduced.
+**DONE 2026-09-12.** Both instances have now run `all` to completion, so
+`CERT (portable)` is the product of a composition that was RUN, not inferred from
+the fact that its two inputs matched. That inference -- true but unearned -- is
+the exact failure `certroot.py` exists to end, and it is what the wording here
+used to warn against.
 
-**Closing it costs one allocation per instance**, because `$W` is `JOBSCRATCH`
-and is purged at job end: the coverage CNF and its proof cannot survive to a
-later `cert` run, so the two stages must share an allocation.
+The p23 run is the instructive one. `run.sh` prints
+`NOTE: search_root_cnf was READ FROM ...` whenever the root came from the conf
+rather than from the current run, and the absence of that line in
+`slurm/cert_p23.out` is what distinguishes it from `slurm/cert_p23_loginkill.out`,
+where the same "CERT (portable) matches the recorded value" was printed with the
+root stage SIGKILLed at cube 200 of 343,896. Read the NOTE, not the match.
 
-    KInduceDFS/jz_reproduce/run.sh p19 all      # login node; root + coverage + cert
-    KInduceDFS/jz_reproduce/run.sh p23 all      # compute node, 4 cores, 2 h
+One thing did not reproduce and must not: `CERT (full)` commits to LRAT proof
+bytes, which depend on the solver build. `ROOT (proofs)` matched anyway on both
+instances, so the whole of the p23 difference comes from `split_cover_proof`,
+for which the conf deliberately records no expectation.
+
+It cost one allocation per instance, because `$W` is `JOBSCRATCH` and is purged
+at job end: the coverage CNF and its proof cannot survive to a later `cert` run,
+so the two stages must share an allocation.
+
+    KInduceDFS/jz_reproduce/run.sh p19 all      # root + coverage + cert
+    KInduceDFS/jz_reproduce/run.sh p23 all      # COMPUTE node, 4 cores, ~5 h
 
 `all` is `root`, `coverage`, `cert` in that order. `root` regenerates the cube
 CNFs with no solver; p23's coverage took 41 min of a 2 h wall; `cert` is a hash

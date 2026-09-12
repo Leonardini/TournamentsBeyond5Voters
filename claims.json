@@ -637,11 +637,16 @@
    "id": "R3",
    "group": "6a. The independent reproduction (\u00a75.2)",
    "sections": [],
-   "claim": "Both coverage instances were rebuilt on the cluster to their committed CNF hashes and refuted again",
-   "artifacts": [],
+   "claim": "Both coverage instances were rebuilt on the cluster to their committed CNF hashes and refuted again, and `CERT (portable)` was re-derived there by running the composition rather than inferring it",
+   "artifacts": [
+    "cluster/jz_reproduce/slurm/cert_p19.out"
+   ],
    "missing": [],
-   "other_tokens": [],
-   "status": "declared_gap"
+   "other_tokens": [
+    "CERT (portable)",
+    "cert_p23.out"
+   ],
+   "status": "established"
   },
   {
    "id": "R4",
@@ -1075,9 +1080,9 @@
   },
   {
    "number": 2,
-   "title": "the cluster's coverage runs left no artifact (claim R3)",
-   "status": "open",
-   "detail": "The two search halves have their SLURM logs. The two *coverage* halves were run interactively on 2026-09-11, passed, and their output exists only as prose in `cluster/jz_reproduce/COMMANDS.md`. Related, and the reason this is worth closing properly: **CERT (portable) has never been computed on the cluster** \u2014 `recertify.slurm` compares ROOT (CNF) only, and the `cert` stage has not run there. One allocation per instance closes both, because `$JOBSCRATCH` is purged at job end so `coverage` and `cert` must share an allocation: `run.sh p19 all` and `run.sh p23 all`."
+   "title": "the cluster's coverage runs left no artifact (claim R3), CLOSED 2026-09-12",
+   "status": "closed",
+   "detail": "Both instances have now run `run.sh <inst> all` to completion in a single batch allocation, and the logs are shipped: `cluster/jz_reproduce/slurm/cert_p19.out` and `cert_p23.out`. So `CERT (portable)` \u2014 the value that binds the search half to the coverage half \u2014 is the product of a composition that was actually **run** on a second machine, on inputs both computed in that same run."
   },
   {
    "number": 3,
@@ -1106,11 +1111,11 @@
  ],
  "counts": {
   "claims": 74,
-  "established": 73,
-  "declared_gap": 1,
+  "established": 74,
+  "declared_gap": 0,
   "missing_artifacts": 0,
   "gaps": 6,
-  "gaps_open": 4,
-  "gaps_closed": 2
+  "gaps_open": 3,
+  "gaps_closed": 3
  }
 }
