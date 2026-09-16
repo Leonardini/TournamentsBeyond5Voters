@@ -300,7 +300,7 @@ def fig5():
         ax2.text(0.03, 0.55, f'peak {max(m[2] for m in mem)} MB resident across all\n'
                  f'11 workers, against a 512 MB per-worker cap;\n'
                  f'swap grew {max(m[4] for m in mem)} MB from baseline.\n'
-                 f'(A fifth run was stopped by this watchdog — see the text.)',
+                 f'(A sixth run was stopped by this trip wire; see the text.)',
                  ha='left', fontsize=8.8, color=INK2, transform=ax2.transAxes)
     fig.tight_layout()
     save(fig, 'fig5_cost.png')

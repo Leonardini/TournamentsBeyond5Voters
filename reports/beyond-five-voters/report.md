@@ -131,6 +131,23 @@ sweeps affected still cost what the paper says they cost, because the engine's
 own timer measures the search; it is the wall clock that suffers, and a reader
 reproducing those rows should slice rather than invoke per state.
 
+The headline sweep was assembled from **two runs of the same node**, and the
+index cover is what makes that unremarkable. The first run was stopped at
+3,154 s by the harness's own swap-growth trip wire — the machine's swap had
+grown 8.9 GB while a second job was being launched beside it. The audit did
+exactly what it should: `missing=4530`, verdict `INCOMPLETE`, nothing claimed.
+The sweep was then made resumable behind a fingerprint — engine source SHA-256,
+upstream pin, base-state count and the exact argument vector, all four of which
+must match or the directory is discarded — and re-run, inheriting the 3,501
+states the first run had legitimately cleared. The union is audited the same way
+a distributed run is, which is the audit `REPRODUCE.md` prescribes and which is
+indifferent to how many runs contributed the slices.
+
+Worth recording because it corrects a guess: the job I assumed had caused that
+swap growth, the $P_{23}$ cube regeneration, was later measured running at
+**40 MB resident** at 97% of a core. It was not the cause, and what was remains
+unestablished.
+
 There is a deliberate asymmetry in the caps. Searches for a **witness** run
 under a wall cap, because a cap can only fail to find a witness, never wrongly
 report its absence. Searches that must **refute** are never capped, because
@@ -218,7 +235,17 @@ $P_{19}$ it reproduced exactly:
 ```
 
 The live-cube count, 22,876 of 142,251, matches the paper independently of the
-hash. The same check on $P_{23}$ is about 24 times the work and was given a 40-minute wall cap as a single-threaded side job, which it hit. It still establishes two things, because both are asserted before any hashing begins: the cube set enumerates to **3,414,729 base states**, of which **343,896** survive the arc- and non-arc-orbit breaks — both exactly the paper's figures. Of those, **240,200 cube CNFs (70%) regenerated with zero per-cube mismatches** before the cap. The ROOT value itself commits to the whole ordered set, so it was not reached; what stopped the check was its cost, and nothing in the 70% disagreed.
+hash. **The same check on $P_{23}$ reproduced exactly too.** It is about 24 times the work — 3,414,729 base states of a six-vertex base enumerated down to 343,896 live cubes, every one of them regenerated and hashed — and it ran single-threaded beside an unrelated campaign. Both cube counts match the paper's Appendix B.1 figures, no cube and no chunk mismatched, and the root came out identical:
+
+```
+  3,414,729 base states -> 343,896 live
+  regenerated 343,896 cubes   per-cube mismatches 0   per-chunk 0
+  ROOT (CNF) regen    7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb
+  ROOT (CNF) expected 7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb
+  PASS -- identical
+```
+
+So both of the paper's certified refutations have had their portable half independently rebuilt. What is left unchecked in each is the LRAT solving, which the paper itself says is not portable across CaDiCaL builds.
 
 ### Cost
 
@@ -240,6 +267,8 @@ Three things are worth stating alongside that, because the node count is a quant
 
 So what this run shows is that the figure in Appendix A.3 was not reproduced by running the command line that appendix describes. It does not show that the search differed: the verdict, the coverage, the cost and the per-state timing are all consistent with the paper, and the node counter itself is pinned to the original engine by the gate. The cleanest reading is that the discrepancy lives in the published tables rather than in the computation, and the $q = 27$ inconsistency inside the package points the same way.
 
+**Resolved after this reproduction was written.** The authors traced it to a bug in the script that reported node counts, not to the search, and have corrected it. The analysis above is left as it was written, as the record of what an outside re-run saw.
+
 ## Claim-by-claim
 
 | id | claim | paper | observed here | assessment | cost |
@@ -253,24 +282,24 @@ So what this run shows is that the figure in Appendix A.3 was not reproduced by 
 | K10 | The other doubly regular tournament on 19 vertices is a unit-margin obstruction and is majority-inducible | UNSAT at margin 1 (2.70 core-h), SAT at margin $\le 3$ in 176 s | UNSAT at margin 1, 2,200/2,200 cleared; SAT at margin $\le 3$ in 155 s | **aligned** | 2.69 core-h |
 | K9 | …and it is arc-critical at unit margin: 57 orbits, 57 witnesses | 57 orbit representatives, all SAT, 3.59 core-h | 57/57 SAT | **aligned** | 9.23 core-h |
 | B2 | ROOT (CNF) of the $P_{19}$ certification is portable | `0eeb9dd5…96a78a`, 22,876 live cubes | regenerated from scratch: identical hash, 22,876 live cubes, 0 per-cube and 0 per-chunk mismatches | **aligned** | 0.14 core-h |
-| B2′ | ROOT (CNF) of the $P_{23}$ certification | `7e6c9c26…de49cb`, 3,414,729 base states, 343,896 live cubes | cube counts reproduced exactly (3,414,729 → 343,896); 240,200 of 343,896 cube CNFs regenerated with 0 mismatches before the cap; the root itself not reached | **partial under this setup** | capped at 40 min |
+| B2′ | ROOT (CNF) of the $P_{23}$ certification | `7e6c9c26…de49cb`, 3,414,729 base states, 343,896 live cubes | regenerated from scratch: identical hash, 3,414,729 → 343,896 live cubes, 0 per-cube and 0 per-chunk mismatches | **aligned** | 0.78 core-h |
 | P2 | $P_{31}$ is not 5-inducible | not 5-inducible, 21,009 base states, 26.89 core-h | — | **not attempted** | ~2.8 h at 11 workers; did not fit the window |
 | B3 | $13 \le N(5)$ — every order-12 tournament is 5-inducible | 0 candidates over 452,016,608 screened classes, ~10,000 core-h | — | **not attempted** | cluster scale |
 | B4/P7 | $P_{43}-v$ and $P_{31}-v$ are not 5-inducible | 185.5 and 239.5 core-h | — | **not attempted** | 17–22 h each |
 
 ## What a full-scale reproduction would still need
 
-Four results were left untested, all for compute rather than for doubt. Their
-exact command lines are in the repository's `REPRODUCE.md`; the costs are the
-paper's own Appendix A.4 figures.
+Five results were left untested, all for compute rather than for doubt, and
+none of them bears on the bound. Their exact command lines are in this
+repository's `REPRODUCE.md`; the costs are Appendix A.4's own figures.
 
 | Claim | Cost | Why not attempted |
 |---|---|---|
 | $13 \le N(5)$ — every order-12 tournament is 5-inducible | ~10,000 core-h | Cluster scale. Settles all 2,048 one-vertex extensions of each of 903,753,248 order-11 classes. |
 | $P_{31} - v$ is not 5-inducible | 239.5 core-h | ~22 h at 11 workers; outside the agreed window. |
 | $P_{43} - v$ is not 5-inducible | 185.5 core-h | ~17 h at 11 workers. Would re-derive the previous paper's $N(5) \le 43$ by a second method. |
-| $P_{23}$ certified refutation (the SAT half) | 236.0 core-h | ~21 h, and needs a CaDiCaL build that is not installed here. Its portable half, ROOT (CNF), was attempted separately. |
-| $P_{31}$ is not 5-inducible | 26.89 core-h | ~2.5 h. Fitted the budget arithmetically but not the clock, once the headline run was protected. |
+| The LRAT solving half of both certifications | 236.0 + 25.1 core-h | Needs a CaDiCaL build that is not installed here, and the paper states these proof bytes are not portable across builds in any case. **The portable half of both, ROOT (CNF), was rebuilt in full** — see above. |
+| $P_{31}$ is not 5-inducible | 26.89 core-h | ~2.8 h at the 1.14 ratio measured here. Fitted the budget arithmetically but not the clock, once the headline run was protected. |
 
 Note what the untested rows do **not** include: nothing in the reproduced set
 depends on them. $N(5) \le 23$ rests on the $P_{23}$ refutation alone.
@@ -281,9 +310,9 @@ depends on them. $N(5) \le 23$ rests on the $P_{23}$ refutation alone.
 
 **Six further claims are aligned**, including both halves of the margin hierarchy — the paper's second contribution — where the cost for the second doubly regular tournament on 19 vertices came in at 2.69 core-hours against a published 2.70. Two results are stronger than agreement in the ordinary sense: the arc-reversal witness came back **byte-identical** to the published ballots, and the $P_{19}$ certification's ROOT (CNF) rebuilt from scratch to the published hash with zero per-cube mismatches.
 
-**One quantity diverged.** The node count for the $q = 23$ sweep is 9.30 × 10⁷ here against the 1.14 × 10¹⁰ of Appendix A.3 — a factor of 123. Every quantity that count is supposed to pin agrees (cost ratio 1.14, seconds per live base state 54.1 against 47.3, 2,571 searched states against 2,591 live), the engine's counter is tied to the originating implementation by a regression gate this reproduction ran and passed, and the package's own two published sources disagree with each other on the same quantity for $q = 27$ by a comparable factor. This run therefore did not reproduce that table entry; it gives no reason to think the search differed.
+**One quantity diverged.** The node count for the $q = 23$ sweep is 9.30 × 10⁷ here against the 1.14 × 10¹⁰ of Appendix A.3 — a factor of 123. Every quantity that count is supposed to pin agrees (cost ratio 1.14, seconds per live base state 54.1 against 47.3, 2,571 searched states against 2,591 live), the engine's counter is tied to the originating implementation by a regression gate this reproduction ran and passed, and the package's own two published sources disagree with each other on the same quantity for $q = 27$ by a comparable factor. This run therefore did not reproduce that table entry; it gives no reason to think the search differed, and the authors have since confirmed it as a reporting-script bug and fixed it.
 
-**One claim is partial and three were not attempted**, all for compute rather than doubt. The $P_{23}$ ROOT (CNF) matched on cube counts and on 240,200 of 343,896 cubes before its cap. The lower bound $13 \le N(5)$, the two vertex-criticality results and $P_{31}$ were not run; none of them bears on the upper bound tested here.
+**Nothing was left partial.** Every claim attempted is complete over its own space, including both certifications' portable half: ROOT (CNF) was rebuilt cube by cube for $P_{19}$ and for $P_{23}$, 22,876 and 343,896 cubes, zero mismatches either side, both hashes identical to the published values. Four results were not run at all — the lower bound $13 \le N(5)$, the two vertex-criticality results and $P_{31}$ — on compute grounds; none of them bears on the upper bound tested here.
 
 ## The experiment branches
 
@@ -300,4 +329,9 @@ harness published here at the commit that produced its result.
   $P_{19}$ and the other doubly regular tournament on 19 vertices, at both
   margins, plus all 57 arc-orbit reversals.
 - [**B2-portable — ROOT (CNF)**](https://github.com/Leonardini/Tournaments/tree/orx/2609-13924-b2-portable-rebuild-root-cnf-for-both) —
-  regenerates the certification's cube set from scratch and compares the hash.
+  regenerates both certifications' cube sets from scratch and compares the
+  published hashes. $P_{19}$ passed here; $P_{23}$ hit a 40-minute side-job cap
+  at 70% of its cubes, all matching.
+- [**B2-portable-2 — the $P_{23}$ root, given room**](https://github.com/Leonardini/Tournaments/tree/orx/2609-13924-b2-portable-2-the-paley-23-root-cnf-r) —
+  the same check with a 90-minute cap. All 343,896 cubes, zero mismatches, hash
+  identical, 49m32s single-threaded.

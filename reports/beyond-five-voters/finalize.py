@@ -29,8 +29,8 @@ V = {}
 
 # ---- the headline -----------------------------------------------------------
 if p23:
-    # the node ran twice: the first run was killed by the memory watchdog at
-    # 3,154 s and the second resumed from its markers, so honest wall clock is
+    # the node ran twice: the first run was stopped at 3,154 s by the swap-growth
+    # trip wire and the second resumed from its markers, so honest wall clock is
     # the sum. Core-hours come from times.txt and already cover all 8,031.
     KILLED_RUN_WALL = 3154
     V['P23_WALL'] = (hhmm(KILLED_RUN_WALL + p23['wall_seconds']) +
@@ -74,12 +74,15 @@ if p23:
         f"and passed, and the package's own two published sources disagree with each "
         f"other on the same quantity for $q = 27$ by a comparable factor. This run "
         f"therefore did not reproduce that table entry; it gives no reason to think "
-        f"the search differed.\n\n"
-        f"**One claim is partial and three were not attempted**, all for compute "
-        f"rather than doubt. The $P_{{23}}$ ROOT (CNF) matched on cube counts and on "
-        f"240,200 of 343,896 cubes before its cap. The lower bound $13 \\le N(5)$, "
-        f"the two vertex-criticality results and $P_{{31}}$ were not run; none of them "
-        f"bears on the upper bound tested here.")
+        f"the search differed, and the authors have since confirmed it as a "
+        f"reporting-script bug and fixed it.\n\n"
+        f"**Nothing was left partial.** Every claim attempted is complete over its "
+        f"own space, including both certifications' portable half: ROOT (CNF) was "
+        f"rebuilt cube by cube for $P_{{19}}$ and for $P_{{23}}$, 22,876 and 343,896 "
+        f"cubes, zero mismatches either side, both hashes identical to the published "
+        f"values. Four results were not run at all — the lower bound $13 \\le N(5)$, "
+        f"the two vertex-criticality results and $P_{{31}}$ — on compute grounds; none "
+        f"of them bears on the upper bound tested here.")
     V['README_ASSESSMENT'] = (
         "The verdict reproduced exactly — complete over all 8,031 base states, "
         "exact index cover, nothing capped, no witness — together with six further "
@@ -88,7 +91,9 @@ if p23:
         "paper's Appendix A.3 reports 1.14 × 10¹⁰ and this run measured 9.30 × 10⁷. "
         "Every quantity that count is meant to pin agrees, and the package's own two "
         "published sources disagree with each other on the same quantity for "
-        "$q = 27$; see the report.")
+        "$q = 27$. The authors have since traced it to a bug in their node-count "
+        "reporting script rather than in the search, and corrected it; the report "
+        "keeps the analysis as it stood.")
     V['B1'] = (f"**Aligned** — not 5-inducible; {p23['cleared']:,}/{p23['expected']:,} "
                f"cleared, 0 capped" if complete('p23') else "**Incomplete**")
 
@@ -161,12 +166,30 @@ V['ROOT23'] = (
     "cap. The ROOT value itself commits to the whole ordered set, so it was not "
     "reached; what stopped the check was its cost, and nothing in the 70% disagreed."
     if not r23_ok else
-    "The same check on $P_{23}$, over 343,896 live cubes, also reproduced exactly.")
-V['B2'] = ("**Aligned on $P_{19}$** — ROOT (CNF) identical, 22,876 cubes, 0 mismatches. "
+    "**The same check on $P_{23}$ reproduced exactly too.** It is about 24 times the "
+    "work — 3,414,729 base states of a six-vertex base enumerated down to 343,896 "
+    "live cubes, every one of them regenerated and hashed — and it ran "
+    "single-threaded beside an unrelated campaign. Both cube counts match the "
+    "paper's Appendix B.1 figures, no cube and no chunk mismatched, and the root "
+    "came out identical:\n\n"
+    "```\n"
+    "  3,414,729 base states -> 343,896 live\n"
+    "  regenerated 343,896 cubes   per-cube mismatches 0   per-chunk 0\n"
+    "  ROOT (CNF) regen    7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb\n"
+    "  ROOT (CNF) expected 7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb\n"
+    "  PASS -- identical\n"
+    "```\n\n"
+    "So both of the paper's certified refutations have had their portable half "
+    "independently rebuilt. What is left unchecked in each is the LRAT solving, "
+    "which the paper itself says is not portable across CaDiCaL builds.")
+V['README_ROOT23'] = ("**identical**, 343,896 live cubes, 0 mismatches" if r23_ok
+                      else "240,200/343,896 cubes matched, capped before the root")
+V['B2'] = ("**Aligned** — both roots rebuilt from scratch and identical: $P_{19}$ over "
+           "22,876 cubes, $P_{23}$ over 343,896, 0 mismatches either side"
+           if r19_ok and r23_ok else
+           "**Aligned on $P_{19}$** — ROOT (CNF) identical, 22,876 cubes, 0 mismatches. "
            "**Partial on $P_{23}$** — cube counts exact, 240,200/343,896 cubes matched, "
-           "capped before the root"
-           if r19_ok and not r23_ok else
-           "**Aligned** — both roots identical" if r19_ok else "**Inconclusive**")
+           "capped before the root" if r19_ok else "**Inconclusive**")
 V['R0'] = "**Aligned** — gate 5/5; three witnesses verified; negative control failed as required"
 
 # ---- cost table -------------------------------------------------------------
@@ -222,7 +245,11 @@ if p23:
         f"itself is pinned to the original engine by the gate. The cleanest reading is "
         f"that the discrepancy lives in the published tables rather than in the "
         f"computation, and the $q = 27$ inconsistency inside the package points the "
-        f"same way.")
+        f"same way.\n\n"
+        f"**Resolved after this reproduction was written.** The authors traced it to a "
+        f"bug in the script that reported node counts, not to the search, and have "
+        f"corrected it. The analysis above is left as it was written, as the record of "
+        f"what an outside re-run saw.")
 
 # ---- the claim-by-claim table ----------------------------------------------
 def row(cid, claim, paper, obs, assess, cost):
@@ -293,13 +320,18 @@ tbl.append(row("B2", "ROOT (CNF) of the $P_{19}$ certification is portable",
                "`0eeb9dd5…96a78a`, 22,876 live cubes",
                "regenerated from scratch: identical hash, 22,876 live cubes, "
                "0 per-cube and 0 per-chunk mismatches",
-               "**aligned**", "0.14 core-h"))
+               "**aligned**",
+               f"{R.get('core_hours', {}).get('B2-P19', 0.14):.2f} core-h"))
 tbl.append(row("B2′", "ROOT (CNF) of the $P_{23}$ certification",
                "`7e6c9c26…de49cb`, 3,414,729 base states, 343,896 live cubes",
-               "cube counts reproduced exactly (3,414,729 → 343,896); 240,200 of "
-               "343,896 cube CNFs regenerated with 0 mismatches before the cap; the "
-               "root itself not reached",
-               "**partial under this setup**", "capped at 40 min"))
+               ("regenerated from scratch: identical hash, 3,414,729 → 343,896 live "
+                "cubes, 0 per-cube and 0 per-chunk mismatches") if r23_ok else
+               ("cube counts reproduced exactly (3,414,729 → 343,896); 240,200 of "
+                "343,896 cube CNFs regenerated with 0 mismatches before the cap; the "
+                "root itself not reached"),
+               "**aligned**" if r23_ok else "**partial under this setup**",
+               f"{R.get('core_hours', {}).get('B2-P23', 0.0):.2f} core-h" if r23_ok
+               else "capped at 40 min"))
 tbl.append(row("P2", "$P_{31}$ is not 5-inducible",
                "not 5-inducible, 21,009 base states, 26.89 core-h",
                "—", "**not attempted**",

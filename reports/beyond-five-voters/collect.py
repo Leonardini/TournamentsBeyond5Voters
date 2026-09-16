@@ -34,6 +34,7 @@ for rd in sys.argv[1:]:
     text = open(log, errors='replace').read() if log else ''
     res['runs'][rid] = {'log_bytes': len(text)}
     cur = None            # the sweep whose wall-clock line comes next
+    sect = None           # the claim section whose `time` output comes next
     for line in text.splitlines():
         if line.startswith('sweep tag='):
             cur = line.split('tag=')[1].split()[0]
@@ -55,6 +56,13 @@ for rd in sys.argv[1:]:
             res['mem'].append([m[1], int(m[2]), int(m[3]), float(m[4]), int(m[5])])
         elif line.startswith('CLAIM '):
             res['claims'].setdefault(line.split()[1], []).append(line[6:].strip())
+        elif line.startswith('========== B2-'):
+            sect = line.split()[1]
+        elif (m := re.match(r'^user\s+(\d+)m([\d.]+)s', line)) and sect:
+            # `time`'s user total for that claim: these run single-threaded, so
+            # it is the claim's core-hours directly
+            res.setdefault('core_hours', {})[sect] = (
+                int(m[1]) * 60 + float(m[2])) / 3600
 
     # per-base-state cost curves, and the single-shot searches. Sweeps run
     # after the resume change write to the durable sweeps directory instead of

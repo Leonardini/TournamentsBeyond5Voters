@@ -131,6 +131,23 @@ sweeps affected still cost what the paper says they cost, because the engine's
 own timer measures the search; it is the wall clock that suffers, and a reader
 reproducing those rows should slice rather than invoke per state.
 
+The headline sweep was assembled from **two runs of the same node**, and the
+index cover is what makes that unremarkable. The first run was stopped at
+3,154 s by the harness's own swap-growth trip wire — the machine's swap had
+grown 8.9 GB while a second job was being launched beside it. The audit did
+exactly what it should: `missing=4530`, verdict `INCOMPLETE`, nothing claimed.
+The sweep was then made resumable behind a fingerprint — engine source SHA-256,
+upstream pin, base-state count and the exact argument vector, all four of which
+must match or the directory is discarded — and re-run, inheriting the 3,501
+states the first run had legitimately cleared. The union is audited the same way
+a distributed run is, which is the audit `REPRODUCE.md` prescribes and which is
+indifferent to how many runs contributed the slices.
+
+Worth recording because it corrects a guess: the job I assumed had caused that
+swap growth, the $P_{23}$ cube regeneration, was later measured running at
+**40 MB resident** at 97% of a core. It was not the cause, and what was remains
+unestablished.
+
 There is a deliberate asymmetry in the caps. Searches for a **witness** run
 under a wall cap, because a cap can only fail to find a witness, never wrongly
 report its absence. Searches that must **refute** are never capped, because
@@ -234,17 +251,17 @@ PLACEHOLDER_CLAIM_TABLE
 
 ## What a full-scale reproduction would still need
 
-Four results were left untested, all for compute rather than for doubt. Their
-exact command lines are in the repository's `REPRODUCE.md`; the costs are the
-paper's own Appendix A.4 figures.
+Five results were left untested, all for compute rather than for doubt, and
+none of them bears on the bound. Their exact command lines are in this
+repository's `REPRODUCE.md`; the costs are Appendix A.4's own figures.
 
 | Claim | Cost | Why not attempted |
 |---|---|---|
 | $13 \le N(5)$ — every order-12 tournament is 5-inducible | ~10,000 core-h | Cluster scale. Settles all 2,048 one-vertex extensions of each of 903,753,248 order-11 classes. |
 | $P_{31} - v$ is not 5-inducible | 239.5 core-h | ~22 h at 11 workers; outside the agreed window. |
 | $P_{43} - v$ is not 5-inducible | 185.5 core-h | ~17 h at 11 workers. Would re-derive the previous paper's $N(5) \le 43$ by a second method. |
-| $P_{23}$ certified refutation (the SAT half) | 236.0 core-h | ~21 h, and needs a CaDiCaL build that is not installed here. Its portable half, ROOT (CNF), was attempted separately. |
-| $P_{31}$ is not 5-inducible | 26.89 core-h | ~2.5 h. Fitted the budget arithmetically but not the clock, once the headline run was protected. |
+| The LRAT solving half of both certifications | 236.0 + 25.1 core-h | Needs a CaDiCaL build that is not installed here, and the paper states these proof bytes are not portable across builds in any case. **The portable half of both, ROOT (CNF), was rebuilt in full** — see above. |
+| $P_{31}$ is not 5-inducible | 26.89 core-h | ~2.8 h at the 1.14 ratio measured here. Fitted the budget arithmetically but not the clock, once the headline run was protected. |
 
 Note what the untested rows do **not** include: nothing in the reproduced set
 depends on them. $N(5) \le 23$ rests on the $P_{23}$ refutation alone.
@@ -268,4 +285,9 @@ harness published here at the commit that produced its result.
   $P_{19}$ and the other doubly regular tournament on 19 vertices, at both
   margins, plus all 57 arc-orbit reversals.
 - [**B2-portable — ROOT (CNF)**](https://github.com/Leonardini/Tournaments/tree/orx/2609-13924-b2-portable-rebuild-root-cnf-for-both) —
-  regenerates the certification's cube set from scratch and compares the hash.
+  regenerates both certifications' cube sets from scratch and compares the
+  published hashes. $P_{19}$ passed here; $P_{23}$ hit a 40-minute side-job cap
+  at 70% of its cubes, all matching.
+- [**B2-portable-2 — the $P_{23}$ root, given room**](https://github.com/Leonardini/Tournaments/tree/orx/2609-13924-b2-portable-2-the-paley-23-root-cnf-r) —
+  the same check with a 90-minute cap. All 343,896 cubes, zero mismatches, hash
+  identical, 49m32s single-threaded.
