@@ -27,3 +27,8 @@ freearc
 order_sym
 rigid
 tri
+
+# Generated from reports/beyond-five-voters/readme_top.template.md by
+# reports/beyond-five-voters/finalize.py; the README carries the spliced copy.
+reports/beyond-five-voters/data/_readme_top.md
+__marimo__/
