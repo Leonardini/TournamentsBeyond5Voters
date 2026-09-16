@@ -116,6 +116,13 @@ def row_starting(tab, *words):
 # --------------------------------------------------------------------------
 # re-deriving from shipped bytes
 # --------------------------------------------------------------------------
+# The majority-sweep archive behind each q, named ONCE. check_quoted_nodes.py
+# reads this same mapping, so the two cannot drift apart and verify different
+# runs while both reporting success.
+MAJORITY_ARCHIVE = {23: 'rerun1_p23_majority.tar.zst', 27: 'p27_majority.tar.zst',
+                    31: 'p31_majority.tar.zst', 43: 'p43_majority.tar.zst'}
+
+
 def archive_totals(name):
     """(slices, nodes, dom_nodes, seconds) from a compressed run archive."""
     path = os.path.join(ROOT, 'evidence', name)
@@ -367,8 +374,7 @@ def main(mdpath, as_json):
     if run is None:
         skip('DERIVED', 'A.3 runtime table', 'table not found in the manuscript')
     else:
-        arch = {23: 'rerun1_p23_majority.tar.zst', 27: 'p27_majority.tar.zst',
-                31: 'p31_majority.tar.zst', 43: 'p43_majority.tar.zst'}
+        arch = MAJORITY_ARCHIVE
         for r in run[1:]:
             qv = num(r[0])
             if qv is None or int(qv) not in arch:

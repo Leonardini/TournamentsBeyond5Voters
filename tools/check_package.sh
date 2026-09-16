@@ -502,6 +502,19 @@ else
 fi
 
 echo
+echo "== 14. node counts quoted in the prose match the archives =="
+# check_manuscript.py re-derives A.3 but reads only manuscript/*.md, and
+# MANIFEST pins bytes rather than meaning -- which is how REPRODUCE.md and
+# evidence/README.md printed dom_nodes where nodes was meant for five days
+# while this gate passed 37/0. This closes that hole.
+if qout=$(cd "$ROOT" && python3 tools/check_quoted_nodes.py 2>&1); then
+  ok "$(echo "$qout" | tail -1)"
+else
+  bad "a node count quoted in the prose disagrees with the evidence archives"
+  echo "$qout" | sed 's/^/        /' | head -12
+fi
+
+echo
 echo "-------------------------------------------------------------"
 printf 'passed %d   failed %d   skipped %d\n' "$pass" "$fail" "$skip"
 [ "$fail" -eq 0 ] || exit 1

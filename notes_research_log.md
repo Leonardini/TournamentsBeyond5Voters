@@ -683,7 +683,9 @@ chain at all.  What remains human is exactly two lemmas: arc-orbit anchoring is
 WLOG, and voters may be lex-ordered WLOG.
 
 **Paley(27) is NOT 5-inducible (unrestricted).**  2008/2008 chunks UNSAT, 0
-capped, coverage [0,8031) with no gaps, no witness, 31.04 core-h, 1.14e8 nodes.
+capped, coverage [0,8031) with no gaps, no witness, 31.04 core-h, 6.22e9 nodes.
+[corrected 2026-09-16: this line read 1.14e8, which is the dom_nodes sum, not
+nodes -- the same slip as Appendix A.3's, fixed there 2026-09-11.]
 Host = the GF(3^3) build (`p27_paley.bits`, = McKay DRT27 #371).  This does NOT
 improve N(5) <= 23: non-inducibility propagates upward, so non-inducible
 tournaments already exist at every n >= 23.  Its value is method reach -- 27
@@ -819,12 +821,16 @@ base states at every q):
 
 | q | core-h | nodes | s/surviving base |
 |---|---|---|---|
-| 27 | 31.04 | 1.14e8 | 44.0 |
+| 27 | 31.04 | 6.22e9 | 44.0 |
 | 43 | 22.87 | 1.43e9 | 32.5 |
 
 (P31 ran the cheaper mask-499 decomposition, so it is not directly comparable in
-this table; its mask-217 paired ratio against P27 was 0.9505.)  Node counts rise
-while total time falls -- per-node work is what shrinks relative to the tree.
+this table; its mask-217 paired ratio against P27 was 0.9505.)  Node counts FALL
+(6.22e9 -> 1.43e9) while total time falls too, and per-node work RISES; the node
+count falls faster, which is what makes the total fall.
+[corrected 2026-09-16: this sentence said node counts rise, which followed from
+the 1.14e8 above.  A bigger Paley is MORE constrained, so the search dies nearer
+the root and the tree is smaller.]
 The mechanism remains that the outer loop is q-INDEPENDENT while the per-base
 DFS gets easier as the host becomes more constrained.
 
