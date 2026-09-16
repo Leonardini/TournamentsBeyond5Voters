@@ -241,7 +241,7 @@ hash. PLACEHOLDER_ROOT23
 
 PLACEHOLDER_COST_PARA
 
-### One quantity that did not reproduce
+### A correction: the node count this report first called divergent
 
 PLACEHOLDER_NODE_DIVERGENCE
 

@@ -65,17 +65,14 @@ if p23:
         f"sense: the arc-reversal witness came back **byte-identical** to the "
         f"published ballots, and the $P_{{19}}$ certification's ROOT (CNF) rebuilt "
         f"from scratch to the published hash with zero per-cube mismatches.\n\n"
-        f"**One quantity diverged.** The node count for the $q = 23$ sweep is "
-        f"9.30 × 10⁷ here against the 1.14 × 10¹⁰ of Appendix A.3 — a factor of "
-        f"{1.14e10/p23['nodes']:.0f}. Every quantity that count is supposed to pin "
-        f"agrees (cost ratio 1.14, seconds per live base state 54.1 against 47.3, "
-        f"2,571 searched states against 2,591 live), the engine's counter is tied to "
-        f"the originating implementation by a regression gate this reproduction ran "
-        f"and passed, and the package's own two published sources disagree with each "
-        f"other on the same quantity for $q = 27$ by a comparable factor. This run "
-        f"therefore did not reproduce that table entry; it gives no reason to think "
-        f"the search differed, and the authors have since confirmed it as a "
-        f"reporting-script bug and fixed it.\n\n"
+        f"**One quantity is not measured, and an earlier version of this report got "
+        f"it wrong.** The node count was reported here as divergent from Appendix "
+        f"A.3 by a factor of 123. That figure was a `dom_nodes` total, scraped by a "
+        f"greedy regex in this harness that matched the last `nodes=` on the engine's "
+        f"output line. There is no divergence; the node count is simply not measured, "
+        f"and recovering it needs the sweep re-run. Costs and verdicts never depended "
+        f"on it. The authors hit the same trap in their own $q = 27$ reporting and "
+        f"have corrected it independently.\n\n"
         f"**Nothing was left partial.** Every claim attempted is complete over its "
         f"own space, including both certifications' portable half: ROOT (CNF) was "
         f"rebuilt cube by cube for $P_{{19}}$ and for $P_{{23}}$, 22,876 and 343,896 "
@@ -89,11 +86,8 @@ if p23:
         "claims, one of which returned a witness byte-identical to the published "
         "one. **One quantity diverged**: the node count for this sweep, where the "
         "paper's Appendix A.3 reports 1.14 × 10¹⁰ and this run measured 9.30 × 10⁷. "
-        "Every quantity that count is meant to pin agrees, and the package's own two "
-        "published sources disagree with each other on the same quantity for "
-        "$q = 27$. The authors have since traced it to a bug in their node-count "
-        "reporting script rather than in the search, and corrected it; the report "
-        "keeps the analysis as it stood.")
+        "The authors independently hit the same trap in their own reporting for "
+        "$q = 27$ and have corrected it.")
     V['B1'] = (f"**Aligned** — not 5-inducible; {p23['cleared']:,}/{p23['expected']:,} "
                f"cleared, 0 capped" if complete('p23') else "**Incomplete**")
 
@@ -214,42 +208,39 @@ V['COST_PARA'] = (
 if p23:
     _n = p23['nodes']; _us = p23['core_seconds'] * 1e6 / _n
     V['NODE_DIVERGENCE'] = (
-        f"The verdict, the cost and the per-state timing all line up. The **node "
-        f"count does not**. This run explored **{_n:,} nodes** "
-        f"({_n:.3g}); Appendix A.3 reports **1.14 × 10¹⁰** for $q = 23$, about "
-        f"{1.14e10/_n:.0f} times more. Work per node follows: {_us:,.0f} µs here "
-        f"against the 10.8 µs the paper derives for this run.\n\n"
-        f"Three things are worth stating alongside that, because the node count is a "
-        f"quantity the paper says should replicate exactly when five conditions are "
-        f"held fixed — and this run held all five, using the published command line "
-        f"for anchor A verbatim.\n\n"
-        f"1. **Everything the node count is supposed to pin agrees.** Seconds per live "
-        f"base state came out at 54.1 s against the paper's 47.3 s, a ratio of 1.14 "
-        f"that matches the core-hour ratio of "
-        f"{p23['core_hours']/34.03:.2f} almost exactly, and the count of base states "
-        f"that ran a search came to 2,571 against the paper's 2,591 live.\n"
-        f"2. **The package's own two published sources disagree on this same quantity "
-        f"by a similar factor.** For $q = 27$ — one run, one configuration — "
-        f"`REPRODUCE.md` records `31.04 core-h, 1.14e8 nodes` while Appendix A.3 "
-        f"records 31.04 core-hours and 6.22 × 10⁹ nodes. The core-hours match to four "
-        f"digits; the node counts differ by a factor of 55. For $q = 31$ the two "
-        f"sources agree exactly (3.43 × 10⁹).\n"
-        f"3. **The engine's counter is tied to the original implementation by a test "
-        f"this reproduction ran.** `regression.sh` requires the consolidated engine to "
-        f"agree with `kinduce16` — the version that produced this very anchor — on "
-        f"every counter of the `RESULT` line including `nodes`, and it passed 5/5.\n\n"
-        f"So what this run shows is that the figure in Appendix A.3 was not "
-        f"reproduced by running the command line that appendix describes. It does not "
-        f"show that the search differed: the verdict, the coverage, the cost and the "
-        f"per-state timing are all consistent with the paper, and the node counter "
-        f"itself is pinned to the original engine by the gate. The cleanest reading is "
-        f"that the discrepancy lives in the published tables rather than in the "
-        f"computation, and the $q = 27$ inconsistency inside the package points the "
-        f"same way.\n\n"
-        f"**Resolved after this reproduction was written.** The authors traced it to a "
-        f"bug in the script that reported node counts, not to the search, and have "
-        f"corrected it. The analysis above is left as it was written, as the record of "
-        f"what an outside re-run saw.")
+        "An earlier version of this report said the node count diverged: "
+        "9.30 × 10⁷ measured here against Appendix A.3's 1.14 × 10¹⁰ for "
+        "$q = 23$, a factor of 123. **That was this harness's own bug, and the "
+        "figure was never a node count.**\n\n"
+        "The per-state worker scraped the engine's `RESULT` line with\n\n"
+        "```sh\n"
+        "nodes=$(printf '%s\\n' \"$res\" | sed -n 's/.*nodes=\\([0-9]*\\).*/\\1/p')\n"
+        "```\n\n"
+        "`.*nodes=` is greedy, so it matches the **last** occurrence on the "
+        "line, and the line reads\n\n"
+        "```\n"
+        "RESULT UNSAT nodes=… sols=… base_states=… dom_calls=… dom_nodes=… mrv_fails=…\n"
+        "```\n\n"
+        "The last occurrence is `dom_nodes` — domain computations, not search "
+        "nodes. Every sweep total this harness reported was therefore a "
+        "`dom_nodes` total. Re-running the first hundred base states of the "
+        "$P_{23}$ anchor under the engine directly settles it: the engine "
+        "reports `nodes=100` and `dom_nodes=1,125,406`, and the figure this "
+        "harness had recorded for those states was 1,125,406.\n\n"
+        "So there is **no divergence to explain** — and the node count is "
+        "simply *not measured* by this reproduction. Recovering it needs the "
+        "sweep re-run with the fixed parser, about 3.5 h at eleven workers, "
+        "because the per-state `RESULT` lines were not retained for states that "
+        "returned UNSAT; only the marker and the timing were.\n\n"
+        "Two things are worth keeping from the episode. The **cost** figures "
+        "were never affected — they are parsed from `time=`, which appears "
+        "once — and they are what the agreement rests on: 38.64 core-hours "
+        "against 34.03, and 54.1 s per live base state against 47.3. And the "
+        "authors independently found the same class of bug in their own "
+        "reporting for $q = 27$, where `REPRODUCE.md` and `evidence/README.md` "
+        "printed `dom_nodes` where `nodes` was meant; that is now corrected to "
+        "6.22 × 10⁹, matching Appendix A.3. Two implementations, the same "
+        "greedy-match trap, found from opposite directions.")
 
 # ---- the claim-by-claim table ----------------------------------------------
 def row(cid, claim, paper, obs, assess, cost):
@@ -272,10 +263,9 @@ if 'p31' in S:
                    "**aligned**" if complete('p31') else "**inconclusive**",
                    f"{s['core_hours']:.2f} core-h"))
 tbl.append(row("A.3", "Node count for the $q = 23$ sweep",
-               "1.14 × 10¹⁰ nodes, 10.8 µs per node",
-               f"9.30 × 10⁷ nodes, {p23['core_seconds']*1e6/p23['nodes']:,.0f} µs "
-               f"per node" if p23 else "—",
-               "**divergent**", "same run as B1"))
+               "1.14 × 10¹⁰ nodes",
+               "not measured — this harness scraped `dom_nodes`; see above",
+               "**not measured**", "would need the sweep re-run"))
 tbl.append(row("P3/P5", "$P_{19}$ **is** 5-inducible; its witness has no unanimous arc",
                "inducible; supports in $\\{3,4\\}$",
                f"witness found in {G['p19_sat']['seconds']:.0f} s; supports in "

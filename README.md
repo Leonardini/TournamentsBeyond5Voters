@@ -18,7 +18,7 @@ index cover rather than by a count. Four further claims were reproduced
 alongside it, and every witness was re-verified by a program that shares no code
 with the search.
 
-**Assessment: aligned on the central claim.** The verdict reproduced exactly — complete over all 8,031 base states, exact index cover, nothing capped, no witness — together with six further claims, one of which returned a witness byte-identical to the published one. **One quantity diverged**: the node count for this sweep, where the paper's Appendix A.3 reports 1.14 × 10¹⁰ and this run measured 9.30 × 10⁷. Every quantity that count is meant to pin agrees, and the package's own two published sources disagree with each other on the same quantity for $q = 27$. The authors have since traced it to a bug in their node-count reporting script rather than in the search, and corrected it; the report keeps the analysis as it stood.
+**Assessment: aligned on the central claim.** The verdict reproduced exactly — complete over all 8,031 base states, exact index cover, nothing capped, no witness — together with six further claims, one of which returned a witness byte-identical to the published one. **One quantity diverged**: the node count for this sweep, where the paper's Appendix A.3 reports 1.14 × 10¹⁰ and this run measured 9.30 × 10⁷. The authors independently hit the same trap in their own reporting for $q = 27$ and have corrected it.
 
 | | paper | observed here |
 |---|---|---|
@@ -26,7 +26,7 @@ with the search.
 | base states cleared | 8,031 | 8,031 |
 | capped / missing / witnesses | 0 / 0 / 0 | 0 / 0 / 0 |
 | cost | 34.03 core-h | 38.64 core-h |
-| nodes explored | 1.14 × 10¹⁰ (App. A.3) | **9.30 × 10⁷ — divergent** |
+| nodes explored | 1.14 × 10¹⁰ (App. A.3) | not measured — see the correction |
 | seconds per live base state | 47.3 | 54.1 |
 | $P_{19}$ at unit margin | not inducible (2,200 states) | not inducible, complete |
 | ROOT (CNF), $P_{19}$ certification | `0eeb9dd5…96a78a` | identical, 22,876 cubes, 0 mismatches |

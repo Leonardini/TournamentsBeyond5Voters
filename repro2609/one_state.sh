@@ -17,7 +17,10 @@ rc=$?
 
 res=$(printf '%s\n' "$out" | grep '^RESULT ' | tail -1)
 slice=$(printf '%s\n' "$out" | grep '^SLICE ' | tail -1)
-nodes=$(printf '%s\n' "$res" | sed -n 's/.*nodes=\([0-9]*\).*/\1/p')
+# NB: anchored to `RESULT <verdict> nodes=`, NOT a bare `.*nodes=` -- the greedy
+# form matches the LAST occurrence on the line, which is `dom_nodes=`, and
+# silently records domain computations where the node count was meant.
+nodes=$(printf '%s\n' "$res" | sed -n 's/^RESULT [A-Z]* nodes=\([0-9]*\).*/\1/p')
 secs=$(printf '%s\n' "$res" | sed -n 's/.*time=\([0-9.]*\)s.*/\1/p')
 capped=$(printf '%s\n' "$slice" | sed -n 's/.*capped=\([0-9]*\).*/\1/p')
 

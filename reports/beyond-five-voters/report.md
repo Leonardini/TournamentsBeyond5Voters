@@ -255,26 +255,34 @@ Costs land close to the paper's Appendix A.4 figures, which is expected rather t
 
 Memory never became a factor. The engine's `--pool-mb 512` is a ceiling on the domain arena, not a reservation, and the watchdog recorded a peak of 26 MB of resident memory across all workers with swap growth of 0 MB from baseline.
 
-### One quantity that did not reproduce
+### A correction: the node count this report first called divergent
 
-The verdict, the cost and the per-state timing all line up. The **node count does not**. This run explored **93,040,538 nodes** (9.3e+07); Appendix A.3 reports **1.14 × 10¹⁰** for $q = 23$, about 123 times more. Work per node follows: 1,495 µs here against the 10.8 µs the paper derives for this run.
+An earlier version of this report said the node count diverged: 9.30 × 10⁷ measured here against Appendix A.3's 1.14 × 10¹⁰ for $q = 23$, a factor of 123. **That was this harness's own bug, and the figure was never a node count.**
 
-Three things are worth stating alongside that, because the node count is a quantity the paper says should replicate exactly when five conditions are held fixed — and this run held all five, using the published command line for anchor A verbatim.
+The per-state worker scraped the engine's `RESULT` line with
 
-1. **Everything the node count is supposed to pin agrees.** Seconds per live base state came out at 54.1 s against the paper's 47.3 s, a ratio of 1.14 that matches the core-hour ratio of 1.14 almost exactly, and the count of base states that ran a search came to 2,571 against the paper's 2,591 live.
-2. **The package's own two published sources disagree on this same quantity by a similar factor.** For $q = 27$ — one run, one configuration — `REPRODUCE.md` records `31.04 core-h, 1.14e8 nodes` while Appendix A.3 records 31.04 core-hours and 6.22 × 10⁹ nodes. The core-hours match to four digits; the node counts differ by a factor of 55. For $q = 31$ the two sources agree exactly (3.43 × 10⁹).
-3. **The engine's counter is tied to the original implementation by a test this reproduction ran.** `regression.sh` requires the consolidated engine to agree with `kinduce16` — the version that produced this very anchor — on every counter of the `RESULT` line including `nodes`, and it passed 5/5.
+```sh
+nodes=$(printf '%s\n' "$res" | sed -n 's/.*nodes=\([0-9]*\).*/\1/p')
+```
 
-So what this run shows is that the figure in Appendix A.3 was not reproduced by running the command line that appendix describes. It does not show that the search differed: the verdict, the coverage, the cost and the per-state timing are all consistent with the paper, and the node counter itself is pinned to the original engine by the gate. The cleanest reading is that the discrepancy lives in the published tables rather than in the computation, and the $q = 27$ inconsistency inside the package points the same way.
+`.*nodes=` is greedy, so it matches the **last** occurrence on the line, and the line reads
 
-**Resolved after this reproduction was written.** The authors traced it to a bug in the script that reported node counts, not to the search, and have corrected it. The analysis above is left as it was written, as the record of what an outside re-run saw.
+```
+RESULT UNSAT nodes=… sols=… base_states=… dom_calls=… dom_nodes=… mrv_fails=…
+```
+
+The last occurrence is `dom_nodes` — domain computations, not search nodes. Every sweep total this harness reported was therefore a `dom_nodes` total. Re-running the first hundred base states of the $P_{23}$ anchor under the engine directly settles it: the engine reports `nodes=100` and `dom_nodes=1,125,406`, and the figure this harness had recorded for those states was 1,125,406.
+
+So there is **no divergence to explain** — and the node count is simply *not measured* by this reproduction. Recovering it needs the sweep re-run with the fixed parser, about 3.5 h at eleven workers, because the per-state `RESULT` lines were not retained for states that returned UNSAT; only the marker and the timing were.
+
+Two things are worth keeping from the episode. The **cost** figures were never affected — they are parsed from `time=`, which appears once — and they are what the agreement rests on: 38.64 core-hours against 34.03, and 54.1 s per live base state against 47.3. And the authors independently found the same class of bug in their own reporting for $q = 27$, where `REPRODUCE.md` and `evidence/README.md` printed `dom_nodes` where `nodes` was meant; that is now corrected to 6.22 × 10⁹, matching Appendix A.3. Two implementations, the same greedy-match trap, found from opposite directions.
 
 ## Claim-by-claim
 
 | id | claim | paper | observed here | assessment | cost |
 |---|---|---|---|---|---|
 | B1 | $P_{23}$ is not 5-inducible, so $N(5) \le 23$ | not 5-inducible, 8,031 base states, 34.03 core-h | not 5-inducible, 8,031/8,031 cleared, 0 capped, 0 witnesses | **aligned** | 38.64 core-h |
-| A.3 | Node count for the $q = 23$ sweep | 1.14 × 10¹⁰ nodes, 10.8 µs per node | 9.30 × 10⁷ nodes, 1,495 µs per node | **divergent** | same run as B1 |
+| A.3 | Node count for the $q = 23$ sweep | 1.14 × 10¹⁰ nodes | not measured — this harness scraped `dom_nodes`; see above | **not measured** | would need the sweep re-run |
 | P3/P5 | $P_{19}$ **is** 5-inducible; its witness has no unanimous arc | inducible; supports in $\{3,4\}$ | witness found in 164 s; supports in $\{3,4\}$ over all 171 arcs, recomputed from the ballots | **aligned** | 164 s |
 | P4 | $P_{19}$ is **not** 5-inducible at unit margin | not inducible, 2,200 base states, ~2.5 core-h | not inducible, 2,200/2,200 cleared, 0 capped | **aligned** | 2.76 core-h |
 | P6 | $P_{23} - v$ **is** 5-inducible | witness at base state 6,560 | witness at base state 6,560 in 81 s, all 231 arcs verified | **aligned** | 81 s |
@@ -310,7 +318,7 @@ depends on them. $N(5) \le 23$ rests on the $P_{23}$ refutation alone.
 
 **Six further claims are aligned**, including both halves of the margin hierarchy — the paper's second contribution — where the cost for the second doubly regular tournament on 19 vertices came in at 2.69 core-hours against a published 2.70. Two results are stronger than agreement in the ordinary sense: the arc-reversal witness came back **byte-identical** to the published ballots, and the $P_{19}$ certification's ROOT (CNF) rebuilt from scratch to the published hash with zero per-cube mismatches.
 
-**One quantity diverged.** The node count for the $q = 23$ sweep is 9.30 × 10⁷ here against the 1.14 × 10¹⁰ of Appendix A.3 — a factor of 123. Every quantity that count is supposed to pin agrees (cost ratio 1.14, seconds per live base state 54.1 against 47.3, 2,571 searched states against 2,591 live), the engine's counter is tied to the originating implementation by a regression gate this reproduction ran and passed, and the package's own two published sources disagree with each other on the same quantity for $q = 27$ by a comparable factor. This run therefore did not reproduce that table entry; it gives no reason to think the search differed, and the authors have since confirmed it as a reporting-script bug and fixed it.
+**One quantity is not measured, and an earlier version of this report got it wrong.** The node count was reported here as divergent from Appendix A.3 by a factor of 123. That figure was a `dom_nodes` total, scraped by a greedy regex in this harness that matched the last `nodes=` on the engine's output line. There is no divergence; the node count is simply not measured, and recovering it needs the sweep re-run. Costs and verdicts never depended on it. The authors hit the same trap in their own $q = 27$ reporting and have corrected it independently.
 
 **Nothing was left partial.** Every claim attempted is complete over its own space, including both certifications' portable half: ROOT (CNF) was rebuilt cube by cube for $P_{19}$ and for $P_{23}$, 22,876 and 343,896 cubes, zero mismatches either side, both hashes identical to the published values. Four results were not run at all — the lower bound $13 \le N(5)$, the two vertex-criticality results and $P_{31}$ — on compute grounds; none of them bears on the upper bound tested here.
 

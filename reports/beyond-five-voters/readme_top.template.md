@@ -26,7 +26,7 @@ with the search.
 | base states cleared | 8,031 | PLACEHOLDER_CLEARED |
 | capped / missing / witnesses | 0 / 0 / 0 | PLACEHOLDER_ZEROS |
 | cost | 34.03 core-h | PLACEHOLDER_COREH |
-| nodes explored | 1.14 × 10¹⁰ (App. A.3) | **9.30 × 10⁷ — divergent** |
+| nodes explored | 1.14 × 10¹⁰ (App. A.3) | not measured — see the correction |
 | seconds per live base state | 47.3 | 54.1 |
 | $P_{19}$ at unit margin | not inducible (2,200 states) | PLACEHOLDER_P19M1 |
 | ROOT (CNF), $P_{19}$ certification | `0eeb9dd5…96a78a` | identical, 22,876 cubes, 0 mismatches |
