@@ -11,7 +11,7 @@ measurement records behind each configuration choice.  The logs compress ~100x
 | `rerun1_p23_majority.tar.zst` | 2nd refutation of Paley(23): 2008/2008 UNSAT, 34.0 core-h |
 | `anchor2_p23_majority.tar.zst` | 3rd, **base-independent** refutation: 4030/4030 UNSAT, 43.8 core-h |
 | `n22_p23minusv.tar.zst` | Paley(23)−v: SAT in 62 s, so n=22 does not improve the bound |
-| `p27_majority.tar.zst` | Paley(27): 2008/2008 UNSAT, 31.0 core-h, 1.14e8 nodes |
+| `p27_majority.tar.zst` | Paley(27): 2008/2008 UNSAT, 31.0 core-h, 6.22e9 nodes |
 | `p31_majority.tar.zst` | Paley(31): 5253/5253 UNSAT, 26.9 core-h, 3.43e9 nodes |
 | `p43_majority.tar.zst` | Paley(43): 2008/2008 UNSAT, 22.9 core-h, 1.43e9 nodes — cross-method confirmation |
 

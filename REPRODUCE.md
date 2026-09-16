@@ -42,7 +42,7 @@ complete refutation; both were run.
 
 ### Paley(27) is not 5-inducible
 
-31.04 core-h, 1.14e8 nodes, coverage [0,8031). Originally kinduce22.
+31.04 core-h, 6.22e9 nodes, coverage [0,8031). Originally kinduce22.
 The host must be the GF(3^3) build: the Z/27 construction is not a tournament.
 
     ./kinduce --bits p27_paley.bits --n 27 --k 5 --margin majority --order mrv \
