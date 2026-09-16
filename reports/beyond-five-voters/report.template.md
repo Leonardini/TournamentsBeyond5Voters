@@ -148,6 +148,15 @@ swap growth, the $P_{23}$ cube regeneration, was later measured running at
 **40 MB resident** at 97% of a core. It was not the cause, and what was remains
 unestablished.
 
+One quantity, one definition. Whether a base state "ran a search" is decided in
+exactly one place — `collect.py`'s `SEARCHED_MIN_S`, with the sweep driver
+reading the same threshold — and the figures and this prose both consume the
+value it computes rather than each applying their own rule. They did not, once,
+and the two disagreed in public: the headline paragraph said all 8,031 states
+searched while the figure beside it said 2,571. `check_report.py` now asserts
+the agreement, along with the index cover and the absence of any withdrawn
+figure, and exits non-zero otherwise.
+
 There is a deliberate asymmetry in the caps. Searches for a **witness** run
 under a wall cap, because a cap can only fail to find a witness, never wrongly
 report its absence. Searches that must **refute** are never capped, because

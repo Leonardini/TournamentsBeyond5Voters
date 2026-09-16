@@ -127,7 +127,9 @@ def fig2():
     cum = []; run = 0.0
     for v in secs:
         run += v; cum.append(100 * run / tot)
-    searched = sum(1 for v in secs if v > 0.001)
+    # the shared definition from collect.py, never a second local rule
+    searched = R['sweeps']['p23']['searched']
+    assert searched + R['sweeps']['p23']['unsearched'] == n
 
     fig, (ax, ax2) = plt.subplots(1, 2, figsize=(10.4, 4.1))
     ax.plot(range(1, n + 1), cum, color=BLUE, lw=2.2)

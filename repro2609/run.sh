@@ -136,10 +136,17 @@ audit() {
     nsat=$(ls "$d"/SAT.* 2>/dev/null | wc -l | tr -d ' ')
     ncap=$(ls "$d"/CAPPED.* 2>/dev/null | wc -l | tr -d ' ')
     nerr=$(ls "$d"/ERROR.* 2>/dev/null | wc -l | tr -d ' ')
-    read -r nodes secs live < <(awk '$2!="NA"{tn+=$2; ts+=$3; if($2>0) lv++}
+    # A state that the orbit anchoring kills still costs one node and no
+    # measurable time, so `nodes > 0` counts every state and is not a liveness
+    # test. Time is: SEARCHED_MIN_S is the single definition of "ran a search",
+    # and reports/beyond-five-voters/collect.py reads the same threshold.
+    SEARCHED_MIN_S=0.001
+    read -r nodes secs live < <(awk -v thr="$SEARCHED_MIN_S" \
+        '$2!="NA"{tn+=$2; ts+=$3; if($3+0 > thr) lv++}
         END{printf "%d %.1f %d", tn, ts, lv}' "$d/times.txt")
     coreh=$(awk -v s="$secs" 'BEGIN{printf "%.2f", s/3600}')
     perlive=$(awk -v s="$secs" -v l="$live" 'BEGIN{if(l>0) printf "%.1f", s/l; else print "NA"}')
+    [ "$((live))" -le "$n" ] || { echo "AUDIT BUG: live=$live > states=$n"; exit 1; }
     echo "AUDIT tag=$tag expected=$n cleared=$(wc -l < "$d/got.txt" | tr -d ' ')" \
          "missing=$missing extra=$extra capped=$ncap sat=$nsat errors=$nerr"
     echo "AUDIT tag=$tag nodes=$nodes core_seconds=$secs core_hours=$coreh" \

@@ -148,6 +148,15 @@ swap growth, the $P_{23}$ cube regeneration, was later measured running at
 **40 MB resident** at 97% of a core. It was not the cause, and what was remains
 unestablished.
 
+One quantity, one definition. Whether a base state "ran a search" is decided in
+exactly one place — `collect.py`'s `SEARCHED_MIN_S`, with the sweep driver
+reading the same threshold — and the figures and this prose both consume the
+value it computes rather than each applying their own rule. They did not, once,
+and the two disagreed in public: the headline paragraph said all 8,031 states
+searched while the figure beside it said 2,571. `check_report.py` now asserts
+the agreement, along with the index cover and the absence of any withdrawn
+figure, and exits non-zero otherwise.
+
 There is a deliberate asymmetry in the caps. Searches for a **witness** run
 under a wall cap, because a cap can only fail to find a witness, never wrongly
 report its absence. Searches that must **refute** are never capped, because
@@ -159,7 +168,7 @@ there a cap voids the verdict.
 
 All **8,031** base states of the published decomposition were searched to exhaustion. **8,031** returned `RESULT UNSAT` with `capped=0`; **0** were missing from the index cover, **0** were extra, **0** were capped, and **0** produced a witness. The refutation is therefore complete, and $N(5) \le 23$ follows.
 
-It cost **38.64 core-hours** against the paper's 34.03 — a ratio of 1.14 — and explored 93,040,538 nodes. Of the 8,031 base states, only **8,031** ran a search at all; the rest were eliminated by the orbit anchoring of Lemma 2.1 before a single vertex was inserted.
+It cost **38.64 core-hours** against the paper's 34.03, a ratio of 1.14. Of the 8,031 base states only **2,571** consumed more than a millisecond; the other 5,460 were eliminated by the orbit anchoring of Lemma 2.1 before a vertex was inserted. The paper puts the live count at 2,591, and the 20-state gap is the anchoring pruning some live states faster than the timer resolves. No node count is quoted here: this harness mis-scraped that field, as the correction below sets out.
 
 ### Where the time actually goes
 
@@ -257,7 +266,7 @@ Memory never became a factor. The engine's `--pool-mb 512` is a ceiling on the d
 
 ### A correction: the node count this report first called divergent
 
-An earlier version of this report said the node count diverged: 9.30 × 10⁷ measured here against Appendix A.3's 1.14 × 10¹⁰ for $q = 23$, a factor of 123. **That was this harness's own bug, and the figure was never a node count.**
+An earlier version of this report said the node count diverged: 9.30 × 10⁷ reported here against Appendix A.3's 1.14 × 10¹⁰ for $q = 23$, a factor of 123. **That was this harness's own bug, and the figure was never a node count.**
 
 The per-state worker scraped the engine's `RESULT` line with
 

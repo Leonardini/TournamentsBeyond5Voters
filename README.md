@@ -18,7 +18,9 @@ index cover rather than by a count. Four further claims were reproduced
 alongside it, and every witness was re-verified by a program that shares no code
 with the search.
 
-**Assessment: aligned on the central claim.** The verdict reproduced exactly — complete over all 8,031 base states, exact index cover, nothing capped, no witness — together with six further claims, one of which returned a witness byte-identical to the published one. **One quantity diverged**: the node count for this sweep, where the paper's Appendix A.3 reports 1.14 × 10¹⁰ and this run measured 9.30 × 10⁷. The authors independently hit the same trap in their own reporting for $q = 27$ and have corrected it.
+**Assessment: aligned on the central claim.** The verdict reproduced exactly — complete over all 8,031 base states, exact index cover, nothing capped, no witness — together with six further claims, among them an arc-reversal witness byte-identical to the published one and both certifications' ROOT (CNF) rebuilt cube by cube.
+
+**One correction.** An earlier version of this record reported the node count as diverging from Appendix A.3 by a factor of 123. That was a greedy-regex bug in this harness, which scraped `dom_nodes` where `nodes` was meant; the node count is simply **not measured** here. Costs and verdicts never depended on it. The authors independently hit the same trap in their own $q = 27$ reporting and have corrected it.
 
 | | paper | observed here |
 |---|---|---|

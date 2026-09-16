@@ -21,11 +21,14 @@ slice=$(printf '%s\n' "$out" | grep '^SLICE ' | tail -1)
 # form matches the LAST occurrence on the line, which is `dom_nodes=`, and
 # silently records domain computations where the node count was meant.
 nodes=$(printf '%s\n' "$res" | sed -n 's/^RESULT [A-Z]* nodes=\([0-9]*\).*/\1/p')
+# recorded alongside, because the two are easy to confuse and one scrape of the
+# line used to return this where the node count was meant
+domnodes=$(printf '%s\n' "$res" | sed -n 's/.*[^_]dom_nodes=\([0-9]*\).*/\1/p')
 secs=$(printf '%s\n' "$res" | sed -n 's/.*time=\([0-9.]*\)s.*/\1/p')
 capped=$(printf '%s\n' "$slice" | sed -n 's/.*capped=\([0-9]*\).*/\1/p')
 
-printf '%s %s %s %s\n' "$idx" "${nodes:-NA}" "${secs:-NA}" "${capped:-NA}" \
-    >> "$outdir/times.txt"
+printf '%s %s %s %s %s\n' "$idx" "${nodes:-NA}" "${secs:-NA}" "${capped:-NA}" \
+    "${domnodes:-NA}" >> "$outdir/times.txt"
 
 if [ "$rc" -ne 0 ]; then
     printf '%s\n' "$out" > "$outdir/ERROR.$idx"

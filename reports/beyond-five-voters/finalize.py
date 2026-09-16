@@ -46,11 +46,14 @@ if p23:
         f"**{p23['extra']}** were extra, **{p23['capped']}** were capped, and "
         f"**{p23['sat']}** produced a witness. The refutation is therefore complete, "
         f"and $N(5) \\le 23$ follows.\n\n"
-        f"It cost **{p23['core_hours']:.2f} core-hours** against the paper's 34.03 — a "
-        f"ratio of {ratio:.2f} — and explored {p23['nodes']:,} nodes. Of the "
-        f"{p23['expected']:,} base states, only **{p23['searched']:,}** ran a search at "
-        f"all; the rest were eliminated by the orbit anchoring of Lemma 2.1 before a "
-        f"single vertex was inserted.")
+        f"It cost **{p23['core_hours']:.2f} core-hours** against the paper's 34.03, a "
+        f"ratio of {ratio:.2f}. Of the {p23['expected']:,} base states only "
+        f"**{p23['searched']:,}** consumed more than a millisecond; the other "
+        f"{p23['unsearched']:,} were eliminated by the orbit anchoring of Lemma 2.1 "
+        f"before a vertex was inserted. The paper puts the live count at 2,591, and "
+        f"the 20-state gap is the anchoring pruning some live states faster than the "
+        f"timer resolves. No node count is quoted here: this harness mis-scraped that "
+        f"field, as the correction below sets out.")
     V['ASSESSMENT'] = (
         f"**The central claim is aligned.** $P_{{23}}$ is not the majority tournament "
         f"of any five linear orders, established over the full base-state space with "
@@ -83,11 +86,14 @@ if p23:
     V['README_ASSESSMENT'] = (
         "The verdict reproduced exactly — complete over all 8,031 base states, "
         "exact index cover, nothing capped, no witness — together with six further "
-        "claims, one of which returned a witness byte-identical to the published "
-        "one. **One quantity diverged**: the node count for this sweep, where the "
-        "paper's Appendix A.3 reports 1.14 × 10¹⁰ and this run measured 9.30 × 10⁷. "
-        "The authors independently hit the same trap in their own reporting for "
-        "$q = 27$ and have corrected it.")
+        "claims, among them an arc-reversal witness byte-identical to the published "
+        "one and both certifications' ROOT (CNF) rebuilt cube by cube.\n\n"
+        "**One correction.** An earlier version of this record reported the node "
+        "count as diverging from Appendix A.3 by a factor of 123. That was a "
+        "greedy-regex bug in this harness, which scraped `dom_nodes` where `nodes` "
+        "was meant; the node count is simply **not measured** here. Costs and "
+        "verdicts never depended on it. The authors independently hit the same trap "
+        "in their own $q = 27$ reporting and have corrected it.")
     V['B1'] = (f"**Aligned** — not 5-inducible; {p23['cleared']:,}/{p23['expected']:,} "
                f"cleared, 0 capped" if complete('p23') else "**Incomplete**")
 
@@ -96,17 +102,18 @@ tj = os.path.join(HERE, 'data', 'p23_times.json')
 if os.path.exists(tj):
     secs = sorted(json.load(open(tj)), reverse=True)
     tot = sum(secs)
+    searched = S['p23']['searched']          # the shared definition, not a local rule
     cum, run = [], 0.0
     for v in secs:
         run += v; cum.append(run / tot)
     k50 = next(i for i, c in enumerate(cum) if c >= 0.5) + 1
     k90 = next(i for i, c in enumerate(cum) if c >= 0.9) + 1
-    searched = sum(1 for v in secs if v > 0.001)
     V['FIG2_PARA'] = (
         f"The cost is extraordinarily concentrated. Half of the entire search time "
         f"sits in **{k50:,} base states** ({100*k50/len(secs):.1f}% of them) and 90% in "
         f"**{k90:,}** ({100*k90/len(secs):.1f}%); the single most expensive state took "
-        f"{max(secs):,.0f} s while {len(secs)-searched:,} states never started a search. "
+        f"{max(secs):,.0f} s while {S['p23']['unsearched']:,} states never started a "
+        f"search. "
         f"Averaged over the states that did search, the figure is "
         f"**{tot/searched:.1f} s**, against the paper's reported 47.3 s per live base "
         f"state — the same quantity, arrived at independently.")
@@ -206,10 +213,10 @@ V['COST_PARA'] = (
 
 # ---- the node-count divergence ----------------------------------------------
 if p23:
-    _n = p23['nodes']; _us = p23['core_seconds'] * 1e6 / _n
+    _n = p23['dom_nodes_total']
     V['NODE_DIVERGENCE'] = (
         "An earlier version of this report said the node count diverged: "
-        "9.30 × 10⁷ measured here against Appendix A.3's 1.14 × 10¹⁰ for "
+        "9.30 × 10⁷ reported here against Appendix A.3's 1.14 × 10¹⁰ for "
         "$q = 23$, a factor of 123. **That was this harness's own bug, and the "
         "figure was never a node count.**\n\n"
         "The per-state worker scraped the engine's `RESULT` line with\n\n"

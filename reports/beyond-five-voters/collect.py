@@ -11,6 +11,13 @@ measurements, so they carry their source instead of a recomputation.
 """
 import json, os, re, sys, glob, hashlib
 
+# THE single definition of "this base state ran a search". A state the orbit
+# anchoring kills still costs one node, so a node-count test counts every state
+# and is not a liveness test; measurable time is. repro2609/run.sh uses the same
+# threshold, and the figures and the report both read the value computed here
+# rather than recomputing it — that is what kept them disagreeing before.
+SEARCHED_MIN_S = 0.001
+
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 os.makedirs(OUT, exist_ok=True)
 res = {'runs': {}, 'claims': {}, 'sweeps': {}, 'singles': {}, 'mem': []}
@@ -45,9 +52,14 @@ for rd in sys.argv[1:]:
                 expected=int(m[2]), cleared=int(m[3]), missing=int(m[4]),
                 extra=int(m[5]), capped=int(m[6]), sat=int(m[7]), errors=int(m[8]))
         elif (m := AUDIT2.match(line)):
+            # `nodes` here is column 2 of times.txt. Every sweep in this record
+            # predates the one_state.sh fix, so that column holds dom_nodes, not
+            # the node count; it is named for what it is. `states_with_search`
+            # from the audit line is discarded — it used a node-count test that
+            # counts every state — and recomputed below from the timings.
             res['sweeps'].setdefault(m[1], {}).update(
-                nodes=int(m[2]), core_seconds=float(m[3]),
-                core_hours=float(m[4]), searched=int(m[5]))
+                dom_nodes_total=int(m[2]), core_seconds=float(m[3]),
+                core_hours=float(m[4]))
         elif (m := FLIP.match(line)):
             res['sweeps'].setdefault('dr19flip', {}).update(
                 expected=int(m[1]), sat=int(m[2]), other=int(m[3]),
@@ -75,6 +87,14 @@ for rd in sys.argv[1:]:
         secs = sorted((float(r[2]) for r in rows if r[2] != 'NA'), reverse=True)
         if secs:
             json.dump(secs, open(os.path.join(OUT, f'{tag}_times.json'), 'w'))
+            searched = sum(1 for v in secs if v > SEARCHED_MIN_S)
+            e = res['sweeps'].setdefault(tag, {})
+            e.update(searched=searched, unsearched=len(secs) - searched,
+                     searched_min_s=SEARCHED_MIN_S)
+            if 'expected' in e:
+                assert e['searched'] + e['unsearched'] == e['expected'], (
+                    f"{tag}: {e['searched']} + {e['unsearched']} "
+                    f"!= {e['expected']}")
     for lg in glob.glob(os.path.join(rd, '**', 'out', '*', 'log.txt'), recursive=True):
         tag = os.path.basename(os.path.dirname(lg))
         body = open(lg, errors='replace').read()

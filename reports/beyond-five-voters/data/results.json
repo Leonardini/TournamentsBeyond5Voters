@@ -52,12 +52,17 @@
    "capped": 0,
    "sat": 0,
    "errors": 0,
-   "nodes": 1125406,
+   "dom_nodes_total": 1125406,
    "core_seconds": 0.0,
    "core_hours": 0.0,
-   "searched": 100
+   "searched": 0,
+   "unsearched": 100,
+   "searched_min_s": 0.001
   },
   "p23": {
+   "searched": 2571,
+   "unsearched": 5460,
+   "searched_min_s": 0.001,
    "wall_seconds": 9936,
    "expected": 8031,
    "cleared": 8031,
@@ -66,10 +71,9 @@
    "capped": 0,
    "sat": 0,
    "errors": 0,
-   "nodes": 93040538,
+   "dom_nodes_total": 93040538,
    "core_seconds": 139094.5,
-   "core_hours": 38.64,
-   "searched": 8031
+   "core_hours": 38.64
   },
   "p19m1": {
    "wall_seconds": 975,
@@ -80,10 +84,12 @@
    "capped": 0,
    "sat": 0,
    "errors": 0,
-   "nodes": 11920274,
+   "dom_nodes_total": 11920274,
    "core_seconds": 9920.0,
    "core_hours": 2.76,
-   "searched": 2200
+   "searched": 2200,
+   "unsearched": 0,
+   "searched_min_s": 0.001
   },
   "dr19m1": {
    "wall_seconds": 4048,
@@ -94,10 +100,12 @@
    "capped": 0,
    "sat": 0,
    "errors": 0,
-   "nodes": 11843556,
+   "dom_nodes_total": 11843556,
    "core_seconds": 9676.1,
    "core_hours": 2.69,
-   "searched": 2200
+   "searched": 2200,
+   "unsearched": 0,
+   "searched_min_s": 0.001
   },
   "dr19flip": {
    "expected": 57,
