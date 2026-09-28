@@ -146,7 +146,7 @@ red against it.
 | `tournaments/` | the hosts as bit strings, plus the generators that build them and `deletion_classes.py`, which derives the deletion-class counts of §3.4 with nauty |
 | `sat/` | the dissent-Boolean encoding, the cube tooling, the certification driver and the coverage check |
 | `verify/` | checkers that share no code with the search: witness verifiers that read the bit string and the ballots and recompute every arc's support; `appendix_e.py`, which builds Appendix E's three orders from its own prose and checks them over every locally transitive tournament of order 3–14; `triangles_per_arc.py`, which tests the 3-cycle hypothesis that turns a `--max-margin 3` run into a majority verdict |
-| `certificates/` | the two machine-checked refutations — per-cube sha256 chains, published roots, and the verdict files that state their own scope |
+| `certificates/` | the three machine-checked refutations — per-cube sha256 chains, published roots, and the verdict files that state their own scope. `CERT-v2.md` explains why each block now identifies its host by the sha256 of its adjacency rather than by the name of its construction |
 | `verdicts/` | one verdict record per result, the consolidated ledger, and the witness documents |
 | `evidence/` | chunk logs for every distributed sweep, compressed about 100×, plus the measurement JSON behind each configuration choice |
 | `cluster/` | the two computations that did not run on the laptop: the order-12 census and the 15-vertex regular census |
@@ -222,11 +222,21 @@ is deterministic on a fixed binary, but its heuristics use floating-point
 scoring, so a different build may search differently and emit a different,
 equally valid proof. **A mismatch there is not evidence of an error.**
 
+A root is only reproducible if the reproducer builds the **same** instance, and
+the instance starts with the host. `q=19` does not fix one: it names an
+isomorphism class, while a certificate's `base`, `arc` and `non` are vertex
+labels, and our `paley(19)` and its converse are both "Paley(19)" and differ in
+`adj[0][1]`. Each certificate therefore also ships a **CERT-v2** block, which
+commits to `host_sha256` — the sha256 of the host's canonical bit string — and
+points at the `.bits` file in `tournaments/`. The published v1 blocks are
+unchanged; `certificates/CERT-v2.md` gives the argument and the rebuild command,
+and check 3d of the gate confirms that the converse of Paley(19) is rejected.
+
 The proof bytes themselves were verified and discarded by design: each was
 checked by `lrat-trim`, hashed, and deleted, so peak storage was one proof per
 worker rather than terabytes. That makes this artifact weaker than one that
 publishes its proofs, and §5.3 of the paper says so. The trade is deliberate at
-this scale — regenerating either certificate from nothing costs 25 or 236
+this scale — regenerating a certificate from nothing costs 25, 236 or 224
 core-hours, three orders of magnitude below what re-validating a published
 proof of the Boolean Pythagorean triples kind costs.
 

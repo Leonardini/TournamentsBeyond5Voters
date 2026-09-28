@@ -12,7 +12,16 @@ log lines and require them to match done/*.json exactly.  If they do, the parse
 is faithful and the timing-free variant computed the same way is trustworthy.
 If they do not, nothing is emitted.
 
-  usage: reroot.py <certdir> [expected_old_cnf_root] [expected_old_proof_root]
+TWO CHUNK-HASH CONVENTIONS, AND IT MUST NOT ASSUME EITHER.  Runs from before
+2026-09-05 wrote the timing-inclusive record into `chunk_hash`; runs after it
+write the timing-free one, because that is now what certify_d6 hashes.  This
+script originally asserted the OLD convention, so it rejected the parse of every
+certificate produced after the fix and reported it as "ROOT does not rebuild" --
+a false alarm on correct evidence.  It now DETECTS the convention per chunk and
+requires all chunks to agree; a mixed directory is genuine corruption and is
+still refused.
+
+  usage: reroot.py <certdir> [expected_cnf_root] [expected_proof_root]
 """
 import sys, os, json, glob, hashlib
 
@@ -27,6 +36,7 @@ if len(logs) != len(dones):
 
 r_cnf = hashlib.sha256(); r_old = hashlib.sha256(); r_new = hashlib.sha256()
 ncube = bad = 0
+seen = set()
 for lg in logs:
     key = os.path.basename(lg).replace('.log', '.json')
     dn = json.load(open(os.path.join(d, 'done', key)))
@@ -43,10 +53,18 @@ for lg in logs:
         h_old.update((rec + "\n").encode())                       # as originally hashed
         h_new.update((f"{ci} {cnf_h} {lrt_h} VERIFIED\n").encode())  # timing-free
         ncube += 1
-    if h_cnf.hexdigest() != dn['chunk_hash_cnf'] or h_old.hexdigest() != dn['chunk_hash']:
+    if h_cnf.hexdigest() != dn['chunk_hash_cnf']:
         bad += 1
         if bad <= 3:
-            print(f"    PARSE MISMATCH {key}")
+            print(f"    PARSE MISMATCH {key}: chunk_hash_cnf")
+    elif h_old.hexdigest() == dn['chunk_hash']:
+        seen.add('timing-inclusive')
+    elif h_new.hexdigest() == dn['chunk_hash']:
+        seen.add('timing-free')
+    else:
+        bad += 1
+        if bad <= 3:
+            print(f"    PARSE MISMATCH {key}: chunk_hash under either convention")
     r_cnf.update(h_cnf.hexdigest().encode())
     r_old.update(h_old.hexdigest().encode())
     r_new.update(h_new.hexdigest().encode())
@@ -54,13 +72,23 @@ for lg in logs:
 print(f"  cubes {ncube:,}   chunk parse mismatches {bad}")
 if bad:
     sys.exit("  PARSE NOT FAITHFUL -- no new root emitted")
+if len(seen) != 1:
+    sys.exit(f"  chunks disagree on the hashing convention ({sorted(seen)}) -- "
+             "this directory mixes two runs and no root is meaningful")
+conv = seen.pop()
+print(f"  chunk_hash convention: {conv}")
+# The proofs root that this directory's OWN records commit to.  Naming it from
+# the detected convention keeps the comparison honest: a post-2026-09-05 run
+# must be checked against its timing-free value, not against one it never wrote.
+r_prf = r_old if conv == 'timing-inclusive' else r_new
 ok = True
 if exp_cnf:
     m = r_cnf.hexdigest() == exp_cnf; ok &= m
     print(f"  ROOT (CNF)  rebuilt  {r_cnf.hexdigest()}  {'MATCHES' if m else '*** DIFFERS'}")
 if exp_prf:
-    m = r_old.hexdigest() == exp_prf; ok &= m
-    print(f"  ROOT (proofs) old    {r_old.hexdigest()}  {'MATCHES' if m else '*** DIFFERS'}")
+    m = r_prf.hexdigest() == exp_prf; ok &= m
+    print(f"  ROOT (proofs) rebuilt {r_prf.hexdigest()}  {'MATCHES' if m else '*** DIFFERS'}")
 if not ok:
     sys.exit("  rebuilt roots do not match the recorded ones -- no new root emitted")
-print(f"  ROOT (proofs) NEW    {r_new.hexdigest()}   <- timing-free, reproducible on this build")
+if conv == 'timing-inclusive':
+    print(f"  ROOT (proofs) NEW    {r_new.hexdigest()}   <- timing-free, reproducible on this build")

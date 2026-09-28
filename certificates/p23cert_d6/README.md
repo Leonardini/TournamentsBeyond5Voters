@@ -72,3 +72,20 @@ Coverage CNF and proof are not kept — 0.78 GiB and 2.05 GiB, both regenerable,
 and their sha256 are committed inside the cert blocks.
 
 **Total running time on one laptop: 21.72 h (search) + 0.39 h (split) = 22.11 h.**
+
+## Addendum 2026-09-28 — a CERT-v2 block beside the v1 one
+
+`q=23` names an isomorphism class, not a labelling, while `base`, `arc` and
+`non` in the block above are vertex labels. Our `paley(23)` and its converse are
+both "Paley(23)" and differ in `adj[0][1]`, so a reproducer using the other sign
+convention gets the same VERDICT and a different ROOT. `p23_cert.v2.portable.txt`
+closes that by committing to the adjacency itself:
+
+    host_sha256 = fe06a435…  (sha256 of tournaments/p23_paley.bits, canonical
+                              bit string, whitespace stripped)
+    CERT-v2 portable  4f2660454e33c0052a157586c65ba10444faf3664196decde531219e3f2c6824
+    CERT-v2 full      73af7ea360f69d0086250adc67c855d56d58963df5dba3df3d2dac6602c6b211
+
+**The v1 values above are unchanged and stay authoritative for anything already
+published.** v2 hashes a different block and is not comparable with v1. The
+reasoning, and the rebuild command, are in `../CERT-v2.md`.

@@ -19,6 +19,10 @@ CAD = os.path.expanduser("~/Downloads/DownloadedSoftware/cadical/build/cadical")
 LT  = os.path.expanduser("~/Downloads/DownloadedSoftware/lrat-trim/lrat-trim")
 from cube_sat import paley, build, cube_units
 from cubes import enumerate_cubes
+# ONE definition of the host loader, shared with the prover.  Copying it here
+# would let the two drift, and a coverage proof over a DIFFERENT adj certifies
+# a different cube set while complaining about nothing.
+from certify_d6 import load_host
 
 
 def lex_chain(dvecs, nv):
@@ -47,7 +51,18 @@ def lex_chain(dvecs, nv):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--q', type=int, required=True)
+    ap.add_argument('--q', type=int, default=None,
+                    help='Paley(q) host.  Exactly one of --q / --bits.')
+    ap.add_argument('--bits', default=None,
+                    help='cover an ARBITRARY host from a .bits file, the same\n'
+                         'flag and the same loader certify_d6.py uses.  Needed\n'
+                         'for any host that is not a Paley tournament -- e.g.\n'
+                         'h02_f00 on 21 vertices, where no q exists at all.')
+    ap.add_argument('--expect-cubes', type=int, default=None,
+                    help='ASSERT the enumerated cube count equals this.  Pass the\n'
+                         'count the prover reported: the coverage proof is only\n'
+                         'about the cube set it enumerates itself, so a silent\n'
+                         'disagreement would certify the wrong set.')
     ap.add_argument('--k', type=int, default=5)
     ap.add_argument('--margin', default='majority', choices=['majority', 'exact'])
     ap.add_argument('--base', type=int, nargs='+', default=None)
@@ -65,7 +80,13 @@ def main():
     a = ap.parse_args()
 
     exact = a.margin == 'exact'
-    adj = paley(a.q)
+    if (a.q is None) == (a.bits is None):
+        sys.exit('give exactly one of --q and --bits')
+    spec = a.bits if a.bits is not None else a.q
+    adj, n = load_host(spec)
+    HOST = f'Paley({a.q})' if a.bits is None else os.path.basename(a.bits).replace('.bits', '')
+    if a.bits is not None and not a.base:
+        sys.exit('--bits needs an explicit --base: the Paley defaults are not meaningful here')
     B = a.base if a.base else ([0, 1, 2, 3, 5] if a.q == 19 else [0, 1, 2, 5, 11])
     b = len(B)
     # F_B: the encoding of T|B on its own K*C(|B|,2) variables
@@ -76,7 +97,9 @@ def main():
     # SOUNDNESS CHECK, not an assumption: F_B must literally be the set of
     # clauses of the full F that mention only the base variables.  Map the
     # sub-instance's (arc,voter) vars onto the full instance's and compare.
-    clsF, arcsF, pairF, XF, _ = build(adj, a.q, a.k, exact)
+    # build()'s second argument is n, NOT q -- they coincided only because every
+    # host here had been a Paley tournament.
+    clsF, arcsF, pairF, XF, _ = build(adj, n, a.k, exact)
     lift = {}
     for e, (i, j) in enumerate(arcsB):
         eF = pairF[(B[i], B[j])]
@@ -116,7 +139,14 @@ def main():
     if a.drop >= 0:
         print(f"  NEGATIVE CONTROL: dropping cube {a.drop}")
     cls = None if a.stream else (clsB + sb + negs)
-    print(f"q={a.q} margin={a.margin} base={B} base_mask={bm} cubes={len(cubes)}\n"
+    if a.expect_cubes is not None and len(cubes) != a.expect_cubes:
+        print(f"*** CUBE COUNT MISMATCH: enumerated {len(cubes)}, prover reported "
+              f"{a.expect_cubes} -- these are DIFFERENT cube sets, coverage proves nothing")
+        return 4
+    print(f"host={HOST} n={n} k={a.k} margin={a.margin} base={B} (|B|={b}, "
+          f"{a.k}*C({b},2)={a.k * b * (b - 1) // 2} base vars) "
+          f"base_mask={bm} cubes={len(cubes)}"
+          + (" [cube count ASSERTED against the prover]" if a.expect_cubes else "") + "\n"
           f"coverage CNF: vars={nv} ({nvB} base + {nv - nvB} lex aux) "
           f"clauses={len(clsB) + len(sb) + n_negs} = {len(clsB)} F_B + {len(sb)} SB "
           f"+ {n_negs} neg-cubes" + ("  [streaming]" if a.stream else ""),
@@ -135,8 +165,20 @@ def main():
             for c in clsB: f.write(' '.join(map(str, c)) + ' 0\n')
             for c in sb:   f.write(' '.join(map(str, c)) + ' 0\n')
             for c in neg_clauses(): f.write(' '.join(map(str, c)) + ' 0\n')
+        # Hash the INSTANCE, not just the proof.  The DRAT is not reproducible on
+        # a different solver build, but this CNF is fully determined by
+        # (host, base, k, margin), so its sha256 is the portable half of the
+        # JOINT hash that binds coverage to the search half.  Printing it here
+        # means nobody has to remember to hash a file that lives in a scratchpad.
+        import hashlib as _h
+        _hh = _h.sha256()
+        with open(a.dimacs, 'rb') as _f:
+            for _blk in iter(lambda: _f.read(1 << 20), b''):
+                _hh.update(_blk)
         print(f'  CNF written in {time.time()-t0:.0f}s '
-              f'({os.path.getsize(a.dimacs)/2**30:.2f} GiB)', flush=True)
+              f'({os.path.getsize(a.dimacs)/2**30:.2f} GiB)\n'
+              f'  CNF sha256 {_hh.hexdigest()}  '
+              f'(PORTABLE -- pass to certify_d6 --coverage-cnf)', flush=True)
         prf = a.drat or (a.dimacs + '.lrat')
         t0 = time.time()
         r = subprocess.run([CAD, '-q', '--lrat=true', '--checkproof=0', a.dimacs, prf],

@@ -83,14 +83,16 @@ echo "== 3. the certificate roots rebuild from the per-cube evidence =="
 # their agreement is a real cross-check rather than a restatement.  Expected
 # values are READ from the certificate, never written here: a constant copied
 # into a checker is correct once, on the day it is copied.
-for inst in p19 p23; do
+for inst in p19 p23 h02f00; do
   cd="$ROOT/certificates/${inst}cert_d6"
   [ -d "$cd" ] || { warn "$inst certificate directory absent"; continue; }
   vf="$cd/VERDICT.txt"; [ -f "$vf" ] || vf="$cd/README.md"
+  # The block file is found by GLOB, not by a name pattern: h02_f00 has no q and
+  # so has no v1 block at all, only `h02f00_cert.v2.portable.txt`.
+  blk=$(ls "$cd"/*.portable.txt 2>/dev/null | head -1)
   exp_cnf=$(grep -oE '^ROOT \(CNF\) +[0-9a-f]{64}' "$vf" 2>/dev/null | awk '{print $3}' | head -1)
-  if [ -z "$exp_cnf" ]; then
-    exp_cnf=$(grep -oE 'search_root_cnf=[0-9a-f]{64}' "$cd/${inst}_cert.portable.txt" 2>/dev/null \
-              | cut -d= -f2 | head -1)
+  if [ -z "$exp_cnf" ] && [ -n "$blk" ]; then
+    exp_cnf=$(grep -oE 'search_root_cnf=[0-9a-f]{64}' "$blk" 2>/dev/null | cut -d= -f2 | head -1)
   fi
   if [ -z "$exp_cnf" ]; then warn "$inst: no recorded ROOT (CNF) to compare against"; continue; fi
   out=$(python3 "$ROOT/sat/reroot.py" "$cd" "$exp_cnf" 2>&1)
@@ -102,7 +104,7 @@ for inst in p19 p23; do
   fi
   # the cube count must agree with the certificate's own statement of it
   dc=$(grep -oE '^cubes *[0-9]+' "$vf" 2>/dev/null | awk '{print $2}' | head -1)
-  [ -z "$dc" ] && dc=$(grep -oE 'cubes=[0-9]+' "$cd/${inst}_cert.portable.txt" 2>/dev/null | cut -d= -f2 | head -1)
+  [ -z "$dc" ] && [ -n "$blk" ] && dc=$(grep -oE 'cubes=[0-9]+' "$blk" 2>/dev/null | cut -d= -f2 | head -1)
   if [ -n "$dc" ] && [ -n "${nc:-}" ]; then
     if [ "$dc" = "$nc" ]; then ok "$inst: cube count agrees across certificate and log/ ($dc)"
     else bad "$inst: certificate says $dc cubes, log/ holds $nc"; fi
@@ -140,12 +142,37 @@ echo "== 3c. CERT (portable) recomputes from the block it publishes =="
 # separate value.  CERT (portable) is the one published value that commits to
 # both halves at once, and the file it lives in is self-auditing.
 if out=$(python3 "$ROOT/tools/check_cert_portable.py" \
-         "$ROOT/certificates/p19cert_d6" "$ROOT/certificates/p23cert_d6" 2>&1); then
+         "$ROOT/certificates/p19cert_d6" "$ROOT/certificates/p23cert_d6" \
+         "$ROOT/certificates/h02f00cert_d6" 2>&1); then
   echo "$out" | sed 's/^  ok    /  ok    /'
-  pass=$((pass+2))
+  pass=$((pass + $(echo "$out" | grep -c '^  ok')))
 else
   bad "a portable certificate does not recompute, or its control did not fire"
   echo "$out" | sed 's/^/        /'
+fi
+
+echo
+echo "== 3d. NEGATIVE CONTROL: a CERT-v2 block must reject the WRONG Paley(19) =="
+# This is the control for the whole reason CERT-v2 exists (certificates/CERT-v2.md).
+# `q=19` names an isomorphism class, so a v1 block cannot tell our paley(19) from
+# its converse -- which is equally entitled to the name, differs in adj[0][1], and
+# therefore gives different meanings to the block's own `base`, `arc` and `non`.
+# Swap the host file for that converse: v2's host_sha256 must catch it.  If this
+# control does not fire, check 3c is only re-hashing a block against itself.
+if [ -f "$ROOT/certificates/p19cert_d6/p19_cert.v2.portable.txt" ]; then
+  mkdir -p "$TMP/v2ctl/certificates" "$TMP/v2ctl/tournaments"
+  cp -R "$ROOT/certificates/p19cert_d6" "$TMP/v2ctl/certificates/"
+  tr -d '\n' < "$ROOT/tournaments/p19_paley.bits" | tr '01' '10' \
+    > "$TMP/v2ctl/tournaments/p19_paley.bits"
+  if python3 "$ROOT/tools/check_cert_portable.py" \
+       "$TMP/v2ctl/certificates/p19cert_d6" >"$TMP/v2ctl.out" 2>&1; then
+    bad "control did not fire: the converse of Paley(19) satisfied the v2 host binding"
+  else
+    ok "the converse of Paley(19) is rejected by host_sha256, as it must be"
+    grep -m1 'hashes to' "$TMP/v2ctl.out" | sed 's/^/        /' || true
+  fi
+else
+  warn "no CERT-v2 block for p19, control not run"
 fi
 
 echo

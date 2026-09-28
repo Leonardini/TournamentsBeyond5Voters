@@ -31,6 +31,7 @@
    "artifacts": [
     "certificates/p23cert_d6/VERDICT.txt",
     "certificates/p23cert_d6/p23_cert.portable.txt",
+    "certificates/p23cert_d6/p23_cert.v2.portable.txt",
     "sat/certify_d6.py",
     "sat/reroot.py",
     "tools/check_package.sh"
@@ -130,6 +131,8 @@
    "artifacts": [
     "verdicts/p19_margin1_VERDICT.txt",
     "certificates/p19cert_d6/",
+    "certificates/p19cert_d6/p19_cert.portable.txt",
+    "certificates/p19cert_d6/p19_cert.v2.portable.txt",
     "REPRODUCE.md",
     "sat/certify_p19_m1.py"
    ],
@@ -384,7 +387,8 @@
    "claim": "The spectrum: h\u2081 `UUUUUUUUUU`, h\u2082 `USUSSUUSSU`, h\u2084 and h\u2085 all `S` \u2014 15 of the 40 reversals stay obstructions",
    "artifacts": [
     "verdicts/arcflip_spectrum.log",
-    "tournaments/vt21_arcflip/out/*.exact.txt"
+    "tournaments/vt21_arcflip/out/*.exact.txt",
+    "certificates/h02f00cert_d6/VERDICT.txt"
    ],
    "missing": [],
    "other_tokens": [

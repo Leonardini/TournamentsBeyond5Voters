@@ -35,7 +35,7 @@ assuming it.
 | id | § | claim | verdict artifact | re-derive |
 |---|---|---|---|---|
 | B1 | 3.1 | **Paley(23) is not 5-inducible**, hence N(5) ≤ 23. Complete over all 8,031 base states of `{1,2,3,6,12}`, of which 2,591 survive the anchor | `evidence/rerun1_p23_majority.tar.zst` (2,008 slices, 34.03 core-h), `evidence/anchor2_p23_majority.tar.zst` (4,030 slices, a different base and anchor, 43.80 core-h) | `REPRODUCE.md` § "N(5) ≤ 23", both anchors |
-| B2 | 3.1, B.1 | Paley(23), **machine-checked** on both halves | `certificates/p23cert_d6/VERDICT.txt`, roots in `certificates/p23cert_d6/p23_cert.portable.txt` | `sat/certify_d6.py`; roots rebuilt by `sat/reroot.py`; `tools/check_package.sh` checks 3 and 3c |
+| B2 | 3.1, B.1 | Paley(23), **machine-checked** on both halves | `certificates/p23cert_d6/VERDICT.txt`, roots in `certificates/p23cert_d6/p23_cert.portable.txt` and, bound to the host's adjacency, `certificates/p23cert_d6/p23_cert.v2.portable.txt` | `sat/certify_d6.py`; roots rebuilt by `sat/reroot.py`; `tools/check_package.sh` checks 3, 3c and 3d |
 | B3 | C | **13 ≤ N(5)**: every order-12 tournament is 5-inducible. All 903,753,248 order-11 classes generated, 452,016,608 screened after the converse halving, **0 candidates** | `cluster/jz_n12cover/FINAL_ROLLUP.txt` — the verbatim roll-up of the completed run, 2026-09-12 | `cluster/jz_n12cover/COMMANDS.md`, rolled up by `cluster/jz_n12cover/aggregate.sh`, whose census gate exits non-zero on any mismatch |
 | B4 | 3.4 | Paley(43) − v is not 5-inducible, so N(5) ≤ 43 is **re-derived by a second method** | `verdicts/p43mv_majority/p43mv_times.txt` (8,031 base states, exact cover, 185.54 core-h), `verdicts/p43_minus1v_VERDICT.txt` | `REPRODUCE.md` § "Paley(43) is not vertex-critical" |
 
@@ -51,7 +51,7 @@ an earlier version of this file.
 | P1 | A.3 | Paley(27) is not 5-inducible, 8,031 base states, 2,537 live, 6.22 × 10⁹ nodes | `evidence/p27_majority.tar.zst` | `REPRODUCE.md` § "Paley(27)" — needs the **GF(3³)** host, `tournaments/p27_paley.bits`; the Z/27 construction is not a tournament |
 | P2 | 3.1 | Paley(31) is not 5-inducible, 21,009 base states, 4,007 live, 3.43 × 10⁹ nodes | `evidence/p31_majority.tar.zst`, `evidence/measurements/p31_result.json` | `REPRODUCE.md` § "Paley(31)" |
 | P3 | 3.3 | Paley(19) **is** 5-inducible (recovers dim Q₁₉ = 5 of [1]) | `verdicts/WITNESSES_margin_hierarchy.md` | `kinduce --paley 19 --k 5 --max-margin 3 --order mrv --inc --base 0 1 2 3 5`, then `verify/verify_witness.py` |
-| P4 | 3.3 | Paley(19) is **not** 5-inducible at unit margin, 2,200 base states of `{1,2,3,4,6}` | `verdicts/p19_margin1_VERDICT.txt`; certified in `certificates/p19cert_d6/` | `REPRODUCE.md` § "Paley(19)"; `sat/certify_p19_m1.py` |
+| P4 | 3.3 | Paley(19) is **not** 5-inducible at unit margin, 2,200 base states of `{1,2,3,4,6}` | `verdicts/p19_margin1_VERDICT.txt`; certified in `certificates/p19cert_d6/`, roots in `certificates/p19cert_d6/p19_cert.portable.txt` and `certificates/p19cert_d6/p19_cert.v2.portable.txt` | `REPRODUCE.md` § "Paley(19)"; `sat/certify_p19_m1.py` |
 | P5 | 3.3 | The witnesses are abundant, not delicate: ten workers hit at once from ten base states, support histogram 159 arcs at 3–2 and 12 at 4–1, none unanimous | `verdicts/WITNESSES_margin_hierarchy.md` | as above, `--max-margin 3` |
 | P6 | 3.1 | Paley(23) − v **is** 5-inducible, so n = 22 does not improve the bound | `evidence/n22_p23minusv.tar.zst` (witness at base state 6,560), `verdicts/WITNESSES_paley_minus_vertex.md` | `REPRODUCE.md` § "Paley(23) minus a vertex" |
 | P7 | 3.4 | **Paley(31) − v is not 5-inducible**, so Paley(31) is not vertex-critical. 8,031 base states of `{1,2,3,4,13}`, exact index cover, 0 capped | `verdicts/p31_minus1v_VERDICT.txt`, `verdicts/p31mv_majority/p31mv_times.txt` (one line per base state), `verdicts/p31mv_majority/README.md` | `REPRODUCE.md` § "Paley(31) is not vertex-critical" |
@@ -109,12 +109,28 @@ opposite of what a refutation requires.
 | id | claim | verdict artifact |
 |---|---|---|
 | F1 | Each of the four unit-margin obstructions has \|Aut\| = 21 with trivial stabilisers, hence exactly ten arc orbits of size 21 | `tournaments/vt21_hosts/manifest.tsv`, `tournaments/vt21_arcflip/manifest.tsv` |
-| F2 | The spectrum: h₁ `UUUUUUUUUU`, h₂ `USUSSUUSSU`, h₄ and h₅ all `S` — 15 of the 40 reversals stay obstructions | `verdicts/arcflip_spectrum.log` (final table), `tournaments/vt21_arcflip/out/*.exact.txt` per orbit |
+| F2 | The spectrum: h₁ `UUUUUUUUUU`, h₂ `USUSSUUSSU`, h₄ and h₅ all `S` — 15 of the 40 reversals stay obstructions | `verdicts/arcflip_spectrum.log` (final table), `tournaments/vt21_arcflip/out/*.exact.txt` per orbit; the first letter of h₂'s string additionally carries proofs, `certificates/h02f00cert_d6/VERDICT.txt` |
 | F3 | So **arc-criticality at unit margin is carried by the arc, not the tournament**: h₂ is arc-semi-critical, 105 of 210 arcs each way | same |
 | F4 | All 210 single-arc reversals of h₁ remain obstructions — 736 runs, none capped, tiling each range exactly | `verdicts/arcflip_spectrum.log`, `tournaments/vt21_arcflip/verdicts.tsv` |
 | F5 | Every one of the 15 surviving reversals belongs to a host with **cyclic** automorphism group; all 20 orbits of the two with the nonabelian group of order 21 are inducible | `tournaments/vt21_hosts/manifest.tsv` (the group column), F2 |
 | F6 | The four hosts and the 15 surviving reversals have **319 one-vertex deletions, 289 pairwise non-isomorphic**, and every one has an exhibited unit-margin witness | `verdicts/vt20_descent.log` (301 audited SAT, 0 UNSAT, 0 capped), witnesses in `verdicts/vt20_descent_shard/*.log`, counts derived by `tournaments/deletion_classes.py` |
 | F7 | Hence nothing here descends to a unit-margin obstruction on 20 vertices | same |
+
+**The leading `U` of h₂'s spectrum is now proof-carrying.** That letter says
+`h02_f00` — h₂ with its orbit-00 arc `0 -> 1` reversed — is not 5-inducible at
+unit margin, and it was established by the DFS engine like the rest of the row.
+It has since been re-established by cube-and-conquer with both halves
+machine-checked: 202,129 cubes all UNSAT with every LRAT proof independently
+rechecked by `lrat-trim`, and the cube set proved exhaustive. 224.4 core-h.
+`certificates/h02f00cert_d6/README.md` has the detail; the two engines share no
+implementation, so this is a second method and not a rerun.
+
+It is also the **shortest trust chain in the package**. Arc-orbit anchoring
+(HUMAN LEMMA L1) needs `Aut` transitive on arcs and on non-arcs; `h02_f00` is
+rigid, so L1 does not apply, every base state was run, and only L2 (voters
+lex-ordered) remains human — against L1 *and* L2 for every Paley certificate
+here. And because 21 is not a prime power, this host has no `q`, which is what
+forced the certificate-block format described in `certificates/CERT-v2.md`.
 
 `tournaments/deletion_classes.py` derives 319 and 289 from the hosts by
 canonicalising every deletion with nauty's `labelg` — 15 × 19 + 2 = 287 classes

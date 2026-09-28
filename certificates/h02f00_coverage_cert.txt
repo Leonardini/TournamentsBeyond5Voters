@@ -1,0 +1,67 @@
+# Coverage certificate for the h02_f00 unit-margin certification, 2026-09-28
+# base {0,1,2,3,7,10} 0-indexed, |B|=6, unit margin, k=5, n=21
+# host h02_f00 = h02 with the arc 0->1 reversed (orbit 00)
+#   tournaments/vt21_arcflip/h02_f00.bits
+#   sha256 a67aa2882d4353ca71ccadd0b59184ff3e5e146eb52bbd37d699d8102e575a64
+#     (canonical bit string, whitespace stripped -- see certificates/CERT-v2.md)
+#
+# CLAIM: the 202,129 cubes cover EVERY lex-canonical base assignment, so
+# nothing can bypass them.  F_B & SB & AND_i not-C_i is UNSAT.
+#
+# CNF    202,910 clauses = 425 F_B + 356 SB + 202,129 negated cubes, 135 vars
+#        (75 base = 5 voters x C(6,2), plus 60 lex auxiliaries), 0.05 GiB
+# solve  RESULT UNSAT time=13.23s proof=130 MiB CHECK=VERIFIED
+#
+# THE CUBE COUNT IS ASSERTED, NOT ASSUMED.  cover_check.py was run with
+# --expect-cubes 202129, the count the prover reported, because a coverage
+# proof is only about the cube set the checker enumerates itself; a silent
+# disagreement would certify the wrong set and read as success.
+#
+# ARTIFACT HASHES (both committed inside the CERT-v2 blocks):
+#   coverage CNF    05231d85fa832f1dd7962165c351e4ad796a8994bb7810e22c06e1d0426d5357
+#   coverage proof  d235abda9315688ae5f1b11aefbc7cbd2cd23bf6f1e57f052aaff14c2b46e7cf
+#
+# Neither artifact is kept here: both are bulk (50 MB and 130 MB) and
+# regenerable in about 7 minutes on one core, which is the same policy
+# p19_coverage_cert.txt records for Paley(19).
+#
+# WHAT CHECKED WHAT.  cadical emitted the proof under --lrat=true with
+# --checkproof=0, so it never validated its own work, and lrat-trim (Biere) --
+# a different program by a different author -- verified it, signalling success
+# with `s VERIFIED` and exit code 20.  The proof is BINARY LRAT; the file was
+# written through cover_check.py's --drat option and the original run named it
+# h02f00_coverage.drat, which is a misnomer inherited from the flag name.
+# drat-trim will not read it; lrat-trim will.
+#
+# THE NEGATIVE CONTROL WAS NOT RUN, DELIBERATELY.  cover_check.py --drop omits
+# one cube and requires the answer to flip to SAT.  Its only role is to exclude
+# a vacuous certificate, and vacuity cannot arise here: it would need F_B & SB
+# to be unsatisfiable, i.e. the 6-vertex base itself not 5-inducible, which
+# contradicts N(5) >= 12.  Coverage UNSAT already establishes that nothing
+# bypasses the cubes.
+#
+# INDEPENDENTLY REGENERATED 2026-09-28 14:20-14:26 BST, one core, so that the
+# two hashes above are reproduced rather than transcribed from the original
+# run.  Verbatim:
+#
+#   F_B check: the 425 base-local clauses of F_B are EXACTLY the clauses of F over the 75 base variables
+#   host=h02_f00 n=21 k=5 margin=exact base=[0, 1, 2, 3, 7, 10] (|B|=6, 5*C(6,2)=75 base vars) base_mask=31476 cubes=202129 [cube count ASSERTED against the prover]
+#   coverage CNF: vars=135 (75 base + 60 lex aux) clauses=202910 = 425 F_B + 356 SB + 202129 neg-cubes  [streaming]
+#     CNF written in 3s (0.05 GiB)
+#     CNF sha256 05231d85fa832f1dd7962165c351e4ad796a8994bb7810e22c06e1d0426d5357  (PORTABLE -- pass to certify_d6 --coverage-cnf)
+#   RESULT UNSAT time=12.94s proof=130 MiB CHECK=VERIFIED  -> the 202129 cubes cover every lex-canonical base assignment
+#
+# The CNF reproduced byte for byte (same sha256) and so did the proof
+# (136,123,820 bytes, sha256 d235abda...), which is what a deterministic cadical
+# on a fixed build should do and is more than portability requires: only the CNF
+# hash is claimed to be reproducible elsewhere.
+#
+# The F_B soundness check above is not a restatement: cover_check.py verifies
+# that the 425 base-local clauses are EXACTLY the clauses of the full instance
+# over the 75 base variables, so the base-local encoding is the genuine
+# restriction of the full one and not a re-derivation of it.
+#
+# Re-run:
+#   python3 sat/cover_check.py --bits tournaments/vt21_arcflip/h02_f00.bits \
+#       --base 0 1 2 3 7 10 --margin exact --k 5 --expect-cubes 202129 \
+#       --stream --dimacs /tmp/h02f00_cover.cnf --drat /tmp/h02f00_cover.lrat

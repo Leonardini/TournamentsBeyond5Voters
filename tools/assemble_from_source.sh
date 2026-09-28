@@ -96,8 +96,56 @@ mkdir -p "$DST/certificates"
 for c in p19cert_d6 p23cert_d6; do
   [ -d "$K/$c" ] && cp -R "$K/$c" "$DST/certificates/"
 done
+# h02_f00 ships FILTERED, not wholesale: its source directory also holds the
+# 130 MB coverage proof (regenerable in ~7 min, and over GitHub's per-file
+# limit) and an empty work/.  What is the certificate's substance is done/,
+# log/ and the verdict.
+if [ -d "$K/h02f00_cert" ]; then
+  mkdir -p "$DST/certificates/h02f00cert_d6"
+  cp -R "$K/h02f00_cert/done" "$K/h02f00_cert/log" "$DST/certificates/h02f00cert_d6/"
+  cp "$K/h02f00_cert/VERDICT.txt" "$DST/certificates/h02f00cert_d6/"
+  cp "$K/h02f00_cert/README.md" "$DST/certificates/h02f00cert_d6/" 2>/dev/null || true
+fi
 cp "$K/p19_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
+cp "$K/h02f00_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
 cp "$K/p23cert_run.log" "$DST/certificates/" 2>/dev/null || true
+
+# ------------------------------------------------- CERT-v2 blocks (DERIVED)
+# Regenerated here rather than copied, because `host_bits` is a path RELATIVE
+# TO THE BLOCK, so the value depends on THIS package's layout and a block built
+# against the working repository's layout would hash differently.  Nothing is
+# solved and nothing is retyped: --from-v1 lifts every parameter and all four
+# component hashes out of the published v1 pair after verifying that both v1
+# blocks hash to the values they state.  See certificates/CERT-v2.md.
+for inst in p19 p23; do
+  [ -f "$DST/certificates/${inst}cert_d6/${inst}_cert.portable.txt" ] || continue
+  python3 "$DST/sat/certroot.py" --v2 \
+    --from-v1 "$DST/certificates/${inst}cert_d6/${inst}_cert" \
+    --host-bits "$DST/tournaments/${inst}_paley.bits" \
+    --host-name "${inst}_paley" \
+    --origin "paley(${inst#p}), quadratic-residue convention of sat/cube_sat.py paley()" \
+    --out "$DST/certificates/${inst}cert_d6/${inst}_cert.v2" >/dev/null
+done
+# h02_f00 has no v1 block to lift from -- 21 is not a prime power, so no `q`
+# describes it at all.  Its parameters and all four component hashes are READ
+# from the two files that record them, never written here: a constant copied
+# into a builder is correct once, on the day it is copied.
+if [ -f "$DST/certificates/h02f00cert_d6/VERDICT.txt" ]; then
+  V="$DST/certificates/h02f00cert_d6/VERDICT.txt"
+  C="$DST/certificates/h02f00_coverage_cert.txt"
+  python3 "$DST/sat/certroot.py" --v2 \
+    --host-bits "$DST/tournaments/vt21_arcflip/h02_f00.bits" \
+    --host-name h02_f00 \
+    --origin "h02 with the arc 0->1 reversed (arc orbit 00 of the n=21 unit-margin obstruction h02; row h02_f00 of tournaments/vt21_arcflip/manifest.tsv)" \
+    --k 5 --margin "$(awk '/^margin /{print $2; exit}' "$V")" \
+    --base $(awk -F'[][]' '/^base /{gsub(/,/," ",$2); print $2; exit}' "$V") \
+    --cubes "$(awk '/^cubes /{gsub(/,/,"",$2); print $2; exit}' "$V")" \
+    --root-cnf "$(awk '/^ROOT \(CNF\)/{print $3; exit}' "$V")" \
+    --root-proofs "$(awk '/^ROOT \(proofs\)/{print $3; exit}' "$V")" \
+    --cover-cnf-sha "$(awk '/#   coverage CNF /{print $4; exit}' "$C")" \
+    --cover-proof-sha "$(awk '/#   coverage proof /{print $4; exit}' "$C")" \
+    --out "$DST/certificates/h02f00cert_d6/h02f00_cert.v2" >/dev/null
+fi
 
 # --------------------------------------------------------------- verdicts
 mkdir -p "$DST/verdicts"

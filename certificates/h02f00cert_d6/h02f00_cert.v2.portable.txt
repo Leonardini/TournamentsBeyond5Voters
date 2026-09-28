@@ -1,0 +1,14 @@
+CERT-v2 portable
+host_name=h02_f00
+host_bits=../../tournaments/vt21_arcflip/h02_f00.bits
+host_sha256=a67aa2882d4353ca71ccadd0b59184ff3e5e146eb52bbd37d699d8102e575a64
+host_n=21
+origin=h02 with the arc 0->1 reversed (arc orbit 00 of the n=21 unit-margin obstruction h02; row h02_f00 of tournaments/vt21_arcflip/manifest.tsv)
+k=5
+margin=exact
+base=0,1,2,3,7,10
+anchoring=none
+cubes=202129
+search_root_cnf=f99d11d9c443859fbb1d14bf18fea991bcb46160740265258937f3657c366dfa
+split_cover_cnf=05231d85fa832f1dd7962165c351e4ad796a8994bb7810e22c06e1d0426d5357
+CERT_PORTABLE=0e5da399d031c20dcf73b3ccd71ab41d4b15af97241015858c54056241d95f1c

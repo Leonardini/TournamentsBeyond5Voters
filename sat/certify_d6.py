@@ -75,13 +75,45 @@ def cube_units(node, adj, pair, X, K):
     return units
 
 
+def load_host(spec):
+    """The host, from either an int q (Paley) or a path to a .bits file.
+
+    build() in cube_sat is already generic -- its second argument is n, not q --
+    so the only Paley-specific step was constructing the adjacency.  A .bits file
+    is the upper triangle in (0,1),(0,2),...,(n-2,n-1) order, the same convention
+    kinduce reads, and n is recovered from its length rather than passed in.
+    """
+    if isinstance(spec, int):
+        return paley(spec), spec
+    b = "".join(c for c in open(spec).read() if c in "01")
+    n = int((1 + (1 + 8 * len(b)) ** 0.5) / 2)
+    if n * (n - 1) // 2 != len(b):
+        sys.exit(f"{spec}: {len(b)} bits is not a triangular number")
+    adj = [[0] * n for _ in range(n)]
+    k = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            if b[k] == "1": adj[i][j] = 1
+            else:           adj[j][i] = 1
+            k += 1
+    return adj, n
+
+
 def do_chunk(args):
-    lo, cubes_slice, B, K, exact, q, out = args
+    lo, cubes_slice, B, K, exact, spec, out = args
     done_p = os.path.join(out, 'done', f'k{lo:07d}.json')
     if os.path.exists(done_p):
-        return lo, None
-    adj = paley(q)
-    cls, arcs, pair, X, nv = build(adj, q, K, exact)
+        # Hand the BANKED summary back rather than None.  Returning None made the
+        # totals count only what THIS invocation solved, so a resumed run -- or a
+        # re-run purely to stamp --coverage -- wrote "solve 0.0 core-h" into
+        # VERDICT.txt over a real 217.1.  A certification costs what all its
+        # chunks cost, whenever they happened to run.
+        with open(done_p) as f:
+            banked = json.load(f)
+        banked['reused'] = True
+        return lo, banked
+    adj, n = load_host(spec)
+    cls, arcs, pair, X, nv = build(adj, n, K, exact)
     cnf_p = os.path.join(out, 'work', f'k{lo:07d}.cnf')
     lrt_p = os.path.join(out, 'work', f'k{lo:07d}.lrat')
     recs = []
@@ -141,11 +173,17 @@ def do_chunk(args):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--q', type=int, default=19)
+    ap.add_argument('--bits', default=None,
+                    help='certify an ARBITRARY host from a .bits file instead of Paley(q).\n'
+                         'Implies NO ANCHORING: the arc-orbit lemma (HUMAN L1) needs\n'
+                         'Aut transitive on arcs and on non-arcs, which is FALSE for a\n'
+                         'rigid host, so every base state is run.  That costs ~6x the\n'
+                         'cubes at Paley(19) scale and REMOVES L1 from the trust chain.')
     ap.add_argument('--k', type=int, default=5)
     ap.add_argument('--margin', default='exact', choices=['exact', 'majority'])
     ap.add_argument('--base', type=int, nargs='+', required=True)
-    ap.add_argument('--arc', type=int, nargs=2, required=True)
-    ap.add_argument('--non', type=int, nargs=2, required=True)
+    ap.add_argument('--arc', type=int, nargs=2, default=None)
+    ap.add_argument('--non', type=int, nargs=2, default=None)
     ap.add_argument('--out', default='/tmp/p19cert_d6')
     ap.add_argument('--coverage', default=None,
                     help='path to the VERIFIED coverage proof for this cube set.\n'
@@ -162,19 +200,32 @@ def main():
         os.makedirs(os.path.join(a.out, d), exist_ok=True)
 
     exact = a.margin == 'exact'
-    adj = paley(a.q)
+    spec = a.bits if a.bits else a.q
+    adj, n = load_host(spec)
+    HOST = f"Paley({a.q})" if a.bits is None else os.path.basename(a.bits).replace('.bits', '')
     B = list(a.base)
-    ARC, NON = tuple(a.arc), tuple(a.non)
-    if adj[ARC[0]][ARC[1]] != 1:
-        sys.exit(f"--arc {ARC} is NOT an arc of Paley({a.q})")
-    if adj[NON[0]][NON[1]] != 0:
-        sys.exit(f"--non {NON} IS an arc of Paley({a.q}); it must be a non-arc")
-    print(f"### certify Paley({a.q}) margin={a.margin} by depth-{len(B)} cubing "
+    ANCHOR = a.bits is None
+    if not ANCHOR and (a.arc or a.non):
+        sys.exit("--arc/--non are anchoring, and anchoring needs Aut transitive on arcs\n"
+                 "and non-arcs.  That is a property of Paley, not of an arbitrary host.\n"
+                 "Drop them: --bits runs every base state.")
+    if ANCHOR and not (a.arc and a.non):
+        sys.exit("--arc and --non are required for the Paley path (arc-orbit anchoring)")
+    ARC = tuple(a.arc) if a.arc else None
+    NON = tuple(a.non) if a.non else None
+    if ANCHOR:
+        if adj[ARC[0]][ARC[1]] != 1:
+            sys.exit(f"--arc {ARC} is NOT an arc of {HOST}")
+        if adj[NON[0]][NON[1]] != 0:
+            sys.exit(f"--non {NON} IS an arc of {HOST}; it must be a non-arc")
+    print(f"### certify {HOST} (n={n}) margin={a.margin} by depth-{len(B)} cubing "
           f"{time.strftime('%F %H:%M:%S')}")
-    print(f"  base {B}, break arc {ARC} + non-arc {NON}")
+    print(f"  base {B}, " + (f"break arc {ARC} + non-arc {NON}" if ANCHOR else
+                             "NO ANCHORING (rigid host): every base state is live"))
     t = time.time()
     cubes, bm = enumerate_cubes(adj, B, a.k, exact, 'mask')
-    live = [c for c in cubes if any((B[pi[0]], B[pi[1]]) in (ARC, NON) for pi in c)]
+    live = ([c for c in cubes if any((B[pi[0]], B[pi[1]]) in (ARC, NON) for pi in c)]
+            if ANCHOR else list(cubes))
     print(f"  {len(cubes):,} base states -> {len(live):,} live "
           f"({100*len(live)/len(cubes):.1f}%), enumerated in {time.time()-t:.0f}s")
     if a.sample:
@@ -191,16 +242,18 @@ def main():
         live = live[:a.limit]
         print(f"  LIMIT {a.limit} -- SMOKE TEST, not a certification (PREFIX, "
               f"not a random sample -- do not price from this)")
-    chunks = [(i, live[i:i+CHUNK], B, a.k, exact, a.q, a.out)
+    chunks = [(i, live[i:i+CHUNK], B, a.k, exact, spec, a.out)
               for i in range(0, len(live), CHUNK)]
     print(f"  {len(chunks)} chunks of <= {CHUNK}, {a.workers} workers, "
           f"check-and-discard", flush=True)
 
-    t0 = time.time(); nc = ns = ck = 0
+    t0 = time.time(); nc = ns = ck = 0; n_reuse = 0
     with ThreadPoolExecutor(max_workers=a.workers) as ex:
         for lo, s in ex.map(do_chunk, chunks):
             if s is None:
                 continue
+            if s.get('reused'):
+                n_reuse += 1
             if 'error' in s:
                 print(f"  *** {s['error']} at cube {s['cube']} -- STOPPING ***")
                 sys.exit(2)
@@ -219,10 +272,29 @@ def main():
             d = json.load(f)
             root_cnf.update(d['chunk_hash_cnf'].encode())
             root_all.update(d['chunk_hash'].encode())
+    # Wall ACCUMULATES ACROSS INVOCATIONS, like solve/check, and for the same
+    # reason: re-running purely to stamp --coverage took 0.00 h and would
+    # otherwise overwrite a genuine 25.09 h with it.  Unlike solve/check this is
+    # not recoverable from the per-chunk markers, because chunks ran
+    # concurrently, so it is banked here at every completion.
     el = time.time() - t0
+    _wall_p = os.path.join(a.out, 'wall.json')
+    _prev_wall = 0.0
+    if os.path.exists(_wall_p):
+        with open(_wall_p) as f:
+            _prev_wall = json.load(f).get('wall_s', 0.0)
+    el = _prev_wall + el
+    with open(_wall_p, 'w') as f:
+        json.dump({'wall_s': round(el, 1)}, f)
     # ONE definition, read by both the VERDICT file and the console line, so
     # they can never disagree about which margin was certified.
     _what = "margin-1 " if exact else ""
+    # Wall is NOT recoverable from the markers (chunks ran concurrently), so when
+    # chunks are reused, say so rather than letting this invocation's wall stand
+    # for the cost of the whole certification.
+    _reuse = ("" if n_reuse == 0 else
+              f"  [CUMULATIVE over all invocations; {n_reuse} of {len(chunks)}\n"
+              f"              chunks were reused from earlier runs]")
     # Report the SPLIT half truthfully.  This script certifies the SEARCH half
     # only; coverage is cover_check.py, a separate program.
     if a.coverage and os.path.exists(a.coverage):
@@ -230,7 +302,17 @@ def main():
         _ch = _h.sha256(open(a.coverage,'rb').read()).hexdigest()
         _cov = (f'SPLIT half CERTIFIED: the cube set is exhaustive, proof\n'
                 f'{a.coverage}\n  sha256 {_ch}\n'
-                f'(F_B & SB & AND_i not-C_i is UNSAT at |B|={len(B)}.)')
+                f'(F_B & SB & AND_i not-C_i is UNSAT at |B|={len(B)}.)\n'
+                f'\nNo JOINT value is written here ON PURPOSE.  Binding the two\n'
+                f'halves is CERT-v1, built by the repro repo\'s sat/certroot.py,\n'
+                f'which hashes an auditable BLOCK carrying the instance\n'
+                f'parameters -- so a value cannot be matched against a different\n'
+                f'instance\'s artifacts.  A second scheme invented here would be\n'
+                f'exactly the drift that makes two halves stop composing.\n'
+                f'Feed it: --root-cnf {root_cnf.hexdigest()}\n'
+                f'         --root-proofs {root_all.hexdigest()}\n'
+                f'         --cover-cnf <the .cnf cover_check wrote>\n'
+                f'         --cover-proof {a.coverage}')
     else:
         _cov = ('SPLIT half OUTSTANDING.  This run certifies only that every cube is\n'
                 'UNSAT (the SEARCH half).  That the cubes are EXHAUSTIVE -- that\n'
@@ -242,22 +324,22 @@ def main():
 MARGIN NOTE   This run is at MAJORITY (every arc >= {(a.k+1)//2} of {a.k}).  By the 3-cycle
               bound (RESEARCH_LOG 2026-09-04) a linear order agrees with at most
               2 arcs of a cyclic triangle, so over {a.k} voters the three supports
-              sum to <= {2*a.k} and none can exceed {2*a.k - 2*((a.k+1)//2)}.  Every arc of Paley({a.q}) lies in
+              sum to <= {2*a.k} and none can exceed {2*a.k - 2*((a.k+1)//2)}.  Every arc of {HOST} lies in
               a 3-cycle, so majority is EQUIVALENT to margin<={2*(2*a.k-2*((a.k+1)//2))-a.k} here and this
               verdict covers both."""
-        f.write(f"""Paley({a.q}) is NOT {_what}{a.k}-inducible -- machine-verified.
+        f.write(f"""{HOST} is NOT {_what}{a.k}-inducible -- machine-verified.
 {_extra}
 date          {time.strftime('%F %H:%M:%S')}
 margin        {a.margin}
 base          {B}  ({len(cubes)} base states)
-break         arc {ARC} + non-arc {NON} -> {len(live)} live cubes
+anchoring     {('arc ' + str(ARC) + ' + non-arc ' + str(NON)) if ANCHOR else 'NONE (rigid host): HUMAN LEMMA L1 IS NOT USED'} -> {len(live)} live cubes
 cubes         {nc}, ALL UNSAT, each INDEPENDENTLY VERIFIED by lrat-trim
 solver        cadical --lrat=true --checkproof=0 (self-check disabled)
 checker       lrat-trim (Biere) -- different program, different author
 NO DEEPENING  cubes are base states of a {len(B)}-vertex base; deepen.py unused
 solve         {ns/3600:.1f} core-h
 check         {ck/3600:.1f} core-h
-wall          {el/3600:.2f} h on {a.workers} workers
+wall          {el/3600:.2f} h on {a.workers} workers{_reuse}
 ROOT (CNF)    {root_cnf.hexdigest()}
 ROOT (proofs) {root_all.hexdigest()}
 
@@ -302,7 +384,10 @@ Both proved in RESEARCH_LOG.md.
     # was: "margin-1" hardcoded, which printed the WRONG margin for a majority
     # run while VERDICT.txt (line ~226) had it right from {_what}.  The line a
     # human reads is the one that gets quoted -- derive it from the same source.
-    print(f"  VERDICT: Paley({a.q}) is NOT {_what}{a.k}-inducible -> {a.out}/VERDICT.txt")
+    # ... and the HOST was still hardcoded to Paley(q) on this same line, so an
+    # h02_f00 run printed "VERDICT: Paley(19)" to the console while VERDICT.txt
+    # correctly said h02_f00.  HOST is the one definition; use it here too.
+    print(f"  VERDICT: {HOST} is NOT {_what}{a.k}-inducible -> {a.out}/VERDICT.txt")
 
 
 if __name__ == '__main__':

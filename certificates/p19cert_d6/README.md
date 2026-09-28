@@ -66,3 +66,20 @@ clause count exactly. The coverage CNF and proof are not kept here — both are
 regenerable, and their sha256 are committed inside the cert blocks.
 
 Rebuild with `../certroot.py` (see its docstring for arguments).
+
+## Addendum 2026-09-28 — a CERT-v2 block beside the v1 one
+
+`q=19` names an isomorphism class, not a labelling, while `base`, `arc` and
+`non` in the block above are vertex labels. Our `paley(19)` and its converse are
+both "Paley(19)" and differ in `adj[0][1]`, so a reproducer using the other sign
+convention gets the same VERDICT and a different ROOT. `p19_cert.v2.portable.txt`
+closes that by committing to the adjacency itself:
+
+    host_sha256 = 9729da99…  (sha256 of tournaments/p19_paley.bits, canonical
+                              bit string, whitespace stripped)
+    CERT-v2 portable  989ab61823134ab4ca9ec61a18a9f9466fde69eda259b70a02b5213517278891
+    CERT-v2 full      97c6414605d38a1ba72aca789faa98b702c17068c924442a9bcde65ce755eddf
+
+**The v1 values above are unchanged and stay authoritative for anything already
+published.** v2 hashes a different block and is not comparable with v1. The
+reasoning, and the rebuild command, are in `../CERT-v2.md`.
