@@ -7,8 +7,8 @@ origin=paley(23), quadratic-residue convention of sat/cube_sat.py paley()
 k=5
 margin=majority
 base=0,1,2,5,6,3
-anchoring=arc-orbit(arc=2,6;non=1,6)
+anchoring=pair-orbit(p1=2,6;p2=1,6)
 cubes=343896
 search_root_cnf=7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb
 split_cover_cnf=4876f077e85b7b566f996e1f9cfe7701d665e07488c3ed3f4a40ccdd0a3e4f62
-CERT_PORTABLE=4f2660454e33c0052a157586c65ba10444faf3664196decde531219e3f2c6824
+CERT_PORTABLE=b2b5ed328e48148dfbb3d45c61bba590cf0627b4d00f7641a1360037cfca459d

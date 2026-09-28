@@ -79,12 +79,14 @@ and their sha256 are committed inside the cert blocks.
 `non` in the block above are vertex labels. Our `paley(23)` and its converse are
 both "Paley(23)" and differ in `adj[0][1]`, so a reproducer using the other sign
 convention gets the same VERDICT and a different ROOT. `p23_cert.v2.portable.txt`
-closes that by committing to the adjacency itself:
+closes that by committing to the adjacency itself, and states the
+anchoring in the general form of Lemma 2.1 rather than Paley's two-orbit
+spelling:
 
     host_sha256 = fe06a435…  (sha256 of tournaments/p23_paley.bits, canonical
                               bit string, whitespace stripped)
-    CERT-v2 portable  4f2660454e33c0052a157586c65ba10444faf3664196decde531219e3f2c6824
-    CERT-v2 full      73af7ea360f69d0086250adc67c855d56d58963df5dba3df3d2dac6602c6b211
+    CERT-v2 portable  b2b5ed328e48148dfbb3d45c61bba590cf0627b4d00f7641a1360037cfca459d
+    CERT-v2 full      a0a880dde6b645101dd2b7720108cc42ed35fcf5bfbec66388adb49288a42014
 
 **The v1 values above are unchanged and stay authoritative for anything already
 published.** v2 hashes a different block and is not comparable with v1. The

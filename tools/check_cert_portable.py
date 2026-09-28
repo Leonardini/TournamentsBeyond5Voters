@@ -33,6 +33,7 @@ Exit 0 only if every certificate matches and every control fires.
 import glob
 import hashlib
 import os
+import re
 import sys
 
 
@@ -45,6 +46,74 @@ def canonical_bits(path):
     if n * (n - 1) // 2 != len(b):
         raise ValueError("%s: %d bits is not n(n-1)/2 for any n" % (path, len(b)))
     return n, b, hashlib.sha256(b.encode()).hexdigest()
+
+
+ANCHOR_RE = re.compile(r'^(none|(pair|vertex)-orbit\(([^()]*)\))$')
+
+
+def check_anchoring(path, fields, bits, n):
+    """The `anchoring=` field names the representatives that filtered the cube
+    set down to `cubes=`, under Lemma 2.1 (ordered pairs) or Corollary 2.2
+    (vertices).  Two things are checkable from shipped bytes, and both are
+    checked here because a wrong one silently shrinks the search:
+
+      * every representative lies IN THE BASE -- anchoring is decided from a
+        base state, which knows only the order restricted to B, so a
+        representative outside B matches nothing and filters anchored witnesses
+        away;
+      * a pair-orbit representative is an arc or a non-arc of THIS host, which
+        the .bits now makes decidable (under v1's `q=` it was not).
+
+    Orbit COMPLETENESS is not checkable from here and stays a human obligation,
+    like the lemma itself; the point of recording the representatives is that it
+    becomes auditable rather than implicit.
+    """
+    name = os.path.basename(path)
+    anc = fields.get('anchoring')
+    if anc is None:
+        print("  FAIL  %s: a v2 block with no anchoring field" % name)
+        return False
+    m = ANCHOR_RE.match(anc)
+    if not m:
+        print("  FAIL  %s: unrecognised anchoring %r -- expected none, "
+              "pair-orbit(...) or vertex-orbit(...)" % (name, anc))
+        return False
+    if anc == 'none':
+        print("  ok    %s: anchoring=none, so every base state is live and no "
+              "anchoring lemma is in the trust chain" % name)
+        return True
+    kind, body = m.group(2), m.group(3)
+    base = [int(x) for x in fields.get('base', '').split(',') if x != '']
+    reps = [f.split('=', 1)[1] for f in body.split(';')]
+    if kind == 'vertex':
+        vs = [[int(r)] for r in reps]
+        lemma, what = 'Corollary 2.2', 'vertex'
+    else:
+        vs = [[int(x) for x in r.split(',')] for r in reps]
+        lemma, what = 'Lemma 2.1', 'ordered-pair'
+    flat = [v for p in vs for v in p]
+    outside = sorted({v for v in flat if v not in base})
+    if outside:
+        print("  FAIL  %s: anchoring names %s, outside base %s -- anchored "
+              "witnesses would be filtered away" % (name, outside, base))
+        return False
+    if any(v < 0 or v >= n for v in flat):
+        print("  FAIL  %s: anchoring names a vertex outside 0..%d" % (name, n - 1))
+        return False
+    note = ''
+    if kind == 'pair':
+        # upper-triangle index of (i,j), i<j, in (0,1),(0,2),...,(n-2,n-1) order
+        def is_arc(u, v):
+            i, j = (u, v) if u < v else (v, u)
+            k = sum(n - 1 - t for t in range(i)) + (j - i - 1)
+            fwd = bits[k] == '1'
+            return fwd if u < v else not fwd
+        note = ', '.join('(%d,%d) %s' % (u, v, 'arc' if is_arc(u, v) else 'non-arc')
+                         for u, v in vs)
+        note = ' -- ' + note + ', derived from the host'
+    print("  ok    %s: anchoring is %d %s representative(s) under %s, all inside "
+          "the base%s" % (name, len(vs), what, lemma, note))
+    return True
 
 
 def check_host_binding(path, fields):
@@ -77,7 +146,7 @@ def check_host_binding(path, fields):
         return False
     print("  ok    %s: host_sha256 re-derived from %s (n=%d, %s); reversing one "
           "arc breaks it" % (name, ref, n, fields.get('host_name', '?')))
-    return True
+    return (n, bits)
 
 
 def check(d):
@@ -118,7 +187,12 @@ def check(d):
               % (name, version, fields.get('search_root_cnf', '?')[:8],
                  fields.get('split_cover_cnf', '?')[:8], fields.get('cubes', '?')))
         if version == 'CERT-v2':
-            ok &= check_host_binding(path, fields)
+            bound = check_host_binding(path, fields)
+            if bound is False:
+                ok = False
+            else:
+                n, bits = bound
+                ok &= check_anchoring(path, fields, bits, n)
     return ok
 
 

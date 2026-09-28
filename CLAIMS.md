@@ -125,12 +125,14 @@ rechecked by `lrat-trim`, and the cube set proved exhaustive. 224.4 core-h.
 `certificates/h02f00cert_d6/README.md` has the detail; the two engines share no
 implementation, so this is a second method and not a rerun.
 
-It is also the **shortest trust chain in the package**. Arc-orbit anchoring
-(HUMAN LEMMA L1) needs `Aut` transitive on arcs and on non-arcs; `h02_f00` is
-rigid, so L1 does not apply, every base state was run, and only L2 (voters
-lex-ordered) remains human — against L1 *and* L2 for every Paley certificate
-here. And because 21 is not a prime power, this host has no `q`, which is what
-forced the certificate-block format described in `certificates/CERT-v2.md`.
+It is also the **shortest trust chain in the package**. Anchoring — Lemma 2.1 on
+ordered pairs, or Corollary 2.2 on vertices — buys a reduction only when `Aut` has
+few orbits, and `h02_f00` is rigid, so every orbit is a singleton and neither
+lemma removes a single base state. All 202,129 ran, and only Lemma 2.3 (voters
+lex-ordered) remains human, against an anchoring lemma *and* Lemma 2.3 for every
+Paley certificate here. And because 21 is not a prime power, this host has no
+`q`, which is what forced the certificate-block format described in
+`certificates/CERT-v2.md`.
 
 `tournaments/deletion_classes.py` derives 319 and 289 from the hosts by
 canonicalising every deletion with nauty's `labelg` — 15 × 19 + 2 = 287 classes

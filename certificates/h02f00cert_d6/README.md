@@ -35,12 +35,15 @@ convention a directory uses and refuses one that mixes both.
 
 ## Two things are shorter here than for Paley(19)
 
-**No anchoring, so HUMAN LEMMA L1 is not in the trust chain.** L1 -- that
-arc-orbit anchoring is WLOG -- needs `Aut` transitive on arcs and on non-arcs.
-`h02_f00` is rigid, so it does not apply and **all 202,129 base states were
-run**, at roughly six times the cube count anchoring would have given. Only L2
-(voters may be lex-ordered) remains human. The block records this as
-`anchoring=none`.
+**No anchoring, so no anchoring lemma is in the trust chain.** Both forms buy a
+reduction only when `Aut` has few orbits -- Lemma 2.1 needs one representative
+ordered pair per orbit on ordered pairs, Corollary 2.2 one vertex per orbit on
+vertices. `h02_f00` is **rigid**, so every orbit is a singleton, a full set of
+representatives is everything, and neither lemma removes a single base state.
+**All 202,129 were run**, roughly six times the cube count a Paley-style
+two-orbit break would have given. Only Lemma 2.3 (voters may be lex-ordered)
+remains human. The block records this as `anchoring=none`, which is a statement
+that the lemma is ABSENT from the chain, not merely satisfied.
 
 **No `q`.** 21 is not a prime power, so no CERT-v1 block can be written for this
 host at all; see `../CERT-v2.md`. This certificate exists only in v2.
@@ -75,9 +78,12 @@ N(5) >= 12. `VERDICT.txt` states this in full.
 
 ## A stale line in VERDICT.txt, deliberately not edited
 
-`VERDICT.txt` is reproduced as the prover wrote it. Its closing "Remaining HUMAN
-lemmas" list names both L1 and L2, while its own `anchoring` line five lines
-above correctly says L1 **is not used** for this host. The list is boilerplate
-that the rigid-host path did not update; the `anchoring` line and this README
-are right, and `anchoring=none` inside the CERT-v2 block is the value that is
-hashed.
+`VERDICT.txt` is reproduced as the prover wrote it, and it contradicts itself
+once: the closing "Remaining HUMAN lemmas" list names both L1 and L2, while its
+own `anchoring` line five lines above correctly says L1 **is not used** here.
+That list was unconditional boilerplate. `sat/certify_d6.py` now builds it from
+what the run actually did, so a future rigid-host verdict says
+"NO anchoring lemma is used"; this file is left alone because re-stamping it
+would rewrite a prover's output after the fact. The `anchoring` line and this
+README are right, and `anchoring=none` inside the CERT-v2 block is the value
+that is hashed.

@@ -112,6 +112,74 @@ def read_block(path):
     return fields, stated, block.strip().split('\n')[0]
 
 
+def build_anchoring(a, n, bits_path):
+    """The `anchoring=` field: WHICH cubes were solved, and under which lemma.
+
+    The anchoring representatives do exactly one thing in the prover -- they
+    filter the enumerated base states down to the live ones (certify_d6.py, the
+    `live = ...` line).  They never reach the CNF.  So this field is what
+    explains a `cubes=` count smaller than the host's full base-state count, and
+    without it the search half and the coverage half appear to disagree.
+
+    Section 2 gives TWO anchorings, alternatives rather than a sequence, each
+    without loss of generality on its own:
+
+      LEMMA 2.1 (ordered-pair anchoring)  one representative ordered pair from
+        each Aut-orbit on ordered pairs; some voter's top two is one of them.
+          pair-orbit(p1=0,1;p2=2,1)
+        A Paley host has exactly TWO such orbits -- the arcs and the non-arcs --
+        which is the only case the v1 blocks could express, with `arc=`/`non=`.
+        The general form takes m representatives.
+
+      COROLLARY 2.2 (vertex anchoring)  one representative VERTEX from each
+        Aut-orbit on vertices; some voter ranks one of them first.
+          vertex-orbit(v1=0;v2=3;v3=7)
+
+      and, for a rigid host or any unanchored run,
+          none
+
+    EVERY REPRESENTATIVE MUST LIE IN THE BASE, and that is enforced here: the
+    filter reads a base state, which knows only the order restricted to B, so a
+    representative outside B can never match and an anchored witness would be
+    filtered away -- unsoundness in the direction that makes a run finish
+    sooner.  Orbit COMPLETENESS -- that the representatives meet every orbit --
+    stays a human obligation, as the lemma itself is; recording them here is
+    what makes it auditable.
+    """
+    fams = [x for x in (('pair', [tuple(a.arc), tuple(a.non)]) if a.arc else None,
+                        ('pair', [tuple(a.pair_anchor[i:i + 2])
+                                  for i in range(0, len(a.pair_anchor or []), 2)])
+                        if a.pair_anchor else None,
+                        ('vertex', list(a.vertex_anchor)) if a.vertex_anchor else None)
+            if x is not None]
+    if len(fams) > 1:
+        sys.exit("Lemma 2.1 and Corollary 2.2 are ALTERNATIVES, each WLOG on its own.\n"
+                 "Give at most one of --arc/--non, --pair-anchor, --vertex-anchor.")
+    if not fams:
+        return "none"
+    kind, reps = fams[0]
+    if kind == 'pair' and a.pair_anchor and len(a.pair_anchor) % 2:
+        sys.exit("--pair-anchor takes a FLAT list u1 v1 u2 v2 ...; got an odd count")
+    flat = [v for p in reps for v in p] if kind == 'pair' else reps
+    if any(not 0 <= v < n for v in flat):
+        sys.exit(f"anchoring names a vertex outside 0..{n - 1}: {sorted(set(flat))}")
+    if len(set(reps)) != len(reps):
+        sys.exit("anchoring: repeated representative -- one per orbit, no duplicates")
+    if a.base is not None:
+        outside = sorted({v for v in flat if v not in a.base})
+        if outside:
+            sys.exit(f"anchoring names {outside}, outside the base "
+                     f"{','.join(map(str, a.base))}.  Anchoring is decided from the "
+                     "base state alone, so a representative outside the base filters\n"
+                     "anchored witnesses AWAY and the refutation is vacuous.")
+    if kind == 'vertex':
+        return "vertex-orbit(" + ";".join(f"v{i}={v}" for i, v in enumerate(reps, 1)) + ")"
+    if any(u == v for u, v in reps):
+        sys.exit("anchoring: an ordered pair must have distinct vertices")
+    return "pair-orbit(" + ";".join(f"p{i}={u},{v}"
+                                    for i, (u, v) in enumerate(reps, 1)) + ")"
+
+
 a = argparse.ArgumentParser(add_help=True)
 for f in ('dir', 'cover-cnf', 'cover-proof', 'cover-cnf-sha', 'cover-proof-sha',
           'margin', 'root-cnf', 'root-proofs', 'out', 'from-v1',
@@ -124,6 +192,12 @@ a.add_argument('--q', type=int); a.add_argument('--k', type=int)
 a.add_argument('--cubes', type=int)
 a.add_argument('--base', nargs='+', type=int)
 a.add_argument('--arc', nargs=2, type=int); a.add_argument('--non', nargs=2, type=int)
+a.add_argument('--pair-anchor', nargs='+', type=int, metavar='U V',
+               help='Lemma 2.1 in general form: a flat list u1 v1 u2 v2 ... of one '
+                    'representative ordered pair per Aut-orbit on ordered pairs')
+a.add_argument('--vertex-anchor', nargs='+', type=int, metavar='V',
+               help='Corollary 2.2 instead: one representative VERTEX per Aut-orbit '
+                    'on vertices')
 a = a.parse_args()
 
 # ---------------------------------------------------------------- lift v1
@@ -201,10 +275,9 @@ else:
     # not resolve to the host it commits to.
     if canonical_bits(os.path.join(ref_dir, host_ref))[2] != host_sha:
         sys.exit(f"{host_ref} does not resolve to the host from {ref_dir}")
-    anchoring = ("none" if a.arc is None and a.non is None else
-                 f"arc-orbit(arc={a.arc[0]},{a.arc[1]};non={a.non[0]},{a.non[1]})")
     if (a.arc is None) != (a.non is None):
         sys.exit("--arc and --non must be given together")
+    anchoring = build_anchoring(a, host_n, a.host_bits)
     portable_block = (
         "CERT-v2 portable\n"
         f"host_name={a.host_name}\n"

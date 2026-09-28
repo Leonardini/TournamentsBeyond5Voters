@@ -73,12 +73,14 @@ Rebuild with `../certroot.py` (see its docstring for arguments).
 `non` in the block above are vertex labels. Our `paley(19)` and its converse are
 both "Paley(19)" and differ in `adj[0][1]`, so a reproducer using the other sign
 convention gets the same VERDICT and a different ROOT. `p19_cert.v2.portable.txt`
-closes that by committing to the adjacency itself:
+closes that by committing to the adjacency itself, and states the
+anchoring in the general form of Lemma 2.1 rather than Paley's two-orbit
+spelling:
 
     host_sha256 = 9729da99…  (sha256 of tournaments/p19_paley.bits, canonical
                               bit string, whitespace stripped)
-    CERT-v2 portable  989ab61823134ab4ca9ec61a18a9f9466fde69eda259b70a02b5213517278891
-    CERT-v2 full      97c6414605d38a1ba72aca789faa98b702c17068c924442a9bcde65ce755eddf
+    CERT-v2 portable  21d94257482d7f1f0fed520681081e6e8564576b16e1740ca2acd2b9060d6558
+    CERT-v2 full      868e06292b5a9b6aaf01eee03471323be253f47331493a7b7c83b5fc5bef1cf1
 
 **The v1 values above are unchanged and stay authoritative for anything already
 published.** v2 hashes a different block and is not comparable with v1. The

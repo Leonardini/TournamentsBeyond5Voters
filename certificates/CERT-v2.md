@@ -69,12 +69,61 @@ until now.
   annotation — `origin=paley(19), quadratic-residue convention of
   sat/cube_sat.py paley()` — where it can no longer be mistaken for an
   identifier.
-* **`anchoring`** is explicit. v1 always had `arc=`/`non=` because every
-  certified host so far was Paley, whose automorphism group is transitive on arcs
-  and on non-arcs; that is what licenses running only the live cubes (HUMAN LEMMA
-  L1). `h02_f00` is rigid, L1 does not apply, and all 202,129 base states were
-  run, so its block reads `anchoring=none` — **a shorter trust chain, stated in
-  the certificate rather than in a README.**
+* **`anchoring`** is explicit, and general. See below.
+
+## `anchoring=` — what it is, and why it earns a field
+
+The anchoring representatives do **exactly one thing**: they filter the
+enumerated base states down to the live ones. In `sat/certify_d6.py` that is a
+single line,
+
+    live = [c for c in cubes if any((B[pi[0]], B[pi[1]]) in PAIRS for pi in c)]
+
+and they reach neither `build()`, nor the CNF, nor `cube_units`. So anchoring
+changes *which* subproblems were solved and nothing about any one of them —
+which is precisely why the certificate has to record it. Without it, `cubes=22876`
+is unexplained, and the search half looks inconsistent with a coverage half that
+ranges over all 142,251 base states.
+
+Section 2 gives **two** anchorings, alternatives rather than a sequence, each
+without loss of generality on its own, and which is better depends on whether the
+host has fewer vertex orbits or fewer ordered-pair orbits:
+
+| lemma | representatives | field |
+|---|---|---|
+| **Lemma 2.1**, ordered-pair anchoring | one ordered pair from each `Aut`-orbit on ordered pairs; some voter's top two is one of them | `pair-orbit(p1=0,1;p2=2,1)` |
+| **Corollary 2.2**, vertex anchoring | one vertex from each `Aut`-orbit on vertices; some voter ranks one of them first | `vertex-orbit(v1=0;v2=3;v3=7)` |
+| neither | every base state is live | `none` |
+
+Both take **any number** of representatives. The v1 blocks could express only
+the two-representative case, as `arc=`/`non=`, because every host certified so
+far was Paley — whose ordered-pair orbits are exactly the arcs and the non-arcs,
+so `m = 2`. That is a theorem about Paley, not a property of the format, and a
+host with three ordered-pair orbits had no way to say so.
+
+`h02_f00` is rigid: neither lemma applies, all 202,129 base states were run, and
+its block reads `anchoring=none` — **a shorter trust chain, stated in the
+certificate rather than in a README.**
+
+### Every representative must lie inside the base
+
+The filter reads a *base state*, which knows only each voter's order restricted
+to `B`. A representative outside `B` therefore matches nothing: an anchored
+witness is filtered **away**, and the refutation goes vacuous — in the direction
+that makes a run finish sooner and look like a success.
+
+Nothing checked this before 2026-09-28. Both published Paley certifications
+satisfy it — `{0,1} ∪ {2,1} ⊂ {0,1,2,3,4,11}` and `{2,6} ∪ {1,6} ⊂ {0,1,2,5,6,3}`
+— which is why it never bit. `sat/certroot.py` and `sat/certify_d6.py` now both
+refuse an out-of-base representative, and gate check 3e is the control.
+
+What is **not** checkable from shipped bytes is orbit *completeness* — that the
+representatives meet every orbit. The manuscript flags it ("Lemma 2.1 must be
+given the full set of orbits") and it stays a human obligation, like the lemma
+itself. Recording the representatives in the hashed block is what makes it
+auditable instead of implicit. For a pair representative the gate does check the
+one thing the host now makes decidable: whether it is an arc or a non-arc,
+recomputed from the `.bits`. Under v1's `q=`, it was not decidable at all.
 
 ## v1 is frozen
 
@@ -84,8 +133,8 @@ an edit to how a v1 block is emitted. `p19_cert.portable.txt` still hashes to
 --from-v1` rebuilds each from its own contents and `--expect-portable` asserts
 the published value. Both versions ship, and the gate checks both.
 
-    p19      CERT-v1 portable 8eb20a1d…   CERT-v2 portable 989ab618…
-    p23      CERT-v1 portable ff60539e…   CERT-v2 portable 4f266045…
+    p19      CERT-v1 portable 8eb20a1d…   CERT-v2 portable 21d94257…
+    p23      CERT-v1 portable ff60539e…   CERT-v2 portable b2b5ed32…
     h02_f00  (v1 not expressible)        CERT-v2 portable 0e5da399…
 
 A v2 value is **not** comparable with a v1 value for the same instance: they

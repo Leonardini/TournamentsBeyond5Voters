@@ -25,10 +25,17 @@ TRUST CHAIN, in full:
            --checkproof is DISABLED so it never validates its own work)
   machine  the cubes cover every lex-canonical base assignment
            (cover_check.py, with its --drop negative control)
-  HUMAN L1 arc-orbit anchoring is WLOG: Aut(Paley(q)) is transitive on arcs and
-           on non-arcs, so some voter's (top,second) may be assumed to be a
-           fixed arc or a fixed non-arc.  This is what licenses running only
-           the LIVE cubes.
+  HUMAN L1 anchoring is WLOG.  TWO forms, alternatives rather than a sequence:
+           LEMMA 2.1 takes one representative ORDERED PAIR from each Aut-orbit
+           on ordered pairs and assumes some voter's (top,second) is one of
+           them; COROLLARY 2.2 takes one representative VERTEX from each
+           Aut-orbit on vertices and assumes some voter ranks one of them
+           first.  Either licenses running only the LIVE cubes.  Aut(Paley(q))
+           has exactly TWO ordered-pair orbits, the arcs and the non-arcs,
+           which is what --arc/--non spells; --pair-anchor and --vertex-anchor
+           take any number of representatives.  Both forms require every
+           representative to lie INSIDE THE BASE, since the filter reads a base
+           state -- enforced, see main().
   HUMAN L2 the voters may be lex-ordered WLOG.  This licenses the lex chain in
            the coverage CNF.
 Both lemmas are proved in RESEARCH_LOG.md, and the independent DFS engine
@@ -175,15 +182,30 @@ def main():
     ap.add_argument('--q', type=int, default=19)
     ap.add_argument('--bits', default=None,
                     help='certify an ARBITRARY host from a .bits file instead of Paley(q).\n'
-                         'Implies NO ANCHORING: the arc-orbit lemma (HUMAN L1) needs\n'
-                         'Aut transitive on arcs and on non-arcs, which is FALSE for a\n'
-                         'rigid host, so every base state is run.  That costs ~6x the\n'
-                         'cubes at Paley(19) scale and REMOVES L1 from the trust chain.')
+                         'Defaults to NO ANCHORING -- every base state is run, which\n'
+                         'costs ~6x the cubes at Paley(19) scale and REMOVES the\n'
+                         'anchoring lemma from the trust chain.  A host with a\n'
+                         'non-trivial Aut may still anchor, with --pair-anchor or\n'
+                         '--vertex-anchor and a FULL set of orbit representatives;\n'
+                         '--arc/--non is refused here because its two-orbit assumption\n'
+                         'is a property of Paley.')
     ap.add_argument('--k', type=int, default=5)
     ap.add_argument('--margin', default='exact', choices=['exact', 'majority'])
     ap.add_argument('--base', type=int, nargs='+', required=True)
     ap.add_argument('--arc', type=int, nargs=2, default=None)
     ap.add_argument('--non', type=int, nargs=2, default=None)
+    ap.add_argument('--pair-anchor', type=int, nargs='+', default=None,
+                    metavar='U V',
+                    help='LEMMA 2.1 in general form: a flat list u1 v1 u2 v2 ... of ONE\n'
+                         'representative ordered pair from EACH Aut-orbit on ordered\n'
+                         'pairs.  --arc/--non is the two-orbit spelling of this, which is\n'
+                         'all a Paley host needs; a host with m > 2 orbits needs this.')
+    ap.add_argument('--vertex-anchor', type=int, nargs='+', default=None,
+                    metavar='V',
+                    help='COROLLARY 2.2 instead: one representative VERTEX from each\n'
+                         'Aut-orbit on vertices.  An alternative to Lemma 2.1, not a\n'
+                         'sequence with it -- which is better depends on whether the host\n'
+                         'has fewer vertex orbits or fewer ordered-pair orbits.')
     ap.add_argument('--out', default='/tmp/p19cert_d6')
     ap.add_argument('--coverage', default=None,
                     help='path to the VERIFIED coverage proof for this cube set.\n'
@@ -204,28 +226,93 @@ def main():
     adj, n = load_host(spec)
     HOST = f"Paley({a.q})" if a.bits is None else os.path.basename(a.bits).replace('.bits', '')
     B = list(a.base)
-    ANCHOR = a.bits is None
-    if not ANCHOR and (a.arc or a.non):
-        sys.exit("--arc/--non are anchoring, and anchoring needs Aut transitive on arcs\n"
-                 "and non-arcs.  That is a property of Paley, not of an arbitrary host.\n"
-                 "Drop them: --bits runs every base state.")
-    if ANCHOR and not (a.arc and a.non):
-        sys.exit("--arc and --non are required for the Paley path (arc-orbit anchoring)")
-    ARC = tuple(a.arc) if a.arc else None
-    NON = tuple(a.non) if a.non else None
-    if ANCHOR:
+
+    # ------------------------------------------------------------ ANCHORING
+    # The representatives do EXACTLY ONE thing: filter the enumerated base
+    # states down to the live ones, below.  They never reach build(), the CNF
+    # or cube_units, so anchoring changes WHICH subproblems are solved and
+    # nothing about any one of them.
+    #
+    # Two alternatives, not a sequence (manuscript Section 2):
+    #   LEMMA 2.1      one representative ORDERED PAIR per Aut-orbit on ordered
+    #                  pairs; some voter's top two is one of them.  A Paley host
+    #                  has exactly two such orbits, the arcs and the non-arcs,
+    #                  which is what --arc/--non spells.
+    #   COROLLARY 2.2  one representative VERTEX per Aut-orbit on vertices; some
+    #                  voter ranks one of them first.
+    #
+    # EVERY REPRESENTATIVE MUST LIE INSIDE THE BASE.  The filter reads a base
+    # state, which knows only the order restricted to B, so a representative
+    # outside B can never be matched: an anchored witness would be filtered
+    # AWAY and the refutation would be unsound -- silently, and in the vacuous
+    # direction, because dropping cubes only makes the search finish sooner.
+    # Nothing checked this until 2026-09-28; the two published Paley
+    # certifications satisfy it, which is why it never bit.
+    def _in_base(vs, what):
+        out = [v for v in vs if v not in B]
+        if out:
+            sys.exit(f"{what}: vertex/vertices {out} lie OUTSIDE the base {B}.\n"
+                     "Anchoring is decided from the base state alone, so every\n"
+                     "representative must be in the base or anchored witnesses are\n"
+                     "filtered away and the refutation is vacuous.  Choose the orbit\n"
+                     "representatives inside B, or drop the anchoring.")
+    n_fam = sum(x is not None for x in (a.arc or a.non or None,
+                                        a.pair_anchor, a.vertex_anchor))
+    if n_fam > 1:
+        sys.exit("Lemma 2.1 and Corollary 2.2 are ALTERNATIVES, each WLOG on its own.\n"
+                 "Give exactly one of --arc/--non, --pair-anchor, --vertex-anchor.")
+    PAIRS = VERTS = None
+    if a.arc or a.non:
+        if a.bits is not None:
+            sys.exit("--arc/--non is the PALEY spelling of Lemma 2.1: it assumes the\n"
+                     "ordered-pair orbits are exactly the arcs and the non-arcs, which is\n"
+                     "a property of Paley.  For another host give --pair-anchor with one\n"
+                     "representative per orbit, or drop it and run every base state.")
+        if not (a.arc and a.non):
+            sys.exit("--arc and --non go together: they are the two orbit representatives")
+        ARC, NON = tuple(a.arc), tuple(a.non)
         if adj[ARC[0]][ARC[1]] != 1:
             sys.exit(f"--arc {ARC} is NOT an arc of {HOST}")
         if adj[NON[0]][NON[1]] != 0:
             sys.exit(f"--non {NON} IS an arc of {HOST}; it must be a non-arc")
+        _in_base(ARC + NON, "--arc/--non")
+        PAIRS = [ARC, NON]
+        ANCHOR_TXT = f"pair-orbit (Lemma 2.1): arc {ARC} + non-arc {NON}"
+    elif a.pair_anchor:
+        if len(a.pair_anchor) % 2:
+            sys.exit("--pair-anchor takes a FLAT list u1 v1 u2 v2 ...; got an odd count")
+        PAIRS = [tuple(a.pair_anchor[i:i+2]) for i in range(0, len(a.pair_anchor), 2)]
+        if any(u == v for u, v in PAIRS):
+            sys.exit("--pair-anchor: an ordered pair must have distinct vertices")
+        if len(set(PAIRS)) != len(PAIRS):
+            sys.exit("--pair-anchor: repeated representative -- one per orbit, no duplicates")
+        _in_base([v for p in PAIRS for v in p], "--pair-anchor")
+        ANCHOR_TXT = "pair-orbit (Lemma 2.1): " + ", ".join(
+            "(%d,%d) %s" % (u, v, "arc" if adj[u][v] else "non-arc")
+            for u, v in PAIRS)
+    elif a.vertex_anchor:
+        VERTS = list(a.vertex_anchor)
+        if len(set(VERTS)) != len(VERTS):
+            sys.exit("--vertex-anchor: repeated representative -- one per orbit")
+        _in_base(VERTS, "--vertex-anchor")
+        ANCHOR_TXT = f"vertex-orbit (Corollary 2.2): {VERTS}"
+    else:
+        ANCHOR_TXT = "NONE: every base state is live, and no anchoring lemma is used"
+    ANCHOR = PAIRS is not None or VERTS is not None
+    if not ANCHOR and a.bits is None:
+        sys.exit("the Paley path needs --arc/--non (or --pair-anchor / --vertex-anchor).\n"
+                 "To run every base state unanchored, pass --bits explicitly.")
     print(f"### certify {HOST} (n={n}) margin={a.margin} by depth-{len(B)} cubing "
           f"{time.strftime('%F %H:%M:%S')}")
-    print(f"  base {B}, " + (f"break arc {ARC} + non-arc {NON}" if ANCHOR else
-                             "NO ANCHORING (rigid host): every base state is live"))
+    print(f"  base {B}, anchoring {ANCHOR_TXT}")
     t = time.time()
     cubes, bm = enumerate_cubes(adj, B, a.k, exact, 'mask')
-    live = ([c for c in cubes if any((B[pi[0]], B[pi[1]]) in (ARC, NON) for pi in c)]
-            if ANCHOR else list(cubes))
+    if PAIRS:      # Lemma 2.1: some voter's top TWO on the base is a representative
+        live = [c for c in cubes if any((B[pi[0]], B[pi[1]]) in PAIRS for pi in c)]
+    elif VERTS:    # Corollary 2.2: some voter's top ON THE BASE is a representative
+        live = [c for c in cubes if any(B[pi[0]] in VERTS for pi in c)]
+    else:
+        live = list(cubes)
     print(f"  {len(cubes):,} base states -> {len(live):,} live "
           f"({100*len(live)/len(cubes):.1f}%), enumerated in {time.time()-t:.0f}s")
     if a.sample:
@@ -327,12 +414,25 @@ MARGIN NOTE   This run is at MAJORITY (every arc >= {(a.k+1)//2} of {a.k}).  By 
               sum to <= {2*a.k} and none can exceed {2*a.k - 2*((a.k+1)//2)}.  Every arc of {HOST} lies in
               a 3-cycle, so majority is EQUIVALENT to margin<={2*(2*a.k-2*((a.k+1)//2))-a.k} here and this
               verdict covers both."""
+        # The lemma list used to name the anchoring lemma UNCONDITIONALLY, so a
+        # rigid host's verdict claimed a lemma its own `anchoring` line three
+        # lines above said it had not used.  Build it from what the run did.
+        LEMMAS = "  (L2) voters may be lex-ordered WLOG -- licenses the lex chain in coverage\n"
+        if PAIRS:
+            LEMMAS = ("  (L1) LEMMA 2.1, ordered-pair anchoring, is WLOG -- licenses running\n"
+                      f"       only the {len(live)} live cubes of {len(cubes)}\n") + LEMMAS
+        elif VERTS:
+            LEMMAS = ("  (L1) COROLLARY 2.2, vertex anchoring, is WLOG -- licenses running\n"
+                      f"       only the {len(live)} live cubes of {len(cubes)}\n") + LEMMAS
+        else:
+            LEMMAS += ("  NO anchoring lemma is used: every base state is live, so L1 is\n"
+                       "  ABSENT from this chain, not merely satisfied.\n")
         f.write(f"""{HOST} is NOT {_what}{a.k}-inducible -- machine-verified.
 {_extra}
 date          {time.strftime('%F %H:%M:%S')}
 margin        {a.margin}
 base          {B}  ({len(cubes)} base states)
-anchoring     {('arc ' + str(ARC) + ' + non-arc ' + str(NON)) if ANCHOR else 'NONE (rigid host): HUMAN LEMMA L1 IS NOT USED'} -> {len(live)} live cubes
+anchoring     {ANCHOR_TXT if ANCHOR else 'NONE: HUMAN LEMMA L1 IS NOT USED'} -> {len(live)} live cubes
 cubes         {nc}, ALL UNSAT, each INDEPENDENTLY VERIFIED by lrat-trim
 solver        cadical --lrat=true --checkproof=0 (self-check disabled)
 checker       lrat-trim (Biere) -- different program, different author
@@ -374,9 +474,7 @@ F_B & SB to be unsatisfiable, i.e. the {len(B)}-vertex base not {a.k}-inducible,
 contradicting N({a.k}) >= 12.
 
 Remaining HUMAN lemmas (not covered by any certificate):
-  (L1) arc-orbit anchoring is WLOG  -- licenses running only the live cubes
-  (L2) voters may be lex-ordered WLOG -- licenses the lex chain in coverage
-Both proved in RESEARCH_LOG.md.
+{LEMMAS}Proved in RESEARCH_LOG.md.
 """)
     print(f"\n### done {el/3600:.2f} h  solve {ns/3600:.1f} + check {ck/3600:.1f} core-h")
     print(f"  ROOT (CNF)    {root_cnf.hexdigest()}")

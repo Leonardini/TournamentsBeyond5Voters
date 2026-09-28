@@ -176,6 +176,36 @@ else
 fi
 
 echo
+echo "== 3e. NEGATIVE CONTROL: an anchoring representative outside the base is refused =="
+# `anchoring=` names the representatives that filtered the cube set down to
+# `cubes=` -- the ONLY thing they do (certify_d6.py, the `live = ...` line).
+# The filter reads a base state, which knows only the order restricted to B, so
+# a representative OUTSIDE B matches nothing: anchored witnesses are filtered
+# away and the refutation goes vacuous, in the direction that finishes sooner.
+# Nothing checked this before 2026-09-28.  certroot.py must refuse to emit such
+# a block, so a bad anchoring cannot be hashed into a certificate at all.
+if python3 "$ROOT/sat/certroot.py" --v2 \
+     --host-bits "$ROOT/tournaments/p19_paley.bits" --host-name ctl --origin ctl \
+     --k 5 --margin exact --base 0 1 2 3 4 11 --vertex-anchor 7 --cubes 0 \
+     --root-cnf 0 --root-proofs 0 --cover-cnf-sha 0 --cover-proof-sha 0 \
+     >/dev/null 2>&1; then
+  bad "control did not fire: a representative outside the base was accepted"
+else
+  ok "an anchoring representative outside the base is refused, as it must be"
+fi
+# ...and the same parameters WITH the representative inside the base must work,
+# or the check above would pass for the wrong reason.
+if python3 "$ROOT/sat/certroot.py" --v2 \
+     --host-bits "$ROOT/tournaments/p19_paley.bits" --host-name ctl --origin ctl \
+     --k 5 --margin exact --base 0 1 2 3 4 11 --vertex-anchor 11 --cubes 0 \
+     --root-cnf 0 --root-proofs 0 --cover-cnf-sha 0 --cover-proof-sha 0 \
+     >/dev/null 2>&1; then
+  ok "the same anchoring with the representative inside the base is accepted"
+else
+  bad "vertex-orbit anchoring is rejected even when the representative is in the base"
+fi
+
+echo
 echo "== 4. distributed refutations cover their base-state range exactly =="
 # A refutation is only as good as the union of its slices.  Count is not
 # enough: a missing index and a duplicated one cancel in a count.
