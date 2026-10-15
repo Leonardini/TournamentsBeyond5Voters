@@ -1,0 +1,81 @@
+# Coverage certificate for the d005_mv04 majority certification, 2026-10-15
+# base {0,1,2,3,11,17} 0-indexed ({1,2,3,4,13,19} in the labelling of Delta_6),
+# |B|=6, plain majority, k=5, n=22
+# host d005_mv04 = Delta_6 (line 6 of drt23/drtourn23.txt) minus 0-based vertex 4
+#   jz_sweep1/hosts/d005_mv04.bits
+#   sha256 d7c871ea57c9e5cbf5938eeb86a61c7475738c1a740fd7aef0e937b6de8e179d
+#     (canonical bit string, whitespace stripped, 231 = C(22,2) bits -- see
+#      certificates/CERT-v2.md in the repro repo)
+#
+# CLAIM: the 742,374 cubes cover EVERY lex-canonical base assignment, so
+# nothing can bypass them.  F_B & SB & AND_i not-C_i is UNSAT.
+#
+# CNF    743,080 clauses = 350 F_B + 356 SB + 742,374 negated cubes, 135 vars
+#        (75 base = 5 voters x C(6,2), plus 60 lex auxiliaries), 0.17 GiB
+# solve  RESULT UNSAT time=82.81s proof=422 MiB CHECK=VERIFIED
+#
+# THE CUBE COUNT IS ASSERTED, NOT ASSUMED.  cover_check.py was run with
+# --expect-cubes 742374, parsed from the prover's own log by coverage_after.sh,
+# because a coverage proof is only about the cube set the checker enumerates
+# itself; a silent disagreement would certify the wrong set and read as success.
+# d005_mv04 has no non-trivial automorphism, so there is no orbit break and the
+# search half solved all 742,374 base states: the two halves see the same set.
+#
+# ARTIFACT HASHES:
+#   coverage CNF    b57fd4f195e69fcf0af654d59851ad59e1c4862ed898e405dc0bdb683ec15fe1
+#   coverage proof  5de339c4a0cb6e7df37e5c14094ee1521f4bd9c9e12635294b8445fb10e4f858
+#   search ROOT (CNF)    f5ea8bf78c29405bdcd0c685ef032bf5ab01a6885d699b05b53e5d6abc386266
+#   search ROOT (proofs) 6e20fa618d3a139fcbc0e6668f87c6ed64e65d8fd3e31a8276f0087923ac96fe
+#
+# Neither coverage artifact is kept here: both are bulk (183 MB and 442 MB) and
+# regenerable in about 7 minutes on one core, the policy p19_coverage_cert.txt
+# and h02f00_coverage_cert.txt record.
+#
+# WHAT CHECKED WHAT.  cadical emitted the proof under --lrat=true with
+# --checkproof=0, so it never validated its own work, and lrat-trim (Biere) --
+# a different program by a different author -- verified it.  The proof is
+# BINARY LRAT; the .drat name is inherited from cover_check.py's flag name.
+#
+# THE NEGATIVE CONTROL WAS NOT RUN, DELIBERATELY, for the reason VERDICT.txt
+# gives: vacuity would need F_B & SB unsatisfiable, i.e. the 6-vertex base not
+# 5-inducible, contradicting N(5) >= 12.
+#
+# SEARCH-HALF COST, for the record.  1,254.9 solve + 37.8 check = 1,292.7
+# core-h, summed from all 3,712 per-chunk markers.  The certification ran in
+# three invocations on 11 workers: 2026-10-10 13:53 (~0.6 h, stopped), 10-10
+# 15:01 (~44.4 h, ended by a laptop restart on 10-12) and 10-12 12:21 to 10-15
+# 14:00 (73.55 h).  VERDICT.txt's "wall 73.55 h ... CUMULATIVE" covers the
+# third only: wall.json is written at a run's normal completion and the first
+# two never completed.  Total wall ~118.5 h; 1,292.7 / 11 = 117.5 h agrees.
+#
+# Run (verbatim, 2026-10-15 14:00:34-14:07:48 BST, one core):
+#   F_B check: the 350 base-local clauses of F_B are EXACTLY the clauses of F over the 75 base variables
+#   host=d005_mv04 n=22 k=5 margin=majority base=[0, 1, 2, 3, 11, 17] (|B|=6, 5*C(6,2)=75 base vars) base_mask=27879 cubes=742374 [cube count ASSERTED against the prover]
+#   coverage CNF: vars=135 (75 base + 60 lex aux) clauses=743080 = 350 F_B + 356 SB + 742374 neg-cubes  [streaming]
+#     CNF written in 12s (0.17 GiB)
+#     CNF sha256 b57fd4f195e69fcf0af654d59851ad59e1c4862ed898e405dc0bdb683ec15fe1  (PORTABLE -- pass to certify_d6 --coverage-cnf)
+#   RESULT UNSAT time=82.81s proof=422 MiB CHECK=VERIFIED  -> the 742374 cubes cover every lex-canonical base assignment
+#
+# Re-run:
+#   python3 KInduceDFS/cover_check.py --bits "$PWD/KInduceDFS/jz_sweep1/hosts/d005_mv04.bits" \
+#       --base 0 1 2 3 11 17 --margin majority --k 5 --expect-cubes 742374 \
+#       --stream --dimacs "$PWD/d005_cover.cnf" --drat "$PWD/d005_cover.lrat"
+#   (absolute paths: certify_d6.py, which cover_check.py imports, chdirs to its
+#    own directory on import, so a relative --bits path does not resolve)
+#
+# THE JOINT CERTIFICATE (CERT-v2), built 2026-10-15 by sat/certroot.py in the
+# repro repo TournamentsBeyond5Voters, in its package layout -- host_bits is
+# relative to the block's own directory, so the value is a property of that
+# layout and is DERIVED there, never copied from here:
+#   certificates/d005mv04cert_d6/d005mv04_cert.v2.portable.txt
+#     CERT_PORTABLE=043a6488483235bb447a9073a153b178eea2ce4cf7b34970c1597567ba0c1a11
+#   certificates/d005mv04cert_d6/d005mv04_cert.v2.full.txt
+#     CERT_FULL=915c06d23d0b4b817dafc6ea837657a6081d78d0f61469f1ba270fd0b96725b6
+#   host tournaments/drt23_del/d005_mv04.bits, re-derived there from
+#   tournaments/drt23/d005.bits minus vertex 4: identical to our host.
+# tools/check_cert_portable.py: all checks ok, every control fires.
+#
+# PER-CUBE LOGS: KInduceDFS/run_evidence/d005mv04_cert_log.tar.zst (57 MB,
+# 3,712 files, 742,374 lines all VERIFIED).  The repro repo's sat/reroot.py
+# rebuilds BOTH roots from log/ + done/: 0 chunk parse mismatches, ROOT (CNF)
+# and ROOT (proofs) MATCH.

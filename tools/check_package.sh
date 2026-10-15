@@ -83,7 +83,7 @@ echo "== 3. the certificate roots rebuild from the per-cube evidence =="
 # their agreement is a real cross-check rather than a restatement.  Expected
 # values are READ from the certificate, never written here: a constant copied
 # into a checker is correct once, on the day it is copied.
-for inst in p19 p23 h02f00; do
+for inst in p19 p23 h02f00 d005mv04; do
   cd="$ROOT/certificates/${inst}cert_d6"
   [ -d "$cd" ] || { warn "$inst certificate directory absent"; continue; }
   vf="$cd/VERDICT.txt"; [ -f "$vf" ] || vf="$cd/README.md"
@@ -143,7 +143,8 @@ echo "== 3c. CERT (portable) recomputes from the block it publishes =="
 # both halves at once, and the file it lives in is self-auditing.
 if out=$(python3 "$ROOT/tools/check_cert_portable.py" \
          "$ROOT/certificates/p19cert_d6" "$ROOT/certificates/p23cert_d6" \
-         "$ROOT/certificates/h02f00cert_d6" 2>&1); then
+         "$ROOT/certificates/h02f00cert_d6" \
+         "$ROOT/certificates/d005mv04cert_d6" 2>&1); then
   echo "$out" | sed 's/^  ok    /  ok    /'
   pass=$((pass + $(echo "$out" | grep -c '^  ok')))
 else

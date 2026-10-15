@@ -239,6 +239,25 @@ misdescribes its own scope is the failure mode Appendix B.2 exists to guard
 against, and no check caught it — re-reading the verdict against the log of what
 had actually run did.
 
+### 6b. A further certificate, newer than the manuscript indexed here: N(5) ≤ 22
+
+`d005_mv04` is the doubly regular tournament `d005` on 23 vertices
+(`tournaments/drt23/d005.bits`, line 6 of McKay's catalogue) with vertex 4
+(0-based) deleted: `tournaments/drt23_del/d005_mv04.bits`. It is **not
+5-inducible at unrestricted majority**, so N(5) ≤ 22, and both halves are
+machine-checked: all 742,374 base states of `{0,1,2,3,11,17}` (0-indexed) are
+UNSAT with every LRAT proof rechecked by `lrat-trim`, 1,254.9 + 37.8 core-h,
+and the coverage instance (743,080 clauses) is UNSAT in 82.81 s with its LRAT
+proof verified by `lrat-trim`. The host is rigid, so no anchoring lemma is
+used and only Lemma 2.3 remains human, as for `h02_f00`.
+
+Evidence in `certificates/d005mv04cert_d6/` (README, VERDICT.txt, the per-cube
+chain in `log/`, from which checks 3 and 3c rebuild both roots and recompute
+`CERT (portable)` = `043a6488…`), and `certificates/d005mv04_coverage_cert.txt`
+for the split half. The manuscript in `manuscript/` predates this result and
+states 13 ≤ N(5) ≤ 23; this subsection carries no claim id until the package
+indexes the revised manuscript.
+
 ### 6a. The independent reproduction (§5.2)
 
 | id | claim | verdict artifact |

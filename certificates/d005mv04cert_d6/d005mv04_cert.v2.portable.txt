@@ -1,0 +1,14 @@
+CERT-v2 portable
+host_name=d005_mv04
+host_bits=../../tournaments/drt23_del/d005_mv04.bits
+host_sha256=d7c871ea57c9e5cbf5938eeb86a61c7475738c1a740fd7aef0e937b6de8e179d
+host_n=22
+origin=the doubly regular tournament d005 (line 6 of McKay's drtourn23.txt, tournaments/drt23/d005.bits) with vertex 4 (0-based) deleted, order of the remaining vertices kept
+k=5
+margin=majority
+base=0,1,2,3,11,17
+anchoring=none
+cubes=742374
+search_root_cnf=f5ea8bf78c29405bdcd0c685ef032bf5ab01a6885d699b05b53e5d6abc386266
+split_cover_cnf=b57fd4f195e69fcf0af654d59851ad59e1c4862ed898e405dc0bdb683ec15fe1
+CERT_PORTABLE=043a6488483235bb447a9073a153b178eea2ce4cf7b34970c1597567ba0c1a11

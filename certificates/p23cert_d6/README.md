@@ -91,3 +91,14 @@ spelling:
 **The v1 values above are unchanged and stay authoritative for anything already
 published.** v2 hashes a different block and is not comparable with v1. The
 reasoning, and the rebuild command, are in `../CERT-v2.md`.
+
+## A stale line in VERDICT.txt, deliberately not edited
+
+`VERDICT.txt` says the coverage proof was "independently verified by drat-trim".
+That sentence was fixed text in `certify_d6.py`, written for Paley(19), whose
+coverage DRAT proof `drat-trim` did verify; until 2026-09-05 the script printed
+it into every verdict whether or not a coverage check had run. **The Paley(23)
+split was verified by `lrat-trim` only** (the LRAT proof above), and no
+`drat-trim` check of it exists, on the laptop or on the cluster (checked
+2026-10-15). The verdict file is left as the prover wrote it; this note is the
+correction.

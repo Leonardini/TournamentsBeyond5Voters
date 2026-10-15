@@ -106,8 +106,23 @@ if [ -d "$K/h02f00_cert" ]; then
   cp "$K/h02f00_cert/VERDICT.txt" "$DST/certificates/h02f00cert_d6/"
   cp "$K/h02f00_cert/README.md" "$DST/certificates/h02f00cert_d6/" 2>/dev/null || true
 fi
+# d005_mv04 (the N(5) <= 22 host) ships FILTERED for the same reason: beside
+# done/, log/ and the verdict its source directory holds the 442 MB coverage
+# proof, the 183 MB coverage CNF under work/, and the run's own watchdog files.
+if [ -d "$K/d005mv04_cert" ]; then
+  mkdir -p "$DST/certificates/d005mv04cert_d6"
+  cp -R "$K/d005mv04_cert/done" "$K/d005mv04_cert/log" "$DST/certificates/d005mv04cert_d6/"
+  cp "$K/d005mv04_cert/VERDICT.txt" "$K/d005mv04_cert/README.md" "$DST/certificates/d005mv04cert_d6/"
+fi
+# Its host is a vertex deletion of a doubly regular tournament on 23 vertices;
+# the working repository keeps it with the cluster sweep that found it.
+if [ -f "$K/jz_sweep1/hosts/d005_mv04.bits" ]; then
+  mkdir -p "$DST/tournaments/drt23_del"
+  cp "$K/jz_sweep1/hosts/d005_mv04.bits" "$DST/tournaments/drt23_del/"
+fi
 cp "$K/p19_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
 cp "$K/h02f00_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
+cp "$K/d005mv04_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
 cp "$K/p23cert_run.log" "$DST/certificates/" 2>/dev/null || true
 
 # ------------------------------------------------- CERT-v2 blocks (DERIVED)
@@ -145,6 +160,24 @@ if [ -f "$DST/certificates/h02f00cert_d6/VERDICT.txt" ]; then
     --cover-cnf-sha "$(awk '/#   coverage CNF /{print $4; exit}' "$C")" \
     --cover-proof-sha "$(awk '/#   coverage proof /{print $4; exit}' "$C")" \
     --out "$DST/certificates/h02f00cert_d6/h02f00_cert.v2" >/dev/null
+fi
+# d005_mv04: no q either (22 is not a prime power), and built the same way, from
+# the verdict and the coverage record.
+if [ -f "$DST/certificates/d005mv04cert_d6/VERDICT.txt" ]; then
+  V="$DST/certificates/d005mv04cert_d6/VERDICT.txt"
+  C="$DST/certificates/d005mv04_coverage_cert.txt"
+  python3 "$DST/sat/certroot.py" --v2 \
+    --host-bits "$DST/tournaments/drt23_del/d005_mv04.bits" \
+    --host-name d005_mv04 \
+    --origin "the doubly regular tournament d005 (line 6 of McKay's drtourn23.txt, tournaments/drt23/d005.bits) with vertex 4 (0-based) deleted, order of the remaining vertices kept" \
+    --k 5 --margin "$(awk '/^margin /{print $2; exit}' "$V")" \
+    --base $(awk -F'[][]' '/^base /{gsub(/,/," ",$2); print $2; exit}' "$V") \
+    --cubes "$(awk '/^cubes /{gsub(/,/,"",$2); print $2; exit}' "$V")" \
+    --root-cnf "$(awk '/^ROOT \(CNF\)/{print $3; exit}' "$V")" \
+    --root-proofs "$(awk '/^ROOT \(proofs\)/{print $3; exit}' "$V")" \
+    --cover-cnf-sha "$(awk '/#   coverage CNF /{print $4; exit}' "$C")" \
+    --cover-proof-sha "$(awk '/#   coverage proof /{print $4; exit}' "$C")" \
+    --out "$DST/certificates/d005mv04cert_d6/d005mv04_cert.v2" >/dev/null
 fi
 
 # --------------------------------------------------------------- verdicts
@@ -197,7 +230,10 @@ fi
 # --------------------------------------------------------------- evidence
 # Chunk logs compress about 100x, which is what makes them trackable.
 mkdir -p "$DST/evidence"
-find "$K/run_evidence" -maxdepth 1 -type f -exec sh -c 'cp "$@" "$0"' "$DST/evidence/" {} +
+# d005mv04_cert_log.tar.zst is the archive of certificates/d005mv04cert_d6/log/,
+# which ships unpacked because check 3 rebuilds the roots from it; one copy.
+find "$K/run_evidence" -maxdepth 1 -type f ! -name 'd005mv04_cert_log.tar.zst' \
+     -exec sh -c 'cp "$@" "$0"' "$DST/evidence/" {} +
 [ -d "$K/run_evidence/measurements" ] && cp -R "$K/run_evidence/measurements" "$DST/evidence/"
 [ -d "$K/run_evidence/arcrev" ] && cp -R "$K/run_evidence/arcrev" "$DST/evidence/"
 
