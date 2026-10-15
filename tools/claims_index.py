@@ -159,7 +159,7 @@ def render(claims, gaps):
             c['claim'].replace('\t', ' ')]))
     doc = dict(
         source='CLAIMS.md',
-        manuscript='manuscript/Tournaments_not_inducible_by_five_voters.md',
+        manuscript='manuscript/Tournaments_not_inducible_by_five_voters_MSS.md',
         claims=claims,
         gaps=gaps,
         counts=dict(claims=len(claims),

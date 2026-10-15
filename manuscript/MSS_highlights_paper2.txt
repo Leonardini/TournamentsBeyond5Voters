@@ -1,0 +1,5 @@
+- Five voters cannot produce every pattern of majorities on 22 alternatives
+- Two 22-vertex tournaments beyond five voters improve the bound to N(5) <= 22
+- Every tournament on 12 alternatives is produced by five voters: N(5) >= 13
+- Paley(23), left open after six weeks of SAT solving, is not 5-inducible
+- The negative results are certified by independently checked SAT proofs

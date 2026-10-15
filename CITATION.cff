@@ -24,11 +24,13 @@ repository-code: "https://github.com/Leonardini/TournamentsBeyond5Voters"
 abstract: >-
   Code, tournaments, verdicts and machine-checked certificates for the
   paper "Tournaments not inducible by five voters", which proves
-  13 <= N(5) <= 23, where N(k) is the least order at which some
+  13 <= N(5) <= 22, where N(k) is the least order at which some
   tournament is not the majority tournament of any k linear orders. The
-  upper bound comes from proving that the Paley tournament on 23
-  vertices is not 5-inducible; the lower bound from an exhaustive case
-  analysis at order 12. Includes the depth-first placement search engine,
+  upper bound comes from two tournaments on 22 vertices, each a doubly
+  regular tournament on 23 vertices less one vertex, that are not
+  5-inducible; the Paley tournament on 23 vertices is not 5-inducible
+  either. The lower bound comes from an exhaustive case analysis at
+  order 12. Includes the depth-first placement search engine,
   the dissent-Boolean SAT encoding and cube tooling, independent witness
   verifiers that share no code with the search, and the per-cube sha256
   chains from which both published certificate roots rebuild.
@@ -53,6 +55,6 @@ preferred-citation:
       family-names: Harutyunyan
   year: 2026
   notes: >-
-    Submitted. A permanent archive of the commit corresponding to the
+    Submitted to Mathematical Social Sciences. A permanent archive of the commit corresponding to the
     accepted version will be deposited on acceptance and its DOI recorded
     in Section 5.1 of the paper and in this file.

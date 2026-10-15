@@ -84,7 +84,9 @@ done
 mkdir -p "$DST/verify"
 for v in verify_witness.py verify_witness_bits.py \
          verify_paley_minus_witness.py tri_per_arc.py tri_ceiling.py \
-         appendix_e.py triangles_per_arc.py; do
+         appendix_e.py triangles_per_arc.py \
+         verify_descent_witnesses.py level_coverage.py drt23_level_counts.py \
+         critical_deletions.py host_facts.py sweep_cover_audit.py; do
   [ -f "$K/$v" ] && cp "$K/$v" "$DST/verify/"
 done
 
@@ -120,6 +122,22 @@ if [ -f "$K/jz_sweep1/hosts/d005_mv04.bits" ]; then
   mkdir -p "$DST/tournaments/drt23_del"
   cp "$K/jz_sweep1/hosts/d005_mv04.bits" "$DST/tournaments/drt23_del/"
 fi
+# The second 22-vertex obstruction, and the levels below the doubly regular
+# tournaments that Appendix G reports: the 18 parents (one per converse pair)
+# and the 21- and 20-vertex level files, one host per class, from which
+# verify/drt23_level_counts.py re-derives the class counts.
+[ -f "$K/jz_sweep1/hosts/d027_mv04.bits" ] && \
+  cp "$K/jz_sweep1/hosts/d027_mv04.bits" "$DST/tournaments/drt23_del/"
+for f in PARENTS18.txt HOSTS_level2.tsv HOSTS_level3.tsv; do
+  [ -f "$K/drt23_del/$f" ] && cp "$K/drt23_del/$f" "$DST/tournaments/drt23_del/"
+done
+# The two 25-vertex parents of Appendix G's other lineages: Paley(27) less two
+# vertices, and the circulant on 25 vertices with six triangles on every arc.
+mkdir -p "$DST/tournaments/descent_parents"
+for h in p27_mv00_01 t25_tmin6; do
+  [ -f "$K/jz_sweep1/hosts/$h.bits" ] && \
+    cp "$K/jz_sweep1/hosts/$h.bits" "$DST/tournaments/descent_parents/"
+done
 cp "$K/p19_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
 cp "$K/h02f00_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
 cp "$K/d005mv04_coverage_cert.txt" "$DST/certificates/" 2>/dev/null || true
@@ -198,6 +216,21 @@ for d in m1_family m1_arcrev vt21_majority vt21_margin1 n23_tmin4 \
           -o -name '*.log' -o -name '*.witness' \) \
        -exec sh -c 'cp "$@" "$0"' "$DST/verdicts/$d/" {} +
 done
+# The doubly regular tournaments on 23 vertices (Section 3.7): the unit-margin
+# roll-up of all 18 converse classes, and the unrestricted roll-up of the two run
+# on the laptop; the other 16 are cluster/jz_drt23maj/jz_drt23maj.tsv.
+mkdir -p "$DST/verdicts/drt23"
+[ -f "$K/drt23_m1/drt23_m1.tsv" ] && cp "$K/drt23_m1/drt23_m1.tsv" "$DST/verdicts/drt23/"
+[ -f "$K/drt23_maj/drt23_maj.tsv" ] && cp "$K/drt23_maj/drt23_maj.tsv" "$DST/verdicts/drt23/"
+# The two 22-vertex obstructions' roll-up.  Its check.sh compares the host
+# copies against the cluster kit's directory, which is not shipped, so only the
+# README and the verdict table come across; the hosts are in
+# tournaments/drt23_del/.
+if [ -d "$K/n22_obstructions" ]; then
+  mkdir -p "$DST/verdicts/n22_obstructions"
+  cp "$K/n22_obstructions/README.md" "$K/n22_obstructions/verdicts.tsv" \
+     "$DST/verdicts/n22_obstructions/"
+fi
 # Section 3.4's arc-flip spectrum and the n=20 deletion descent: the run logs
 # carry the witnesses, so they are the evidence for "every one of the 289 has
 # an exhibited unit-margin witness" and not merely a record that it ran.
@@ -238,14 +271,15 @@ find "$K/run_evidence" -maxdepth 1 -type f ! -name 'd005mv04_cert_log.tar.zst' \
 [ -d "$K/run_evidence/arcrev" ] && cp -R "$K/run_evidence/arcrev" "$DST/evidence/"
 
 # ---------------------------------------------------------------- cluster
-# The three computations that used the cluster -- the 15-vertex regular census,
-# the order-13 self-converse census (split between the two machines) and the
-# order-12 analysis of Appendix C -- plus the independent-reproduction kit.
+# The computations that used the cluster -- the 15-vertex regular census, the
+# order-13 self-converse census (split between the two machines), the order-12
+# analysis of Appendix C, and the 16 doubly regular tournaments on 23 vertices
+# at unrestricted margin (Section 3.7) -- plus the independent-reproduction kit.
 # Sources and records only.  These kits build helper binaries in place
 # (freearc, rigid, order_sym, tri, kcover) and copying them would ship 35 MB of
 # other-architecture executables that the .c files beside them regenerate.
 mkdir -p "$DST/cluster"
-for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce jz_p23arc; do
+for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce jz_p23arc jz_drt23maj; do
   [ -d "$K/$j" ] || continue
   mkdir -p "$DST/cluster/$j"
   find "$K/$j" -maxdepth 1 -type f \
@@ -254,6 +288,13 @@ for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce jz_p23arc; do
           -o -name '*.log' -o -name '*.conf' -o -name '*.json' \) \
        -exec sh -c 'cp "$@" "$0"' "$DST/cluster/$j/" {} +
 done
+# The 378-deletion screen at 22 vertices (Appendix G): its per-host roll-up,
+# from which 378 hosts, 18,900 base states tried and 13,863 exhausted re-add.
+# The per-state markers stay on the cluster.
+if [ -f "$K/jz_drt23mv/evidence/HARDNESS_378.tsv" ]; then
+  mkdir -p "$DST/cluster/jz_drt23mv"
+  cp "$K/jz_drt23mv/evidence/HARDNESS_378.tsv" "$DST/cluster/jz_drt23mv/"
+fi
 # jz_reproduce keeps two directories one level down: the instance confs, which
 # are the only place a campaign's expected values live, and the SLURM logs that
 # are the evidence for Section 5.2's independent-reproduction claim.
@@ -292,10 +333,12 @@ cp "$K/RESEARCH_LOG.md" "$DST/notes_research_log.md"
 cp "$K/REPRODUCE.md" "$DST/REPRODUCE.md"
 
 # ------------------------------------------------------------- manuscript
+# The version submitted to Mathematical Social Sciences, with its highlights.
 mkdir -p "$DST/manuscript"
-for m in Tournaments_not_inducible_by_five_voters.md \
-         Tournaments_not_inducible_by_five_voters.tex \
-         Tournaments_not_inducible_by_five_voters.pdf; do
+for m in Tournaments_not_inducible_by_five_voters_MSS.md \
+         Tournaments_not_inducible_by_five_voters_MSS.tex \
+         Tournaments_not_inducible_by_five_voters_MSS.pdf \
+         MSS_highlights_paper2.txt; do
   [ -f "$SRC/$m" ] && cp "$SRC/$m" "$DST/manuscript/"
 done
 # Figure 1 and the pipeline that draws it.  paley7_trace.py is a second,

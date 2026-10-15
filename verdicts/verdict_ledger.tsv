@@ -65,8 +65,8 @@ t19_025	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
 t19_026	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
 t19_027	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
 t19_028	19	4	SAT	SAT (implied by margin-1)	exact	vt19/verdicts.tsv
-t19_029	19	5	UNSAT	SAT	exact+majority	sweep_queue.log (aggregate only);vt19/verdicts.tsv
-t19_030	19	5	UNSAT	SAT	exact+majority	drt19/verdicts.tsv;drt19_wit/verdicts.tsv
+t19_029	19	5	UNSAT	SAT	majority	sweep_queue.log (aggregate only);vt19/verdicts.tsv
+t19_030	19	5	UNSAT	SAT	majority	drt19/verdicts.tsv;drt19_wit/verdicts.tsv
 t21_000	21	1	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
 t21_001	21	1	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
 t21_002	21	1	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
@@ -170,13 +170,15 @@ t21_099	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
 t21_100	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
 t21_101	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
 t21_102	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
-t21_103	21	5	UNSAT	SAT	-	vt21_hosts/verdicts.tsv
-t21_104	21	5	UNSAT	SAT	-	vt21_hosts/verdicts.tsv
+t21_103	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
+t21_104	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
 t21_105	21	5	SAT	SAT (implied by margin-1)	exact	vt21_certs/verdicts.tsv
 t21_106	21	5	SAT	SAT (implied by margin-1)	exact	vt21_certs/verdicts.tsv
-t21_107	21	5	UNSAT	SAT	-	vt21_hosts/verdicts.tsv
-t21_108	21	5	UNSAT	SAT	-	vt21_hosts/verdicts.tsv
+t21_107	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
+t21_108	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
 t21_109	21	5	SAT	SAT (implied by margin-1)	exact	vt21_hosts/verdicts.tsv
+t22_000	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv
+t22_001	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv
 t23_000	23	1	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_001	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_002	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
@@ -220,27 +222,27 @@ t23_039	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_040	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_041	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_042	23	3	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
-t23_043	23	4	UNSAT	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_043	23	4	UNSAT	SAT	majority	vt23_hard/verdicts.tsv;vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
 t23_044	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_045	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
-t23_046	23	4	unresolved	SAT	exact+majority	vt23_recover/verdicts.tsv
-t23_047	23	4	unresolved	not run	-	vt23_sweep.log (aggregate only)
+t23_046	23	4	SAT	SAT	exact+majority	vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_recover/verdicts.tsv
+t23_047	23	4	UNSAT	SAT	majority	vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
 t23_048	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_049	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_050	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
-t23_051	23	4	unresolved	not run	-	vt23_sweep.log (aggregate only)
+t23_051	23	4	UNSAT	SAT	majority	vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
 t23_052	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_053	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_054	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_055	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_056	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_057	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
-t23_058	23	4	SAT	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_058	23	4	SAT	SAT (implied by margin-1)	exact	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
 t23_059	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_060	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_061	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_062	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
-t23_063	23	4	UNSAT	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_063	23	4	UNSAT	SAT	majority	vt23_hard/verdicts.tsv;vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
 t23_064	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_065	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_066	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
@@ -259,51 +261,51 @@ t23_078	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_079	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_080	23	4	SAT	SAT (implied by margin-1)	exact	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
 t23_081	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
-t23_082	23	4	UNSAT	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
+t23_082	23	4	UNSAT	SAT	majority	vt23_hard/verdicts.tsv;vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
 t23_083	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_084	23	4	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
-t23_085	23	5	unresolved	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
-t23_086	23	5	unresolved	not run	-	vt23_sweep.log (aggregate only)
+t23_085	23	5	UNSAT	SAT	majority	vt23_hard/verdicts.tsv;vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
+t23_086	23	5	UNSAT	SAT	majority	vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
 t23_087	23	5	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
 t23_088	23	5	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv
-t23_089	23	5	unresolved	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
-t23_090	23	5	unresolved	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
-t23_091	23	5	unresolved	unresolved	exact+majority	vt23_hard/verdicts.tsv;vt23_sweep.log (aggregate only)
-t23_092	23	5	unresolved	not run	-	vt23_sweep.log (aggregate only)
+t23_089	23	5	UNSAT	SAT	majority	vt23_hard/verdicts.tsv;vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
+t23_090	23	5	UNSAT	SAT	majority	vt23_hard/verdicts.tsv;vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
+t23_091	23	5	UNSAT	SAT	majority	vt23_hard/verdicts.tsv;vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
+t23_092	23	5	UNSAT	SAT	majority	vt23_m1/vt23_m1.tsv;vt23_maj/vt23_maj.tsv;vt23_sweep.log (aggregate only)
 t23_093	23	6	UNSAT	UNSAT	-	vt23/verdicts.tsv
-t23_094	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_095	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_096	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_097	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_098	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_099	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_100	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_101	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_102	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_103	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_104	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_105	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_106	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_107	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_108	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_109	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_110	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_111	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_112	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_113	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_114	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_115	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_116	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_117	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_118	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_119	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_120	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_121	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_122	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_123	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_124	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_125	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_126	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_127	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_128	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
-t23_129	23	6	unresolved	unresolved	exact+majority	drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_094	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_095	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_096	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_097	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;drt23_maj/drt23_maj.tsv;sweep_queue.log (aggregate only)
+t23_098	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_099	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_100	23	6	UNSAT	UNSAT	-	converse of drt23/d001;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_101	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_102	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_103	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;drt23_maj/drt23_maj.tsv;sweep_queue.log (aggregate only)
+t23_104	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_105	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_106	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_107	23	6	UNSAT	UNSAT	-	converse of drt23/d002;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_108	23	6	UNSAT	UNSAT	-	converse of drt23/d007;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_109	23	6	UNSAT	UNSAT	-	converse of drt23/d003;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_110	23	6	UNSAT	UNSAT	-	converse of drt23/d010;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_111	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_112	23	6	UNSAT	UNSAT	-	converse of drt23/d011;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_113	23	6	UNSAT	UNSAT	-	converse of drt23/d017;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_114	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_115	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_116	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_117	23	6	UNSAT	UNSAT	-	converse of drt23/d020;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_118	23	6	UNSAT	UNSAT	-	converse of drt23/d021;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_119	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_120	23	6	UNSAT	UNSAT	-	converse of drt23/d009;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_121	23	6	UNSAT	UNSAT	-	drt23/verdicts.tsv;drt23_m1/drt23_m1.tsv;jz_drt23maj/jz_drt23maj.tsv;sweep_queue.log (aggregate only)
+t23_122	23	6	UNSAT	UNSAT	-	converse of drt23/d022;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_123	23	6	UNSAT	UNSAT	-	converse of drt23/d008;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_124	23	6	UNSAT	UNSAT	-	converse of drt23/d005;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_125	23	6	UNSAT	UNSAT	-	converse of drt23/d004;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_126	23	6	UNSAT	UNSAT	-	converse of drt23/d027;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_127	23	6	UNSAT	UNSAT	-	converse of drt23/d012;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_128	23	6	UNSAT	UNSAT	-	converse of drt23/d000;drt23/verdicts.tsv;sweep_queue.log (aggregate only)
+t23_129	23	6	UNSAT	UNSAT	-	converse of drt23/d025;drt23/verdicts.tsv;sweep_queue.log (aggregate only)

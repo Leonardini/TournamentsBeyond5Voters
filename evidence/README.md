@@ -49,6 +49,25 @@ The Paley(19) certification's per-cube hashes are NOT here -- they are tracked
 uncompressed in `../p19cert_d6/`, because they are the evidence chain behind a
 machine-verified theorem and should be readable without unpacking.
 
+## The 22-vertex obstructions and the search below them (2026-09/10)
+
+| archive | what it holds |
+|---|---|
+| `d005mv04_sweep_markers.tar.zst` | the 8,031 per-base-state markers of the cluster sweep of `d005_mv04` (Delta_6 - 5), all UNSAT, capped=0, 1,551.2 cluster core-h, plus its `VERDICT.txt`; audit with `sweep_cover_audit.py` |
+| `d005mv04_cert_log.tar.zst` | the per-cube hash log of the formal certificate of `d005_mv04`, 742,374 lines (`../d005mv04_cert/log/` packed) |
+| `n21_level_witnesses.tar.zst` | one witness for each of the 1,173 settled 21-vertex classes below the doubly regular tournaments on 23 vertices, with `SETTLED.tsv` naming each class's group and where its witness came from |
+| `descent_n21_witnesses.tar.zst` | the cluster screen's own record for 789 of those classes (found/ and witness/ with the `.verify` files) |
+| `slice400_seven_witnesses.tar.zst` | the 7 classes of the random sample settled by the sweep kit rather than the screen |
+| `n20_descent_witnesses.tar.zst` | a witness for every one of the 48,560 hosts at 20 vertices: 28,724 below the 18 parents, 17,710 below `p27_mv00_01`, 2,126 below `t25_tmin6` |
+| `n20_descent_markers.tar.zst` | the per-host markers of that screen (exhausted and skipped base states) |
+| `n21_other_lineages_witnesses.tar.zst` | witnesses for the 21-vertex levels below `p27_mv00_01` (208) and `t25_tmin6` (506), with the host lists |
+| `p27mv0001_sweep_markers.tar.zst` | the 8,031 markers of the complete sweep of `p27_mv00_01` (Paley(27) less two vertices, n = 25), all UNSAT, 523.4 core-h |
+| `n12cover_census.tar.zst` | the order-12 census run tree, archived when its cluster directory was cleaned |
+
+Every witness in these archives is re-checked by `verify_descent_witnesses.py`
+against a host rebuilt from its NAME (parent bits minus the named vertices), so
+the search's own host files are never trusted.
+
 ## Measurement records
 
 `measurements/` holds the JSON behind every configuration decision:

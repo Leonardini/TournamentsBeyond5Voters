@@ -7,9 +7,10 @@ a machine reader, and `tools/check_package.sh` fails if the two disagree or if
 any path named below has gone missing, so the index cannot rot quietly as the
 package changes.
 
-The manuscript this indexes is `manuscript/Tournaments_not_inducible_by_five_voters.md`,
-with its LaTeX source and the built PDF beside it. Section numbers below are
-that version's.
+The manuscript this indexes is `manuscript/Tournaments_not_inducible_by_five_voters_MSS.md`,
+the version submitted to *Mathematical Social Sciences*, with its LaTeX source,
+the built PDF and the highlights file beside it. Section numbers below are that
+version's.
 
 Bases are written as the manuscript writes them, **1-indexed**; the engine takes
 them **0-indexed**, which is why `{1,2,3,6,12}` in the text is `--base 0 1 2 5 11`
@@ -30,17 +31,25 @@ assuming it.
 
 ---
 
-## 1. The bound: 13 ≤ N(5) ≤ 23
+## 1. The bound: 13 ≤ N(5) ≤ 22
 
 | id | § | claim | verdict artifact | re-derive |
 |---|---|---|---|---|
 | B1 | 3.1 | **Paley(23) is not 5-inducible**, hence N(5) ≤ 23. Complete over all 8,031 base states of `{1,2,3,6,12}`, of which 2,591 survive the anchor | `evidence/rerun1_p23_majority.tar.zst` (2,008 slices, 34.03 core-h), `evidence/anchor2_p23_majority.tar.zst` (4,030 slices, a different base and anchor, 43.80 core-h) | `REPRODUCE.md` § "N(5) ≤ 23", both anchors |
 | B2 | 3.1, B.1 | Paley(23), **machine-checked** on both halves | `certificates/p23cert_d6/VERDICT.txt`, roots in `certificates/p23cert_d6/p23_cert.portable.txt` and, bound to the host's adjacency, `certificates/p23cert_d6/p23_cert.v2.portable.txt` | `sat/certify_d6.py`; roots rebuilt by `sat/reroot.py`; `tools/check_package.sh` checks 3, 3c and 3d |
 | B3 | C | **13 ≤ N(5)**: every order-12 tournament is 5-inducible. All 903,753,248 order-11 classes generated, 452,016,608 screened after the converse halving, **0 candidates** | `cluster/jz_n12cover/FINAL_ROLLUP.txt` — the verbatim roll-up of the completed run, 2026-09-12 | `cluster/jz_n12cover/COMMANDS.md`, rolled up by `cluster/jz_n12cover/aggregate.sh`, whose census gate exits non-zero on any mismatch |
-| B4 | 3.4 | Paley(43) − v is not 5-inducible, so N(5) ≤ 43 is **re-derived by a second method** | `verdicts/p43mv_majority/p43mv_times.txt` (8,031 base states, exact cover, 185.54 core-h), `verdicts/p43_minus1v_VERDICT.txt` | `REPRODUCE.md` § "Paley(43) is not vertex-critical" |
+| B4 | 3.5 | Paley(43) − v is not 5-inducible, so N(5) ≤ 43 is **re-derived by a second method** | `verdicts/p43mv_majority/p43mv_times.txt` (8,031 base states, exact cover, 185.54 core-h), `verdicts/p43_minus1v_VERDICT.txt` | `REPRODUCE.md` § "Paley(43) is not vertex-critical" |
+| B5 | 3.2 | **Δ₆ − 5 is not 5-inducible**, hence N(5) ≤ 22. The host is `d005_mv04`, the doubly regular tournament `d005` on 23 vertices (line 6 of McKay's catalogue) with vertex 5 deleted (4, 0-based), the rest kept in order. Complete over all 8,031 base states of `{1,2,3,12,18}`, no symmetry break, 1,551.2 **cluster** core-hours | `evidence/d005mv04_sweep_markers.tar.zst` (8,031 markers, all UNSAT, capped=0, and the sweep's `VERDICT.txt` with its tree hash); host `tournaments/drt23_del/d005_mv04.bits` | `verify/sweep_cover_audit.py`, `tools/check_package.sh` check 8c; `REPRODUCE.md` § "N(5) <= 22" |
+| B6 | 3.2, 3.4, B.1 | Δ₆ − 5, **machine-checked** on both halves: all 742,374 base states of the six-vertex base `{1,2,3,4,13,19}` UNSAT, each LRAT proof rechecked by `lrat-trim`, and the cube set proved exhaustive. 1,292.7 core-h; only Lemma 2.3 is human | `certificates/d005mv04cert_d6/VERDICT.txt`, `certificates/d005mv04cert_d6/d005mv04_cert.v2.portable.txt`, `certificates/d005mv04_coverage_cert.txt` | `sat/reroot.py`; `tools/check_package.sh` checks 3 and 3c |
+| B7 | 3.2 | **Δ₂₈ − 5 is not 5-inducible** either: `d027_mv04`, `d027` less vertex 5, same base, complete, 1,537.7 cluster core-h. So the bound rests on two hosts from different parents | `verdicts/n22_obstructions/verdicts.tsv` and its README (the sweep's roll-up; the markers are still on the cluster, gap 7); host `tournaments/drt23_del/d027_mv04.bits` | `REPRODUCE.md` § "N(5) <= 22" |
+| B8 | 3.2 | The two are neither isomorphic nor converse to each other; each has eleven vertices of out-degree 10 and eleven of 11, every arc in at least five directed triangles, and trivial automorphism group, and so do their parents `d005` and `d027` | `verify/host_facts.py` | `tools/check_package.sh` check 8e, with Paley(23) as the control |
+| B9 | 3.2, 3.3, G | Both are **vertex-critical**: every one-vertex deletion of each is 5-inducible | `evidence/n21_level_witnesses.tar.zst`, group `all506` | `verify/critical_deletions.py`, matching each deletion to a witnessed class; `tools/check_package.sh` check 8d |
 
 The two Paley(23) refutations are independent in base and anchor, not merely
-repeated runs. `evidence/p43_majority.tar.zst` is the sweep of **Paley(43)
+repeated runs. So are the two Δ₆ − 5 results, B5 and B6: one is the depth-first
+engine on a five-vertex base, the other cube-and-conquer on a six-vertex base,
+and they share no implementation. Bases are 1-indexed here as in the paper;
+`d005_mv04`'s are `0 1 2 11 17` and `0 1 2 3 11 17` on the command line. `evidence/p43_majority.tar.zst` is the sweep of **Paley(43)
 itself** (n = 43, 22.86 core-h), not of Paley(43) − v; the two were confused in
 an earlier version of this file.
 
@@ -48,14 +57,14 @@ an earlier version of this file.
 
 | id | § | claim | verdict artifact | re-derive |
 |---|---|---|---|---|
-| P1 | A.3 | Paley(27) is not 5-inducible, 8,031 base states, 2,537 live, 6.22 × 10⁹ nodes | `evidence/p27_majority.tar.zst` | `REPRODUCE.md` § "Paley(27)" — needs the **GF(3³)** host, `tournaments/p27_paley.bits`; the Z/27 construction is not a tournament |
+| P1 | A.5 | Paley(27) is not 5-inducible, 8,031 base states, 2,537 live, 6.22 × 10⁹ nodes | `evidence/p27_majority.tar.zst` | `REPRODUCE.md` § "Paley(27)" — needs the **GF(3³)** host, `tournaments/p27_paley.bits`; the Z/27 construction is not a tournament |
 | P2 | 3.1 | Paley(31) is not 5-inducible, 21,009 base states, 4,007 live, 3.43 × 10⁹ nodes | `evidence/p31_majority.tar.zst`, `evidence/measurements/p31_result.json` | `REPRODUCE.md` § "Paley(31)" |
-| P3 | 3.3 | Paley(19) **is** 5-inducible (recovers dim Q₁₉ = 5 of [1]) | `verdicts/WITNESSES_margin_hierarchy.md` | `kinduce --paley 19 --k 5 --max-margin 3 --order mrv --inc --base 0 1 2 3 5`, then `verify/verify_witness.py` |
-| P4 | 3.3 | Paley(19) is **not** 5-inducible at unit margin, 2,200 base states of `{1,2,3,4,6}` | `verdicts/p19_margin1_VERDICT.txt`; certified in `certificates/p19cert_d6/`, roots in `certificates/p19cert_d6/p19_cert.portable.txt` and `certificates/p19cert_d6/p19_cert.v2.portable.txt` | `REPRODUCE.md` § "Paley(19)"; `sat/certify_p19_m1.py` |
-| P5 | 3.3 | The witnesses are abundant, not delicate: ten workers hit at once from ten base states, support histogram 159 arcs at 3–2 and 12 at 4–1, none unanimous | `verdicts/WITNESSES_margin_hierarchy.md` | as above, `--max-margin 3` |
-| P6 | 3.1 | Paley(23) − v **is** 5-inducible, so n = 22 does not improve the bound | `evidence/n22_p23minusv.tar.zst` (witness at base state 6,560), `verdicts/WITNESSES_paley_minus_vertex.md` | `REPRODUCE.md` § "Paley(23) minus a vertex" |
-| P7 | 3.4 | **Paley(31) − v is not 5-inducible**, so Paley(31) is not vertex-critical. 8,031 base states of `{1,2,3,4,13}`, exact index cover, 0 capped | `verdicts/p31_minus1v_VERDICT.txt`, `verdicts/p31mv_majority/p31mv_times.txt` (one line per base state), `verdicts/p31mv_majority/README.md` | `REPRODUCE.md` § "Paley(31) is not vertex-critical" |
-| P8 | 3.2 | Paley(23), (27), (31), (43) are **not vertex-critical at unit margin** | `verdicts/m1_family/VERDICTS.md` (cells `p23mv`, `p27mv`, `p31mv`, `p43mv`), per-state times beside it | `REPRODUCE.md` § "The margin-1 family" |
+| P3 | 3.4 | Paley(19) **is** 5-inducible (recovers dim Q₁₉ = 5 of [1]) | `verdicts/WITNESSES_margin_hierarchy.md` | `kinduce --paley 19 --k 5 --max-margin 3 --order mrv --inc --base 0 1 2 3 5`, then `verify/verify_witness.py` |
+| P4 | 3.4 | Paley(19) is **not** 5-inducible at unit margin, 2,200 base states of `{1,2,3,4,6}` | `verdicts/p19_margin1_VERDICT.txt`; certified in `certificates/p19cert_d6/`, roots in `certificates/p19cert_d6/p19_cert.portable.txt` and `certificates/p19cert_d6/p19_cert.v2.portable.txt` | `REPRODUCE.md` § "Paley(19)"; `sat/certify_p19_m1.py` |
+| P5 | 3.4 | The witnesses are abundant, not delicate: ten workers hit at once from ten base states, support histogram 159 arcs at 3–2 and 12 at 4–1, none unanimous | `verdicts/WITNESSES_margin_hierarchy.md` | as above, `--max-margin 3` |
+| P6 | 3.3, G | Paley(23) − v **is** 5-inducible, so no 22-vertex obstruction comes from Paley(23) by deleting a vertex; the 22-vertex obstructions of B5 and B7 come from other doubly regular tournaments | `evidence/n22_p23minusv.tar.zst` (witness at base state 6,560), `verdicts/WITNESSES_paley_minus_vertex.md` | `REPRODUCE.md` § "Paley(23) minus a vertex" |
+| P7 | 3.5 | **Paley(31) − v is not 5-inducible**, so Paley(31) is not vertex-critical. 8,031 base states of `{1,2,3,4,13}`, exact index cover, 0 capped | `verdicts/p31_minus1v_VERDICT.txt`, `verdicts/p31mv_majority/p31mv_times.txt` (one line per base state), `verdicts/p31mv_majority/README.md` | `REPRODUCE.md` § "Paley(31) is not vertex-critical" |
+| P8 | 3.3 | Paley(23), (27), (31), (43) are **not vertex-critical at unit margin** | `verdicts/m1_family/VERDICTS.md` (cells `p23mv`, `p27mv`, `p31mv`, `p43mv`), per-state times beside it | `REPRODUCE.md` § "The margin-1 family" |
 
 `verdicts/m1_family/VERDICTS.md` also records that the `p27` cell was abandoned
 deliberately — Paley(27) is already refuted at majority and unit margin
@@ -73,22 +82,23 @@ produced it, so the mixture is visible in the record rather than implicit.
 
 ## 3. Criticality
 
-Section 3.2's table has eight cells; this is one row per cell that carries a
+Section 3.3's table has eight cells; this is one row per cell that carries a
 verdict. "Not vertex-critical" also rules out arc-criticality, since
 arc-criticality implies vertex-criticality.
 
 | id | § | claim | verdict artifact |
 |---|---|---|---|
-| K1 | 3.2, 3.6 | q = 19, **unit margin: arc-critical**. Reversing any arc restores unit-margin inducibility; the reversal is unique up to isomorphism because Aut(P₁₉) is regular on arcs | `verdicts/WITNESSES_paley_arcrev.md` (§ "Paley(19), arc reversed"), host `tournaments/p19_arcrev.bits` |
-| K2 | 3.2 | q = 19, unrestricted: 5-inducible, so criticality does not apply | P3 above |
-| K3 | 3.2 | q = 23, unit margin: **not** vertex-critical | `verdicts/m1_family/VERDICTS.md` cell `p23mv` |
-| K4 | 3.2 | q = 23, unit margin: not arc-critical either | `verdicts/m1_arcrev/VERDICT.md` |
-| K5 | 3.2, 3.5 | q = 23, **unrestricted: arc-critical**. Reversing any single arc yields a 5-inducible tournament | `verdicts/p23_arc_critical_VERDICT.txt`, witness `verdicts/p23arc_witness/b1161.witness`; host `tournaments/p23_arcrev.bits` |
-| K6 | 3.5 | Consequently Paley(23) is **vertex-critical** unrestricted | K5, plus the direct route in `evidence/n22_p23minusv.tar.zst` |
-| K7 | 3.2, 3.4 | q = 31, both margins: **not vertex-critical** | P7 (unrestricted), P8 cell `p31mv` (unit) |
-| K8 | 3.2, 3.4 | q = 43, both margins: **not vertex-critical** | B4 (unrestricted), P8 cell `p43mv` (unit) |
-| K9 | 3.6 | The **second** doubly regular tournament on 19 vertices is arc-critical at unit margin: 57 orbits of size 3, 57 witnesses | `tournaments/dr19_arcflip/` (57 hosts, `manifest.tsv`, `sweep.log`, `sweep_run2.log`) |
-| K10 | 3.6 | Both DRTs on 19 vertices are unit-margin obstructions and both are majority-inducible | `verdicts/WITNESSES_margin_hierarchy.md`, `verdicts/drt19_wit/`; `tournaments/dr19_g1.bits` is Paley(19) relabelled, `tournaments/dr19_g2.bits` the distinct one, \|Aut\| = 3, seven vertex orbits |
+| K1 | 3.3, 3.7 | q = 19, **unit margin: arc-critical**. Reversing any arc restores unit-margin inducibility; the reversal is unique up to isomorphism because Aut(P₁₉) is regular on arcs | `verdicts/WITNESSES_paley_arcrev.md` (§ "Paley(19), arc reversed"), host `tournaments/p19_arcrev.bits` |
+| K2 | 3.3 | q = 19, unrestricted: 5-inducible, so criticality does not apply | P3 above |
+| K3 | 3.3 | q = 23, unit margin: **not** vertex-critical | `verdicts/m1_family/VERDICTS.md` cell `p23mv` |
+| K4 | 3.3 | q = 23, unit margin: not arc-critical either | `verdicts/m1_arcrev/VERDICT.md` |
+| K5 | 3.3, 3.6 | q = 23, **unrestricted: arc-critical**. Reversing any single arc yields a 5-inducible tournament | `verdicts/p23_arc_critical_VERDICT.txt`, witness `verdicts/p23arc_witness/b1161.witness`; host `tournaments/p23_arcrev.bits` |
+| K6 | 3.6 | Consequently Paley(23) is **vertex-critical** unrestricted | K5, plus the direct route in `evidence/n22_p23minusv.tar.zst` |
+| K7 | 3.3, 3.5 | q = 31, both margins: **not vertex-critical** | P7 (unrestricted), P8 cell `p31mv` (unit) |
+| K8 | 3.3, 3.5 | q = 43, both margins: **not vertex-critical** | B4 (unrestricted), P8 cell `p43mv` (unit) |
+| K9 | 3.7 | The **second** doubly regular tournament on 19 vertices is arc-critical at unit margin: 57 orbits of size 3, 57 witnesses | `tournaments/dr19_arcflip/` (57 hosts, `manifest.tsv`, `sweep.log`, `sweep_run2.log`) |
+| K10 | 3.7 | Both DRTs on 19 vertices are unit-margin obstructions and both are majority-inducible | `verdicts/WITNESSES_margin_hierarchy.md`, `verdicts/drt19_wit/`; `tournaments/dr19_g1.bits` is Paley(19) relabelled, `tournaments/dr19_g2.bits` the distinct one, \|Aut\| = 3, seven vertex orbits |
+| K11 | 3.3 | The two 22-vertex obstructions are vertex-critical unrestricted; whether either is arc-critical is open | B9 |
 
 K9's `sweep.log` is the complete record: 57 distinct orbit representatives, all
 SAT, 3.5900 core-h. Its `tally: SAT=57 ABORTED=1` line refers to one *attempt* --
@@ -104,7 +114,7 @@ recomputes every arc's support. The scan was stopped at base state 1,161 once
 the witness appeared, which is sound for a positive certificate and is the
 opposite of what a refutation requires.
 
-### The 21-vertex picture (§3.5, Appendix F)
+### The 21-vertex picture (§3.6, Appendix F)
 
 | id | claim | verdict artifact |
 |---|---|---|
@@ -140,7 +150,7 @@ from the reversals, plus h₄ − v and h₅ − v. It prints the reconciliation
 worth running, because the raw file count (301) is neither of those numbers and
 invites a wrong conclusion. Run it; it takes seconds.
 
-## 4. The structured families (§3.6)
+## 4. The structured families (§3.7)
 
 | id | claim | verdict artifact | re-derive |
 |---|---|---|---|
@@ -150,10 +160,11 @@ invites a wrong conclusion. Run it; it takes seconds.
 | S4 | Every regular tournament on **15** vertices is inducible at unit margin, all 18,400,989,629, none capped, residue counts summing to OEIS A096368(7) | `cluster/jz_n15/results_margin1/done/` — 6,000 residue markers, an exact cover of `r0..r5999` with none missing, extra or duplicated; re-checked by `tools/check_package.sh` check 5c | `cluster/jz_n15/aggregate.sh` |
 | S5 | Every **self-converse** tournament on **13** vertices is inducible at unit margin — all S₁₃ = 95,458,560, 0 UNSAT, 0 aborted | the family splits three ways, each with its own record: **not provably rigid** (319,270) in `cluster/jz_n13sc/results_excluded/done/`, 77 chunks, all SAT, nothing capped; **regular** (11,237) by `verdicts/n13_regular_result.txt`; **rigid** (95,128,053) across all 488 shards, the cluster's 407 in `cluster/jz_n13sc/results/done/` and the laptop's 81 in `cluster/jz_n13sc/results_local/done/` | `cluster/jz_n13sc/aggregate.sh` reports the union as `COVERED IN FULL`; `cluster/jz_n13sc/prepare.sh` refuses to sweep unless the listing has exactly 95,458,560 lines |
 | S6 | The three parts are exactly the family, with no gap and no overlap | `cluster/jz_n13sc/state/partition.tsv`, checked by `cluster/jz_n13sc/aggregate.sh` | the regular count is anchored from the other direction by `verify/selfconverse_regular_count.py`, which reaches 11,237 from `gentourng` and a converse test rather than from the catalogue |
-| S7 | These sweeps turn up exactly **ten** tournaments that are not 5-inducible at unit margin: 2 doubly regular at order 19, 4 vertex-transitive at order 21, 4 circulant at order 23 | `verdicts/verdict_ledger.tsv` — the ten rows with `margin1 = UNSAT`, checked by `tools/check_package.sh` check 8 | on 23 vertices, a prime, every vertex-transitive tournament is circulant |
+| S7 | These sweeps turn up exactly **seventeen** tournaments that are 5-inducible but not at unit margin: 2 doubly regular at order 19, 4 vertex-transitive at order 21, 11 circulant at order 23 | `verdicts/verdict_ledger.tsv` — the seventeen rows with `margin1 = UNSAT` and `majority = SAT`, checked by `tools/check_package.sh` check 9 | on 23 vertices, a prime, every vertex-transitive tournament is circulant |
 | S8 | **Every locally transitive tournament is 5-inducible at unit margin**, by construction rather than search (Theorem E.1) | `verify/appendix_e.py` verifies Appendix E's own A, B, C at every cut point of every locally transitive tournament of order 3–14, and the non-strong case besides | `python3 verify/appendix_e.py` — 1,232 tournaments, 15,856 cut points, two controls, about 8 s |
 | S9 | **Refuted conjecture:** triangle load does not decide unit-margin inducibility — among 23-vertex vertex-transitive tournaments with t = 4, three are obstructions and 36 are inducible | `verdicts/n23_tmin4/`, `tournaments/vt23/manifest.tsv` | `verify/triangles_per_arc.py` computes t; `tournaments/vt23_gen.py` builds the family |
-| S10 | The unrestricted form survives: every majority obstruction we have has t ≥ 6 | `verdicts/verdict_ledger.tsv` | `verify/triangles_per_arc.py` |
+| S10 | **Corrected 2026-10-15.** An earlier version of this file said every majority obstruction here has t ≥ 6. That no longer holds: the two 22-vertex obstructions have t = 5, which is the most any tournament on 22 vertices can have, and Paley(27) less two vertices (Appendix G) is a majority obstruction on 25 vertices with t = 5. The 37 doubly regular tournaments on 23 vertices have t = 6. So t ≥ 6 is not necessary for a majority obstruction | `verdicts/verdict_ledger.tsv` (its `tmin` column), `verdicts/n22_obstructions/README.md` (the ceiling at 22), `tournaments/descent_parents/p27_mv00_01.bits` | `verify/triangles_per_arc.py`, `verify/host_facts.py` |
+| S11 | Order 23 is complete for both families: every vertex-transitive tournament on 23 vertices other than Paley(23) is 5-inducible, and none of the **37** doubly regular ones is, at unit margin or unrestricted. Up to converse the 37 are 19 classes, each settled by a complete search; 16 ran on the cluster at about 26,500 cluster core-hours together | `verdicts/verdict_ledger.tsv` (130 classes at n = 23); `cluster/jz_drt23maj/jz_drt23maj.tsv` (the 16, a roll-up; the markers are on the cluster, gap 7); `verdicts/drt23/drt23_maj.tsv` (d003 and d009, on the laptop); `verdicts/drt23/drt23_m1.tsv` (all 18 non-Paley classes at unit margin) | `tools/check_package.sh` check 9 re-adds the 16 and counts the 37 |
 
 S8's verifier takes the family from its **definition** — every in- and
 out-neighbourhood induces a transitive subtournament — not from the round
@@ -166,9 +177,9 @@ through the same definition test, so the catalogue is checked here too.
 
 | § | lemma | status |
 |---|---|---|
-| 3 | **3-cycle bound.** In a directed triangle the three supports sum to at most 2k, so with k = 5 no arc of a majority witness that lies in a triangle can be unanimous. Hence majority ≡ margin ≤ 3 on every host whose every arc lies in a triangle | proved in the paper; `verify/triangles_per_arc.py` checks the hypothesis host by host, and `--expect-paley-minus` asserts §3.4's stronger form, that every arc of P_q − v lies in at least (q−3)/4 triangles |
-| 2.1 | (L1) orbit anchoring loses no generality — licenses solving only the *live* cubes | human, proved in §2 |
-| 2.3 | (L2) the voters may be lex-ordered — licenses the lex chain in the coverage half | human, proved in §2 |
+| 3 | **3-cycle bound.** In a directed triangle the three supports sum to at most 2k, so with k = 5 no arc of a majority witness that lies in a triangle can be unanimous. Hence majority ≡ margin ≤ 3 on every host whose every arc lies in a triangle | proved in the paper; `verify/triangles_per_arc.py` checks the hypothesis host by host, and `--expect-paley-minus` asserts §3.5's stronger form, that every arc of P_q − v lies in at least (q−3)/4 triangles |
+| 2.1 | (L1, Lemma 2.1) orbit anchoring loses no generality — licenses solving only the *live* cubes | human, proved in §2 |
+| 2.1 | (L2, Lemma 2.3) the voters may be lex-ordered — licenses the lex chain in the coverage half | human, proved in §2 |
 
 These are the trust boundary. The depth-first engine and the SAT pipeline share
 these two lemmas and no code, so their agreement is evidence about the
@@ -182,23 +193,27 @@ orbit sizes from nauty.
 
 ## 6. The certificates (Appendix B)
 
-Both are complete on the search half and the coverage half.
+All three are complete on the search half and the coverage half.
 
-| | Paley(19), unit margin | Paley(23), unrestricted |
-|---|---|---|
-| base | `{1,2,3,4,5,12}`, 6 vertices | `{1,2,3,4,6,7}`, 6 vertices |
-| base states | 142,251 | 3,414,729 |
-| live cubes | 22,876 | 343,896 |
-| instance | 855 vars, 12,255 clauses | — |
-| coverage instance | 143,032 clauses, 7.56 s | 3,415,435 clauses, UNSAT in 1,182.95 s, 2,097 MiB LRAT |
-| ROOT (CNF) | `0eeb9dd53956fec2…` | `7e6c9c26ac386e67…` |
-| CERT (portable) | `8eb20a1d9e814aab…` | `ff60539e16abf2ec…` |
-| cost | 24.26 + 0.82 core-h | 228.28 + 7.73 core-h |
+| | Paley(19), unit margin | Paley(23), unrestricted | Δ₆ − 5, unrestricted |
+|---|---|---|---|
+| base | `{1,2,3,4,5,12}`, 6 vertices | `{1,2,3,4,6,7}`, 6 vertices | `{1,2,3,4,12,18}` of Δ₆ − 5, 6 vertices |
+| base states | 142,251 | 3,414,729 | 742,374 |
+| live cubes | 22,876 | 343,896 | 742,374 (rigid host, no break) |
+| instance | 855 vars, 12,255 clauses | — | 1,155 vars, 17,710 clauses |
+| coverage instance | 143,032 clauses, 7.56 s | 3,415,435 clauses, UNSAT in 1,182.95 s, 2,097 MiB LRAT | 743,080 clauses, UNSAT in 82.81 s, 422 MiB LRAT |
+| ROOT (CNF) | `0eeb9dd53956fec2…` | `7e6c9c26ac386e67…` | `f5ea8bf78c29405b…` |
+| CERT (portable) | `8eb20a1d9e814aab…` | `ff60539e16abf2ec…` | `043a6488483235bb…` (CERT-v2; no v1 for a host with no q) |
+| cost | 24.26 + 0.82 core-h | 228.28 + 7.73 core-h | 1,254.9 + 37.8 core-h |
+
+The manuscript gives the Δ₆ − 5 base as `{1,2,3,4,13,19}` in the labelling of Δ₆;
+the column above gives the same six vertices in Δ₆ − 5's own labelling, which is
+`0 1 2 3 11 17` 0-indexed on the command line.
 
 Every figure in that table re-derives from shipped bytes. The costs are the
 column sums of `certificates/*/log/*.log`, which carry `solve_s` and `check_s`
 per cube; `tools/check_package.sh` check 9 does the sum and compares against the
-manuscript's Appendix A.4.
+manuscript's Appendix A.6.
 
 The LRAT proof bytes were **verified and discarded by design**: each proof was
 checked by `lrat-trim`, hashed, and deleted, so peak storage is one proof per
@@ -239,25 +254,6 @@ misdescribes its own scope is the failure mode Appendix B.2 exists to guard
 against, and no check caught it — re-reading the verdict against the log of what
 had actually run did.
 
-### 6b. A further certificate, newer than the manuscript indexed here: N(5) ≤ 22
-
-`d005_mv04` is the doubly regular tournament `d005` on 23 vertices
-(`tournaments/drt23/d005.bits`, line 6 of McKay's catalogue) with vertex 4
-(0-based) deleted: `tournaments/drt23_del/d005_mv04.bits`. It is **not
-5-inducible at unrestricted majority**, so N(5) ≤ 22, and both halves are
-machine-checked: all 742,374 base states of `{0,1,2,3,11,17}` (0-indexed) are
-UNSAT with every LRAT proof rechecked by `lrat-trim`, 1,254.9 + 37.8 core-h,
-and the coverage instance (743,080 clauses) is UNSAT in 82.81 s with its LRAT
-proof verified by `lrat-trim`. The host is rigid, so no anchoring lemma is
-used and only Lemma 2.3 remains human, as for `h02_f00`.
-
-Evidence in `certificates/d005mv04cert_d6/` (README, VERDICT.txt, the per-cube
-chain in `log/`, from which checks 3 and 3c rebuild both roots and recompute
-`CERT (portable)` = `043a6488…`), and `certificates/d005mv04_coverage_cert.txt`
-for the split half. The manuscript in `manuscript/` predates this result and
-states 13 ≤ N(5) ≤ 23; this subsection carries no claim id until the package
-indexes the revised manuscript.
-
 ### 6a. The independent reproduction (§5.2)
 
 | id | claim | verdict artifact |
@@ -278,20 +274,20 @@ failure `sat/certroot.py` was written to end.
 
 | id | § | claim | artifact |
 |---|---|---|---|
-| M1 | A.1 | Integer programming does not reach these instances; at q = 23 the program has 1,265 binaries, 17,710 transitivity rows and 253 majority rows | `evidence/measurements/`; the three sizes are 5·C(23,2), 10·C(23,3) and C(23,2), checked arithmetically by `tools/check_manuscript.py` |
-| M2 | A.1 | SAT alone does not either. The dissent-Boolean encoding cuts CaDiCaL conflicts 26–42× against the order-variable family (2,399 / 1,491 / 57 on doubly regular tests), and with a sound symmetry break on top neither 19-vertex instance still returns a verdict | `sat/cube_sat.py` (the three encodings), `evidence/measurements/` |
+| M1 | A.3 | Integer programming does not reach these instances; at q = 23 the program has 1,265 binaries, 17,710 transitivity rows and 253 majority rows | `evidence/measurements/`; the three sizes are 5·C(23,2), 10·C(23,3) and C(23,2), checked arithmetically by `tools/check_manuscript.py` |
+| M2 | A.3 | SAT alone does not either. The dissent-Boolean encoding cuts CaDiCaL conflicts 26–42× against the order-variable family (2,399 / 1,491 / 57 on doubly regular tests), and with a sound symmetry break on top neither 19-vertex instance still returns a verdict | `sat/cube_sat.py` (the three encodings), `evidence/measurements/` |
 | M3 | A.2 | The exact domain rule beats the capped one on decision quality alone: 992,378 nodes capped against 294,964 exact, identical verdicts, on a 29-instance Paley(19) benchmark | `evidence/measurements/`, `sat/leaf_bench.py` |
 | M4 | B.1 | LRAT over DRAT on measurement: 0.295 s vs 1.043 s per leaf end to end, 29× in checking alone | `sat/leaf_bench.py` |
-| M5 | A.2 | Choosing the base: four cheap proxies each inverted when measured, so only live-count × measured s/state is the objective. At q = 31 the class with 4,007 live states beat the class with 2,537 | `evidence/measurements/probe2_results.json`, `probe3_results.json`, `price31.json`, `evidence/README.md`; the class ranking re-derives from `python3 sat/base_survivors.py --q 31 --classes` |
-| M6 | A.3 | The cluster runs 2–5× slower per core than the laptop, over six independent experiments | `evidence/measurements/price43_series.json`, `cluster/jz_reproduce/` (R2 above contributes two of the six) |
-| M7 | A.2 | Incremental refinement is worth about 110× in wall time, against a factor of a few for the dynamic order | `evidence/measurements/` |
+| M5 | A.4 | Choosing the base: four cheap proxies each inverted when measured, so only live-count × measured s/state is the objective. At q = 31 the class with 4,007 live states beat the class with 2,537 | `evidence/measurements/probe2_results.json`, `probe3_results.json`, `price31.json`, `evidence/README.md`; the class ranking re-derives from `python3 sat/base_survivors.py --q 31 --classes` |
+| M6 | A.5 | The cluster runs 2–5× slower per core than the laptop, over six independent experiments | `evidence/measurements/price43_series.json`, `cluster/jz_reproduce/` (R2 above contributes two of the six) |
+| M7 | A.4 | Incremental refinement is worth about 110× in wall time, against a factor of a few for the dynamic order | `evidence/measurements/` |
 
 `evidence/README.md` is worth reading for M5: it records that the Paley(27)
 price came in 32% high through sampling noise rather than bias, with the
 bootstrap that established which it was, and why the right estimator is a
 cost-weighted paired ratio against a completed run.
 
-## 8. The cost and node tables (Appendix A.3 and A.4)
+## 8. The cost and node tables (Appendix A.5 and A.6)
 
 **Every figure in both tables that can be re-derived from shipped bytes is
 re-derived, by `tools/check_cost_table.py`, and compared against the number the
@@ -300,22 +296,25 @@ it caught one (see the note below the table).
 
 | id | table row | figure | re-derives from |
 |---|---|---|---|
-| T1 | A.4 P₁₉ certified refutation, unit | 25.1 core-h | `certificates/p19cert_d6/log/*.log`, columns `solve_s + check_s` → 25.08 |
-| T2 | A.4 P₂₃ certified refutation, unrestricted | 236.0 core-h | `certificates/p23cert_d6/log/*.log` → 236.00 |
-| T3 | A.4 P₃₁ − v sweep, unrestricted | 239.5 core-h | `verdicts/p31mv_majority/p31mv_times.txt` → 239.53 |
-| T4 | A.4 P₂₃ one arc reversed, unrestricted | 210.4 core-h | `cluster/jz_p23arc/AGGREGATE_OUTPUT.txt` — 1,035 base states screened at a 731.8 s mean; the product is 210.4 core-h. The per-base markers are on the cluster, so this is a cross-file check against the kit's own roll-up, not a re-derivation from raw evidence |
-| T5 | A.4 second DRT on 19, all 57 arc reversals, unit | 3.59 core-h | `tournaments/dr19_arcflip/sweep.log` → 3.5900 |
-| T6 | A.4 regular tournaments on 15, unit | 3,106 core-h | `cluster/jz_n15/results_margin1/done/`, `secs=` field → 3,106.0 |
-| T7 | A.4 self-converse on 13, unit | 1,310 core-h | `cluster/jz_n13sc/SLURM_COST.txt` — 1,261.7 cluster + 46.8 laptop + 1.0 laptop = 1,309.5, agreeing to 99.96%. **Sum Elapsed, not CPUTimeRAW**: the accounting reports AllocCPUS = 2 for a single-threaded task, so CPUTimeRAW is exactly double |
-| T8 | A.4 all tournaments on 12, unit | ≈ 10,000 core-h | `cluster/jz_n12cover/FINAL_ROLLUP.txt` — 36,268,412 core-seconds = **10,074.6 core-h**, measured, summed from the per-residue markers by `aggregate.sh` |
-| T9 | A.3 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87 | | the `time=` fields of `evidence/{rerun1_p23,p27,p31,p43}_majority.tar.zst` → 34.03, 31.04, 26.89, 22.86 |
-| T10 | A.3 live base states 2,591, 2,537, 4,007, 2,537 | | `python3 sat/base_survivors.py`, search-free, and `--selfcheck` reproduces 8,031 / 2,591 / 16,118 / 2,200 |
-| T11 | A.3 seconds per live base state 47.3, 44.0, 24.2, 32.5 | | T9 × 3600 ÷ T10, arithmetic |
-| T12 | A.3 node counts | | the `nodes=` fields of the same four archives → 1.14e10, **6.22e9**, 3.43e9, 1.43e9 |
-| T13 | A.3 P₄₃ − v takes 185.5 core-h | | `verdicts/p43mv_majority/p43mv_times.txt` → 185.54 |
+| T1 | A.6 P₁₉ certified refutation, unit | 25.1 core-h | `certificates/p19cert_d6/log/*.log`, columns `solve_s + check_s` → 25.08 |
+| T2 | A.6 P₂₃ certified refutation, unrestricted | 236.0 core-h | `certificates/p23cert_d6/log/*.log` → 236.00 |
+| T3 | A.6 P₃₁ − v sweep, unrestricted | 239.5 core-h | `verdicts/p31mv_majority/p31mv_times.txt` → 239.53 |
+| T4 | A.6 P₂₃ one arc reversed, unrestricted | 210.4 core-h | `cluster/jz_p23arc/AGGREGATE_OUTPUT.txt` — 1,035 base states screened at a 731.8 s mean; the product is 210.4 core-h. The per-base markers are on the cluster, so this is a cross-file check against the kit's own roll-up, not a re-derivation from raw evidence |
+| T5 | A.6 second DRT on 19, all 57 arc reversals, unit | 3.59 core-h | `tournaments/dr19_arcflip/sweep.log` → 3.5900 |
+| T6 | A.6 regular tournaments on 15, unit | 3,106 core-h | `cluster/jz_n15/results_margin1/done/`, `secs=` field → 3,106.0 |
+| T7 | A.6 self-converse on 13, unit | 1,310 core-h | `cluster/jz_n13sc/SLURM_COST.txt` — 1,261.7 cluster + 46.8 laptop + 1.0 laptop = 1,309.5, agreeing to 99.96%. **Sum Elapsed, not CPUTimeRAW**: the accounting reports AllocCPUS = 2 for a single-threaded task, so CPUTimeRAW is exactly double |
+| T8 | A.6 all tournaments on 12, unit | ≈ 10,000 core-h | `cluster/jz_n12cover/FINAL_ROLLUP.txt` — 36,268,412 core-seconds = **10,074.6 core-h**, measured, summed from the per-residue markers by `aggregate.sh` |
+| T9 | A.5 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87 | | the `time=` fields of `evidence/{rerun1_p23,p27,p31,p43}_majority.tar.zst` → 34.03, 31.04, 26.89, 22.86 |
+| T10 | A.5 live base states 2,591, 2,537, 4,007, 2,537 | | `python3 sat/base_survivors.py`, search-free, and `--selfcheck` reproduces 8,031 / 2,591 / 16,118 / 2,200 |
+| T11 | A.5 seconds per live base state 47.3, 44.0, 24.2, 32.5 | | T9 × 3600 ÷ T10, arithmetic |
+| T12 | A.5 node counts | | the `nodes=` fields of the same four archives → 1.14e10, **6.22e9**, 3.43e9, 1.43e9 |
+| T13 | A.5 P₄₃ − v takes 185.5 core-h | | `verdicts/p43mv_majority/p43mv_times.txt` → 185.54 |
+| T14 | A.6 Δ₆ − 5 certified refutation, unrestricted | 1,292.7 core-h | `certificates/d005mv04cert_d6/log/*.log`, columns `solve_s + check_s` → 1,292.68 |
+| T15 | A.6 Δ₆ − 5 sweep (cluster), unrestricted | 1,551.2 cluster core-h | the `secs=` fields of the 8,031 markers in `evidence/d005mv04_sweep_markers.tar.zst` → 1,551.19 |
+| T16 | A.6 Δ₂₈ − 5 sweep (cluster), unrestricted | 1,537.7 cluster core-h | `verdicts/n22_obstructions/verdicts.tsv`, 5,535,720 s. The markers are on the cluster, so this is a cross-file check against the sweep's roll-up (gap 7) |
 
 **T12 was a discrepancy with an earlier draft, CORRECTED 2026-09-11.** Appendix A.3
-used to print 1.14 × 10⁸ for the q = 27 node count: the archive's `dom_nodes`
+(now A.5) used to print 1.14 × 10⁸ for the q = 27 node count: the archive's `dom_nodes`
 counter, not its `nodes` counter, while the q = 31 and q = 43 cells of the same
 column were `nodes` and did match. The shipped manuscript now prints the true
 6.22 × 10⁹, so the column falls monotonically in q (1.14e10, 6.22e9, 3.44e9,
@@ -363,6 +362,26 @@ claim about 319,270 tournaments that nothing established.
 they are identical on both machines. That is what makes a sweep split across two
 machines auditable at all: the two halves agree on what the universe *is* before
 either reports a verdict about it.
+
+## 11. Below 22 vertices (Appendix G and Question 1)
+
+| id | § | claim | verdict artifact | re-derive |
+|---|---|---|---|---|
+| G1 | G | Below the 36 doubly regular tournaments on 23 vertices other than Paley(23), up to isomorphism and converse, there are **378** classes at 22 vertices, **4,108** at 21 and **28,724** at 20 | `tournaments/drt23_del/PARENTS18.txt` (one per converse pair), `tournaments/drt23_del/HOSTS_level2.tsv`, `tournaments/drt23_del/HOSTS_level3.tsv` | `verify/drt23_level_counts.py` from the parents' bits, which also checks the 18 are one per pair and that each level file holds one host per class; `tools/check_package.sh` checks 8d and 9 |
+| G2 | G | At 22 vertices all 378 were screened at up to 50 base states each: 13,863 base states searched to the end, no witness | `cluster/jz_drt23mv/HARDNESS_378.tsv` (per-host roll-up; the markers are on the cluster, gap 7) | check 9 re-adds the exhausted column |
+| G3 | G | At 21 vertices **1,173** classes are settled, all 5-inducible: all 506 two-vertex deletions of Δ₆ and Δ₂₈, a stratified random sample of 400, all 53 classes below Δ₁₁, and every class deleting vertex 5 and one other (283). The other 2,935 are open | `evidence/n21_level_witnesses.tar.zst` (its SETTLED.tsv gives each class's group and where its witness was banked; one witness per class) | `verify/verify_descent_witnesses.py --selftest`, which rebuilds each host from its name; `tools/check_package.sh` check 8d |
+| G4 | G, 4.2 | At 20 vertices all **28,724** classes are 5-inducible, so every tournament on 19 vertices or fewer below the 36 is too | `evidence/n20_descent_witnesses.tar.zst` (a witness for each, plus the 19,836 hosts of the two lineages in G6) | the same verifier; check 8d also requires the witnessed names to equal the rows of `HOSTS_level3.tsv` |
+| G5 | G | At 21 vertices about one base state in 110 yields a witness, so a host there costs a few dozen cluster core-hours to settle; at 22 a proof costs about 1,500 | the screen's per-host markers are in the working repository's archive of the cluster run, not here (gap 7) | — |
+| G6 | G | Paley(27) less two vertices and the circulant on 25 vertices with six triangles on every arc are not 5-inducible, and every 21-vertex subtournament of either is | `evidence/p27mv0001_sweep_markers.tar.zst` (complete cover, 8,031 states, 523.4 laptop core-h); the circulant's complete sweep is on the cluster (gap 7); `evidence/n21_other_lineages_witnesses.tar.zst` (208 and 506 witnesses with the level files); parents in `tournaments/descent_parents/` | `verify/sweep_cover_audit.py`; `verify/level_coverage.py`, which finds 150 and 286 classes up to isomorphism and converse and every one witnessed; checks 8c and 8d |
+| Q1 | 4.2 | **Question 1** (is N(5) = 22?) is open. G3 and G4 are the evidence the paper cites for it | — | — |
+
+`d005_mv09_11` carries a witness its screening kit rejected
+(`evidence/descent_n21_witnesses.tar.zst`, `results/witness/d005_mv09_11.BADWITNESS.log`).
+The kit marks a witness that way whenever its checker exits non-zero, and that
+happened here for a reason outside the witness: the rejected file verifies
+against the rebuilt host. The class is settled by a second witness, banked
+separately, which is the one in `n21_level_witnesses.tar.zst`. The verifier
+reports such files and never counts them.
 
 ## 10. The engine itself
 
@@ -489,6 +508,21 @@ verification output is preserved in `certificates/p19_coverage_cert.txt`.
 loudly naming everything it tried, rather than silently measuring nothing.
 Set `SOFTWARE_DIR`, or `GENTOURNG`/`LABELG` individually, if yours live
 elsewhere.
+
+**Gap 7 — results whose per-state records are still on the cluster.** Four
+computations behind the 22-vertex results finished on the cluster, and what ships
+is the campaign's own roll-up rather than its markers: the sweep of Δ₂₈ − 5
+(B7, T16; `verdicts/n22_obstructions/verdicts.tsv`), the 16 doubly regular
+tournaments on 23 vertices at unrestricted margin (S11;
+`cluster/jz_drt23maj/jz_drt23maj.tsv`), the 378-host screen at 22 vertices (G2;
+`cluster/jz_drt23mv/HARDNESS_378.tsv`) and the sweep of the circulant on 25
+vertices (G6). Each roll-up was written by the campaign's aggregator, which
+reports UNSAT only for an exact, uncapped tiling of the base states, so these
+are cross-file checks of the same standard as gap 3, weaker than re-adding raw
+markers. The witness density of G5 comes from screen markers that are archived
+in the working repository and are too large to ship. Bringing the cluster
+markers back as `.tar.zst` archives, as was done for Δ₆ − 5
+(`evidence/d005mv04_sweep_markers.tar.zst`), would close this gap.
 
 **Not a gap, but read §5.2 before comparing numbers.** Verdicts replicate under
 any correct implementation — that is the paper's claim. Node counts replicate

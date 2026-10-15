@@ -1,0 +1,30 @@
+# The 16 DRTs on 23 vertices at UNRESTRICTED MARGIN, as Jean Zay's own
+# aggregate.sh reported them on 2026-09-22 after the last six chunks were
+# finished on the laptop.  Transcribed from that run, not recomputed here.
+#
+# `capped` is 0 on every row BY CONSTRUCTION, not by separate observation:
+# aggregate.sh reports UNSAT only when a host's markers tile [0,8031) exactly
+# AND nothing is capped, so an UNSAT here already carries both facts.  The
+# column exists because verdict_ledger.py keys on it and refuses a rollup
+# without it -- it must never be filled in from anywhere but that rule.
+#
+# d003 and d009 are NOT here; they ran on the laptop and are in
+# drt23_maj/drt23_maj.tsv.  Together with Paley(23) that is 19 of 19
+# converse classes.
+#host	verdict	chunks	nodes	capped	core_hours
+d017	UNSAT	804	108400370596	0	1694.3
+d005	UNSAT	804	110347451618	0	1661.7
+d012	UNSAT	804	110519749755	0	1523.3
+d002	UNSAT	804	111032328470	0	1649.6
+d001	UNSAT	804	110382416060	0	1720.7
+d007	UNSAT	804	112240948817	0	1605.2
+d027	UNSAT	804	111419728858	0	1580.5
+d021	UNSAT	804	111025439474	0	1584.2
+d011	UNSAT	804	113765609641	0	1668.8
+d008	UNSAT	804	113816669364	0	1587.6
+d022	UNSAT	804	112098673314	0	1659.9
+d020	UNSAT	804	115659814374	0	1779.8
+d004	UNSAT	804	115123848616	0	1744.9
+d025	UNSAT	804	118977329719	0	1643.5
+d000	UNSAT	804	118346209021	0	1687.9
+d010	UNSAT	804	123700388131	0	1666.7

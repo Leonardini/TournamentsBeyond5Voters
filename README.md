@@ -9,7 +9,8 @@ re-verified by code that shares nothing with the search. 2026-09-15.*
 **Claim tested.** B1 — $P_{23}$ is not the majority tournament of any five
 linear orders, hence $N(5) \le 23$, improving the best previous bound of 38.
 This is the instance Bachmeier et al. reported their SAT solver could not decide
-within six cumulative weeks.
+within six cumulative weeks. (This record predates the 22-vertex results; the
+package now establishes $N(5) \le 22$, as described below.)
 
 **What was done.** This package, pinned at `48b4a49`, was rebuilt from source and its `kinduce` engine run to
 completion over **all 8,031 base states** of the published decomposition, one
@@ -20,7 +21,7 @@ with the search.
 
 **Assessment: aligned on the central claim.** The verdict reproduced exactly — complete over all 8,031 base states, exact index cover, nothing capped, no witness — together with six further claims, among them an arc-reversal witness byte-identical to the published one and both certifications' ROOT (CNF) rebuilt cube by cube.
 
-**One correction.** An earlier version of this record reported the node count as diverging from Appendix A.3 by a factor of 123. That was a greedy-regex bug in this harness, which scraped `dom_nodes` where `nodes` was meant; the node count is simply **not measured** here. Costs and verdicts never depended on it. The authors independently hit the same trap in their own $q = 27$ reporting and have corrected it.
+**One correction.** An earlier version of this record reported the node count as diverging from Appendix A.3 (now A.5) by a factor of 123. That was a greedy-regex bug in this harness, which scraped `dom_nodes` where `nodes` was meant; the node count is simply **not measured** here. Costs and verdicts never depended on it. The authors independently hit the same trap in their own $q = 27$ reporting and have corrected it.
 
 | | paper | observed here |
 |---|---|---|
@@ -84,11 +85,15 @@ working repo the reproduction was driven from; each one carries the same
 Code, tournaments, verdicts and certificates for the paper *Tournaments not
 inducible by five voters*, which proves
 
-> **13 ≤ N(5) ≤ 23**,
+> **13 ≤ N(5) ≤ 22**,
 
 where N(k) is the least order at which some tournament is not the majority
-tournament of any k linear orders. The upper bound comes from Paley(23); the
-lower bound from an exhaustive case analysis at order 12.
+tournament of any k linear orders. The upper bound comes from two tournaments on
+22 vertices, each a doubly regular tournament on 23 vertices with one vertex
+deleted, that no five voters can produce; one of them is also certified by
+cube-and-conquer with every proof checked. Paley(23), the earlier bound, is
+refuted and certified too. The lower bound comes from an exhaustive case
+analysis at order 12.
 
 **Start with [`CLAIMS.md`](CLAIMS.md).** It carries one row per statement the
 paper makes, each with a stable id, the artifact that holds the verdict, and the
@@ -97,7 +102,7 @@ package does *not* establish. [`REPRODUCE.md`](REPRODUCE.md) is the operational
 companion: the exact command line for each published result.
 
 ```
-tools/check_package.sh          # the acceptance gate; ~7 min, single-threaded
+tools/check_package.sh          # the acceptance gate; ~8 min, single-threaded
 tools/check_package.sh --quick  # structural checks only, no solver needed
 ```
 
@@ -143,14 +148,14 @@ red against it.
 | | |
 |---|---|
 | `engine/` | `kinduce.c`, the depth-first placement search, one translation unit, with its man page. `kcover.c` is the order-12 witness-extension engine. `versions/` keeps the 24 historical implementations that originally produced each result, and `versions/REGRESSION.md` records the consolidated engine agreeing with each of them node for node on the published command lines |
-| `tournaments/` | the hosts as bit strings, plus the generators that build them and `deletion_classes.py`, which derives the deletion-class counts of §3.4 with nauty |
+| `tournaments/` | the hosts as bit strings, plus the generators that build them and `deletion_classes.py`, which derives the deletion-class counts of Appendix F with nauty. `drt23_del/` holds the two 22-vertex obstructions and the class lists of the levels below the doubly regular tournaments on 23 vertices; `descent_parents/` the two 25-vertex parents of Appendix G's other lineages |
 | `sat/` | the dissent-Boolean encoding, the cube tooling, the certification driver and the coverage check |
-| `verify/` | checkers that share no code with the search: witness verifiers that read the bit string and the ballots and recompute every arc's support; `appendix_e.py`, which builds Appendix E's three orders from its own prose and checks them over every locally transitive tournament of order 3–14; `triangles_per_arc.py`, which tests the 3-cycle hypothesis that turns a `--max-margin 3` run into a majority verdict |
-| `certificates/` | the three machine-checked refutations — per-cube sha256 chains, published roots, and the verdict files that state their own scope. `CERT-v2.md` explains why each block now identifies its host by the sha256 of its adjacency rather than by the name of its construction |
+| `verify/` | checkers that share no code with the search: witness verifiers that read the bit string and the ballots and recompute every arc's support; `appendix_e.py`, which builds Appendix E's three orders from its own prose and checks them over every locally transitive tournament of order 3–14; `triangles_per_arc.py`, which tests the 3-cycle hypothesis that turns a `--max-margin 3` run into a majority verdict; and for Section 3.2 and Appendix G, `verify_descent_witnesses.py` (each witness checked against a host rebuilt from its name), `drt23_level_counts.py` and `level_coverage.py` (class counts and coverage with `labelg`), `critical_deletions.py`, `host_facts.py` and `sweep_cover_audit.py` |
+| `certificates/` | the four machine-checked refutations (Paley(19) at unit margin, Paley(23), `h02_f00`, and Δ₆ − 5 behind N(5) ≤ 22) — per-cube sha256 chains, published roots, and the verdict files that state their own scope. `CERT-v2.md` explains why each block now identifies its host by the sha256 of its adjacency rather than by the name of its construction |
 | `verdicts/` | one verdict record per result, the consolidated ledger, and the witness documents |
 | `evidence/` | chunk logs for every distributed sweep, compressed about 100×, plus the measurement JSON behind each configuration choice |
-| `cluster/` | the two computations that did not run on the laptop: the order-12 census and the 15-vertex regular census |
-| `manuscript/` | the paper the claims come from, its LaTeX source, and `figures/` — the pipeline that draws Figure 1 from a real trace, by a second implementation of the search that refuses to emit one unless seven cross-checks pass |
+| `cluster/` | the records of the computations that ran on the cluster rather than the laptop: the order-12 census, the 15-vertex regular census, the order-13 self-converse census, the independent reproduction, the Paley(23) arc-reversal scan, and the roll-ups of the doubly regular sweeps at 23 vertices and the 378-host screen at 22 |
+| `manuscript/` | the paper the claims come from, as submitted to *Mathematical Social Sciences*, with its LaTeX source, its highlights, and `figures/` — the pipeline that draws Figure 1 from a real trace, by a second implementation of the search that refuses to emit one unless seven cross-checks pass |
 | `notes_research_log.md` | the working notebook, kept for provenance |
 
 ## Building
@@ -235,9 +240,9 @@ and check 3d of the gate confirms that the converse of Paley(19) is rejected.
 The proof bytes themselves were verified and discarded by design: each was
 checked by `lrat-trim`, hashed, and deleted, so peak storage was one proof per
 worker rather than terabytes. That makes this artifact weaker than one that
-publishes its proofs, and §5.3 of the paper says so. The trade is deliberate at
-this scale — regenerating a certificate from nothing costs 25, 236 or 224
-core-hours, three orders of magnitude below what re-validating a published
+publishes its proofs, and Appendix B.1 of the paper explains the choice. The
+trade is deliberate at this scale — regenerating a certificate from nothing
+costs 25, 236, 224 or 1,293 core-hours, three orders of magnitude below what re-validating a published
 proof of the Boolean Pythagorean triples kind costs.
 
 One practical note: `lrat-trim` signals success with `s VERIFIED` and **exit

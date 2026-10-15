@@ -209,6 +209,46 @@ def marker_sum(reldir, field):
     return tot
 
 
+def marker_archive_core_h(name):
+    """Core-hours summed over the `secs=` fields of a sweep's marker archive."""
+    path = os.path.join(ROOT, 'evidence', name)
+    if not os.path.exists(path):
+        return None
+    try:
+        raw = subprocess.run(['zstd', '-dc', path], capture_output=True).stdout
+        tf = tarfile.open(fileobj=io.BytesIO(raw))
+    except Exception:
+        return None
+    secs = 0.0
+    for m in tf:
+        if m.isfile() and '/done/' in m.name:
+            for fld in tf.extractfile(m).read().decode().split():
+                if fld.startswith('secs='):
+                    secs += float(fld[5:])
+    return secs / 3600
+
+
+def tsv_rows(rel):
+    """Rows of a TSV in the package, header first, or None.
+
+    Comment lines are skipped, except a `#`-prefixed line holding tabs, which is
+    how some roll-ups write their column header (`#host<TAB>verdict...`).
+    """
+    path = os.path.join(ROOT, rel)
+    if not os.path.exists(path):
+        return None
+    out = []
+    for l in open(path):
+        if not l.strip():
+            continue
+        if l.startswith('#'):
+            if '\t' in l:
+                out.append(l[1:].rstrip('\n').split('\t'))
+            continue
+        out.append(l.rstrip('\n').split('\t'))
+    return out
+
+
 def survivors(args):
     """Live base-state count from the search-free counter."""
     p = os.path.join(ROOT, 'sat', 'base_survivors.py')
@@ -242,14 +282,14 @@ def main(mdpath, as_json):
     tabs = tables(md)
 
     # ---------------------------------------------------------------- ARITHMETIC
-    # Appendix A.1's integer program at q = 23, k = 5.
+    # Appendix A.3's integer program at q = 23, k = 5.
     q, k = 23, 5
     for want, label in ((k * math.comb(q, 2), 'binaries'),
                         (2 * k * math.comb(q, 3), 'transitivity rows'),
                         (math.comb(q, 2), 'majority rows')):
         stated = re.search(r'\$?([\d{},]+)\$?\s*' + label, md)
         got = num(stated.group(1)) if stated else None
-        record('ARITHMETIC', 'A.1 ILP %s at q=23' % label, got, want,
+        record('ARITHMETIC', 'A.3 ILP %s at q=23' % label, got, want,
                got == want, 'k*C(23,2), 2k*C(23,3), C(23,2)')
 
     # Appendix B.1's dissent-Boolean instance at q = 19: 5*C(19,2) variables,
@@ -283,11 +323,40 @@ def main(mdpath, as_json):
     else:
         skip('ARITHMETIC', 'B.1 P23 coverage clause total', 'sentence not found')
 
+    # Appendix B.1's Delta_6 - 5 instance: 5*C(22,2) variables; at plain majority
+    # 10 clauses per arc (no 3 of the 5 dissent variables all true) plus the same
+    # 10 transitivity clauses per triple as at unit margin.
+    q = 22
+    m = re.search(r'\$n = 22\$ and plain majority: \$([\d{},]+)\$ variables and '
+                  r'\$([\d{},]+)\$ clauses', md)
+    if m:
+        record('ARITHMETIC', 'B.1 Delta_6 - 5 instance variables', num(m.group(1)),
+               k * math.comb(q, 2), num(m.group(1)) == k * math.comb(q, 2), '5*C(22,2)')
+        c22 = 10 * math.comb(q, 2) + 10 * math.comb(q, 3)
+        record('ARITHMETIC', 'B.1 Delta_6 - 5 instance clauses', num(m.group(2)), c22,
+               num(m.group(2)) == c22, '10*C(22,2) + 10*C(22,3)')
+    else:
+        skip('ARITHMETIC', 'B.1 Delta_6 - 5 instance size', 'sentence not found')
+    m = re.search(r'with\s*\n?\$([\d{},]+)\$ negated cubes', md)
+    rec = os.path.join(ROOT, 'certificates', 'd005mv04_coverage_cert.txt')
+    if m and os.path.exists(rec):
+        mm = re.search(r'CNF\s+([\d,]+) clauses = (\d+) F_B \+ (\d+) SB \+ '
+                       r'([\d,]+) negated cubes', open(rec).read())
+        if mm:
+            tot, fb, sb, cubes = (int(x.replace(',', '')) for x in mm.groups())
+            record('DERIVED', 'B.1 Delta_6 - 5 coverage negated cubes', num(m.group(1)),
+                   cubes, num(m.group(1)) == cubes,
+                   'the coverage record, certificates/d005mv04_coverage_cert.txt')
+            record('ARITHMETIC', 'B.1 Delta_6 - 5 coverage clause total', tot,
+                   fb + sb + cubes, tot == fb + sb + cubes, '350 + 356 + 742,374')
+    else:
+        skip('DERIVED', 'B.1 Delta_6 - 5 coverage', 'sentence or record not found')
+
     # ------------------------------------------------------------------ DERIVED
-    # Appendix A.4's cost table, row by row.
+    # Appendix A.6's cost table, row by row.
     cost = find_table(tabs, 'computation', 'core-hours')
     if cost is None:
-        skip('DERIVED', 'A.4 cost table', 'table not found in the manuscript')
+        skip('DERIVED', 'A.6 cost table', 'table not found in the manuscript')
     else:
         def cell(rowwords, idx=-1):
             r = row_starting(cost, *rowwords)
@@ -300,6 +369,12 @@ def main(mdpath, as_json):
             (['certified refutation', 'unrestricted'],
              lambda: (lambda t: None if t is None else t[0] + t[1])(cert_cost('p23')),
              'P23 certificate, solve_s + check_s over 343,896 cubes'),
+            (['delta_6', 'certified'],
+             lambda: (lambda t: None if t is None else t[0] + t[1])(cert_cost('d005mv04')),
+             'Delta_6 - 5 certificate, solve_s + check_s over 742,374 cubes'),
+            (['delta_6', 'sweep'],
+             lambda: marker_archive_core_h('d005mv04_sweep_markers.tar.zst'),
+             'Delta_6 - 5 cluster sweep, secs= over its 8,031 markers'),
             (['31', 'sweep'],
              lambda: (lambda t: None if t is None else t[0])(
                  times_file_core_h('verdicts/p31mv_majority/p31mv_times.txt')),
@@ -318,9 +393,9 @@ def main(mdpath, as_json):
             want = cell(words)
             got = fn()
             if got is None:
-                skip('DERIVED', 'A.4 row %s' % ' '.join(words), 'artifact absent')
+                skip('DERIVED', 'A.6 row %s' % ' '.join(words), 'artifact absent')
             else:
-                record('DERIVED', 'A.4 row %s' % ' '.join(words), want, round(got, 2),
+                record('DERIVED', 'A.6 row %s' % ' '.join(words), want, round(got, 2),
                        close(want, got), label)
 
         # T4 is a CROSS-FILE check, not a re-derivation: the per-base markers
@@ -337,16 +412,34 @@ def main(mdpath, as_json):
             n = re.search(r'base states screened\s*:\s*(\d+)', src)
             mean = re.search(r'mean per base state\s*:\s*([\d.]+)', src)
             if got is not None:
-                record('DERIVED', 'A.4 row one arc reversed', want, got,
+                record('DERIVED', 'A.6 row one arc reversed', want, got,
                        close(want, got),
                        'cluster/jz_p23arc roll-up (cross-file, markers not shipped)')
             if n and mean and got is not None:
                 prod = int(n.group(1)) * float(mean.group(1)) / 3600
-                record('ARITHMETIC', 'A.4 one arc reversed is internally consistent',
+                record('ARITHMETIC', 'A.6 one arc reversed is internally consistent',
                        got, round(prod, 1), close(got, prod, 0.01),
                        'base states screened x mean per base state')
         else:
-            declared('A.4 row one arc reversed', want, 'CLAIMS.md gap 3')
+            declared('A.6 row one arc reversed', want, 'CLAIMS.md gap 3')
+
+        # Delta_28 - 5: same cross-file shape -- the markers are on the cluster,
+        # so the figure is compared against the sweep's roll-up, in seconds.
+        rows = tsv_rows('verdicts/n22_obstructions/verdicts.tsv')
+        want = cell(['delta_{28}', 'sweep'])
+        if rows:
+            h = rows[0]
+            got = [float(r[h.index('seconds')]) / 3600 for r in rows[1:]
+                   if r[0] == 'd027_mv04']
+            if got:
+                record('DERIVED', 'A.6 row Delta_28 - 5 sweep', want, round(got[0], 1),
+                       close(want, got[0]),
+                       'verdicts/n22_obstructions roll-up (cross-file, markers on '
+                       'the cluster)')
+            else:
+                declared('A.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
+        else:
+            declared('A.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
 
         # T7, same cross-file shape as T4: the per-task accounting lives on the
         # cluster, so what is compared is the manuscript's figure against the
@@ -357,22 +450,22 @@ def main(mdpath, as_json):
             m = re.search(r'total\s+([\d.]+) core-h', open(sc).read())
             got = float(m.group(1)) if m else None
             if got is not None:
-                record('DERIVED', 'A.4 row self-converse on 13', want, got,
+                record('DERIVED', 'A.6 row self-converse on 13', want, got,
                        close(want, got, 0.01),
                        'cluster/jz_n13sc three-way total (cross-file, per-task '
                        'accounting not shipped)')
             else:
-                declared('A.4 row self-converse on 13', want, 'CLAIMS.md gap 3')
+                declared('A.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
         else:
-            declared('A.4 row self-converse on 13', want, 'CLAIMS.md gap 3')
+            declared('A.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
 
         for words, where in ((['all tournaments on'], 'CLAIMS.md gap 1'),):
-            declared('A.4 row %s' % ' '.join(words), cell(words), where)
+            declared('A.6 row %s' % ' '.join(words), cell(words), where)
 
-    # Appendix A.3's runtime table.
+    # Appendix A.5's runtime table.
     run = find_table(tabs, 'live base states', 'core-hours', 'nodes')
     if run is None:
-        skip('DERIVED', 'A.3 runtime table', 'table not found in the manuscript')
+        skip('DERIVED', 'A.5 runtime table', 'table not found in the manuscript')
     else:
         arch = MAJORITY_ARCHIVE
         for r in run[1:]:
@@ -383,20 +476,20 @@ def main(mdpath, as_json):
             live, hours, nodes, per = (num(r[1]), num(r[2]), num(r[3]), num(r[4]))
             tot = archive_totals(arch[qv])
             if tot is None:
-                skip('DERIVED', 'A.3 q=%d' % qv, 'archive absent or zstd missing')
+                skip('DERIVED', 'A.5 q=%d' % qv, 'archive absent or zstd missing')
                 continue
             _, n_nodes, n_dom, secs = tot
-            record('DERIVED', 'A.3 q=%d core-hours' % qv, hours, round(secs / 3600, 2),
+            record('DERIVED', 'A.5 q=%d core-hours' % qv, hours, round(secs / 3600, 2),
                    close(hours, secs / 3600), 'sum of time= over the archive')
             if nodes is not None:
                 note = 'sum of nodes= over the archive'
                 if not close(nodes, n_nodes, 0.01) and close(nodes, n_dom, 0.01):
                     note = ('THE PRINTED FIGURE IS dom_nodes, NOT nodes: '
                             'dom_nodes=%.3e, nodes=%.3e' % (n_dom, n_nodes))
-                record('DERIVED', 'A.3 q=%d nodes' % qv, nodes, float('%.3g' % n_nodes),
+                record('DERIVED', 'A.5 q=%d nodes' % qv, nodes, float('%.3g' % n_nodes),
                        close(nodes, n_nodes, 0.01), note)
             if live is not None and per is not None:
-                record('ARITHMETIC', 'A.3 q=%d seconds per live base state' % qv,
+                record('ARITHMETIC', 'A.5 q=%d seconds per live base state' % qv,
                        per, round(hours * 3600 / live, 1),
                        close(per, hours * 3600 / live, 0.01),
                        'core-hours x 3600 / live base states')
@@ -409,12 +502,12 @@ def main(mdpath, as_json):
                 continue
             got = survivors(args)
             if got is None or got[1] is None:
-                skip('DERIVED', 'A.3 q=%d live base states' % qv,
+                skip('DERIVED', 'A.5 q=%d live base states' % qv,
                      'base_survivors.py unavailable')
             else:
                 # q=23 uses the break in use, not the optimum, so compare the
                 # base-state total and let CLAIMS.md carry the break choice.
-                record('DERIVED', 'A.3 q=%d base states (total)' % qv, None, got[0],
+                record('DERIVED', 'A.5 q=%d base states (total)' % qv, None, got[0],
                        got[0] in (8031, 21009),
                        'search-free count from sat/base_survivors.py')
 
@@ -425,23 +518,122 @@ def main(mdpath, as_json):
     else:
         rows = [l.rstrip('\n').split('\t') for l in open(led)]
         hdr = rows[0]
-        mi = hdr.index('margin1')
-        obs = [r for r in rows[1:] if len(r) > mi and r[mi].strip() == 'UNSAT']
+        mi, ma = hdr.index('margin1'), hdr.index('majority')
+        # "can produce, but not with unit margin": unit margin UNSAT, majority SAT
+        sep = [r for r in rows[1:] if len(r) > ma and r[mi].strip() == 'UNSAT'
+               and r[ma].strip().startswith('SAT')]
         by_n = {}
-        for r in obs:
+        for r in sep:
             by_n[int(r[1])] = by_n.get(int(r[1]), 0) + 1
-        m = re.search(r'ten tournaments that are not\s*\n?\$?5\$?-inducible with unit '
-                      r'margin: (\d+) doubly regular ones at order (\d+), (\d+) '
-                      r'vertex-transitive ones at order (\d+), and\s*\n?(\d+) '
+        m = re.search(r'turn up (\w+) tournaments that five\s*\n?voters can produce, but '
+                      r'not with unit margin: (\d+) doubly regular ones at order (\d+), '
+                      r'(\d+) vertex-transitive\s*\n?ones at order (\d+), and (\d+) '
                       r'circulant ones at order (\d+)', md)
         if m:
-            want = {int(m.group(2)): int(m.group(1)), int(m.group(4)): int(m.group(3)),
-                    int(m.group(6)): int(m.group(5))}
-            record('LEDGER', 'the ten unit-margin obstructions', want, by_n,
-                   want == by_n, 'rows of verdict_ledger.tsv with margin1 = UNSAT')
+            want = {int(m.group(3)): int(m.group(2)), int(m.group(5)): int(m.group(4)),
+                    int(m.group(7)): int(m.group(6))}
+            record('LEDGER', 'the %s unit-margin-only obstructions' % m.group(1), want,
+                   by_n, want == by_n,
+                   'ledger rows with margin1 = UNSAT and majority = SAT')
         else:
-            record('LEDGER', 'the ten unit-margin obstructions', 'sentence not found',
+            record('LEDGER', 'the unit-margin-only obstructions', 'sentence not found',
                    by_n, False, 'could not read the claim out of the manuscript')
+        # Section 3.7: none of the 37 doubly regular tournaments on 23 vertices
+        # is inducible, at either margin.
+        both = [r for r in rows[1:] if len(r) > ma and r[1] == '23'
+                and r[mi].strip() == 'UNSAT' and r[ma].strip() == 'UNSAT']
+        m = re.search(r'none of the \$(\d+)\$ doubly regular ones is, at\s*\n?unit '
+                      r'margin or unrestricted', md)
+        if m:
+            record('LEDGER', 'order 23: doubly regular, not inducible at either margin',
+                   int(m.group(1)), len(both), int(m.group(1)) == len(both),
+                   'ledger rows at n=23 with margin1 = majority = UNSAT')
+        else:
+            skip('LEDGER', 'order 23 doubly regular count', 'sentence not found')
+
+    # ------------------------------------------------- Section 3.2 and 3.7 costs
+    m = re.search(r'two searches together took about \$([\d{},]+)\$\s*\n?cluster '
+                  r'core-hours', md)
+    cost = find_table(tabs, 'computation', 'core-hours')
+    if m and cost:
+        a = row_starting(cost, 'delta_6', 'sweep')
+        b = row_starting(cost, 'delta_{28}', 'sweep')
+        if a and b:
+            tot = num(a[-1]) + num(b[-1])
+            record('ARITHMETIC', '3.2 the two 22-vertex sweeps together', num(m.group(1)),
+                   round(tot, 1), close(num(m.group(1)), tot, 0.01),
+                   'the two A.6 sweep rows, summed; "about" read as within 1%')
+    m = re.search(r'\$(\d+)\$ of them ran\s*\n?on the cluster, at about '
+                  r'\$([\d{},]+)\$ cluster core-hours', md)
+    rows = tsv_rows('cluster/jz_drt23maj/jz_drt23maj.tsv')
+    if m and rows:
+        h = rows[0]
+        ch = [float(r[h.index('core_hours')]) for r in rows[1:]]
+        ok_n = len([r for r in rows[1:] if r[h.index('verdict')] == 'UNSAT'])
+        record('DERIVED', '3.7 doubly regular sweeps on the cluster (count)',
+               int(m.group(1)), ok_n, int(m.group(1)) == ok_n,
+               'UNSAT rows of cluster/jz_drt23maj/jz_drt23maj.tsv (cross-file roll-up)')
+        record('DERIVED', '3.7 doubly regular sweeps on the cluster (core-hours)',
+               num(m.group(2)), round(sum(ch), 1), close(num(m.group(2)), sum(ch), 0.01),
+               'cluster/jz_drt23maj/jz_drt23maj.tsv, summed (cross-file roll-up)')
+    elif m:
+        declared('3.7 doubly regular sweeps on the cluster', num(m.group(2)),
+                 'CLAIMS.md gap 7')
+
+    # ------------------------------------------------------------- Appendix G
+    gt = find_table(tabs, 'vertices', 'deleted', 'classes')
+    if gt is None:
+        skip('DERIVED', 'Appendix G level table', 'table not found')
+    else:
+        want = {int(num(r[1])): int(num(r[2])) for r in gt[2:]
+                if num(r[1]) is not None and num(r[2]) is not None}
+        lab = os.environ.get('LABELG') or ''
+        script = os.path.join(ROOT, 'verify', 'drt23_level_counts.py')
+        if lab and os.path.exists(script):
+            r = subprocess.run([sys.executable, script,
+                                os.path.join(ROOT, 'tournaments', 'drt23'),
+                                os.path.join(ROOT, 'tournaments', 'drt23_del', 'PARENTS18.txt'),
+                                '--labelg', lab, '--levels',
+                                ','.join(str(j) for j in sorted(want))],
+                               capture_output=True, text=True)
+            got = {int(a): int(b) for a, b in re.findall(
+                r'level (\d+): \d+ deletions -> \d+ isomorphism classes -> (\d+) '
+                r'classes', r.stdout)}
+            ok_p = 'are exactly the other' in r.stdout and ': ok' in r.stdout
+            record('DERIVED', 'G classes per level (one, two, three deleted)', want, got,
+                   want == got and ok_p,
+                   'verify/drt23_level_counts.py from the 18 parents, one per converse '
+                   'pair (checked)')
+        else:
+            skip('DERIVED', 'G classes per level', 'LABELG not set')
+        # the settled count at 21 vertices, from the archive's own manifest
+        r21 = row_starting(gt, '4{,}108') or row_starting(gt, '4,108')
+        m = re.search(r'\$([\d{},]+)\$ settled', ' '.join(r21)) if r21 else None
+        path = os.path.join(ROOT, 'evidence', 'n21_level_witnesses.tar.zst')
+        if m and os.path.exists(path):
+            raw = subprocess.run(['zstd', '-dc', path], capture_output=True).stdout
+            tf = tarfile.open(fileobj=io.BytesIO(raw))
+            rows = [l for l in tf.extractfile('n21_level/SETTLED.tsv').read().decode()
+                    .splitlines() if l and not l.startswith('#')][1:]
+            record('DERIVED', 'G classes settled at 21 vertices', num(m.group(1)),
+                   len(rows), num(m.group(1)) == len(rows),
+                   'rows of SETTLED.tsv in evidence/n21_level_witnesses.tar.zst; check 5d '
+                   'verifies each witness')
+        else:
+            skip('DERIVED', 'G classes settled at 21 vertices', 'cell or archive absent')
+        m = re.search(r'screen exhausted \$([\d{},]+)\$ base states and found none', md)
+        rows = tsv_rows('cluster/jz_drt23mv/HARDNESS_378.tsv')
+        if m and rows:
+            ex = sum(int(r[3]) for r in rows if len(r) >= 6)
+            hosts = sum(1 for r in rows if len(r) >= 6)
+            record('DERIVED', 'G base states exhausted by the 22-vertex screen',
+                   num(m.group(1)), ex, num(m.group(1)) == ex,
+                   'exhausted column of cluster/jz_drt23mv/HARDNESS_378.tsv over %d hosts '
+                   '(cross-file roll-up)' % hosts)
+        m = re.search(r'about one base state in \$(\d+)\$ yields a\s*\n?witness', md)
+        if m:
+            declared('G witness density at 21 vertices, 1 in', num(m.group(1)),
+                     'CLAIMS.md gap 7')
 
     # -------------------------------------------------------------- Appendix D
     counts = find_table(tabs, '$d_n$') or find_table(tabs, 'D_n')
@@ -498,5 +690,5 @@ def main(mdpath, as_json):
 if __name__ == '__main__':
     args = [a for a in sys.argv[1:] if a != '--json']
     path = args[0] if args else os.path.join(
-        ROOT, 'manuscript', 'Tournaments_not_inducible_by_five_voters.md')
+        ROOT, 'manuscript', 'Tournaments_not_inducible_by_five_voters_MSS.md')
     sys.exit(main(path, '--json' in sys.argv[1:]))

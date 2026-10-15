@@ -46,6 +46,8 @@ resolve() {
 }
 SW=${SOFTWARE_DIR:-$HOME/Downloads/DownloadedSoftware}
 GENTOURNG=$(resolve gentourng "${GENTOURNG:-}" "$SW/nauty2_8_6/gentourng" 2>/dev/null || true)
+LABELG=$(resolve labelg "${LABELG:-}" "$SW/nauty2_8_6/labelg" 2>/dev/null || true)
+export LABELG    # tools/check_manuscript.py re-derives Appendix G's class counts with it
 
 echo "== 1. the engine builds from the shipped source =="
 CC=${CC:-cc}
@@ -478,6 +480,182 @@ if [ -f "$src" ]; then
   fi
 else
   warn "P31 - v times file absent, control not run"
+fi
+
+echo
+echo "== 8c. the 22- and 25-vertex sweeps cover their base-state range exactly =="
+# Section 3.2's sweep of Delta_6 - 5 and Appendix G's of Paley(27) less two
+# vertices, from their shipped markers: an exact tiling of [0, 8031), every
+# state UNSAT with capped=0, one host, n, base and base-state count throughout.
+# For Delta_6 - 5 the tree hash its own verdict recorded is recomputed too.
+V=$ROOT/verify/sweep_cover_audit.py
+for spec in "d005mv04_sweep_markers.tar.zst" "p27mv0001_sweep_markers.tar.zst"; do
+  arc="$ROOT/evidence/$spec"
+  [ -f "$arc" ] || { warn "$spec absent"; continue; }
+  extra=""
+  if [ "$spec" = d005mv04_sweep_markers.tar.zst ]; then
+    zstd -dc "$arc" | tar -xOf - VERDICT.txt > "$TMP/d005cover_VERDICT.txt" 2>/dev/null
+    extra="--verdict $TMP/d005cover_VERDICT.txt"
+  fi
+  # shellcheck disable=SC2086
+  if out=$(python3 "$V" "$arc" $extra 2>&1); then ok "$out"
+  else bad "$spec is not a complete cover"; echo "$out" | sed 's/^/        /'; fi
+done
+# CONTROL: the same audit on the Delta_6 - 5 markers with one removed must fail.
+if [ -f "$ROOT/evidence/d005mv04_sweep_markers.tar.zst" ]; then
+  mkdir -p "$TMP/cov" && zstd -dc "$ROOT/evidence/d005mv04_sweep_markers.tar.zst" \
+    | tar -xf - -C "$TMP/cov" && rm -f "$TMP/cov/d005_mv04/done/c4000"
+  if python3 "$V" "$TMP/cov" >/dev/null 2>&1; then
+    bad "control did not fire: a marker was removed and the cover still read complete"
+  else
+    ok "control: removing one marker breaks the Delta_6 - 5 cover, as it must"
+  fi
+fi
+
+echo
+echo "== 8d. below 22 vertices: every witness, against a host rebuilt from its name =="
+# Each settled host is named after its parent and the deleted vertices, and
+# verify_descent_witnesses.py rebuilds it from the parent's bits -- never from a
+# host file the search wrote -- before checking the five ballots. --selftest
+# reverses one arc of one host and requires the witness to fail on that arc.
+W=$ROOT/verify/verify_descent_witnesses.py
+D=$ROOT/tournaments/drt23
+DD=$ROOT/tournaments/drt23_del
+P=$ROOT/tournaments/descent_parents
+n21=$ROOT/evidence/n21_level_witnesses.tar.zst
+if [ -f "$n21" ]; then
+  zstd -dc "$n21" | tar -xOf - n21_level/SETTLED.tsv | grep -v '^#' | tail -n +2 \
+    | cut -f1 > "$TMP/n21names"
+  if out=$(python3 "$W" --selftest --drt-dir "$D" --names "$TMP/n21names" "$n21" 2>&1); then
+    ok "21 vertices: $(echo "$out" | grep 'named hosts')"
+    ok "$(echo "$out" | grep '^control' | sed 's/^control *//; s/^[^:]*:[^:]*: //')"
+  else
+    bad "a 21-vertex witness does not verify"; echo "$out" | grep -v '^control' | sed 's/^/        /' | head -8
+  fi
+else
+  warn "n21_level_witnesses.tar.zst absent"
+fi
+if [ -n "$LABELG" ]; then
+  # The level files hold exactly one host per class, so the 1,173 settled names
+  # are 1,173 distinct classes, and the counts match Appendix G's table.
+  if out=$(python3 "$ROOT/verify/drt23_level_counts.py" "$D" "$DD/PARENTS18.txt" \
+             --levels 2,3 --names "$DD/HOSTS_level2.tsv" --labelg "$LABELG" 2>&1) \
+     && echo "$out" | grep -q '4108 rows, 4108 distinct classes, 0 bit strings differ'; then
+    ok "$(echo "$out" | head -1)"
+    ok "HOSTS_level2.tsv: $(echo "$out" | grep 'rows,' | sed 's/^ *ok: //')"
+  else
+    bad "the 21-vertex level file is not one host per class"; echo "$out" | sed 's/^/        /'
+  fi
+  if grep -v '^#' "$DD/HOSTS_level2.tsv" | cut -f1 | sort > "$TMP/l2" \
+     && sort "$TMP/n21names" | comm -23 - "$TMP/l2" | grep -q .; then
+    bad "a settled 21-vertex name is not in HOSTS_level2.tsv"
+  else
+    ok "all $(wc -l < "$TMP/n21names" | tr -d ' ') settled names are rows of HOSTS_level2.tsv, hence distinct classes"
+  fi
+  # Vertex-criticality of both 22-vertex obstructions, matched by class.
+  for h in d005_mv04 d027_mv04; do
+    if out=$(python3 "$ROOT/verify/critical_deletions.py" "$DD/$h.bits" \
+               "$DD/HOSTS_level2.tsv" "$TMP/n21names" --labelg "$LABELG" 2>&1); then
+      ok "$out"
+    else
+      bad "$h: not every one-vertex deletion has a witnessed class"; echo "$out" | sed 's/^/        /'
+    fi
+  done
+  head -20 "$TMP/n21names" | grep '^d000' > "$TMP/fewnames"
+  if python3 "$ROOT/verify/critical_deletions.py" "$DD/d005_mv04.bits" "$DD/HOSTS_level2.tsv" \
+       "$TMP/fewnames" --labelg "$LABELG" >/dev/null 2>&1; then
+    bad "control did not fire: d005_mv04 read as covered by witnesses below d000 alone"
+  else
+    ok "control: with only the d000 witnesses, d005_mv04's deletions read as uncovered"
+  fi
+else
+  warn "labelg not found; set LABELG or SOFTWARE_DIR (class checks skipped)"
+fi
+n20=$ROOT/evidence/n20_descent_witnesses.tar.zst
+if [ -f "$n20" ]; then
+  if out=$(python3 "$W" --drt-dir "$D" --parent "p27_mv00_01=$P/p27_mv00_01.bits" \
+             --parent "t25_tmin6=$P/t25_tmin6.bits" "$n20" 2>&1); then
+    ok "20 vertices: $(echo "$out" | tail -1)"
+  else
+    bad "a 20-vertex witness does not verify"; echo "$out" | sed 's/^/        /' | head -8
+  fi
+  zstd -dc "$n20" | tar -tf - | grep '/witness/d0.*\.log$' | sed 's|.*/||; s|\.log$||' \
+    | sort > "$TMP/n20w"
+  grep -v '^#' "$DD/HOSTS_level3.tsv" | cut -f1 | sort > "$TMP/l3"
+  if cmp -s "$TMP/n20w" "$TMP/l3"; then
+    ok "the 20-vertex witnesses below the 18 parents are exactly the $(wc -l < "$TMP/l3" | tr -d ' ') rows of HOSTS_level3.tsv"
+  else
+    bad "the 20-vertex witnesses and HOSTS_level3.tsv differ"
+  fi
+  if [ -n "$LABELG" ] && out=$(python3 "$ROOT/verify/drt23_level_counts.py" "$D" \
+       "$DD/PARENTS18.txt" --levels 3 --names "$DD/HOSTS_level3.tsv" \
+       --labelg "$LABELG" 2>&1) && echo "$out" | grep -q 'ok: 28724 rows, 28724 distinct'; then
+    ok "HOSTS_level3.tsv: $(echo "$out" | grep 'rows,' | sed 's/^ *ok: //')"
+  elif [ -n "$LABELG" ]; then
+    bad "the 20-vertex level file is not one host per class"; echo "$out" | sed 's/^/        /'
+  fi
+else
+  warn "n20_descent_witnesses.tar.zst absent"
+fi
+oth=$ROOT/evidence/n21_other_lineages_witnesses.tar.zst
+if [ -f "$oth" ]; then
+  if out=$(python3 "$W" --parent "p27_mv00_01=$P/p27_mv00_01.bits" \
+             --parent "t25_tmin6=$P/t25_tmin6.bits" "$oth" 2>&1); then
+    ok "Paley(27) less two and t25_tmin6, 21 vertices: $(echo "$out" | tail -1)"
+  else
+    bad "an other-lineage witness does not verify"; echo "$out" | sed 's/^/        /' | head -8
+  fi
+  if [ -n "$LABELG" ]; then
+    mkdir -p "$TMP/oth" && zstd -dc "$oth" | tar -xf - -C "$TMP/oth"
+    O=$TMP/oth/n21_other_lineages
+    for pair in "p27_mv00_01:HOSTS_level4_p27_mv00_01.tsv" "t25_tmin6:HOSTS_level4_t25_tmin6.tsv"; do
+      par=${pair%%:*}; lvl=${pair#*:}
+      ls "$O/witness" | grep "^${par}_mv" | sed 's/\.log$//' > "$TMP/w_$par"
+      if out=$(python3 "$ROOT/verify/level_coverage.py" "$O/$lvl" "$TMP/w_$par" \
+                 --labelg "$LABELG" 2>&1); then
+        ok "$par, 21 vertices: $out"
+      else
+        bad "$par: a 21-vertex class has no witness"; echo "$out" | sed 's/^/        /'
+      fi
+    done
+  fi
+else
+  warn "n21_other_lineages_witnesses.tar.zst absent"
+fi
+
+echo
+echo "== 8e. the two 22-vertex obstructions are what Section 3.2 says they are =="
+# Out-degrees 10 and 11, every arc in at least five directed triangles, trivial
+# automorphism group, and neither isomorphic nor converse to the other.  The
+# parents d005 and d027 are rigid too.  Rigidity is decided with labelg alone.
+if [ -n "$LABELG" ]; then
+  out=$(python3 "$ROOT/verify/host_facts.py" --labelg "$LABELG" "$DD/d005_mv04.bits" \
+          "$DD/d027_mv04.bits" "$D/d005.bits" "$D/d027.bits" 2>&1)
+  for h in d005_mv04 d027_mv04; do
+    if echo "$out" | grep -q "^$h: n=22, out-degrees 10 x11, 11 x11, every arc in >= 5 directed triangles, automorphism group TRIVIAL"; then
+      ok "$(echo "$out" | grep "^$h:")"
+    else
+      bad "$h does not have the stated structure"; echo "$out" | grep "^$h" | sed 's/^/        /'
+    fi
+  done
+  for h in d005 d027; do
+    if echo "$out" | grep -q "^$h: .*automorphism group TRIVIAL"; then ok "parent $h is rigid"
+    else bad "parent $h is not rigid"; fi
+  done
+  if echo "$out" | grep -q '^d005_mv04 vs d027_mv04: not isomorphic, not converse to each other'; then
+    ok "d005_mv04 and d027_mv04 are neither isomorphic nor converse to each other"
+  else
+    bad "the two obstructions are related"; echo "$out" | grep vs | sed 's/^/        /'
+  fi
+  # CONTROL: the rigidity test must see Paley(23)'s symmetry.
+  if python3 "$ROOT/verify/host_facts.py" --labelg "$LABELG" "$ROOT/tournaments/p23_paley.bits" \
+       2>&1 | grep -q 'non-trivial (1 vertex orbits)'; then
+    ok "control: Paley(23) reads as vertex-transitive (one vertex orbit)"
+  else
+    bad "control did not fire: the rigidity test missed Paley(23)'s automorphisms"
+  fi
+else
+  warn "labelg not found; host facts not checked"
 fi
 
 echo

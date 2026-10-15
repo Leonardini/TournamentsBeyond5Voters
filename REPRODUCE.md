@@ -40,6 +40,66 @@ complete refutation; both were run.
               --pool-mb 512 --base 0 1 2 6 7 --toppair 1 2 6 2 \
               --bs-from 0 --bs-to 8031
 
+### N(5) <= 22 — two tournaments on 22 vertices are not 5-inducible
+
+`d005_mv04` and `d027_mv04` are the doubly regular tournaments `d005` and
+`d027` on 23 vertices (lines 6 and 28 of McKay's catalogue, Delta_6 and
+Delta_28 in the manuscript) with vertex 4 deleted, the other vertices kept in
+order. Both are rigid, so no symmetry break applies, and each run is a complete
+sweep of all 8,031 base states of the base `0 1 2 11 17`. These ran on the
+cluster, at 1,551.2 and 1,537.7 cluster core-hours. The cluster runs 2 to 5
+times slower per core than a laptop (Appendix A.5), so each is a few hundred
+laptop core-hours: days on one laptop, not minutes. The engine is this one,
+byte for byte.
+
+    ./kinduce --bits tournaments/drt23_del/d005_mv04.bits --n 22 --k 5 \
+              --margin majority --order mrv --inc --pool-mb 512 \
+              --base 0 1 2 11 17 --bs-from 0 --bs-to 8031
+
+(`d027_mv04.bits` in the same directory, same command.) The 8,031 markers of
+the `d005_mv04` sweep ship in `evidence/d005mv04_sweep_markers.tar.zst`;
+
+    python3 verify/sweep_cover_audit.py evidence/d005mv04_sweep_markers.tar.zst
+
+checks that they tile [0, 8031) with every state UNSAT and uncapped under one
+base, and recomputes the tree hash recorded in the sweep's own verdict. The
+`d027_mv04` markers are still on the cluster; `verdicts/n22_obstructions/`
+holds that sweep's roll-up. `d005_mv04` is also certified by cube-and-conquer
+on both halves: `certificates/d005mv04cert_d6/`.
+
+The structural facts the manuscript states about the two hosts (out-degrees,
+triangles per arc, trivial automorphism group, neither isomorphic nor converse
+to the other) are recomputed by
+
+    python3 verify/host_facts.py tournaments/drt23_del/d005_mv04.bits \
+            tournaments/drt23_del/d027_mv04.bits
+
+### Below 22 vertices: every witness, rebuilt from its name
+
+Every settled host below the doubly regular tournaments on 23 vertices is named
+after its parent and the deleted vertices (`d005_mv04_15` is `d005` without
+vertices 4 and 15). The checker rebuilds each host from that name and verifies
+the five ballots against it, never reading the search's host file:
+
+    python3 verify/verify_descent_witnesses.py --selftest \
+            --drt-dir tournaments/drt23 evidence/n21_level_witnesses.tar.zst
+
+The class counts of the three levels (378, 4,108 and 28,724), and the claim that
+the level files hold one host per class, re-derive from the 18 parents:
+
+    python3 verify/drt23_level_counts.py tournaments/drt23 \
+            tournaments/drt23_del/PARENTS18.txt \
+            --names tournaments/drt23_del/HOSTS_level2.tsv
+
+and every one-vertex deletion of each 22-vertex obstruction lies in a witnessed
+21-vertex class:
+
+    python3 verify/critical_deletions.py tournaments/drt23_del/d005_mv04.bits \
+            tournaments/drt23_del/HOSTS_level2.tsv <witnessed host names>
+
+`tools/check_package.sh` runs all of these, with the names taken from the
+archive's own `SETTLED.tsv`.
+
 ### Paley(27) is not 5-inducible
 
 31.04 core-h, 6.22e9 nodes, coverage [0,8031). Originally kinduce22.
