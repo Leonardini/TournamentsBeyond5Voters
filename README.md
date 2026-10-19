@@ -100,6 +100,9 @@ paper makes, each with a stable id, the artifact that holds the verdict, and the
 command that re-derives it — and it ends with a plainly stated list of what this
 package does *not* establish. [`REPRODUCE.md`](REPRODUCE.md) is the operational
 companion: the exact command line for each published result.
+[`NAMES.md`](NAMES.md) decodes the short labels that files and tables give
+tournaments (`d005_mv04`, `h02`, `g21_00048`): size, provenance, and the
+manuscript's name where it has one.
 
 ```
 tools/check_package.sh          # the acceptance gate; ~8 min, single-threaded

@@ -26,9 +26,9 @@ TRUST CHAIN, in full:
   machine  the cubes cover every lex-canonical base assignment
            (cover_check.py, with its --drop negative control)
   HUMAN L1 anchoring is WLOG.  TWO forms, alternatives rather than a sequence:
-           LEMMA 2.1 takes one representative ORDERED PAIR from each Aut-orbit
+           COROLLARY 2.2 takes one representative ORDERED PAIR from each Aut-orbit
            on ordered pairs and assumes some voter's (top,second) is one of
-           them; COROLLARY 2.2 takes one representative VERTEX from each
+           them; COROLLARY 2.3 takes one representative VERTEX from each
            Aut-orbit on vertices and assumes some voter ranks one of them
            first.  Either licenses running only the LIVE cubes.  Aut(Paley(q))
            has exactly TWO ordered-pair orbits, the arcs and the non-arcs,
@@ -38,7 +38,7 @@ TRUST CHAIN, in full:
            state -- enforced, see main().
   HUMAN L2 the voters may be lex-ordered WLOG.  This licenses the lex chain in
            the coverage CNF.
-Both lemmas are proved in RESEARCH_LOG.md, and the independent DFS engine
+Both are corollaries of Theorem 2.1 of the paper (Section 2.1), and the independent DFS engine
 inherits the same two while sharing no implementation.
 
 Proofs are verified then DISCARDED.  The artifact is a hash-stamped log: per
@@ -54,8 +54,19 @@ from cube_sat import paley, build
 from cubes import enumerate_cubes
 # NOTE: deepen is deliberately NOT imported -- see the docstring.
 
-CAD = os.path.expanduser("~/Downloads/DownloadedSoftware/cadical/build/cadical")
-LT = os.path.expanduser("~/Downloads/DownloadedSoftware/lrat-trim/lrat-trim")
+# Solver and checker paths: env CADICAL / LRAT_TRIM override the laptop defaults (cluster runs).
+CAD = os.environ.get("CADICAL") or os.path.expanduser("~/Downloads/DownloadedSoftware/cadical/build/cadical")
+# Solver seed (pricing only so far): CADICAL_SEED=N passes --seed=N; unset = cadical's default.
+SEEDARG = [f"--seed={os.environ['CADICAL_SEED']}"] if os.environ.get("CADICAL_SEED") else []
+LT = os.environ.get("LRAT_TRIM") or os.path.expanduser("~/Downloads/DownloadedSoftware/lrat-trim/lrat-trim")
+# --inner N: solve the cubes of ONE chunk on N threads.  Hashes are taken in cube order afterwards,
+# so a chunk's record and hashes do not depend on N -- chunks banked by different runs combine.
+INNER = 1
+# --claim (cluster arrays): chunks are taken from the TOP of the index down, so a laptop run working
+# upwards from 0 meets them in the middle; each is claimed by an atomic mkdir under OUT/claim/ (a
+# claim older than --claim-ttl seconds is an orphan of a killed task and is taken over), and none is
+# started with less than --min-left seconds of the job's wall clock (SLURM_JOB_END_TIME) to go.
+CLAIM = None
 CHUNK = 200
 
 
@@ -119,6 +130,8 @@ def do_chunk(args):
             banked = json.load(f)
         banked['reused'] = True
         return lo, banked
+    if CLAIM is not None and not CLAIM(lo):
+        return lo, None
     adj, n = load_host(spec)
     cls, arcs, pair, X, nv = build(adj, n, K, exact)
     cnf_p = os.path.join(out, 'work', f'k{lo:07d}.cnf')
@@ -127,31 +140,70 @@ def do_chunk(args):
     h_cnf = hashlib.sha256()   # portable: commits to WHICH problems were solved
     h_all = hashlib.sha256()   # this build only: proof bytes are not portable
     t_solve = t_chk = 0.0
-    for off, cube in enumerate(cubes_slice):
+
+    def one(off_cube):
+        off, cube = off_cube
         ci = lo + off
+        # one CNF/LRAT pair per cube when cubes run concurrently; the old names otherwise
+        tag = f'k{lo:07d}' if INNER == 1 else f'k{lo:07d}_{off}'
+        c_p = os.path.join(out, 'work', tag + '.cnf'); l_p = os.path.join(out, 'work', tag + '.lrat')
         node = (list(B), [[B[s] for s in pi] for pi in cube])
         units = cube_units(node, adj, pair, X, K)
         full = cls + [[u] for u in units]
-        with open(cnf_p, 'w') as f:
+        with open(c_p, 'w') as f:
             f.write(f"p cnf {nv} {len(full)}\n")
             for cl in full:
                 f.write(' '.join(map(str, cl)) + " 0\n")
         t = time.time()
-        p = subprocess.run([CAD, '-q', '--lrat=true', '--checkproof=0', cnf_p, lrt_p],
+        p = subprocess.run([CAD, '-q', '--lrat=true', '--checkproof=0'] + SEEDARG + [c_p, l_p],
                            capture_output=True, text=True)
-        dt = time.time() - t; t_solve += dt
+        dt = time.time() - t
         if 'UNSATISFIABLE' not in p.stdout:
-            os.replace(cnf_p, os.path.join(out, f'SAT_cube{ci:07d}.cnf'))
+            os.replace(c_p, os.path.join(out, f'SAT_cube{ci:07d}.cnf'))
             open(os.path.join(out, 'STOP_SAT'), 'w').write(f"cube {ci}\n")
-            return lo, {'error': 'CUBE SAT -- witness, investigate', 'cube': ci}
-        cnf_h, lrt_h = sha256_file(cnf_p), sha256_file(lrt_p)
-        t = time.time()
-        v = subprocess.run([LT, cnf_p, lrt_p], capture_output=True, text=True)
-        dc = time.time() - t; t_chk += dc
+            return {'error': 'CUBE SAT -- witness, investigate', 'cube': ci}
+        cnf_h, lrt_h = sha256_file(c_p), sha256_file(l_p)
+        # ONE BIG CHECK AT A TIME (2026-10-19): lrat-trim peaked at 13.5 GB on an 11.5 GB proof,
+        # so two such checks at once overrun the laptop's 24 GB.  With CHECK_LOCK set (a directory
+        # path), a proof above CHECK_LOCK_GB waits for an atomic-mkdir lock; the wait is not
+        # counted as check time.
+        lock = os.environ.get('CHECK_LOCK')
+        held = bool(lock) and os.path.getsize(l_p) > float(os.environ.get('CHECK_LOCK_GB', '4')) * 1e9
+        while held:
+            try:
+                os.mkdir(lock); break
+            except FileExistsError:
+                time.sleep(15)
+        try:
+            t = time.time()
+            v = subprocess.run([LT, c_p, l_p], capture_output=True, text=True)
+            dc = time.time() - t
+        finally:
+            if held:
+                os.rmdir(lock)
         if 's VERIFIED' not in v.stdout:            # exit code is 20, not 0
             open(os.path.join(out, 'STOP_UNVERIFIED'), 'w').write(
                 f"cube {ci}\n{v.stdout[-2000:]}\n")
-            return lo, {'error': 'CHECK FAILED', 'cube': ci}
+            return {'error': 'CHECK FAILED', 'cube': ci}
+        os.remove(l_p)
+        if INNER > 1:
+            os.remove(c_p)
+        return {'ci': ci, 'cnf_h': cnf_h, 'lrt_h': lrt_h, 'dt': dt, 'dc': dc}
+
+    if INNER == 1:
+        res = []
+        for oc in enumerate(cubes_slice):
+            r = one(oc); res.append(r)
+            if 'error' in r:
+                break
+    else:
+        with ThreadPoolExecutor(max_workers=INNER) as inner_ex:
+            res = list(inner_ex.map(one, enumerate(cubes_slice)))
+    for r in res:                    # cube order, whatever order they finished in
+        if 'error' in r:
+            return lo, r
+        ci, cnf_h, lrt_h, dt, dc = r['ci'], r['cnf_h'], r['lrt_h'], r['dt'], r['dc']
+        t_solve += dt; t_chk += dc
         # The LOG line carries timings for humans; the HASHED record must not.
         # Hashing wall-clock made ROOT (proofs) differ run-to-run on the SAME
         # machine and binary, so it could never be reproduced -- a stronger
@@ -161,7 +213,6 @@ def do_chunk(args):
         h_cnf.update((f"{ci} {cnf_h}\n").encode())
         h_all.update((f"{ci} {cnf_h} {lrt_h} VERIFIED\n").encode())
         recs.append(rec)
-        os.remove(lrt_p)
     with open(os.path.join(out, 'log', f'k{lo:07d}.log'), 'w') as f:
         f.write(f"# cubes [{lo},{lo+len(cubes_slice)}) base={B}\n")
         f.write("# cube sha256(cnf) sha256(lrat) verdict solve_s check_s\n")
@@ -196,14 +247,14 @@ def main():
     ap.add_argument('--non', type=int, nargs=2, default=None)
     ap.add_argument('--pair-anchor', type=int, nargs='+', default=None,
                     metavar='U V',
-                    help='LEMMA 2.1 in general form: a flat list u1 v1 u2 v2 ... of ONE\n'
+                    help='COROLLARY 2.2 in general form: a flat list u1 v1 u2 v2 ... of ONE\n'
                          'representative ordered pair from EACH Aut-orbit on ordered\n'
                          'pairs.  --arc/--non is the two-orbit spelling of this, which is\n'
                          'all a Paley host needs; a host with m > 2 orbits needs this.')
     ap.add_argument('--vertex-anchor', type=int, nargs='+', default=None,
                     metavar='V',
-                    help='COROLLARY 2.2 instead: one representative VERTEX from each\n'
-                         'Aut-orbit on vertices.  An alternative to Lemma 2.1, not a\n'
+                    help='COROLLARY 2.3 instead: one representative VERTEX from each\n'
+                         'Aut-orbit on vertices.  An alternative to Corollary 2.2, not a\n'
                          'sequence with it -- which is better depends on whether the host\n'
                          'has fewer vertex orbits or fewer ordered-pair orbits.')
     ap.add_argument('--out', default='/tmp/p19cert_d6')
@@ -217,8 +268,23 @@ def main():
     ap.add_argument('--limit', type=int, default=0, help='smoke test: first N cubes (a PREFIX -- not for pricing)')
     ap.add_argument('--sample', type=int, default=0, help='pricing: uniform random sample of N live cubes')
     ap.add_argument('--seed', type=int, default=1, help='seed for --sample')
+    ap.add_argument('--chunk', type=int, default=CHUNK, help='cubes per chunk (the unit of parallelism and of banking)')
+    ap.add_argument('--inner', type=int, default=1, help='threads per chunk (cubes of one chunk in parallel)')
+    ap.add_argument('--only', type=int, nargs='+', default=None, metavar='CUBE',
+                    help='per-cube banking: solve only these live-cube indices, one per chunk; use a SEPARATE --out; never writes a VERDICT')
+    ap.add_argument('--claim', action='store_true', help='cluster array mode: claim chunks top-down; never writes a VERDICT')
+    ap.add_argument('--min-left', type=int, default=0, help='with --claim: start no chunk with fewer seconds of wall left')
+    ap.add_argument('--claim-ttl', type=int, default=0, help='with --claim: a claim older than this many seconds is taken over (0: never)')
+    ap.add_argument('--quotient', type=int, nargs='+', default=None, metavar='H',
+                    help='COROLLARY 2.5 (base-stabiliser quotient): an automorphism h of the host,\n'
+                         'as the images h(0) .. h(n-1), with h(B) = B.  Only ONE cube per\n'
+                         '<h>-orbit of base states is solved.  Asserted: h is an automorphism,\n'
+                         'h(B) = B, and h maps the cube set onto itself.  Not combined with\n'
+                         'anchoring (Corollary 2.5(b) needs h to fix the representatives).')
     a = ap.parse_args()
-    for d in ('done', 'log', 'work'):
+    global INNER, CLAIM
+    INNER = a.inner
+    for d in ('done', 'log', 'work', 'claim'):
         os.makedirs(os.path.join(a.out, d), exist_ok=True)
 
     exact = a.margin == 'exact'
@@ -234,11 +300,11 @@ def main():
     # nothing about any one of them.
     #
     # Two alternatives, not a sequence (manuscript Section 2):
-    #   LEMMA 2.1      one representative ORDERED PAIR per Aut-orbit on ordered
+    #   COROLLARY 2.2  one representative ORDERED PAIR per Aut-orbit on ordered
     #                  pairs; some voter's top two is one of them.  A Paley host
     #                  has exactly two such orbits, the arcs and the non-arcs,
     #                  which is what --arc/--non spells.
-    #   COROLLARY 2.2  one representative VERTEX per Aut-orbit on vertices; some
+    #   COROLLARY 2.3  one representative VERTEX per Aut-orbit on vertices; some
     #                  voter ranks one of them first.
     #
     # EVERY REPRESENTATIVE MUST LIE INSIDE THE BASE.  The filter reads a base
@@ -259,12 +325,12 @@ def main():
     n_fam = sum(x is not None for x in (a.arc or a.non or None,
                                         a.pair_anchor, a.vertex_anchor))
     if n_fam > 1:
-        sys.exit("Lemma 2.1 and Corollary 2.2 are ALTERNATIVES, each WLOG on its own.\n"
+        sys.exit("Corollary 2.2 and Corollary 2.3 are ALTERNATIVES, each WLOG on its own.\n"
                  "Give exactly one of --arc/--non, --pair-anchor, --vertex-anchor.")
     PAIRS = VERTS = None
     if a.arc or a.non:
         if a.bits is not None:
-            sys.exit("--arc/--non is the PALEY spelling of Lemma 2.1: it assumes the\n"
+            sys.exit("--arc/--non is the PALEY spelling of Corollary 2.2: it assumes the\n"
                      "ordered-pair orbits are exactly the arcs and the non-arcs, which is\n"
                      "a property of Paley.  For another host give --pair-anchor with one\n"
                      "representative per orbit, or drop it and run every base state.")
@@ -277,7 +343,7 @@ def main():
             sys.exit(f"--non {NON} IS an arc of {HOST}; it must be a non-arc")
         _in_base(ARC + NON, "--arc/--non")
         PAIRS = [ARC, NON]
-        ANCHOR_TXT = f"pair-orbit (Lemma 2.1): arc {ARC} + non-arc {NON}"
+        ANCHOR_TXT = f"pair-orbit (Corollary 2.2): arc {ARC} + non-arc {NON}"
     elif a.pair_anchor:
         if len(a.pair_anchor) % 2:
             sys.exit("--pair-anchor takes a FLAT list u1 v1 u2 v2 ...; got an odd count")
@@ -287,7 +353,7 @@ def main():
         if len(set(PAIRS)) != len(PAIRS):
             sys.exit("--pair-anchor: repeated representative -- one per orbit, no duplicates")
         _in_base([v for p in PAIRS for v in p], "--pair-anchor")
-        ANCHOR_TXT = "pair-orbit (Lemma 2.1): " + ", ".join(
+        ANCHOR_TXT = "pair-orbit (Corollary 2.2): " + ", ".join(
             "(%d,%d) %s" % (u, v, "arc" if adj[u][v] else "non-arc")
             for u, v in PAIRS)
     elif a.vertex_anchor:
@@ -295,7 +361,7 @@ def main():
         if len(set(VERTS)) != len(VERTS):
             sys.exit("--vertex-anchor: repeated representative -- one per orbit")
         _in_base(VERTS, "--vertex-anchor")
-        ANCHOR_TXT = f"vertex-orbit (Corollary 2.2): {VERTS}"
+        ANCHOR_TXT = f"vertex-orbit (Corollary 2.3): {VERTS}"
     else:
         ANCHOR_TXT = "NONE: every base state is live, and no anchoring lemma is used"
     ANCHOR = PAIRS is not None or VERTS is not None
@@ -307,12 +373,48 @@ def main():
     print(f"  base {B}, anchoring {ANCHOR_TXT}")
     t = time.time()
     cubes, bm = enumerate_cubes(adj, B, a.k, exact, 'mask')
-    if PAIRS:      # Lemma 2.1: some voter's top TWO on the base is a representative
+    if PAIRS:      # Corollary 2.2: some voter's top TWO on the base is a representative
         live = [c for c in cubes if any((B[pi[0]], B[pi[1]]) in PAIRS for pi in c)]
-    elif VERTS:    # Corollary 2.2: some voter's top ON THE BASE is a representative
+    elif VERTS:    # Corollary 2.3: some voter's top ON THE BASE is a representative
         live = [c for c in cubes if any(B[pi[0]] in VERTS for pi in c)]
     else:
         live = list(cubes)
+    QTXT = None
+    if a.quotient:
+        if ANCHOR:
+            sys.exit("--quotient is not combined with anchoring here (Corollary 2.5(b) needs h to fix\n"
+                     "every representative); run one or the other.")
+        hq = list(a.quotient)
+        if sorted(hq) != list(range(n)):
+            sys.exit(f"--quotient: not a permutation of 0..{n-1}")
+        if any(adj[hq[u]][hq[w]] != adj[u][w] for u in range(n) for w in range(n) if u != w):
+            sys.exit("--quotient: h is NOT an automorphism of the host")
+        if sorted(hq[v] for v in B) != sorted(B):
+            sys.exit(f"--quotient: h does not map the base {B} onto itself")
+        gslot = [B.index(hq[B[i]]) for i in range(len(B))]
+        pindex = {pi: t for t, pi in enumerate(itertools.permutations(range(len(B))))}
+        def qkey(c): return tuple(sorted(pindex[pi] for pi in c))
+        def qimg(c): return tuple(tuple(gslot[x] for x in pi) for pi in c)
+        kidx = {qkey(c): t for t, c in enumerate(cubes)}
+        assert len(kidx) == len(cubes), "cube keys are not unique"
+        seen_q = set(); reps_q = []
+        hp, hord = list(hq), 1                      # order of h
+        while hp != list(range(n)): hp, hord = [hq[x] for x in hp], hord + 1
+        for ti, c in enumerate(cubes):
+            if ti in seen_q: continue
+            orb = {ti}; cur = c
+            while True:
+                cur = qimg(cur); kk = qkey(cur)
+                if kk not in kidx:
+                    sys.exit("--quotient: h maps a base state OUTSIDE the cube set -- not a symmetry of it")
+                j = kidx[kk]
+                if j in orb: break
+                orb.add(j)
+            seen_q |= orb; reps_q.append(min(orb))
+        live = [cubes[t] for t in sorted(reps_q)]
+        QTXT = (f"COROLLARY 2.5 quotient by h of order {hord}: {len(live):,} orbit representatives "
+                f"of {len(cubes):,} base states")
+        print(f"  {QTXT}")
     print(f"  {len(cubes):,} base states -> {len(live):,} live "
           f"({100*len(live)/len(cubes):.1f}%), enumerated in {time.time()-t:.0f}s")
     if a.sample:
@@ -329,12 +431,46 @@ def main():
         live = live[:a.limit]
         print(f"  LIMIT {a.limit} -- SMOKE TEST, not a certification (PREFIX, "
               f"not a random sample -- do not price from this)")
-    chunks = [(i, live[i:i+CHUNK], B, a.k, exact, spec, a.out)
-              for i in range(0, len(live), CHUNK)]
-    print(f"  {len(chunks)} chunks of <= {CHUNK}, {a.workers} workers, "
+    chunks = [(i, live[i:i+a.chunk], B, a.k, exact, spec, a.out)
+              for i in range(0, len(live), a.chunk)]
+    if a.only:
+        # PER-CUBE BANKING (2026-10-19, his call, after a full disk corrupted two proofs and each
+        # failure threw away the chunk's already-verified cubes): solve exactly the listed live
+        # cubes, each as its own one-cube chunk under a SEPARATE --out, so its marker is
+        # done/k<cube>.json there and can never be mistaken for a chunk of the main run.
+        # assemble_chunks.py folds five such markers into the main run's chunk marker with the
+        # same hashes do_chunk would have written.  Never writes a VERDICT.
+        chunks = [(ci, [live[ci]], B, a.k, exact, spec, a.out) for ci in a.only]
+        print(f"  ONLY cubes {a.only} (one per chunk, out {a.out}) -- NO VERDICT", flush=True)
+    if a.claim:
+        END = int(os.environ.get('SLURM_JOB_END_TIME', '0'))
+        def _claim(lo):
+            if os.path.exists(os.path.join(a.out, 'done', f'k{lo:07d}.json')):
+                return False
+            if END and END - time.time() < a.min_left:
+                return False
+            cdir = os.path.join(a.out, 'claim', f'k{lo:07d}')
+            try:
+                os.mkdir(cdir)
+            except FileExistsError:
+                if not a.claim_ttl or time.time() - os.path.getmtime(cdir) < a.claim_ttl:
+                    return False
+                os.utime(cdir)       # take over an orphan
+            open(os.path.join(cdir, 'by'), 'w').write(
+                f"{os.environ.get('SLURM_JOB_ID', '?')}_{os.environ.get('SLURM_ARRAY_TASK_ID', '?')} {time.time():.0f}\n")
+            return True
+        CLAIM = _claim
+        chunks = chunks[::-1]
+        print(f"  CLAIM mode: top-down, min-left {a.min_left}s, ttl {a.claim_ttl}s, "
+              f"inner {INNER}; end {END or 'none'} -- banks chunks, writes NO VERDICT", flush=True)
+    print(f"  {len(chunks)} chunks of <= {a.chunk}, {a.workers} workers, "
           f"check-and-discard", flush=True)
 
-    t0 = time.time(); nc = ns = ck = 0; n_reuse = 0
+    # nc counts every cube, banked chunks included; the RATE must not, or a
+    # resumed run divides a few hours into all the cubes banked before it and
+    # reports an ETA ~20x too short (2026-10-12: "ETA 224 min" with ~4,700
+    # left).  So the ETA uses only cubes solved in THIS process.
+    t0 = time.time(); nc = ns = ck = 0; n_reuse = 0; nc_new = 0
     with ThreadPoolExecutor(max_workers=a.workers) as ex:
         for lo, s in ex.map(do_chunk, chunks):
             if s is None:
@@ -345,10 +481,18 @@ def main():
                 print(f"  *** {s['error']} at cube {s['cube']} -- STOPPING ***")
                 sys.exit(2)
             nc += s['n']; ns += s['solve_s']; ck += s['check_s']
+            if not s.get('reused'):
+                nc_new += s['n']
             el = time.time() - t0
             print(f"  {nc:,}/{len(live):,} cubes, {el/60:.0f} min, "
-                  f"ETA {el/max(nc,1)*(len(live)-nc)/60:.0f} min", flush=True)
+                  f"ETA {el/max(nc_new,1)*(len(live)-nc)/60:.0f} min", flush=True)
 
+    if a.only:
+        print(f"\n### ONLY mode: {nc_new} cubes solved and banked in {a.out}; NO VERDICT written")
+        return
+    if a.claim:
+        print(f"\n### CLAIM mode: {nc_new} cubes solved and banked here; NO VERDICT written")
+        return
     if a.limit:
         print(f"\n### {nc} cubes all VERIFIED -- solve {ns/max(nc,1):.3f} + check "
               f"{ck/max(nc,1):.3f} = {(ns+ck)/max(nc,1):.3f} s/cube; NO VERDICT written")
@@ -417,13 +561,17 @@ MARGIN NOTE   This run is at MAJORITY (every arc >= {(a.k+1)//2} of {a.k}).  By 
         # The lemma list used to name the anchoring lemma UNCONDITIONALLY, so a
         # rigid host's verdict claimed a lemma its own `anchoring` line three
         # lines above said it had not used.  Build it from what the run did.
-        LEMMAS = "  (L2) voters may be lex-ordered WLOG -- licenses the lex chain in coverage\n"
+        LEMMAS = "  (L2) COROLLARY 2.4, voter sorting: voters may be lex-ordered WLOG -- licenses the lex chain in coverage\n"
         if PAIRS:
-            LEMMAS = ("  (L1) LEMMA 2.1, ordered-pair anchoring, is WLOG -- licenses running\n"
+            LEMMAS = ("  (L1) COROLLARY 2.2, ordered-pair anchoring, is WLOG -- licenses running\n"
                       f"       only the {len(live)} live cubes of {len(cubes)}\n") + LEMMAS
         elif VERTS:
-            LEMMAS = ("  (L1) COROLLARY 2.2, vertex anchoring, is WLOG -- licenses running\n"
+            LEMMAS = ("  (L1) COROLLARY 2.3, vertex anchoring, is WLOG -- licenses running\n"
                       f"       only the {len(live)} live cubes of {len(cubes)}\n") + LEMMAS
+        elif QTXT:
+            LEMMAS = ("  (L4) COROLLARY 2.5, base-stabiliser quotient, is WLOG -- licenses running\n"
+                      f"       only the {len(live)} orbit representatives of {len(cubes)} base states\n"
+                      f"       (h = {a.quotient})\n") + LEMMAS
         else:
             LEMMAS += ("  NO anchoring lemma is used: every base state is live, so L1 is\n"
                        "  ABSENT from this chain, not merely satisfied.\n")
@@ -433,8 +581,9 @@ date          {time.strftime('%F %H:%M:%S')}
 margin        {a.margin}
 base          {B}  ({len(cubes)} base states)
 anchoring     {ANCHOR_TXT if ANCHOR else 'NONE: HUMAN LEMMA L1 IS NOT USED'} -> {len(live)} live cubes
+quotient      {QTXT or 'NONE: Corollary 2.5 is not used'}
 cubes         {nc}, ALL UNSAT, each INDEPENDENTLY VERIFIED by lrat-trim
-solver        cadical --lrat=true --checkproof=0 (self-check disabled)
+solver        cadical --lrat=true --checkproof=0 {' '.join(SEEDARG)} (self-check disabled)
 checker       lrat-trim (Biere) -- different program, different author
 NO DEEPENING  cubes are base states of a {len(B)}-vertex base; deepen.py unused
 solve         {ns/3600:.1f} core-h
@@ -474,7 +623,7 @@ F_B & SB to be unsatisfiable, i.e. the {len(B)}-vertex base not {a.k}-inducible,
 contradicting N({a.k}) >= 12.
 
 Remaining HUMAN lemmas (not covered by any certificate):
-{LEMMAS}Proved in RESEARCH_LOG.md.
+{LEMMAS}Each is a corollary of Theorem 2.1 of the paper (Section 2.1).
 """)
     print(f"\n### done {el/3600:.2f} h  solve {ns/3600:.1f} + check {ck/3600:.1f} core-h")
     print(f"  ROOT (CNF)    {root_cnf.hexdigest()}")

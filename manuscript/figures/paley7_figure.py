@@ -224,7 +224,7 @@ def panel_c(f):
     L = title(r"(c) two rejected insertions of $%d$" % vl(vstar), 0.0, 0.0)
     y = -0.30
     for q, orders, tag in ((f["q_bad"], f["ord_bad"],
-                            r"breaks Lemma 2.1: no voter can still lead with "
+                            r"breaks Corollary 2.2: no voter can still lead with "
                             r"$(%s)$ or $(%s)$"
                             % (",".join(str(vl(z)) for z in f["reps"][0]),
                                ",".join(str(vl(z)) for z in f["reps"][1]))),

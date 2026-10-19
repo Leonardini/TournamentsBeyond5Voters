@@ -91,8 +91,8 @@ host has fewer vertex orbits or fewer ordered-pair orbits:
 
 | lemma | representatives | field |
 |---|---|---|
-| **Lemma 2.1**, ordered-pair anchoring | one ordered pair from each `Aut`-orbit on ordered pairs; some voter's top two is one of them | `pair-orbit(p1=0,1;p2=2,1)` |
-| **Corollary 2.2**, vertex anchoring | one vertex from each `Aut`-orbit on vertices; some voter ranks one of them first | `vertex-orbit(v1=0;v2=3;v3=7)` |
+| **Corollary 2.2**, ordered-pair anchoring | one ordered pair from each `Aut`-orbit on ordered pairs; some voter's top two is one of them | `pair-orbit(p1=0,1;p2=2,1)` |
+| **Corollary 2.3**, vertex anchoring | one vertex from each `Aut`-orbit on vertices; some voter ranks one of them first | `vertex-orbit(v1=0;v2=3;v3=7)` |
 | neither | every base state is live | `none` |
 
 Both take **any number** of representatives. The v1 blocks could express only
@@ -118,12 +118,44 @@ satisfy it — `{0,1} ∪ {2,1} ⊂ {0,1,2,3,4,11}` and `{2,6} ∪ {1,6} ⊂ {0,
 refuse an out-of-base representative, and gate check 3e is the control.
 
 What is **not** checkable from shipped bytes is orbit *completeness* — that the
-representatives meet every orbit. The manuscript flags it ("Lemma 2.1 must be
+representatives meet every orbit. The manuscript flags it ("Corollary 2.2 must be
 given the full set of orbits") and it stays a human obligation, like the lemma
 itself. Recording the representatives in the hashed block is what makes it
 auditable instead of implicit. For a pair representative the gate does check the
 one thing the host now makes decidable: whether it is an arc or a non-arc,
 recomputed from the `.bits`. Under v1's `q=`, it was not decidable at all.
+
+## `quotient=` — the base quotient, when it is used
+
+Corollary 2.5 gives a second way to solve fewer cubes than there are base
+states: an automorphism `h` of the host that maps the base onto itself permutes
+the base states, and it suffices to solve one cube per `h`-orbit. Such a block
+carries one more line, after `anchoring=`:
+
+    quotient=automorphism(h(0),h(1),...,h(n-1))
+
+`cubes=` then counts the orbit representatives, while the coverage half still
+ranges over **every** base state. The line appears only when a quotient was
+used, so every block issued without one is byte-identical to what it was.
+
+Three things are checkable from the shipped bytes, and
+`tools/check_cert_portable.py` checks all three: `h` is a permutation of
+`0..n-1`, it is an automorphism of the host the block names, and it maps the
+base onto itself. The control swaps two images of `h`, which must stop it being
+an automorphism. `sat/certroot.py` refuses to emit a quotient that fails any of
+these, and refuses to combine it with anchoring.
+
+## The names in the frozen verdicts
+
+The manuscript now states one orbit principle, Theorem 2.1, and every reduction
+as a corollary of it, which renumbered them. `VERDICT.txt` files written before
+the renumbering are hashed and stay as written, so they use the old names:
+
+| in a frozen verdict | in the manuscript and everywhere else here |
+|---|---|
+| Lemma 2.1, ordered-pair anchoring | Corollary 2.2 |
+| Corollary 2.2, vertex anchoring | Corollary 2.3 |
+| Lemma 2.3, voters lex-ordered | Corollary 2.4 |
 
 ## v1 is frozen
 

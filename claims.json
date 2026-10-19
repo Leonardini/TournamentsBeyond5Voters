@@ -103,7 +103,7 @@
     "3.4",
     "B.1"
    ],
-   "claim": "\u0394\u2086 \u2212 5, **machine-checked** on both halves: all 742,374 base states of the six-vertex base `{1,2,3,4,13,19}` UNSAT, each LRAT proof rechecked by `lrat-trim`, and the cube set proved exhaustive. 1,292.7 core-h; only Lemma 2.3 is human",
+   "claim": "\u0394\u2086 \u2212 5, **machine-checked** on both halves: all 742,374 base states of the six-vertex base `{1,2,3,4,13,19}` UNSAT, each LRAT proof rechecked by `lrat-trim`, and the cube set proved exhaustive. 1,292.7 core-h; only Corollary 2.4 is human",
    "artifacts": [
     "certificates/d005mv04cert_d6/VERDICT.txt",
     "certificates/d005mv04cert_d6/d005mv04_cert.v2.portable.txt",
@@ -143,7 +143,7 @@
    "sections": [
     "3.2"
    ],
-   "claim": "The two are neither isomorphic nor converse to each other; each has eleven vertices of out-degree 10 and eleven of 11, every arc in at least five directed triangles, and trivial automorphism group, and so do their parents `d005` and `d027`",
+   "claim": "No two of the three are isomorphic or converse to each other; each has eleven vertices of out-degree 10 and eleven of 11 and every arc in at least five directed triangles. \u0394\u2086 \u2212 5 and \u0394\u2082\u2088 \u2212 5 have trivial automorphism group, and so do their parents `d005` and `d027`; \u0394\u2081 \u2212 10 has two vertex orbits",
    "artifacts": [
     "verify/host_facts.py",
     "tools/check_package.sh"
@@ -163,7 +163,7 @@
     "3.3",
     "G"
    ],
-   "claim": "Both are **vertex-critical**: every one-vertex deletion of each is 5-inducible",
+   "claim": "All three are **vertex-critical**: every one-vertex deletion of each is 5-inducible. For \u0394\u2081 \u2212 10 the 22 deletions fall into two classes, one per vertex orbit",
    "artifacts": [
     "evidence/n21_level_witnesses.tar.zst",
     "verify/critical_deletions.py",
@@ -171,8 +171,45 @@
    ],
    "missing": [],
    "other_tokens": [
-    "all506"
+    "all506",
+    "sample400"
    ],
+   "status": "established"
+  },
+  {
+   "id": "B10",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
+   "sections": [
+    "3.2"
+   ],
+   "claim": "**\u0394\u2081 \u2212 10 is not 5-inducible** either. The host is `d000_mv09`, `d000` (line 1 of McKay's catalogue) less vertex 10, two copies of P\u2081\u2081 joined by a ladder. Its automorphism group has order 55; an order-5 subgroup H fixes one vertex in each half and maps the base {x\u2081, x\u2083, x\u2084, x\u2085, x\u2089} onto itself, so the search keeps one base state per H-orbit (Corollary 2.5), 1,611 of 8,031, anchored on the two fixed vertices (Corollary 2.3). Every representative exhausted, none capped, 96.9 core-h on the laptop",
+   "artifacts": [
+    "evidence/d000mv09_sweep_markers.tar.zst",
+    "tournaments/drt23_del/d000_mv09.bits",
+    "verify/quotient_sweep_audit.py",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "d000_mv09",
+    "d000"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "B11",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
+   "sections": [
+    "3.3"
+   ],
+   "claim": "The 231 arcs of \u0394\u2081 \u2212 10 fall into five orbits under its automorphism group, of 55, 55, 55, 55 and 11 arcs, and reversing one of the 11, a rung y_i \u2192 x_i, leaves a 5-inducible tournament. Whether the arcs of the other four orbits are critical is open",
+   "artifacts": [
+    "verdicts/d000mv09_rung/d000mv09_r01_15.log",
+    "verify/rung_reversal.py",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
    "status": "established"
   },
   {
@@ -672,10 +709,14 @@
    "id": "S7",
    "group": "4. The structured families (\u00a73.7)",
    "sections": [],
-   "claim": "These sweeps turn up exactly **seventeen** tournaments that are 5-inducible but not at unit margin: 2 doubly regular at order 19, 4 vertex-transitive at order 21, 11 circulant at order 23",
+   "claim": "3.7",
    "artifacts": [
     "verdicts/verdict_ledger.tsv",
-    "tools/check_package.sh"
+    "verdicts/near_dr21/",
+    "verdicts.tsv",
+    "evidence/near_dr21_unit_covers.tar.zst",
+    "tools/check_package.sh",
+    "tournaments/near_dr21/"
    ],
    "missing": [],
    "other_tokens": [
@@ -1405,8 +1446,8 @@
   }
  ],
  "counts": {
-  "claims": 91,
-  "established": 85,
+  "claims": 93,
+  "established": 87,
   "declared_gap": 6,
   "missing_artifacts": 0,
   "gaps": 7,

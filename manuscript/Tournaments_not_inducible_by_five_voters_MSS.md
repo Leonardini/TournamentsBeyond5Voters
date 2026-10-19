@@ -28,11 +28,13 @@ which some tournament is not $k$-inducible. Only $N(3) = 8$ is known exactly. Fo
 best bounds were $12 \le N(5) \le 38$, and the smallest explicit tournament beyond five voters had
 $43$ vertices.
 
-We improve both bounds to $13 \le N(5) \le 22$. The upper bound comes from two tournaments on $22$
+We improve both bounds to $13 \le N(5) \le 22$. The upper bound comes from three tournaments on $22$
 vertices, each a doubly regular tournament on $23$ vertices with one vertex deleted, that five
-voters cannot produce; one of the two refutations is formally certified. On the way we show that the
-Paley tournament on $23$ vertices is not $5$-inducible, a case a general-purpose SAT solver had left
-open after six weeks, and that no doubly regular tournament on $23$ vertices is. The lower bound
+voters cannot produce. The first consists of two copies of the Paley tournament on $11$ vertices
+joined by a ladder, and its symmetry lets our search refute it in under nine hours on a laptop. Two
+of the three refutations, that one included, are formally certified. On the way we show that the
+Paley tournament on $23$ vertices is not $5$-inducible, a case that a general-purpose SAT solver had
+left open after six weeks of computation in the work of Bachmeier et al. (2019), and that no doubly regular tournament on $23$ vertices is. The lower bound
 comes from an analysis of all tournaments on $12$ vertices. We also show that the Paley tournament on
 $19$ vertices is $5$-inducible, but not when every majority is carried by three voters against two,
 and we determine which obstructions survive deleting a vertex or reversing an arc. The method is a search that places one alternative at a time, always the one with the fewest
@@ -62,21 +64,45 @@ $k$ members can never produce, however they rank the alternatives?
 For three voters the answer is known. Every pattern on at most seven alternatives is realisable, and
 on eight alternatives one is not, by the work of Shepardson and Tovey (2009) and of Eggermont, Hurkens
 and Woeginger (2013). We write $N(k)$ for the least number of alternatives at which some pattern escapes
-$k$ voters, so that $N(3) = 8$. For five voters -- the smallest committee size at which the question
-is open, and a common size for panels, benches and selection committees -- the answer was known only
+$k$ voters, so that $N(3) = 8$. For five voters, the smallest committee size at which the question
+is open, the answer was known only
 to lie between $12$ and $38$, and no explicit pattern on fewer than $43$ alternatives was known to
 escape five voters.
 
-This paper narrows that to $13 \le N(5) \le 22$, and both ends are constructive. Five voters suffice
+This paper narrows that to $13 \le N(5) \le 22$, and both ends are constructive: rather than mere
+existence proofs, we give explicit five-voter profiles for the lower bound and explicit patterns for
+the upper bound. Five voters suffice
 on every agenda of at most twelve alternatives: we verify this for all $\approx 9.0 \times 10^{8}$
 patterns on eleven alternatives together with all of their one-alternative extensions. And on
-twenty-two alternatives there are patterns that five voters cannot produce: two tournaments, each
-obtained by removing one alternative from a doubly regular tournament on twenty-three. The first
+twenty-two alternatives there are patterns that five voters cannot produce. We find three of them,
+each obtained by removing one alternative from a perfectly balanced pattern on twenty-three
+alternatives (a *doubly regular tournament*, in the terminology defined below). The most symmetric of
+them consists of two copies of the Paley tournament on eleven alternatives, joined by a ladder
+(Figure 1); the Paley tournaments form a well-known infinite family, with one tournament for every
+prime number of alternatives congruent to $3$ modulo $4$. The first
 step on that way is the Paley tournament $P_{23}$ on twenty-three alternatives -- the instance a
 general-purpose SAT solver failed to decide in six weeks of computation in the work of Bachmeier et
 al. (2019), which our search settles in twenty-two hours on a laptop.
 
-The pattern that first defeated five voters is worth describing in words, because it is not a pathology.
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.62\linewidth]{ladder_d000.pdf}
+\caption{The tournament $\Delta_1 - 10$. Its $22$ vertices split into $X = \{x_0, \dots, x_{10}\}$
+and $Y = \{y_0, \dots, y_{10}\}$, with indices taken modulo $11$, and each half induces a copy of
+$P_{11}$: $x_i \to x_j$ exactly when $j - i$ is a non-zero square modulo $11$, that is, lies in
+$\mathrm{QR} = \{1, 3, 4, 5, 9\}$, and $y_i \to y_j$ exactly when $j - i$ is a non-square.
+Between the halves, $x_i \to y_j$ when $j - i$ is a non-square, and $y_j \to x_i$ otherwise, that is,
+when $j - i$ lies in $\mathrm{QR} \cup \{0\}$. In particular every rung $y_i \to x_i$ of the ladder
+points from $Y$ to $X$; only four rungs are drawn. Each $x_i$ therefore has out-degree $5 + 5 = 10$
+and each $y_j$ has out-degree $5 + 6 = 11$. Adding $1$ to every index, and multiplying every index
+by an element of $\mathrm{QR}$, are automorphisms; together they generate the full automorphism group,
+of order $11 \cdot 5 = 55$. The labels $x_i, y_i$ are not the catalogue's; the correspondence is in
+the repository.}
+\end{figure}
+
+The first pattern we found that five voters cannot produce, $P_{23}$, is worth describing in words,
+because what defeats five voters there is a natural property, balance, rather than an artificial
+construction.
 $P_{23}$ is as balanced as a collective preference on twenty-three alternatives can be: every
 alternative defeats exactly eleven others, and every pair of alternatives jointly defeats exactly
 the same number. It is the least decisive pattern available, in the sense that no alternative and no
@@ -112,7 +138,7 @@ $c(e)$. If $c(e) > k/2$, the *margin* of $e$ is $2c(e) - k$. In a witness every 
 exceeds $k/2$, so for $k = 5$ it is $3$, $4$ or $5$. A witness has *margin at most $M$* if every arc has 
 margin at most $M$. For $k = 5$ the possible margins are $1$, which we call *unit margin*, $3$ 
 (every support in $\{3,4\}$), and $5$ (no restriction, i.e. plain majority). A unit-margin witness 
-is in particular a majority witness. In Chindelevitch and Harutyunyan (2026) we conjectured that the margin-based hierarchy is strict, which
+is in particular a majority witness. In our companion paper we conjectured that the margin-based hierarchy is strict, which
 for $k = 5$ asserts two separate things: that some tournament is $5$-inducible with margin at most $3$
 but not with unit margin, and that some tournament is $5$-inducible but not with margin at most $3$.
 We settle the first here since $P_{19}$ is such a tournament (Section 3.4), while the second remains open
@@ -120,32 +146,32 @@ We settle the first here since $P_{19}$ is such a tournament (Section 3.4), whil
 
 One further quantity recurs below. Informally, the *predictability* $\alpha^{*}(T)$ is the largest
 fraction $\alpha > 1/2$ for which there is some profile, on any number $t$ of voters, such that every arc 
-of $T$ is supported by at least $\alpha t$ of them; it is the value of a linear program over the linear 
-orders of $V$. Since every arc of a $k$-voter witness is supported by more than $k/2$ of the voters, 
+of $T$ is supported by at least $\alpha t$ of them. Since every arc of a $k$-voter witness is supported by more than $k/2$ of the voters, 
 $k$-inducibility forces $\alpha^{*}(T) \ge (k+1)/2k$, which is $\tfrac{2}{3}$ at $k = 3$ and $\tfrac{3}{5}$ 
 at $k = 5$. The implication is only one-directional: $\alpha^{*}$ can meet the threshold and the tournament
-still fail to be inducible. Shepardson and Tovey (2009) introduced the notion; see Section 1.4 in Chindelevitch and Harutyunyan (2026) for the 
-computations and the counterexamples at both $k = 3$ and $k = 5$.
+still fail to be inducible. Shepardson and Tovey (2009) introduced the notion. Section 1.4 of our companion paper computes
+$\alpha^{*}$ and gives, at both $k = 3$ and $k = 5$, tournaments that meet the threshold but are not
+$k$-inducible.
 
 Counting arguments show that almost all tournaments fail to be $k$-inducible for any fixed $k$, yet the 
 *explicit* examples they yield are astronomically large. This paper closes much of the gap for $k = 5$.
 Let $N(k)$ be the least order of a tournament that is not $k$-inducible. The answer is only known exactly 
 for $k = 3$. For $k = 5$ the state of the art before this work was $$12 \le N(5) \le 38,$$
-both ends of which are due to our companion paper (Chindelevitch and Harutyunyan 2026): the lower bound came from an exhaustive
+both ends of which are due to our companion paper: the lower bound came from an exhaustive
 census of all $\approx 9.0 \times 10^{8}$ tournaments on $11$ vertices, all of which 
 admit a unit-margin five-voter profile, improving on the bound $N(5) \ge 11$ of Bachmeier et al. (2019).
 
 The upper bounds in the literature are of two different kinds and they are not always comparable. 
 Some are non-constructive, and obtained by counting: one compares the number of tournaments of a given order 
 with the number that $k$ linear orders can produce, and when the first exceeds the second, some tournament of 
-that order must be missed. Bachmeier et al. (2019) argued this way to reach $41$, and Chindelevitch and Harutyunyan (2026) sharpened the 
+that order must be missed. Bachmeier et al. (2019) argued this way to reach $41$, and our companion paper sharpened the 
 comparison by restricting it to regular and near-regular tournaments, reaching $38$.
 Other bounds are constructive, and exhibit an explicit tournament. The record for $k = 5$ was $P_{z}$
 on $z = 603{,}979{,}799$ vertices (Bachmeier et al. 2019), from a dominating-set theorem of Alon et al. (2006) together with a
-construction of Graham and Spencer (1971), which we improved to $P_{43}$ (Chindelevitch and Harutyunyan 2026), the first example of moderate order. 
-Our bespoke algorithmic decision procedure shows that $P_{23}$ is not $5$-inducible, which improves both the 
+construction of Graham and Spencer (1971), which we improved to $P_{43}$ in our companion paper, the first example of moderate order. 
+In this paper, our bespoke algorithmic decision procedure shows that $P_{23}$ is not $5$-inducible, which improves both the 
 best non-constructive (counting) as well as the best constructive (explicit) upper bounds to $N(5) \le 23$,
-and then that two tournaments on $22$ vertices are not $5$-inducible either, so that $N(5) \le 22$.
+and then that three tournaments on $22$ vertices are not $5$-inducible either, so that $N(5) \le 22$.
 
 ### 1.1 Special properties of Paley tournaments
 
@@ -178,7 +204,7 @@ where $\dim$ denotes majority dimension, and then stops exactly where the proble
 > "Unfortunately, we were not able to check whether the majority dimension of $Q_{23}$ is equal to
 > 5 or larger as the SAT solver did not terminate within a total of six weeks."
 
-By contrast, our previous proof that $P_{43}$ is not $5$-inducible (Chindelevitch and Harutyunyan 2026) never searched the profile
+By contrast, our previous proof that $P_{43}$ is not $5$-inducible, in our companion paper, never searched the profile
 space in general. It rests on a quantity we call the *slack*,
 $$\mathrm{slack}_5(T) = 5\,\mathrm{MAS}(T) - 3C, \qquad C = \binom{n}{2},$$
 where $\mathrm{MAS}$ is the maximum number of arcs of $T$ that a single linear order can agree
@@ -186,16 +212,16 @@ with. Summing the majority condition over all arcs bounds how far the five voter
 fall short of that maximum. A small slack restricts the voters to be close to the best orders, and at $q = 43$, 
 where $\mathrm{slack}_5 = 6$, that restriction allowed us to fully enumerate about $1.8$ million cases.
 
-While the same argument is valid at every $q$, the slack is *not* a monotone function of $q$ (table from Chindelevitch and Harutyunyan 2026):
+While the same argument is valid at every $q$, the slack is *not* a monotone function of $q$ (table from our companion paper):
 
 | $q$ | 7 | 11 | 19 | 23 | 31 | 43 |
 |---|---|---|---|---|---|---|
 | $\mathrm{slack}_5$ | 7 | 10 | 22 | **46** | 30 | **6** |
 
-Since $P_{43}$ attains a locally minimal slack, while $P_{23}$ attains a local maximum, the method of Chindelevitch and Harutyunyan (2026) 
+Since $P_{43}$ attains a locally minimal slack, while $P_{23}$ attains a local maximum, the method of our companion paper 
 is unusable at $q = 23$. For any $q$, 
 $$\mathrm{slack}_5(P_q) \;=\; 5C\left(\alpha^{*}(P_q) - \tfrac{3}{5}\right),$$
-where $\alpha^{*}$ is the predictability; equality holds because $P_q$ is arc-transitive (Chindelevitch and Harutyunyan 2026). 
+where $\alpha^{*}$ is the predictability; equality holds because $P_q$ is arc-transitive (see our companion paper). 
 In particular, the necessary condition $\alpha^{*} \ge 3/5$ is far from binding,
 so no argument resting on the predictability can certify infeasibility.
 
@@ -209,9 +235,12 @@ the threshold among the three.
 
 ### 1.3 Contributions
 
-1. **$N(5) \le 22$** (Section 3.2). Two non-isomorphic tournaments on $22$ vertices, each a
+1. **$N(5) \le 22$** (Section 3.2). Three non-isomorphic tournaments on $22$ vertices, each a
    doubly regular tournament on $23$ vertices with one vertex deleted, are not $5$-inducible, and
-   both are vertex-critical. One of the two refutations is formally certified (Appendix B).
+   all three are vertex-critical. The first, $\Delta_1 - 10$, is two copies of $P_{11}$ joined by a
+   ladder; a symmetry reduction using the automorphisms that map the base onto itself (Corollary 2.5)
+   cuts its refutation to under nine hours on a laptop.
+   The refutations of $\Delta_1 - 10$ and $\Delta_6 - 5$ are formally certified (Appendix B).
 
 2. **$P_{23}$ is not $5$-inducible** (Section 3.1). This settles the instance on
    which the SAT solver of Bachmeier et al. (2019) did not terminate within a cumulative six weeks, and was the first
@@ -221,7 +250,7 @@ the threshold among the three.
    
 3. **$P_{19}$ is $5$-inducible, but not $5$-inducible with unit margin** (Section 3.4). This is an example 
    suggesting that $k = 5$ may qualitatively differ from $k = 3$. For $k = 3$, the first $k$-inducible
-   tournaments that are non-$k$-inducible with unit margin appear after $N(k)$, order 9 vs order 8 (Chindelevitch and Harutyunyan 2026). 
+   tournaments that are non-$k$-inducible with unit margin appear after $N(k)$, order 9 vs order 8 (see our companion paper). 
    For $k = 5$ they appear no later than order $19$, so the order is reversed unless $N(5) \le 19$,
    which the search of Appendix G argues against.
    
@@ -231,8 +260,8 @@ the threshold among the three.
 5. **$P_{31}$ and $P_{43}$ are not vertex-critical** (Section 3.5). Deleting a vertex from $P_{31}$ or 
     $P_{43}$ leaves a tournament that is still not $5$-inducible.
 
-6. **Three formally certified negative results** (Appendix B). $P_{19}$ is not $5$-inducible at unit
-   margin, and $P_{23}$ and $\Delta_6 - 5$ are not $5$-inducible. The search is split into independent subproblems
+6. **Four formally certified negative results** (Appendix B). $P_{19}$ is not $5$-inducible at unit
+   margin, and $P_{23}$, $\Delta_1 - 10$ and $\Delta_6 - 5$ are not $5$-inducible. The search is split into independent subproblems
    (*cubes*); each is refuted by the SAT solver CaDiCaL, which emits its refutation as a machine-checkable 
    *LRAT* proof; and every one of those proofs is then rechecked by a separate program that shares no code 
    with the solver.
@@ -267,20 +296,21 @@ refutation that an independent checker validates. Our refutations are in the LRA
 (Appendix B.1), a format in which the solver records each clause it derives so that an independent
 checker can replay and confirm the entire derivation.
 
-This paper grew out of our companion paper (Chindelevitch and Harutyunyan 2026), whose constructive bound $N(5) \le 43$ came from a
+This paper grew out of our companion paper, whose constructive bound $N(5) \le 43$ came from a
 structural argument, and whose counting bound $N(5) \le 38$ names no explicit tournament. The
 question of what a genuine decision procedure would reach at smaller orders led to the search of
 Appendix A.
 
 The rest of this paper is organised as follows. Section 2 sets out the notation, the symmetry
 reductions and the search in outline. Section 3 presents the results: $P_{23}$ and $P_{31}$
-(Section 3.1), the two $22$-vertex obstructions that give $N(5) \le 22$ (Section 3.2), vertex- and
+(Section 3.1), the three $22$-vertex obstructions that give $N(5) \le 22$ (Section 3.2), vertex- and
 arc-criticality (Sections 3.3 to 3.6), and other structured families (Section 3.7). Section 4
 discusses where the method may transfer and what remains open, and Section 5 describes the
 reproducibility material. Appendix A describes the search engine and the cost of every computation,
 Appendix B the formal certificates, Appendix C the analysis of order $12$, Appendix D the exact
 enumeration counts, Appendix E the construction for locally transitive tournaments, Appendix F
-criticality at $21$ vertices, and Appendix G the search below $22$ vertices.
+criticality at $21$ vertices, Appendix G the search below $22$ vertices, and Appendix H the
+adjacency matrices of the three $22$-vertex obstructions.
 
 ---
 
@@ -288,7 +318,7 @@ criticality at $21$ vertices, and Appendix G the search below $22$ vertices.
 
 Throughout, $T$ is a tournament on $V = \{1, \dots, n\}$ and $k = 5$ unless stated otherwise. We
 write $N^{+}(v)$ and $N^{-}(v)$ for the out- and in-neighbourhoods of $v$. A tournament is *regular* 
-if $|N^{+}(v)| = |N^{-}(v)|$ for each $v \in V$; this can only happen for $n$ odd. Following Chindelevitch and Harutyunyan (2026), $D_n$, 
+if $|N^{+}(v)| = |N^{-}(v)|$ for each $v \in V$; this can only happen for $n$ odd. Following our companion paper, $D_n$, 
 $R_n$ and $S_n$ denote the numbers of isomorphism classes of, respectively, all tournaments, regular 
 tournaments and self-converse tournaments on $n$ vertices. The text gives them to two significant figures 
 and Appendix D tabulates their exact values. For any $S \subseteq V$, the sub-tournament of $T$ induced by 
@@ -301,33 +331,64 @@ at margin $M$, but $T - v$ is $k$-inducible at margin $M$ for every vertex $v$. 
 ### 2.1 Symmetry reductions
 
 An *automorphism* of a tournament $T$ is a permutation of its vertices carrying every arc to an arc;
-these form a group $\mathrm{Aut}(T)$ under composition, and $T$ is *rigid* when $\mathrm{Aut}(T)$ is
-trivial. For a permutation group $\Gamma$ on a set $X$, the *orbit* of $x$ is
-$\Gamma x = \{\gamma(x) : \gamma \in \Gamma\}$, and the orbits partition $X$. This group is *transitive* 
-on $X$ when this partition is trivial (equivalently, for any $x, x' \in X$ there is a $g \in \Gamma$ 
-with $g(x) = x'$). We use orbits of
+these form a group $\mathrm{Aut}(T)$ under composition. The identity is always an automorphism; any
+other automorphism is *non-trivial*, and $T$ is *rigid* when it has none. For a permutation group
+$\Gamma$ on a set $X$, the *orbit* of $x$ is $\Gamma x = \{\gamma(x) : \gamma \in \Gamma\}$, and
+the orbits partition $X$. The group is *transitive* on $X$ when there is a single orbit, that is,
+when for any $x, x' \in X$ there is a $g \in \Gamma$ with $g(x) = x'$. We use orbits of
 $\mathrm{Aut}(T)$ on the vertices, on the arcs, and on the *ordered pairs* of distinct vertices,
 where $\gamma$ sends $(u,v)$ to $(\gamma(u), \gamma(v))$. An ordered pair is either an arc or the
 reverse of one, so that third action has at least two orbits.
 
 Two symmetries act on witnesses and both are exploited by every method here: the $k!$ relabellings
-of the voters, and $\mathrm{Aut}(T)$ acting on the vertices. Each yields a reduction without loss
-of generality. As a witness can be transformed by an automorphism, we may in some cases decide in 
-advance what some voter's top two vertices are.
+of the voters, which form the symmetric group $S_k$, and $\mathrm{Aut}(T)$ acting on the vertices. A permutation $\sigma$ of the voters acts
+on a profile $\pi = (\pi_1, \dots, \pi_k)$ by reordering it, and a permutation $h$ of $V$ acts on a
+linear order by relabelling, so that $h\pi_j$ ranks $h(u)$ above $h(w)$ exactly when $\pi_j$ ranks
+$u$ above $w$, and on a profile voter by voter. The two actions commute, so the group
+$S_k \times \mathrm{Aut}(T)$ acts on profiles. It maps witnesses to witnesses: permuting voters
+does not change any support, and the support of $h(u) \to h(w)$ after relabelling by an
+automorphism $h$ equals that of $u \to w$ before, at whichever margin the original met. Every
+reduction we use is a special case of one principle.
 
-**Lemma 2.1 (orbit anchoring).** *Let $\mathrm{Aut}(T)$ act on the ordered pairs of distinct
+**Theorem 2.1 (orbit principle).** *Let $G$ be a subgroup of $S_k \times \mathrm{Aut}(T)$ acting on
+a set $\Omega$, and let $\varphi$ map profiles to $\Omega$ with $\varphi(g\pi) = g\,\varphi(\pi)$ for
+every $g \in G$. If $R \subseteq \Omega$ contains an element of every $G$-orbit and $T$ is
+$k$-inducible, then $T$ has a witness $\pi$ with $\varphi(\pi) \in R$.*
+
+*Proof.* Let $w$ be a witness and choose $g \in G$ with $g\,\varphi(w) \in R$. Then $gw$ is a
+witness and $\varphi(gw) = g\,\varphi(w) \in R$. $\blacksquare$
+
+We never apply Theorem 2.1 directly. What the methods use are its corollaries below; the theorem
+gives them a common proof and tells us when two of them can be combined.
+
+The corollaries below differ only in the group $G$ and in the object $\varphi(\pi)$ that a profile
+is reduced to (Table 1). The group is often a subgroup because the object dictates it:
+$\mathrm{Aut}(T)$ acts on the base states of $B$ only through the automorphisms that map $B$ onto
+itself.
+
+Table: The symmetry reductions of this section as instances of Theorem 2.1. Here $B$ is the base, $C \subseteq B$, and $H$ is a subgroup of $\mathrm{Aut}(T)$ mapping $B$, respectively $C$, onto itself.
+
+| result | group $G$ | object $\varphi(\pi)$ |
+|---|---|---|
+| Corollary 2.2 | $\mathrm{Aut}(T)$ | the top two vertices of $\pi_1$ |
+| Corollary 2.3 | $\mathrm{Aut}(T)$ | the top vertex of $\pi_1$ |
+| Corollary 2.4 | $S_k$ | the profile $\pi$ itself |
+| Corollary 2.5 | $S_k \times H$, $h(B) = B$ | the base state of $B$ that $\pi$ extends |
+| Corollary 2.6 | $S_k \times H$, $h(C) = C$ | the base state of $C$ that $\pi$ extends |
+
+As a witness can be transformed by an automorphism, we may in some cases decide in advance what some
+voter's top two vertices are.
+
+**Corollary 2.2 (orbit anchoring).** *Let $\mathrm{Aut}(T)$ act on the ordered pairs of distinct
 vertices, and choose one representative pair from each orbit, say $(a_1, b_1), \dots, (a_m, b_m)$.
 If $T$ is $k$-inducible, then $T$ has a witness in which, for at least one index $i$, some voter
 ranks $a_i$ first and $b_i$ second.*
 
-*Proof.* Let $\pi_1, \dots, \pi_k$ be a witness and let $(u, w)$ be the top two vertices of
-$\pi_1$. The pair $(u,w)$ lies in one of the orbits; let $(a_i, b_i)$ be that orbit's
-representative, so there is $g \in \mathrm{Aut}(T)$ with $g(u) = a_i$ and $g(w) = b_i$. Applying
-$g$ to every voter gives a profile whose majority tournament is $g(T) = T$, so it is again a
-witness, and its first voter ranks $a_i$ first and $b_i$ second. $\blacksquare$
+*Proof.* Theorem 2.1 with $G = \mathrm{Aut}(T)$, $\varphi(\pi)$ the ordered pair of the top two
+vertices of $\pi_1$, and $R$ the chosen pairs. $\blacksquare$
 
 Thus we may search only for witnesses whose top pair is one of the $m$ chosen pairs. The
-lemma only guarantees that *some* $i$ works, not any particular one. 
+corollary only guarantees that *some* $i$ works, not any particular one.
 
 For a Paley tournament $m = 2$, and the representatives can be exhibited without computing
 $\mathrm{Aut}(P_q)$. For $a \in \mathrm{QR}$ and any $t$, the map $x \mapsto a(x-t)$ multiplies
@@ -344,44 +405,43 @@ $\mathrm{QR}$, and $(1,4)$, whose difference $3$ does not; both lie inside the b
 $B = \{1,2,4\}$ used there, which is what lets the anchoring be checked from the base state alone,
 and panel (c) rejects an insertion that would lift a vertex above an anchored pair.
 
-**Corollary 2.2 (vertex anchoring).** *Let $\mathrm{Aut}(T)$ act on the vertices and choose one
+**Corollary 2.3 (vertex anchoring).** *Let $\mathrm{Aut}(T)$ act on the vertices and choose one
 representative $v_1, \dots, v_r$ from each orbit. If $T$ is $k$-inducible, then $T$ has a witness
 in which some voter ranks some $v_i$ first.*
 
-*Proof.* The proof of Lemma 2.1 verbatim, with the action on vertices in place of the one on
-ordered pairs. $\blacksquare$
+*Proof.* Theorem 2.1 with $G = \mathrm{Aut}(T)$, $\varphi(\pi)$ the top vertex of $\pi_1$, and $R$
+the chosen vertices. $\blacksquare$
 
 We say that a witness meeting either restriction is *anchored*. The two are alternatives rather than
 a sequence, each without loss of generality, and which is better depends on the tournament's number 
 of vertex pair orbits vs vertex orbits, as well as the relative complexity of testing each restriction.
 
-**Lemma 2.1 must be given the full set of orbits.** It licenses the restricted search
+**Corollary 2.2 must be given the full set of orbits.** It licenses the restricted search
 *provided* the representatives meet every orbit. For every tournament we
 compute $\mathrm{Aut}(T)$ separately, with `nauty` 2.8.6 (McKay and Piperno 2014), and record its orbits alongside the
 run. Every automorphism group, orbit set and canonical form reported in this paper comes from that
 same tool.
 
-**Lemma 2.3 (voter lex-ordering).** *If $T$ is $k$-inducible, then $T$ has a witness whose $k$
+**Corollary 2.4 (voter lex-ordering).** *If $T$ is $k$-inducible, then $T$ has a witness whose $k$
 orders are non-decreasing under any fixed total order on linear orders.*
 
-*Proof.* The support $c(e)$ counts voters and is therefore invariant under permuting them, so any
-profile with the same multiset of orders induces the same tournament. Sorting the multiset gives
-the required witness. $\blacksquare$
+*Proof.* Theorem 2.1 with $G = S_k$, $\varphi$ the identity, and $R$ the profiles whose orders are
+non-decreasing; every $S_k$-orbit contains one, obtained by sorting. $\blacksquare$
 
-The two lemmas may be applied simultaneously, which is not automatic: each is proved by transforming
-a witness, and the second transformation must not undo the first. We apply Lemma 2.1 to a witness, then
-sort the resulting $k$ orders by Lemma 2.3. Sorting only permutes the voters, while the property
-Lemma 2.1 guarantees, "*some* voter ranks $a_i$ first and $b_i$ second", depends on the multiset of
-orders and not on which voter carries it, so it survives the sort. Had Lemma 2.1 been sharpened to
-"voter $1$ ranks $a_i$ first and $b_i$ second", the composition would fail. Both lemmas are therefore 
-available to every formulation in Appendix A.
+Two reductions compose when the second does not undo the first. After restricting to witnesses with
+$\varphi_1(\pi) \in R_1$, a second application of Theorem 2.1 may use only elements of its group that
+preserve this property. Anchoring followed by sorting is such a pair: every permutation of the voters preserves
+the property Corollary 2.2 guarantees, "*some* voter ranks $a_i$ first and $b_i$ second", which
+depends on the multiset of orders and not on which voter carries it. Had it been sharpened to "voter $1$ ranks $a_i$ first
+and $b_i$ second", the composition would fail. Both are therefore available to every formulation in
+Appendix A.
 
-Together they reduce the running time substantially, in two different ways. Lemma 2.3 is absorbed
+Together they reduce the running time substantially, in two different ways. Corollary 2.4 is absorbed
 into the definition of a base state: the $k$ orderings of $B$ are required to be non-decreasing,
 dividing the count by almost $k! = 120$ (almost, because a tuple with two equal orders is fixed 
 by some of the $k!$ permutations).
 
-Lemma 2.1 acts earlier still, *invalidating* base states outright, but only when *all* the
+Corollary 2.2 acts earlier still, *invalidating* base states outright, but only when *all* the
 representative pairs lie inside $B$. Suppose they do, and that a base state extends to an anchored
 witness, some voter of which ranks $a_i$ first and $b_i$ second overall. As $a_i, b_i \in B$, that
 voter ranks $a_i$ first and $b_i$ second *within* $B$, which the base state alone reveals.
@@ -391,7 +451,7 @@ outside $B$ this filter does not apply; a base state failing the test on the rep
 sees may still extend to a witness anchored on the one it cannot. We call a base state *live* if it
 survives. On the five-vertex base we use on the Paley tournaments $2{,}591$ of the $8{,}031$ are live.
 
-The search and the certification differ in *when* the condition in Lemma 2.1 is tested. Both test it at the
+The search and the certification differ in *when* the condition in Corollary 2.2 is tested. Both test it at the
 start to determine the live base states. Our algorithmic approach keeps testing it during the
 search, since a base state fixes the orders only on $B$ whereas the condition constrains the full
 orders: a voter picking $(a_i, b_i)$ as its top pair in $B$ ceases to be anchored once a later vertex is 
@@ -401,6 +461,87 @@ order being already fixed, so a partial profile with no anchored voter has no ex
 Pruning can only happen after all representatives' endpoints are placed. The SAT certification
 instead tests the condition once, at the root, where it decides which cubes reach the solver.
 
+Corollaries 2.2 and 2.3 restrict, without loss of generality, what a witness looks like on all of
+$V$, and so how the base interacts with the vertices outside it. When a subgroup of automorphisms
+maps the base onto itself, the same idea works inside the base: the subgroup identifies base states
+with one another, and only one from each class needs to be searched. Every witness
+$\pi_1, \dots, \pi_k$ determines a base state of $B$, namely the multiset of the restricted orders
+$\pi_1|_B, \dots, \pi_k|_B$ (Appendix A.1 gives the full definition), and we say that the witness
+*extends* this base state.
+
+**Corollary 2.5 (base-stabiliser quotient).** *Let $H$ be a subgroup of $\mathrm{Aut}(T)$ with
+$h(B) = B$ for every $h \in H$.*
+
+*(a) $H$ permutes the base states of $B$, and if one base state extends to a witness, so does
+every base state in its $H$-orbit. Consequently, if $T$ is $k$-inducible, then for any choice of
+one base state from each $H$-orbit, some chosen base state extends to a witness.*
+
+*(b) Suppose in addition that every element of $H$ fixes each representative vertex of
+Corollary 2.3. Then, if $T$ is $k$-inducible, some chosen base state extends to a witness anchored
+in the sense of Corollary 2.3.*
+
+*(c) Suppose instead that every element of $H$ fixes both $a_i$ and $b_i$ for every representative
+pair $(a_i, b_i)$ of Corollary 2.2. Then, if $T$ is $k$-inducible, some chosen base state extends
+to a witness anchored in the sense of Corollary 2.2.*
+
+*Proof.* As $h(B) = B$, relabelling by $h$ maps an order of $B$ to an order of $B$, and since $h$
+restricts to an automorphism of $T|_B$, it maps a base state to a base state; this is the action
+of $H$, and $S_k$ acts trivially, base states being multisets. The base state that $h\pi$ extends
+is $h$ applied to the one $\pi$ extends, so (a) is Theorem 2.1 with $G = S_k \times H$ and
+$\varphi(\pi)$ that base state; applying $h^{-1}$ gives the orbit statement. For (b), an element of
+$H$ maps a voter ranking $v_i$ first to one ranking $h(v_i) = v_i$ first, so it preserves anchoring,
+and the composition rule above applies. For (c), likewise, an element of $H$ maps a voter ranking
+$a_i$ first and $b_i$ second to one ranking $h(a_i) = a_i$ first and $h(b_i) = b_i$ second. $\blacksquare$
+
+The search therefore needs only one base state from each $H$-orbit, which divides the work by up
+to $|H|$, and Corollary 2.4 still holds because base states remain multisets of orders. The
+condition on anchoring cannot be dropped: if $H$ moves some representative, mapping an anchored
+witness into the chosen base state can destroy its anchor, and only one of the two reductions can
+be used.
+
+Finding $H$ is a question about $\mathrm{Aut}(T)$. Automorphism groups of tournaments have odd order,
+since an automorphism of order $2$ would swap the two endpoints of some arc. By Cauchy's theorem,
+$\mathrm{Aut}(T)$ contains an element of order $p$ for every prime $p$ dividing its order, and an
+element $h$ maps $B$ onto itself exactly when $B$ is a union of cycles of $h$. When $|B| = 5$ and
+$h$ has order $5$, a single $5$-cycle of $h$ is such a base, and $H = \langle h \rangle$ divides the
+number of base states by up to $5$. The base states fixed by $h$ are the only ones whose orbit is
+smaller than $|H|$.
+
+A subgroup that maps a base of the size we search with onto itself need not exist. An automorphism
+of order $3$ with no fixed point, for example, maps no set of $5$ vertices onto itself, but it maps
+each of its $3$-cycles onto itself. The next corollary uses such a smaller invariant set. The
+*restriction* of a base state of $B$ to a subset $C \subseteq B$ is the multiset of the restrictions
+of its $k$ orders to $C$, which is a base state of $C$.
+
+**Corollary 2.6 (sub-base quotient).** *Let $H$ be a subgroup of $\mathrm{Aut}(T)$ and
+$C \subseteq B$ with $h(C) = C$ for every $h \in H$, and choose one base state of $C$ from each
+$H$-orbit. If $T$ is $k$-inducible, then some base state of $B$ whose restriction to $C$ is a chosen
+base state extends to a witness. Under the condition of Corollary 2.5(b) or (c), that witness can be
+taken anchored in the corresponding sense.*
+
+*Proof.* Corollary 2.5 with $C$ in place of $B$ gives a witness extending a chosen base state $S_C$
+of $C$, anchored under the condition of part (b) or (c). The restrictions $\pi_1|_B, \dots, \pi_k|_B$ form
+a base state $S_B$ of $B$ that this witness extends, and the restriction of $S_B$ to $C$ is $S_C$.
+$\blacksquare$
+
+The search can therefore keep only the base states of $B$ above a chosen representative, and
+Corollary 2.5 is the case $C = B$. As $H$ need not map $B$ onto itself, it does not act on the base
+states of $B$, and the fraction kept is not exactly $1/|H|$. We choose as the representative of each
+orbit the base state of $C$ with the fewest base states of $B$ above it.
+
+Figure 2 summarises which of these reductions apply to a given tournament and base, and how they
+combine.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.78\linewidth]{symbreak_flow.pdf}
+\caption{Which symmetry reductions apply to a tournament $T$ and a base $B$. Anchoring by Corollary 2.2
+or Corollary 2.3 can discard base states only when every representative lies in $B$, since a base
+state reveals the orders on $B$ alone; otherwise the depth-first search enforces it while vertices are
+inserted, and the SAT route cannot use it. The quotient of Corollary 2.5 and Corollary 2.6 combines with
+anchoring only when $H$ fixes every representative.}
+\end{figure}
+
 ### 2.2 The search in five steps
 
 The search extends base states. A base state fixes how the $k$ voters rank $B$; the search inserts
@@ -409,15 +550,18 @@ arcs already decided contradict $T$. A base state extended to $k$ full rankings 
 one that cannot be is eliminated; and $T$ fails to be $k$-inducible exactly when every base state
 is eliminated. Algorithmically, with $T$ and the margin regime as inputs, our approach has 5 steps:
 
-1. **Pick a size.** Choose $b = |B|$, in practice $5$ or $6$.
-2. **Pick a subtournament.** Choose $B$ with $|B| = b$. Only $T|_B$ matters for what follows, so
+1. **Pick a size.** Choose the base size $b$, in practice $5$ or $6$.
+2. **Pick a subtournament.** Choose a set $B$ of $b$ vertices. Only $T|_B$ matters for what follows, so
    the choice can and should be optimised quickly (see Appendix A.4), since the base-state count
    varies by more than two orders of magnitude across the $12$ isomorphism classes at $b = 5$.
 3. **Find its base states.** Enumerate the $k$-tuples of linear orders of $B$ whose supports agree
-   with $T|_B$, counted up to voter permutation by Lemma 2.3.
+   with $T|_B$, counted up to voter permutation by Corollary 2.4.
 4. **Determine the usable symmetries.** Compute $\mathrm{Aut}(T)$ with `nauty` and its orbits,
-   then impose the ordered-pair anchoring of Lemma 2.1, the vertex anchoring of Corollary 2.2, or
-   neither, discarding the base states no anchored witness can use.
+   then impose the ordered-pair anchoring of Corollary 2.2, the vertex anchoring of Corollary 2.3, or
+   neither, discarding the base states no anchored witness can use. If a subgroup $H$ maps $B$, or a
+   subset $C$ of it, onto itself, also keep only the base states above one representative of each
+   $H$-orbit (Corollary 2.5, Corollary 2.6), checking that $H$ fixes the anchoring representatives
+   (Figure 2).
 5. **Run to completion, in parallel across base states.** The verdict is positive as soon as any
    base state yields a witness. It is negative only when *every* live base state has been searched
    to exhaustion.
@@ -426,7 +570,7 @@ Figure A.1 in Appendix A.2 shows all five steps on $P_7$ at $k = 3$.
 Steps 1–4 are fast and user-chosen; step 5 is a parallel computation. The same steps
 describe the SAT route, with step 5 replaced by handing each live base state to a CDCL solver as a
 *cube* (the partial assignment fixing the voters' rankings of $B$), so the two share their
-decomposition and their two lemmas and differ only in what refutes a leaf in the search tree.
+decomposition and their symmetry reductions and differ only in what refutes a leaf in the search tree.
 
 ## 3. Results
 
@@ -435,6 +579,14 @@ The former is the standard notion of inducibility, and the latter asks that
 every arc be carried by exactly three voters against two. Only an unrestricted refutation bounds $N(5)$. 
 However, the lemma below shows that for the Paley family and most tournaments derived from it, the 
 unrestricted inducibility is equivalent to inducibility with margin at most $3$ (i.e. support at most 4).
+
+We also use unit margin as a fast filter for unrestricted inducibility. A unit-margin witness is in
+particular a majority witness, and the unit-margin search is much faster (Appendix A.5), so when the
+question is only whether a tournament is $5$-inducible we search at unit margin first and at plain
+majority only if no unit-margin witness exists. The order-$12$ analysis of Appendix C works this way, and so do several of
+the family searches on $21$ vertices (Appendix G). A tournament that fails the filter but has a
+majority witness is then a unit-margin obstruction found as a by-product, and several of those
+reported below arose so.
 
 **Lemma (3-cycle bound).** *Let $u \to v \to w \to u$ be a directed triangle of $T$ and let
 $\pi_1,\dots,\pi_k$ be any linear orders with $k$ odd. Then*
@@ -454,7 +606,7 @@ argument; we need it for every odd $k$, and in the summed form above.
 **Theorem.** *$P_{23}$ is not $5$-inducible. Consequently $N(5) \le 23$.*
 
 The proof is a search that runs to completion. The base is $\{1,2,3,6,12\}$, which induces the regular 
-tournament on $5$ vertices and gives $8{,}031$ base states. They are reduced to $2{,}591$ by Lemma 2.1, 
+tournament on $5$ vertices and gives $8{,}031$ base states. They are reduced to $2{,}591$ by Corollary 2.2, 
 by requiring one voter to rank either $(1,3)$ or $(1,6)$ as the first pair. None of them produces a witness. 
 This statement is also formally certified in Appendix B.1.
 
@@ -465,12 +617,12 @@ statement for an agenda of fewer than forty-three alternatives, and the first fo
 whose non-realisability a general-purpose solver had been unable to settle.
 
 The same method settles a larger case: $P_{31}$ is not $5$-inducible, over $21{,}009$ base states with 
-a different base, reduced to $4{,}007$ by Lemma 2.1. Appendix A.5 shows how the runtime scales in $q$,
+a different base, reduced to $4{,}007$ by Corollary 2.2. Appendix A.5 shows how the runtime scales in $q$,
 and Appendix A.6 tabulates the cost of every computation in this paper.
 The value of settling $P_{31}$ is to show that the bespoke approach decides $31$-vertex instances on
 a single laptop within a day, something that SAT and ILP solvers are unable to do.
 
-### 3.2 Two tournaments on 22 vertices that five voters cannot produce
+### 3.2 Three tournaments on 22 vertices that five voters cannot produce
 
 $P_{23}$ is one of $37$ doubly regular tournaments on $23$ vertices, which the catalogue of McKay (2026)
 lists up to isomorphism. We write $\Delta_i$ for the $i$-th tournament in that list, with its
@@ -479,28 +631,72 @@ left when vertex $v$ is deleted. Every one of the $37$ is beyond five voters, at
 unrestricted alike (Section 3.7), so the doubly regular tournaments on $23$ vertices are a natural
 place to look for a smaller obstruction one vertex down.
 
-**Theorem.** *The tournaments $\Delta_6 - 5$ and $\Delta_{28} - 5$, on $22$ vertices, are not
-$5$-inducible. Consequently $N(5) \le 22$.*
+**Theorem.** *The tournaments $\Delta_1 - 10$, $\Delta_6 - 5$ and $\Delta_{28} - 5$, on $22$
+vertices, are not $5$-inducible. Consequently $N(5) \le 22$.*
 
-The two are not isomorphic, and neither is isomorphic to the converse of the other, so they are
-two separate obstructions rather than one counted twice. Each has out-degrees $10$ and $11$, eleven
-vertices of each, and every arc lies in at least five directed triangles, so by the $3$-cycle bound
-no arc of a witness could be unanimous. Neither has a non-trivial automorphism, so Lemma 2.1 and
-Corollary 2.2 do not apply and every base state has to be searched. Each proof is a complete search
-over all $8{,}031$ base states of a five-vertex base inducing the regular tournament on five
-vertices, none of which extends to a witness. The two searches together took about $3{,}100$
-cluster core-hours (Appendix A.6). The refutation of $\Delta_6 - 5$ is also formally certified, by
-the same pipeline as those of $P_{19}$ and $P_{23}$ (Appendix B.1).
+The three are pairwise non-isomorphic, and none is isomorphic to the converse of another, so they
+are three separate obstructions rather than one counted more than once. Each has out-degrees $10$
+and $11$, eleven vertices of each, and every arc lies in at least five directed triangles, so by the
+$3$-cycle bound no arc of a witness could be unanimous.
+
+All three share an outline inherited from the doubly regular tournament they come from. Deleting
+a vertex $v$ of a doubly regular tournament on $23$ vertices leaves its $11$ out-neighbours and its
+$11$ in-neighbours. Each of the two sets induces a regular tournament on $11$ vertices, and the
+$121$ arcs between them are such that every out-neighbour of $v$ beats $6$ in-neighbours and every
+in-neighbour beats $5$ out-neighbours. The three obstructions differ in the two halves and in how
+they are joined. In $\Delta_1 - 10$ both halves are $P_{11}$. In $\Delta_{28} - 5$ the two halves
+are converses of each other, each with no non-trivial automorphism. In $\Delta_6 - 5$ the halves
+are neither isomorphic nor converse, and again neither has a non-trivial automorphism. Appendix H
+gives the adjacency matrices of all three, with the two halves as diagonal blocks.
+
+The halves suggest a definition. We call a vertex $v$ of a tournament $T$ a *bisector* if
+$T[N^+(v)]$ is isomorphic to $T[N^-(v)]$ or to its converse, an *isomorphic* or a *converse*
+bisector respectively; a vertex can be both. A tournament is *bisectable* if it has a bisector or
+arises from a tournament with one by deleting a bisector, and *non-bisectable* otherwise. A
+bisector has equal in- and out-degree, so the first case needs odd order and the second even
+order, and a tournament of even order is bisectable exactly when its vertices split into two
+halves of equal size that induce isomorphic or converse tournaments. Bisectable tournaments are
+much easier to enumerate than the others, since one tournament on half the vertices fixes both
+halves. Every doubly regular tournament on at most $23$ vertices is bisectable, whereas $118$ of
+the $722$ on $27$ vertices are not. Our three obstructions cover every case.
+The deleted vertex is a bisector of $\Delta_1$ of both types and a converse bisector of
+$\Delta_{28}$, so $\Delta_1 - 10$ and $\Delta_{28} - 5$ are bisectable, each through a single
+split of its vertices, the one into its two halves. The deleted vertex of $\Delta_6$ is not a
+bisector, and no other split works either, so $\Delta_6 - 5$ is non-bisectable.
+
+The first is the most structured. Figure 1 shows $\Delta_1 - 10$ as two copies of $P_{11}$, on
+$X = \{x_0, \dots, x_{10}\}$ and $Y = \{y_0, \dots, y_{10}\}$, joined by a ladder whose rungs all
+point from $Y$ to $X$, and its automorphism group has order $55$. Its two vertex orbits are $X$
+and $Y$. The automorphisms multiplying every index by a non-zero square fix $x_0$ and $y_0$ and
+form a subgroup $H$ of order $5$, which maps the five out-neighbours of $x_0$ in $X$,
+$B = \{x_1, x_3, x_4, x_5, x_9\}$, onto themselves. $B$ induces the regular tournament on five
+vertices, so it has $8{,}031$ base states, which $H$ groups into $1{,}611$ orbits. Corollary 2.5
+therefore lets the search keep one base state per orbit, and since $H$ fixes $x_0$ and $y_0$, it
+can at the same time anchor on them as the representatives of Corollary 2.3. The complete search
+over the $1{,}611$ representatives finds no witness. It took $97$ core-hours, under nine hours on
+eleven cores of a laptop (Appendix A.6).
+
+The refutation of $\Delta_1 - 10$ is also formally certified (Appendix B.1). The certificate uses
+the quotient of Corollary 2.5 but no anchoring, with a different base,
+$B' = \{y_1, y_3, y_4, y_5, y_9\}$, the five in-neighbours of $y_0$ in $Y$. $H$ maps $B'$ onto
+itself as well, and $B'$ also induces the regular tournament on five vertices, so the certificate
+again has $1{,}611$ orbit representatives out of $8{,}031$ base states.
+
+The other two have no non-trivial automorphism, so none of Corollary 2.2, Corollary 2.3 and Corollary 2.5
+applies and every base state has to be searched. Each proof is a complete search over all
+$8{,}031$ base states of a five-vertex base inducing the regular tournament on five vertices, none
+of which extends to a witness. The two searches together took about $3{,}100$ cluster core-hours
+(Appendix A.6). The refutation of $\Delta_6 - 5$ is also formally certified, by the same pipeline
+as those of $P_{19}$ and $P_{23}$ (Appendix B.1).
 
 Read as a statement about committees, the theorem moves the threshold at which five voters stop
 being enough by one more alternative: on an agenda of twenty-two alternatives there are already
-patterns of pairwise majority that no five-member panel can produce. Both patterns sit one
-alternative away from perfect balance, and neither they nor the tournaments they come from have any
-symmetry: the only automorphism of $\Delta_6$ and of $\Delta_{28}$ is the identity. What defeats a
-small electorate here is therefore balance, not symmetry.
+patterns of pairwise majority that no five-member panel can produce. All three patterns sit one
+alternative away from perfect balance.
 
-Both obstructions are *vertex-critical*: deleting any one of the $22$ vertices of either leaves a
-$5$-inducible tournament, so neither yields a $21$-vertex obstruction by a further deletion.
+All three obstructions are *vertex-critical*: deleting any one of the $22$ vertices of any of them
+leaves a $5$-inducible tournament, so none yields a $21$-vertex obstruction by a further deletion.
+For $\Delta_1 - 10$ this takes only two deletions, one from each vertex orbit.
 Appendix G summarises the wider search below $22$ vertices, which has found no obstruction there.
 
 ### 3.3 Criticality across the Paley family
@@ -524,8 +720,10 @@ gives vertex-criticality. At the other end, $P_{31}$ and $P_{43}$ fail to be ver
 but *not* vertex-critical at unit margin. In other words, $P_{23} -\,v$ is 5-inducible, but not with unit 
 margin, analogous to the following result.
 
-The two $22$-vertex obstructions of Section 3.2 are vertex-critical unrestricted; whether either is
-arc-critical is open.
+The three $22$-vertex obstructions of Section 3.2 are vertex-critical unrestricted. For
+$\Delta_1 - 10$, whose $231$ arcs fall into five orbits under its automorphism group, reversing a
+rung $y_i \to x_i$ of the ladder yields a $5$-inducible tournament; whether the arcs of the other
+four orbits are critical is open, and so is the arc-criticality of the other two obstructions.
 
 ### 3.4 Paley(19) is 5-inducible, but not with unit margin
 
@@ -542,20 +740,20 @@ any five rankings that realise it must settle at least one pair by four votes to
 majority is thus a resource in its own right, separate from the number of voters, and the two do not
 substitute freely for one another.
 
-Our three certified refutations, $P_{23}$ and $\Delta_6 - 5$ at unrestricted margin in Sections 3.1
-and 3.2 and $P_{19}$ at unit margin, are established formally by cube-and-conquer
+Our four certified refutations, $P_{23}$, $\Delta_1 - 10$ and $\Delta_6 - 5$ at unrestricted margin
+in Sections 3.1 and 3.2 and $P_{19}$ at unit margin, are established formally by cube-and-conquer
 computations in which every leaf is refuted by CaDiCaL 2.0.0 (Biere et al. 2020; Pollitt et al. 2023) in LRAT and rechecked by
 `lrat-trim` (Pollitt et al. 2023), a separate program that shares no code with the solver, with the solver's own
-proof checking deliberately disabled. All three are complete on *both* halves (the leaves and the claim
+proof checking deliberately disabled. All four are complete on *both* halves (the leaves and the claim
 that the leaves are exhaustive). Those for $P_{19}$ and $P_{23}$ reduce to the same two human-checked
-lemmas, 2.1 and 2.3; that for $\Delta_6 - 5$, which has no non-trivial automorphism, needs only
-Lemma 2.3 (see Appendix B).
+results, Corollaries 2.2 and 2.4; that for $\Delta_1 - 10$ to Corollaries 2.4 and 2.5; and that for
+$\Delta_6 - 5$, which has no non-trivial automorphism, to Corollary 2.4 alone (see Appendix B).
 
 ### 3.5 Paley(31) and Paley(43) are not vertex-critical
 
 Vertex-criticality is the natural minimality notion for an *obstruction*, a tournament that is
 not $5$-inducible, and $P_{43}$, the first explicit
-non-$5$-inducible tournament (Chindelevitch and Harutyunyan 2026), is the natural candidate.
+non-$5$-inducible tournament in our companion paper, is the natural candidate.
 
 **Theorem.** *Neither $P_{31}$ nor $P_{43}$ is vertex-critical for 5-inducibility.*
 
@@ -567,7 +765,7 @@ automorphism preserves out-degree, hence those two sets, hence extends to $P_q$ 
 Translating so that $v = 0$, that stabiliser is $\{x \mapsto ax : a \in \mathrm{QR}\}$, cyclic
 of order $(q-1)/2$, and it splits the remaining $q - 1$ vertices into exactly two orbits of size
 $(q-1)/2$, namely $\mathrm{QR}$ and its complement. Two representatives, one from each,
-therefore meet every orbit, and the vertex anchoring of Corollary 2.2 applies with those two.
+therefore meet every orbit, and the vertex anchoring of Corollary 2.3 applies with those two.
 
 Each sweep runs over all $8{,}031$ base states of a five-vertex base inducing the regular tournament
 on five vertices: $\{1,2,3,4,13\}$ in $P_{31} - v$ and $\{1,2,3,4,11\}$ in $P_{43} - v$. The two counts
@@ -577,7 +775,7 @@ subtournament and on the margin, and not on $n$.
 Every arc of $P_{q} - v$ lies in at least $(q-3)/4$ directed triangles, so no arc of a majority witness 
 could be unanimous, and margin $\le 3$ is not a restriction at all. The refutation at margin $\le 3$ is therefore
 an unrestricted refutation. We use the same approach for both $q = 31$ and $q = 43$.  
-We thus independently reconfirm the main result of Chindelevitch and Harutyunyan (2026), that $P_{43}$ is not $5$-inducible: if it were,
+We thus independently reconfirm the main result of our companion paper, that $P_{43}$ is not $5$-inducible: if it were,
 so would be $P_{43} - v$, by deleting $v$ from every voter's order.
 
 ### 3.6 Vertex and arc criticality for Paley(23)
@@ -588,7 +786,7 @@ tournament. Consequently it is vertex-critical.*
 Let $T^{e}$ denote $P_{23}$ with the arc $(1,2)$ reversed; since $\mathrm{Aut}(P_{23})$ is transitive on 
 arcs, any two single-arc reversals of $P_{23}$ are isomorphic, so we may pick $(1,2)$ without loss of 
 generality. The computation is a scan of the $8{,}031$ base states of $T^{e}$, but now $T^{e}$ is rigid, 
-so Lemma 2.1 and Corollary 2.2 do not apply. The witness we found was verified independently of the search 
+so Corollary 2.2 and Corollary 2.3 do not apply. The witness we found was verified independently of the search 
 that produced it, by two checks on the five orders: each is a permutation of the $23$ vertices, and the 
 majority tournament they induce agrees with $T^{e}$ in every one of the $253$ arcs and therefore 
 differs from $P_{23}$ in exactly $e$.
@@ -624,7 +822,7 @@ Third, every regular tournament on at most $15$ vertices is inducible at unit ma
 $R_{15} \approx 1.8 \times 10^{10}$ of those on $15$ vertices, and with the 
 instance counts summing to OEIS A096368(7) (OEIS Foundation Inc. 2026c). Likewise, every self-converse tournament on $13$ vertices is 
 inducible at unit margin, over all $S_{13} \approx 9.5 \times 10^{7}$ of them. With the order-$11$ census of 
-Chindelevitch and Harutyunyan (2026) and the order-$12$ analysis of Appendix C, that settles every self-converse tournament on at most $13$ 
+our companion paper and the order-$12$ analysis of Appendix C, that settles every self-converse tournament on at most $13$ 
 vertices.
 
 Fourth, the order $23$ is complete for both families. Every vertex-transitive tournament on $23$
@@ -633,9 +831,11 @@ unit margin or unrestricted. Since reversing every arc preserves inducibility, t
 $19$ classes up to taking the converse, and each was settled by a complete search; $16$ of them ran
 on the cluster, at about $26{,}500$ cluster core-hours together.
 
-Taken together with the Paley results above, these sweeps turn up seventeen tournaments that five
-voters can produce, but not with unit margin: 2 doubly regular ones at order 19, 4 vertex-transitive
-ones at order 21, and 11 circulant ones at order 23.
+Taken together with the Paley results above and the families of Appendix G, these searches turn up
+$42$ tournaments that five voters can produce, but not with unit margin: $2$ doubly regular ones at
+order $19$, $4$ vertex-transitive and $25$ near-doubly regular ones at order $21$, and $11$
+circulant ones at order $23$. Several of them were found incidentally, by the unit-margin filter
+described at the start of this section, rather than sought.
 
 **One family needs no search.** A tournament is *locally transitive* if every in- and
 out-neighbourhood induces a transitive subtournament. Every such tournament is $k$-inducible at
@@ -674,12 +874,18 @@ that the engine could not have performed for itself.
 
 **Question 1:** Is $N(5) = 22$, that is, is every tournament on $21$ vertices $5$-inducible?
 
-Both ends of $13 \le N(5) \le 22$ are constructive and improved from Chindelevitch and Harutyunyan (2026). The unit-margin
+Both ends of $13 \le N(5) \le 22$ are constructive and improve on those of our companion paper. The unit-margin
 obstructions at $n = 19$ and $21$ cannot move the upper one, since every one of them is
-majority-inducible. The evidence below $22$ comes from the descendants of the doubly regular
+majority-inducible. The evidence below $22$ comes mostly from the descendants of the doubly regular
 tournaments on $23$ vertices (Appendix G): every tournament on $20$ vertices obtained from one of them
-by deleting three vertices is $5$-inducible, and so is every one on $21$ vertices below either
-$22$-vertex obstruction.
+by deleting three vertices is $5$-inducible, and so is every one on $21$ vertices below any of the
+three $22$-vertex obstructions.
+
+That evidence has a definite scope. Every class we searched below $22$ vertices was chosen because
+symmetry, a construction, or descent from a known obstruction made it searchable, and Appendix G
+lists them all. These classes cluster around the doubly regular tournaments, where every obstruction
+we know of lies. What they show is that no obstruction on $21$ vertices lies *among them*; they say
+little about the roughly $3 \times 10^{43}$ tournaments on $21$ vertices as a whole.
 
 **Conjecture 2:** $P_{q}$ is not $5$-inducible for any eligible prime $q \geq 23$, i.e. $q \equiv 3 \pmod 4$.
 
@@ -696,7 +902,7 @@ equivalently whether $P_{q}$ minus one vertex is vertex-critical, is open at $q 
 unrestricted is strict (Sections 3.4 and 3.7); whether the second ever is, that is, whether some
 tournament is inducible by five voters but not at margin $\le 3$, is open. The 3-cycle lemma forces
 such a tournament to have an arc in *no* directed triangle, which rules out every regular tournament.
-The conjecture of Chindelevitch and Harutyunyan (2026) is that the inclusion is strict at every odd $k > 3$.
+The conjecture of our companion paper is that the inclusion is strict at every odd $k > 3$.
 
 ---
 
@@ -881,7 +1087,7 @@ Shepardson D, Tovey CA (2009) Smallest tournaments not realizable by $\tfrac{2}{
 \setcounter{figure}{0}\renewcommand{\thefigure}{A.\arabic{figure}}
 
 Both integer programming and satisfiability are central to this project rather than foils for it.
-Every computational claim in the companion paper (Chindelevitch and Harutyunyan 2026) is certified by an integer or linear program,
+Every computational claim in the companion paper is certified by an integer or linear program,
 and the integer program of A.1 below is that paper's formulation B.1, verbatim; the only machine-checked theorem in this paper
 is a SAT computation from end to end, with CaDiCaL (Biere et al. 2020) emitting LRAT proofs that `lrat-trim`
 checks. The claim here is narrow: on this one decision problem, at this one range of sizes, neither
@@ -895,7 +1101,7 @@ ways to add the remaining ones. We choose a *base* $B \subseteq V$ of $b$ vertic
 and write $T|_B$ for the sub-tournament induced on $B$. When $B$ is a base, a *base state of $B$* (we omit 
 $B$ when the context makes it clear) is a $k$-voter profile over $B$ that is consistent with $T|_B$, i.e. 
 $k$ orderings of $B$ whose majorities reproduce $T|_B$ at the margin being asked for. Base states differing 
-only by a relabelling of the voters are counted once (see Lemma 2.3).
+only by a relabelling of the voters are counted once (see Corollary 2.4).
 
 Each base state of $B$ defines a self-contained subproblem: the rankings of $B$ are given, and the question 
 is whether the remaining $n - |B|$ vertices can be inserted so that every arc of $T$ has the right support, 
@@ -962,16 +1168,16 @@ REFINE(D, q, w, u)                            // q = the slot tuple just used fo
 \caption{Algorithm 1 on $P_7$ at $k = 3$, which is $3$-inducible, so the run ends in a witness. 
 A \emph{slot triple} is one gap per voter, of the $4^{3} = 64$ available, and a vertex's domain is
 those triples its arcs to $B$ admit. Here the base is $B = \mathrm{QR}$, the squares modulo 7, 
-and Lemma 2.1 guarantees that at least one voter must rank 1 first and either 2 or 4 second. 
+and Corollary 2.2 guarantees that at least one voter must rank 1 first and either 2 or 4 second. 
 Ranking 4 second forces the other two voters to $241$, the only order getting both $4 \to 1$ and
 $2 \to 4$ right, and $1 \to 2$ is then left with support $1$; so the base state in (b) is the only one.
 \textbf{(a)} The base $T|_B$ on $B = \{1,2,4\}$ in bold; dashed, the arcs at the first vertex
 inserted. \textbf{(b)} Steps 2--4: the base state is forced, and MRV takes the smallest domain.
-\textbf{(c)} Two insertions the search rejects, one by Lemma 2.1 and one by leaving $5$ no slot at all.
+\textbf{(c)} Two insertions the search rejects, one by Corollary 2.2 and one by leaving $5$ no slot at all.
 \textbf{(d)} One that survives, and what it leaves of (b). \textbf{(e)} REFINE lifts each parent
 tuple past the slot just used (unchanged below it, shifted above it, split where the two
 coincide, which is what green marks), and the one new arc then keeps or kills each lift.
-\textbf{(f)} The witness, every arc at support exactly $2$. Without Lemma 2.1 the search returns
+\textbf{(f)} The witness, every arc at support exactly $2$. Without Corollary 2.2 the search returns
 all $7$ witnesses, a single orbit of $\mathrm{Aut}(P_7)$, of order $21$, so the profile is unique
 up to symmetry, as Shepardson and Tovey (2009) report; $\pi$ generates the other two under the $g$
 shown, the map $x \mapsto 2x + 4$ of $\mathbb{F}_7$.}
@@ -1049,7 +1255,7 @@ for like this is worth a factor of about $110$ in wall time.
 
 **Symmetry breaking.** The $k!$ voter symmetry is absorbed exactly by the base-state definition,
 which counts non-decreasing tuples only. For $\mathrm{Aut}(T)$ the engine imposes the anchoring of
-Lemma 2.1 or of Corollary 2.2, whichever is stronger on the tournament: the condition is invariant under
+Corollary 2.2 or of Corollary 2.3, whichever is stronger on the tournament: the condition is invariant under
 permuting voters, so it composes with the base lex-order, and monotone under insertion, so it can
 be tested during the search rather than only at the leaves.
 
@@ -1071,7 +1277,7 @@ computed with. Since $27 = 3^3$, $P_{27}$ must be built over $\mathbb{F}_{27}$ a
 $\mathbb{Z}/27$. $P_{27}$ is the unique most symmetric doubly regular tournament on $27$ vertices,
 with $|\mathrm{Aut}(P_{27})| = 1053 = 3q(q-1)/2$, because the field automorphisms
 contribute (in general $|\mathrm{Aut}(P_q)| = q(q-1)e/2$ when $q = p^e$).
-It is still transitive on arcs and on non-arcs, which is what Lemma 2.1 needs. We ran $q = 27$
+It is still transitive on arcs and on non-arcs, which is what Corollary 2.2 needs. We ran $q = 27$
 to completion and it is not $5$-inducible; since that does not bear on $N(5)$ we report it here
 only as a runtime datapoint.
 
@@ -1121,15 +1327,23 @@ general-purpose methods did not settle for us, the search settles in hours on a 
 All runs in this manuscript were performed on a single laptop (Apple M-series, 14 cores, 24 GB RAM),
 using at most 11 cores concurrently, with the following exceptions, which used a compute cluster:
 the census of regular tournaments on $15$ vertices, the self-converse census of order $13$, the
-order-$12$ census of Appendix C, the two $22$-vertex sweeps of Section 3.2, $16$ of the $19$
+order-$12$ census of Appendix C, the two $22$-vertex sweeps of Section 3.2, part of the certificate
+for $\Delta_1 - 10$, $16$ of the $19$
 unrestricted sweeps of doubly regular tournaments on $23$ vertices in Section 3.7, and most of the
 search of Appendix G. Runtimes are reported in *core-hours*, the workers' running times summed;
-cluster core-hours are marked as such, and are not comparable with laptop ones (Appendix A.5).
+cluster core-hours are marked as such, and are not comparable with laptop ones (Appendix A.5). The certificate for $\Delta_1 - 10$ is the
+exception: it ran partly on each machine, so we report it in laptop-equivalent core-hours. Both
+machines solved $133$ of its groups of five cubes, and on those the cluster took on average about
+$2.1$ times as long as the laptop, between $1.6$ and $3.1$ times for individual groups; we divide
+its cluster time by that average. The factor is an average slowdown rather than an exact exchange
+rate, so the converted total is approximate.
 
 | computation | margin | verdict | core-hours |
 |-------------------------------------------------------|--------------|---------------|-----------:|
 | $P_{19}$, certified refutation | unit | not inducible | $25.1$ |
 | $P_{23}$, certified refutation | unrestricted | not inducible | $236.0$ |
+| $\Delta_1 - 10$, sweep (Corollary 2.5) | unrestricted | not inducible | $96.9$ |
+| $\Delta_1 - 10$, certified refutation (laptop-equivalent) | unrestricted | not inducible | [PLACEHOLDER] |
 | $\Delta_6 - 5$, certified refutation | unrestricted | not inducible | $1{,}292.7$ |
 | $\Delta_6 - 5$, sweep (cluster) | unrestricted | not inducible | $1{,}551.2$ |
 | $\Delta_{28} - 5$, sweep (cluster) | unrestricted | not inducible | $1{,}537.7$ |
@@ -1147,7 +1361,7 @@ Appendix A.5.
 
 ### B.1 The certified refutations
 
-All three machine-checked results follow an established design rather than a new one. *Cube-and-conquer*
+All four machine-checked results follow an established design rather than a new one. *Cube-and-conquer*
 is due to Heule, Kullmann, Wieringa and Biere (2012): split a hard instance into many partial
 assignments (*cubes*), hand each to a CDCL solver, and let the splitting supply the global structure
 the solver cannot find for itself. The standard of *proof* is the one Heule, Kullmann and Marek set
@@ -1172,7 +1386,8 @@ The choice suits the scale. Verifying the Boolean Pythagorean triples
 proof costs about $13{,}000$ core-hours to regenerate the refutations from the published cube
 certificate (Heule 2016), and about $16{,}000$ to check them (Heule et al. 2016). Our
 certificates are orders of magnitude smaller: $25.1$ core-hours for $P_{19}$, $236.0$ for
-$P_{23}$ and $1{,}292.7$ for $\Delta_6 - 5$ cover solving *and* checking. Portable root values, which is exactly the check Section 5.2 supports, 
+$P_{23}$, $1{,}292.7$ for $\Delta_6 - 5$ and [PLACEHOLDER] for $\Delta_1 - 10$ cover solving *and*
+checking. Portable root values, which is exactly the check Section 5.2 supports, 
 can be easily compared by anyone replicating our computation.
 
 For $P_{19}$ at unit margin the instance is the dissent-Boolean encoding of Appendix A.1 at
@@ -1201,6 +1416,17 @@ $742{,}374$ negated cubes, and solves in $82.8$ seconds on one core. This refuta
 expensive of the three, although its tournament is the smallest: with no automorphisms there is
 nothing to break, so every base state reaches the solver, against one in ten for $P_{23}$.
 
+For the $\Delta_1 - 10$ refutation of Section 3.2 the instance is the same encoding as for
+$\Delta_6 - 5$, at $n = 22$ and plain majority. The cubes are the $1{,}611$ orbit representatives
+under $H$ of the $8{,}031$ base states of the five-vertex base $B' = \{13, 15, 16, 20, 22\}$ (in
+the labelling of $\Delta_1$), one per orbit, as Corollary 2.5 licenses; every one is unsatisfiable,
+with an LRAT proof independently verified by `lrat-trim`. The cubes were solved in groups of five,
+part on the laptop and part on the cluster, at about [PLACEHOLDER] laptop-equivalent core-hours
+(Appendix A.6). The coverage half is the same construction as for $P_{23}$, with $8{,}031$ negated
+cubes among its $8{,}467$ clauses over $90$ variables, and solves in $0.08$ seconds on one core. A cube here
+fixes the voters' orders on five vertices rather than six, so the cubes are about $460$ times fewer than
+for $\Delta_6 - 5$, and each is correspondingly harder.
+
 ### B.2 What the certificates do and do not establish
 
 The trust chain has four links:
@@ -1209,17 +1435,21 @@ The trust chain has four links:
 |-------------------------------------------------------|-------------------------------------------------------|
 | every live cube is unsatisfiable | machine-checked: CaDiCaL, rechecked by `lrat-trim` |
 | the cubes cover every lex-canonical base assignment | machine-checked: LRAT, verified by `lrat-trim` |
-| (L1) orbit anchoring loses no generality | human-checked: Lemma 2.1 |
-| (L2) lex-ordering the voters loses no generality | human-checked: Lemma 2.3 |
+| (L1) orbit anchoring loses no generality | human-checked: Corollary 2.2 |
+| (L2) lex-ordering the voters loses no generality | human-checked: Corollary 2.4 |
+| (L3) one base state per orbit loses no generality | human-checked: Corollary 2.5 |
 
-The two human-checked links are proved in Section 2. Lemma 2.1 is what licenses solving only the *live*
+The human-checked links are proved in Section 2. Each certificate uses only some of them:
+$P_{19}$ and $P_{23}$ use (L1) and (L2), $\Delta_1 - 10$ uses (L2) and (L3), and $\Delta_6 - 5$
+uses (L2) alone. Corollary 2.2 is what licenses solving only the *live*
 cubes, in its arc/non-arc form: $\mathrm{Aut}(P_q)$ is transitive on arcs and on non-arcs, so a
-voter's top pair may be assumed to be a fixed arc or a fixed non-arc. Lemma 2.3 licenses the lex
-chain in the coverage computation. For $\Delta_6 - 5$ the chain is one link shorter: with no automorphism to exploit, no orbit break
-is applied and Lemma 2.1 is not used, so only Lemma 2.3 remains human-checked. The lemmas are
+voter's top pair may be assumed to be a fixed arc or a fixed non-arc. Corollary 2.4 licenses the lex
+chain in the coverage computation. Corollary 2.5 licenses solving one base state per orbit of $H$
+for $\Delta_1 - 10$, while the coverage computation still runs over all $8{,}031$ base states.
+$\Delta_6 - 5$ has no automorphism to exploit, so neither orbit argument is used. These results are
 human-checked links not because they are doubtful but because
 nothing in the pipeline checks them; the depth-first engine inherits them, but shares no
-implementation with this one, so their agreement is evidence about the implementations, not the lemmas.
+implementation with this one, so their agreement is evidence about the implementations, not the results.
 
 ## Appendix C. The order-12 case analysis
 
@@ -1240,7 +1470,7 @@ whose out-neighbourhood is $S \subseteq V(L)$. Two observations simplify the ana
 
 By (C1), enumerating all $D_{11}$ order-$11$ classes and settling all $2^{11} = 2{,}048$
 extensions of each settles every order-$12$ tournament; all of the former are $5$-inducible by the
-census of Chindelevitch and Harutyunyan (2026), which is what makes the outer loop available. By (C2), a
+census of the companion paper, which is what makes the outer loop available. By (C2), a
 profile realising $L + S$ may be sought by *inserting* $v$ into a profile realising $L$ with no
 loss of generality, since every profile for $L+S$ arises that way. That is what phase 1 exploits.
 
@@ -1411,12 +1641,12 @@ and up to taking the converse, the levels below the $36$ are as follows.
 
 | vertices | deleted | classes | status |
 |---:|---:|---:|:--------------------------------------------------------------|
-| $22$ | $1$ | $378$ | $2$ searched completely, both obstructions (Section 3.2) |
+| $22$ | $1$ | $378$ | $3$ searched completely, all obstructions (Section 3.2) |
 | $21$ | $2$ | $4{,}108$ | $1{,}173$ settled, all $5$-inducible |
 | $20$ | $3$ | $28{,}724$ | all $5$-inducible |
 
 At $22$ vertices all $378$ classes were first screened at up to $50$ base states each, without a
-single witness, and the two complete searches were chosen from among them. At $21$ vertices the $1{,}173$
+single witness, and the three complete searches were chosen from among them. At $21$ vertices the $1{,}173$
 settled classes include all $506$ two-vertex deletions of $\Delta_6$ and $\Delta_{28}$, so every
 $21$-vertex subtournament of either parent is $5$-inducible, and in particular both $22$-vertex
 obstructions are vertex-critical. The other settled classes are a stratified random sample of $400$, all
@@ -1434,3 +1664,117 @@ Two obstructions on $25$ vertices from other families were descended the same wa
 vertices deleted, and the circulant tournament on $25$ vertices in which every arc lies in six
 directed triangles. Neither is $5$-inducible, by complete searches, and every $21$-vertex
 subtournament of either is $5$-inducible, so neither family yields an obstruction below $22$.
+
+**Other families on $21$ vertices.** We also searched families on $21$ vertices that a
+symmetry or a construction makes enumerable, all of them close to doubly regular. A regular
+tournament on $21$ vertices cannot be doubly regular, since $(21 - 3)/4$ is not an integer; we
+call it *near-doubly regular* if every pair of vertices has $4$ or $5$ common out-neighbours. The
+table below lists every family we searched on $21$ vertices, counted up to isomorphism, with the
+number of classes settled. Every settled class is $5$-inducible, by a witness verified
+independently of the search; none was settled negatively.
+
+| family on $21$ vertices | classes | settled |
+|:------------------------------------------------------------------|------:|------:|
+| two vertices deleted from a doubly regular tournament on $23$ vertices | $4{,}108$ | $1{,}173$ |
+| four vertices deleted from the circulant tournament on $25$ vertices | $506$ | $506$ |
+| six vertices deleted from $P_{27}$ | $65$ | $65$ |
+| vertex-transitive (Section 3.7) | $110$ | $110$ |
+| near-doubly regular, rigid, drawn at random | $78$ | $78$ |
+| near-doubly regular, with a bisector and an automorphism of order $5$ | $50$ | $50$ |
+| near-doubly regular, with a fixed-point-free automorphism of order $3$ | $60$ | [PLACEHOLDER] |
+
+The last count is a lower bound: the enumeration found no new class after its first $225$
+solutions and we stopped it at $4{,}567$, but it was not run to completion. In the two families
+with an automorphism, several classes are not $5$-inducible at unit margin and need a majority
+witness: $20$ of the $50$ with a bisector, and all $5$ of the $60$ that we tested at unit margin.
+
+## Appendix H. The three obstructions on 22 vertices
+
+This appendix lists the adjacency matrices of the three tournaments of Section 3.2, so that each can
+be checked without the catalogue of McKay (2026). Vertices carry their labels in the doubly regular
+parent $\Delta_i$. Rows and columns list the out-neighbours of the deleted vertex first and its
+in-neighbours second, each in increasing order, and the space in each row separates the two halves.
+The entry in row $u$ and column $w$ is $1$ if $u$ beats $w$, and the diagonal is marked $-$. In each
+matrix the two diagonal blocks are regular tournaments on $11$ vertices, every out-neighbour beats
+$6$ in-neighbours, and every in-neighbour beats $5$ out-neighbours.
+
+**$\Delta_{1} - 10$.** Out-neighbours of vertex $10$: $2, 5, 7, 9, 11, 13, 15, 16, 20, 21, 22$; in-neighbours: $1, 3, 4, 6, 8, 12, 14, 17, 18, 19, 23$.
+
+```
+  2 | -1100111000 01110011100
+  5 | 0-101010101 00011110101
+  7 | 00-11101001 01100100111
+  9 | 110-0001101 01001111010
+ 11 | 1001-110100 00111001011
+ 13 | 01010-10011 10110110010
+ 15 | 001100-1110 11011000110
+ 16 | 0100110-110 11101010001
+ 20 | 10100100-11 10101101100
+ 21 | 111110000-0 10000011111
+ 22 | 1000101101- 11010101001
+  1 | 11111000000 -1111100000
+  3 | 01001100110 0-010101110
+  4 | 01010010011 01-01001101
+  6 | 00110001110 001-0111001
+  8 | 10100100011 0101-010011
+ 12 | 10001011010 00101-10110
+ 14 | 00101010101 111000-1010
+ 17 | 01100111000 1000110-011
+ 18 | 00011101001 10011011-00
+ 19 | 11000001101 101100001-1
+ 23 | 10010110100 1100011010-
+```
+
+**$\Delta_{6} - 5$.** Out-neighbours of vertex $5$: $6, 7, 8, 9, 12, 14, 15, 16, 21, 22, 23$; in-neighbours: $1, 2, 3, 4, 10, 11, 13, 17, 18, 19, 20$.
+
+```
+  6 | -1010010101 00011101101
+  7 | 0-111101000 00001111110
+  8 | 10-10100011 01100111001
+  9 | 000-1101110 01111000101
+ 12 | 1010-010101 01101010110
+ 14 | 10001-01101 10110101010
+ 15 | 011101-0100 10110010011
+ 16 | 1010101-010 10011011001
+ 21 | 01100001-11 11010110100
+ 22 | 110011100-0 11000100111
+ 23 | 0101001101- 11101001010
+  1 | 11111000000 -1111100000
+  2 | 11000111000 0-110011100
+  3 | 11000001110 00-01110011
+  4 | 01101000011 001-0001111
+ 10 | 00100110110 0101-101010
+ 11 | 00011011001 01010-10011
+ 13 | 10010100011 100110-0110
+ 17 | 00011010110 1010011-100
+ 18 | 00100111001 10101100-01
+ 19 | 10110001100 110000011-1
+ 20 | 01001100101 1100101100-
+```
+
+**$\Delta_{28} - 5$.** Out-neighbours of vertex $5$: $6, 7, 9, 10, 12, 14, 15, 16, 20, 21, 23$; in-neighbours: $1, 2, 3, 4, 8, 11, 13, 17, 18, 19, 22$.
+
+```
+  6 | -1001010110 00011101101
+  7 | 0-111101000 00001111110
+  9 | 10-01100101 01101010101
+ 10 | 101-0010101 01010111010
+ 12 | 0001-011011 01111000110
+ 14 | 10011-01100 10110001011
+ 15 | 011001-0110 10111010010
+ 16 | 1011001-010 10100110101
+ 20 | 01001001-11 11100111000
+ 21 | 011101000-1 11010001101
+ 23 | 1100011100- 11001100011
+  1 | 11111000000 -1111100000
+  2 | 11000111000 0-110011100
+  3 | 11010000011 00-01011011
+  4 | 01100001101 001-0100111
+  8 | 00010101110 0101-110001
+ 11 | 00101110010 01100-01011
+ 13 | 10001100011 100101-0110
+ 17 | 00101011001 1001101-001
+ 18 | 00010110101 10101101-00
+ 19 | 10100001110 110010011-0
+ 22 | 01011010100 1100001011-
+```

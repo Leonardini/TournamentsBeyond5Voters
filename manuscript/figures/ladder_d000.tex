@@ -1,0 +1,65 @@
+\documentclass[border=2pt]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\draw[black!65] (0.0,2.300) -- (0.0,-2.300);
+\draw[black!45] (0.0,2.300) arc[start angle=90,end angle=270,radius=2.300];
+\node[font=\small] at (-1.426,0) {$P_{11}$};
+\node[font=\small] at (0.0,2.600) {$X$};
+\fill[black] (0.0,2.100) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,2.100) {$x_{0}$};
+\fill[black] (0.0,1.680) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,1.680) {$x_{1}$};
+\fill[black] (0.0,1.260) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,1.260) {$x_{2}$};
+\fill[black] (0.0,0.840) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,0.840) {$x_{3}$};
+\fill[black] (0.0,0.420) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,0.420) {$x_{4}$};
+\fill[black] (0.0,0.000) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,0.000) {$x_{5}$};
+\fill[black] (0.0,-0.420) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,-0.420) {$x_{6}$};
+\fill[black] (0.0,-0.840) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,-0.840) {$x_{7}$};
+\fill[black] (0.0,-1.260) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,-1.260) {$x_{8}$};
+\fill[black] (0.0,-1.680) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,-1.680) {$x_{9}$};
+\fill[black] (0.0,-2.100) circle[radius=0.055];
+\node[font=\scriptsize,anchor=east] at (-0.080,-2.100) {$x_{10}$};
+\draw[black!65] (4.2,2.300) -- (4.2,-2.300);
+\draw[black!45] (4.2,2.300) arc[start angle=90,end angle=-90,radius=2.300];
+\node[font=\small] at (5.626,0) {$P_{11}$};
+\node[font=\small] at (4.2,2.600) {$Y$};
+\fill[black] (4.2,2.100) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,2.100) {$y_{0}$};
+\fill[black] (4.2,1.680) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,1.680) {$y_{1}$};
+\fill[black] (4.2,1.260) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,1.260) {$y_{2}$};
+\fill[black] (4.2,0.840) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,0.840) {$y_{3}$};
+\fill[black] (4.2,0.420) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,0.420) {$y_{4}$};
+\fill[black] (4.2,0.000) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,0.000) {$y_{5}$};
+\fill[black] (4.2,-0.420) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,-0.420) {$y_{6}$};
+\fill[black] (4.2,-0.840) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,-0.840) {$y_{7}$};
+\fill[black] (4.2,-1.260) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,-1.260) {$y_{8}$};
+\fill[black] (4.2,-1.680) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,-1.680) {$y_{9}$};
+\fill[black] (4.2,-2.100) circle[radius=0.055];
+\node[font=\scriptsize,anchor=west] at (4.280,-2.100) {$y_{10}$};
+\draw[thick,-{Stealth[length=2.2mm]},black!75,shorten <=3pt,shorten >=3pt] (4.2,2.100) -- (0,2.100);
+\draw[thick,-{Stealth[length=2.2mm]},black!75,shorten <=3pt,shorten >=3pt] (4.2,1.680) -- (0,1.680);
+\draw[thick,-{Stealth[length=2.2mm]},black!75,shorten <=3pt,shorten >=3pt] (4.2,1.260) -- (0,1.260);
+\draw[thick,-{Stealth[length=2.2mm]},black!75,shorten <=3pt,shorten >=3pt] (4.2,-2.100) -- (0,-2.100);
+\node at (2.1,-0.420) {$\vdots$};
+\end{tikzpicture}
+\end{document}

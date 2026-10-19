@@ -513,6 +513,52 @@ if [ -f "$ROOT/evidence/d005mv04_sweep_markers.tar.zst" ]; then
 fi
 
 echo
+echo "== 8f. Delta_1 - 10: one base state per H-orbit, every one exhausted =="
+# Section 3.2's search of Delta_1 - 10 kept one base state per orbit of an order-5
+# subgroup H of Aut (Corollary 2.5), anchored on the two vertices H fixes (Corollary
+# 2.3).  The audit derives Aut, H, the base, the 8,031 base states and the 1,611
+# representatives from the bits, then requires a clean marker for each.
+QA=$ROOT/verify/quotient_sweep_audit.py
+QH=$ROOT/tournaments/drt23_del/d000_mv09.bits; QM=$ROOT/evidence/d000mv09_sweep_markers.tar.zst
+if [ -f "$QM" ]; then
+  if out=$(python3 "$QA" "$QH" "$QM" 2>&1); then ok "$(echo "$out" | tail -1)"
+  else bad "the Delta_1 - 10 search does not cover its representatives"; echo "$out" | sed 's/^/        /'; fi
+  if python3 "$QA" "$QH" "$QM" --drop 100 >/dev/null 2>&1; then
+    bad "control did not fire: a representative's marker was removed and the search still read complete"
+  else ok "control: removing one representative's marker breaks the Delta_1 - 10 search, as it must"; fi
+else warn "d000mv09_sweep_markers.tar.zst absent"; fi
+
+echo
+echo "== 8g. the 25 near-doubly regular unit-margin-only tournaments on 21 vertices =="
+# Section 3.7 and Appendix G: each is near-doubly regular, has a majority witness,
+# and has a complete unit-margin search with no witness.  Controls: one marker
+# removed, and one arc of one tournament reversed, must each fail.
+NA=$ROOT/verify/near_dr21_audit.py; ND=$ROOT/verdicts/near_dr21; NC=$ROOT/evidence/near_dr21_unit_covers.tar.zst
+if [ -f "$NC" ]; then
+  if out=$(python3 "$NA" "$ND" "$NC" 2>&1); then ok "$(echo "$out" | tail -1)"
+  else bad "a near-doubly regular unit-margin-only verdict does not re-derive"; echo "$out" | sed 's/^/        /'; fi
+  if python3 "$NA" "$ND" "$NC" --drop zr21_1 >/dev/null 2>&1; then
+    bad "control did not fire: a unit-margin marker was removed and the search still read complete"
+  else ok "control: removing one unit-margin marker is caught, as it must be"; fi
+  if python3 "$NA" "$ND" "$NC" --flip g21_00002 >/dev/null 2>&1; then
+    bad "control did not fire: a tournament with one arc reversed still passed"
+  else ok "control: reversing one arc of one tournament is caught, as it must be"; fi
+else warn "near_dr21_unit_covers.tar.zst absent"; fi
+
+echo
+echo "== 8h. Delta_1 - 10 with one rung reversed is 5-inducible =="
+# Section 3.3: the arcs of Delta_1 - 10 fall into five Aut-orbits, of 55, 55, 55, 55
+# and 11 arcs; reversing an arc of the 11, a rung y_i -> x_i, leaves a tournament
+# with a majority witness.  Control: the same witness on a non-rung reversal fails.
+RR=$ROOT/verify/rung_reversal.py; RW=$ROOT/verdicts/d000mv09_rung/d000mv09_r01_15.log
+if out=$(python3 "$RR" "$ROOT/tournaments/drt23_del/d000_mv09.bits" 1 15 "$RW" 2>&1); then
+  ok "$(echo "$out" | head -1 | cut -c1-150)"; ok "$(echo "$out" | tail -1 | cut -c1-150)"
+else bad "the rung reversal of Delta_1 - 10 does not check"; echo "$out" | sed 's/^/        /'; fi
+if python3 "$RR" "$ROOT/tournaments/drt23_del/d000_mv09.bits" 1 2 "$RW" >/dev/null 2>&1; then
+  bad "control did not fire: a non-rung reversal passed"
+else ok "control: the same witness on a non-rung reversal fails, as it must"; fi
+
+echo
 echo "== 8d. below 22 vertices: every witness, against a host rebuilt from its name =="
 # Each settled host is named after its parent and the deleted vertices, and
 # verify_descent_witnesses.py rebuilds it from the parent's bits -- never from a
@@ -552,8 +598,8 @@ if [ -n "$LABELG" ]; then
   else
     ok "all $(wc -l < "$TMP/n21names" | tr -d ' ') settled names are rows of HOSTS_level2.tsv, hence distinct classes"
   fi
-  # Vertex-criticality of both 22-vertex obstructions, matched by class.
-  for h in d005_mv04 d027_mv04; do
+  # Vertex-criticality of all three 22-vertex obstructions, matched by class.
+  for h in d005_mv04 d027_mv04 d000_mv09; do
     if out=$(python3 "$ROOT/verify/critical_deletions.py" "$DD/$h.bits" \
                "$DD/HOSTS_level2.tsv" "$TMP/n21names" --labelg "$LABELG" 2>&1); then
       ok "$out"
@@ -624,13 +670,15 @@ else
 fi
 
 echo
-echo "== 8e. the two 22-vertex obstructions are what Section 3.2 says they are =="
-# Out-degrees 10 and 11, every arc in at least five directed triangles, trivial
-# automorphism group, and neither isomorphic nor converse to the other.  The
-# parents d005 and d027 are rigid too.  Rigidity is decided with labelg alone.
+echo "== 8e. the three 22-vertex obstructions are what Section 3.2 says they are =="
+# Out-degrees 10 and 11, every arc in at least five directed triangles, and no two
+# isomorphic or converse to each other.  Delta_6 - 5 and Delta_28 - 5 have trivial
+# automorphism group, and so do their parents d005 and d027; Delta_1 - 10 has two
+# vertex orbits (its group, of order 55, is derived in check 8f).  Rigidity and
+# orbits are decided with labelg alone.
 if [ -n "$LABELG" ]; then
   out=$(python3 "$ROOT/verify/host_facts.py" --labelg "$LABELG" "$DD/d005_mv04.bits" \
-          "$DD/d027_mv04.bits" "$D/d005.bits" "$D/d027.bits" 2>&1)
+          "$DD/d027_mv04.bits" "$DD/d000_mv09.bits" "$D/d005.bits" "$D/d027.bits" 2>&1)
   for h in d005_mv04 d027_mv04; do
     if echo "$out" | grep -q "^$h: n=22, out-degrees 10 x11, 11 x11, every arc in >= 5 directed triangles, automorphism group TRIVIAL"; then
       ok "$(echo "$out" | grep "^$h:")"
@@ -638,15 +686,32 @@ if [ -n "$LABELG" ]; then
       bad "$h does not have the stated structure"; echo "$out" | grep "^$h" | sed 's/^/        /'
     fi
   done
+  if echo "$out" | grep -q "^d000_mv09: n=22, out-degrees 10 x11, 11 x11, every arc in >= 5 directed triangles, automorphism group non-trivial (2 vertex orbits)"; then
+    ok "$(echo "$out" | grep "^d000_mv09:")"
+  else
+    bad "d000_mv09 does not have the stated structure"; echo "$out" | grep "^d000_mv09" | sed 's/^/        /'
+  fi
   for h in d005 d027; do
     if echo "$out" | grep -q "^$h: .*automorphism group TRIVIAL"; then ok "parent $h is rigid"
     else bad "parent $h is not rigid"; fi
   done
-  if echo "$out" | grep -q '^d005_mv04 vs d027_mv04: not isomorphic, not converse to each other'; then
-    ok "d005_mv04 and d027_mv04 are neither isomorphic nor converse to each other"
+  if [ "$(echo "$out" | grep -cE '^d0[0-9]+_mv[0-9]+ vs d0[0-9]+_mv[0-9]+: not isomorphic, not converse to each other')" = 3 ]; then
+    ok "no two of the three are isomorphic or converse to each other"
   else
-    bad "the two obstructions are related"; echo "$out" | grep vs | sed 's/^/        /'
+    bad "two of the obstructions are related"; echo "$out" | grep -E '^d0[0-9]+_mv[0-9]+ vs d0[0-9]+_mv' | sed 's/^/        /'
   fi
+  # Delta_1 - 10 is d000 (Delta_1) with vertex 9 (0-based) deleted, the rest in order
+  if python3 -c "
+import sys
+def adj(p):
+    s=''.join(open(p).read().split()); n=int(round((1+(1+8*len(s))**.5)/2)); A=[[0]*n for _ in range(n)]; k=0
+    for i in range(n):
+        for j in range(i+1,n): A[i][j]=int(s[k]); A[j][i]=1-A[i][j]; k+=1
+    return A
+P=adj('$D/d000.bits'); H=adj('$DD/d000_mv09.bits'); keep=[v for v in range(23) if v!=9]
+sys.exit(0 if all(P[keep[i]][keep[j]]==H[i][j] for i in range(22) for j in range(22)) else 1)"; then
+    ok "d000_mv09 is d000 with vertex 9 deleted, the rest in order"
+  else bad "d000_mv09 is not d000 less vertex 9"; fi
   # CONTROL: the rigidity test must see Paley(23)'s symmetry.
   if python3 "$ROOT/verify/host_facts.py" --labelg "$LABELG" "$ROOT/tournaments/p23_paley.bits" \
        2>&1 | grep -q 'non-trivial (1 vertex orbits)'; then

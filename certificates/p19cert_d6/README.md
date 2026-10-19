@@ -74,7 +74,7 @@ Rebuild with `../certroot.py` (see its docstring for arguments).
 both "Paley(19)" and differ in `adj[0][1]`, so a reproducer using the other sign
 convention gets the same VERDICT and a different ROOT. `p19_cert.v2.portable.txt`
 closes that by committing to the adjacency itself, and states the
-anchoring in the general form of Lemma 2.1 rather than Paley's two-orbit
+anchoring in the general form of Corollary 2.2 rather than Paley's two-orbit
 spelling:
 
     host_sha256 = 9729da99…  (sha256 of tournaments/p19_paley.bits, canonical

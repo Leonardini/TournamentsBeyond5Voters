@@ -17,7 +17,7 @@ that it is right:
       domain recomputed from scratch, which is the claim panel (c) draws;
   T4  every arc of every witness has support exactly (k+1)/2 even when the
       search is run at majority, which is what the 3-cycle bound predicts here;
-  T5  imposing Lemma 2.1 during the search only ever removes nodes: the anchored
+  T5  imposing Corollary 2.2 during the search only ever removes nodes: the anchored
       search visits a subtree of the unanchored one, and keeps one witness;
   T6  the witness set does not depend on the decomposition -- every base of
       order 3, 4 and 5 returns the same profiles up to voter permutation;
@@ -97,7 +97,7 @@ def pair_orbits(A, group):
 def anchor_reps(A, group, B):
     """One representative per ordered-pair orbit, chosen inside B when possible.
 
-    Returns (reps, all_inside).  Lemma 2.1 may invalidate base states only when
+    Returns (reps, all_inside).  Corollary 2.2 may invalidate base states only when
     every representative lies inside B, so the flag is what licenses that use.
     """
     reps = []
@@ -139,7 +139,7 @@ def profile_induces(orders, A, S, k, regime):
 def base_states(A, B, k, regime):
     """k-voter profiles over B consistent with T|_B, up to voter permutation.
 
-    Lemma 2.3 is absorbed by keeping only non-decreasing tuples of orders.
+    Corollary 2.4 is absorbed by keeping only non-decreasing tuples of orders.
     """
     Bs = sorted(B)
     orders = sorted(itertools.permutations(Bs))
@@ -217,7 +217,7 @@ def insert(orders, v, p):
 
 
 def anchored_alive(orders, S, reps):
-    """Can this partial profile still meet the condition of Lemma 2.1?
+    """Can this partial profile still meet the condition of Corollary 2.2?
 
     Some voter must end with a_i first and b_i second.  From a partial profile
     that is still possible exactly when, for some representative and some voter,

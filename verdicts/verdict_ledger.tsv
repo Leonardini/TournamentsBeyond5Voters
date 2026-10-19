@@ -170,13 +170,38 @@ t21_099	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
 t21_100	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
 t21_101	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
 t21_102	21	4	SAT	SAT (implied by margin-1)	exact	vt21_recover/verdicts.tsv
-t21_103	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
-t21_104	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
-t21_105	21	5	SAT	SAT (implied by margin-1)	exact	vt21_certs/verdicts.tsv
-t21_106	21	5	SAT	SAT (implied by margin-1)	exact	vt21_certs/verdicts.tsv
-t21_107	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
-t21_108	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
-t21_109	21	5	SAT	SAT (implied by margin-1)	exact	vt21_hosts/verdicts.tsv
+t21_103	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_104	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_105	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_106	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_107	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_108	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_109	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
+t21_110	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
+t21_111	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_112	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_113	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_114	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_115	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_116	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_117	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_118	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_119	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_120	21	5	SAT	SAT (implied by margin-1)	exact	vt21_certs/verdicts.tsv
+t21_121	21	5	SAT	SAT (implied by margin-1)	exact	vt21_certs/verdicts.tsv
+t21_122	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_123	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_124	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_125	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_126	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_127	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_128	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_129	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_130	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_131	21	5	UNSAT	SAT	majority	near_dr21/verdicts.tsv
+t21_132	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
+t21_133	21	5	UNSAT	SAT	majority	vt21_hosts/verdicts.tsv;vt21_maj/vt21_maj.tsv
+t21_134	21	5	SAT	SAT (implied by margin-1)	exact	vt21_hosts/verdicts.tsv
 t22_000	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv
 t22_001	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv
 t23_000	23	1	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv

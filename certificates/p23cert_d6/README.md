@@ -80,7 +80,7 @@ and their sha256 are committed inside the cert blocks.
 both "Paley(23)" and differ in `adj[0][1]`, so a reproducer using the other sign
 convention gets the same VERDICT and a different ROOT. `p23_cert.v2.portable.txt`
 closes that by committing to the adjacency itself, and states the
-anchoring in the general form of Lemma 2.1 rather than Paley's two-orbit
+anchoring in the general form of Corollary 2.2 rather than Paley's two-orbit
 spelling:
 
     host_sha256 = fe06a435…  (sha256 of tournaments/p23_paley.bits, canonical

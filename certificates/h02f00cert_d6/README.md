@@ -36,12 +36,12 @@ convention a directory uses and refuses one that mixes both.
 ## Two things are shorter here than for Paley(19)
 
 **No anchoring, so no anchoring lemma is in the trust chain.** Both forms buy a
-reduction only when `Aut` has few orbits -- Lemma 2.1 needs one representative
-ordered pair per orbit on ordered pairs, Corollary 2.2 one vertex per orbit on
+reduction only when `Aut` has few orbits -- Corollary 2.2 needs one representative
+ordered pair per orbit on ordered pairs, Corollary 2.3 one vertex per orbit on
 vertices. `h02_f00` is **rigid**, so every orbit is a singleton, a full set of
 representatives is everything, and neither lemma removes a single base state.
 **All 202,129 were run**, roughly six times the cube count a Paley-style
-two-orbit break would have given. Only Lemma 2.3 (voters may be lex-ordered)
+two-orbit break would have given. Only Corollary 2.4 (voters may be lex-ordered)
 remains human. The block records this as `anchoring=none`, which is a statement
 that the lemma is ABSENT from the chain, not merely satisfied.
 

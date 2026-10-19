@@ -64,6 +64,12 @@ CERT_PORTABLE, and `--expect-portable` asserts exactly that.
                 --k .. --margin .. --base .. [--arc u v --non u v] --cubes N \
                 --root-cnf HEX --root-proofs HEX \
                 --cover-cnf-sha HEX --cover-proof-sha HEX [--out PREFIX]
+                [--quotient h(0) h(1) ... h(n-1)]
+
+  `--quotient` records COROLLARY 2.5 (the base quotient): an automorphism h of
+  the host with h(B) = B, under which only one cube per h-orbit was solved.  It
+  adds a `quotient=` line after `anchoring=`, and ONLY when given, so every
+  block issued without it stays byte-identical.
 """
 import argparse, hashlib, os, sys
 
@@ -121,17 +127,17 @@ def build_anchoring(a, n, bits_path):
     explains a `cubes=` count smaller than the host's full base-state count, and
     without it the search half and the coverage half appear to disagree.
 
-    Section 2 gives TWO anchorings, alternatives rather than a sequence, each
+    Section 2.1 gives TWO anchorings, alternatives rather than a sequence, each
     without loss of generality on its own:
 
-      LEMMA 2.1 (ordered-pair anchoring)  one representative ordered pair from
+      COROLLARY 2.2 (ordered-pair anchoring)  one representative ordered pair from
         each Aut-orbit on ordered pairs; some voter's top two is one of them.
           pair-orbit(p1=0,1;p2=2,1)
         A Paley host has exactly TWO such orbits -- the arcs and the non-arcs --
         which is the only case the v1 blocks could express, with `arc=`/`non=`.
         The general form takes m representatives.
 
-      COROLLARY 2.2 (vertex anchoring)  one representative VERTEX from each
+      COROLLARY 2.3 (vertex anchoring)  one representative VERTEX from each
         Aut-orbit on vertices; some voter ranks one of them first.
           vertex-orbit(v1=0;v2=3;v3=7)
 
@@ -153,7 +159,7 @@ def build_anchoring(a, n, bits_path):
                         ('vertex', list(a.vertex_anchor)) if a.vertex_anchor else None)
             if x is not None]
     if len(fams) > 1:
-        sys.exit("Lemma 2.1 and Corollary 2.2 are ALTERNATIVES, each WLOG on its own.\n"
+        sys.exit("Corollary 2.2 and Corollary 2.3 are ALTERNATIVES, each WLOG on its own.\n"
                  "Give at most one of --arc/--non, --pair-anchor, --vertex-anchor.")
     if not fams:
         return "none"
@@ -180,6 +186,34 @@ def build_anchoring(a, n, bits_path):
                                     for i, (u, v) in enumerate(reps, 1)) + ")"
 
 
+def build_quotient(a, n, bits_path):
+    """The `quotient=` line, or None.  COROLLARY 2.5: an automorphism h of the
+    host that maps the base onto itself; the solved cubes are one per h-orbit of
+    base states, so `cubes=` counts orbit representatives while the coverage half
+    still ranges over every base state.  Checked here, and again by
+    tools/check_cert_portable.py from the shipped bytes: h is a permutation of
+    0..n-1, an automorphism of THIS host, and h(B) = B.  Not combined with
+    anchoring (Corollary 2.5(b) needs h to fix the representatives, and no
+    certificate so far has needed both)."""
+    if not a.quotient:
+        return None
+    h = list(a.quotient)
+    if sorted(h) != list(range(n)):
+        sys.exit(f"--quotient is not a permutation of 0..{n - 1}")
+    _, b, _ = canonical_bits(bits_path)
+    adj = [[0] * n for _ in range(n)]; t = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            adj[i][j], adj[j][i] = (1, 0) if b[t] == '1' else (0, 1); t += 1
+    if any(adj[h[i]][h[j]] != adj[i][j] for i in range(n) for j in range(n)):
+        sys.exit("--quotient is not an automorphism of the host")
+    if sorted(h[v] for v in a.base) != sorted(a.base):
+        sys.exit("--quotient does not map the base onto itself")
+    if a.arc or a.pair_anchor or a.vertex_anchor:
+        sys.exit("--quotient is not combined with anchoring here")
+    return "automorphism(" + ",".join(map(str, h)) + ")"
+
+
 a = argparse.ArgumentParser(add_help=True)
 for f in ('dir', 'cover-cnf', 'cover-proof', 'cover-cnf-sha', 'cover-proof-sha',
           'margin', 'root-cnf', 'root-proofs', 'out', 'from-v1',
@@ -193,11 +227,14 @@ a.add_argument('--cubes', type=int)
 a.add_argument('--base', nargs='+', type=int)
 a.add_argument('--arc', nargs=2, type=int); a.add_argument('--non', nargs=2, type=int)
 a.add_argument('--pair-anchor', nargs='+', type=int, metavar='U V',
-               help='Lemma 2.1 in general form: a flat list u1 v1 u2 v2 ... of one '
+               help='Corollary 2.2 in general form: a flat list u1 v1 u2 v2 ... of one '
                     'representative ordered pair per Aut-orbit on ordered pairs')
 a.add_argument('--vertex-anchor', nargs='+', type=int, metavar='V',
-               help='Corollary 2.2 instead: one representative VERTEX per Aut-orbit '
+               help='Corollary 2.3 instead: one representative VERTEX per Aut-orbit '
                     'on vertices')
+a.add_argument('--quotient', nargs='+', type=int, metavar='H',
+               help='Corollary 2.5, the base quotient: the automorphism h as its '
+                    'image list h(0) .. h(n-1); v2 only')
 a = a.parse_args()
 
 # ---------------------------------------------------------------- lift v1
@@ -249,6 +286,8 @@ cov_cnf_h, cov_cnf_src = component(a.cover_cnf, a.cover_cnf_sha, 'cover-cnf')
 cov_prf_h, cov_prf_src = component(a.cover_proof, a.cover_proof_sha, 'cover-proof')
 
 # ------------------------------------------------------------ build blocks
+if a.quotient and not a.v2:
+    sys.exit("--quotient needs a CERT-v2 block")
 if not a.v2:
     portable_block = (
         "CERT-v1 portable\n"
@@ -278,6 +317,7 @@ else:
     if (a.arc is None) != (a.non is None):
         sys.exit("--arc and --non must be given together")
     anchoring = build_anchoring(a, host_n, a.host_bits)
+    quotient = build_quotient(a, host_n, a.host_bits)
     portable_block = (
         "CERT-v2 portable\n"
         f"host_name={a.host_name}\n"
@@ -288,6 +328,7 @@ else:
         f"k={a.k}\nmargin={a.margin}\n"
         f"base={','.join(map(str, a.base))}\n"
         f"anchoring={anchoring}\n"
+        + (f"quotient={quotient}\n" if quotient else "") +
         f"cubes={a.cubes}\n"
         f"search_root_cnf={a.root_cnf}\n"
         f"split_cover_cnf={cov_cnf_h}\n")

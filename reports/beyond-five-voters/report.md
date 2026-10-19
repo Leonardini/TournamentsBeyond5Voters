@@ -168,7 +168,7 @@ there a cap voids the verdict.
 
 All **8,031** base states of the published decomposition were searched to exhaustion. **8,031** returned `RESULT UNSAT` with `capped=0`; **0** were missing from the index cover, **0** were extra, **0** were capped, and **0** produced a witness. The refutation is therefore complete, and $N(5) \le 23$ follows.
 
-It cost **38.64 core-hours** against the paper's 34.03, a ratio of 1.14. Of the 8,031 base states only **2,571** consumed more than a millisecond; the other 5,460 were eliminated by the orbit anchoring of Lemma 2.1 before a vertex was inserted. The paper puts the live count at 2,591, and the 20-state gap is the anchoring pruning some live states faster than the timer resolves. No node count is quoted here: this harness mis-scraped that field, as the correction below sets out.
+It cost **38.64 core-hours** against the paper's 34.03, a ratio of 1.14. Of the 8,031 base states only **2,571** consumed more than a millisecond; the other 5,460 were eliminated by the orbit anchoring of Corollary 2.2 before a vertex was inserted. The paper puts the live count at 2,591, and the 20-state gap is the anchoring pruning some live states faster than the timer resolves. No node count is quoted here: this harness mis-scraped that field, as the correction below sets out.
 
 ### Where the time actually goes
 

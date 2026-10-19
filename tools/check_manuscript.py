@@ -525,16 +525,26 @@ def main(mdpath, as_json):
         by_n = {}
         for r in sep:
             by_n[int(r[1])] = by_n.get(int(r[1]), 0) + 1
-        m = re.search(r'turn up (\w+) tournaments that five\s*\n?voters can produce, but '
-                      r'not with unit margin: (\d+) doubly regular ones at order (\d+), '
-                      r'(\d+) vertex-transitive\s*\n?ones at order (\d+), and (\d+) '
-                      r'circulant ones at order (\d+)', md)
+        # "...turn up 42 tournaments that five voters can produce, but not with unit
+        # margin: 2 doubly regular ones at order 19, 4 vertex-transitive and 25
+        # near-doubly regular ones at order 21, and 11 circulant ones at order 23."
+        # Every count before an "at order N" is credited to N, and the counts must
+        # also add up to the total the sentence opens with.
+        flat = re.sub(r'[${}]', '', re.sub(r'\s+', ' ', md))
+        m = re.search(r'turn up (\d+) tournaments that five voters can produce, but '
+                      r'not with unit margin: ([^.]*)\.', flat)
         if m:
-            want = {int(m.group(3)): int(m.group(2)), int(m.group(5)): int(m.group(4)),
-                    int(m.group(7)): int(m.group(6))}
-            record('LEDGER', 'the %s unit-margin-only obstructions' % m.group(1), want,
-                   by_n, want == by_n,
-                   'ledger rows with margin1 = UNSAT and majority = SAT')
+            want, acc = {}, []
+            for tok in re.finditer(r'at order (\d+)|(\d+)', m.group(2)):
+                if tok.group(1):
+                    want[int(tok.group(1))] = want.get(int(tok.group(1)), 0) + sum(acc)
+                    acc = []
+                else:
+                    acc.append(int(tok.group(2)))
+            total = int(m.group(1))
+            record('LEDGER', 'the %d unit-margin-only obstructions' % total, want,
+                   by_n, want == by_n and sum(want.values()) == total and not acc,
+                   'ledger rows with margin1 = UNSAT and majority = SAT, by order')
         else:
             record('LEDGER', 'the unit-margin-only obstructions', 'sentence not found',
                    by_n, False, 'could not read the claim out of the manuscript')

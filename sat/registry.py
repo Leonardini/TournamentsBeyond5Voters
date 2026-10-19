@@ -21,7 +21,14 @@ from networkx.algorithms.isomorphism import DiGraphMatcher
 
 R = os.path.dirname(os.path.abspath(__file__))
 DIRS = ["drt_small", "vt15", "vt17", "vt19", "drt19", "vt21_rest", "vt21_hosts", "vt23", "drt15", "drt23",
-        "vt23_hard"]
+        "vt23_hard",
+        # the two 22-vertex obstructions behind N(5) <= 22; jz_sweep1/hosts/ itself
+        # mixes orders 21/22/25/26, so only these two are indexed, from copies that
+        # n22_obstructions/check.sh asserts are identical to the campaign files
+        "n22_obstructions",
+        # the 25 near-doubly-regular 21-vertex tournaments inducible only above unit
+        # margin (paper 2, 3.7 and Appendix G); near_dr21/build.py re-derives each verdict
+        "near_dr21"]
 
 
 def load(p):

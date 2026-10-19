@@ -53,7 +53,7 @@ ANCHOR_RE = re.compile(r'^(none|(pair|vertex)-orbit\(([^()]*)\))$')
 
 def check_anchoring(path, fields, bits, n):
     """The `anchoring=` field names the representatives that filtered the cube
-    set down to `cubes=`, under Lemma 2.1 (ordered pairs) or Corollary 2.2
+    set down to `cubes=`, under Corollary 2.2 (ordered pairs) or Corollary 2.3
     (vertices).  Two things are checkable from shipped bytes, and both are
     checked here because a wrong one silently shrinks the search:
 
@@ -87,10 +87,10 @@ def check_anchoring(path, fields, bits, n):
     reps = [f.split('=', 1)[1] for f in body.split(';')]
     if kind == 'vertex':
         vs = [[int(r)] for r in reps]
-        lemma, what = 'Corollary 2.2', 'vertex'
+        lemma, what = 'Corollary 2.3', 'vertex'
     else:
         vs = [[int(x) for x in r.split(',')] for r in reps]
-        lemma, what = 'Lemma 2.1', 'ordered-pair'
+        lemma, what = 'Corollary 2.2', 'ordered-pair'
     flat = [v for p in vs for v in p]
     outside = sorted({v for v in flat if v not in base})
     if outside:
@@ -113,6 +113,63 @@ def check_anchoring(path, fields, bits, n):
         note = ' -- ' + note + ', derived from the host'
     print("  ok    %s: anchoring is %d %s representative(s) under %s, all inside "
           "the base%s" % (name, len(vs), what, lemma, note))
+    return True
+
+
+def check_quotient(path, fields, bits, n):
+    """The optional `quotient=automorphism(h(0),...,h(n-1))` field records
+    Corollary 2.5, the base quotient: `cubes=` counts one representative per
+    h-orbit of base states, while the coverage half still ranges over all of
+    them.  Checkable from shipped bytes, and checked: h is a permutation of
+    0..n-1, an automorphism of THIS host, and h maps the base onto itself.  The
+    control: swapping two images of h must stop it being an automorphism.  A
+    block with no `quotient=` line used no quotient, and passes trivially."""
+    name = os.path.basename(path)
+    q = fields.get('quotient')
+    if q is None:
+        return True
+    m = re.match(r'^automorphism\(([0-9,]+)\)$', q)
+    if not m:
+        print("  FAIL  %s: unrecognised quotient %r" % (name, q))
+        return False
+    h = [int(x) for x in m.group(1).split(',')]
+    if sorted(h) != list(range(n)):
+        print("  FAIL  %s: quotient is not a permutation of 0..%d" % (name, n - 1))
+        return False
+    adj = [[0] * n for _ in range(n)]
+    t = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            if bits[t] == '1':
+                adj[i][j] = 1
+            else:
+                adj[j][i] = 1
+            t += 1
+    def is_aut(g):
+        return all(adj[g[i]][g[j]] == adj[i][j] for i in range(n) for j in range(n))
+    if not is_aut(h):
+        print("  FAIL  %s: quotient is not an automorphism of the host" % name)
+        return False
+    base = [int(x) for x in fields.get('base', '').split(',') if x != '']
+    if sorted(h[v] for v in base) != sorted(base):
+        print("  FAIL  %s: quotient does not map the base onto itself" % name)
+        return False
+    if fields.get('anchoring', 'none') != 'none':
+        print("  FAIL  %s: quotient combined with anchoring" % name)
+        return False
+    g = h[:]
+    g[0], g[1] = g[1], g[0]
+    if is_aut(g):
+        print("  FAIL  %s: control did not fire -- h with two images swapped is "
+              "still an automorphism" % name)
+        return False
+    order, p = 1, h[:]
+    while p != list(range(n)):
+        p = [h[x] for x in p]
+        order += 1
+    print("  ok    %s: quotient by an automorphism of order %d of the host that maps "
+          "the base onto itself (Corollary 2.5); swapping two images breaks it"
+          % (name, order))
     return True
 
 
@@ -193,6 +250,7 @@ def check(d):
             else:
                 n, bits = bound
                 ok &= check_anchoring(path, fields, bits, n)
+                ok &= check_quotient(path, fields, bits, n)
     return ok
 
 

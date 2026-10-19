@@ -19,7 +19,7 @@ cross-checks pass, and they are the point of it:
 | T2 | the witness set contains the profile Shepardson and Tovey publish, and is a single orbit under $\mathrm{Aut}(P_7) \times S_k$ --- their uniqueness claim, which they assert without proof |
 | T3 | at every node, the incrementally refined domain equals the domain recomputed from scratch |
 | T4 | every arc of every witness has support exactly $(k+1)/2$ even when the search runs at majority |
-| T5 | imposing Lemma 2.1 during the search only ever removes nodes, and leaves one witness |
+| T5 | imposing Corollary 2.2 during the search only ever removes nodes, and leaves one witness |
 | T6 | the witness set does not depend on the decomposition: all 91 bases of order 3, 4 and 5 return the same profiles |
 | T7 | the witness is one order's orbit under an automorphism of order $k$, so its stabiliser has order $k$ and there are $|\mathrm{Aut}|/k$ witnesses |
 

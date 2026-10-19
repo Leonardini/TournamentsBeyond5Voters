@@ -49,7 +49,7 @@ if p23:
         f"It cost **{p23['core_hours']:.2f} core-hours** against the paper's 34.03, a "
         f"ratio of {ratio:.2f}. Of the {p23['expected']:,} base states only "
         f"**{p23['searched']:,}** consumed more than a millisecond; the other "
-        f"{p23['unsearched']:,} were eliminated by the orbit anchoring of Lemma 2.1 "
+        f"{p23['unsearched']:,} were eliminated by the orbit anchoring of Corollary 2.2 "
         f"before a vertex was inserted. The paper puts the live count at 2,591, and "
         f"the 20-state gap is the anchoring pruning some live states faster than the "
         f"timer resolves. No node count is quoted here: this harness mis-scraped that "
