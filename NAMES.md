@@ -22,7 +22,7 @@ manuscript's vertex 5.
 | `t25_tmin6_mv…`, `p27_mv00_01_mv…` | 21 | Four further deletions from those two (Appendix G) | — |
 | `dr19_g1`, `dr19_g2` | 19 | The two doubly regular tournaments on 19 vertices; `g1` is Paley(19) | $P_{19}$ and the other one |
 | `g2_fKK` | 19 | `dr19_g2` with one arc of orbit KK reversed (`tournaments/dr19_arcflip/`) | — |
-| `hNN` | 21 | The vertex-transitive tournaments on 21 vertices that resisted unit margin at first; h01, h02, h04 and h05 are the four that are not unit-margin inducible (`tournaments/vt21_hosts/`) | Appendix F's $h_1$, $h_2$, $h_4$, $h_5$ |
+| `hNN` | 21 | Seven vertex-transitive tournaments on 21 vertices, `h00` to `h06`, screened together at unit margin (`tournaments/vt21_hosts/`). The four that are not unit-margin inducible are h01, h02, h04 and h05; the others are inducible at unit margin, which is why the four are not numbered consecutively | Appendix F's $h_1$, $h_2$, $h_4$, $h_5$ |
 | `hNN_fKK`, `hNN_fKK_mvVV` | 21, 20 | `hNN` with one arc of orbit KK reversed, then possibly vertex VV deleted (Section 3.6, Appendix F) | — |
 | `h02_f00` | 21 | `h02` with one arc of orbit 0 reversed: the certified 21-vertex unit-margin obstruction | — |
 | `vNNN` | 23 | The vertex-transitive tournaments on 23 vertices, all circulant since 23 is prime, by index in `tournaments/vt23_gen.py` | — |
