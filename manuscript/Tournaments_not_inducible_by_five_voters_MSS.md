@@ -144,6 +144,11 @@ but not with unit margin, and that some tournament is $5$-inducible but not with
 We settle the first here since $P_{19}$ is such a tournament (Section 3.4), while the second remains open
 (Section 4.2).
 
+Reversing every voter's order reverses every arc of the majority tournament and changes no support.
+So a profile realises $T$ exactly when its reversal realises the converse $\bar{T}$, at the same
+margins, and $T$ and $\bar{T}$ are $k$-inducible for the same $k$ and at the same margins. Every
+question in this paper is therefore unchanged by taking the converse.
+
 One further quantity recurs below. Informally, the *predictability* $\alpha^{*}(T)$ is the largest
 fraction $\alpha > 1/2$ for which there is some profile, on any number $t$ of voters, such that every arc 
 of $T$ is supported by at least $\alpha t$ of them. Since every arc of a $k$-voter witness is supported by more than $k/2$ of the voters, 
@@ -192,10 +197,9 @@ simply multiplication by $-1$, which is easily checked to not be an automorphism
 Paley tournaments are natural candidates for non-inducibility because they are far from being
 transitive, and because their symmetry makes an otherwise hopeless search merely very hard. 
 Bachmeier et al. (2019) call them *quadratic residue tournaments* and write $Q_q$; their orientation
-is the converse of ours. Since reversing every voter's order reverses every arc of the majority tournament 
-and changes no support, a tournament and its converse have the same *majority dimension*, the least $k$ 
-for which a tournament is $k$-inducible, and are inducible at exactly the same margins. We use the name
-Paley and the notation $P_q$ throughout.
+is the converse of ours, which changes no result here (Section 1.1); in particular a tournament and
+its converse have the same *majority dimension*, the least $k$ for which a tournament is
+$k$-inducible. We use the name Paley and the notation $P_q$ throughout.
 
 The SAT study of Bachmeier et al. (2019) establishes
 $$\dim(Q_3) = \dim(Q_7) = 3, \qquad \dim(Q_{11}) = \dim(Q_{19}) = 5,$$
@@ -827,8 +831,8 @@ vertices.
 
 Fourth, the order $23$ is complete for both families. Every vertex-transitive tournament on $23$
 vertices other than $P_{23}$ is $5$-inducible, while none of the $37$ doubly regular ones is, at
-unit margin or unrestricted. Since reversing every arc preserves inducibility, the $37$ reduce to
-$19$ classes up to taking the converse, and each was settled by a complete search; $16$ of them ran
+unit margin or unrestricted. Up to converse the $37$ form $19$ classes, and each was settled by a
+complete search; $16$ of them ran
 on the cluster, at about $26{,}500$ cluster core-hours together.
 
 Taken together with the Paley results above and the families of Appendix G, these searches turn up
@@ -1500,8 +1504,7 @@ invoked: every tournament was settled at unit margin, so the weaker question nev
 
 ### C.3 One tournament of each converse pair
 
-If $\pi_1, \dots, \pi_5$ realise $T$, their reversals realise the converse $\bar{T}$, with the same 
-margins, so $T$ is $5$-inducible if and only if $\bar{T}$ is. Moreover
+$T$ is $5$-inducible if and only if its converse $\bar{T}$ is (Section 1.1). Moreover
 $\overline{L + S} = \bar{L} + (V(L) \setminus S)$, so settling all $2{,}048$ extensions of $L$ settles
 all $2{,}048$ of $\bar{L}$ as well. We therefore keep one tournament of each converse pair, by the
 rule that $L$ is kept if and only if $\mathrm{canon}(L) \le \mathrm{canon}(\bar{L})$. This keeps
@@ -1599,27 +1602,29 @@ margin to any odd $k \geq 3$. $\blacksquare$
 
 ## Appendix F. Criticality at $21$ vertices
 
-This appendix carries the detail behind Section 3.6. Throughout, $h$ ranges over the four
-unit-margin obstructions among the $110$ vertex-transitive tournaments on $21$ vertices (Section 3.7).
+This appendix carries the detail behind Section 3.6. Four of the $110$ vertex-transitive
+tournaments on $21$ vertices are unit-margin obstructions (Section 3.7). We name them by their
+automorphism groups, all of order $21$: $C_a$ and $C_b$ have the cyclic group $\mathbb{Z}_{21}$, and
+$F_a$ and $F_b$ the nonabelian group $\mathbb{Z}_7 \rtimes \mathbb{Z}_3$.
 
 **Vertex-critical but maximally not arc-critical.** Arc-criticality implies vertex-criticality,
-and the converse fails here as widely as it can. Each $h$ is *vertex-critical* at unit margin, and
-for $h_1$ every single-arc reversal remains a unit-margin obstruction.
+and the converse fails here as widely as it can. Each of the four is *vertex-critical* at unit margin, and
+for $C_a$ every single-arc reversal remains a unit-margin obstruction.
 
 **Arc-criticality is a property of the arc, not just the tournament.** All four have ten arc orbits of size 
 $21$; we sweep one representative per orbit at unit margin and get results that differ by tournament *and* 
-by arc, `U` marking a reversal that is still not unit-margin inducible and `S` one that is. $h_2$ splits 
+by arc, `U` marking a reversal that is still not unit-margin inducible and `S` one that is. $C_b$ splits 
 five orbits to five, so exactly half its arcs are critical and we call it *arc-semi-critical*; with $P_{23}$ 
-arc-critical unrestricted and $h_1$ critical nowhere, all three possibilities occur among our tournaments. 
+arc-critical unrestricted and $C_a$ critical nowhere, all three possibilities occur among our tournaments. 
 Intriguingly, every one of the $15$ reversals that remains an obstruction belongs to a tournament with
 *cyclic automorphism group*, while all $20$ orbits of the two with the nonabelian group of order $21$ 
 are inducible.
 
 | tournament | $\mathrm{Aut}$ | the ten orbits | obstructions |
 |---|---|---|---|
-| $h_1$ | $\mathbb{Z}_{21}$ | `U U U U U U U U U U` | $10$ |
-| $h_2$ | $\mathbb{Z}_{21}$ | `U S U S S U U S S U` | $5$ |
-| $h_4$, $h_5$ | $\mathbb{Z}_7 \rtimes \mathbb{Z}_3$ | `S S S S S S S S S S` | $0$ |
+| $C_a$ | $\mathbb{Z}_{21}$ | `U U U U U U U U U U` | $10$ |
+| $C_b$ | $\mathbb{Z}_{21}$ | `U S U S S U U S S U` | $5$ |
+| $F_a$, $F_b$ | $\mathbb{Z}_7 \rtimes \mathbb{Z}_3$ | `S S S S S S S S S S` | $0$ |
 
 
 ## Appendix G. The search below 22 vertices
@@ -1637,7 +1642,7 @@ level is first screened for witnesses, and only hosts that resist the screen are
 The starting points are the $36$ doubly regular tournaments on $23$ vertices other than $P_{23}$,
 all of which are obstructions (Section 3.7). $P_{23}$ itself is excluded, since $P_{23} - v$ is
 $5$-inducible (Section 3.6) and so, by inheritance, is every tournament below it. Up to isomorphism
-and up to taking the converse, the levels below the $36$ are as follows.
+and converse, the levels below the $36$ are as follows.
 
 | vertices | deleted | classes | status |
 |---:|---:|---:|:--------------------------------------------------------------|
@@ -1648,10 +1653,10 @@ and up to taking the converse, the levels below the $36$ are as follows.
 At $22$ vertices all $378$ classes were first screened at up to $50$ base states each, without a
 single witness, and the three complete searches were chosen from among them. At $21$ vertices the $1{,}173$
 settled classes include all $506$ two-vertex deletions of $\Delta_6$ and $\Delta_{28}$, so every
-$21$-vertex subtournament of either parent is $5$-inducible, and in particular both $22$-vertex
-obstructions are vertex-critical. The other settled classes are a stratified random sample of $400$, all
+$21$-vertex subtournament of either parent is $5$-inducible, and in particular $\Delta_6 - 5$ and
+$\Delta_{28} - 5$ are vertex-critical. The other settled classes are a stratified random sample of $400$, all
 $53$ classes below $\Delta_{11}$, and every class obtained by deleting vertex $5$ together with one
-other vertex, the deletion that produced both obstructions; the remaining $2{,}935$ classes are
+other vertex, the deletion that produced those two obstructions; the remaining $2{,}935$ classes are
 open. At $20$ vertices every class is $5$-inducible, and so, by inheritance, is every
 tournament on $19$ vertices or fewer below the $36$.
 
@@ -1669,24 +1674,25 @@ subtournament of either is $5$-inducible, so neither family yields an obstructio
 symmetry or a construction makes enumerable, all of them close to doubly regular. A regular
 tournament on $21$ vertices cannot be doubly regular, since $(21 - 3)/4$ is not an integer; we
 call it *near-doubly regular* if every pair of vertices has $4$ or $5$ common out-neighbours. The
-table below lists every family we searched on $21$ vertices, counted up to isomorphism, with the
-number of classes settled. Every settled class is $5$-inducible, by a witness verified
+table below lists every family we searched on $21$ vertices, again up to isomorphism and converse,
+with the number of classes settled. Every settled class is $5$-inducible, by a witness verified
 independently of the search; none was settled negatively.
 
 | family on $21$ vertices | classes | settled |
 |:------------------------------------------------------------------|------:|------:|
 | two vertices deleted from a doubly regular tournament on $23$ vertices | $4{,}108$ | $1{,}173$ |
-| four vertices deleted from the circulant tournament on $25$ vertices | $506$ | $506$ |
-| six vertices deleted from $P_{27}$ | $65$ | $65$ |
-| vertex-transitive (Section 3.7) | $110$ | $110$ |
+| four vertices deleted from the circulant tournament on $25$ vertices | $286$ | $286$ |
+| six vertices deleted from $P_{27}$ | $150$ | $150$ |
+| vertex-transitive (Section 3.7) | $99$ | $99$ |
 | near-doubly regular, rigid, drawn at random | $78$ | $78$ |
-| near-doubly regular, with a bisector and an automorphism of order $5$ | $50$ | $50$ |
-| near-doubly regular, with a fixed-point-free automorphism of order $3$ | $60$ | [PLACEHOLDER] |
+| near-doubly regular, with a bisector and an automorphism of order $5$ | $28$ | $28$ |
+| near-doubly regular, with a fixed-point-free automorphism of order $3$ | $31$ | [PLACEHOLDER] |
 
-The last count is a lower bound: the enumeration found no new class after its first $225$
-solutions and we stopped it at $4{,}567$, but it was not run to completion. In the two families
+The $31$ classes of the last family are likely, but not confirmed, to be all of it: the enumeration
+found no new class after its first $225$ solutions, and we stopped it at $4{,}567$ without running it
+to completion. Two of the $31$ are bisectable and the other $29$ are not. In the two families
 with an automorphism, several classes are not $5$-inducible at unit margin and need a majority
-witness: $20$ of the $50$ with a bisector, and all $5$ of the $60$ that we tested at unit margin.
+witness: $12$ of the $28$ with a bisector, and all $5$ of the $31$ that we tested at unit margin.
 
 ## Appendix H. The three obstructions on 22 vertices
 

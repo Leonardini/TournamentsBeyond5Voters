@@ -1346,6 +1346,25 @@
    "status": "declared_gap"
   },
   {
+   "id": "G7",
+   "group": "11. Below 22 vertices (Appendix G and Question 1)",
+   "sections": [
+    "G"
+   ],
+   "claim": "The other families searched on 21 vertices, up to isomorphism and converse: 286 four-vertex deletions of the circulant on 25 vertices and 150 six-vertex deletions of Paley(27), all settled (G6); the 99 vertex-transitive classes (S1); 78 rigid near-doubly regular tournaments drawn at random, all settled; 28 near-doubly regular classes with a bisector and an automorphism of order 5, all settled, 12 of them only at majority; and 31 with a fixed-point-free automorphism of order 3, of which the 5 tested here are settled, all only at majority (the other 26 are the cluster screen of 55 hosts)",
+   "artifacts": [
+    "verdicts/families21/",
+    "HOSTS.tsv",
+    "verdicts/near_dr21/",
+    "verify/families21_audit.py",
+    "tools/check_package.sh",
+    "tournaments/near_dr21/build_families.py"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
    "id": "Q1",
    "group": "11. Below 22 vertices (Appendix G and Question 1)",
    "sections": [
@@ -1446,8 +1465,8 @@
   }
  ],
  "counts": {
-  "claims": 93,
-  "established": 87,
+  "claims": 94,
+  "established": 88,
   "declared_gap": 6,
   "missing_artifacts": 0,
   "gaps": 7,

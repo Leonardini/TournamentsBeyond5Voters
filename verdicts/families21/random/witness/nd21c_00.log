@@ -1,0 +1,13 @@
+n=21 K=5 margin=majority order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 defect_R=0 base_sz=5 base=0,8,12,13,16 base_mask=556 base_states=8031
+  static_tail=1,2,3,4,5,6,7,9,10,11,14,15,17,18,19,20
+  base_state_slice=[3717,3718)
+WITNESS
+  voter 0: 6 18 11 0 2 15 14 5 13 16 12 20 19 3 7 1 17 10 4 9 8
+  voter 1: 1 2 8 10 15 20 9 19 6 4 0 17 5 16 3 13 11 7 12 14 18
+  voter 2: 8 11 5 9 7 12 18 1 0 13 10 19 17 16 6 14 20 2 3 4 15
+  voter 3: 4 12 17 10 3 9 14 19 16 8 0 7 15 5 1 20 6 2 18 13 11
+  voter 4: 3 13 20 7 14 4 18 16 15 17 6 11 2 19 1 5 9 12 8 10 0
+VERIFY bad_arcs=0 reversed=0 off_R=0 support_min=3 support_max=4 OK
+PROGRESS b=3718/3718 cleared=0 capped=0 nodes=28170461 time=180.6s
+SLICE cleared=0 capped=0 of [3717,3718)
+RESULT SAT nodes=28170461 sols=1 base_states=8031 dom_calls=16 dom_nodes=11007 mrv_fails=70797699 top0_fails=0 bound_fails=0 fas_fails=0/0 refine_tuples=24825232066 time=180.624s

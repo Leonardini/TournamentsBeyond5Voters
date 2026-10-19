@@ -559,6 +559,25 @@ if python3 "$RR" "$ROOT/tournaments/drt23_del/d000_mv09.bits" 1 2 "$RW" >/dev/nu
 else ok "control: the same witness on a non-rung reversal fails, as it must"; fi
 
 echo
+echo "== 8i. Appendix G's near-doubly regular families on 21 vertices, re-counted =="
+# Classes up to isomorphism and converse and the classes with a verified witness,
+# for the random, bisector and Z3-free families, against the manuscript's table.
+# Control: one witness removed must make the settled count disagree.
+if [ -n "$LABELG" ]; then
+  FA=$ROOT/verify/families21_audit.py
+  FARGS="$ROOT/verdicts/families21 $ROOT/verdicts/near_dr21 $ROOT/manuscript/Tournaments_not_inducible_by_five_voters_MSS.md --labelg $LABELG"
+  # shellcheck disable=SC2086
+  if out=$(python3 "$FA" $FARGS 2>&1); then while read -r l; do ok "${l#ok   }"; done <<EOF8I
+$out
+EOF8I
+  else bad "an Appendix G family count does not re-derive"; echo "$out" | sed 's/^/        /'; fi
+  # shellcheck disable=SC2086
+  if python3 "$FA" $FARGS --drop-witness random/nd21_00 >/dev/null 2>&1; then
+    bad "control did not fire: a witness was removed and the settled count still agreed"
+  else ok "control: removing one witness breaks the settled count, as it must"; fi
+else warn "labelg not found; Appendix G family counts not checked"; fi
+
+echo
 echo "== 8d. below 22 vertices: every witness, against a host rebuilt from its name =="
 # Each settled host is named after its parent and the deleted vertices, and
 # verify_descent_witnesses.py rebuilds it from the parent's bits -- never from a
