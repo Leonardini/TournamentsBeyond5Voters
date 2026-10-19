@@ -1347,7 +1347,7 @@ rate, so the converted total is approximate.
 | $P_{19}$, certified refutation | unit | not inducible | $25.1$ |
 | $P_{23}$, certified refutation | unrestricted | not inducible | $236.0$ |
 | $\Delta_1 - 10$, sweep (Corollary 2.5) | unrestricted | not inducible | $96.9$ |
-| $\Delta_1 - 10$, certified refutation (laptop-equivalent) | unrestricted | not inducible | [PLACEHOLDER] |
+| $\Delta_1 - 10$, certified refutation (laptop-equivalent) | unrestricted | not inducible | $732$ |
 | $\Delta_6 - 5$, certified refutation | unrestricted | not inducible | $1{,}292.7$ |
 | $\Delta_6 - 5$, sweep (cluster) | unrestricted | not inducible | $1{,}551.2$ |
 | $\Delta_{28} - 5$, sweep (cluster) | unrestricted | not inducible | $1{,}537.7$ |
@@ -1390,7 +1390,7 @@ The choice suits the scale. Verifying the Boolean Pythagorean triples
 proof costs about $13{,}000$ core-hours to regenerate the refutations from the published cube
 certificate (Heule 2016), and about $16{,}000$ to check them (Heule et al. 2016). Our
 certificates are orders of magnitude smaller: $25.1$ core-hours for $P_{19}$, $236.0$ for
-$P_{23}$, $1{,}292.7$ for $\Delta_6 - 5$ and [PLACEHOLDER] for $\Delta_1 - 10$ cover solving *and*
+$P_{23}$, $1{,}292.7$ for $\Delta_6 - 5$ and about $732$ laptop-equivalent for $\Delta_1 - 10$ cover solving *and*
 checking. Portable root values, which is exactly the check Section 5.2 supports, 
 can be easily compared by anyone replicating our computation.
 
@@ -1425,7 +1425,7 @@ $\Delta_6 - 5$, at $n = 22$ and plain majority. The cubes are the $1{,}611$ orbi
 under $H$ of the $8{,}031$ base states of the five-vertex base $B' = \{13, 15, 16, 20, 22\}$ (in
 the labelling of $\Delta_1$), one per orbit, as Corollary 2.5 licenses; every one is unsatisfiable,
 with an LRAT proof independently verified by `lrat-trim`. The cubes were solved in groups of five,
-part on the laptop and part on the cluster, at about [PLACEHOLDER] laptop-equivalent core-hours
+part on the laptop and part on the cluster, at about $732$ laptop-equivalent core-hours
 (Appendix A.6). The coverage half is the same construction as for $P_{23}$, with $8{,}031$ negated
 cubes among its $8{,}467$ clauses over $90$ variables, and solves in $0.08$ seconds on one core. A cube here
 fixes the voters' orders on five vertices rather than six, so the cubes are about $460$ times fewer than

@@ -79,8 +79,10 @@ def check_anchoring(path, fields, bits, n):
               "pair-orbit(...) or vertex-orbit(...)" % (name, anc))
         return False
     if anc == 'none':
-        print("  ok    %s: anchoring=none, so every base state is live and no "
-              "anchoring lemma is in the trust chain" % name)
+        live = ("the quotient below decides which base states are live"
+                if 'quotient' in fields else "every base state is live")
+        print("  ok    %s: anchoring=none, so %s and no anchoring lemma is in the "
+              "trust chain" % (name, live))
         return True
     kind, body = m.group(2), m.group(3)
     base = [int(x) for x in fields.get('base', '').split(',') if x != '']

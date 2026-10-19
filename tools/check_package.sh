@@ -47,6 +47,7 @@ resolve() {
 SW=${SOFTWARE_DIR:-$HOME/Downloads/DownloadedSoftware}
 GENTOURNG=$(resolve gentourng "${GENTOURNG:-}" "$SW/nauty2_8_6/gentourng" 2>/dev/null || true)
 LABELG=$(resolve labelg "${LABELG:-}" "$SW/nauty2_8_6/labelg" 2>/dev/null || true)
+LRATTRIM=$(resolve lrat-trim "${LRATTRIM:-}" "$SW/lrat-trim/lrat-trim" 2>/dev/null || true)
 export LABELG    # tools/check_manuscript.py re-derives Appendix G's class counts with it
 
 echo "== 1. the engine builds from the shipped source =="
@@ -85,7 +86,7 @@ echo "== 3. the certificate roots rebuild from the per-cube evidence =="
 # their agreement is a real cross-check rather than a restatement.  Expected
 # values are READ from the certificate, never written here: a constant copied
 # into a checker is correct once, on the day it is copied.
-for inst in p19 p23 h02f00 d005mv04; do
+for inst in p19 p23 h02f00 d005mv04 d000mv09; do
   cd="$ROOT/certificates/${inst}cert_d6"
   [ -d "$cd" ] || { warn "$inst certificate directory absent"; continue; }
   vf="$cd/VERDICT.txt"; [ -f "$vf" ] || vf="$cd/README.md"
@@ -146,7 +147,7 @@ echo "== 3c. CERT (portable) recomputes from the block it publishes =="
 if out=$(python3 "$ROOT/tools/check_cert_portable.py" \
          "$ROOT/certificates/p19cert_d6" "$ROOT/certificates/p23cert_d6" \
          "$ROOT/certificates/h02f00cert_d6" \
-         "$ROOT/certificates/d005mv04cert_d6" 2>&1); then
+         "$ROOT/certificates/d005mv04cert_d6" "$ROOT/certificates/d000mv09cert_d6" 2>&1); then
   echo "$out" | sed 's/^  ok    /  ok    /'
   pass=$((pass + $(echo "$out" | grep -c '^  ok')))
 else
@@ -207,6 +208,27 @@ if python3 "$ROOT/sat/certroot.py" --v2 \
 else
   bad "vertex-orbit anchoring is rejected even when the representative is in the base"
 fi
+
+echo
+echo "== 3g. the split half of Delta_1 - 10, rechecked from the shipped proof =="
+# The coverage CNF and its LRAT refutation are small enough to ship.  The CNF must
+# hash to the split_cover_cnf of the CERT-v2 block and lrat-trim must accept the
+# proof; the control drops the last clause of the CNF (a negated base state), and
+# the same proof must then fail.
+CV=$ROOT/certificates/d000mv09cert_d6/coverage
+if [ -n "$LRATTRIM" ] && [ -d "$CV" ]; then
+  want=$(grep -o 'split_cover_cnf=[0-9a-f]*' "$ROOT/certificates/d000mv09cert_d6/d000mv09_cert.v2.portable.txt" | cut -d= -f2)
+  got=$( (shasum -a 256 "$CV/d000_mv09_cover.cnf" 2>/dev/null || sha256sum "$CV/d000_mv09_cover.cnf") | cut -c1-64)
+  if [ "$want" = "$got" ]; then ok "the coverage CNF is the one the CERT-v2 block commits to"
+  else bad "the coverage CNF hashes to $got, the block says $want"; fi
+  if "$LRATTRIM" -q "$CV/d000_mv09_cover.cnf" "$CV/d000_mv09_coverage.lrat" >/dev/null 2>&1; [ $? -eq 20 ]; then
+    ok "lrat-trim verifies the coverage refutation: the 8,031 base states cover every lex-ordered base assignment"
+  else bad "lrat-trim does not verify the Delta_1 - 10 coverage proof"; fi
+  sed '$d' "$CV/d000_mv09_cover.cnf" | sed '1s/ [0-9]*$/ 8466/' > "$TMP/cover_ctl.cnf"
+  if "$LRATTRIM" -q "$TMP/cover_ctl.cnf" "$CV/d000_mv09_coverage.lrat" >/dev/null 2>&1; [ $? -eq 20 ]; then
+    bad "control did not fire: the proof still verified with a base state left out"
+  else ok "control: with one base state left out of the CNF the proof fails, as it must"; fi
+else warn "lrat-trim not found or the Delta_1 - 10 coverage files absent; split half not rechecked"; fi
 
 echo
 echo "== 4. distributed refutations cover their base-state range exactly =="

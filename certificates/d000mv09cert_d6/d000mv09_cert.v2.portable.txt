@@ -1,0 +1,15 @@
+CERT-v2 portable
+host_name=d000_mv09
+host_bits=../../tournaments/drt23_del/d000_mv09.bits
+host_sha256=83091cadc92537d59b3944cc48573a7c449e682213ae8e8ff7fce27b18c1f97f
+host_n=22
+origin=the doubly regular tournament d000 (line 1 of McKay's drtourn23.txt, tournaments/drt23/d000.bits) with vertex 9 (0-based) deleted, order of the remaining vertices kept
+k=5
+margin=majority
+base=11,13,14,18,20
+anchoring=none
+quotient=automorphism(0,8,7,10,1,2,4,3,9,6,5,20,15,14,18,17,12,21,11,19,13,16)
+cubes=1611
+search_root_cnf=73f97259ae040e5d6e948417f59aabf79c7dd0b846f3c3dd13f8e72241b9e57a
+split_cover_cnf=34e9a46a702dd2860a93c9899075e0500739a917d0ed180f828fe6edd1d6d6cf
+CERT_PORTABLE=25a3f1da4666cf2138ff7e8822dab81446f0c4e46f3f7be5a6b5cba083447ee4

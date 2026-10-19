@@ -213,6 +213,29 @@
    "status": "established"
   },
   {
+   "id": "B12",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
+   "sections": [
+    "3.2",
+    "3.4",
+    "B.1"
+   ],
+   "claim": "\u0394\u2081 \u2212 10, **machine-checked** on both halves: one base state per orbit of an automorphism of order 5 that maps the base {y\u2081, y\u2083, y\u2084, y\u2085, y\u2089} onto itself (Corollary 2.5), 1,611 of 8,031, all UNSAT, each LRAT proof rechecked by `lrat-trim`, and all 8,031 base states proved exhaustive. About 732 laptop-equivalent core-h (A.6); only Corollaries 2.4 and 2.5 are human",
+   "artifacts": [
+    "certificates/d000mv09cert_d6/VERDICT.txt",
+    "certificates/d000mv09cert_d6/d000mv09_cert.v2.portable.txt",
+    "certificates/d000mv09cert_d6/coverage/",
+    "sat/reroot.py",
+    "tools/check_cert_portable.py",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "lrat-trim"
+   ],
+   "status": "established"
+  },
+  {
    "id": "P1",
    "group": "2. The rest of the Paley family",
    "sections": [
@@ -1465,8 +1488,8 @@
   }
  ],
  "counts": {
-  "claims": 94,
-  "established": 88,
+  "claims": 95,
+  "established": 89,
   "declared_gap": 6,
   "missing_artifacts": 0,
   "gaps": 7,

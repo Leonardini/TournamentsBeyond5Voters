@@ -1,0 +1,3 @@
+# cubes [1610,1611) base=[11, 13, 14, 18, 20]
+# cube sha256(cnf) sha256(lrat) verdict solve_s check_s
+1610 1dfb640ed912d15c207ed6cb703f8828f8e4af87d9189aab40a96ab984c2e4b4 6fecc45eb4252997b29c20310f9185895ad2a7ca7936ffe5850947bf6568f9af VERIFIED 17370.072 170.166
