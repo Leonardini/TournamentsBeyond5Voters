@@ -47,13 +47,19 @@ machine-checkable proofs, and all results are reproducible from a public reposit
 
 ## 1. Introduction
 
-Majority rule imposes no structure at all on collective preference when the electorate is
-unconstrained. For any pattern of pairwise majorities one cares to specify, cycles and all, some
-profile of voters produces exactly that pattern (McGarvey 1953); the Condorcet paradox is the smallest
-instance of this freedom rather than an exception to it. What makes the observation bite is that it
-needs *many* voters, and the question of how many is the question this paper is about.
+Let $A$ be a finite set of alternatives. A *profile* is a finite list of voters, each of whom ranks
+$A$ by a linear order. When the number of voters is odd, the *majority tournament* of the profile has,
+for each pair of alternatives $u$ and $v$, the arc $u \to v$ if more than half of the voters rank $u$
+above $v$, and the arc $v \to u$ otherwise. McGarvey (1953) proved that every tournament on $A$, that
+is, every choice of one arc for each pair, is the majority tournament of some profile. So when the
+number of voters is unrestricted, majority rule imposes no structure on collective preference: every
+pattern of pairwise majorities occurs, including patterns with cycles. The Condorcet paradox is the
+smallest example: three voters ranking $a \succ b \succ c$, $b \succ c \succ a$ and $c \succ a \succ b$
+produce the cycle $a \to b \to c \to a$. McGarvey's construction uses two voters for each pair of
+alternatives, so the number of voters it needs grows with the number of alternatives, and how many
+voters a pattern needs is the question this paper is about.
 
-Once the electorate is fixed, the freedom disappears. A panel of $k$ voters admits only finitely
+Once the number of voters is fixed, majority rule does impose structure. A panel of $k$ voters admits only finitely
 many profiles, so it can produce only finitely many patterns of pairwise majority, and once the
 number of alternatives is large enough most patterns are beyond it. A pattern that some $k$-voter
 panel does produce we call *$k$-inducible*. The question is then one about small deliberative
