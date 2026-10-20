@@ -147,7 +147,9 @@ We settle the first here since $P_{19}$ is such a tournament (Section 3.4), whil
 Reversing every voter's order reverses every arc of the majority tournament and changes no support.
 So a profile realises $T$ exactly when its reversal realises the converse $\bar{T}$, at the same
 margins, and $T$ and $\bar{T}$ are $k$-inducible for the same $k$ and at the same margins. Every
-question in this paper is therefore unchanged by taking the converse.
+question in this paper is therefore unchanged by taking the converse. Accordingly, we count a family
+enumerated in full, such as all tournaments of a given order or all vertex-transitive ones, up to
+isomorphism, and a family that our searches generated up to isomorphism and converse.
 
 One further quantity recurs below. Informally, the *predictability* $\alpha^{*}(T)$ is the largest
 fraction $\alpha > 1/2$ for which there is some profile, on any number $t$ of voters, such that every arc 
@@ -836,8 +838,9 @@ complete search; $16$ of them ran
 on the cluster, at about $26{,}500$ cluster core-hours together.
 
 Taken together with the Paley results above and the families of Appendix G, these searches turn up
-$42$ tournaments that five voters can produce, but not with unit margin: $2$ doubly regular ones at
-order $19$, $4$ vertex-transitive and $25$ near-doubly regular ones at order $21$, and $11$
+$58$ tournaments, up to isomorphism and converse, that five voters can produce but not with unit
+margin: $2$ doubly regular ones at order $19$; at order $21$, $3$ vertex-transitive ones (the four of
+Section 3.6, two of which are converses of each other) and $42$ near-doubly regular ones; and $11$
 circulant ones at order $23$. Several of them were found incidentally, by the unit-margin filter
 described at the start of this section, rather than sought.
 
@@ -1675,7 +1678,8 @@ symmetry or a construction makes enumerable, all of them close to doubly regular
 tournament on $21$ vertices cannot be doubly regular, since $(21 - 3)/4$ is not an integer; we
 call it *near-doubly regular* if every pair of vertices has $4$ or $5$ common out-neighbours. The
 table below lists every family we searched on $21$ vertices, again up to isomorphism and converse,
-with the number of classes settled. Every settled class is $5$-inducible, by a witness verified
+with the number of classes settled; the vertex-transitive tournaments on $21$ vertices, a family
+enumerated in full, are covered in Section 3.7. Every settled class is $5$-inducible, by a witness verified
 independently of the search; none was settled negatively.
 
 | family on $21$ vertices | classes | settled |
@@ -1683,16 +1687,15 @@ independently of the search; none was settled negatively.
 | two vertices deleted from a doubly regular tournament on $23$ vertices | $4{,}108$ | $1{,}173$ |
 | four vertices deleted from the circulant tournament on $25$ vertices | $286$ | $286$ |
 | six vertices deleted from $P_{27}$ | $150$ | $150$ |
-| vertex-transitive (Section 3.7) | $99$ | $99$ |
 | near-doubly regular, rigid, drawn at random | $78$ | $78$ |
 | near-doubly regular, with a bisector and an automorphism of order $5$ | $28$ | $28$ |
-| near-doubly regular, with a fixed-point-free automorphism of order $3$ | $31$ | [PLACEHOLDER] |
+| near-doubly regular, with a fixed-point-free automorphism of order $3$ | $31$ | $31$ |
 
 The $31$ classes of the last family are likely, but not confirmed, to be all of it: the enumeration
 found no new class after its first $225$ solutions, and we stopped it at $4{,}567$ without running it
 to completion. Two of the $31$ are bisectable and the other $29$ are not. In the two families
 with an automorphism, several classes are not $5$-inducible at unit margin and need a majority
-witness: $12$ of the $28$ with a bisector, and all $5$ of the $31$ that we tested at unit margin.
+witness: $12$ of the $28$ with a bisector, and $30$ of the $31$ with an automorphism of order $3$.
 
 ## Appendix H. The three obstructions on 22 vertices
 

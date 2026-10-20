@@ -525,26 +525,31 @@ def main(mdpath, as_json):
         by_n = {}
         for r in sep:
             by_n[int(r[1])] = by_n.get(int(r[1]), 0) + 1
-        # "...turn up 42 tournaments that five voters can produce, but not with unit
-        # margin: 2 doubly regular ones at order 19, 4 vertex-transitive and 25
-        # near-doubly regular ones at order 21, and 11 circulant ones at order 23."
-        # Every count before an "at order N" is credited to N, and the counts must
-        # also add up to the total the sentence opens with.
-        flat = re.sub(r'[${}]', '', re.sub(r'\s+', ' ', md))
-        m = re.search(r'turn up (\d+) tournaments that five voters can produce, but '
-                      r'not with unit margin: ([^.]*)\.', flat)
+        # "...turn up 58 tournaments, up to isomorphism and converse, that five voters can
+        # produce but not with unit margin: 2 doubly regular ones at order 19; at order 21,
+        # 3 vertex-transitive ones (...) and 42 near-doubly regular ones; and 11 circulant
+        # ones at order 23."  The ledger counts isomorphism classes, so a class and its
+        # converse class (its `converse` column) count once.  Clauses are separated by ';',
+        # parentheses are dropped, and every count in a clause is credited to its order.
+        conv = hdr.index('converse')
+        by_n = {}
+        for n in {int(r[1]) for r in sep}:
+            ids = {r[0]: r[conv].strip() for r in sep if int(r[1]) == n}
+            by_n[n] = len({min(t, c) if c not in ('self', '-') else t for t, c in ids.items()})
+        flat = re.sub(r'\([^)]*\)', '', re.sub(r'[${}]', '', re.sub(r'\s+', ' ', md)))
+        m = re.search(r'turn up (\d+) tournaments, up to isomorphism and converse, that five voters '
+                      r'can produce but not with unit margin: ([^.]*)\.', flat)
         if m:
-            want, acc = {}, []
-            for tok in re.finditer(r'at order (\d+)|(\d+)', m.group(2)):
-                if tok.group(1):
-                    want[int(tok.group(1))] = want.get(int(tok.group(1)), 0) + sum(acc)
-                    acc = []
-                else:
-                    acc.append(int(tok.group(2)))
+            want = {}
+            for clause in m.group(2).split(';'):
+                o = re.search(r'at order (\d+)', clause)
+                nums = [int(x) for x in re.findall(r'\d+', re.sub(r'at order \d+', '', clause))]
+                if o:
+                    want[int(o.group(1))] = want.get(int(o.group(1)), 0) + sum(nums)
             total = int(m.group(1))
-            record('LEDGER', 'the %d unit-margin-only obstructions' % total, want,
-                   by_n, want == by_n and sum(want.values()) == total and not acc,
-                   'ledger rows with margin1 = UNSAT and majority = SAT, by order')
+            record('LEDGER', 'the %d unit-margin-only obstructions, up to converse' % total, want,
+                   by_n, want == by_n and sum(want.values()) == total,
+                   'ledger rows with margin1 = UNSAT and majority = SAT, one per converse pair, by order')
         else:
             record('LEDGER', 'the unit-margin-only obstructions', 'sentence not found',
                    by_n, False, 'could not read the claim out of the manuscript')

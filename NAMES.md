@@ -32,7 +32,7 @@ manuscript's vertex 5.
 | `g21_NNNNN` | 21 | Near-doubly regular tournaments built by gluing two regular 10-tournaments through an apex, with an automorphism of order 5 (`tournaments/near_dr21/`, from the working repository's `glue10/`) | Appendix G's family "with a bisector and an automorphism of order 5" |
 | `zf21_K` | 21 | Near-doubly regular, with a fixed-point-free automorphism of order 3, from our construction | Appendix G's family "with a fixed-point-free automorphism of order 3" |
 | `zr21_K` | 21 | The same family, found by a random SAT search rather than the construction | the same |
-| `z3f21_NN` | 21 | The other 55 classes of that family's enumeration (the cluster screen) | the same |
+| `z3f21_NN` | 21 | The other 55 classes of that family's enumeration (the cluster screen); `z3c21_NN` in `verdicts/families21/z3free/` is the same tournament | the same |
 | `nd21_NN` | 21 | Rigid near-doubly regular tournaments drawn at random | Appendix G's "rigid, drawn at random" |
 | `tN_KKK` | N | An isomorphism class in `verdicts/verdict_ledger.tsv`, numbered within order N by `sat/registry.py`; ids are reassigned when classes are added | — |
 

@@ -551,7 +551,7 @@ if [ -f "$QM" ]; then
 else warn "d000mv09_sweep_markers.tar.zst absent"; fi
 
 echo
-echo "== 8g. the 25 near-doubly regular unit-margin-only tournaments on 21 vertices =="
+echo "== 8g. the near-doubly regular unit-margin-only tournaments on 21 vertices =="
 # Section 3.7 and Appendix G: each is near-doubly regular, has a majority witness,
 # and has a complete unit-margin search with no witness.  Controls: one marker
 # removed, and one arc of one tournament reversed, must each fail.

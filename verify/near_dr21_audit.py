@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The 25 near-doubly-regular tournaments on 21 vertices that five voters can produce, but
+"""The 50 near-doubly-regular tournaments on 21 vertices that five voters can produce, but
 not at unit margin (Section 3.7, Appendix G), audited from the shipped bytes.
 
     usage: near_dr21_audit.py DIR COVERS.tar.zst [--drop HOST] [--flip HOST]
@@ -15,8 +15,8 @@ host this checks:
   * the unit-margin search is complete: every state in REPS.txt has a marker reading
     `RESULT UNSAT ... base_states=2200` and `SLICE cleared=1 capped=0`, there is no
     marker for any other state, and REPS.txt has the size its quotient gives: 444 of 2,200
-    for the 20 order-5 gluings (Corollary 2.5), all 2,200 for zf21_0 and zf21_1 (no
-    quotient), 600 for the three zr21 hosts (the sub-base quotient, Corollary 2.6).
+    for the 20 order-5 gluings (Corollary 2.5), all 2,200 for zf21_0, zf21_1 and the 25
+    z3f21 hosts (no quotient), 600 for the three zr21 hosts (the sub-base quotient, Corollary 2.6).
 
 The representative lists come from the campaign's own quotient scripts, shipped beside
 the hosts as provenance; this audit does not rerun them.  Controls: --drop HOST removes
@@ -32,7 +32,7 @@ for opt in ('--drop', '--flip'):
         drop, flip = (v, flip) if opt == '--drop' else (drop, v)
 D, arc = args
 HERE = os.path.dirname(os.path.abspath(__file__))
-expect = lambda h: 444 if h.startswith('g21_') else 2200 if h.startswith('zf21_') else 600
+expect = lambda h: 444 if h.startswith('g21_') else 2200 if h.startswith(('zf21_', 'z3f21_')) else 600
 
 raw = subprocess.run(['zstd', '-dc', arc], capture_output=True, check=True).stdout
 tf = tarfile.open(fileobj=io.BytesIO(raw))
@@ -43,7 +43,7 @@ for m in tf:
         cov.setdefault(h, {})[f] = tf.extractfile(m).read().decode()
 
 hosts = sorted(f[:-5] for f in os.listdir(D) if f.endswith('.bits'))
-assert len(hosts) == 25, f'{len(hosts)} hosts'
+assert len(hosts) == 50, f'{len(hosts)} hosts'
 assert sorted(cov) == hosts, 'the archive and the directory name different hosts'
 fails = 0
 for h in hosts:

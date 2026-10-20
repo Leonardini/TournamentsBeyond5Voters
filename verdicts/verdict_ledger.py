@@ -10,7 +10,8 @@ Two sound implications are used, in opposite directions:
   majority UNSAT => margin-1 UNSAT   (if no profile reaches a majority, none reaches exactly 3)
 A capped/ABORTED run is never a verdict -- it is `unresolved`.
 
-Columns: id, n, tmin, margin1, majority, witness (whether the solver output is on disk), source.
+Columns: id, n, tmin, margin1, majority, witness (whether the solver output is on disk), source,
+converse (registry_converse.tsv: self, the converse class id, or - when the converse is not held).
 """
 import glob
 import json
@@ -29,6 +30,8 @@ for ln in _reg[1:]:
     for m in members.split(","):
         member2id[m] = tid
 
+conv = dict(ln.split("\t") for ln in open(os.path.join(R, "registry_converse.tsv")).read().splitlines()[1:])
+assert set(conv) == set(reg), "registry_converse.tsv does not cover registry.tsv -- rerun registry.py"
 verdict = {tid: {"exact": None, "majority": None, "wit": set(), "src": set()} for tid in reg}
 
 
@@ -247,7 +250,7 @@ for tid, (n, tmin, mem) in rows:
     counts[(n, m1, mj.split(" ")[0])] = counts.get((n, m1, mj.split(" ")[0]), 0) + 1
 print(f"  ({len(rows)} classes; per-class rows in verdict_ledger.tsv)")
 with open(os.path.join(R, "verdict_ledger.tsv"), "w") as f:
-    f.write("id\tn\ttmin\tmargin1\tmajority\twitness_on_disk\tsources\n")
+    f.write("id\tn\ttmin\tmargin1\tmajority\twitness_on_disk\tsources\tconverse\n")
     for tid, (n, tmin, mem) in rows:
         v = verdict[tid]
         # The two implications are SOUND, so they must fire whenever the target is
@@ -262,7 +265,7 @@ with open(os.path.join(R, "verdict_ledger.tsv"), "w") as f:
         if v["majority"] == "UNSAT" and v["exact"] not in HARD:
             m1 = "UNSAT (implied by majority)"
         f.write(f"{tid}\t{n}\t{tmin}\t{m1}\t{mj}\t"
-                f"{'+'.join(sorted(v['wit'])) or '-'}\t{';'.join(sorted(v['src'])) or '-'}\n")
+                f"{'+'.join(sorted(v['wit'])) or '-'}\t{';'.join(sorted(v['src'])) or '-'}\t{conv[tid]}\n")
 
 print("\nsummary by order:")
 for n in sorted({n for n, _, _ in [(v[0], 0, 0) for v in reg.values()]}):

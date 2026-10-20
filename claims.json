@@ -738,13 +738,15 @@
     "verdicts/near_dr21/",
     "verdicts.tsv",
     "evidence/near_dr21_unit_covers.tar.zst",
+    "tools/check_manuscript.py",
     "tools/check_package.sh",
     "tournaments/near_dr21/"
    ],
    "missing": [],
    "other_tokens": [
     "margin1 = UNSAT",
-    "majority = SAT"
+    "majority = SAT",
+    "converse"
    ],
    "status": "established"
   },
@@ -1374,7 +1376,7 @@
    "sections": [
     "G"
    ],
-   "claim": "The other families searched on 21 vertices, up to isomorphism and converse: 286 four-vertex deletions of the circulant on 25 vertices and 150 six-vertex deletions of Paley(27), all settled (G6); the 99 vertex-transitive classes (S1); 78 rigid near-doubly regular tournaments drawn at random, all settled; 28 near-doubly regular classes with a bisector and an automorphism of order 5, all settled, 12 of them only at majority; and 31 with a fixed-point-free automorphism of order 3, of which the 5 tested here are settled, all only at majority (the other 26 are the cluster screen of 55 hosts)",
+   "claim": "The other families searched on 21 vertices, up to isomorphism and converse: 286 four-vertex deletions of the circulant on 25 vertices and 150 six-vertex deletions of Paley(27), all settled (G6); 78 rigid near-doubly regular tournaments drawn at random, all settled; 28 near-doubly regular classes with a bisector and an automorphism of order 5, all settled, 12 of them only at majority; and 31 with a fixed-point-free automorphism of order 3, all settled, 30 of them only at majority (majority witnesses for the 55 hosts of the cluster screen, and complete unit-margin searches of one host per class)",
    "artifacts": [
     "verdicts/families21/",
     "HOSTS.tsv",

@@ -38,6 +38,8 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
 \newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -48,6 +50,21 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -56,12 +73,16 @@
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
 \hypersetup{
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \author{}
-\date{}
+\date{\vspace{-2.5em}}
 
 \begin{document}
 
@@ -250,7 +271,10 @@ tournament and changes no support. So a profile realises \(T\) exactly
 when its reversal realises the converse \(\bar{T}\), at the same
 margins, and \(T\) and \(\bar{T}\) are \(k\)-inducible for the same
 \(k\) and at the same margins. Every question in this paper is therefore
-unchanged by taking the converse.
+unchanged by taking the converse. Accordingly, we count a family
+enumerated in full, such as all tournaments of a given order or all
+vertex-transitive ones, up to isomorphism, and a family that our
+searches generated up to isomorphism and converse.
 
 One further quantity recurs below. Informally, the \emph{predictability}
 \(\alpha^{*}(T)\) is the largest fraction \(\alpha > 1/2\) for which
@@ -1264,12 +1288,14 @@ classes, and each was settled by a complete search; \(16\) of them ran
 on the cluster, at about \(26{,}500\) cluster core-hours together.
 
 Taken together with the Paley results above and the families of Appendix
-G, these searches turn up \(42\) tournaments that five voters can
-produce, but not with unit margin: \(2\) doubly regular ones at order
-\(19\), \(4\) vertex-transitive and \(25\) near-doubly regular ones at
-order \(21\), and \(11\) circulant ones at order \(23\). Several of them
-were found incidentally, by the unit-margin filter described at the
-start of this section, rather than sought.
+G, these searches turn up \(58\) tournaments, up to isomorphism and
+converse, that five voters can produce but not with unit margin: \(2\)
+doubly regular ones at order \(19\); at order \(21\), \(3\)
+vertex-transitive ones (the four of Section 3.6, two of which are
+converses of each other) and \(42\) near-doubly regular ones; and \(11\)
+circulant ones at order \(23\). Several of them were found incidentally,
+by the unit-margin filter described at the start of this section, rather
+than sought.
 
 \textbf{One family needs no search.} A tournament is \emph{locally
 transitive} if every in- and out-neighbourhood induces a transitive
@@ -1529,7 +1555,7 @@ Deduction (CADE 2017)}, LNCS 10395, Springer, pp 220--236
 Cruz-Filipe L, Marques-Silva J, Schneider-Kamp P (2019) Formally
 verifying the solution to the Boolean Pythagorean triples problem.
 \emph{Journal of Automated Reasoning} 63(3):695--722.
-doi:10.1007/s10817-018-9490-4
+\url{doi:10.1007/s10817-018-9490-4}
 
 Dushnik B, Miller EW (1941) Partially ordered sets. \emph{American
 Journal of Mathematics} 63(3):600--610
@@ -1572,7 +1598,7 @@ McKay BD, Piperno A (2014) Practical graph isomorphism, II.
 
 Milosz R, Hamel S, Pierrot A (2018) Median of 3 permutations, 3-cycles
 and 3-hitting set problem. In: \emph{Proceedings of IWOCA 2018}, LNCS
-10979, Springer, pp 224--236. doi:10.1007/978-3-319-94667-2\_19
+10979, Springer, pp 224--236. \url{doi:10.1007/978-3-319-94667-2_19}
 
 OEIS Foundation Inc.~(2026a) Entry A000568, Number of outcomes of
 unlabeled \(n\)-team round-robin tournaments. The On-Line Encyclopedia
@@ -1589,11 +1615,11 @@ Sequences. \texttt{https://oeis.org/A096368}
 Pollitt F, Fleury M, Biere A (2023) Faster LRAT checking than solving
 with CaDiCaL. In: \emph{Theory and Applications of Satisfiability
 Testing (SAT 2023)}, LIPIcs 271, pp 21:1--21:12.
-doi:10.4230/LIPIcs.SAT.2023.21
+\url{doi:10.4230/LIPIcs.SAT.2023.21}
 
 Shepardson D, Tovey CA (2009) Smallest tournaments not realizable by
 \(\tfrac{2}{3}\)-majority voting. \emph{Social Choice and Welfare}
-33(3):495--503. doi:10.1007/s00355-009-0375-7
+33(3):495--503. \url{doi:10.1007/s00355-009-0375-7}
 
 \subsection{Appendix A. The search
 engine}\label{appendix-a.-the-search-engine}
@@ -2496,9 +2522,10 @@ cannot be doubly regular, since \((21 - 3)/4\) is not an integer; we
 call it \emph{near-doubly regular} if every pair of vertices has \(4\)
 or \(5\) common out-neighbours. The table below lists every family we
 searched on \(21\) vertices, again up to isomorphism and converse, with
-the number of classes settled. Every settled class is \(5\)-inducible,
-by a witness verified independently of the search; none was settled
-negatively.
+the number of classes settled; the vertex-transitive tournaments on
+\(21\) vertices, a family enumerated in full, are covered in Section
+3.7. Every settled class is \(5\)-inducible, by a witness verified
+independently of the search; none was settled negatively.
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -2522,12 +2549,11 @@ two vertices deleted from a doubly regular tournament on \(23\) vertices
 four vertices deleted from the circulant tournament on \(25\) vertices &
 \(286\) & \(286\) \\
 six vertices deleted from \(P_{27}\) & \(150\) & \(150\) \\
-vertex-transitive (Section 3.7) & \(99\) & \(99\) \\
 near-doubly regular, rigid, drawn at random & \(78\) & \(78\) \\
 near-doubly regular, with a bisector and an automorphism of order \(5\)
 & \(28\) & \(28\) \\
 near-doubly regular, with a fixed-point-free automorphism of order \(3\)
-& \(31\) & {[}PLACEHOLDER{]} \\
+& \(31\) & \(31\) \\
 \end{longtable}
 }
 
@@ -2537,8 +2563,8 @@ solutions, and we stopped it at \(4{,}567\) without running it to
 completion. Two of the \(31\) are bisectable and the other \(29\) are
 not. In the two families with an automorphism, several classes are not
 \(5\)-inducible at unit margin and need a majority witness: \(12\) of
-the \(28\) with a bisector, and all \(5\) of the \(31\) that we tested
-at unit margin.
+the \(28\) with a bisector, and \(30\) of the \(31\) with an
+automorphism of order \(3\).
 
 \subsection{Appendix H. The three obstructions on 22
 vertices}\label{appendix-h.-the-three-obstructions-on-22-vertices}
