@@ -381,7 +381,7 @@ itself.
 Table: The symmetry reductions of this section as instances of Theorem 2.1. Here $B$ is the base, $C \subseteq B$, and $H$ is a subgroup of $\mathrm{Aut}(T)$ mapping $B$, respectively $C$, onto itself.
 
 | result | group $G$ | object $\varphi(\pi)$ |
-|---|---|---|
+|-----|-------|----------|
 | Corollary 2.2 | $\mathrm{Aut}(T)$ | the top two vertices of $\pi_1$ |
 | Corollary 2.3 | $\mathrm{Aut}(T)$ | the top vertex of $\pi_1$ |
 | Corollary 2.4 | $S_k$ | the profile $\pi$ itself |
@@ -1302,7 +1302,7 @@ larger tournament carries larger domains and each refinement step costs more. Th
 faster than the per-node cost rises, which is what makes the total fall. The full runs:
 
 | $q$ | live base states | core-hours | nodes | seconds per live base state |
-|:------|:-------------------|:-------------|:--------|:------------------------------|
+|:------|:-------------------|:-------------|:-----------|:---------------------------|
 | 23 | $2{,}591$ | $34.03$ | $1.14 \times 10^{10}$ | $47.3$ |
 | 27 | $2{,}537$ | $31.04$ | $6.22 \times 10^{9}$ | $44.0$ |
 | 31 | $4{,}007$ | $26.89$ | $3.43 \times 10^{9}$ | $24.2$ |
@@ -1445,8 +1445,8 @@ for $\Delta_6 - 5$, and each is correspondingly harder.
 The trust chain has four links:
 
 | link | status |
-|-------------------------------------------------------|-------------------------------------------------------|
-| every live cube is unsatisfiable | machine-checked: CaDiCaL, rechecked by `lrat-trim` |
+|----------------------------------------------------------|----------------------------------------------------|
+| every live cube is unsatisfiable | machine-checked: CaDiCaL, then `lrat-trim` |
 | the cubes cover every lex-canonical base assignment | machine-checked: LRAT, verified by `lrat-trim` |
 | (L1) orbit anchoring loses no generality | human-checked: Corollary 2.2 |
 | (L2) lex-ordering the voters loses no generality | human-checked: Corollary 2.4 |
