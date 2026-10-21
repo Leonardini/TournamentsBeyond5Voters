@@ -549,6 +549,22 @@ if [ -f "$QM" ]; then
     bad "control did not fire: a representative's marker was removed and the search still read complete"
   else ok "control: removing one representative's marker breaks the Delta_1 - 10 search, as it must"; fi
 else warn "d000mv09_sweep_markers.tar.zst absent"; fi
+# The four deletions whose automorphism group has order 5 (Delta_1 - 1, Delta_1 - 2,
+# Delta_11 - 2, Delta_11 - 5) were searched with the quotient alone, over a base given
+# explicitly; quotient_sweep_audit_g.py derives the group, checks the base is invariant
+# and requires a clean marker for every one of the 1,611 orbit representatives.
+QG=$ROOT/verify/quotient_sweep_audit_g.py; E=$ROOT/evidence
+for spec in "d000_mv00:0,3,5,7,9:d000_mv00_cluster" "d000_mv01:0,6,10,17,21:d000_mv01_cluster" \
+            "d010_mv01:0,7,10,19,20:d010_mv01_laptop" "d010_mv04:0,7,10,19,20:d010_mv04_cluster d010_mv04_laptop"; do
+  h=${spec%%:*}; r=${spec#*:}; b=${r%%:*}; hb=$ROOT/tournaments/drt23_del/$h.bits
+  # positional parameters reused as the archive list (the script's own were read at the top)
+  set --; for a in ${r#*:}; do set -- "$@" "$E/${a}_markers.tar.zst"; done
+  if out=$(python3 "$QG" "$hb" "$b" "$@" 2>&1); then ok "$h: $(echo "$out" | tail -1)"
+  else bad "$h: the search does not cover its representatives"; echo "$out" | sed 's/^/        /'; fi
+  if python3 "$QG" "$hb" "$b" "$@" --drop 100 2>&1 | grep -q '^FAIL: .*no marker'; then
+    ok "control: removing one representative's marker breaks the $h search, as it must"
+  else bad "control did not fire for $h"; fi
+done
 
 echo
 echo "== 8g. the near-doubly regular unit-margin-only tournaments on 21 vertices =="
@@ -639,8 +655,9 @@ if [ -n "$LABELG" ]; then
   else
     ok "all $(wc -l < "$TMP/n21names" | tr -d ' ') settled names are rows of HOSTS_level2.tsv, hence distinct classes"
   fi
-  # Vertex-criticality of all three 22-vertex obstructions, matched by class.
-  for h in d005_mv04 d027_mv04 d000_mv09; do
+  # Vertex-criticality of the seven 22-vertex deletions, matched by class (the eighth
+  # obstruction, the arc reversal of Delta_1 - 10, is checked in 8j).
+  for h in d005_mv04 d027_mv04 d000_mv09 d000_mv00 d000_mv01 d010_mv01 d010_mv04; do
     if out=$(python3 "$ROOT/verify/critical_deletions.py" "$DD/$h.bits" \
                "$DD/HOSTS_level2.tsv" "$TMP/n21names" --labelg "$LABELG" 2>&1); then
       ok "$out"
@@ -711,7 +728,7 @@ else
 fi
 
 echo
-echo "== 8e. the three 22-vertex obstructions are what Section 3.2 says they are =="
+echo "== 8e. the 22-vertex obstructions are what Sections 3.2 and 3.3 say they are =="
 # Out-degrees 10 and 11, every arc in at least five directed triangles, and no two
 # isomorphic or converse to each other.  Delta_6 - 5 and Delta_28 - 5 have trivial
 # automorphism group, and so do their parents d005 and d027; Delta_1 - 10 has two
@@ -719,8 +736,10 @@ echo "== 8e. the three 22-vertex obstructions are what Section 3.2 says they are
 # orbits are decided with labelg alone.
 if [ -n "$LABELG" ]; then
   out=$(python3 "$ROOT/verify/host_facts.py" --labelg "$LABELG" "$DD/d005_mv04.bits" \
-          "$DD/d027_mv04.bits" "$DD/d000_mv09.bits" "$D/d005.bits" "$D/d027.bits" 2>&1)
-  for h in d005_mv04 d027_mv04; do
+          "$DD/d027_mv04.bits" "$DD/d000_mv09.bits" "$DD/d000_mv00.bits" "$DD/d000_mv01.bits" \
+          "$DD/d010_mv01.bits" "$DD/d010_mv04.bits" "$DD/d000mv09_r01_02.bits" \
+          "$D/d005.bits" "$D/d027.bits" 2>&1)
+  for h in d005_mv04 d027_mv04 d000mv09_r01_02; do
     if echo "$out" | grep -q "^$h: n=22, out-degrees 10 x11, 11 x11, every arc in >= 5 directed triangles, automorphism group TRIVIAL"; then
       ok "$(echo "$out" | grep "^$h:")"
     else
@@ -732,27 +751,31 @@ if [ -n "$LABELG" ]; then
   else
     bad "d000_mv09 does not have the stated structure"; echo "$out" | grep "^d000_mv09" | sed 's/^/        /'
   fi
+  # the four with an automorphism of order 5: four orbits of 5 and two fixed vertices
+  for h in d000_mv00 d000_mv01 d010_mv01 d010_mv04; do
+    if echo "$out" | grep -q "^$h: n=22, out-degrees 10 x11, 11 x11, every arc in >= 5 directed triangles, automorphism group non-trivial (6 vertex orbits)"; then
+      ok "$(echo "$out" | grep "^$h:")"
+    else
+      bad "$h does not have the stated structure"; echo "$out" | grep "^$h" | sed 's/^/        /'
+    fi
+  done
   for h in d005 d027; do
     if echo "$out" | grep -q "^$h: .*automorphism group TRIVIAL"; then ok "parent $h is rigid"
     else bad "parent $h is not rigid"; fi
   done
-  if [ "$(echo "$out" | grep -cE '^d0[0-9]+_mv[0-9]+ vs d0[0-9]+_mv[0-9]+: not isomorphic, not converse to each other')" = 3 ]; then
-    ok "no two of the three are isomorphic or converse to each other"
+  # all 28 pairs of the eight obstructions (the parents' lines are excluded by name)
+  OB='(d0[0-9]+_mv[0-9]+|d000mv09_r01_02)'
+  if [ "$(echo "$out" | grep -cE "^$OB vs $OB: not isomorphic, not converse to each other")" = 28 ]; then
+    ok "no two of the eight are isomorphic or converse to each other (28 pairs)"
   else
-    bad "two of the obstructions are related"; echo "$out" | grep -E '^d0[0-9]+_mv[0-9]+ vs d0[0-9]+_mv' | sed 's/^/        /'
+    bad "two of the obstructions are related"; echo "$out" | grep -E "^$OB vs $OB" | grep -v 'not isomorphic, not converse' | sed 's/^/        /'
   fi
-  # Delta_1 - 10 is d000 (Delta_1) with vertex 9 (0-based) deleted, the rest in order
-  if python3 -c "
-import sys
-def adj(p):
-    s=''.join(open(p).read().split()); n=int(round((1+(1+8*len(s))**.5)/2)); A=[[0]*n for _ in range(n)]; k=0
-    for i in range(n):
-        for j in range(i+1,n): A[i][j]=int(s[k]); A[j][i]=1-A[i][j]; k+=1
-    return A
-P=adj('$D/d000.bits'); H=adj('$DD/d000_mv09.bits'); keep=[v for v in range(23) if v!=9]
-sys.exit(0 if all(P[keep[i]][keep[j]]==H[i][j] for i in range(22) for j in range(22)) else 1)"; then
-    ok "d000_mv09 is d000 with vertex 9 deleted, the rest in order"
-  else bad "d000_mv09 is not d000 less vertex 9"; fi
+  # each deletion is its parent less the named vertex, and Delta_1's three vertex orbits
+  # contain the three deleted vertices, so every one-vertex deletion of Delta_1 is one of them
+  if pout=$(python3 "$ROOT/verify/parent_deletions.py" "$D" "$DD" 2>&1); then
+    echo "$pout" | while IFS= read -r l; do printf '  ok    %s\n' "$l"; done
+    pass=$((pass + $(echo "$pout" | wc -l)))
+  else bad "a deletion is not what its name says, or Delta_1's orbits differ"; echo "$pout" | sed 's/^/        /'; fi
   # CONTROL: the rigidity test must see Paley(23)'s symmetry.
   if python3 "$ROOT/verify/host_facts.py" --labelg "$LABELG" "$ROOT/tournaments/p23_paley.bits" \
        2>&1 | grep -q 'non-trivial (1 vertex orbits)'; then
@@ -763,6 +786,32 @@ sys.exit(0 if all(P[keep[i]][keep[j]]==H[i][j] for i in range(22) for j in range
 else
   warn "labelg not found; host facts not checked"
 fi
+
+echo
+echo "== 8j. the eighth obstruction: Delta_1 - 10 with a non-rung Y->X arc reversed =="
+# Section 3.3: reversing the arc between vertices 1 and 2 (0-based; a Y->X arc in an orbit
+# of 55, not a rung) leaves a rigid tournament whose complete search over all 8,031 base
+# states finds no witness, and that tournament is vertex-critical.  Both scripts rebuild
+# the reversal from Delta_1 - 10 itself.  Controls: one marker removed, and every witness
+# checked against the wrong deletion, must each fail.
+AR=$ROOT/verify/arc_reversal_audit.py; RM=$ROOT/evidence/d000mv09_r01_02_markers.tar.zst
+H10=$ROOT/tournaments/drt23_del/d000_mv09.bits
+if [ -f "$RM" ]; then
+  if out=$(python3 "$AR" "$H10" 1 2 3,8,12,13,14 "$RM" 2>&1); then
+    ok "$(echo "$out" | head -1 | cut -c1-160)"; ok "$(echo "$out" | tail -1)"
+  else bad "the r01_02 search does not cover its base states"; echo "$out" | sed 's/^/        /'; fi
+  if python3 "$AR" "$H10" 1 2 3,8,12,13,14 "$RM" --drop 100 2>&1 | grep -q '^FAIL'; then
+    ok "control: removing one marker breaks the r01_02 cover, as it must"
+  else bad "control did not fire: a marker was removed and the r01_02 cover still read complete"; fi
+else warn "d000mv09_r01_02_markers.tar.zst absent"; fi
+RC=$ROOT/verify/r0102_critical.py; RWT=$ROOT/evidence/d000mv09_r01_02_deletion_witnesses.tar.zst
+if [ -f "$RWT" ]; then
+  if out=$(python3 "$RC" "$H10" 1 2 "$RWT" 2>&1); then ok "$(echo "$out" | tail -1) ($(echo "$out" | head -1 | sed 's/.*: //'))"
+  else bad "r01_02 is not shown vertex-critical"; echo "$out" | sed 's/^/        /'; fi
+  if python3 "$RC" "$H10" 1 2 "$RWT" --shift 2>&1 | grep -q '^FAIL'; then
+    ok "control: each witness fails on a different deletion, as it must"
+  else bad "control did not fire: witnesses passed on the wrong deletions"; fi
+else warn "d000mv09_r01_02_deletion_witnesses.tar.zst absent"; fi
 
 echo
 echo "== 9. every number the manuscript prints that we can re-derive, re-derived =="

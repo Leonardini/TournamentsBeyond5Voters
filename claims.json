@@ -141,11 +141,13 @@
    "id": "B8",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "3.2"
+    "3.2",
+    "3.3"
    ],
-   "claim": "No two of the three are isomorphic or converse to each other; each has eleven vertices of out-degree 10 and eleven of 11 and every arc in at least five directed triangles. \u0394\u2086 \u2212 5 and \u0394\u2082\u2088 \u2212 5 have trivial automorphism group, and so do their parents `d005` and `d027`; \u0394\u2081 \u2212 10 has two vertex orbits",
+   "claim": "No two of the eight 22-vertex obstructions (the seven deletions of B5, B7, B10, B13 and the reversal of B15) are isomorphic or converse to each other (28 pairs); each has eleven vertices of out-degree 10 and eleven of 11 and every arc in at least five directed triangles. \u0394\u2086 \u2212 5, \u0394\u2082\u2088 \u2212 5 and the reversal have trivial automorphism group, and so do the parents `d005` and `d027`; \u0394\u2081 \u2212 10 has two vertex orbits; the four of B13 have six (four of 5 and two fixed vertices)",
    "artifacts": [
     "verify/host_facts.py",
+    "tournaments/drt23_del/",
     "tools/check_package.sh"
    ],
    "missing": [],
@@ -163,7 +165,7 @@
     "3.3",
     "G"
    ],
-   "claim": "All three are **vertex-critical**: every one-vertex deletion of each is 5-inducible. For \u0394\u2081 \u2212 10 the 22 deletions fall into two classes, one per vertex orbit",
+   "claim": "The seven deletions are **vertex-critical**: every one-vertex deletion of each is 5-inducible. For \u0394\u2081 \u2212 10 the 22 deletions fall into two classes, one per vertex orbit",
    "artifacts": [
     "evidence/n21_level_witnesses.tar.zst",
     "verify/critical_deletions.py",
@@ -202,7 +204,7 @@
    "sections": [
     "3.3"
    ],
-   "claim": "The 231 arcs of \u0394\u2081 \u2212 10 fall into five orbits under its automorphism group, of 55, 55, 55, 55 and 11 arcs, and reversing one of the 11, a rung y_i \u2192 x_i, leaves a 5-inducible tournament. Whether the arcs of the other four orbits are critical is open",
+   "claim": "The 231 arcs of \u0394\u2081 \u2212 10 fall into five orbits under its automorphism group, of 55, 55, 55, 55 and 11 arcs, and reversing one of the 11, a rung y_i \u2192 x_i, leaves a 5-inducible tournament. Reversing an arc of the orbit of the other 55 arcs from Y to X does not (B15); the other three orbits are open",
    "artifacts": [
     "verdicts/d000mv09_rung/d000mv09_r01_15.log",
     "verify/rung_reversal.py",
@@ -233,6 +235,67 @@
    "other_tokens": [
     "lrat-trim"
    ],
+   "status": "established"
+  },
+  {
+   "id": "B13",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
+   "sections": [
+    "3.2"
+   ],
+   "claim": "**\u0394\u2081 \u2212 1, \u0394\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 2 and \u0394\u2081\u2081 \u2212 5 are not 5-inducible** (`d000_mv00`, `d000_mv01`, `d010_mv01`, `d010_mv04`). Each has an automorphism group of order 5 that maps a base inducing the regular 5-tournament onto itself, so each search keeps one base state per orbit (Corollary 2.5), 1,611 of 8,031, with no anchoring. Every representative exhausted, none capped; 485.6 and 436.3 cluster core-h, 108.5 laptop core-h, and 392.9 cluster plus 41.4 laptop core-h (335.2 counting the faster run where both machines did a state)",
+   "artifacts": [
+    "evidence/d000_mv00_cluster_markers.tar.zst",
+    "evidence/d000_mv01_cluster_markers.tar.zst",
+    "evidence/d010_mv01_laptop_markers.tar.zst",
+    "evidence/d010_mv04_cluster_markers.tar.zst",
+    "evidence/d010_mv04_laptop_markers.tar.zst",
+    "tournaments/drt23_del/",
+    "verify/quotient_sweep_audit_g.py",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "d000_mv00",
+    "d000_mv01",
+    "d010_mv01",
+    "d010_mv04"
+   ],
+   "status": "established"
+  },
+  {
+   "id": "B14",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
+   "sections": [
+    "3.2"
+   ],
+   "claim": "**No one-vertex deletion of \u0394\u2081 is 5-inducible**: Aut(\u0394\u2081) has order 55 and three vertex orbits, of 11, 11 and 1 vertices, containing 0-based vertices 0, 1 and 9, whose deletions are B13's first two and B10. Every deletion named in B5, B7, B10 and B13 is its parent less that vertex",
+   "artifacts": [
+    "tournaments/drt23/d000.bits",
+    "tournaments/drt23_del/",
+    "verify/parent_deletions.py",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "B15",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
+   "sections": [
+    "3.3"
+   ],
+   "claim": "**\u0394\u2081 \u2212 10 is not arc-critical**: reversing the arc between vertices 1 and 2 (0-based), a Y \u2192 X arc in an orbit of 55 and not a rung, leaves a rigid tournament that is not 5-inducible (complete over all 8,031 base states of {3, 8, 12, 13, 14}, about 2,063 core-h, cluster and laptop together). It is the eighth 22-vertex obstruction and is vertex-critical: deleting an endpoint of the reversed arc gives \u0394\u2081 \u2212 10 minus a vertex (B9), and each of the other 20 deletions has a verified witness",
+   "artifacts": [
+    "evidence/d000mv09_r01_02_markers.tar.zst",
+    "evidence/d000mv09_r01_02_deletion_witnesses.tar.zst",
+    "verify/arc_reversal_audit.py",
+    "verify/r0102_critical.py",
+    "tools/check_package.sh"
+   ],
+   "missing": [],
+   "other_tokens": [],
    "status": "established"
   },
   {
@@ -537,7 +600,7 @@
    "sections": [
     "3.3"
    ],
-   "claim": "The two 22-vertex obstructions are vertex-critical unrestricted; whether either is arc-critical is open",
+   "claim": "The 22-vertex obstructions are vertex-critical unrestricted; \u0394\u2081 \u2212 10 is not arc-critical (B15), and the arc-criticality of the others is open",
    "artifacts": [],
    "missing": [],
    "other_tokens": [],
@@ -1490,8 +1553,8 @@
   }
  ],
  "counts": {
-  "claims": 95,
-  "established": 89,
+  "claims": 98,
+  "established": 92,
   "declared_gap": 6,
   "missing_artifacts": 0,
   "gaps": 7,
