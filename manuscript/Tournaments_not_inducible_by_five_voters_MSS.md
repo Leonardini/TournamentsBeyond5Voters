@@ -12,9 +12,10 @@ header-includes:
 **Leonid Chindelevitch$^{a}$ and Ararat Harutyunyan$^{b}$**
 
 $^{a}$ MRC Centre for Global Infectious Disease Analysis, School of Public Health, Imperial
-College London, London, United Kingdom. Email: `lchindel@ic.ac.uk`. ORCID: 0000-0002-6619-6013.
+College London, 90 Wood Lane, London W12 0BZ, United Kingdom. Email: `lchindel@ic.ac.uk`. ORCID: 0000-0002-6619-6013.
 
-$^{b}$ University of Paris-Dauphine, PSL University, CNRS UMR7243, LAMSADE, Paris, France.
+$^{b}$ University of Paris-Dauphine, PSL University, CNRS UMR7243, LAMSADE, Place du Maréchal de Lattre
+de Tassigny, 75775 Paris Cedex 16, France.
 Email: `ararat.harutyunyan@lamsade.dauphine.fr`.
 
 Corresponding author: Leonid Chindelevitch (`lchindel@ic.ac.uk`).
@@ -206,6 +207,8 @@ While the same argument is valid at every $q$, the slack is *not* a monotone fun
 | $q$ | 7 | 11 | 19 | 23 | 31 | 43 |
 |---|---|---|---|---|---|---|
 | $\mathrm{slack}_5$ | 7 | 10 | 22 | **46** | 30 | **6** |
+
+Table: The slack of the Paley tournaments, from our companion paper.
 
 Since $P_{43}$ attains a locally minimal slack, while $P_{23}$ attains a local maximum, the method of our companion paper 
 is unusable at $q = 23$. For any $q$, 
@@ -743,6 +746,8 @@ cell below therefore records only the *strongest* property established, at each 
 | 31 | not vertex-critical | **not vertex-critical** (Section 3.5) |
 | 43 | not vertex-critical | **not vertex-critical** (Section 3.5) |
 
+Table: The strongest criticality property established for each Paley tournament, at each margin.
+
 $P_{19}$ is the only member critical at unit margin, and it is critical in the
 strongest sense: reversing any one arc makes it unit-margin inducible, which by the implication also
 gives vertex-criticality. At the other end, $P_{31}$ and $P_{43}$ fail to be vertex-critical at
@@ -1118,6 +1123,8 @@ Shepardson D, Tovey CA (2009) Smallest tournaments not realizable by $2/3$-major
 
 ## Appendix A. The search engine
 
+\setcounter{table}{0}\renewcommand{\thetable}{A.\arabic{table}}
+
 \setcounter{figure}{0}\renewcommand{\thefigure}{A.\arabic{figure}}
 
 Integer programming and satisfiability are both central to this project.
@@ -1161,6 +1168,8 @@ entries whose average stays under 20 seconds. The $k = 5$ column reads
 | $n$ | 18 | 19 | 20 | 21 | 22 | 23 | 24 |
 |---|---|---|---|---|---|---|---|
 | seconds | $0.23$ | $0.35$ | $0.54$ | $5.87$ | $11.07$ | $18.95$ | — |
+
+Table: Average time of Sat-Check-k-Majority at $k = 5$ on uniform random tournaments (Bachmeier et al. 2019, Table 4).
 
 so on *random* instances the method leaves the table between $n = 23$ and $n = 24$, roughly
 doubling per added vertex. Random tournaments are the easy case: no automorphisms to rediscover
@@ -1327,6 +1336,8 @@ faster than the per-node cost rises, which is what makes the total fall. The ful
 | 31 | $4{,}007$ | $26.89$ | $3.43 \times 10^{9}$ | $24.2$ |
 | 43 | $2{,}537$ | $22.87$ | $1.43 \times 10^{9}$ | $32.5$ |
 
+Table: The four full Paley sweeps.
+
 $P_{43}$ is decided in *less time than $P_{27}$*, and explores $4.3$ times fewer nodes to do it.
 The last column is the third divided by the second, so only the core-hours and the live
 base states are measured. Just two of these four runs share a decomposition, $q = 27$ and
@@ -1406,10 +1417,14 @@ $3.85$ and $4.28$ times as long respectively.
 | self-converse on $13$ vertices | unit | all inducible | $294.2$ |
 | all on $12$ vertices | unit | all inducible | $2{,}615.6$ |
 
+Table: The runtime of every computation in this paper.
+
 The four full Paley sweeps, $q = 23$, $27$, $31$ and $43$, are tabulated with their node counts in
 Appendix A.5.
 
 ## Appendix B. The formal certificates
+
+\setcounter{table}{0}\renewcommand{\thetable}{B.\arabic{table}}
 
 ### B.1 The certified refutations
 
@@ -1488,6 +1503,8 @@ The trust chain has four links:
 | (L2) lex-ordering the voters loses no generality | human-checked: Corollary 2.4 |
 | (L3) one base state per orbit loses no generality | human-checked: Corollary 2.5 |
 
+Table: The four links of the trust chain.
+
 The human-checked links are proved in Section 2. Each certificate uses only some of them:
 $P_{19}$ and $P_{23}$ use (L1) and (L2), $\Delta_1 - v_{10}$ uses (L2) and (L3), and $\Delta_6 - v_{5}$
 uses (L2) alone. Corollary 2.2 is what licenses solving only the *live*
@@ -1499,6 +1516,8 @@ $\Delta_6 - v_{5}$ has no automorphism to exploit, so neither orbit argument is 
 implementation with this one, so their agreement is evidence about the implementations, not the results.
 
 ## Appendix C. The order-12 case analysis
+
+\setcounter{table}{0}\renewcommand{\thetable}{C.\arabic{table}}
 
 Every tournament on $12$ vertices is $5$-inducible, so $N(5) \ge 13$. This appendix describes that
 computation. It is one of the results in this paper that was not run on the laptop of Section 3: it ran
@@ -1561,6 +1580,8 @@ repository of Section 5.
 
 ## Appendix D. Exact enumeration counts
 
+\setcounter{table}{0}\renewcommand{\thetable}{D.\arabic{table}}
+
 In this table, $D_n$, $R_n$ and $S_n$ are the numbers of isomorphism classes of all, of regular, 
 and of self-converse tournaments on $n$ vertices. They match OEIS A000568 (OEIS Foundation Inc. 2026a), A096368 (OEIS Foundation Inc. 2026c), and A002785 (OEIS Foundation Inc. 2026b).
 
@@ -1571,7 +1592,11 @@ and of self-converse tournaments on $n$ vertices. They match OEIS A000568 (OEIS 
 | $13$ | — | $1{,}495{,}297$ | $95{,}458{,}560$ |
 | $15$ | — | $18{,}400{,}989{,}629$ | — |
 
+Table: Numbers of isomorphism classes of all, regular and self-converse tournaments.
+
 ## Appendix E. Locally transitive tournaments, at unit margin, for every odd $k \ge 3$
+
+\setcounter{table}{0}\renewcommand{\thetable}{E.\arabic{table}}
 
 \setcounter{figure}{0}\renewcommand{\thefigure}{E.\arabic{figure}}
 
@@ -1643,6 +1668,8 @@ margin to any odd $k \ge 3$. $\blacksquare$
 
 ## Appendix F. Criticality at $21$ vertices
 
+\setcounter{table}{0}\renewcommand{\thetable}{F.\arabic{table}}
+
 This appendix carries the detail behind Section 3.6. Four of the $110$ vertex-transitive
 tournaments on $21$ vertices are unit-margin obstructions (Section 3.7). We name them by their
 automorphism groups, all of order $21$: $C_a$ and $C_b$ have the cyclic group $\mathbb{Z}_{21}$, and
@@ -1667,7 +1694,11 @@ are inducible.
 | $C_b$ | $\mathbb{Z}_{21}$ | `U S U S S U U S S U` | $5$ |
 | $F_a$, $F_b$ | $\mathbb{Z}_7 \rtimes \mathbb{Z}_3$ | `S S S S S S S S S S` | $0$ |
 
+Table: Single-arc reversals of the four vertex-transitive unit-margin obstructions on $21$ vertices, one per arc orbit.
+
 ## Appendix G. The search below 22 vertices
+
+\setcounter{table}{0}\renewcommand{\thetable}{G.\arabic{table}}
 
 This appendix summarizes the search for an obstruction on fewer than $22$ vertices, which would
 improve the upper bound of Section 3.2. It has found none.
@@ -1689,6 +1720,8 @@ and converse, the levels below the $36$ are as follows.
 | $22$ | $1$ | $378$ | $8$ searched completely, all obstructions (Section 3.2) |
 | $21$ | $2$ | $4{,}108$ | $1{,}173$ settled, all $5$-inducible |
 | $20$ | $3$ | $28{,}724$ | all $5$-inducible |
+
+Table: The levels below the $36$ doubly regular tournaments on $23$ vertices, up to isomorphism and converse.
 
 At $22$ vertices all $378$ classes were first screened at up to $50$ base states each, without a
 single witness, and the eight complete searches were chosen from among them. At $21$ vertices the $1{,}173$
@@ -1723,6 +1756,8 @@ independently of the search; none was settled negatively.
 | near-doubly regular, with a bisector and an automorphism of order $5$ | $28$ | $28$ |
 | near-doubly regular, with a fixed-point-free automorphism of order $3$ | $31$ | $31$ |
 
+Table: The families searched on $21$ vertices, up to isomorphism and converse.
+
 The $31$ classes of the last family are likely, but not confirmed, to be all of it: the enumeration
 found no new class after its first $225$ solutions, and we stopped it at $4{,}567$ without running it
 to completion. Two of the $31$ are bisectable and the other $29$ are not. In the two families
@@ -1731,91 +1766,84 @@ witness: $12$ of the $28$ with a bisector, and $30$ of the $31$ with an automorp
 
 ## Appendix H. The obstructions on 22 vertices
 
+\setcounter{table}{0}\renewcommand{\thetable}{H.\arabic{table}}
+
 This appendix gives the obstructions of Sections 3.2 and 3.3 so that each can be checked without
 the catalogue of McKay (2026). Each is given in the catalogue's own format, a single string of $231$
 bits giving the upper triangle of its adjacency matrix row by row: for every $u < w$, in the
 labelling of the parent with the deleted vertex removed, $1$ if the $u$-th vertex beats the $w$-th
-and $0$ otherwise. Each string is printed in three lines of $77$, followed by the order of the automorphism group and,
-when it is non-trivial, a minimal set of generators in cycle notation, in the same labels.
+and $0$ otherwise. Each string is printed in three lines of $77$, below the order of the automorphism group and, when
+it is non-trivial, a minimal set of generators in cycle notation, in the same labels.
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_1 - v_{1}$}\\[2pt]
+\textbf{$\Delta_1 - v_{1}$}\quad {\small $|\mathrm{Aut}| = 5$, generated by (2 9 11 7 5)(3 8 4 12 6)(13 22 15 16 20)(14 17 19 23 18)}\\[2pt]
 {\small\ttfamily 11111000001111110000001100011110001111100100111000010110011111100110110010101\\
 11011010101100110101011100101100110100110000101110010101101101010101100011100\\
-10101011001011101101001100010110101011010101111000001101010001000101011110011}\\[2pt]
-{\small $|\mathrm{Aut}| = 5$, generated by (2 9 11 7 5)(3 8 4 12 6)(13 22 15 16 20)(14 17 19 23 18)}
+10101011001011101101001100010110101011010101111000001101010001000101011110011}
 \end{minipage}
 \medskip
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_1 - v_{2}$}\\[2pt]
+\textbf{$\Delta_1 - v_{2}$}\quad {\small $|\mathrm{Aut}| = 5$, generated by (1 19 12 23 8)(3 6 4 18 14)(5 16 15 13 7)(9 22 11 20 21)}\\[2pt]
 {\small\ttfamily 11111111110000000000001100011110001111100100111000010110011111100110110010101\\
 11011010101100110101011100101100110100110000101110010101101101010101100011100\\
-10101011001011101101001100010110101011010101111000001101010001000101011110011}\\[2pt]
-{\small $|\mathrm{Aut}| = 5$, generated by (1 19 12 23 8)(3 6 4 18 14)(5 16 15 13 7)(9 22 11 20 21)}
+10101011001011101101001100010110101011010101111000001101010001000101011110011}
 \end{minipage}
 \medskip
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_1 - v_{10}$}\\[2pt]
+\textbf{$\Delta_1 - v_{10}$}\quad {\small $|\mathrm{Aut}| = 55$, generated by (2 9 11 7 5)(3 8 4 12 6)(13 22 15 16 20)(14 17 19 23 18) and\\
+(1 18 4 14 23 19 12 6 8 17 3)(2 16 21 7 13 5 11 9 22 15 20)}\\[2pt]
 {\small\ttfamily 11111111110000000000011111000011111100000011000111000111110010011000010110011\\
 11110110110010101110101010110011010111100101100110001100001011101010110110100\\
-10101011001011101101001100010110101011010101111000001101010001000101011110011}\\[2pt]
-{\small $|\mathrm{Aut}| = 55$, generated by (2 9 11 7 5)(3 8 4 12 6)(13 22 15 16 20)(14 17 19 23 18) and\\
-(1 18 4 14 23 19 12 6 8 17 3)(2 16 21 7 13 5 11 9 22 15 20)}
+10101011001011101101001100010110101011010101111000001101010001000101011110011}
 \end{minipage}
 \medskip
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_{11} - v_{2}$}\\[2pt]
+\textbf{$\Delta_{11} - v_{2}$}\quad {\small $|\mathrm{Aut}| = 5$, generated by (1 21 12 22 9)(3 14 13 7 16)(4 17 18 15 6)(8 11 10 23 19)}\\[2pt]
 {\small\ttfamily 11111111110000000000001110110001100001111001010110011101001110101100010111100\\
 11101011001010011111011010111011000101011100111000101011001011010110001110101\\
-11001001011100011101010001011110010011001010101000101010110010001011101110111}\\[2pt]
-{\small $|\mathrm{Aut}| = 5$, generated by (1 21 12 22 9)(3 14 13 7 16)(4 17 18 15 6)(8 11 10 23 19)}
+11001001011100011101010001011110010011001010101000101010110010001011101110111}
 \end{minipage}
 \medskip
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_{11} - v_{5}$}\\[2pt]
+\textbf{$\Delta_{11} - v_{5}$}\quad {\small $|\mathrm{Aut}| = 5$, generated by (1 21 12 22 9)(3 14 13 7 16)(4 17 18 15 6)(8 11 10 23 19)}\\[2pt]
 {\small\ttfamily 11111111110000000000011110000011111100000011011000110000111101010110011101001\\
 11101011001010011111011010111011000101011100111000101011001011010110001110101\\
-11001001011100011101010001011110010011001010101000101010110010001011101110111}\\[2pt]
-{\small $|\mathrm{Aut}| = 5$, generated by (1 21 12 22 9)(3 14 13 7 16)(4 17 18 15 6)(8 11 10 23 19)}
+11001001011100011101010001011110010011001010101000101010110010001011101110111}
 \end{minipage}
 \medskip
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_{11} - v_{20}$}\\[2pt]
+\textbf{$\Delta_{11} - v_{20}$}\quad {\small $|\mathrm{Aut}| = 5$, generated by (1 21 12 22 9)(3 14 13 7 16)(4 17 18 15 6)(8 11 10 23 19)}\\[2pt]
 {\small\ttfamily 11111111111000000000011111000001111110000011101100011000011100101011001110101\\
 11010110001011100111010110010101111101101011101000101011100110001010110011101\\
-01100011010111001000111000111101000101110010010010101100010010110100101101111}\\[2pt]
-{\small $|\mathrm{Aut}| = 5$, generated by (1 21 12 22 9)(3 14 13 7 16)(4 17 18 15 6)(8 11 10 23 19)}
+01100011010111001000111000111101000101110010010010101100010010110100101101111}
 \end{minipage}
 \medskip
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_6 - v_{5}$}\\[2pt]
+\textbf{$\Delta_6 - v_{5}$}\quad {\small $|\mathrm{Aut}| = 1$}\\[2pt]
 {\small\ttfamily 11111111110000000000011110000011111100000011001101001001111001100010000111101\\
 11011100010110110111111110111100001010110010010111010101010111010011010101101\\
-10110011001101001101011000110011011010101000111001001010100110010011100101110}\\[2pt]
-{\small $|\mathrm{Aut}| = 1$}
+10110011001101001101011000110011011010101000111001001010100110010011100101110}
 \end{minipage}
 \medskip
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_{28} - v_{5}$}\\[2pt]
+\textbf{$\Delta_{28} - v_{5}$}\quad {\small $|\mathrm{Aut}| = 1$}\\[2pt]
 {\small\ttfamily 11111111110000000000011110000011111100000011101001000101011101010100001011101\\
 11100110010110111011111110111100000110110100011100011100010101110101010110011\\
-01101010110001101101011000110101011011010000111000100110000011010011100101110}\\[2pt]
-{\small $|\mathrm{Aut}| = 1$}
+01101010110001101101011000110101011011010000111000100110000011010011100101110}
 \end{minipage}
 \medskip
 
 \noindent\begin{minipage}{\linewidth}
-\textbf{$\Delta_1 - v_{10}$ with the arc between $v_2$ and $v_3$ reversed}\\[2pt]
+\textbf{$\Delta_1 - v_{10}$ with the arc between $v_2$ and $v_3$ reversed}\quad {\small $|\mathrm{Aut}| = 1$}\\[2pt]
 {\small\ttfamily 11111111110000000000001111000011111100000011000111000111110010011000010110011\\
 11110110110010101110101010110011010111100101100110001100001011101010110110100\\
-10101011001011101101001100010110101011010101111000001101010001000101011110011}\\[2pt]
-{\small $|\mathrm{Aut}| = 1$}
+10101011001011101101001100010110101011010101111000001101010001000101011110011}
 \end{minipage}
 \medskip
