@@ -549,13 +549,14 @@ if [ -f "$QM" ]; then
     bad "control did not fire: a representative's marker was removed and the search still read complete"
   else ok "control: removing one representative's marker breaks the Delta_1 - 10 search, as it must"; fi
 else warn "d000mv09_sweep_markers.tar.zst absent"; fi
-# The four deletions whose automorphism group has order 5 (Delta_1 - 1, Delta_1 - 2,
-# Delta_11 - 2, Delta_11 - 5) were searched with the quotient alone, over a base given
+# The five deletions whose automorphism group has order 5 (Delta_1 - 1, Delta_1 - 2,
+# Delta_11 - 2, Delta_11 - 5, Delta_11 - 20) were searched with the quotient alone, over a base given
 # explicitly; quotient_sweep_audit_g.py derives the group, checks the base is invariant
 # and requires a clean marker for every one of the 1,611 orbit representatives.
 QG=$ROOT/verify/quotient_sweep_audit_g.py; E=$ROOT/evidence
 for spec in "d000_mv00:0,3,5,7,9:d000_mv00_cluster" "d000_mv01:0,6,10,17,21:d000_mv01_cluster" \
-            "d010_mv01:0,7,10,19,20:d010_mv01_laptop" "d010_mv04:0,7,10,19,20:d010_mv04_cluster d010_mv04_laptop"; do
+            "d010_mv01:0,7,10,19,20:d010_mv01_laptop" "d010_mv04:0,7,10,19,20:d010_mv04_cluster d010_mv04_laptop" \
+            "d010_mv19:0,8,11,19,20:d010_mv19_cluster"; do
   h=${spec%%:*}; r=${spec#*:}; b=${r%%:*}; hb=$ROOT/tournaments/drt23_del/$h.bits
   # positional parameters reused as the archive list (the script's own were read at the top)
   set --; for a in ${r#*:}; do set -- "$@" "$E/${a}_markers.tar.zst"; done
@@ -655,9 +656,9 @@ if [ -n "$LABELG" ]; then
   else
     ok "all $(wc -l < "$TMP/n21names" | tr -d ' ') settled names are rows of HOSTS_level2.tsv, hence distinct classes"
   fi
-  # Vertex-criticality of the seven 22-vertex deletions, matched by class (the eighth
+  # Vertex-criticality of the eight 22-vertex deletions, matched by class (the eighth
   # obstruction, the arc reversal of Delta_1 - 10, is checked in 8j).
-  for h in d005_mv04 d027_mv04 d000_mv09 d000_mv00 d000_mv01 d010_mv01 d010_mv04; do
+  for h in d005_mv04 d027_mv04 d000_mv09 d000_mv00 d000_mv01 d010_mv01 d010_mv04 d010_mv19; do
     if out=$(python3 "$ROOT/verify/critical_deletions.py" "$DD/$h.bits" \
                "$DD/HOSTS_level2.tsv" "$TMP/n21names" --labelg "$LABELG" 2>&1); then
       ok "$out"
@@ -737,7 +738,7 @@ echo "== 8e. the 22-vertex obstructions are what Sections 3.2 and 3.3 say they a
 if [ -n "$LABELG" ]; then
   out=$(python3 "$ROOT/verify/host_facts.py" --labelg "$LABELG" "$DD/d005_mv04.bits" \
           "$DD/d027_mv04.bits" "$DD/d000_mv09.bits" "$DD/d000_mv00.bits" "$DD/d000_mv01.bits" \
-          "$DD/d010_mv01.bits" "$DD/d010_mv04.bits" "$DD/d000mv09_r01_02.bits" \
+          "$DD/d010_mv01.bits" "$DD/d010_mv04.bits" "$DD/d010_mv19.bits" "$DD/d000mv09_r01_02.bits" \
           "$D/d005.bits" "$D/d027.bits" 2>&1)
   for h in d005_mv04 d027_mv04 d000mv09_r01_02; do
     if echo "$out" | grep -q "^$h: n=22, out-degrees 10 x11, 11 x11, every arc in >= 5 directed triangles, automorphism group TRIVIAL"; then
@@ -752,7 +753,7 @@ if [ -n "$LABELG" ]; then
     bad "d000_mv09 does not have the stated structure"; echo "$out" | grep "^d000_mv09" | sed 's/^/        /'
   fi
   # the four with an automorphism of order 5: four orbits of 5 and two fixed vertices
-  for h in d000_mv00 d000_mv01 d010_mv01 d010_mv04; do
+  for h in d000_mv00 d000_mv01 d010_mv01 d010_mv04 d010_mv19; do
     if echo "$out" | grep -q "^$h: n=22, out-degrees 10 x11, 11 x11, every arc in >= 5 directed triangles, automorphism group non-trivial (6 vertex orbits)"; then
       ok "$(echo "$out" | grep "^$h:")"
     else
@@ -763,10 +764,10 @@ if [ -n "$LABELG" ]; then
     if echo "$out" | grep -q "^$h: .*automorphism group TRIVIAL"; then ok "parent $h is rigid"
     else bad "parent $h is not rigid"; fi
   done
-  # all 28 pairs of the eight obstructions (the parents' lines are excluded by name)
+  # all 36 pairs of the nine obstructions (the parents' lines are excluded by name)
   OB='(d0[0-9]+_mv[0-9]+|d000mv09_r01_02)'
-  if [ "$(echo "$out" | grep -cE "^$OB vs $OB: not isomorphic, not converse to each other")" = 28 ]; then
-    ok "no two of the eight are isomorphic or converse to each other (28 pairs)"
+  if [ "$(echo "$out" | grep -cE "^$OB vs $OB: not isomorphic, not converse to each other")" = 36 ]; then
+    ok "no two of the nine are isomorphic or converse to each other (36 pairs)"
   else
     bad "two of the obstructions are related"; echo "$out" | grep -E "^$OB vs $OB" | grep -v 'not isomorphic, not converse' | sed 's/^/        /'
   fi

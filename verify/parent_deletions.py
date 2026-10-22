@@ -13,7 +13,7 @@ import os, sys
 import networkx as nx
 from networkx.algorithms.isomorphism import DiGraphMatcher
 
-OBS = ['d005_mv04', 'd027_mv04', 'd000_mv09', 'd000_mv00', 'd000_mv01', 'd010_mv01', 'd010_mv04']
+OBS = ['d005_mv04', 'd027_mv04', 'd000_mv09', 'd000_mv00', 'd000_mv01', 'd010_mv01', 'd010_mv04', 'd010_mv19']
 
 
 def adj(p):
