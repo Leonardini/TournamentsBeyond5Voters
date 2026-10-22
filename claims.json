@@ -301,6 +301,22 @@
    "status": "established"
   },
   {
+   "id": "H1",
+   "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
+   "sections": [
+    "H"
+   ],
+   "claim": "The automorphism groups of the nine 22-vertex obstructions: order 55 for \u0394\u2081 \u2212 10 (two generators), order 5 for \u0394\u2081 \u2212 1, \u0394\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 5 and \u0394\u2081\u2081 \u2212 20 (one generator each), trivial for \u0394\u2086 \u2212 5, \u0394\u2082\u2088 \u2212 5 and the arc reversal; the generators Appendix H prints, in the parent's labels",
+   "artifacts": [
+    "tournaments/drt23_del/*.bits"
+   ],
+   "missing": [],
+   "other_tokens": [
+    "verify/aut_generators.py tournaments/drt23_del"
+   ],
+   "status": "established"
+  },
+  {
    "id": "P1",
    "group": "2. The rest of the Paley family",
    "sections": [
@@ -1577,8 +1593,8 @@
   }
  ],
  "counts": {
-  "claims": 99,
-  "established": 93,
+  "claims": 100,
+  "established": 94,
   "declared_gap": 6,
   "missing_artifacts": 0,
   "gaps": 8,
