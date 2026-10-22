@@ -9,6 +9,8 @@ header-includes:
 ---
 # Tournaments not inducible by five voters
 
+*In loving memory of Adam Paton.*
+
 **Leonid Chindelevitch$^{a}$ and Ararat Harutyunyan$^{b}$**
 
 $^{a}$ MRC Centre for Global Infectious Disease Analysis, School of Public Health, Imperial
