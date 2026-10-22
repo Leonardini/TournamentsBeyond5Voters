@@ -1404,8 +1404,9 @@
    "sections": [
     "G"
    ],
-   "claim": "At 21 vertices **1,173** classes are settled, all 5-inducible: all 506 two-vertex deletions of \u0394\u2086 and \u0394\u2082\u2088, a stratified random sample of 400, all 53 classes below \u0394\u2081\u2081, and every class deleting vertex 5 and one other (283). The other 2,935 are open",
+   "claim": "At 21 vertices **1,192** classes are settled, all 5-inducible: all 506 two-vertex deletions of \u0394\u2086 and \u0394\u2082\u2088, a stratified random sample of 400, all 53 classes below \u0394\u2081\u2081, and every class deleting vertex 5 and one other (283), and 19 settled by inserting the missing vertex into a witness of a 20-vertex subtournament (`tournaments/n21_extension/`). The other 2,916 are open",
    "artifacts": [
+    "tournaments/n21_extension/",
     "evidence/n21_level_witnesses.tar.zst",
     "tools/check_package.sh"
    ],

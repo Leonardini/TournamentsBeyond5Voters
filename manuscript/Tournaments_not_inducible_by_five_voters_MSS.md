@@ -1714,19 +1714,17 @@ and converse, the levels below the $36$ are as follows.
 | vertices | deleted | classes | status |
 |---:|---:|---:|:--------------------------------------------------------------|
 | $22$ | $1$ | $378$ | $8$ searched completely, all obstructions (Section 3.2) |
-| $21$ | $2$ | $4{,}108$ | $1{,}173$ settled, all $5$-inducible |
+| $21$ | $2$ | $4{,}108$ | $1{,}192$ settled, all $5$-inducible |
 | $20$ | $3$ | $28{,}724$ | all $5$-inducible |
 
 Table: The levels below the $36$ doubly regular tournaments on $23$ vertices, up to isomorphism and converse.
 
 At $22$ vertices all $378$ classes were first screened at up to $50$ base states each, without a
-single witness, and the eight complete searches were chosen from among them. At $21$ vertices the $1{,}173$
-settled classes include all $506$ two-vertex deletions of $\Delta_6$ and $\Delta_{28}$, so every
+single witness, and the eight complete searches were chosen from among them. At $21$ vertices the $1{,}192$ settled classes include all $506$ two-vertex deletions of $\Delta_6$ and $\Delta_{28}$, so every
 $21$-vertex subtournament of either parent is $5$-inducible, and in particular $\Delta_6 - v_{5}$ and
 $\Delta_{28} - v_{5}$ are vertex-critical. The other settled classes are a stratified random sample of $400$, all
 $53$ classes below $\Delta_{11}$, and every class obtained by deleting $v_5$ together with one
-other vertex, the deletion that produced those two obstructions; the remaining $2{,}935$ classes are
-open. At $20$ vertices every class is $5$-inducible, and so, by inheritance, is every
+other vertex, the deletion that produced those two obstructions, and $19$ classes settled by inserting the missing vertex into a known witness of one of their $20$-vertex subtournaments, as in phase 1 of Appendix C.2; the remaining $2{,}916$ classes are open. At $20$ vertices every class is $5$-inducible, and so, by inheritance, is every
 tournament on $19$ vertices or fewer below the $36$.
 
 Two obstructions on $25$ vertices from other families were descended the same way: $P_{27}$ with two
@@ -1745,7 +1743,7 @@ independently of the search; none was settled negatively.
 
 | family on $21$ vertices | classes | settled |
 |:------------------------------------------------------------------|------:|------:|
-| two vertices deleted from a doubly regular tournament on $23$ vertices | $4{,}108$ | $1{,}173$ |
+| two vertices deleted from a doubly regular tournament on $23$ vertices | $4{,}108$ | $1{,}192$ |
 | four vertices deleted from the circulant tournament on $25$ vertices | $286$ | $286$ |
 | six vertices deleted from $P_{27}$ | $150$ | $150$ |
 | near-doubly regular, rigid, drawn at random | $78$ | $78$ |

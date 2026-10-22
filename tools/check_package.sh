@@ -640,8 +640,8 @@ else
   warn "n21_level_witnesses.tar.zst absent"
 fi
 if [ -n "$LABELG" ]; then
-  # The level files hold exactly one host per class, so the 1,173 settled names
-  # are 1,173 distinct classes, and the counts match Appendix G's table.
+  # The level files hold exactly one host per class, so the settled names
+  # are distinct classes, and the counts match Appendix G's table.
   if out=$(python3 "$ROOT/verify/drt23_level_counts.py" "$D" "$DD/PARENTS18.txt" \
              --levels 2,3 --names "$DD/HOSTS_level2.tsv" --labelg "$LABELG" 2>&1) \
      && echo "$out" | grep -q '4108 rows, 4108 distinct classes, 0 bit strings differ'; then
