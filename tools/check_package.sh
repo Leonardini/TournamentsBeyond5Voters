@@ -815,6 +815,22 @@ if [ -f "$RWT" ]; then
 else warn "d000mv09_r01_02_deletion_witnesses.tar.zst absent"; fi
 
 echo
+echo "== 8k. Conjecture 3's evidence: both doubly regular tournaments on 19 vertices, 7 voters, unit margin =="
+# Section 4.2: Paley(19) and the second doubly regular tournament on 19 vertices are 5-inducible
+# but not at unit margin, and each is 7-inducible at unit margin.  Each witness is checked against
+# its host, independently of the SAT solver that found it.  Control: each witness checked against
+# the OTHER tournament must fail.
+UW=$ROOT/verify/unit_margin_witness.py; KD=$ROOT/tournaments/k7_unit19
+for h in p19 dr19_g2; do
+  if out=$(python3 "$UW" "$KD/$h.bits" "$KD/${h}_k7.log" 7 2>&1); then ok "$h: $out"
+  else bad "$h: the 7-voter unit-margin witness does not verify"; echo "$out" | sed 's/^/        /'; fi
+done
+if python3 "$UW" "$KD/dr19_g2.bits" "$KD/p19_k7.log" 7 2>&1 | grep -q '^FAIL' && \
+   python3 "$UW" "$KD/p19.bits" "$KD/dr19_g2_k7.log" 7 2>&1 | grep -q '^FAIL'; then
+  ok "control: each witness fails on the other tournament, as it must"
+else bad "control did not fire: a witness verified against the wrong tournament"; fi
+
+echo
 echo "== 9. every number the manuscript prints that we can re-derive, re-derived =="
 # The manuscript is the source of truth for what is CLAIMED; this recomputes the
 # observed value from shipped bytes and compares.  A figure that changes in the

@@ -21,7 +21,7 @@ would be cheaper still but cannot be enumerated independently at this scale.
 
 TRUST CHAIN, in full:
   machine  every cube UNSAT, proved by cadical in LRAT and checked by lrat-trim
-           (a different program by a different author; cadical's own
+           (a separate program sharing no code with cadical; its own
            --checkproof is DISABLED so it never validates its own work)
   machine  the cubes cover every lex-canonical base assignment
            (cover_check.py, with its --drop negative control)
@@ -584,7 +584,7 @@ anchoring     {ANCHOR_TXT if ANCHOR else 'NONE: HUMAN LEMMA L1 IS NOT USED'} -> 
 quotient      {QTXT or 'NONE: Corollary 2.5 is not used'}
 cubes         {nc}, ALL UNSAT, each INDEPENDENTLY VERIFIED by lrat-trim
 solver        cadical --lrat=true --checkproof=0 {' '.join(SEEDARG)} (self-check disabled)
-checker       lrat-trim (Biere) -- different program, different author
+checker       lrat-trim -- a separate program, sharing no code with cadical
 NO DEEPENING  cubes are base states of a {len(B)}-vertex base; deepen.py unused
 solve         {ns/3600:.1f} core-h
 check         {ck/3600:.1f} core-h

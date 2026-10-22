@@ -69,7 +69,7 @@ print(f"checked: 231 arcs follow the ladder rules; |Aut| = {len(auts)} = 11 x 5"
 
 # ------------------------------------------------------------------ the picture
 GAP, DY, R = 4.2, 0.42, 0.11             # column gap, vertical step, vertex radius (cm)
-DRAWN = [0, 1, 2, P - 1]                 # rungs sketched; the rest are dots
+DRAWN = [0, 1, 2, P - 3, P - 2, P - 1]   # rungs sketched, three at each end; the rest are dots
 top = (P - 1) * DY / 2
 def ypos(i): return top - i * DY
 out = [r"\documentclass[border=2pt]{standalone}", r"\usepackage{amsmath,amssymb}",
@@ -88,7 +88,8 @@ for side, cx, sgn, name in (('x', 0.0, -1, 'X'), ('y', GAP, 1, 'Y')):
         out.append(rf"\node[font=\scriptsize,anchor={'east' if sgn < 0 else 'west'}] at ({cx + sgn * 0.08:.3f},{ypos(i):.3f}) {{${side}_{{{i}}}$}};")
 for i in DRAWN:
     out.append(rf"\draw[thick,-{{Stealth[length=2.2mm]}},black!75,shorten <=3pt,shorten >=3pt] ({GAP},{ypos(i):.3f}) -- (0,{ypos(i):.3f});")
-mid = (ypos(3) + ypos(P - 2)) / 2
-out.append(rf"\node at ({GAP / 2},{mid:.3f}) {{$\vdots$}};")
+mid = (ypos(2) + ypos(P - 3)) / 2       # halfway between the inner drawn rungs, drawn as three dots
+for d in (-1, 0, 1):                     # so that they sit exactly on the centre line, unlike a \vdots glyph
+    out.append(rf"\fill[black] ({GAP / 2},{mid + d * DY / 2:.3f}) circle[radius=0.035];")
 out += [r"\end{tikzpicture}", r"\end{document}"]
 pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'ladder_d000.tex').write_text('\n'.join(out) + '\n')

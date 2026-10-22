@@ -24,7 +24,7 @@ PIPELINE (per leaf)
   sha256 of the CNF and the proof, appended to the log, then proof deleted
 
 `--checkproof=0` deliberately disables cadical's SELF-check: the whole point is
-that the checker is a different program by a different author.  lrat-trim
+that the checker is a separate program sharing no code with the solver.  lrat-trim
 signals success with `s VERIFIED` on stdout and exit code 20 (SAT-solver
 convention) -- NOT exit 0, which is a trap worth remembering.
 
@@ -224,7 +224,7 @@ cube depth      {a.depth}
 leaves          {nl}
 all leaves      UNSAT, INDEPENDENTLY VERIFIED by lrat-trim
 solver          cadical 2.0.0, --lrat=true --checkproof=0 (self-check disabled)
-checker         lrat-trim (Biere), separate program and author
+checker         lrat-trim, a separate program sharing no code with cadical
 solve time      {ns/3600:.1f} core-h
 check time      {nc/3600:.1f} core-h
 wall            {el/3600:.2f} h on {a.workers} workers

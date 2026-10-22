@@ -289,7 +289,7 @@ def main(mdpath, as_json):
                         (math.comb(q, 2), 'majority rows')):
         stated = re.search(r'\$?([\d{},]+)\$?\s*' + label, md)
         got = num(stated.group(1)) if stated else None
-        record('ARITHMETIC', 'A.3 ILP %s at q=23' % label, got, want,
+        record('ARITHMETIC', 'A.1 ILP %s at q=23' % label, got, want,
                got == want, 'k*C(23,2), 2k*C(23,3), C(23,2)')
 
     # Appendix B.1's dissent-Boolean instance at q = 19: 5*C(19,2) variables,
@@ -362,6 +362,19 @@ def main(mdpath, as_json):
             r = row_starting(cost, *rowwords)
             return num(r[idx]) if r else None
 
+        # A.6 reports cluster runs in laptop-equivalent core-hours, dividing each cluster total
+        # by a factor the same paragraph states.  The factors are read from that prose, so a
+        # factor that changes in the paper changes here; what is re-derived is the cluster total.
+        def factor(pat):
+            m = re.search(pat, md)
+            return float(m.group(1)) if m else None
+        f_sweep = factor(r'cluster took \$([\d.]+)\$ times as long in total')
+        f_13 = factor(r'cluster took \$([\d.]+)\$ times as long per tournament')
+        m = re.search(r'cluster took\s+\$([\d.]+)\$\s+and\s+\$([\d.]+)\$\s+times as long\s+respectively', md)
+        f_12, f_15 = (float(m.group(1)), float(m.group(2))) if m else (None, None)
+        def per(x, f):
+            return None if x is None or f is None else x / f
+
         for words, fn, label in (
             (['certified refutation', 'unit'],
              lambda: (lambda t: None if t is None else t[0] + t[1])(cert_cost('p19')),
@@ -373,8 +386,8 @@ def main(mdpath, as_json):
              lambda: (lambda t: None if t is None else t[0] + t[1])(cert_cost('d005mv04')),
              'Delta_6 - 5 certificate, solve_s + check_s over 742,374 cubes'),
             (['delta_6', 'sweep'],
-             lambda: marker_archive_core_h('d005mv04_sweep_markers.tar.zst'),
-             'Delta_6 - 5 cluster sweep, secs= over its 8,031 markers'),
+             lambda: per(marker_archive_core_h('d005mv04_sweep_markers.tar.zst'), f_sweep),
+             'Delta_6 - 5 cluster sweep, secs= over its 8,031 markers, / the stated factor'),
             (['31', 'sweep'],
              lambda: (lambda t: None if t is None else t[0])(
                  times_file_core_h('verdicts/p31mv_majority/p31mv_times.txt')),
@@ -385,10 +398,10 @@ def main(mdpath, as_json):
                  if len(l.split()) >= 3 and l.split()[1] == 'SAT'
              ) / 3600)(os.path.join(ROOT, 'tournaments/dr19_arcflip/sweep.log')),
              'dr19_g2, the SAT rows of the 57-orbit sweep log'),
-            (['regular tournaments on', '15'],
-             lambda: (lambda s: None if s is None else s / 3600)(
+            (['regular on', '15'],
+             lambda: (lambda s: None if s is None else per(s / 3600, f_15))(
                  marker_sum('cluster/jz_n15/results_margin1/done', 'secs')),
-             'n=15 census, the secs= field of 6,000 residue markers'),
+             'n=15 census, the secs= field of 6,000 residue markers, / the stated factor'),
         ):
             want = cell(words)
             got = fn()
@@ -429,13 +442,13 @@ def main(mdpath, as_json):
         want = cell(['delta_{28}', 'sweep'])
         if rows:
             h = rows[0]
-            got = [float(r[h.index('seconds')]) / 3600 for r in rows[1:]
+            got = [per(float(r[h.index('seconds')]) / 3600, f_sweep) for r in rows[1:]
                    if r[0] == 'd027_mv04']
             if got:
                 record('DERIVED', 'A.6 row Delta_28 - 5 sweep', want, round(got[0], 1),
                        close(want, got[0]),
-                       'verdicts/n22_obstructions roll-up (cross-file, markers on '
-                       'the cluster)')
+                       'verdicts/n22_obstructions roll-up / the stated factor (cross-file, '
+                       'markers on the cluster)')
             else:
                 declared('A.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
         else:
@@ -445,22 +458,32 @@ def main(mdpath, as_json):
         # cluster, so what is compared is the manuscript's figure against the
         # three-way total a different file records.
         sc = os.path.join(ROOT, 'cluster', 'jz_n13sc', 'SLURM_COST.txt')
-        want = cell(['self-converse tournaments on'])
+        want = cell(['self-converse on'])
         if os.path.exists(sc):
-            m = re.search(r'total\s+([\d.]+) core-h', open(sc).read())
-            got = float(m.group(1)) if m else None
+            src = open(sc).read()
+            cl = re.search(r'cluster,[^\n]*?([\d.]+) core-h', src)
+            lap = re.findall(r'laptop,[^\n]*?([\d.]+) core-h', src)
+            got = (round(per(float(cl.group(1)), f_13) + sum(map(float, lap)), 1)
+                   if cl and lap and f_13 else None)
             if got is not None:
                 record('DERIVED', 'A.6 row self-converse on 13', want, got,
                        close(want, got, 0.01),
-                       'cluster/jz_n13sc three-way total (cross-file, per-task '
-                       'accounting not shipped)')
+                       'cluster/jz_n13sc: cluster part / the stated factor + the two laptop '
+                       'parts (cross-file, per-task accounting not shipped)')
             else:
                 declared('A.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
         else:
             declared('A.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
 
-        for words, where in ((['all tournaments on'], 'CLAIMS.md gap 1'),):
-            declared('A.6 row %s' % ' '.join(words), cell(words), where)
+        roll = os.path.join(ROOT, 'cluster', 'jz_n12cover', 'FINAL_ROLLUP.txt')
+        want = cell(['all on'])
+        m = re.search(r'core-seconds\s*:\s*(\d+)', open(roll).read()) if os.path.exists(roll) else None
+        if m and f_12:
+            got = int(m.group(1)) / 3600 / f_12
+            record('DERIVED', 'A.6 row all on 12', want, round(got, 1), close(want, got),
+                   'cluster/jz_n12cover roll-up / the stated factor (cross-file)')
+        else:
+            declared('A.6 row all on 12', want, 'CLAIMS.md gap 1')
 
     # Appendix A.5's runtime table.
     run = find_table(tabs, 'live base states', 'core-hours', 'nodes')

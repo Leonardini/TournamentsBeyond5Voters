@@ -1,7 +1,7 @@
-"""Sub-base quotient (Lemma 2.4 applied to a SUBSET of the base), his idea of 2026-10-18 09:30.
+"""Sub-base quotient (Corollary 2.5 with C a SUBSET of the base), his idea of 2026-10-18 09:30.
 
 A fixed-point-free automorphism g of order 3 maps no 5-set onto itself, but it maps each of its
-3-cycles C (a directed triangle) onto itself.  Lemma 2.4 with base C: if T is k-inducible, some
+3-cycles C (a directed triangle) onto itself.  Corollary 2.5 with base C: if T is k-inducible, some
 witness extends a chosen representative of each <g>-orbit of C's base states.  That witness also
 extends SOME base state of any 5-set B containing C, and its restriction to C is the chosen
 representative.  So it suffices to search the B-states whose restriction to C is a chosen
@@ -96,7 +96,7 @@ def main():
     restr = [restrict(s) for s in st]
     assert set(restr) == cstates, "restrictions of the B-states are not exactly the C-states"
     def gC(cs): return tuple(sorted(tuple(g[v] for v in o) for o in cs))
-    # Lemma 2.4 allows ANY representative per orbit: take the one with the FEWEST B-states above it.
+    # Corollary 2.5 allows ANY representative per orbit: take the one with the FEWEST B-states above it.
     from collections import Counter
     above = Counter(restr)
     reps = set()

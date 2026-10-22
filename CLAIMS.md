@@ -280,9 +280,9 @@ failure `sat/certroot.py` was written to end.
 
 | id | § | claim | artifact |
 |---|---|---|---|
-| M1 | A.3 | Integer programming does not reach these instances; at q = 23 the program has 1,265 binaries, 17,710 transitivity rows and 253 majority rows | `evidence/measurements/`; the three sizes are 5·C(23,2), 10·C(23,3) and C(23,2), checked arithmetically by `tools/check_manuscript.py` |
-| M2 | A.3 | SAT alone does not either. The dissent-Boolean encoding cuts CaDiCaL conflicts 26–42× against the order-variable family (2,399 / 1,491 / 57 on doubly regular tests), and with a sound symmetry break on top neither 19-vertex instance still returns a verdict | `sat/cube_sat.py` (the three encodings), `evidence/measurements/` |
-| M3 | A.2 | The exact domain rule beats the capped one on decision quality alone: 992,378 nodes capped against 294,964 exact, identical verdicts, on a 29-instance Paley(19) benchmark | `evidence/measurements/`, `sat/leaf_bench.py` |
+| M1 | A.1 | Integer programming does not reach these instances; at q = 23 the program has 1,265 binaries, 17,710 transitivity rows and 253 majority rows | `evidence/measurements/`; the three sizes are 5·C(23,2), 10·C(23,3) and C(23,2), checked arithmetically by `tools/check_manuscript.py` |
+| M2 | A.1 | SAT alone does not either. The dissent-Boolean encoding cuts CaDiCaL conflicts 26–42× against the order-variable family (2,399 / 1,491 / 57 on doubly regular tests), and with a sound symmetry break on top neither 19-vertex instance still returns a verdict | `sat/cube_sat.py` (the three encodings), `evidence/measurements/` |
+| M3 | A.3 | The exact domain rule beats the capped one on decision quality alone: 992,378 nodes capped against 294,964 exact, identical verdicts, on a 29-instance Paley(19) benchmark | `evidence/measurements/`, `sat/leaf_bench.py` |
 | M4 | B.1 | LRAT over DRAT on measurement: 0.295 s vs 1.043 s per leaf end to end, 29× in checking alone | `sat/leaf_bench.py` |
 | M5 | A.4 | Choosing the base: four cheap proxies each inverted when measured, so only live-count × measured s/state is the objective. At q = 31 the class with 4,007 live states beat the class with 2,537 | `evidence/measurements/probe2_results.json`, `probe3_results.json`, `price31.json`, `evidence/README.md`; the class ranking re-derives from `python3 sat/base_survivors.py --q 31 --classes` |
 | M6 | A.5 | The cluster runs 2–5× slower per core than the laptop, over six independent experiments | `evidence/measurements/price43_series.json`, `cluster/jz_reproduce/` (R2 above contributes two of the six) |
@@ -307,17 +307,18 @@ it caught one (see the note below the table).
 | T3 | A.6 P₃₁ − v sweep, unrestricted | 239.5 core-h | `verdicts/p31mv_majority/p31mv_times.txt` → 239.53 |
 | T4 | A.6 P₂₃ one arc reversed, unrestricted | 210.4 core-h | `cluster/jz_p23arc/AGGREGATE_OUTPUT.txt` — 1,035 base states screened at a 731.8 s mean; the product is 210.4 core-h. The per-base markers are on the cluster, so this is a cross-file check against the kit's own roll-up, not a re-derivation from raw evidence |
 | T5 | A.6 second DRT on 19, all 57 arc reversals, unit | 3.59 core-h | `tournaments/dr19_arcflip/sweep.log` → 3.5900 |
-| T6 | A.6 regular tournaments on 15, unit | 3,106 core-h | `cluster/jz_n15/results_margin1/done/`, `secs=` field → 3,106.0 |
-| T7 | A.6 self-converse on 13, unit | 1,310 core-h | `cluster/jz_n13sc/SLURM_COST.txt` — 1,261.7 cluster + 46.8 laptop + 1.0 laptop = 1,309.5, agreeing to 99.96%. **Sum Elapsed, not CPUTimeRAW**: the accounting reports AllocCPUS = 2 for a single-threaded task, so CPUTimeRAW is exactly double |
-| T8 | A.6 all tournaments on 12, unit | ≈ 10,000 core-h | `cluster/jz_n12cover/FINAL_ROLLUP.txt` — 36,268,412 core-seconds = **10,074.6 core-h**, measured, summed from the per-residue markers by `aggregate.sh` |
+| T6 | A.6 regular on 15, unit | 726.1 laptop-equivalent core-h | `cluster/jz_n15/results_margin1/done/`, `secs=` field → 3,106.0 cluster core-h, ÷ 4.28 (the order-15 factor A.6 states) → 725.7 |
+| T7 | A.6 self-converse on 13, unit | 294.2 laptop-equivalent core-h | `cluster/jz_n13sc/SLURM_COST.txt` — 1,261.7 cluster core-h ÷ 5.13 (the factor A.6 states) + 46.8 + 1.0 laptop core-h → 293.7. **Sum Elapsed, not CPUTimeRAW**: the accounting reports AllocCPUS = 2 for a single-threaded task, so CPUTimeRAW is exactly double |
+| T8 | A.6 all on 12, unit | 2,615.6 laptop-equivalent core-h | `cluster/jz_n12cover/FINAL_ROLLUP.txt` — 36,268,412 core-seconds = 10,074.6 cluster core-h, summed from the per-residue markers by `aggregate.sh`, ÷ 3.85 (the order-12 factor A.6 states) → 2,616.8 |
 | T9 | A.5 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87 | | the `time=` fields of `evidence/{rerun1_p23,p27,p31,p43}_majority.tar.zst` → 34.03, 31.04, 26.89, 22.86 |
 | T10 | A.5 live base states 2,591, 2,537, 4,007, 2,537 | | `python3 sat/base_survivors.py`, search-free, and `--selfcheck` reproduces 8,031 / 2,591 / 16,118 / 2,200 |
 | T11 | A.5 seconds per live base state 47.3, 44.0, 24.2, 32.5 | | T9 × 3600 ÷ T10, arithmetic |
 | T12 | A.5 node counts | | the `nodes=` fields of the same four archives → 1.14e10, **6.22e9**, 3.43e9, 1.43e9 |
 | T13 | A.5 P₄₃ − v takes 185.5 core-h | | `verdicts/p43mv_majority/p43mv_times.txt` → 185.54 |
 | T14 | A.6 Δ₆ − 5 certified refutation, unrestricted | 1,292.7 core-h | `certificates/d005mv04cert_d6/log/*.log`, columns `solve_s + check_s` → 1,292.68 |
-| T15 | A.6 Δ₆ − 5 sweep (cluster), unrestricted | 1,551.2 cluster core-h | the `secs=` fields of the 8,031 markers in `evidence/d005mv04_sweep_markers.tar.zst` → 1,551.19 |
-| T16 | A.6 Δ₂₈ − 5 sweep (cluster), unrestricted | 1,537.7 cluster core-h | `verdicts/n22_obstructions/verdicts.tsv`, 5,535,720 s. The markers are on the cluster, so this is a cross-file check against the sweep's roll-up (gap 7) |
+| T15 | A.6 Δ₆ − 5 sweep, unrestricted | 437.0 laptop-equivalent core-h | the `secs=` fields of the 8,031 markers in `evidence/d005mv04_sweep_markers.tar.zst` → 1,551.19 cluster core-h, ÷ 3.55 → 436.95 |
+| T16 | A.6 Δ₂₈ − 5 sweep, unrestricted | 433.2 laptop-equivalent core-h | `verdicts/n22_obstructions/verdicts.tsv`, 5,535,720 s = 1,537.7 cluster core-h, ÷ 3.55 → 433.2. The markers are on the cluster, so this is a cross-file check against the sweep's roll-up (gap 7) |
+| T17 | A.6 the other rows: Δ₁ − 10 sweep 96.9 and certificate about 732; the 16 doubly regular tournaments 7,458.2; Δ₁ − 1 136.8, Δ₁ − 2 122.9, Δ₁₁ − 2 108.5, Δ₁₁ − 5 124.2, Δ₁₁ − 20 93.6 | as printed | computed in the working repository from the banked markers (B12, B13, S11) with the factors 2.1 and 3.55; not re-derived by the gate (gap 8) |
 
 **T12 was a discrepancy with an earlier draft, CORRECTED 2026-09-11.** Appendix A.3
 (now A.5) used to print 1.14 × 10⁸ for the q = 27 node count: the archive's `dom_nodes`
@@ -369,18 +370,18 @@ they are identical on both machines. That is what makes a sweep split across two
 machines auditable at all: the two halves agree on what the universe *is* before
 either reports a verdict about it.
 
-## 11. Below 22 vertices (Appendix G and Question 1)
+## 11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)
 
 | id | § | claim | verdict artifact | re-derive |
 |---|---|---|---|---|
 | G1 | G | Below the 36 doubly regular tournaments on 23 vertices other than Paley(23), up to isomorphism and converse, there are **378** classes at 22 vertices, **4,108** at 21 and **28,724** at 20 | `tournaments/drt23_del/PARENTS18.txt` (one per converse pair), `tournaments/drt23_del/HOSTS_level2.tsv`, `tournaments/drt23_del/HOSTS_level3.tsv` | `verify/drt23_level_counts.py` from the parents' bits, which also checks the 18 are one per pair and that each level file holds one host per class; `tools/check_package.sh` checks 8d and 9 |
-| G2 | G | At 22 vertices all 378 were screened at up to 50 base states each: 13,863 base states searched to the end, no witness | `cluster/jz_drt23mv/HARDNESS_378.tsv` (per-host roll-up; the markers are on the cluster, gap 7) | check 9 re-adds the exhausted column |
+| G2 | G | At 22 vertices all 378 were screened at up to 50 base states each, without a single witness (13,863 base states searched to the end) | `cluster/jz_drt23mv/HARDNESS_378.tsv` (per-host roll-up; the markers are on the cluster, gap 7) | check 9 re-adds the exhausted column |
 | G3 | G | At 21 vertices **1,173** classes are settled, all 5-inducible: all 506 two-vertex deletions of Δ₆ and Δ₂₈, a stratified random sample of 400, all 53 classes below Δ₁₁, and every class deleting vertex 5 and one other (283). The other 2,935 are open | `evidence/n21_level_witnesses.tar.zst` (its SETTLED.tsv gives each class's group and where its witness was banked; one witness per class) | `verify/verify_descent_witnesses.py --selftest`, which rebuilds each host from its name; `tools/check_package.sh` check 8d |
 | G4 | G, 4.2 | At 20 vertices all **28,724** classes are 5-inducible, so every tournament on 19 vertices or fewer below the 36 is too | `evidence/n20_descent_witnesses.tar.zst` (a witness for each, plus the 19,836 hosts of the two lineages in G6) | the same verifier; check 8d also requires the witnessed names to equal the rows of `HOSTS_level3.tsv` |
-| G5 | G | At 21 vertices about one base state in 110 yields a witness, so a host there costs a few dozen cluster core-hours to settle; at 22 a proof costs about 1,500 | the screen's per-host markers are in the working repository's archive of the cluster run, not here (gap 7) | — |
 | G6 | G | Paley(27) less two vertices and the circulant on 25 vertices with six triangles on every arc are not 5-inducible, and every 21-vertex subtournament of either is | `evidence/p27mv0001_sweep_markers.tar.zst` (complete cover, 8,031 states, 523.4 laptop core-h); the circulant's complete sweep is on the cluster (gap 7); `evidence/n21_other_lineages_witnesses.tar.zst` (208 and 506 witnesses with the level files); parents in `tournaments/descent_parents/` | `verify/sweep_cover_audit.py`; `verify/level_coverage.py`, which finds 150 and 286 classes up to isomorphism and converse and every one witnessed; checks 8c and 8d |
 | G7 | G | The other families searched on 21 vertices, up to isomorphism and converse: 286 four-vertex deletions of the circulant on 25 vertices and 150 six-vertex deletions of Paley(27), all settled (G6); 78 rigid near-doubly regular tournaments drawn at random, all settled; 28 near-doubly regular classes with a bisector and an automorphism of order 5, all settled, 12 of them only at majority; and 31 with a fixed-point-free automorphism of order 3, all settled, 30 of them only at majority (majority witnesses for the 55 hosts of the cluster screen, and complete unit-margin searches of one host per class) | `verdicts/families21/` (each family's `HOSTS.tsv` and one witness per settled host), `verdicts/near_dr21/` | `verify/families21_audit.py`, which counts the classes with nauty and compares them with the manuscript's table; `tools/check_package.sh` check 8i, with a control; `tournaments/near_dr21/build_families.py` gathered the files |
 | Q1 | 4.2 | **Question 1** (is N(5) = 22?) is open. G3 and G4 are the evidence the paper cites for it | — | — |
+| C3 | 4.2 | **Conjecture 3** (every k-inducible tournament is (k+2)-inducible with unit margin): at k = 5, Paley(19) and the second doubly regular tournament on 19 vertices, which are 5-inducible but not with unit margin, are **7-inducible with unit margin** | `tournaments/k7_unit19/p19_k7.log`, `tournaments/k7_unit19/dr19_g2_k7.log` (seven orders each, found by `sat/k7sat.py`, the dissent-Boolean encoding of A.1 with seven voters, solved by CaDiCaL) | `verify/unit_margin_witness.py`, independent of the solver; `tools/check_package.sh` check 8k, whose control checks each witness against the other tournament |
 
 `d005_mv09_11` carries a witness its screening kit rejected
 (`evidence/descent_n21_witnesses.tar.zst`, `results/witness/d005_mv09_11.BADWITNESS.log`).
@@ -526,10 +527,20 @@ tournaments on 23 vertices at unrestricted margin (S11;
 vertices (G6). Each roll-up was written by the campaign's aggregator, which
 reports UNSAT only for an exact, uncapped tiling of the base states, so these
 are cross-file checks of the same standard as gap 3, weaker than re-adding raw
-markers. The witness density of G5 comes from screen markers that are archived
-in the working repository and are too large to ship. Bringing the cluster
+markers. Bringing the cluster
 markers back as `.tar.zst` archives, as was done for Δ₆ − 5
 (`evidence/d005mv04_sweep_markers.tar.zst`), would close this gap.
+
+**Gap 8 — the cluster-to-laptop factors are stated, not re-derived.** Appendix A.6
+reports cluster runs in laptop-equivalent core-hours, dividing each cluster total by
+a measured factor: 2.1 for the certificate of Δ₁ − 10, 3.55 for the 22- and 23-vertex
+sweeps, 5.13 for the self-converse census of order 13, and 3.85 and 4.28 for the
+censuses of orders 12 and 15. The gate re-derives each cluster total from shipped
+bytes and divides by the factor the manuscript states (check 9, T6–T8, T15, T16); the
+paired runs that measured the factors (355 base states of Δ₁₁ − 5, and a seeded
+random sample of 8 and 12 census parts rerun on the laptop) are in the working
+repository (`KInduceDFS/paired_sample/`), not here. The rows of T17 are computed
+there too.
 
 **Not a gap, but read §5.2 before comparing numbers.** Verdicts replicate under
 any correct implementation — that is the paper's claim. Node counts replicate

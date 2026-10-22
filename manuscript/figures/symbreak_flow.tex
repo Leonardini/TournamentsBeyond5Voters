@@ -20,11 +20,11 @@
 \node[side, right=of inb] (dfs) {Enforce anchoring during the search only (not available to SAT cubes)};
 \node[act, below=of inb] (filt) {Discard the base states in which no voter is anchored};
 \node[q, below=of filt] (sub) {Does a subgroup $H$ of $\mathrm{Aut}(T)$\\map some $C \subseteq B$ onto itself?};
-\node[act, below=of sub] (quo) {Keep the base states whose restriction to $C$ is a chosen representative
-  of its $H$-orbit (Corollary 2.6; Corollary 2.5 when $C = B$)};
+\node[act, below=of sub] (quo) {Keep the base states whose restriction to $C$ is the chosen base state
+  of its $H$-orbit (Corollary 2.5)};
 \node[q, below=of quo] (fix) {Does $H$ fix every\\representative?};
 \node[side, right=of fix] (pick) {Use whichever of anchoring and quotient leaves fewer base states};
-\node[act, below=of fix] (both) {Use both (Corollaries 2.5(b) and 2.6)};
+\node[act, below=of fix] (both) {Use both (Corollary 2.5(b) or (c))};
 \node[act, below=of both] (run) {Search the remaining base states, in parallel};
 \draw[->] (in) -- (aut);
 \draw[->] (aut) -- node[lab, above] {no} (none);

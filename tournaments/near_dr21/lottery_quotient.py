@@ -1,11 +1,11 @@
-"""Complete unit-margin lottery on the order-5 gluings via Lemma 2.4 (his call, 2026-10-17).
+"""Complete unit-margin lottery on the order-5 gluings via Corollary 2.5 (his call, 2026-10-17).
 
 For each open host: an order-5 automorphism g (the gluing's sigma x tau, fixing the apex),
 base B = one 5-cycle of g inside X (every circulant 5-tournament is the regular one, so
 B induces RT5), the UNIT-margin base states of B enumerated exactly as kinduce's brec()
 (lexicographic next_permutation order of the --base positions, non-decreasing index
 multisets of K orders, every base arc carried by exactly 3 of 5), one representative
-per <g>-orbit.  No anchoring is used, so Lemma 2.4 needs no compatibility condition.
+per <g>-orbit.  No anchoring is used, so Corollary 2.5 needs no compatibility condition.
 Searching every representative to exhaustion with no witness proves the host is not
 5-inducible at unit margin.  Representatives are shuffled per host and queued block-major.
 

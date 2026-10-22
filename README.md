@@ -137,21 +137,18 @@ must stop matching; apply the refutation audit to a witness search and it must
 refuse to pass; remove one base state from a sweep's record and the coverage
 audit must notice. A gate whose controls do not fire is not testing anything.
 
-**The gate currently reports one failure, and it is real.** Check 9 re-derives
-every figure the manuscript prints that this package can re-derive, and Appendix
-A.3's node count at $q = 27$ does not re-derive: the printed $1.14 \times 10^{8}$
-is the run's `dom_nodes` counter where the rest of that column is `nodes`, whose
-value is $6.22 \times 10^{9}$. The package holds the correct figure and the paper
-does not. This is recorded under table 8 of `CLAIMS.md` rather than accommodated,
-because a gate that is green against a wrong number is worse than one that is
-red against it.
+**The gate passes in full.** Its check 9 re-derives every figure the manuscript
+prints that this package can re-derive. It once failed on the node count at
+$q = 27$ in Appendix A.5, where an earlier draft printed the run's `dom_nodes`
+counter instead of its `nodes` counter; the manuscript was corrected, and table 8
+of `CLAIMS.md` records the episode.
 
 ## What is here
 
 | | |
 |---|---|
 | `engine/` | `kinduce.c`, the depth-first placement search, one translation unit, with its man page. `kcover.c` is the order-12 witness-extension engine. `versions/` keeps the 24 historical implementations that originally produced each result, and `versions/REGRESSION.md` records the consolidated engine agreeing with each of them node for node on the published command lines |
-| `tournaments/` | the hosts as bit strings, plus the generators that build them and `deletion_classes.py`, which derives the deletion-class counts of Appendix F with nauty. `drt23_del/` holds the two 22-vertex obstructions and the class lists of the levels below the doubly regular tournaments on 23 vertices; `descent_parents/` the two 25-vertex parents of Appendix G's other lineages |
+| `tournaments/` | the hosts as bit strings, plus the generators that build them and `deletion_classes.py`, which derives the deletion-class counts of Appendix F with nauty. `drt23_del/` holds the nine 22-vertex obstructions of Appendix H and the class lists of the levels below the doubly regular tournaments on 23 vertices; `descent_parents/` the two 25-vertex parents of Appendix G's other lineages |
 | `sat/` | the dissent-Boolean encoding, the cube tooling, the certification driver and the coverage check |
 | `verify/` | checkers that share no code with the search: witness verifiers that read the bit string and the ballots and recompute every arc's support; `appendix_e.py`, which builds Appendix E's three orders from its own prose and checks them over every locally transitive tournament of order 3–14; `triangles_per_arc.py`, which tests the 3-cycle hypothesis that turns a `--max-margin 3` run into a majority verdict; and for Section 3.2 and Appendix G, `verify_descent_witnesses.py` (each witness checked against a host rebuilt from its name), `drt23_level_counts.py` and `level_coverage.py` (class counts and coverage with `labelg`), `critical_deletions.py`, `host_facts.py` and `sweep_cover_audit.py` |
 | `certificates/` | the five machine-checked refutations (Paley(19) at unit margin, Paley(23), `h02_f00`, and Δ₆ − 5 and Δ₁ − 10 behind N(5) ≤ 22) — per-cube sha256 chains, published roots, and the verdict files that state their own scope. `CERT-v2.md` explains why each block now identifies its host by the sha256 of its adjacency rather than by the name of its construction |

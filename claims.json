@@ -938,7 +938,7 @@
    "id": "M1",
    "group": "7. The method comparison (Appendix A)",
    "sections": [
-    "A.3"
+    "A.1"
    ],
    "claim": "Integer programming does not reach these instances; at q = 23 the program has 1,265 binaries, 17,710 transitivity rows and 253 majority rows",
    "artifacts": [
@@ -953,7 +953,7 @@
    "id": "M2",
    "group": "7. The method comparison (Appendix A)",
    "sections": [
-    "A.3"
+    "A.1"
    ],
    "claim": "SAT alone does not either. The dissent-Boolean encoding cuts CaDiCaL conflicts 26\u201342\u00d7 against the order-variable family (2,399 / 1,491 / 57 on doubly regular tests), and with a sound symmetry break on top neither 19-vertex instance still returns a verdict",
    "artifacts": [
@@ -968,7 +968,7 @@
    "id": "M3",
    "group": "7. The method comparison (Appendix A)",
    "sections": [
-    "A.2"
+    "A.3"
    ],
    "claim": "The exact domain rule beats the capped one on decision quality alone: 992,378 nodes capped against 294,964 exact, identical verdicts, on a 29-instance Paley(19) benchmark",
    "artifacts": [
@@ -1107,7 +1107,7 @@
    "id": "T6",
    "group": "8. The cost and node tables (Appendix A.5 and A.6)",
    "sections": [],
-   "claim": "A.6 regular tournaments on 15, unit",
+   "claim": "A.6 regular on 15, unit",
    "artifacts": [
     "cluster/jz_n15/results_margin1/done/"
    ],
@@ -1133,7 +1133,7 @@
    "id": "T8",
    "group": "8. The cost and node tables (Appendix A.5 and A.6)",
    "sections": [],
-   "claim": "A.6 all tournaments on 12, unit",
+   "claim": "A.6 all on 12, unit",
    "artifacts": [
     "cluster/jz_n12cover/FINAL_ROLLUP.txt",
     "aggregate.sh"
@@ -1221,7 +1221,7 @@
    "id": "T15",
    "group": "8. The cost and node tables (Appendix A.5 and A.6)",
    "sections": [],
-   "claim": "A.6 \u0394\u2086 \u2212 5 sweep (cluster), unrestricted",
+   "claim": "A.6 \u0394\u2086 \u2212 5 sweep, unrestricted",
    "artifacts": [
     "evidence/d005mv04_sweep_markers.tar.zst"
    ],
@@ -1235,10 +1235,20 @@
    "id": "T16",
    "group": "8. The cost and node tables (Appendix A.5 and A.6)",
    "sections": [],
-   "claim": "A.6 \u0394\u2082\u2088 \u2212 5 sweep (cluster), unrestricted",
+   "claim": "A.6 \u0394\u2082\u2088 \u2212 5 sweep, unrestricted",
    "artifacts": [
     "verdicts/n22_obstructions/verdicts.tsv"
    ],
+   "missing": [],
+   "other_tokens": [],
+   "status": "declared_gap"
+  },
+  {
+   "id": "T17",
+   "group": "8. The cost and node tables (Appendix A.5 and A.6)",
+   "sections": [],
+   "claim": "A.6 the other rows: \u0394\u2081 \u2212 10 sweep 96.9 and certificate about 732; the 16 doubly regular tournaments 7,458.2; \u0394\u2081 \u2212 1 136.8, \u0394\u2081 \u2212 2 122.9, \u0394\u2081\u2081 \u2212 2 108.5, \u0394\u2081\u2081 \u2212 5 124.2, \u0394\u2081\u2081 \u2212 20 93.6",
+   "artifacts": [],
    "missing": [],
    "other_tokens": [],
    "status": "declared_gap"
@@ -1342,7 +1352,7 @@
   },
   {
    "id": "G1",
-   "group": "11. Below 22 vertices (Appendix G and Question 1)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)",
    "sections": [
     "G"
    ],
@@ -1360,11 +1370,11 @@
   },
   {
    "id": "G2",
-   "group": "11. Below 22 vertices (Appendix G and Question 1)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)",
    "sections": [
     "G"
    ],
-   "claim": "At 22 vertices all 378 were screened at up to 50 base states each: 13,863 base states searched to the end, no witness",
+   "claim": "At 22 vertices all 378 were screened at up to 50 base states each, without a single witness (13,863 base states searched to the end)",
    "artifacts": [
     "cluster/jz_drt23mv/HARDNESS_378.tsv"
    ],
@@ -1374,7 +1384,7 @@
   },
   {
    "id": "G3",
-   "group": "11. Below 22 vertices (Appendix G and Question 1)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)",
    "sections": [
     "G"
    ],
@@ -1391,7 +1401,7 @@
   },
   {
    "id": "G4",
-   "group": "11. Below 22 vertices (Appendix G and Question 1)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)",
    "sections": [
     "G",
     "4.2"
@@ -1406,20 +1416,8 @@
    "status": "established"
   },
   {
-   "id": "G5",
-   "group": "11. Below 22 vertices (Appendix G and Question 1)",
-   "sections": [
-    "G"
-   ],
-   "claim": "At 21 vertices about one base state in 110 yields a witness, so a host there costs a few dozen cluster core-hours to settle; at 22 a proof costs about 1,500",
-   "artifacts": [],
-   "missing": [],
-   "other_tokens": [],
-   "status": "declared_gap"
-  },
-  {
    "id": "G6",
-   "group": "11. Below 22 vertices (Appendix G and Question 1)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)",
    "sections": [
     "G"
    ],
@@ -1437,7 +1435,7 @@
   },
   {
    "id": "G7",
-   "group": "11. Below 22 vertices (Appendix G and Question 1)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)",
    "sections": [
     "G"
    ],
@@ -1456,12 +1454,30 @@
   },
   {
    "id": "Q1",
-   "group": "11. Below 22 vertices (Appendix G and Question 1)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)",
    "sections": [
     "4.2"
    ],
    "claim": "**Question 1** (is N(5) = 22?) is open. G3 and G4 are the evidence the paper cites for it",
    "artifacts": [],
+   "missing": [],
+   "other_tokens": [],
+   "status": "established"
+  },
+  {
+   "id": "C3",
+   "group": "11. Below 22 vertices and the conjectures (Appendix G, Section 4.2)",
+   "sections": [
+    "4.2"
+   ],
+   "claim": "**Conjecture 3** (every k-inducible tournament is (k+2)-inducible with unit margin): at k = 5, Paley(19) and the second doubly regular tournament on 19 vertices, which are 5-inducible but not with unit margin, are **7-inducible with unit margin**",
+   "artifacts": [
+    "tournaments/k7_unit19/p19_k7.log",
+    "tournaments/k7_unit19/dr19_g2_k7.log",
+    "sat/k7sat.py",
+    "verify/unit_margin_witness.py",
+    "tools/check_package.sh"
+   ],
    "missing": [],
    "other_tokens": [],
    "status": "established"
@@ -1551,16 +1567,22 @@
    "number": 7,
    "title": "results whose per-state records are still on the cluster",
    "status": "open",
-   "detail": "Four computations behind the 22-vertex results finished on the cluster, and what ships is the campaign's own roll-up rather than its markers: the sweep of \u0394\u2082\u2088 \u2212 5 (B7, T16; `verdicts/n22_obstructions/verdicts.tsv`), the 16 doubly regular tournaments on 23 vertices at unrestricted margin (S11; `cluster/jz_drt23maj/jz_drt23maj.tsv`), the 378-host screen at 22 vertices (G2; `cluster/jz_drt23mv/HARDNESS_378.tsv`) and the sweep of the circulant on 25 vertices (G6). Each roll-up was written by the campaign's aggregator, which reports UNSAT only for an exact, uncapped tiling of the base states, so these are cross-file checks of the same standard as gap 3, weaker than re-adding raw markers. The witness density of G5 comes from screen markers that are archived in the working repository and are too large to ship. Bringing the cluster markers back as `.tar.zst` archives, as was done for \u0394\u2086 \u2212 5 (`evidence/d005mv04_sweep_markers.tar.zst`), would close this gap."
+   "detail": "Four computations behind the 22-vertex results finished on the cluster, and what ships is the campaign's own roll-up rather than its markers: the sweep of \u0394\u2082\u2088 \u2212 5 (B7, T16; `verdicts/n22_obstructions/verdicts.tsv`), the 16 doubly regular tournaments on 23 vertices at unrestricted margin (S11; `cluster/jz_drt23maj/jz_drt23maj.tsv`), the 378-host screen at 22 vertices (G2; `cluster/jz_drt23mv/HARDNESS_378.tsv`) and the sweep of the circulant on 25 vertices (G6). Each roll-up was written by the campaign's aggregator, which reports UNSAT only for an exact, uncapped tiling of the base states, so these are cross-file checks of the same standard as gap 3, weaker than re-adding raw markers. Bringing the cluster markers back as `.tar.zst` archives, as was done for \u0394\u2086 \u2212 5 (`evidence/d005mv04_sweep_markers.tar.zst`), would close this gap."
+  },
+  {
+   "number": 8,
+   "title": "the cluster-to-laptop factors are stated, not re-derived",
+   "status": "open",
+   "detail": "Appendix A.6 reports cluster runs in laptop-equivalent core-hours, dividing each cluster total by a measured factor: 2.1 for the certificate of \u0394\u2081 \u2212 10, 3.55 for the 22- and 23-vertex sweeps, 5.13 for the self-converse census of order 13, and 3.85 and 4.28 for the censuses of orders 12 and 15. The gate re-derives each cluster total from shipped bytes and divides by the factor the manuscript states (check 9, T6\u2013T8, T15, T16); the paired runs that measured the factors (355 base states of \u0394\u2081\u2081 \u2212 5, and a seeded random sample of 8 and 12 census parts rerun on the laptop) are in the working repository (`KInduceDFS/paired_sample/`), not here. The rows of T17 are computed there too."
   }
  ],
  "counts": {
-  "claims": 98,
-  "established": 92,
+  "claims": 99,
+  "established": 93,
   "declared_gap": 6,
   "missing_artifacts": 0,
-  "gaps": 7,
-  "gaps_open": 4,
+  "gaps": 8,
+  "gaps_open": 5,
   "gaps_closed": 3
  }
 }

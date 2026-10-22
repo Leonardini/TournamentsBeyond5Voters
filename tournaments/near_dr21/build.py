@@ -11,7 +11,7 @@ files, nothing is copied as a verdict:
     `exhausted` marker that reads `RESULT UNSAT ... base_states=2200` and
     `SLICE cleared=1 capped=0`, and the queue holds exactly the representatives the
     campaign's quotient produced (444 per order-5 gluing under Corollary 2.5; 2,200 for
-    zf21_0/1, no quotient; 600 per zr21 host under the sub-base quotient, Corollary 2.6).
+    zf21_0/1, no quotient; 600 per zr21 host under the sub-base quotient, Corollary 2.5 with C a subset of the base).
     The marker set is copied into cover/<host>/ so the package can re-audit it.
   * majority SAT -- a witness log, re-verified here by verify_witness_bits.py --majority
     against THESE .bits, copied to out/<host>.majority.txt for verdict_ledger.py.
