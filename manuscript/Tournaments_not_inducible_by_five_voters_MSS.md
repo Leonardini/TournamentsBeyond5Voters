@@ -22,25 +22,21 @@ Corresponding author: Leonid Chindelevitch (`lchindel@ic.ac.uk`).
 
 ## Abstract
 
-How many voters must a committee have before its majority preferences can take any form at all? A
-tournament is $k$-inducible if some $k$ linear orders produce it as their
-pairwise-majority relation, and for odd $k$ we write $N(k)$ for the least number of alternatives at
-which some tournament is not $k$-inducible. Only $N(3) = 8$ is known exactly. For five voters the
-best bounds were $12 \le N(5) \le 38$, and the smallest explicit tournament beyond five voters had
-$43$ vertices.
-
-We improve both bounds to $13 \le N(5) \le 22$. The upper bound comes from eight tournaments on $22$
-vertices, each a doubly regular tournament on $23$ vertices with one vertex deleted, that five
-voters cannot produce; for one of these doubly regular tournaments, every one-vertex deletion is such a tournament. One of them, $\Delta_1 - v_{10}$, consists of two copies of the Paley tournament on $11$ vertices
-joined by a ladder, whose symmetry our search exploits. Two
-of the eight refutations, that one included, are formally certified. On the way we show that the
-Paley tournament on $23$ vertices is not $5$-inducible, a case that a general-purpose SAT solver had
-left open after six weeks of computation in the work of Bachmeier et al. (2019), and that neither is any other doubly regular tournament on $23$ vertices. The lower bound
-comes from an analysis of all tournaments on $12$ vertices. We also show that the Paley tournament on
-$19$ vertices is $5$-inducible, but not when every majority is carried by three voters against two,
-and we determine which obstructions survive deleting a vertex or reversing an arc. The method is a search that places one alternative at a time, always the one with the fewest
-options left, and exploits the symmetries of the tournament. Its negative results are certified by
-machine-checkable proofs, and all results are reproducible from a public repository.
+How many members must a committee have before its pairwise majorities can express any collective
+preference? With enough voters every pattern of pairwise majorities, or tournament, can arise, but a
+committee of $k$ voters produces only some; for odd $k$, let $N(k)$ be the least number of
+alternatives on which some tournament arises from no $k$ voters. Only $N(3) = 8$ is known; for five
+voters our companion paper gave $12 \le N(5) \le 38$ and the first explicit example of moderate
+size, on 43 vertices. We show $13 \le N(5) \le 22$. The upper bound comes from nine tournaments on
+22 vertices that five voters cannot produce: eight one-vertex deletions of doubly regular
+tournaments on 23 vertices, including every deletion of one of them, and one arc reversal. The Paley
+tournament on 23 vertices, which Bachmeier et al. (2019) left open after six weeks of SAT solving,
+is beyond five voters, and so is every other doubly regular tournament on 23 vertices. The lower
+bound comes from an analysis of all tournaments on 12 vertices. Both doubly regular tournaments on
+19 vertices, the Paley tournament and one other, arise from five voters, but not with unit margin,
+that is, not with every majority carried by three votes to two. The method is a search that places
+one alternative at a time and exploits the tournament's symmetries; four of the negative results are
+certified by machine-checkable proofs, and all results are reproducible from a public repository.
 
 **Keywords:** majority voting; tournaments; McGarvey's theorem; Paley tournaments; constraint search; SAT
 
