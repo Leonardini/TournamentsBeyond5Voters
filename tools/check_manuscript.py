@@ -356,7 +356,7 @@ def main(mdpath, as_json):
     # Appendix A.6's cost table, row by row.
     cost = find_table(tabs, 'computation', 'core-hours')
     if cost is None:
-        skip('DERIVED', 'A.6 cost table', 'table not found in the manuscript')
+        skip('DERIVED', 'G.6 cost table', 'table not found in the manuscript')
     else:
         def cell(rowwords, idx=-1):
             r = row_starting(cost, *rowwords)
@@ -406,9 +406,9 @@ def main(mdpath, as_json):
             want = cell(words)
             got = fn()
             if got is None:
-                skip('DERIVED', 'A.6 row %s' % ' '.join(words), 'artifact absent')
+                skip('DERIVED', 'G.6 row %s' % ' '.join(words), 'artifact absent')
             else:
-                record('DERIVED', 'A.6 row %s' % ' '.join(words), want, round(got, 2),
+                record('DERIVED', 'G.6 row %s' % ' '.join(words), want, round(got, 2),
                        close(want, got), label)
 
         # T4 is a CROSS-FILE check, not a re-derivation: the per-base markers
@@ -425,16 +425,16 @@ def main(mdpath, as_json):
             n = re.search(r'base states screened\s*:\s*(\d+)', src)
             mean = re.search(r'mean per base state\s*:\s*([\d.]+)', src)
             if got is not None:
-                record('DERIVED', 'A.6 row one arc reversed', want, got,
+                record('DERIVED', 'G.6 row one arc reversed', want, got,
                        close(want, got),
                        'cluster/jz_p23arc roll-up (cross-file, markers not shipped)')
             if n and mean and got is not None:
                 prod = int(n.group(1)) * float(mean.group(1)) / 3600
-                record('ARITHMETIC', 'A.6 one arc reversed is internally consistent',
+                record('ARITHMETIC', 'G.6 one arc reversed is internally consistent',
                        got, round(prod, 1), close(got, prod, 0.01),
                        'base states screened x mean per base state')
         else:
-            declared('A.6 row one arc reversed', want, 'CLAIMS.md gap 3')
+            declared('G.6 row one arc reversed', want, 'CLAIMS.md gap 3')
 
         # Delta_28 - 5: same cross-file shape -- the markers are on the cluster,
         # so the figure is compared against the sweep's roll-up, in seconds.
@@ -445,14 +445,14 @@ def main(mdpath, as_json):
             got = [per(float(r[h.index('seconds')]) / 3600, f_sweep) for r in rows[1:]
                    if r[0] == 'd027_mv04']
             if got:
-                record('DERIVED', 'A.6 row Delta_28 - 5 sweep', want, round(got[0], 1),
+                record('DERIVED', 'G.6 row Delta_28 - 5 sweep', want, round(got[0], 1),
                        close(want, got[0]),
                        'verdicts/n22_obstructions roll-up / the stated factor (cross-file, '
                        'markers on the cluster)')
             else:
-                declared('A.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
+                declared('G.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
         else:
-            declared('A.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
+            declared('G.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
 
         # T7, same cross-file shape as T4: the per-task accounting lives on the
         # cluster, so what is compared is the manuscript's figure against the
@@ -466,29 +466,29 @@ def main(mdpath, as_json):
             got = (round(per(float(cl.group(1)), f_13) + sum(map(float, lap)), 1)
                    if cl and lap and f_13 else None)
             if got is not None:
-                record('DERIVED', 'A.6 row self-converse on 13', want, got,
+                record('DERIVED', 'G.6 row self-converse on 13', want, got,
                        close(want, got, 0.01),
                        'cluster/jz_n13sc: cluster part / the stated factor + the two laptop '
                        'parts (cross-file, per-task accounting not shipped)')
             else:
-                declared('A.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
+                declared('G.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
         else:
-            declared('A.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
+            declared('G.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
 
         roll = os.path.join(ROOT, 'n12_unit_margin', 'n12_cover', 'FINAL_ROLLUP.txt')
         want = cell(['all on'])
         m = re.search(r'core-seconds\s*:\s*(\d+)', open(roll).read()) if os.path.exists(roll) else None
         if m and f_12:
             got = int(m.group(1)) / 3600 / f_12
-            record('DERIVED', 'A.6 row all on 12', want, round(got, 1), close(want, got),
+            record('DERIVED', 'G.6 row all on 12', want, round(got, 1), close(want, got),
                    'n12_unit_margin/n12_cover roll-up / the stated factor (cross-file)')
         else:
-            declared('A.6 row all on 12', want, 'CLAIMS.md gap 1')
+            declared('G.6 row all on 12', want, 'CLAIMS.md gap 1')
 
     # Appendix A.5's runtime table.
     run = find_table(tabs, 'live base states', 'core-hours', 'nodes')
     if run is None:
-        skip('DERIVED', 'A.5 runtime table', 'table not found in the manuscript')
+        skip('DERIVED', 'G.5 runtime table', 'table not found in the manuscript')
     else:
         arch = MAJORITY_ARCHIVE
         for r in run[1:]:
@@ -499,20 +499,20 @@ def main(mdpath, as_json):
             live, hours, nodes, per = (num(r[1]), num(r[2]), num(r[3]), num(r[4]))
             tot = archive_totals(arch[qv])
             if tot is None:
-                skip('DERIVED', 'A.5 q=%d' % qv, 'archive absent or zstd missing')
+                skip('DERIVED', 'G.5 q=%d' % qv, 'archive absent or zstd missing')
                 continue
             _, n_nodes, n_dom, secs = tot
-            record('DERIVED', 'A.5 q=%d core-hours' % qv, hours, round(secs / 3600, 2),
+            record('DERIVED', 'G.5 q=%d core-hours' % qv, hours, round(secs / 3600, 2),
                    close(hours, secs / 3600), 'sum of time= over the archive')
             if nodes is not None:
                 note = 'sum of nodes= over the archive'
                 if not close(nodes, n_nodes, 0.01) and close(nodes, n_dom, 0.01):
                     note = ('THE PRINTED FIGURE IS dom_nodes, NOT nodes: '
                             'dom_nodes=%.3e, nodes=%.3e' % (n_dom, n_nodes))
-                record('DERIVED', 'A.5 q=%d nodes' % qv, nodes, float('%.3g' % n_nodes),
+                record('DERIVED', 'G.5 q=%d nodes' % qv, nodes, float('%.3g' % n_nodes),
                        close(nodes, n_nodes, 0.01), note)
             if live is not None and per is not None:
-                record('ARITHMETIC', 'A.5 q=%d seconds per live base state' % qv,
+                record('ARITHMETIC', 'G.5 q=%d seconds per live base state' % qv,
                        per, round(hours * 3600 / live, 1),
                        close(per, hours * 3600 / live, 0.01),
                        'core-hours x 3600 / live base states')
@@ -525,12 +525,12 @@ def main(mdpath, as_json):
                 continue
             got = survivors(args)
             if got is None or got[1] is None:
-                skip('DERIVED', 'A.5 q=%d live base states' % qv,
+                skip('DERIVED', 'G.5 q=%d live base states' % qv,
                      'base_survivors.py unavailable')
             else:
                 # q=23 uses the break in use, not the optimum, so compare the
                 # base-state total and let CLAIMS.md carry the break choice.
-                record('DERIVED', 'A.5 q=%d base states (total)' % qv, None, got[0],
+                record('DERIVED', 'G.5 q=%d base states (total)' % qv, None, got[0],
                        got[0] in (8031, 21009),
                        'search-free count from sat/base_survivors.py')
 
@@ -542,19 +542,29 @@ def main(mdpath, as_json):
         rows = [l.rstrip('\n').split('\t') for l in open(led)]
         hdr = rows[0]
         mi, ma = hdr.index('margin1'), hdr.index('majority')
-        # "can produce, but not with unit margin": unit margin UNSAT, majority SAT
-        sep = [r for r in rows[1:] if len(r) > ma and r[mi].strip() == 'UNSAT'
-               and r[ma].strip().startswith('SAT')]
-        by_n = {}
-        for r in sep:
-            by_n[int(r[1])] = by_n.get(int(r[1]), 0) + 1
-        # "...turn up 58 tournaments, up to isomorphism and converse, that five voters can
-        # produce but not with unit margin: 2 doubly regular ones at order 19; at order 21,
-        # 3 vertex-transitive ones (...) and 42 near-doubly regular ones; and 11 circulant
-        # ones at order 23."  The ledger counts isomorphism classes, so a class and its
-        # converse class (its `converse` column) count once.  Clauses are separated by ';',
-        # parentheses are dropped, and every count in a clause is credited to its order.
         conv = hdr.index('converse')
+        # The ledger is keyed on the registry of catalogue families, so the tournaments
+        # derived from them (arc reversals, Paley(23) - v) live in a supplement with the
+        # same leading columns.  verify/separation_supplement.py re-derives its rows and
+        # checks that none duplicates a ledger class; here they are only counted.
+        sup = os.path.join(ROOT, 'verdicts', 'ledger_supplement.tsv')
+        srows = [l.rstrip('\n').split('\t') for l in open(sup) if l.strip() and not l.startswith('#')]
+        sh = srows[0]
+        for c in ('id', 'n', 'margin1', 'majority', 'converse'):
+            assert sh.index(c) == hdr.index(c), 'ledger_supplement.tsv: column %s is not where the ledger has it' % c
+        # "can produce, but not with unit margin": unit margin UNSAT, majority SAT
+        sep = [r for r in rows[1:] + srows[1:] if len(r) > ma and r[mi].strip() == 'UNSAT'
+               and r[ma].strip().startswith('SAT')]
+        # "...turn up 75 tournaments, up to isomorphism and converse, that five voters can
+        # produce but not with unit margin: $2$ doubly regular ones at order $19$; at order
+        # $21$, $3$ vertex-transitive ones (...), $15$ obtained from two of them by reversing
+        # one arc (...) and $42$ near-doubly regular ones (...); at order $22$, $P_{23} - v$;
+        # and at order $23$, $11$ circulant ones and $P_{23}$ with one arc reversed."
+        # A class and its converse class (the `converse` column) count once.  Clauses are
+        # separated by ';' and each is credited to its order.  Within a clause, the items are
+        # separated by commas and 'and'; an item that starts with a count contributes that
+        # count, and an item that names a single tournament ($P_{23} - v$) contributes one.
+        # Subscripts are removed first, so the 23 of P_{23} is never read as a count.
         by_n = {}
         for n in {int(r[1]) for r in sep}:
             ids = {r[0]: r[conv].strip() for r in sep if int(r[1]) == n}
@@ -566,13 +576,19 @@ def main(mdpath, as_json):
             want = {}
             for clause in m.group(2).split(';'):
                 o = re.search(r'at order (\d+)', clause)
-                nums = [int(x) for x in re.findall(r'\d+', re.sub(r'at order \d+', '', clause))]
-                if o:
-                    want[int(o.group(1))] = want.get(int(o.group(1)), 0) + sum(nums)
+                assert o, 'a clause of the count names no order: %r' % clause
+                body = re.sub(r'_\w+', '', re.sub(r'at order \d+', '', clause))
+                items = [x.strip() for x in re.split(r',|\band\b', body) if x.strip()]
+                cnt = 0
+                for it in items:
+                    lead = re.match(r'(\d+)\b', it)
+                    assert lead or not re.search(r'\d', it), 'a number inside an item, not leading it: %r' % it
+                    cnt += int(lead.group(1)) if lead else 1
+                want[int(o.group(1))] = want.get(int(o.group(1)), 0) + cnt
             total = int(m.group(1))
             record('LEDGER', 'the %d unit-margin-only obstructions, up to converse' % total, want,
                    by_n, want == by_n and sum(want.values()) == total,
-                   'ledger rows with margin1 = UNSAT and majority = SAT, one per converse pair, by order')
+                   'ledger and supplement rows with margin1 = UNSAT and majority = SAT, one per converse pair, by order')
         else:
             record('LEDGER', 'the unit-margin-only obstructions', 'sentence not found',
                    by_n, False, 'could not read the claim out of the manuscript')

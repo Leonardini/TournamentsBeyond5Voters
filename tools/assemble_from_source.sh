@@ -222,6 +222,15 @@ done
 mkdir -p "$DST/verdicts/drt23"
 [ -f "$K/drt23_m1/drt23_m1.tsv" ] && cp "$K/drt23_m1/drt23_m1.tsv" "$DST/verdicts/drt23/"
 [ -f "$K/drt23_maj/drt23_maj.tsv" ] && cp "$K/drt23_maj/drt23_maj.tsv" "$DST/verdicts/drt23/"
+# The twelve hardest vertex-transitive tournaments on 23 vertices, at unit margin and
+# unrestricted (Section 6.7): the roll-ups the ledger reads, and the majority witnesses of
+# the eleven that are unit-margin obstructions (plus v023's unit-margin witness).
+mkdir -p "$DST/verdicts/vt23/out"
+for f in vt23_m1/vt23_m1.tsv vt23_maj/vt23_maj.tsv; do
+  [ -f "$K/$f" ] && cp "$K/$f" "$DST/verdicts/vt23/"
+done
+[ -d "$K/vt23_maj/out" ] && cp "$K"/vt23_maj/out/*.majority.txt "$DST/verdicts/vt23/out/"
+[ -f "$K/vt23_m1/out/v023.exact.txt" ] && cp "$K/vt23_m1/out/v023.exact.txt" "$DST/verdicts/vt23/out/"
 # The two 22-vertex obstructions' roll-up.  Its check.sh compares the host
 # copies against the cluster kit's directory, which is not shipped, so only the
 # README and the verdict table come across; the hosts are in
@@ -237,6 +246,12 @@ fi
 for f in arcflip_spectrum.log arcflip_spectrum.sh vt20_descent.log; do
   [ -f "$K/$f" ] && cp "$K/$f" "$DST/verdicts/"
 done
+# The slice logs behind that spectrum: for each of the 15 reversals that stay unit-margin
+# obstructions they tile all 2,200 base states, and verify/separation_supplement.py checks it.
+# The spectrum log alone records h01_f05 to h01_f09 only in its summary line.
+if [ -d "$K/vt21_arcflip_shard" ]; then
+  (cd "$K" && tar --format ustar -cf - vt21_arcflip_shard) | zstd -19 -q -f -o "$DST/evidence/vt21_arcflip_slices.tar.zst"
+fi
 # Section 3.4's two deleted-vertex sweeps, P31 - v and P43 - v.  Their 8,031
 # per-base markers each are resumption state and gitignored at the source, so
 # what ships is the condensed times file the kit writes -- one line per base
@@ -300,6 +315,10 @@ fi
 # integer program), counting_bounds/, paley43/ and reports/paley43-five-voters/ moved here
 # from the companion paper's repository (github.com/Leonardini/Tournaments) on 2026-11-07,
 # when those results moved to this paper.  This script does not touch them.
+# Also not from KemenyMedian: verdicts/ledger_supplement.tsv, the record of the 17
+# unit-margin-only tournaments that the ledger's registry cannot hold (arc reversals and
+# Paley(23) - v), and verify/separation_supplement.py, which re-derives it; both written in
+# this package on 2026-11-07.
 # The 378-deletion screen at 22 vertices (Appendix G): its per-host roll-up,
 # from which 378 hosts, 18,900 base states tried and 13,863 exhausted re-add.
 # The per-state markers stay on the cluster.

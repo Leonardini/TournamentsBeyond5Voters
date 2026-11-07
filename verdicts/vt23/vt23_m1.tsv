@@ -1,0 +1,17 @@
+# The twelve hard VT hosts at n=23 at UNIT MARGIN, laptop 2026-09-22/23.
+# Every UNSAT row is a COMPLETE cover of [0,2200) with nothing capped; the verdict
+# is recomputed from the markers by the same tiling rule aggregate.sh uses.  A SAT
+# row is closed by a witness, so its cover is deliberately partial.
+#host	verdict	slices	nodes	capped	core_seconds
+v001	UNSAT	50	7317932667	0	29561.1
+v002	UNSAT	50	6230702187	0	25699.1
+v004	UNSAT	50	3948926447	0	16128.3
+v005	UNSAT	50	2872228504	0	12493.5
+v007	UNSAT	50	13822503464	0	50373.4
+v008	UNSAT	50	7810384773	0	31871.2
+v016	UNSAT	50	5299668328	0	22808.5
+v017	UNSAT	50	5083176035	0	20908.4
+v023	SAT	1	71521327	0	274.7
+v027	UNSAT	50	10340083250	0	37906.5
+v030	UNSAT	50	5019149780	0	20234.6
+v038	UNSAT	50	15483395396	0	59653.1

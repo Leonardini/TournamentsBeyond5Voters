@@ -1,0 +1,16 @@
+# The hard VT hosts at n=23 at UNRESTRICTED MARGIN, laptop 2026-09-23.
+# Every row is SAT, so the cover is deliberately PARTIAL: a witness settles a host
+# and the remaining chunks are cancelled.  A SAT needs no cover -- only an UNSAT does.
+#host	verdict	slices	nodes	capped	core_seconds
+v001	SAT	4	195877922	0	1845.8
+v002	SAT	2	128193102	0	1223.7
+v004	SAT	3	375518342	0	3360.5
+v005	SAT	10	2655176738	0	27270.8
+v007	SAT	2	78193450	0	485.9
+v008	SAT	2	475402311	0	4472.0
+v016	SAT	2	612124703	0	6021.1
+v017	SAT	3	322101160	0	2820.0
+v023	SAT	1	13717290	0	82.4
+v027	SAT	3	45832204	0	262.2
+v030	SAT	2	30919753	0	208.6
+v038	SAT	2	627076126	0	4098.3

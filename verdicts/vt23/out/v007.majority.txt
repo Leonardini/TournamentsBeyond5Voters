@@ -1,0 +1,15 @@
+# v007 at UNRESTRICTED MARGIN, laptop 2026-09-23, from c1720.log.
+# Host file KInduceDFS/vt23/v007.bits.  Re-verified INDEPENDENTLY of kinduce: all 506 ordered pairs
+# recomputed from the five orders, 0 mismatches, winner support [3, 4].
+n=23 K=5 margin=majority order=mrv+inc mrv_cap=20000 tie_imb=1 mode=one symbreak=1 defect_R=0 base_sz=5 base=0,1,2,4,5 base_mask=947 base_states=8031 (most restrictive of C(23,5))
+  static_tail=3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+  base_state_slice=[1720,1730)
+WITNESS
+  voter 0: 12 22 7 17 18 13 0 6 14 20 1 9 19 15 21 2 8 10 16 3 4 5 11
+  voter 1: 13 21 8 9 16 1 12 19 20 4 15 0 3 11 6 14 22 7 10 17 18 2 5
+  voter 2: 3 2 9 4 14 10 20 11 21 22 5 15 6 16 17 12 13 0 1 8 18 19 7
+  voter 3: 17 4 10 18 5 1 11 19 6 2 12 20 7 3 13 8 14 15 16 21 22 9 0
+  voter 4: 5 16 0 7 8 15 11 18 19 14 22 2 3 10 21 6 13 1 9 17 20 4 12
+VERIFY bad_arcs=0 reversed=0 off_R=0 support_min=3 support_max=4 OK
+SLICE cleared=0 capped=0 of [1720,1730)
+RESULT SAT nodes=887448 sols=1 base_states=8031 dom_calls=18 dom_nodes=11028 mrv_fails=2903464 top0_fails=0 bound_fails=0 fas_fails=0/0 refine_tuples=939700055 time=6.235s

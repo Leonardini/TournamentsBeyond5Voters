@@ -831,6 +831,30 @@ if python3 "$UW" "$KD/dr19_g2.bits" "$KD/p19_k7.log" 7 2>&1 | grep -q '^FAIL' &&
 else bad "control did not fire: a witness verified against the wrong tournament"; fi
 
 echo
+echo "== 8l. the unit-margin-only tournaments outside the ledger, and the order-23 circulants =="
+# Section 6.7 counts 75 tournaments that five voters produce but not with unit margin.  The
+# ledger holds 58; the other 17 (fifteen arc reversals at 21 vertices, Paley(23) - v and
+# Paley(23) with one arc reversed) are in verdicts/ledger_supplement.tsv.  The verifier
+# re-derives each row (complete unit-margin cover, majority witness, distinct up to converse
+# and not already in the ledger) and the eleven order-23 circulants of verdicts/vt23/.
+# Controls: a slice log removed, an arc of a host reversed, and an `S` reversal treated as a
+# refutation must each fail.
+SS=$ROOT/verify/separation_supplement.py
+if [ -n "$LABELG" ] && command -v zstd >/dev/null 2>&1; then
+  if out=$(python3 "$SS" "$ROOT" 2>&1); then ok "$out"
+  else bad "a supplementary unit-margin-only verdict does not re-derive"; echo "$out" | sed 's/^/        /'; fi
+  if python3 "$SS" "$ROOT" --drop-slice h01_f05 >/dev/null 2>&1; then
+    bad "control did not fire: a slice log was removed and the cover still read complete"
+  else ok "control: removing one slice log of h01_f05 is caught, as it must be"; fi
+  if python3 "$SS" "$ROOT" --flip x22_p23mv >/dev/null 2>&1; then
+    bad "control did not fire: Paley(23) - v with one arc reversed still passed"
+  else ok "control: reversing one arc of Paley(23) - v is caught, as it must be"; fi
+  if python3 "$SS" "$ROOT" --as-unsat h02_f01 >/dev/null 2>&1; then
+    bad "control did not fire: a reversal with a unit-margin witness read as refuted"
+  else ok "control: h02_f01, which has a unit-margin witness, does not read as refuted"; fi
+else warn "labelg or zstd not found; the supplement was not re-derived"; fi
+
+echo
 echo "== 9. every number the manuscript prints that we can re-derive, re-derived =="
 # The manuscript is the source of truth for what is CLAIMED; this recomputes the
 # observed value from shipped bytes and compares.  A figure that changes in the
