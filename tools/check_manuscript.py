@@ -475,13 +475,13 @@ def main(mdpath, as_json):
         else:
             declared('A.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
 
-        roll = os.path.join(ROOT, 'cluster', 'jz_n12cover', 'FINAL_ROLLUP.txt')
+        roll = os.path.join(ROOT, 'n12_unit_margin', 'n12_cover', 'FINAL_ROLLUP.txt')
         want = cell(['all on'])
         m = re.search(r'core-seconds\s*:\s*(\d+)', open(roll).read()) if os.path.exists(roll) else None
         if m and f_12:
             got = int(m.group(1)) / 3600 / f_12
             record('DERIVED', 'A.6 row all on 12', want, round(got, 1), close(want, got),
-                   'cluster/jz_n12cover roll-up / the stated factor (cross-file)')
+                   'n12_unit_margin/n12_cover roll-up / the stated factor (cross-file)')
         else:
             declared('A.6 row all on 12', want, 'CLAIMS.md gap 1')
 

@@ -29,6 +29,9 @@ MANIFEST = os.path.join(ROOT, 'MANIFEST.sha256')
 SKIP_DIRS = {'.git', '__pycache__', '.ipynb_checkpoints'}
 SKIP_NAMES = {'MANIFEST.sha256', '.DS_Store'}
 SKIP_SUFFIX = ('.pyc', '.pyo', '.o', '.aux', '.out.log', '~', '.swp')
+# Downloaded or regenerated on demand and listed in .gitignore: McKay's catalogues fetched by
+# n12_unit_margin/get_data.sh, and the 40 MB n = 10 witnesses that make_witnesses.sh rebuilds.
+SKIP_PATHS = ('n12_unit_margin/data/', 'n12_unit_margin/witnesses/n10_unit_margin_profiles.txt.xz')
 
 
 def walk():
@@ -40,7 +43,10 @@ def walk():
             full = os.path.join(dirpath, fn)
             if os.path.islink(full):
                 continue
-            yield os.path.relpath(full, ROOT).replace(os.sep, '/'), full
+            rel = os.path.relpath(full, ROOT).replace(os.sep, '/')
+            if rel.startswith(SKIP_PATHS):
+                continue
+            yield rel, full
 
 
 def sha256(path):

@@ -32,3 +32,27 @@ tri
 # reports/beyond-five-voters/finalize.py; the README carries the spliced copy.
 reports/beyond-five-voters/data/_readme_top.md
 __marimo__/
+
+# n <= 12 unit-margin folder: McKay catalogues (n12_unit_margin/get_data.sh), the regenerated
+# n = 10 witnesses (40 MB) and the census outputs
+n12_unit_margin/data/
+n12_unit_margin/witnesses/n10_unit_margin_profiles.txt.xz
+n12_unit_margin/n11_census/results/
+n12_unit_margin/n11_census/bin/
+margin1_scan
+cert_m1k5
+verify_m1k5
+m1k5_profile
+
+# Paley(43): engine binaries and regenerated tables (rebuilt by paley43/reproduce_paley43.sh);
+# paley43/d0_reps.txt is kept
+dp43
+canon_reps
+razor_screen
+dp43run*/
+paley43/*.bin
+paley43/delta1_reps.txt
+paley43/delta2_reps.txt
+paley43/pool*.txt
+paley43/manifest.txt
+paley43/razor_disjoint_hits.txt

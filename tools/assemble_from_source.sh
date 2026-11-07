@@ -279,7 +279,7 @@ find "$K/run_evidence" -maxdepth 1 -type f ! -name 'd005mv04_cert_log.tar.zst' \
 # (freearc, rigid, order_sym, tri, kcover) and copying them would ship 35 MB of
 # other-architecture executables that the .c files beside them regenerate.
 mkdir -p "$DST/cluster"
-for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce jz_p23arc jz_drt23maj; do
+for j in jz_n15 jz_n13sc jz_reproduce jz_p23arc jz_drt23maj; do
   [ -d "$K/$j" ] || continue
   mkdir -p "$DST/cluster/$j"
   find "$K/$j" -maxdepth 1 -type f \
@@ -288,6 +288,18 @@ for j in jz_n15 jz_n13sc jz_n12cover jz_reproduce jz_p23arc jz_drt23maj; do
           -o -name '*.log' -o -name '*.conf' -o -name '*.json' \) \
        -exec sh -c 'cp "$@" "$0"' "$DST/cluster/$j/" {} +
 done
+# The order-12 analysis lives with the rest of the n <= 12 unit-margin evidence.
+if [ -d "$K/jz_n12cover" ]; then
+  mkdir -p "$DST/n12_unit_margin/n12_cover"
+  find "$K/jz_n12cover" -maxdepth 1 -type f \
+       \( -name '*.sh' -o -name '*.py' -o -name '*.c' -o -name '*.md' \
+          -o -name '*.txt' -o -name '*.slurm' \) \
+       -exec sh -c 'cp "$@" "$0"' "$DST/n12_unit_margin/n12_cover/" {} +
+fi
+# Not from KemenyMedian: the rest of n12_unit_margin/ (the n <= 11 witnesses, census and
+# integer program), counting_bounds/, paley43/ and reports/paley43-five-voters/ moved here
+# from the companion paper's repository (github.com/Leonardini/Tournaments) on 2026-11-07,
+# when those results moved to this paper.  This script does not touch them.
 # The 378-deletion screen at 22 vertices (Appendix G): its per-host roll-up,
 # from which 378 hosts, 18,900 base states tried and 13,863 exhausted re-add.
 # The per-state markers stay on the cluster.

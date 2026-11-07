@@ -111,7 +111,7 @@ reading UNSAT, uncapped, for every representative and for nothing else.
     python3 verify/rung_reversal.py tournaments/drt23_del/d000_mv09.bits 1 15 \
             verdicts/d000mv09_rung/d000mv09_r01_15.log
 
-checks Section 3.3's statement about the arcs: five orbits of 55, 55, 55, 55 and
+checks Section 5.3's statement about the arcs: five orbits of 55, 55, 55, 55 and
 11 arcs, the arc from vertex 1 to vertex 15 a rung (in the orbit of 11, all from
 Y to X), and the witness a majority witness for Delta_1 - 10 with that arc
 reversed.

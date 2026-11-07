@@ -123,7 +123,7 @@ exercise.
 tools/claims_index.py --check   # CLAIMS.md == claims.tsv == claims.json, 0 missing paths
 tools/check_manuscript.py       # re-derive every manuscript figure we can, from shipped bytes
 tools/manifest.py --check       # MANIFEST.sha256 against the bytes on disk
-python3 verify/appendix_e.py    # verify Appendix E's construction on 1,238 tournaments
+python3 verify/appendix_e.py    # verify Appendix G's construction on 1,238 tournaments
 engine/regression.sh            # the consolidated engine vs the versions that produced the results
 ```
 
@@ -148,14 +148,17 @@ of `CLAIMS.md` records the episode.
 | | |
 |---|---|
 | `engine/` | `kinduce.c`, the depth-first placement search, one translation unit, with its man page. `kcover.c` is the order-12 witness-extension engine. `versions/` keeps the 24 historical implementations that originally produced each result, and `versions/REGRESSION.md` records the consolidated engine agreeing with each of them node for node on the published command lines |
-| `tournaments/` | the hosts as bit strings, plus the generators that build them and `deletion_classes.py`, which derives the deletion-class counts of Appendix F with nauty. `drt23_del/` holds the nine 22-vertex obstructions of Appendix H and the class lists of the levels below the doubly regular tournaments on 23 vertices; `descent_parents/` the two 25-vertex parents of Appendix G's other lineages |
+| `tournaments/` | the hosts as bit strings, plus the generators that build them and `deletion_classes.py`, which derives the deletion-class counts of Appendix H with nauty. `drt23_del/` holds the nine 22-vertex obstructions of Appendix J and the class lists of the levels below the doubly regular tournaments on 23 vertices; `descent_parents/` the two 25-vertex parents of Appendix I's other lineages |
 | `sat/` | the dissent-Boolean encoding, the cube tooling, the certification driver and the coverage check |
-| `verify/` | checkers that share no code with the search: witness verifiers that read the bit string and the ballots and recompute every arc's support; `appendix_e.py`, which builds Appendix E's three orders from its own prose and checks them over every locally transitive tournament of order 3–14; `triangles_per_arc.py`, which tests the 3-cycle hypothesis that turns a `--max-margin 3` run into a majority verdict; and for Section 3.2 and Appendix G, `verify_descent_witnesses.py` (each witness checked against a host rebuilt from its name), `drt23_level_counts.py` and `level_coverage.py` (class counts and coverage with `labelg`), `critical_deletions.py`, `host_facts.py` and `sweep_cover_audit.py` |
+| `verify/` | checkers that share no code with the search: witness verifiers that read the bit string and the ballots and recompute every arc's support; `appendix_e.py`, which builds Appendix G's three orders from its own prose and checks them over every locally transitive tournament of order 3–14; `triangles_per_arc.py`, which tests the 3-cycle hypothesis that turns a `--max-margin 3` run into a majority verdict; and for Section 5.2 and Appendix I, `verify_descent_witnesses.py` (each witness checked against a host rebuilt from its name), `drt23_level_counts.py` and `level_coverage.py` (class counts and coverage with `labelg`), `critical_deletions.py`, `host_facts.py` and `sweep_cover_audit.py` |
 | `certificates/` | the five machine-checked refutations (Paley(19) at unit margin, Paley(23), `h02_f00`, and Δ₆ − 5 and Δ₁ − 10 behind N(5) ≤ 22) — per-cube sha256 chains, published roots, and the verdict files that state their own scope. `CERT-v2.md` explains why each block now identifies its host by the sha256 of its adjacency rather than by the name of its construction |
 | `verdicts/` | one verdict record per result, the consolidated ledger, and the witness documents |
 | `evidence/` | chunk logs for every distributed sweep, compressed about 100×, plus the measurement JSON behind each configuration choice |
-| `cluster/` | the records of the computations that ran on the cluster rather than the laptop: the order-12 census, the 15-vertex regular census, the order-13 self-converse census, the independent reproduction, the Paley(23) arc-reversal scan, and the roll-ups of the doubly regular sweeps at 23 vertices and the 378-host screen at 22 |
-| `manuscript/` | the paper the claims come from, as submitted to *Mathematical Social Sciences*, with its LaTeX source, its highlights, and `figures/` — the pipeline that draws Figure 1 from a real trace, by a second implementation of the search that refuses to emit one unless seven cross-checks pass |
+| `cluster/` | the records of the computations that ran on the cluster rather than the laptop: the 15-vertex regular census, the order-13 self-converse census, the independent reproduction, the Paley(23) arc-reversal scan, and the roll-ups of the doubly regular sweeps at 23 vertices and the 378-host screen at 22 |
+| `manuscript/` | the paper the claims come from, in its version of 2026-11-07, with its LaTeX source, its highlights, and `figures/` — the pipeline that draws Figure 1 from a real trace, by a second implementation of the search that refuses to emit one unless seven cross-checks pass |
+| `n12_unit_margin/` | every check that the tournaments on at most 12 vertices are 5-inducible with unit margin (Appendix E): explicit profiles for the non-3-inducible tournaments on 8 and 9 vertices and the code that regenerates them, the integer program for n ≤ 10, the 11-vertex census, and the cluster records of the 12-vertex analysis. Its README says which part settles which order |
+| `counting_bounds/` | the counting bounds of Section 3: N(5) ≤ 38, and the improved bounds for every odd k ≤ 21 |
+| `paley43/` | the proof that Paley(43) is not 5-inducible (Section 4, Appendices C and D), rebuilt end to end by `reproduce_paley43.sh`; `REPRODUCTION.md` records an independent re-run, written up in `reports/paley43-five-voters/` |
 | `notes_research_log.md` | the working notebook, kept for provenance |
 
 ## Building

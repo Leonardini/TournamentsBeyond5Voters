@@ -922,6 +922,43 @@ else
   echo "$qout" | sed 's/^/        /' | head -12
 fi
 
+echo "== 15. the bounds that need no search: counting, Paley(43), witnesses =="
+# Moved from the companion paper's package on 2026-11-07.  The counting scripts
+# assert the published bounds they reproduce; the dp43 self-tests compare the
+# dynamic program with brute force on Paley(7) and Paley(11); the witness check
+# runs only when n12_unit_margin/get_data.sh has fetched McKay's catalogues, and
+# its control corrupts one profile, which must then be rejected.
+for f in nearreg_table_bounds extended_table1_bounds; do
+  if (cd "$ROOT/counting_bounds" && python3 "$f.py" > /dev/null 2>&1); then ok "counting_bounds/$f.py: every assertion holds"
+  else bad "counting_bounds/$f.py failed"; fi
+done
+t15=$(mktemp -d "${TMPDIR:-/tmp}/gate15.XXXXXX")
+if cc -O3 -pthread -o "$t15/dp43" "$ROOT/paley43/dp43.c" 2> "$t15/cc.log"; then
+  for q in 7 11; do
+    mkdir -p "$t15/st$q"
+    if "$t15/dp43" selftest $q "$t15/st$q" 2>&1 | grep -q "selftest q=$q PASSED"; then ok "paley43/dp43 self-test on Paley($q): dynamic program equals brute force"
+    else bad "paley43/dp43 self-test on Paley($q)"; fi
+  done
+else
+  bad "paley43/dp43.c does not compile"; sed 's/^/        /' "$t15/cc.log" | head -5
+fi
+cat9="$ROOT/n12_unit_margin/data/mckay/tournaments9.txt"
+if [ -s "$cat9" ]; then
+  if out=$("$ROOT/n12_unit_margin/witnesses/check_witnesses.sh" 9 2>&1); then ok "$(echo "$out" | tail -1)"
+  else bad "the n = 9 unit-margin profiles do not check"; echo "$out" | tail -3 | sed 's/^/        /'; fi
+  # control: swap two vertices in the first voter of the first profile; the check must fail
+  xz -dc "$ROOT/n12_unit_margin/witnesses/n9_unit_margin_profiles.txt.xz" \
+    | awk 'NR==1{v=$1; a=substr(v,1,1); b=substr(v,2,1); $1=b a substr(v,3)} {print}' > "$t15/bad9.txt"
+  cc -O3 -o "$t15/margin1_scan" "$ROOT/n12_unit_margin/csp/margin1_scan.c"
+  if "$t15/margin1_scan" 9 emitn < "$cat9" 2>/dev/null | { grep '^N ' || true; } | cut -d' ' -f2 \
+       | python3 "$ROOT/n12_unit_margin/witnesses/verify_unit_margin.py" 9 "$t15/bad9.txt" - --expect 17674 > /dev/null 2>&1; then
+    bad "control: a corrupted n = 9 profile was accepted"
+  else ok "control: a corrupted n = 9 profile is rejected, as it must be"; fi
+else
+  warn "n = 9 unit-margin profiles: McKay's catalogue not fetched (run n12_unit_margin/get_data.sh)"
+fi
+rm -rf "$t15"
+
 echo
 echo "-------------------------------------------------------------"
 printf 'passed %d   failed %d   skipped %d\n' "$pass" "$fail" "$skip"
