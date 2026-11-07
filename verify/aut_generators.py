@@ -54,7 +54,7 @@ def generators(spec, host):
     gens = []
     for r in range(0, 4):
         # among the generating sets of minimum size, prefer elements of larger order (an 11-cycle
-        # translation and a 5-cycle multiplication for Delta_1 - 10, as in Figure 1)
+        # translation and a 5-cycle multiplication for Delta_1 - 10, as in Figure @fig:ladder)
         cands = [c for c in itertools.combinations(rest, r) if len(closure(c, n)) == len(auts)]
         if cands:
             gens = list(max(cands, key=lambda c: sorted((len(closure([g], n)) for g in c), reverse=True)))

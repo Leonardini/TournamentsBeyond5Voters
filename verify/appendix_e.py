@@ -148,7 +148,7 @@ def round_order(A, n):
 
 
 # --------------------------------------------------------------------------
-# Appendix E's own construction, transcribed from its prose
+# Appendix @app:locally-transitive's own construction, transcribed from its prose
 # --------------------------------------------------------------------------
 def appendix_profile(A, n, order, cut):
     """A, B and C exactly as Appendix E defines them, for one cut point.
@@ -203,7 +203,7 @@ def transitive_profile(A, n):
 
 
 def pad(orders, k):
-    """Appendix E's padding: add (sigma, reverse sigma) pairs, which lift every
+    """Appendix @app:locally-transitive's padding: add (sigma, reverse sigma) pairs, which lift every
     support from 2 to (k+1)/2 without disturbing any of them relative to each
     other."""
     sigma = list(orders[0])
@@ -304,7 +304,7 @@ def verify_one(A, n, report):
 
 def main(maxn, gt):
     bad = 0
-    print("E1/E2: Appendix E's A, B, C, built from its own prose, at every cut point")
+    print("E1/E2: Appendix @app:locally-transitive's A, B, C, built from its own prose, at every cut point")
     print("%3s %-26s %6s %7s %6s %9s %9s"
           % ("n", "source", "LT", "strong", "cuts", "verified", "rejected"))
     seen_any = False

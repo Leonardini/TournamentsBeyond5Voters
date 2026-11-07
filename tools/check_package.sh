@@ -48,7 +48,7 @@ SW=${SOFTWARE_DIR:-$HOME/Downloads/DownloadedSoftware}
 GENTOURNG=$(resolve gentourng "${GENTOURNG:-}" "$SW/nauty2_8_6/gentourng" 2>/dev/null || true)
 LABELG=$(resolve labelg "${LABELG:-}" "$SW/nauty2_8_6/labelg" 2>/dev/null || true)
 LRATTRIM=$(resolve lrat-trim "${LRATTRIM:-}" "$SW/lrat-trim/lrat-trim" 2>/dev/null || true)
-export LABELG    # tools/check_manuscript.py re-derives Appendix G's class counts with it
+export LABELG    # tools/check_manuscript.py re-derives the class counts of appendix app:below22 with it
 
 echo "== 1. the engine builds from the shipped source =="
 CC=${CC:-cc}
@@ -506,8 +506,8 @@ fi
 
 echo
 echo "== 8c. the 22- and 25-vertex sweeps cover their base-state range exactly =="
-# Section 3.2's sweep of Delta_6 - 5 and Appendix G's of Paley(27) less two
-# vertices, from their shipped markers: an exact tiling of [0, 8031), every
+# The sweep of Delta_6 - 5 (sec:twenty-two) and that of Paley(27) less two vertices
+# (appendix app:below22, "The search below 22 vertices"), from their shipped markers: an exact tiling of [0, 8031), every
 # state UNSAT with capped=0, one host, n, base and base-state count throughout.
 # For Delta_6 - 5 the tree hash its own verdict recorded is recomputed too.
 V=$ROOT/verify/sweep_cover_audit.py
@@ -536,9 +536,9 @@ fi
 
 echo
 echo "== 8f. Delta_1 - 10: one base state per H-orbit, every one exhausted =="
-# Section 3.2's search of Delta_1 - 10 kept one base state per orbit of an order-5
-# subgroup H of Aut (Corollary 2.5), anchored on the two vertices H fixes (Corollary
-# 2.3).  The audit derives Aut, H, the base, the 8,031 base states and the 1,611
+# The search of Delta_1 - 10 (sec:twenty-two) kept one base state per orbit of an order-5
+# subgroup H of Aut (cor:quotient), anchored on the two vertices H fixes
+# (cor:vertex-anchoring).  The audit derives Aut, H, the base, the 8,031 base states and the 1,611
 # representatives from the bits, then requires a clean marker for each.
 QA=$ROOT/verify/quotient_sweep_audit.py
 QH=$ROOT/tournaments/drt23_del/d000_mv09.bits; QM=$ROOT/evidence/d000mv09_sweep_markers.tar.zst
@@ -569,7 +569,7 @@ done
 
 echo
 echo "== 8g. the near-doubly regular unit-margin-only tournaments on 21 vertices =="
-# Section 3.7 and Appendix G: each is near-doubly regular, has a majority witness,
+# sec:families and appendix app:below22: each is near-doubly regular, has a majority witness,
 # and has a complete unit-margin search with no witness.  Controls: one marker
 # removed, and one arc of one tournament reversed, must each fail.
 NA=$ROOT/verify/near_dr21_audit.py; ND=$ROOT/verdicts/near_dr21; NC=$ROOT/evidence/near_dr21_unit_covers.tar.zst
@@ -586,7 +586,7 @@ else warn "near_dr21_unit_covers.tar.zst absent"; fi
 
 echo
 echo "== 8h. Delta_1 - 10 with one rung reversed is 5-inducible =="
-# Section 3.3: the arcs of Delta_1 - 10 fall into five Aut-orbits, of 55, 55, 55, 55
+# sec:criticality: the arcs of Delta_1 - 10 fall into five Aut-orbits, of 55, 55, 55, 55
 # and 11 arcs; reversing an arc of the 11, a rung y_i -> x_i, leaves a tournament
 # with a majority witness.  Control: the same witness on a non-rung reversal fails.
 RR=$ROOT/verify/rung_reversal.py; RW=$ROOT/verdicts/d000mv09_rung/d000mv09_r01_15.log
@@ -598,7 +598,7 @@ if python3 "$RR" "$ROOT/tournaments/drt23_del/d000_mv09.bits" 1 2 "$RW" >/dev/nu
 else ok "control: the same witness on a non-rung reversal fails, as it must"; fi
 
 echo
-echo "== 8i. Appendix G's near-doubly regular families on 21 vertices, re-counted =="
+echo "== 8i. the near-doubly regular families on 21 vertices (app:below22), re-counted =="
 # Classes up to isomorphism and converse and the classes with a verified witness,
 # for the random, bisector and Z3-free families, against the manuscript's table.
 # Control: one witness removed must make the settled count disagree.
@@ -609,12 +609,12 @@ if [ -n "$LABELG" ]; then
   if out=$(python3 "$FA" $FARGS 2>&1); then while read -r l; do ok "${l#ok   }"; done <<EOF8I
 $out
 EOF8I
-  else bad "an Appendix G family count does not re-derive"; echo "$out" | sed 's/^/        /'; fi
+  else bad "a family count of app:below22 does not re-derive"; echo "$out" | sed 's/^/        /'; fi
   # shellcheck disable=SC2086
   if python3 "$FA" $FARGS --drop-witness random/nd21_00 >/dev/null 2>&1; then
     bad "control did not fire: a witness was removed and the settled count still agreed"
   else ok "control: removing one witness breaks the settled count, as it must"; fi
-else warn "labelg not found; Appendix G family counts not checked"; fi
+else warn "labelg not found; the family counts of app:below22 not checked"; fi
 
 echo
 echo "== 8d. below 22 vertices: every witness, against a host rebuilt from its name =="
@@ -641,7 +641,7 @@ else
 fi
 if [ -n "$LABELG" ]; then
   # The level files hold exactly one host per class, so the settled names
-  # are distinct classes, and the counts match Appendix G's table.
+  # are distinct classes, and the counts match the level table of app:below22.
   if out=$(python3 "$ROOT/verify/drt23_level_counts.py" "$D" "$DD/PARENTS18.txt" \
              --levels 2,3 --names "$DD/HOSTS_level2.tsv" --labelg "$LABELG" 2>&1) \
      && echo "$out" | grep -q '4108 rows, 4108 distinct classes, 0 bit strings differ'; then
@@ -656,7 +656,7 @@ if [ -n "$LABELG" ]; then
   else
     ok "all $(wc -l < "$TMP/n21names" | tr -d ' ') settled names are rows of HOSTS_level2.tsv, hence distinct classes"
   fi
-  # Vertex-criticality of the eight 22-vertex deletions, matched by class (the eighth
+  # Vertex-criticality of the eight 22-vertex deletions, matched by class (the ninth
   # obstruction, the arc reversal of Delta_1 - 10, is checked in 8j).
   for h in d005_mv04 d027_mv04 d000_mv09 d000_mv00 d000_mv01 d010_mv01 d010_mv04 d010_mv19; do
     if out=$(python3 "$ROOT/verify/critical_deletions.py" "$DD/$h.bits" \
@@ -729,7 +729,7 @@ else
 fi
 
 echo
-echo "== 8e. the 22-vertex obstructions are what Sections 3.2 and 3.3 say they are =="
+echo "== 8e. the 22-vertex obstructions are what sec:twenty-two and sec:criticality say they are =="
 # Out-degrees 10 and 11, every arc in at least five directed triangles, and no two
 # isomorphic or converse to each other.  Delta_6 - 5 and Delta_28 - 5 have trivial
 # automorphism group, and so do their parents d005 and d027; Delta_1 - 10 has two
@@ -789,8 +789,8 @@ else
 fi
 
 echo
-echo "== 8j. the eighth obstruction: Delta_1 - 10 with a non-rung Y->X arc reversed =="
-# Section 3.3: reversing the arc between vertices 1 and 2 (0-based; a Y->X arc in an orbit
+echo "== 8j. the ninth obstruction: Delta_1 - 10 with a non-rung Y->X arc reversed =="
+# sec:criticality: reversing the arc between vertices 1 and 2 (0-based; a Y->X arc in an orbit
 # of 55, not a rung) leaves a rigid tournament whose complete search over all 8,031 base
 # states finds no witness, and that tournament is vertex-critical.  Both scripts rebuild
 # the reversal from Delta_1 - 10 itself.  Controls: one marker removed, and every witness
@@ -815,8 +815,8 @@ if [ -f "$RWT" ]; then
 else warn "d000mv09_r01_02_deletion_witnesses.tar.zst absent"; fi
 
 echo
-echo "== 8k. Conjecture 3's evidence: both doubly regular tournaments on 19 vertices, 7 voters, unit margin =="
-# Section 4.2: Paley(19) and the second doubly regular tournament on 19 vertices are 5-inducible
+echo "== 8k. the evidence for conj:unit-margin-k2: both doubly regular tournaments on 19 vertices, 7 voters, unit margin =="
+# sec:open: Paley(19) and the second doubly regular tournament on 19 vertices are 5-inducible
 # but not at unit margin, and each is 7-inducible at unit margin.  Each witness is checked against
 # its host, independently of the SAT solver that found it.  Control: each witness checked against
 # the OTHER tournament must fail.
@@ -832,7 +832,7 @@ else bad "control did not fire: a witness verified against the wrong tournament"
 
 echo
 echo "== 8l. the unit-margin-only tournaments outside the ledger, and the order-23 circulants =="
-# Section 6.7 counts 75 tournaments that five voters produce but not with unit margin.  The
+# sec:families counts 75 tournaments that five voters produce but not with unit margin.  The
 # ledger holds 58; the other 17 (fifteen arc reversals at 21 vertices, Paley(23) - v and
 # Paley(23) with one arc reversed) are in verdicts/ledger_supplement.tsv.  The verifier
 # re-derives each row (complete unit-margin cover, majority witness, distinct up to converse
@@ -870,17 +870,17 @@ else
 fi
 
 echo
-echo "== 10. Appendix E's construction, verified on the family it quantifies over =="
+echo "== 10. the locally transitive construction (app:locally-transitive), verified on the family it quantifies over =="
 # The one result in the paper settled by construction rather than computation.
 # The verifier builds A, B and C from the appendix's own prose and requires every
 # support to be exactly 2, at every cut point of every locally transitive
 # tournament it can reach, with the family selected by its DEFINITION.
 eout=$(python3 "$ROOT/verify/appendix_e.py" 2>&1)
 if echo "$eout" | grep -q '^OK: 0 problem'; then
-  ok "Appendix E: $(echo "$eout" | awk '/^ *[0-9]+ / {n+=$(NF-3); c+=$(NF-1)} END {printf "%d cut points verified over %d STRONG locally transitive tournaments, orders 3-14", c, n}')"
+  ok "app:locally-transitive: $(echo "$eout" | awk '/^ *[0-9]+ / {n+=$(NF-3); c+=$(NF-1)} END {printf "%d cut points verified over %d STRONG locally transitive tournaments, orders 3-14", c, n}')"
   ok "control: $(echo "$eout" | grep 'outside the family' | sed 's/^ *//')"
 else
-  bad "Appendix E's construction did not verify"
+  bad "the construction of app:locally-transitive did not verify"
   echo "$eout" | grep 'FAIL' | sed 's/^/        /' | head -5
 fi
 
@@ -888,7 +888,7 @@ echo
 echo "== 11. the 3-cycle hypothesis holds on every host that relied on it =="
 # Several refutations ran at --max-margin 3 and are quoted as MAJORITY verdicts.
 # That step is sound only if every arc of the host lies in a directed triangle,
-# and Section 3.4 states the stronger form (q-3)/4.  Measured, not assumed.
+# and sec:not-vertex-critical states the stronger form (q-3)/4.  Measured, not assumed.
 if [ -f "$ROOT/verify/triangles_per_arc.py" ]; then
   tout=$(cd "$ROOT/tournaments" && python3 "$ROOT/verify/triangles_per_arc.py" \
         p23_minus1v.bits p27_minus1v.bits p31_minus1v.bits p43_minus1v.bits \
@@ -896,7 +896,7 @@ if [ -f "$ROOT/verify/triangles_per_arc.py" ]; then
   if echo "$tout" | grep -q '^OK: 0 problem'; then
     ok "every arc of P_q - v lies in at least (q-3)/4 triangles, q = 23, 27, 31, 43"
   else
-    bad "Section 3.4's (q-3)/4 triangle claim does not hold as stated"
+    bad "the (q-3)/4 triangle claim of sec:not-vertex-critical does not hold as stated"
     echo "$tout" | sed 's/^/        /' | head -8
   fi
 else
@@ -935,7 +935,7 @@ fi
 
 echo
 echo "== 14. node counts quoted in the prose match the archives =="
-# check_manuscript.py re-derives A.3 but reads only manuscript/*.md, and
+# check_manuscript.py re-derives the runtime table (sec:scaling) but reads only manuscript/*.md, and
 # MANIFEST pins bytes rather than meaning -- which is how REPRODUCE.md and
 # evidence/README.md printed dom_nodes where nodes was meant for five days
 # while this gate passed 37/0. This closes that hole.

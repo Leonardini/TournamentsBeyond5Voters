@@ -1,4 +1,4 @@
-"""Draw Figure 1 from the trace written by paley7_trace.py.
+"""Draw Figure @fig:paley7 from the trace written by paley7_trace.py.
 
 Visuals only: each panel is a self-contained tikzpicture carrying the diagram
 and its labels, and nothing else.  The explanation belongs in the caption, not
@@ -526,10 +526,10 @@ def caption_tokens(f):
 
 
 def check_caption(f, path):
-    """Fail loudly if the manuscript's Figure 1 caption has drifted."""
+    """Fail loudly if the manuscript's Figure @fig:paley7 caption has drifted."""
     text = open(path).read()
     i = text.find(r"\caption{Algorithm 1 on")
-    assert i >= 0, "no Figure 1 caption found in " + path
+    assert i >= 0, "no Figure @fig:paley7 caption found in " + path
     cap = " ".join(text[i:text.find(r"\end{figure}", i)].split())
     bad = [name for name, tok in caption_tokens(f).items()
            if " ".join(tok.split()) not in cap]

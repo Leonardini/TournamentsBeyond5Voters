@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Appendix G's table: the three near-doubly regular families on 21 vertices, re-counted.
+"""Appendix @app:below22's table: the three near-doubly regular families on 21 vertices, re-counted.
 
     usage: families21_audit.py FAMILIES_DIR NEAR_DR21_DIR MANUSCRIPT.md --labelg PATH [--drop-witness F/H]
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The structural facts Section 3.2 states about the 22-vertex obstructions.
+"""The structural facts Section @sec:twenty-two states about the 22-vertex obstructions.
 
 For each host: its out-degree distribution, the fewest directed triangles any
 arc lies in, and whether its automorphism group is trivial; for every pair of

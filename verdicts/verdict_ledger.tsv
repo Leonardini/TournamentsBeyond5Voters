@@ -230,6 +230,12 @@ t21_159	21	5	SAT	SAT (implied by margin-1)	exact	vt21_hosts/verdicts.tsv	self
 t22_000	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
 t22_001	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
 t22_002	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
+t22_003	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
+t22_004	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
+t22_005	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
+t22_006	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
+t22_007	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
+t22_008	22	5	UNSAT (implied by majority)	UNSAT	-	n22_obstructions/verdicts.tsv	-
 t23_000	23	1	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv	self
 t23_001	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv	self
 t23_002	23	2	SAT	SAT (implied by margin-1)	exact	vt23_recover/verdicts.tsv	self

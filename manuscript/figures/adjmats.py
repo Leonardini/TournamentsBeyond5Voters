@@ -1,4 +1,4 @@
-"""Appendix H of the MSS manuscript: the adjacency matrices of the three 22-vertex obstructions
+"""Appendix @app:obstructions22 of the MSS manuscript: the adjacency matrices of the three 22-vertex obstructions
 Delta_1 - 10, Delta_6 - 5 and Delta_28 - 5 (his call, 2026-10-17 23:50, after Ararat's remark).
 
 Each is rebuilt from its doubly regular parent (KInduceDFS/drt23/dNNN.bits, catalogue order, file
@@ -7,7 +7,7 @@ search refuted (KInduceDFS/jz_sweep1/hosts/dNNN_mvVV.bits, VV = v - 1).  Rows an
 out-neighbours of the deleted vertex first, then its in-neighbours, each in increasing catalogue
 label; entry 1 means the row vertex beats the column vertex.  Also asserted: both blocks induce
 regular tournaments on 11 vertices, out-neighbours beat 6 in-neighbours, in-neighbours beat 5.
-Writes figures/adjmats.md (pasted into the manuscript as Appendix H)."""
+Writes figures/adjmats.md (pasted into the manuscript as Appendix @app:obstructions22)."""
 import pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 

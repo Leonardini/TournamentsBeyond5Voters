@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Section 3.2: which vertex of which doubly regular parent each 22-vertex obstruction deletes,
+"""Section @sec:twenty-two: which vertex of which doubly regular parent each 22-vertex obstruction deletes,
 and that the three deletions of Delta_1 cover all of its vertex orbits.
 
     usage: parent_deletions.py DRT_DIR DEL_DIR

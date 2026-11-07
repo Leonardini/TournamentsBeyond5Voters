@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Section 3.3: reversing a rung of Delta_1 - 10 leaves a 5-inducible tournament.
+"""Section @sec:criticality: reversing a rung of Delta_1 - 10 leaves a 5-inducible tournament.
 
     usage: rung_reversal.py HOST.bits U V WITNESS.log
 
@@ -8,7 +8,7 @@ Builds the host, reverses the arc between U and V (0-based), and checks three th
   * the reversed arc is a RUNG: its Aut(T)-orbit has 11 arcs, all pointing from the
     vertex orbit not containing vertex 0 (Y) to the one containing it (X), and every
     vertex is the end of exactly one of them;
-  * the arc orbits of T are the five Section 3.3 lists, of sizes 55, 55, 55, 55 and 11;
+  * the arc orbits of T are the five Section @sec:criticality lists, of sizes 55, 55, 55, 55 and 11;
   * the witness is a majority witness for the reversed tournament
     (verify_witness_bits.py --majority, on a bits file written from the reversal).
 

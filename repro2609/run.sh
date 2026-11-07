@@ -308,7 +308,7 @@ root19|root23)
         root=7e6c9c26ac386e675687d28420ac41401c11d6bdbc0d006b9722fff394de49cb
     fi
     say "$cid -- ROOT (CNF): regenerate every cube's CNF and hash it, no solving"
-    # Section 5.2: ROOT (CNF) "is reproducible on any machine: a third party who
+    # Section @sec:replicate: ROOT (CNF) "is reproducible on any machine: a third party who
     # regenerates the cube set must obtain this exact value." This is therefore
     # the package's own designated independent check, and it is the half of the
     # certification that does not need CaDiCaL.

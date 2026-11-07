@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """The 50 near-doubly-regular tournaments on 21 vertices that five voters can produce, but
-not at unit margin (Section 3.7, Appendix G), audited from the shipped bytes.
+not at unit margin (Section @sec:families, Appendix @app:below22), audited from the shipped bytes.
 
     usage: near_dr21_audit.py DIR COVERS.tar.zst [--drop HOST] [--flip HOST]
 
@@ -15,8 +15,8 @@ host this checks:
   * the unit-margin search is complete: every state in REPS.txt has a marker reading
     `RESULT UNSAT ... base_states=2200` and `SLICE cleared=1 capped=0`, there is no
     marker for any other state, and REPS.txt has the size its quotient gives: 444 of 2,200
-    for the 20 order-5 gluings (Corollary 2.5), all 2,200 for zf21_0, zf21_1 and the 25
-    z3f21 hosts (no quotient), 600 for the three zr21 hosts (the sub-base quotient, Corollary 2.5 with C a subset of the base).
+    for the 20 order-5 gluings (Corollary @cor:quotient), all 2,200 for zf21_0, zf21_1 and the 25
+    z3f21 hosts (no quotient), 600 for the three zr21 hosts (the sub-base quotient, Corollary @cor:quotient with C a subset of the base).
 
 The representative lists come from the campaign's own quotient scripts, shipped beside
 the hosts as provenance; this audit does not rerun them.  Controls: --drop HOST removes

@@ -8,6 +8,20 @@
 #   usage: tools/assemble_from_source.sh [path-to-KemenyMedian]
 #
 # The default source path is the sibling checkout.
+#
+# MANUSCRIPT GUARD.  The manuscript files (manuscript/*_MSS.md, .tex, .pdf and the
+# highlights) are copied from the source checkout, which can hold an OLDER copy than this
+# package: the author edits the manuscript on a branch, and the main checkout this script
+# reads is stale until he merges it.  Copying it would silently regress the package.  So,
+# before anything is copied, every manuscript file that exists in both places is compared,
+# and if any differs the script stops with nothing changed.  To take the source's version
+# deliberately, name its exact content:
+#
+#   ACCEPT_MANUSCRIPT="<sha256 of each differing source file>" tools/assemble_from_source.sh
+#
+# The sha256 values are printed in the error message.  Acceptance is tied to the bytes, so
+# a stale copy can never be accepted by a flag left set from an earlier run.  The guard
+# covers the manuscript files only; the other files below are copied as they are.
 
 set -eu
 
@@ -19,10 +33,37 @@ K="$SRC/KInduceDFS"
 echo "source: $SRC"
 echo "dest:   $DST"
 
+# ------------------------------------------------------- manuscript guard
+# See the header.  This runs before any copy, so a refusal leaves the package untouched.
+MANUSCRIPT_FILES="Tournaments_not_inducible_by_five_voters_MSS.md
+Tournaments_not_inducible_by_five_voters_MSS.tex
+Tournaments_not_inducible_by_five_voters_MSS.pdf
+MSS_highlights_paper2.txt"
+sha256_of() { (shasum -a 256 "$1" 2>/dev/null || sha256sum "$1") | cut -c1-64; }
+refused=0
+for m in $MANUSCRIPT_FILES; do
+  [ -f "$SRC/$m" ] && [ -f "$DST/manuscript/$m" ] || continue
+  cmp -s "$SRC/$m" "$DST/manuscript/$m" && continue
+  h=$(sha256_of "$SRC/$m")
+  case " ${ACCEPT_MANUSCRIPT:-} " in
+    *" $h "*) echo "manuscript: $m differs from the package copy; source version accepted ($h)" ;;
+    *) echo "FATAL $SRC/$m differs from $DST/manuscript/$m" >&2
+       echo "      source sha256 $h, package sha256 $(sha256_of "$DST/manuscript/$m")" >&2
+       refused=1 ;;
+  esac
+done
+if [ "$refused" -ne 0 ]; then
+  echo "FATAL the source manuscript differs from the package's; nothing was copied." >&2
+  echo "      If the source is the newer version, rerun with ACCEPT_MANUSCRIPT set to its" >&2
+  echo "      sha256 values above (space-separated).  If it is stale, merge the author's" >&2
+  echo "      branch into the source checkout first." >&2
+  exit 1
+fi
+
 # ---------------------------------------------------------------- engine
 mkdir -p "$DST/engine/versions"
 cp "$K/kinduce.c" "$K/kinduce.1" "$DST/engine/"
-cp "$K/kcover.c" "$DST/engine/"          # order-12 witness extension (Appendix C)
+cp "$K/kcover.c" "$DST/engine/"          # order-12 witness extension (Appendix @app:order12)
 cp "$K"/versions/kinduce[0-2][0-9].c "$DST/engine/versions/"
 # kinduce25.c carries the --pin machinery that no published result used, and
 # REPRODUCE.md excludes it from the package by name.  Drop it rather than ship
@@ -47,7 +88,7 @@ for g in paley_bits.py make_paley_gf.py make_paley_minus.py vt21_family.py \
   [ -f "$K/$g" ] && cp "$K/$g" "$DST/tournaments/"
 done
 cp "$K/vt21_all_reps.npy" "$DST/tournaments/" 2>/dev/null || true
-# McKay's locally transitive catalogue, orders 11-14.  Appendix E is the one
+# McKay's locally transitive catalogue, orders 11-14.  Appendix @app:locally-transitive is the one
 # result settled by construction rather than computation, so its artifact is a
 # verifier plus the family to run it over; these four files are 104 KB.
 mkdir -p "$DST/tournaments/locally_transitive"
@@ -66,7 +107,7 @@ for f in vt21_hosts vt21_arcflip dr19_arcflip vt15 vt17 vt19 vt23 drt23 \
           -o -name '*.log' \) \
        -exec sh -c 'cp "$@" "$0"' "$DST/tournaments/$f/" {} +
 done
-# per-orbit outcome files behind the arc-flip spectrum table of Section 3.4
+# per-orbit outcome files behind the arc-flip spectrum at 21 vertices (Appendix @app:criticality21)
 [ -d "$K/vt21_arcflip/out" ] && cp -R "$K/vt21_arcflip/out" "$DST/tournaments/vt21_arcflip/"
 
 # ------------------------------------------------------------- SAT route
@@ -123,7 +164,7 @@ if [ -f "$K/jz_sweep1/hosts/d005_mv04.bits" ]; then
   cp "$K/jz_sweep1/hosts/d005_mv04.bits" "$DST/tournaments/drt23_del/"
 fi
 # The second 22-vertex obstruction, and the levels below the doubly regular
-# tournaments that Appendix G reports: the 18 parents (one per converse pair)
+# tournaments that Appendix @app:below22 reports: the 18 parents (one per converse pair)
 # and the 21- and 20-vertex level files, one host per class, from which
 # verify/drt23_level_counts.py re-derives the class counts.
 [ -f "$K/jz_sweep1/hosts/d027_mv04.bits" ] && \
@@ -131,7 +172,7 @@ fi
 for f in PARENTS18.txt HOSTS_level2.tsv HOSTS_level3.tsv; do
   [ -f "$K/drt23_del/$f" ] && cp "$K/drt23_del/$f" "$DST/tournaments/drt23_del/"
 done
-# The two 25-vertex parents of Appendix G's other lineages: Paley(27) less two
+# The two 25-vertex parents of Appendix @app:below22's other lineages: Paley(27) less two
 # vertices, and the circulant on 25 vertices with six triangles on every arc.
 mkdir -p "$DST/tournaments/descent_parents"
 for h in p27_mv00_01 t25_tmin6; do
@@ -216,14 +257,14 @@ for d in m1_family m1_arcrev vt21_majority vt21_margin1 n23_tmin4 \
           -o -name '*.log' -o -name '*.witness' \) \
        -exec sh -c 'cp "$@" "$0"' "$DST/verdicts/$d/" {} +
 done
-# The doubly regular tournaments on 23 vertices (Section 3.7): the unit-margin
+# The doubly regular tournaments on 23 vertices (Section @sec:families): the unit-margin
 # roll-up of all 18 converse classes, and the unrestricted roll-up of the two run
 # on the laptop; the other 16 are cluster/jz_drt23maj/jz_drt23maj.tsv.
 mkdir -p "$DST/verdicts/drt23"
 [ -f "$K/drt23_m1/drt23_m1.tsv" ] && cp "$K/drt23_m1/drt23_m1.tsv" "$DST/verdicts/drt23/"
 [ -f "$K/drt23_maj/drt23_maj.tsv" ] && cp "$K/drt23_maj/drt23_maj.tsv" "$DST/verdicts/drt23/"
 # The twelve hardest vertex-transitive tournaments on 23 vertices, at unit margin and
-# unrestricted (Section 6.7): the roll-ups the ledger reads, and the majority witnesses of
+# unrestricted (Section @sec:families): the roll-ups the ledger reads, and the majority witnesses of
 # the eleven that are unit-margin obstructions (plus v023's unit-margin witness).
 mkdir -p "$DST/verdicts/vt23/out"
 for f in vt23_m1/vt23_m1.tsv vt23_maj/vt23_maj.tsv; do
@@ -240,7 +281,7 @@ if [ -d "$K/n22_obstructions" ]; then
   cp "$K/n22_obstructions/README.md" "$K/n22_obstructions/verdicts.tsv" \
      "$DST/verdicts/n22_obstructions/"
 fi
-# Section 3.4's arc-flip spectrum and the n=20 deletion descent: the run logs
+# The arc-flip spectrum at 21 vertices (Appendix @app:criticality21) and the n=20 deletion descent: the run logs
 # carry the witnesses, so they are the evidence for "every one of the 289 has
 # an exhibited unit-margin witness" and not merely a record that it ran.
 for f in arcflip_spectrum.log arcflip_spectrum.sh vt20_descent.log; do
@@ -252,7 +293,7 @@ done
 if [ -d "$K/vt21_arcflip_shard" ]; then
   (cd "$K" && tar --format ustar -cf - vt21_arcflip_shard) | zstd -19 -q -f -o "$DST/evidence/vt21_arcflip_slices.tar.zst"
 fi
-# Section 3.4's two deleted-vertex sweeps, P31 - v and P43 - v.  Their 8,031
+# The two deleted-vertex sweeps of Section @sec:not-vertex-critical, P31 - v and P43 - v.  Their 8,031
 # per-base markers each are resumption state and gitignored at the source, so
 # what ships is the condensed times file the kit writes -- one line per base
 # state, from which the exact index cover and the 239.5 and 185.5 core-hours all
@@ -288,8 +329,8 @@ find "$K/run_evidence" -maxdepth 1 -type f ! -name 'd005mv04_cert_log.tar.zst' \
 # ---------------------------------------------------------------- cluster
 # The computations that used the cluster -- the 15-vertex regular census, the
 # order-13 self-converse census (split between the two machines), the order-12
-# analysis of Appendix C, and the 16 doubly regular tournaments on 23 vertices
-# at unrestricted margin (Section 3.7) -- plus the independent-reproduction kit.
+# analysis of Appendix @app:order12, and the 16 doubly regular tournaments on 23 vertices
+# at unrestricted margin (Section @sec:families) -- plus the independent-reproduction kit.
 # Sources and records only.  These kits build helper binaries in place
 # (freearc, rigid, order_sym, tri, kcover) and copying them would ship 35 MB of
 # other-architecture executables that the .c files beside them regenerate.
@@ -319,7 +360,7 @@ fi
 # unit-margin-only tournaments that the ledger's registry cannot hold (arc reversals and
 # Paley(23) - v), and verify/separation_supplement.py, which re-derives it; both written in
 # this package on 2026-11-07.
-# The 378-deletion screen at 22 vertices (Appendix G): its per-host roll-up,
+# The 378-deletion screen at 22 vertices (Appendix @app:below22): its per-host roll-up,
 # from which 378 hosts, 18,900 base states tried and 13,863 exhausted re-add.
 # The per-state markers stay on the cluster.
 if [ -f "$K/jz_drt23mv/evidence/HARDNESS_378.tsv" ]; then
@@ -328,7 +369,7 @@ if [ -f "$K/jz_drt23mv/evidence/HARDNESS_378.tsv" ]; then
 fi
 # jz_reproduce keeps two directories one level down: the instance confs, which
 # are the only place a campaign's expected values live, and the SLURM logs that
-# are the evidence for Section 5.2's independent-reproduction claim.
+# are the evidence for Section @sec:replicate's independent-reproduction claim.
 for sub in instances slurm; do
   [ -d "$K/jz_reproduce/$sub" ] || continue
   mkdir -p "$DST/cluster/jz_reproduce/$sub"
@@ -372,15 +413,15 @@ for m in Tournaments_not_inducible_by_five_voters_MSS.md \
          MSS_highlights_paper2.txt; do
   [ -f "$SRC/$m" ] && cp "$SRC/$m" "$DST/manuscript/"
 done
-# Figure 1 and the pipeline that draws it.  paley7_trace.py is a second,
+# Figure @fig:paley7 and the pipeline that draws it.  paley7_trace.py is a second,
 # independent implementation of the placement search whose seven cross-checks
 # must pass before it will emit a trace, and paley7_figure.py --check verifies
 # the caption's numbers against that trace -- so the figure is an artifact, not
 # an illustration.
 mkdir -p "$DST/manuscript/figures"
 # EVERY figure artifact, by extension rather than by a hand-kept list.  The list
-# that used to stand here went stale the moment Appendix E's figure was added:
-# README.md documented Figure 2 and its checks while roundE_figure.py, roundE.tex
+# that used to stand here went stale the moment the figure of Appendix
+# @app:locally-transitive (Figure @fig:round) was added: README.md documented that figure and its checks while roundE_figure.py, roundE.tex
 # and roundE.pdf were not shipped at all, so the instructions referred to files
 # the package did not contain.  A list of names is correct exactly once.
 find "$SRC/figures" -maxdepth 1 -type f \

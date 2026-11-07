@@ -282,29 +282,31 @@ def main(mdpath, as_json):
     tabs = tables(md)
 
     # ---------------------------------------------------------------- ARITHMETIC
-    # Appendix A.3's integer program at q = 23, k = 5.
+    # The integer program at q = 23, k = 5 (appendix "The search engine", subsection
+    # "Integer programming and SAT are both too slow", label sec:ip-sat-slow).
     q, k = 23, 5
     for want, label in ((k * math.comb(q, 2), 'binaries'),
                         (2 * k * math.comb(q, 3), 'transitivity rows'),
                         (math.comb(q, 2), 'majority rows')):
         stated = re.search(r'\$?([\d{},]+)\$?\s*' + label, md)
         got = num(stated.group(1)) if stated else None
-        record('ARITHMETIC', 'A.1 ILP %s at q=23' % label, got, want,
+        record('ARITHMETIC', 'sec:ip-sat-slow ILP %s at q=23' % label, got, want,
                got == want, 'k*C(23,2), 2k*C(23,3), C(23,2)')
 
-    # Appendix B.1's dissent-Boolean instance at q = 19: 5*C(19,2) variables,
+    # The dissent-Boolean instance at q = 19 (appendix "The formal certificates",
+    # subsection "The certified refutations", label sec:certified): 5*C(19,2) variables,
     # and 15 clauses per arc plus 10 per triple.
     q = 19
     v_want = k * math.comb(q, 2)
     c_want = 15 * math.comb(q, 2) + 10 * math.comb(q, 3)
     m = re.search(r'\$?([\d{},]+)\$? variables and \$?([\d{},]+)\$? clauses', md)
     if m:
-        record('ARITHMETIC', 'B.1 P19 instance variables', num(m.group(1)), v_want,
+        record('ARITHMETIC', 'sec:certified P19 instance variables', num(m.group(1)), v_want,
                num(m.group(1)) == v_want, '5*C(19,2)')
-        record('ARITHMETIC', 'B.1 P19 instance clauses', num(m.group(2)), c_want,
+        record('ARITHMETIC', 'sec:certified P19 instance clauses', num(m.group(2)), c_want,
                num(m.group(2)) == c_want, '15*C(19,2) + 10*C(19,3)')
     else:
-        skip('ARITHMETIC', 'B.1 P19 instance size', 'sentence not found')
+        skip('ARITHMETIC', 'sec:certified P19 instance size', 'sentence not found')
 
     # The Paley(23) coverage instance: 350 constraint + 356 symmetry + one
     # negated cube per base state.  The manuscript states all four numbers.
@@ -317,26 +319,26 @@ def main(mdpath, as_json):
         if os.path.exists(conf):
             mm = re.search(r'COVER_CLAUSES=(\d+)', open(conf).read())
             stated_total = float(mm.group(1)) if mm else None
-        record('ARITHMETIC', 'B.1 P23 coverage clause total',
+        record('ARITHMETIC', 'sec:certified P23 coverage clause total',
                stated_total, a + b + c, close(stated_total, a + b + c, 0),
                '350 + 356 + 3,414,729, against COVER_CLAUSES in the kit conf')
     else:
-        skip('ARITHMETIC', 'B.1 P23 coverage clause total', 'sentence not found')
+        skip('ARITHMETIC', 'sec:certified P23 coverage clause total', 'sentence not found')
 
-    # Appendix B.1's Delta_6 - 5 instance: 5*C(22,2) variables; at plain majority
+    # sec:certified's Delta_6 - 5 instance: 5*C(22,2) variables; at plain majority
     # 10 clauses per arc (no 3 of the 5 dissent variables all true) plus the same
     # 10 transitivity clauses per triple as at unit margin.
     q = 22
     m = re.search(r'\$n = 22\$ and plain majority: \$([\d{},]+)\$ variables and '
                   r'\$([\d{},]+)\$ clauses', md)
     if m:
-        record('ARITHMETIC', 'B.1 Delta_6 - 5 instance variables', num(m.group(1)),
+        record('ARITHMETIC', 'sec:certified Delta_6 - 5 instance variables', num(m.group(1)),
                k * math.comb(q, 2), num(m.group(1)) == k * math.comb(q, 2), '5*C(22,2)')
         c22 = 10 * math.comb(q, 2) + 10 * math.comb(q, 3)
-        record('ARITHMETIC', 'B.1 Delta_6 - 5 instance clauses', num(m.group(2)), c22,
+        record('ARITHMETIC', 'sec:certified Delta_6 - 5 instance clauses', num(m.group(2)), c22,
                num(m.group(2)) == c22, '10*C(22,2) + 10*C(22,3)')
     else:
-        skip('ARITHMETIC', 'B.1 Delta_6 - 5 instance size', 'sentence not found')
+        skip('ARITHMETIC', 'sec:certified Delta_6 - 5 instance size', 'sentence not found')
     m = re.search(r'with\s*\n?\$([\d{},]+)\$ negated cubes', md)
     rec = os.path.join(ROOT, 'certificates', 'd005mv04_coverage_cert.txt')
     if m and os.path.exists(rec):
@@ -344,25 +346,26 @@ def main(mdpath, as_json):
                        r'([\d,]+) negated cubes', open(rec).read())
         if mm:
             tot, fb, sb, cubes = (int(x.replace(',', '')) for x in mm.groups())
-            record('DERIVED', 'B.1 Delta_6 - 5 coverage negated cubes', num(m.group(1)),
+            record('DERIVED', 'sec:certified Delta_6 - 5 coverage negated cubes', num(m.group(1)),
                    cubes, num(m.group(1)) == cubes,
                    'the coverage record, certificates/d005mv04_coverage_cert.txt')
-            record('ARITHMETIC', 'B.1 Delta_6 - 5 coverage clause total', tot,
+            record('ARITHMETIC', 'sec:certified Delta_6 - 5 coverage clause total', tot,
                    fb + sb + cubes, tot == fb + sb + cubes, '350 + 356 + 742,374')
     else:
-        skip('DERIVED', 'B.1 Delta_6 - 5 coverage', 'sentence or record not found')
+        skip('DERIVED', 'sec:certified Delta_6 - 5 coverage', 'sentence or record not found')
 
     # ------------------------------------------------------------------ DERIVED
-    # Appendix A.6's cost table, row by row.
+    # The cost table, row by row (appendix "The search engine", subsection "Runtimes for
+    # every computation", label sec:runtimes).
     cost = find_table(tabs, 'computation', 'core-hours')
     if cost is None:
-        skip('DERIVED', 'G.6 cost table', 'table not found in the manuscript')
+        skip('DERIVED', 'sec:runtimes cost table', 'table not found in the manuscript')
     else:
         def cell(rowwords, idx=-1):
             r = row_starting(cost, *rowwords)
             return num(r[idx]) if r else None
 
-        # A.6 reports cluster runs in laptop-equivalent core-hours, dividing each cluster total
+        # sec:runtimes reports cluster runs in laptop-equivalent core-hours, dividing each cluster total
         # by a factor the same paragraph states.  The factors are read from that prose, so a
         # factor that changes in the paper changes here; what is re-derived is the cluster total.
         def factor(pat):
@@ -406,9 +409,9 @@ def main(mdpath, as_json):
             want = cell(words)
             got = fn()
             if got is None:
-                skip('DERIVED', 'G.6 row %s' % ' '.join(words), 'artifact absent')
+                skip('DERIVED', 'sec:runtimes row %s' % ' '.join(words), 'artifact absent')
             else:
-                record('DERIVED', 'G.6 row %s' % ' '.join(words), want, round(got, 2),
+                record('DERIVED', 'sec:runtimes row %s' % ' '.join(words), want, round(got, 2),
                        close(want, got), label)
 
         # T4 is a CROSS-FILE check, not a re-derivation: the per-base markers
@@ -425,16 +428,16 @@ def main(mdpath, as_json):
             n = re.search(r'base states screened\s*:\s*(\d+)', src)
             mean = re.search(r'mean per base state\s*:\s*([\d.]+)', src)
             if got is not None:
-                record('DERIVED', 'G.6 row one arc reversed', want, got,
+                record('DERIVED', 'sec:runtimes row one arc reversed', want, got,
                        close(want, got),
                        'cluster/jz_p23arc roll-up (cross-file, markers not shipped)')
             if n and mean and got is not None:
                 prod = int(n.group(1)) * float(mean.group(1)) / 3600
-                record('ARITHMETIC', 'G.6 one arc reversed is internally consistent',
+                record('ARITHMETIC', 'sec:runtimes one arc reversed is internally consistent',
                        got, round(prod, 1), close(got, prod, 0.01),
                        'base states screened x mean per base state')
         else:
-            declared('G.6 row one arc reversed', want, 'CLAIMS.md gap 3')
+            declared('sec:runtimes row one arc reversed', want, 'CLAIMS.md gap 3')
 
         # Delta_28 - 5: same cross-file shape -- the markers are on the cluster,
         # so the figure is compared against the sweep's roll-up, in seconds.
@@ -445,14 +448,14 @@ def main(mdpath, as_json):
             got = [per(float(r[h.index('seconds')]) / 3600, f_sweep) for r in rows[1:]
                    if r[0] == 'd027_mv04']
             if got:
-                record('DERIVED', 'G.6 row Delta_28 - 5 sweep', want, round(got[0], 1),
+                record('DERIVED', 'sec:runtimes row Delta_28 - 5 sweep', want, round(got[0], 1),
                        close(want, got[0]),
                        'verdicts/n22_obstructions roll-up / the stated factor (cross-file, '
                        'markers on the cluster)')
             else:
-                declared('G.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
+                declared('sec:runtimes row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
         else:
-            declared('G.6 row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
+            declared('sec:runtimes row Delta_28 - 5 sweep', want, 'CLAIMS.md gap 7')
 
         # T7, same cross-file shape as T4: the per-task accounting lives on the
         # cluster, so what is compared is the manuscript's figure against the
@@ -466,29 +469,30 @@ def main(mdpath, as_json):
             got = (round(per(float(cl.group(1)), f_13) + sum(map(float, lap)), 1)
                    if cl and lap and f_13 else None)
             if got is not None:
-                record('DERIVED', 'G.6 row self-converse on 13', want, got,
+                record('DERIVED', 'sec:runtimes row self-converse on 13', want, got,
                        close(want, got, 0.01),
                        'cluster/jz_n13sc: cluster part / the stated factor + the two laptop '
                        'parts (cross-file, per-task accounting not shipped)')
             else:
-                declared('G.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
+                declared('sec:runtimes row self-converse on 13', want, 'CLAIMS.md gap 3')
         else:
-            declared('G.6 row self-converse on 13', want, 'CLAIMS.md gap 3')
+            declared('sec:runtimes row self-converse on 13', want, 'CLAIMS.md gap 3')
 
         roll = os.path.join(ROOT, 'n12_unit_margin', 'n12_cover', 'FINAL_ROLLUP.txt')
         want = cell(['all on'])
         m = re.search(r'core-seconds\s*:\s*(\d+)', open(roll).read()) if os.path.exists(roll) else None
         if m and f_12:
             got = int(m.group(1)) / 3600 / f_12
-            record('DERIVED', 'G.6 row all on 12', want, round(got, 1), close(want, got),
+            record('DERIVED', 'sec:runtimes row all on 12', want, round(got, 1), close(want, got),
                    'n12_unit_margin/n12_cover roll-up / the stated factor (cross-file)')
         else:
-            declared('G.6 row all on 12', want, 'CLAIMS.md gap 1')
+            declared('sec:runtimes row all on 12', want, 'CLAIMS.md gap 1')
 
-    # Appendix A.5's runtime table.
+    # The runtime table (appendix "The search engine", subsection "How the runtime scales
+    # in q", label sec:scaling).
     run = find_table(tabs, 'live base states', 'core-hours', 'nodes')
     if run is None:
-        skip('DERIVED', 'G.5 runtime table', 'table not found in the manuscript')
+        skip('DERIVED', 'sec:scaling runtime table', 'table not found in the manuscript')
     else:
         arch = MAJORITY_ARCHIVE
         for r in run[1:]:
@@ -499,20 +503,20 @@ def main(mdpath, as_json):
             live, hours, nodes, per = (num(r[1]), num(r[2]), num(r[3]), num(r[4]))
             tot = archive_totals(arch[qv])
             if tot is None:
-                skip('DERIVED', 'G.5 q=%d' % qv, 'archive absent or zstd missing')
+                skip('DERIVED', 'sec:scaling q=%d' % qv, 'archive absent or zstd missing')
                 continue
             _, n_nodes, n_dom, secs = tot
-            record('DERIVED', 'G.5 q=%d core-hours' % qv, hours, round(secs / 3600, 2),
+            record('DERIVED', 'sec:scaling q=%d core-hours' % qv, hours, round(secs / 3600, 2),
                    close(hours, secs / 3600), 'sum of time= over the archive')
             if nodes is not None:
                 note = 'sum of nodes= over the archive'
                 if not close(nodes, n_nodes, 0.01) and close(nodes, n_dom, 0.01):
                     note = ('THE PRINTED FIGURE IS dom_nodes, NOT nodes: '
                             'dom_nodes=%.3e, nodes=%.3e' % (n_dom, n_nodes))
-                record('DERIVED', 'G.5 q=%d nodes' % qv, nodes, float('%.3g' % n_nodes),
+                record('DERIVED', 'sec:scaling q=%d nodes' % qv, nodes, float('%.3g' % n_nodes),
                        close(nodes, n_nodes, 0.01), note)
             if live is not None and per is not None:
-                record('ARITHMETIC', 'G.5 q=%d seconds per live base state' % qv,
+                record('ARITHMETIC', 'sec:scaling q=%d seconds per live base state' % qv,
                        per, round(hours * 3600 / live, 1),
                        close(per, hours * 3600 / live, 0.01),
                        'core-hours x 3600 / live base states')
@@ -525,12 +529,12 @@ def main(mdpath, as_json):
                 continue
             got = survivors(args)
             if got is None or got[1] is None:
-                skip('DERIVED', 'G.5 q=%d live base states' % qv,
+                skip('DERIVED', 'sec:scaling q=%d live base states' % qv,
                      'base_survivors.py unavailable')
             else:
                 # q=23 uses the break in use, not the optimum, so compare the
                 # base-state total and let CLAIMS.md carry the break choice.
-                record('DERIVED', 'G.5 q=%d base states (total)' % qv, None, got[0],
+                record('DERIVED', 'sec:scaling q=%d base states (total)' % qv, None, got[0],
                        got[0] in (8031, 21009),
                        'search-free count from sat/base_survivors.py')
 
@@ -592,7 +596,8 @@ def main(mdpath, as_json):
         else:
             record('LEDGER', 'the unit-margin-only obstructions', 'sentence not found',
                    by_n, False, 'could not read the claim out of the manuscript')
-        # Section 3.7: none of the 37 doubly regular tournaments on 23 vertices
+        # sec:families ("Other structured tournament families"): none of the 37 doubly
+        # regular tournaments on 23 vertices
         # is inducible, at either margin.
         both = [r for r in rows[1:] if len(r) > ma and r[1] == '23'
                 and r[mi].strip() == 'UNSAT' and r[ma].strip() == 'UNSAT']
@@ -605,7 +610,7 @@ def main(mdpath, as_json):
         else:
             skip('LEDGER', 'order 23 doubly regular count', 'sentence not found')
 
-    # ------------------------------------------------- Section 3.2 and 3.7 costs
+    # ------------------------------------ sec:twenty-two and sec:families costs
     m = re.search(r'two searches together took about \$([\d{},]+)\$\s*\n?cluster '
                   r'core-hours', md)
     cost = find_table(tabs, 'computation', 'core-hours')
@@ -614,9 +619,9 @@ def main(mdpath, as_json):
         b = row_starting(cost, 'delta_{28}', 'sweep')
         if a and b:
             tot = num(a[-1]) + num(b[-1])
-            record('ARITHMETIC', '3.2 the two 22-vertex sweeps together', num(m.group(1)),
+            record('ARITHMETIC', 'sec:twenty-two the two 22-vertex sweeps together', num(m.group(1)),
                    round(tot, 1), close(num(m.group(1)), tot, 0.01),
-                   'the two A.6 sweep rows, summed; "about" read as within 1%')
+                   'the two sec:runtimes sweep rows, summed; "about" read as within 1%')
     m = re.search(r'\$(\d+)\$ of them ran\s*\n?on the cluster, at about '
                   r'\$([\d{},]+)\$ cluster core-hours', md)
     rows = tsv_rows('cluster/jz_drt23maj/jz_drt23maj.tsv')
@@ -624,20 +629,20 @@ def main(mdpath, as_json):
         h = rows[0]
         ch = [float(r[h.index('core_hours')]) for r in rows[1:]]
         ok_n = len([r for r in rows[1:] if r[h.index('verdict')] == 'UNSAT'])
-        record('DERIVED', '3.7 doubly regular sweeps on the cluster (count)',
+        record('DERIVED', 'sec:families doubly regular sweeps on the cluster (count)',
                int(m.group(1)), ok_n, int(m.group(1)) == ok_n,
                'UNSAT rows of cluster/jz_drt23maj/jz_drt23maj.tsv (cross-file roll-up)')
-        record('DERIVED', '3.7 doubly regular sweeps on the cluster (core-hours)',
+        record('DERIVED', 'sec:families doubly regular sweeps on the cluster (core-hours)',
                num(m.group(2)), round(sum(ch), 1), close(num(m.group(2)), sum(ch), 0.01),
                'cluster/jz_drt23maj/jz_drt23maj.tsv, summed (cross-file roll-up)')
     elif m:
-        declared('3.7 doubly regular sweeps on the cluster', num(m.group(2)),
+        declared('sec:families doubly regular sweeps on the cluster', num(m.group(2)),
                  'CLAIMS.md gap 7')
 
-    # ------------------------------------------------------------- Appendix G
+    # ----------------------- app:below22 (appendix "The search below 22 vertices")
     gt = find_table(tabs, 'vertices', 'deleted', 'classes')
     if gt is None:
-        skip('DERIVED', 'Appendix G level table', 'table not found')
+        skip('DERIVED', 'app:below22 level table', 'table not found')
     else:
         want = {int(num(r[1])): int(num(r[2])) for r in gt[2:]
                 if num(r[1]) is not None and num(r[2]) is not None}
@@ -654,12 +659,12 @@ def main(mdpath, as_json):
                 r'level (\d+): \d+ deletions -> \d+ isomorphism classes -> (\d+) '
                 r'classes', r.stdout)}
             ok_p = 'are exactly the other' in r.stdout and ': ok' in r.stdout
-            record('DERIVED', 'G classes per level (one, two, three deleted)', want, got,
+            record('DERIVED', 'app:below22 classes per level (one, two, three deleted)', want, got,
                    want == got and ok_p,
                    'verify/drt23_level_counts.py from the 18 parents, one per converse '
                    'pair (checked)')
         else:
-            skip('DERIVED', 'G classes per level', 'LABELG not set')
+            skip('DERIVED', 'app:below22 classes per level', 'LABELG not set')
         # the settled count at 21 vertices, from the archive's own manifest
         r21 = row_starting(gt, '4{,}108') or row_starting(gt, '4,108')
         m = re.search(r'\$([\d{},]+)\$ settled', ' '.join(r21)) if r21 else None
@@ -669,30 +674,30 @@ def main(mdpath, as_json):
             tf = tarfile.open(fileobj=io.BytesIO(raw))
             rows = [l for l in tf.extractfile('n21_level/SETTLED.tsv').read().decode()
                     .splitlines() if l and not l.startswith('#')][1:]
-            record('DERIVED', 'G classes settled at 21 vertices', num(m.group(1)),
+            record('DERIVED', 'app:below22 classes settled at 21 vertices', num(m.group(1)),
                    len(rows), num(m.group(1)) == len(rows),
-                   'rows of SETTLED.tsv in evidence/n21_level_witnesses.tar.zst; check 5d '
+                   'rows of SETTLED.tsv in evidence/n21_level_witnesses.tar.zst; check 8d '
                    'verifies each witness')
         else:
-            skip('DERIVED', 'G classes settled at 21 vertices', 'cell or archive absent')
+            skip('DERIVED', 'app:below22 classes settled at 21 vertices', 'cell or archive absent')
         m = re.search(r'screen exhausted \$([\d{},]+)\$ base states and found none', md)
         rows = tsv_rows('cluster/jz_drt23mv/HARDNESS_378.tsv')
         if m and rows:
             ex = sum(int(r[3]) for r in rows if len(r) >= 6)
             hosts = sum(1 for r in rows if len(r) >= 6)
-            record('DERIVED', 'G base states exhausted by the 22-vertex screen',
+            record('DERIVED', 'app:below22 base states exhausted by the 22-vertex screen',
                    num(m.group(1)), ex, num(m.group(1)) == ex,
                    'exhausted column of cluster/jz_drt23mv/HARDNESS_378.tsv over %d hosts '
                    '(cross-file roll-up)' % hosts)
         m = re.search(r'about one base state in \$(\d+)\$ yields a\s*\n?witness', md)
         if m:
-            declared('G witness density at 21 vertices, 1 in', num(m.group(1)),
+            declared('app:below22 witness density at 21 vertices, 1 in', num(m.group(1)),
                      'CLAIMS.md gap 7')
 
-    # -------------------------------------------------------------- Appendix D
+    # ----------------------- app:counts (appendix "Exact enumeration counts")
     counts = find_table(tabs, '$d_n$') or find_table(tabs, 'D_n')
     if counts is None:
-        skip('DERIVED', 'Appendix D counts', 'table not found')
+        skip('DERIVED', 'app:counts table', 'table not found')
     else:
         want_r15 = None
         for r in counts[1:]:
@@ -700,9 +705,9 @@ def main(mdpath, as_json):
                 want_r15 = num(r[2])
         got = marker_sum('cluster/jz_n15/results_margin1/done', 'instances')
         if got is None:
-            skip('DERIVED', 'Appendix D R_15', 'n15 markers absent')
+            skip('DERIVED', 'app:counts R_15', 'n15 markers absent')
         else:
-            record('DERIVED', 'Appendix D R_15', want_r15, got, close(want_r15, got, 0),
+            record('DERIVED', 'app:counts R_15', want_r15, got, close(want_r15, got, 0),
                    'sum of instances= over the 6,000 residue markers')
         want_s13 = None
         for r in counts[1:]:
@@ -714,7 +719,7 @@ def main(mdpath, as_json):
             # the kit writes it with Python underscore separators
             mm = re.search(r'TOTAL\s*=\s*([\d_]+)', src)
             got13 = float(mm.group(1).replace('_', '')) if mm else None
-            record('DERIVED', 'Appendix D S_13', want_s13, got13,
+            record('DERIVED', 'app:counts S_13', want_s13, got13,
                    close(want_s13, got13, 0),
                    'the total the order-13 kit reconciles its three parts against')
 

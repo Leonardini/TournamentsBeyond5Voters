@@ -1,4 +1,4 @@
-"""Draw Figure 2, the three-voter construction of Appendix E, on a worked example.
+"""Draw Figure @fig:round, the three-voter construction of Appendix @app:locally-transitive, on a worked example.
 
 Everything in the picture is DERIVED from the tournament and then checked before
 any TikZ is written: that the example is round and strongly connected, that the

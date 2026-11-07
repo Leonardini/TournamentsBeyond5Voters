@@ -26,9 +26,9 @@ TRUST CHAIN, in full:
   machine  the cubes cover every lex-canonical base assignment
            (cover_check.py, with its --drop negative control)
   HUMAN L1 anchoring is WLOG.  TWO forms, alternatives rather than a sequence:
-           COROLLARY 2.2 takes one representative ORDERED PAIR from each Aut-orbit
+           COROLLARY @cor:orbit-anchoring takes one representative ORDERED PAIR from each Aut-orbit
            on ordered pairs and assumes some voter's (top,second) is one of
-           them; COROLLARY 2.3 takes one representative VERTEX from each
+           them; COROLLARY @cor:vertex-anchoring takes one representative VERTEX from each
            Aut-orbit on vertices and assumes some voter ranks one of them
            first.  Either licenses running only the LIVE cubes.  Aut(Paley(q))
            has exactly TWO ordered-pair orbits, the arcs and the non-arcs,
@@ -38,7 +38,7 @@ TRUST CHAIN, in full:
            state -- enforced, see main().
   HUMAN L2 the voters may be lex-ordered WLOG.  This licenses the lex chain in
            the coverage CNF.
-Both are corollaries of Theorem 2.1 of the paper (Section 2.1), and the independent DFS engine
+Both are corollaries of Theorem @thm:orbit of the paper (Section @sec:symmetry), and the independent DFS engine
 inherits the same two while sharing no implementation.
 
 Proofs are verified then DISCARDED.  The artifact is a hash-stamped log: per
@@ -247,14 +247,14 @@ def main():
     ap.add_argument('--non', type=int, nargs=2, default=None)
     ap.add_argument('--pair-anchor', type=int, nargs='+', default=None,
                     metavar='U V',
-                    help='COROLLARY 2.2 in general form: a flat list u1 v1 u2 v2 ... of ONE\n'
+                    help='COROLLARY @cor:orbit-anchoring in general form: a flat list u1 v1 u2 v2 ... of ONE\n'
                          'representative ordered pair from EACH Aut-orbit on ordered\n'
                          'pairs.  --arc/--non is the two-orbit spelling of this, which is\n'
                          'all a Paley host needs; a host with m > 2 orbits needs this.')
     ap.add_argument('--vertex-anchor', type=int, nargs='+', default=None,
                     metavar='V',
-                    help='COROLLARY 2.3 instead: one representative VERTEX from each\n'
-                         'Aut-orbit on vertices.  An alternative to Corollary 2.2, not a\n'
+                    help='COROLLARY @cor:vertex-anchoring instead: one representative VERTEX from each\n'
+                         'Aut-orbit on vertices.  An alternative to Corollary @cor:orbit-anchoring, not a\n'
                          'sequence with it -- which is better depends on whether the host\n'
                          'has fewer vertex orbits or fewer ordered-pair orbits.')
     ap.add_argument('--out', default='/tmp/p19cert_d6')
@@ -276,11 +276,11 @@ def main():
     ap.add_argument('--min-left', type=int, default=0, help='with --claim: start no chunk with fewer seconds of wall left')
     ap.add_argument('--claim-ttl', type=int, default=0, help='with --claim: a claim older than this many seconds is taken over (0: never)')
     ap.add_argument('--quotient', type=int, nargs='+', default=None, metavar='H',
-                    help='COROLLARY 2.5 (base-stabiliser quotient): an automorphism h of the host,\n'
+                    help='COROLLARY @cor:quotient (base-stabiliser quotient): an automorphism h of the host,\n'
                          'as the images h(0) .. h(n-1), with h(B) = B.  Only ONE cube per\n'
                          '<h>-orbit of base states is solved.  Asserted: h is an automorphism,\n'
                          'h(B) = B, and h maps the cube set onto itself.  Not combined with\n'
-                         'anchoring (Corollary 2.5(b) needs h to fix the representatives).')
+                         'anchoring (Corollary @cor:quotient(b) needs h to fix the representatives).')
     a = ap.parse_args()
     global INNER, CLAIM
     INNER = a.inner
@@ -299,12 +299,12 @@ def main():
     # or cube_units, so anchoring changes WHICH subproblems are solved and
     # nothing about any one of them.
     #
-    # Two alternatives, not a sequence (manuscript Section 2):
-    #   COROLLARY 2.2  one representative ORDERED PAIR per Aut-orbit on ordered
+    # Two alternatives, not a sequence (manuscript Section @sec:symmetry):
+    #   COROLLARY @cor:orbit-anchoring  one representative ORDERED PAIR per Aut-orbit on ordered
     #                  pairs; some voter's top two is one of them.  A Paley host
     #                  has exactly two such orbits, the arcs and the non-arcs,
     #                  which is what --arc/--non spells.
-    #   COROLLARY 2.3  one representative VERTEX per Aut-orbit on vertices; some
+    #   COROLLARY @cor:vertex-anchoring  one representative VERTEX per Aut-orbit on vertices; some
     #                  voter ranks one of them first.
     #
     # EVERY REPRESENTATIVE MUST LIE INSIDE THE BASE.  The filter reads a base
@@ -325,12 +325,12 @@ def main():
     n_fam = sum(x is not None for x in (a.arc or a.non or None,
                                         a.pair_anchor, a.vertex_anchor))
     if n_fam > 1:
-        sys.exit("Corollary 2.2 and Corollary 2.3 are ALTERNATIVES, each WLOG on its own.\n"
+        sys.exit("Corollary @cor:orbit-anchoring and Corollary @cor:vertex-anchoring are ALTERNATIVES, each WLOG on its own.\n"
                  "Give exactly one of --arc/--non, --pair-anchor, --vertex-anchor.")
     PAIRS = VERTS = None
     if a.arc or a.non:
         if a.bits is not None:
-            sys.exit("--arc/--non is the PALEY spelling of Corollary 2.2: it assumes the\n"
+            sys.exit("--arc/--non is the PALEY spelling of Corollary @cor:orbit-anchoring: it assumes the\n"
                      "ordered-pair orbits are exactly the arcs and the non-arcs, which is\n"
                      "a property of Paley.  For another host give --pair-anchor with one\n"
                      "representative per orbit, or drop it and run every base state.")
@@ -343,7 +343,7 @@ def main():
             sys.exit(f"--non {NON} IS an arc of {HOST}; it must be a non-arc")
         _in_base(ARC + NON, "--arc/--non")
         PAIRS = [ARC, NON]
-        ANCHOR_TXT = f"pair-orbit (Corollary 2.2): arc {ARC} + non-arc {NON}"
+        ANCHOR_TXT = f"pair-orbit (Corollary @cor:orbit-anchoring): arc {ARC} + non-arc {NON}"
     elif a.pair_anchor:
         if len(a.pair_anchor) % 2:
             sys.exit("--pair-anchor takes a FLAT list u1 v1 u2 v2 ...; got an odd count")
@@ -353,7 +353,7 @@ def main():
         if len(set(PAIRS)) != len(PAIRS):
             sys.exit("--pair-anchor: repeated representative -- one per orbit, no duplicates")
         _in_base([v for p in PAIRS for v in p], "--pair-anchor")
-        ANCHOR_TXT = "pair-orbit (Corollary 2.2): " + ", ".join(
+        ANCHOR_TXT = "pair-orbit (Corollary @cor:orbit-anchoring): " + ", ".join(
             "(%d,%d) %s" % (u, v, "arc" if adj[u][v] else "non-arc")
             for u, v in PAIRS)
     elif a.vertex_anchor:
@@ -361,7 +361,7 @@ def main():
         if len(set(VERTS)) != len(VERTS):
             sys.exit("--vertex-anchor: repeated representative -- one per orbit")
         _in_base(VERTS, "--vertex-anchor")
-        ANCHOR_TXT = f"vertex-orbit (Corollary 2.3): {VERTS}"
+        ANCHOR_TXT = f"vertex-orbit (Corollary @cor:vertex-anchoring): {VERTS}"
     else:
         ANCHOR_TXT = "NONE: every base state is live, and no anchoring lemma is used"
     ANCHOR = PAIRS is not None or VERTS is not None
@@ -373,16 +373,16 @@ def main():
     print(f"  base {B}, anchoring {ANCHOR_TXT}")
     t = time.time()
     cubes, bm = enumerate_cubes(adj, B, a.k, exact, 'mask')
-    if PAIRS:      # Corollary 2.2: some voter's top TWO on the base is a representative
+    if PAIRS:      # Corollary @cor:orbit-anchoring: some voter's top TWO on the base is a representative
         live = [c for c in cubes if any((B[pi[0]], B[pi[1]]) in PAIRS for pi in c)]
-    elif VERTS:    # Corollary 2.3: some voter's top ON THE BASE is a representative
+    elif VERTS:    # Corollary @cor:vertex-anchoring: some voter's top ON THE BASE is a representative
         live = [c for c in cubes if any(B[pi[0]] in VERTS for pi in c)]
     else:
         live = list(cubes)
     QTXT = None
     if a.quotient:
         if ANCHOR:
-            sys.exit("--quotient is not combined with anchoring here (Corollary 2.5(b) needs h to fix\n"
+            sys.exit("--quotient is not combined with anchoring here (Corollary @cor:quotient(b) needs h to fix\n"
                      "every representative); run one or the other.")
         hq = list(a.quotient)
         if sorted(hq) != list(range(n)):
@@ -412,7 +412,7 @@ def main():
                 orb.add(j)
             seen_q |= orb; reps_q.append(min(orb))
         live = [cubes[t] for t in sorted(reps_q)]
-        QTXT = (f"COROLLARY 2.5 quotient by h of order {hord}: {len(live):,} orbit representatives "
+        QTXT = (f"COROLLARY @cor:quotient quotient by h of order {hord}: {len(live):,} orbit representatives "
                 f"of {len(cubes):,} base states")
         print(f"  {QTXT}")
     print(f"  {len(cubes):,} base states -> {len(live):,} live "
@@ -561,15 +561,15 @@ MARGIN NOTE   This run is at MAJORITY (every arc >= {(a.k+1)//2} of {a.k}).  By 
         # The lemma list used to name the anchoring lemma UNCONDITIONALLY, so a
         # rigid host's verdict claimed a lemma its own `anchoring` line three
         # lines above said it had not used.  Build it from what the run did.
-        LEMMAS = "  (L2) COROLLARY 2.4, voter sorting: voters may be lex-ordered WLOG -- licenses the lex chain in coverage\n"
+        LEMMAS = "  (L2) COROLLARY @cor:lex, voter sorting: voters may be lex-ordered WLOG -- licenses the lex chain in coverage\n"
         if PAIRS:
-            LEMMAS = ("  (L1) COROLLARY 2.2, ordered-pair anchoring, is WLOG -- licenses running\n"
+            LEMMAS = ("  (L1) COROLLARY @cor:orbit-anchoring, ordered-pair anchoring, is WLOG -- licenses running\n"
                       f"       only the {len(live)} live cubes of {len(cubes)}\n") + LEMMAS
         elif VERTS:
-            LEMMAS = ("  (L1) COROLLARY 2.3, vertex anchoring, is WLOG -- licenses running\n"
+            LEMMAS = ("  (L1) COROLLARY @cor:vertex-anchoring, vertex anchoring, is WLOG -- licenses running\n"
                       f"       only the {len(live)} live cubes of {len(cubes)}\n") + LEMMAS
         elif QTXT:
-            LEMMAS = ("  (L4) COROLLARY 2.5, base-stabiliser quotient, is WLOG -- licenses running\n"
+            LEMMAS = ("  (L4) COROLLARY @cor:quotient, base-stabiliser quotient, is WLOG -- licenses running\n"
                       f"       only the {len(live)} orbit representatives of {len(cubes)} base states\n"
                       f"       (h = {a.quotient})\n") + LEMMAS
         else:
@@ -581,7 +581,7 @@ date          {time.strftime('%F %H:%M:%S')}
 margin        {a.margin}
 base          {B}  ({len(cubes)} base states)
 anchoring     {ANCHOR_TXT if ANCHOR else 'NONE: HUMAN LEMMA L1 IS NOT USED'} -> {len(live)} live cubes
-quotient      {QTXT or 'NONE: Corollary 2.5 is not used'}
+quotient      {QTXT or 'NONE: Corollary @cor:quotient is not used'}
 cubes         {nc}, ALL UNSAT, each INDEPENDENTLY VERIFIED by lrat-trim
 solver        cadical --lrat=true --checkproof=0 {' '.join(SEEDARG)} (self-check disabled)
 checker       lrat-trim -- a separate program, sharing no code with cadical
@@ -623,7 +623,7 @@ F_B & SB to be unsatisfiable, i.e. the {len(B)}-vertex base not {a.k}-inducible,
 contradicting N({a.k}) >= 12.
 
 Remaining HUMAN lemmas (not covered by any certificate):
-{LEMMAS}Each is a corollary of Theorem 2.1 of the paper (Section 2.1).
+{LEMMAS}Each is a corollary of Theorem @thm:orbit of the paper (Section @sec:symmetry).
 """)
     print(f"\n### done {el/3600:.2f} h  solve {ns/3600:.1f} + check {ck/3600:.1f} core-h")
     print(f"  ROOT (CNF)    {root_cnf.hexdigest()}")

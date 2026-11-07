@@ -2,14 +2,14 @@
 """Directed triangles per arc, for the hosts named on the command line.
 
 This is what turns a `--max-margin 3` run into a MAJORITY verdict.  By the
-3-cycle bound of Section 3, the three supports of a directed triangle sum to at
+3-cycle bound (Lemma @lem:three-cycle), the three supports of a directed triangle sum to at
 most 2k, so with majority forcing each to be at least 3 no arc lying in a
 triangle can reach support 5.  If every arc of a host lies in at least one
 directed triangle, then margin <= 3 and plain majority are the same question on
 that host, and a refutation at the tighter margin is a refutation at the looser
 one.
 
-The paper states the stronger form for the deleted-vertex hosts of Section 3.4:
+The paper states the stronger form for the deleted-vertex hosts of Section @sec:not-vertex-critical:
 every arc of P_q - v lies in at least (q-3)/4 directed triangles.  That is the
 claim this file checks, host by host, from the shipped bit strings.
 

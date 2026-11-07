@@ -1,16 +1,16 @@
 # Supplement to verdict_ledger.tsv: tournaments that five voters can produce but not with
-# unit margin, which Section 6.7 of the manuscript counts and which the ledger cannot hold,
+# unit margin, which Section @sec:families of the manuscript counts and which the ledger cannot hold,
 # because the ledger is keyed on registry.tsv and the registry indexes catalogue families.
 # These seventeen are derived tournaments: the fifteen one-arc reversals of the 21-vertex
 # vertex-transitive tournaments C_a (h01, all ten arc orbits) and C_b (h02, orbits 0, 2, 5,
-# 6 and 9) that remain unit-margin obstructions (Appendix I), Paley(23) minus a vertex, and
-# Paley(23) with one arc reversed (Section 6.3).  Written by hand, not by verdict_ledger.py.
+# 6 and 9) that remain unit-margin obstructions (Appendix @app:criticality21), Paley(23) minus a vertex, and
+# Paley(23) with one arc reversed (Section @sec:paley23-critical).  Written by hand, not by verdict_ledger.py.
 #
 # The first eight columns are the ledger's.  `host` is the tournament, `unit_cover` the
 # complete unit-margin search (slices:ARCHIVE:HOST, slice logs that must tile the base-state
 # range; times:FILE:N, a per-base-state record that must list 0..N-1), and
 # `majority_witness` the five orders (ARCHIVE:MEMBER for a file inside an archive).
-# tools/check_manuscript.py adds these rows to the ledger's when it re-counts Section 6.7;
+# tools/check_manuscript.py adds these rows to the ledger's when it re-counts Section @sec:families;
 # verify/separation_supplement.py re-derives every row from those files, and
 # tools/check_package.sh check 8l runs it with three negative controls.
 id	n	tmin	margin1	majority	witness_on_disk	sources	converse	host	unit_cover	majority_witness

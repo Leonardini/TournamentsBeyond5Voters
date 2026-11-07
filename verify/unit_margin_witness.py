@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Section 4.2, Conjecture 3: check a K-voter witness at unit margin, independently of the solver.
+"""Section @sec:open, Conjecture @conj:unit-margin-k2: check a K-voter witness at unit margin, independently of the solver.
 
     usage: unit_margin_witness.py HOST.bits WITNESS.log K
 

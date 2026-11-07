@@ -85,14 +85,14 @@ which is precisely why the certificate has to record it. Without it, `cubes=2287
 is unexplained, and the search half looks inconsistent with a coverage half that
 ranges over all 142,251 base states.
 
-Section 2 gives **two** anchorings, alternatives rather than a sequence, each
+Section @sec:symmetry gives **two** anchorings, alternatives rather than a sequence, each
 without loss of generality on its own, and which is better depends on whether the
 host has fewer vertex orbits or fewer ordered-pair orbits:
 
 | lemma | representatives | field |
 |---|---|---|
-| **Corollary 2.2**, ordered-pair anchoring | one ordered pair from each `Aut`-orbit on ordered pairs; some voter's top two is one of them | `pair-orbit(p1=0,1;p2=2,1)` |
-| **Corollary 2.3**, vertex anchoring | one vertex from each `Aut`-orbit on vertices; some voter ranks one of them first | `vertex-orbit(v1=0;v2=3;v3=7)` |
+| **Corollary @cor:orbit-anchoring**, ordered-pair anchoring | one ordered pair from each `Aut`-orbit on ordered pairs; some voter's top two is one of them | `pair-orbit(p1=0,1;p2=2,1)` |
+| **Corollary @cor:vertex-anchoring**, vertex anchoring | one vertex from each `Aut`-orbit on vertices; some voter ranks one of them first | `vertex-orbit(v1=0;v2=3;v3=7)` |
 | neither | every base state is live | `none` |
 
 Both take **any number** of representatives. The v1 blocks could express only
@@ -118,7 +118,7 @@ satisfy it — `{0,1} ∪ {2,1} ⊂ {0,1,2,3,4,11}` and `{2,6} ∪ {1,6} ⊂ {0,
 refuse an out-of-base representative, and gate check 3e is the control.
 
 What is **not** checkable from shipped bytes is orbit *completeness* — that the
-representatives meet every orbit. The manuscript flags it ("Corollary 2.2 must be
+representatives meet every orbit. The manuscript flags it ("Corollary @cor:orbit-anchoring must be
 given the full set of orbits") and it stays a human obligation, like the lemma
 itself. Recording the representatives in the hashed block is what makes it
 auditable instead of implicit. For a pair representative the gate does check the
@@ -127,7 +127,7 @@ recomputed from the `.bits`. Under v1's `q=`, it was not decidable at all.
 
 ## `quotient=` — the base quotient, when it is used
 
-Corollary 2.5 gives a second way to solve fewer cubes than there are base
+Corollary @cor:quotient gives a second way to solve fewer cubes than there are base
 states: an automorphism `h` of the host that maps the base onto itself permutes
 the base states, and it suffices to solve one cube per `h`-orbit. Such a block
 carries one more line, after `anchoring=`:
@@ -147,15 +147,21 @@ these, and refuses to combine it with anchoring.
 
 ## The names in the frozen verdicts
 
-The manuscript now states one orbit principle, Theorem 2.1, and every reduction
-as a corollary of it, which renumbered them. `VERDICT.txt` files written before
-the renumbering are hashed and stay as written, so they use the old names:
+The manuscript states one orbit principle, Theorem @thm:orbit, and every reduction
+as a corollary of it. It has been renumbered twice: once when the reductions became
+corollaries, and again when its sections were reordered, which moved them from
+Section 2 to Section @sec:symmetry. `VERDICT.txt` files are hashed and stay as
+written, so they use the names of the manuscript they were written against.
+Everywhere else here they are named by label, which the manuscript source prints
+beside each statement and which no renumbering changes:
 
-| in a frozen verdict | in the manuscript and everywhere else here |
-|---|---|
-| Lemma 2.1, ordered-pair anchoring | Corollary 2.2 |
-| Corollary 2.2, vertex anchoring | Corollary 2.3 |
-| Lemma 2.3, voters lex-ordered | Corollary 2.4 |
+| in a verdict written before the corollaries | in a verdict written before the reordering | label |
+|---|---|---|
+| — | Theorem 2.1, the orbit principle | `thm:orbit` |
+| Lemma 2.1, ordered-pair anchoring | Corollary 2.2 | `cor:orbit-anchoring` |
+| Corollary 2.2, vertex anchoring | Corollary 2.3 | `cor:vertex-anchoring` |
+| Lemma 2.3, voters lex-ordered | Corollary 2.4 | `cor:lex` |
+| — | Corollary 2.5, the base quotient | `cor:quotient` |
 
 ## v1 is frozen
 

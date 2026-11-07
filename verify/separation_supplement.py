@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Re-derive every row of verdicts/ledger_supplement.tsv from the package's own files.
 
-The supplement lists the tournaments that Section 6.7 counts among those five voters can
+The supplement lists the tournaments that Section @sec:families counts among those five voters can
 produce but not with unit margin, and that verdicts/verdict_ledger.tsv cannot hold because
 its registry indexes catalogue families: the fifteen one-arc reversals of the 21-vertex
 vertex-transitive tournaments C_a and C_b that stay unit-margin obstructions, Paley(23)

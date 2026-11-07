@@ -97,4 +97,5 @@ if __name__ == "__main__":
     print(f"  = {len(seen) + len(extra)} distinct tournaments on 20 vertices")
     assert len(seen) == 15 * 19 + 2, f"expected 15*19+2 = 287 classes, got {len(seen)}"
     assert len(seen) + len(extra) == 289
-    print("\nmatches Section 3.4: 15 x 19 + 2 = 287, and 289 with h04 - v and h05 - v")
+    print("\nmatches the descent below the 15 reversals (verdicts/vt20_descent.log): "
+          "15 x 19 + 2 = 287, and 289 with h04 - v and h05 - v")

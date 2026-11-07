@@ -66,7 +66,7 @@ CERT_PORTABLE, and `--expect-portable` asserts exactly that.
                 --cover-cnf-sha HEX --cover-proof-sha HEX [--out PREFIX]
                 [--quotient h(0) h(1) ... h(n-1)]
 
-  `--quotient` records COROLLARY 2.5 (the base quotient): an automorphism h of
+  `--quotient` records COROLLARY @cor:quotient (the base quotient): an automorphism h of
   the host with h(B) = B, under which only one cube per h-orbit was solved.  It
   adds a `quotient=` line after `anchoring=`, and ONLY when given, so every
   block issued without it stays byte-identical.
@@ -127,17 +127,17 @@ def build_anchoring(a, n, bits_path):
     explains a `cubes=` count smaller than the host's full base-state count, and
     without it the search half and the coverage half appear to disagree.
 
-    Section 2.1 gives TWO anchorings, alternatives rather than a sequence, each
+    Section @sec:symmetry gives TWO anchorings, alternatives rather than a sequence, each
     without loss of generality on its own:
 
-      COROLLARY 2.2 (ordered-pair anchoring)  one representative ordered pair from
+      COROLLARY @cor:orbit-anchoring (ordered-pair anchoring)  one representative ordered pair from
         each Aut-orbit on ordered pairs; some voter's top two is one of them.
           pair-orbit(p1=0,1;p2=2,1)
         A Paley host has exactly TWO such orbits -- the arcs and the non-arcs --
         which is the only case the v1 blocks could express, with `arc=`/`non=`.
         The general form takes m representatives.
 
-      COROLLARY 2.3 (vertex anchoring)  one representative VERTEX from each
+      COROLLARY @cor:vertex-anchoring (vertex anchoring)  one representative VERTEX from each
         Aut-orbit on vertices; some voter ranks one of them first.
           vertex-orbit(v1=0;v2=3;v3=7)
 
@@ -159,7 +159,7 @@ def build_anchoring(a, n, bits_path):
                         ('vertex', list(a.vertex_anchor)) if a.vertex_anchor else None)
             if x is not None]
     if len(fams) > 1:
-        sys.exit("Corollary 2.2 and Corollary 2.3 are ALTERNATIVES, each WLOG on its own.\n"
+        sys.exit("Corollary @cor:orbit-anchoring and Corollary @cor:vertex-anchoring are ALTERNATIVES, each WLOG on its own.\n"
                  "Give at most one of --arc/--non, --pair-anchor, --vertex-anchor.")
     if not fams:
         return "none"
@@ -187,13 +187,13 @@ def build_anchoring(a, n, bits_path):
 
 
 def build_quotient(a, n, bits_path):
-    """The `quotient=` line, or None.  COROLLARY 2.5: an automorphism h of the
+    """The `quotient=` line, or None.  COROLLARY @cor:quotient: an automorphism h of the
     host that maps the base onto itself; the solved cubes are one per h-orbit of
     base states, so `cubes=` counts orbit representatives while the coverage half
     still ranges over every base state.  Checked here, and again by
     tools/check_cert_portable.py from the shipped bytes: h is a permutation of
     0..n-1, an automorphism of THIS host, and h(B) = B.  Not combined with
-    anchoring (Corollary 2.5(b) needs h to fix the representatives, and no
+    anchoring (Corollary @cor:quotient(b) needs h to fix the representatives, and no
     certificate so far has needed both)."""
     if not a.quotient:
         return None
@@ -227,13 +227,13 @@ a.add_argument('--cubes', type=int)
 a.add_argument('--base', nargs='+', type=int)
 a.add_argument('--arc', nargs=2, type=int); a.add_argument('--non', nargs=2, type=int)
 a.add_argument('--pair-anchor', nargs='+', type=int, metavar='U V',
-               help='Corollary 2.2 in general form: a flat list u1 v1 u2 v2 ... of one '
+               help='Corollary @cor:orbit-anchoring in general form: a flat list u1 v1 u2 v2 ... of one '
                     'representative ordered pair per Aut-orbit on ordered pairs')
 a.add_argument('--vertex-anchor', nargs='+', type=int, metavar='V',
-               help='Corollary 2.3 instead: one representative VERTEX per Aut-orbit '
+               help='Corollary @cor:vertex-anchoring instead: one representative VERTEX per Aut-orbit '
                     'on vertices')
 a.add_argument('--quotient', nargs='+', type=int, metavar='H',
-               help='Corollary 2.5, the base quotient: the automorphism h as its '
+               help='Corollary @cor:quotient, the base quotient: the automorphism h as its '
                     'image list h(0) .. h(n-1); v2 only')
 a = a.parse_args()
 

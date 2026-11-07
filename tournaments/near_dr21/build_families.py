@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Three near-doubly-regular families on 21 vertices from Appendix G's table, gathered for the
+"""Three near-doubly-regular families on 21 vertices from Appendix @app:below22's table, gathered for the
 reproduction package: each family's hosts and one verified witness per witnessed host.
 
     python3 near_dr21/build_families.py     # (re)writes near_dr21/families/<family>/{HOSTS.tsv, witness/}

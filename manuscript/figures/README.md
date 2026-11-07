@@ -1,6 +1,6 @@
 # Figures
 
-## Figure 1 --- Algorithm 1 worked through on $P_7$ with $k = 3$
+## Figure @fig:paley7 --- Algorithm 1 worked through on $P_7$ with $k = 3$
 
 Three files, in the order they run:
 
@@ -9,7 +9,7 @@ Three files, in the order they run:
     pdflatex paley7_alg1.tex
 
 `paley7_trace.py` is a second, independent implementation of the placement
-search of Appendix A.2, written to be read rather than to be fast, which dumps
+search of Section @sec:dfs, written to be read rather than to be fast, which dumps
 the state of every node it visits. It refuses to produce a trace unless seven
 cross-checks pass, and they are the point of it:
 
@@ -19,7 +19,7 @@ cross-checks pass, and they are the point of it:
 | T2 | the witness set contains the profile Shepardson and Tovey publish, and is a single orbit under $\mathrm{Aut}(P_7) \times S_k$ --- their uniqueness claim, which they assert without proof |
 | T3 | at every node, the incrementally refined domain equals the domain recomputed from scratch |
 | T4 | every arc of every witness has support exactly $(k+1)/2$ even when the search runs at majority |
-| T5 | imposing Corollary 2.2 during the search only ever removes nodes, and leaves one witness |
+| T5 | imposing Corollary @cor:orbit-anchoring during the search only ever removes nodes, and leaves one witness |
 | T6 | the witness set does not depend on the decomposition: all 91 bases of order 3, 4 and 5 return the same profiles |
 | T7 | the witness is one order's orbit under an automorphism of order $k$, so its stabiliser has order $k$ and there are $|\mathrm{Aut}|/k$ witnesses |
 
@@ -39,7 +39,7 @@ which fails unless every quantity the caption quotes matches the trace.
 Build products that do not belong in git: `paley7_alg1.aux`, `paley7_alg1.log`,
 and any `fig_preview*.png` from `pdftoppm`.
 
-## Figure 2 --- the three-voter construction of Appendix E
+## Figure @fig:round --- the three-voter construction of Appendix @app:locally-transitive
 
     python3 roundE_figure.py roundE.tex
     pdflatex roundE.tex
@@ -55,14 +55,14 @@ Nothing is drawn until the example has been checked:
 | | what it pins |
 |---|---|
 | that it is a tournament, and round | each out-neighbourhood is the interval of $d_i$ vertices following its own |
-| that it is locally transitive | checked directly from the definition Appendix E opens with, not inferred from the construction |
+| that it is locally transitive | checked directly from the definition Appendix @app:locally-transitive opens with, not inferred from the construction |
 | that it is strongly connected | so the appendix's reduction to that case applies |
 | that $r$ is non-decreasing, and $t_{n-1} < q$ | the two facts the proof asserts about the staircase |
 | that the keys are pairwise distinct | so $C$ is a linear order |
-| that every arc has support exactly $2$ | Theorem E.1 itself, on this instance |
+| that every arc has support exactly $2$ | Theorem @thm:locally-transitive itself, on this instance |
 
 The caption's numbers are checked against the figure separately, the same way
-Figure 1's are:
+Figure @fig:paley7's are:
 
     python3 roundE_figure.py --check ../Tournaments_not_inducible_by_five_voters_JCSS.md
 

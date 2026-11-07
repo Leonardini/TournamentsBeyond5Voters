@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Audit the complete search of Delta_1 - 10 (Section 3.2) from the host and the markers alone.
+"""Audit the complete search of Delta_1 - 10 (Section @sec:twenty-two) from the host and the markers alone.
 
     usage: quotient_sweep_audit.py HOST.bits MARKERS.tar.zst [--drop N]
 
 The search did not visit all 8,031 base states.  It kept one per orbit of an order-5
-subgroup H of Aut(T) (Corollary 2.5) and anchored on the two vertices H fixes (Corollary
+subgroup H of Aut(T) (Corollary @cor:quotient) and anchored on the two vertices H fixes (Corollary
 2.3).  So a tiling of [0, 8031) is the wrong test, and this script derives the right one
 from the host:
 

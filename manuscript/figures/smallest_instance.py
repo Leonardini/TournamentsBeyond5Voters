@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Is Paley(7) really the smallest instance that exercises all of Algorithm 1?
 
-Figure 1's caption claims it is.  The claim came from the parked figure
+Figure @fig:paley7's caption claims it is.  The claim came from the parked figure
 specification and was never tested, so this tests it: over every tournament on
 n <= 7 vertices and every base, at k = 3, which parts of the algorithm actually
 fire.
@@ -19,7 +19,7 @@ fire.
   split    a REFINE lift ON it, which is the case that doubles a tuple
   empty    a mid-search empty domain, i.e. propagation refuting a subtree
   back     a node with more than one child explored, i.e. real backtracking
-  anchor   a branch cut by Corollary 2.2 during the search
+  anchor   a branch cut by Corollary @cor:orbit-anchoring during the search
   witness  the run ends in a witness rather than a refutation
 
 Both margin regimes are tried, and every base of every order from 3 to n-1.

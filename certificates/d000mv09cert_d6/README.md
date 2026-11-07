@@ -37,16 +37,16 @@ The automorphism group of `d000_mv09` has order 55. The automorphism
     h = (0,8,7,10,1,2,4,3,9,6,5,20,15,14,18,17,12,21,11,19,13,16)
 
 (h(i) is the i-th entry) has order 5 and maps the base `{11,13,14,18,20}` onto
-itself, so it permutes the 8,031 base states, and by Corollary 2.5 it suffices
+itself, so it permutes the 8,031 base states, and by Corollary @cor:quotient it suffices
 to solve one per orbit: 1,611. `certify_d6.py --quotient` chose the
-representatives. No anchoring is used, so the trust chain holds Corollary 2.5
-and Corollary 2.4 (voters may be lex-ordered) and no anchoring lemma; the block
+representatives. No anchoring is used, so the trust chain holds Corollary @cor:quotient
+and Corollary @cor:lex (voters may be lex-ordered) and no anchoring lemma; the block
 records `anchoring=none` and the `quotient=` line, and
 `tools/check_cert_portable.py` checks that h is an automorphism of the host
 that maps the base onto itself (`certificates/CERT-v2.md`). The base is
-{y1, y3, y4, y5, y9} in the manuscript's labelling of Figure 1, the five
+{y1, y3, y4, y5, y9} in the manuscript's labelling of Figure @fig:ladder, the five
 in-neighbours of y0 in Y; it is a different base from the depth-first search's
-of Section 3.2, so the two refutations are independent in base as well as in
+of Section @sec:twenty-two, so the two refutations are independent in base as well as in
 method.
 
 ## How it ran
@@ -69,7 +69,7 @@ none of this history needs to be trusted.
 The CNF is F_B (200 clauses), the voter lex-ordering (236), and the negation of
 every one of the **8,031** base states (not only the 1,611 solved), over 90
 variables. It is UNSAT, so the base states cover every lex-ordered base
-assignment; Corollary 2.5 is the step from the 8,031 to the 1,611. Unlike the
+assignment; Corollary @cor:quotient is the step from the 8,031 to the 1,611. Unlike the
 other certificates here, both coverage files are small enough to ship:
 
     lrat-trim certificates/d000mv09cert_d6/coverage/d000_mv09_cover.cnf \
