@@ -30,7 +30,7 @@ trace actually contains before emitting any TikZ.
 The caption lives in the manuscript, so its numbers cannot be checked by
 compiling the figure. They are checked separately:
 
-    python3 paley7_figure.py trace_maj.json --check ../Tournaments_not_inducible_by_five_voters_JCSS.md
+    python3 paley7_figure.py trace_maj.json --check ../Tournaments_not_inducible_by_five_voters_MSS.tex
 
 which fails unless every quantity the caption quotes matches the trace.
 
@@ -64,7 +64,7 @@ Nothing is drawn until the example has been checked:
 The caption's numbers are checked against the figure separately, the same way
 Figure @fig:paley7's are:
 
-    python3 roundE_figure.py --check ../Tournaments_not_inducible_by_five_voters_JCSS.md
+    python3 roundE_figure.py --check ../Tournaments_not_inducible_by_five_voters_MSS.tex
 
 ## Is Paley(7) the smallest instance that exercises all of Algorithm 1?
 

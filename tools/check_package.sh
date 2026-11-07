@@ -872,6 +872,13 @@ if [ "$mrc" -ne 0 ] || echo "$mout" | grep -q '^ FAIL'; then
 else
   ok "$msum"
 fi
+# The two drawn figures carry their own caption checks: each recomputes the
+# quantities its caption quotes and requires the built manuscript to state them.
+for fc in "paley7_figure.py trace_maj.json" "roundE_figure.py"; do
+  frc=0; fout=$(cd "$ROOT/manuscript/figures" && python3 $fc --check ../Tournaments_not_inducible_by_five_voters_MSS.tex 2>&1) || frc=$?
+  if [ "$frc" -eq 0 ]; then ok "figure caption re-derives: ${fc%% *}"
+  else bad "figure caption drifted: ${fc%% *} (exit $frc)"; echo "$fout" | tail -3 | sed 's/^/        /'; fi
+done
 
 echo
 echo "== 10. the locally transitive construction (app:locally-transitive), verified on the family it quantifies over =="

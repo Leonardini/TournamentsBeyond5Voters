@@ -517,7 +517,7 @@ def caption_tokens(f):
     B, k = f["B"], f["k"]
     return {
         "the base": setnot(B),
-        "slots per voter": "%d^{%d} = %d" % (len(B) + 1, k, (len(B) + 1) ** k),
+        "slots per voter": "of the $%d$ available" % ((len(B) + 1) ** k),
         "support": "support exactly $%d$" % ((k + 1) // 2),
         "witnesses": "all $%d$ witnesses" % f["n_witness_free"],
         "|Aut|": "of order $%d$" % f["aut"],
