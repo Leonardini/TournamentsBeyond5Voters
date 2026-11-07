@@ -60,7 +60,7 @@
    "id": "B4",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.5"
+    "6.3"
    ],
    "claim": "Paley(43) \u2212 v is not 5-inducible, so N(5) \u2264 43 is **re-derived by a second method**",
    "artifacts": [
@@ -76,7 +76,7 @@
    "id": "B5",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2"
+    "6.5"
    ],
    "claim": "**\u0394\u2086 \u2212 5 is not 5-inducible**, hence N(5) \u2264 22. The host is `d005_mv04`, the doubly regular tournament `d005` on 23 vertices (line 6 of McKay's catalogue) with vertex 5 deleted (4, 0-based), the rest kept in order. Complete over all 8,031 base states of `{1,2,3,12,18}`, no symmetry break, 1,551.2 **cluster** core-hours",
    "artifacts": [
@@ -99,11 +99,10 @@
    "id": "B6",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2",
-    "6.4",
+    "6.5",
     "B.1"
    ],
-   "claim": "\u0394\u2086 \u2212 5, **machine-checked** on both halves: all 742,374 base states of the six-vertex base `{1,2,3,4,13,19}` UNSAT, each LRAT proof rechecked by `lrat-trim`, and the cube set proved exhaustive. 1,292.7 core-h; only Corollary 5.4 is human",
+   "claim": "\u0394\u2086 \u2212 5, **machine-checked** on both halves: all 742,374 base states of the six-vertex base `{1,2,3,4,13,19}` UNSAT, each LRAT proof rechecked by `lrat-trim`, and the cube set proved exhaustive. 1,292.7 core-h; only Lemma 5.1(d) is human",
    "artifacts": [
     "certificates/d005mv04cert_d6/VERDICT.txt",
     "certificates/d005mv04cert_d6/d005mv04_cert.v2.portable.txt",
@@ -122,7 +121,7 @@
    "id": "B7",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2"
+    "6.5"
    ],
    "claim": "**\u0394\u2082\u2088 \u2212 5 is not 5-inducible** either: `d027_mv04`, `d027` less vertex 5, same base, complete, 1,537.7 cluster core-h. So the bound rests on two hosts from different parents",
    "artifacts": [
@@ -141,8 +140,7 @@
    "id": "B8",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2",
-    "6.3"
+    "6.5"
    ],
    "claim": "No two of the nine 22-vertex obstructions (the eight deletions of B5, B7, B10, B13 and the reversal of B15) are isomorphic or converse to each other (36 pairs); each has eleven vertices of out-degree 10 and eleven of 11 and every arc in at least five directed triangles. \u0394\u2086 \u2212 5, \u0394\u2082\u2088 \u2212 5 and the reversal have trivial automorphism group, and so do the parents `d005` and `d027`; \u0394\u2081 \u2212 10 has two vertex orbits; the five of B13 have six (four of 5 and two fixed vertices)",
    "artifacts": [
@@ -161,8 +159,7 @@
    "id": "B9",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2",
-    "6.3",
+    "6.5",
     "C"
    ],
    "claim": "The eight deletions are **vertex-critical**: every one-vertex deletion of each is 5-inducible. For \u0394\u2081 \u2212 10 the 22 deletions fall into two classes, one per vertex orbit",
@@ -182,9 +179,9 @@
    "id": "B10",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2"
+    "6.5"
    ],
-   "claim": "**\u0394\u2081 \u2212 10 is not 5-inducible** either. The host is `d000_mv09`, `d000` (line 1 of McKay's catalogue) less vertex 10, two copies of P\u2081\u2081 joined by a ladder. Its automorphism group has order 55; an order-5 subgroup H fixes one vertex in each half and maps the base {x\u2081, x\u2083, x\u2084, x\u2085, x\u2089} onto itself, so the search keeps one base state per H-orbit (Corollary 5.5), 1,611 of 8,031, anchored on the two fixed vertices (Corollary 5.3). Every representative exhausted, none capped, 96.9 core-h on the laptop",
+   "claim": "**\u0394\u2081 \u2212 10 is not 5-inducible** either. The host is `d000_mv09`, `d000` (line 1 of McKay's catalogue) less vertex 10, two copies of P\u2081\u2081 joined by a ladder. Its automorphism group has order 55; an order-5 subgroup H fixes one vertex in each half and maps the base {x\u2081, x\u2083, x\u2084, x\u2085, x\u2089} onto itself, so the search keeps one base state per H-orbit (Lemma 5.1(e)), 1,611 of 8,031, anchored on the two fixed vertices (Lemma 5.1(c)). Every representative exhausted, none capped, 96.9 core-h on the laptop",
    "artifacts": [
     "evidence/d000mv09_sweep_markers.tar.zst",
     "tournaments/drt23_del/d000_mv09.bits",
@@ -202,7 +199,7 @@
    "id": "B11",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.3"
+    "6.5"
    ],
    "claim": "The 231 arcs of \u0394\u2081 \u2212 10 fall into five orbits under its automorphism group, of 55, 55, 55, 55 and 11 arcs, and reversing one of the 11, a rung y_i \u2192 x_i, leaves a 5-inducible tournament. Reversing an arc of the orbit of the other 55 arcs from Y to X does not (B15); the other three orbits are open",
    "artifacts": [
@@ -218,11 +215,10 @@
    "id": "B12",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2",
-    "6.4",
+    "6.5",
     "B.1"
    ],
-   "claim": "\u0394\u2081 \u2212 10, **machine-checked** on both halves: one base state per orbit of an automorphism of order 5 that maps the base {y\u2081, y\u2083, y\u2084, y\u2085, y\u2089} onto itself (Corollary 5.5), 1,611 of 8,031, all UNSAT, each LRAT proof rechecked by `lrat-trim`, and all 8,031 base states proved exhaustive. About 732 laptop-equivalent core-h (G.6); only Corollaries 5.4 and 5.5 are human",
+   "claim": "\u0394\u2081 \u2212 10, **machine-checked** on both halves: one base state per orbit of an automorphism of order 5 that maps the base {y\u2081, y\u2083, y\u2084, y\u2085, y\u2089} onto itself (Lemma 5.1(e)), 1,611 of 8,031, all UNSAT, each LRAT proof rechecked by `lrat-trim`, and all 8,031 base states proved exhaustive. About 732 laptop-equivalent core-h (F.4); only Lemma 5.1(d) and (e) are human",
    "artifacts": [
     "certificates/d000mv09cert_d6/VERDICT.txt",
     "certificates/d000mv09cert_d6/d000mv09_cert.v2.portable.txt",
@@ -241,9 +237,9 @@
    "id": "B13",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2"
+    "6.5"
    ],
-   "claim": "**\u0394\u2081 \u2212 1, \u0394\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 5 and \u0394\u2081\u2081 \u2212 20 are not 5-inducible** (`d000_mv00`, `d000_mv01`, `d010_mv01`, `d010_mv04`, `d010_mv19`); the last three are the deletions of the three vertices of \u0394\u2081\u2081 that its automorphism group fixes. Each has an automorphism group of order 5 that maps a base inducing the regular 5-tournament onto itself, so each search keeps one base state per orbit (Corollary 5.5), 1,611 of 8,031, with no anchoring. Every representative exhausted, none capped; 485.6 and 436.3 cluster core-h, 108.5 laptop core-h, 392.9 cluster plus 41.4 laptop core-h (335.2 counting the faster run where both machines did a state), and 332.3 cluster core-h",
+   "claim": "**\u0394\u2081 \u2212 1, \u0394\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 5 and \u0394\u2081\u2081 \u2212 20 are not 5-inducible** (`d000_mv00`, `d000_mv01`, `d010_mv01`, `d010_mv04`, `d010_mv19`); the last three are the deletions of the three vertices of \u0394\u2081\u2081 that its automorphism group fixes. Each has an automorphism group of order 5 that maps a base inducing the regular 5-tournament onto itself, so each search keeps one base state per orbit (Lemma 5.1(e)), 1,611 of 8,031, with no anchoring. Every representative exhausted, none capped; 485.6 and 436.3 cluster core-h, 108.5 laptop core-h, 392.9 cluster plus 41.4 laptop core-h (335.2 counting the faster run where both machines did a state), and 332.3 cluster core-h",
    "artifacts": [
     "evidence/d000_mv00_cluster_markers.tar.zst",
     "evidence/d000_mv01_cluster_markers.tar.zst",
@@ -269,7 +265,7 @@
    "id": "B14",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.2"
+    "6.5"
    ],
    "claim": "**No one-vertex deletion of \u0394\u2081 is 5-inducible**: Aut(\u0394\u2081) has order 55 and three vertex orbits, of 11, 11 and 1 vertices, containing 0-based vertices 0, 1 and 9, whose deletions are B13's first two and B10. Every deletion named in B5, B7, B10 and B13 is its parent less that vertex",
    "artifacts": [
@@ -286,7 +282,7 @@
    "id": "B15",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "6.3"
+    "6.5"
    ],
    "claim": "**\u0394\u2081 \u2212 10 is not arc-critical**: reversing the arc between vertices 1 and 2 (0-based), a Y \u2192 X arc in an orbit of 55 and not a rung, leaves a rigid tournament that is not 5-inducible (complete over all 8,031 base states of {3, 8, 12, 13, 14}, about 2,063 core-h, cluster and laptop together). It is the eighth 22-vertex obstruction and is vertex-critical: deleting an endpoint of the reversed arc gives \u0394\u2081 \u2212 10 minus a vertex (B9), and each of the other 20 deletions has a verified witness",
    "artifacts": [
@@ -304,7 +300,7 @@
    "id": "H1",
    "group": "1. The bound: 13 \u2264 N(5) \u2264 22",
    "sections": [
-    "H"
+    "G"
    ],
    "claim": "The automorphism groups of the nine 22-vertex obstructions: order 55 for \u0394\u2081 \u2212 10 (two generators), order 5 for \u0394\u2081 \u2212 1, \u0394\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 2, \u0394\u2081\u2081 \u2212 5 and \u0394\u2081\u2081 \u2212 20 (one generator each), trivial for \u0394\u2086 \u2212 5, \u0394\u2082\u2088 \u2212 5 and the arc reversal; the generators Appendix H prints, in the parent's labels",
    "artifacts": [
@@ -318,7 +314,7 @@
   },
   {
    "id": "N1",
-   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, E and F)",
+   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, D and E)",
    "sections": [
     "3.1",
     "3.2"
@@ -335,7 +331,7 @@
   },
   {
    "id": "N2",
-   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, E and F)",
+   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, D and E)",
    "sections": [
     "3.3"
    ],
@@ -351,12 +347,12 @@
   },
   {
    "id": "L1",
-   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, E and F)",
+   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, D and E)",
    "sections": [
     "4",
     "4.1",
-    "E",
-    "F"
+    "D",
+    "E"
    ],
    "claim": "**MAS(Paley(43)) = 543**, so \u03b1\\* = 181/301 and the slack is 6; the level-\u22641 shell has 1,841,303 orbits (1,662,696,609 orders)",
    "artifacts": [
@@ -371,7 +367,7 @@
   },
   {
    "id": "L2",
-   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, E and F)",
+   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, D and E)",
    "sections": [
     "4.2",
     "F"
@@ -388,7 +384,7 @@
   },
   {
    "id": "U1",
-   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, E and F)",
+   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, D and E)",
    "sections": [
     "A.1"
    ],
@@ -407,7 +403,7 @@
   },
   {
    "id": "U2",
-   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, E and F)",
+   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, D and E)",
    "sections": [
     "A.1"
    ],
@@ -425,7 +421,7 @@
   },
   {
    "id": "U3",
-   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, E and F)",
+   "group": "1a. The bounds that need no search (Sections 3 and 4, Appendices A, D and E)",
    "sections": [
     "A.1"
    ],
@@ -443,7 +439,7 @@
    "id": "P1",
    "group": "2. The rest of the Paley family",
    "sections": [
-    "G.5"
+    "F.4"
    ],
    "claim": "Paley(27) is not 5-inducible, 8,031 base states, 2,537 live, 6.22 \u00d7 10\u2079 nodes",
    "artifacts": [
@@ -475,7 +471,7 @@
    "id": "P3",
    "group": "2. The rest of the Paley family",
    "sections": [
-    "6.4"
+    "6.2"
    ],
    "claim": "Paley(19) **is** 5-inducible (recovers dim Q\u2081\u2089 = 5 of [1])",
    "artifacts": [
@@ -492,7 +488,7 @@
    "id": "P4",
    "group": "2. The rest of the Paley family",
    "sections": [
-    "6.4"
+    "6.2"
    ],
    "claim": "Paley(19) is **not** 5-inducible at unit margin, 2,200 base states of `{1,2,3,4,6}`",
    "artifacts": [
@@ -513,7 +509,7 @@
    "id": "P5",
    "group": "2. The rest of the Paley family",
    "sections": [
-    "6.4"
+    "6.2"
    ],
    "claim": "The witnesses are abundant, not delicate: ten workers hit at once from ten base states, support histogram 159 arcs at 3\u20132 and 12 at 4\u20131, none unanimous",
    "artifacts": [
@@ -529,7 +525,7 @@
    "id": "P6",
    "group": "2. The rest of the Paley family",
    "sections": [
-    "6.3",
+    "6.1",
     "C"
    ],
    "claim": "Paley(23) \u2212 v **is** 5-inducible, so no 22-vertex obstruction comes from Paley(23) by deleting a vertex; the 22-vertex obstructions of B5 and B7 come from other doubly regular tournaments",
@@ -546,7 +542,7 @@
    "id": "P7",
    "group": "2. The rest of the Paley family",
    "sections": [
-    "6.5"
+    "6.3"
    ],
    "claim": "**Paley(31) \u2212 v is not 5-inducible**, so Paley(31) is not vertex-critical. 8,031 base states of `{1,2,3,4,13}`, exact index cover, 0 capped",
    "artifacts": [
@@ -565,7 +561,7 @@
    "id": "P8",
    "group": "2. The rest of the Paley family",
    "sections": [
-    "6.3"
+    "6.1"
    ],
    "claim": "Paley(23), (27), (31), (43) are **not vertex-critical at unit margin**",
    "artifacts": [
@@ -585,8 +581,8 @@
    "id": "K1",
    "group": "3. Criticality",
    "sections": [
-    "6.3",
-    "6.7"
+    "6.1",
+    "6.4"
    ],
    "claim": "q = 19, **unit margin: arc-critical**. Reversing any arc restores unit-margin inducibility; the reversal is unique up to isomorphism because Aut(P\u2081\u2089) is regular on arcs",
    "artifacts": [
@@ -601,7 +597,7 @@
    "id": "K2",
    "group": "3. Criticality",
    "sections": [
-    "6.3"
+    "6.1"
    ],
    "claim": "q = 19, unrestricted: 5-inducible, so criticality does not apply",
    "artifacts": [],
@@ -613,7 +609,7 @@
    "id": "K3",
    "group": "3. Criticality",
    "sections": [
-    "6.3"
+    "6.1"
    ],
    "claim": "q = 23, unit margin: **not** vertex-critical",
    "artifacts": [
@@ -629,7 +625,7 @@
    "id": "K4",
    "group": "3. Criticality",
    "sections": [
-    "6.3"
+    "6.1"
    ],
    "claim": "q = 23, unit margin: not arc-critical either",
    "artifacts": [
@@ -643,8 +639,8 @@
    "id": "K5",
    "group": "3. Criticality",
    "sections": [
-    "6.3",
-    "6.6"
+    "6.1",
+    "6.3"
    ],
    "claim": "q = 23, **unrestricted: arc-critical**. Reversing any single arc yields a 5-inducible tournament",
    "artifacts": [
@@ -660,7 +656,7 @@
    "id": "K6",
    "group": "3. Criticality",
    "sections": [
-    "6.6"
+    "6.3"
    ],
    "claim": "Consequently Paley(23) is **vertex-critical** unrestricted",
    "artifacts": [
@@ -674,8 +670,8 @@
    "id": "K7",
    "group": "3. Criticality",
    "sections": [
-    "6.3",
-    "6.5"
+    "6.1",
+    "6.3"
    ],
    "claim": "q = 31, both margins: **not vertex-critical**",
    "artifacts": [],
@@ -689,8 +685,8 @@
    "id": "K8",
    "group": "3. Criticality",
    "sections": [
-    "6.3",
-    "6.5"
+    "6.1",
+    "6.3"
    ],
    "claim": "q = 43, both margins: **not vertex-critical**",
    "artifacts": [],
@@ -704,7 +700,7 @@
    "id": "K9",
    "group": "3. Criticality",
    "sections": [
-    "6.7"
+    "6.4"
    ],
    "claim": "The **second** doubly regular tournament on 19 vertices is arc-critical at unit margin: 57 orbits of size 3, 57 witnesses",
    "artifacts": [
@@ -722,7 +718,7 @@
    "id": "K10",
    "group": "3. Criticality",
    "sections": [
-    "6.7"
+    "6.4"
    ],
    "claim": "Both DRTs on 19 vertices are unit-margin obstructions and both are majority-inducible",
    "artifacts": [
@@ -739,7 +735,7 @@
    "id": "K11",
    "group": "3. Criticality",
    "sections": [
-    "6.3"
+    "6.5"
    ],
    "claim": "The 22-vertex obstructions are vertex-critical unrestricted; \u0394\u2081 \u2212 10 is not arc-critical (B15), and the arc-criticality of the others is open",
    "artifacts": [],
@@ -749,7 +745,7 @@
   },
   {
    "id": "F1",
-   "group": "The 21-vertex picture (\u00a76.6, Appendix I)",
+   "group": "The 21-vertex picture (\u00a76.3, Appendix H)",
    "sections": [],
    "claim": "Each of the four unit-margin obstructions has \\",
    "artifacts": [
@@ -762,7 +758,7 @@
   },
   {
    "id": "F2",
-   "group": "The 21-vertex picture (\u00a76.6, Appendix I)",
+   "group": "The 21-vertex picture (\u00a76.3, Appendix H)",
    "sections": [],
    "claim": "The spectrum: h\u2081 `UUUUUUUUUU`, h\u2082 `USUSSUUSSU`, h\u2084 and h\u2085 all `S` \u2014 15 of the 40 reversals stay obstructions",
    "artifacts": [
@@ -783,7 +779,7 @@
   },
   {
    "id": "F3",
-   "group": "The 21-vertex picture (\u00a76.6, Appendix I)",
+   "group": "The 21-vertex picture (\u00a76.3, Appendix H)",
    "sections": [],
    "claim": "So **arc-criticality at unit margin is carried by the arc, not the tournament**: h\u2082 is arc-semi-critical, 105 of 210 arcs each way",
    "artifacts": [],
@@ -793,7 +789,7 @@
   },
   {
    "id": "F4",
-   "group": "The 21-vertex picture (\u00a76.6, Appendix I)",
+   "group": "The 21-vertex picture (\u00a76.3, Appendix H)",
    "sections": [],
    "claim": "All 210 single-arc reversals of h\u2081 remain obstructions \u2014 736 runs, none capped, tiling each range exactly",
    "artifacts": [
@@ -806,7 +802,7 @@
   },
   {
    "id": "F5",
-   "group": "The 21-vertex picture (\u00a76.6, Appendix I)",
+   "group": "The 21-vertex picture (\u00a76.3, Appendix H)",
    "sections": [],
    "claim": "Every one of the 15 surviving reversals belongs to a host with **cyclic** automorphism group; all 20 orbits of the two with the nonabelian group of order 21 are inducible",
    "artifacts": [
@@ -818,7 +814,7 @@
   },
   {
    "id": "F6",
-   "group": "The 21-vertex picture (\u00a76.6, Appendix I)",
+   "group": "The 21-vertex picture (\u00a76.3, Appendix H)",
    "sections": [],
    "claim": "The four hosts and the 15 surviving reversals have **319 one-vertex deletions, 289 pairwise non-isomorphic**, and every one has an exhibited unit-margin witness",
    "artifacts": [
@@ -832,7 +828,7 @@
   },
   {
    "id": "F7",
-   "group": "The 21-vertex picture (\u00a76.6, Appendix I)",
+   "group": "The 21-vertex picture (\u00a76.3, Appendix H)",
    "sections": [],
    "claim": "Hence nothing here descends to a unit-margin obstruction on 20 vertices",
    "artifacts": [],
@@ -842,7 +838,7 @@
   },
   {
    "id": "S1",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
    "claim": "All **110** vertex-transitive tournaments on 21 vertices are 5-inducible \u2014 106 at unit margin, the other four by exhibited majority witnesses. So that family holds no candidate below 23",
    "artifacts": [
@@ -858,7 +854,7 @@
   },
   {
    "id": "S2",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
    "claim": "The closure survives one-arc perturbation: all **40** orbit representatives of the four obstructions are majority-inducible",
    "artifacts": [
@@ -870,7 +866,7 @@
   },
   {
    "id": "S3",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
    "claim": "Every regular tournament on at most **13** vertices is inducible at both margins (15, 1,223, 1,495,297 instances)",
    "artifacts": [
@@ -886,7 +882,7 @@
   },
   {
    "id": "S4",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
    "claim": "Every regular tournament on **15** vertices is inducible at unit margin, all 18,400,989,629, none capped, residue counts summing to OEIS A096368(7)",
    "artifacts": [
@@ -902,7 +898,7 @@
   },
   {
    "id": "S5",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
    "claim": "Every **self-converse** tournament on **13** vertices is inducible at unit margin \u2014 all S\u2081\u2083 = 95,458,560, 0 UNSAT, 0 aborted",
    "artifacts": [
@@ -921,7 +917,7 @@
   },
   {
    "id": "S6",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
    "claim": "The three parts are exactly the family, with no gap and no overlap",
    "artifacts": [
@@ -937,9 +933,9 @@
   },
   {
    "id": "S7",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
-   "claim": "These sweeps and the families of Appendix C turn up **75** tournaments, up to isomorphism and converse, that are 5-inducible but not at unit margin: 2 doubly regular at order 19; at order 21, 3 vertex-transitive (the four of 6.6, two of them converses of each other), 15 one-arc reversals of C_a (all ten arc orbits, `h01_f00` to `h01_f09`) and C_b (`h02` orbits 0, 2, 5, 6 and 9) (Appendix I), and 42 near-doubly regular; at order 22, Paley(23) \u2212 v; at order 23, 11 circulant and Paley(23) with one arc reversed.",
+   "claim": "These sweeps and the families of Appendix C turn up **75** tournaments, up to isomorphism and converse, that are 5-inducible but not at unit margin: 2 doubly regular at order 19; at order 21, 3 vertex-transitive (the four of 6.3, two of them converses of each other), 15 one-arc reversals of C_a (all ten arc orbits, `h01_f00` to `h01_f09`) and C_b (`h02` orbits 0, 2, 5, 6 and 9) (Appendix H), and 42 near-doubly regular; at order 22, Paley(23) \u2212 v; at order 23, 11 circulant and Paley(23) with one arc reversed.",
    "artifacts": [
     "verdicts/verdict_ledger.tsv",
     "verdicts/ledger_supplement.tsv",
@@ -979,22 +975,8 @@
    "status": "established"
   },
   {
-   "id": "S8",
-   "group": "4. The structured families (\u00a76.7)",
-   "sections": [],
-   "claim": "**Every locally transitive tournament is 5-inducible at unit margin**, by construction rather than search (Theorem J.1)",
-   "artifacts": [
-    "verify/appendix_e.py"
-   ],
-   "missing": [],
-   "other_tokens": [
-    "python3 verify/appendix_e.py"
-   ],
-   "status": "established"
-  },
-  {
    "id": "S9",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
    "claim": "**Refuted conjecture:** triangle load does not decide unit-margin inducibility \u2014 among the 42 vertex-transitive tournaments on 23 vertices with t = 4 (t being the least number of directed triangles through an arc), five are unit-margin obstructions (`v016`, `v017`, `v027`, `v030`, `v038`) and 37 are inducible at unit margin",
    "artifacts": [
@@ -1023,7 +1005,7 @@
   },
   {
    "id": "S10",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
    "claim": "**Corrected 2026-10-15.** An earlier version of this file said every majority obstruction here has t \u2265 6. That no longer holds: the two 22-vertex obstructions have t = 5, which is the most any tournament on 22 vertices can have, and Paley(27) less two vertices (Appendix C) is a majority obstruction on 25 vertices with t = 5. The 37 doubly regular tournaments on 23 vertices have t = 6. So t \u2265 6 is not necessary for a majority obstruction",
    "artifacts": [
@@ -1041,9 +1023,9 @@
   },
   {
    "id": "S11",
-   "group": "4. The structured families (\u00a76.7)",
+   "group": "4. The structured families (\u00a76.4)",
    "sections": [],
-   "claim": "Order 23 is complete for both families: every vertex-transitive tournament on 23 vertices other than Paley(23) is 5-inducible, and none of the **37** doubly regular ones is, at unit margin or unrestricted. Up to converse the 37 form 19 classes, each settled by a complete search; 16 of the 19 ran on the cluster (Appendix G.6)",
+   "claim": "Order 23 is complete for both families: every vertex-transitive tournament on 23 vertices other than Paley(23) is 5-inducible, and none of the **37** doubly regular ones is, at unit margin or unrestricted. Up to converse the 37 form 19 classes, each settled by a complete search; 16 of the 19 ran on the cluster (Appendix F.4)",
    "artifacts": [
     "verdicts/verdict_ledger.tsv",
     "cluster/jz_drt23maj/jz_drt23maj.tsv",
@@ -1060,7 +1042,7 @@
   },
   {
    "id": "R1",
-   "group": "6a. The independent reproduction (\u00a78.2)",
+   "group": "6a. The independent reproduction (\u00a77.2)",
    "sections": [],
    "claim": "Both refutations were re-solved from scratch on the cluster, under a different compiler and CaDiCaL build, and **ROOT (CNF) matched bit for bit**",
    "artifacts": [
@@ -1075,7 +1057,7 @@
   },
   {
    "id": "R3",
-   "group": "6a. The independent reproduction (\u00a78.2)",
+   "group": "6a. The independent reproduction (\u00a77.2)",
    "sections": [],
    "claim": "Both coverage instances were rebuilt on the cluster to their committed CNF hashes and refuted again, and `CERT (portable)` was re-derived there by running the composition rather than inferring it",
    "artifacts": [
@@ -1090,7 +1072,7 @@
   },
   {
    "id": "R4",
-   "group": "6a. The independent reproduction (\u00a78.2)",
+   "group": "6a. The independent reproduction (\u00a77.2)",
    "sections": [],
    "claim": "The four earlier attempts failed for reasons that say nothing about the result",
    "artifacts": [
@@ -1103,9 +1085,9 @@
   },
   {
    "id": "M1",
-   "group": "7. The method comparison (Appendix G)",
+   "group": "7. The method comparison (Appendix F.1)",
    "sections": [
-    "G.1"
+    "F.1"
    ],
    "claim": "Integer programming does not reach these instances; at q = 23 the program has 1,265 binaries, 17,710 transitivity rows and 253 majority rows",
    "artifacts": [
@@ -1118,9 +1100,9 @@
   },
   {
    "id": "M2",
-   "group": "7. The method comparison (Appendix G)",
+   "group": "7. The method comparison (Appendix F.1)",
    "sections": [
-    "G.1"
+    "F.1"
    ],
    "claim": "SAT alone does not either. The dissent-Boolean encoding cuts CaDiCaL conflicts 26\u201342\u00d7 against the order-variable family (2,399 / 1,491 / 57 on doubly regular tests), and with a sound symmetry break on top neither 19-vertex instance still returns a verdict",
    "artifacts": [
@@ -1133,9 +1115,9 @@
   },
   {
    "id": "M3",
-   "group": "7. The method comparison (Appendix G)",
+   "group": "7. The method comparison (Appendix F.1)",
    "sections": [
-    "G.5"
+    "F.4"
    ],
    "claim": "The exact domain rule beats the capped one on decision quality alone: 992,378 nodes capped against 294,964 exact, identical verdicts, on a 29-instance Paley(19) benchmark",
    "artifacts": [
@@ -1148,7 +1130,7 @@
   },
   {
    "id": "M4",
-   "group": "7. The method comparison (Appendix G)",
+   "group": "7. The method comparison (Appendix F.1)",
    "sections": [
     "B.1"
    ],
@@ -1162,9 +1144,9 @@
   },
   {
    "id": "M5",
-   "group": "7. The method comparison (Appendix G)",
+   "group": "7. The method comparison (Appendix F.1)",
    "sections": [
-    "G.6"
+    "5.3"
    ],
    "claim": "Choosing the base: four cheap proxies each inverted when measured, so only live-count \u00d7 measured s/state is the objective. At q = 31 the class with 4,007 live states beat the class with 2,537",
    "artifacts": [
@@ -1181,9 +1163,9 @@
   },
   {
    "id": "M6",
-   "group": "7. The method comparison (Appendix G)",
+   "group": "7. The method comparison (Appendix F.1)",
    "sections": [
-    "G.5"
+    "F.4"
    ],
    "claim": "The cluster runs 2\u20135\u00d7 slower per core than the laptop",
    "artifacts": [
@@ -1196,9 +1178,9 @@
   },
   {
    "id": "M7",
-   "group": "7. The method comparison (Appendix G)",
+   "group": "7. The method comparison (Appendix F.1)",
    "sections": [
-    "G.6"
+    "5.3"
    ],
    "claim": "Incremental refinement is worth about 110\u00d7 in wall time, against a factor of a few for the dynamic order",
    "artifacts": [
@@ -1210,9 +1192,9 @@
   },
   {
    "id": "T1",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 P\u2081\u2089 certified refutation, unit",
+   "claim": "F.4 P\u2081\u2089 certified refutation, unit",
    "artifacts": [
     "certificates/p19cert_d6/log/*.log"
    ],
@@ -1224,9 +1206,9 @@
   },
   {
    "id": "T2",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 P\u2082\u2083 certified refutation, unrestricted",
+   "claim": "F.4 P\u2082\u2083 certified refutation, unrestricted",
    "artifacts": [
     "certificates/p23cert_d6/log/*.log"
    ],
@@ -1236,9 +1218,9 @@
   },
   {
    "id": "T3",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 P\u2083\u2081 \u2212 v sweep, unrestricted",
+   "claim": "F.4 P\u2083\u2081 \u2212 v sweep, unrestricted",
    "artifacts": [
     "verdicts/p31mv_majority/p31mv_times.txt"
    ],
@@ -1248,9 +1230,9 @@
   },
   {
    "id": "T4",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 P\u2082\u2083 one arc reversed, unrestricted",
+   "claim": "F.4 P\u2082\u2083 one arc reversed, unrestricted",
    "artifacts": [
     "cluster/jz_p23arc/AGGREGATE_OUTPUT.txt"
    ],
@@ -1260,9 +1242,9 @@
   },
   {
    "id": "T5",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 second DRT on 19, all 57 arc reversals, unit",
+   "claim": "F.4 second DRT on 19, all 57 arc reversals, unit",
    "artifacts": [
     "tournaments/dr19_arcflip/sweep.log"
    ],
@@ -1272,9 +1254,9 @@
   },
   {
    "id": "T6",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 regular on 15, unit",
+   "claim": "F.4 regular on 15, unit",
    "artifacts": [
     "cluster/jz_n15/results_margin1/done/"
    ],
@@ -1286,9 +1268,9 @@
   },
   {
    "id": "T7",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 self-converse on 13, unit",
+   "claim": "F.4 self-converse on 13, unit",
    "artifacts": [
     "cluster/jz_n13sc/SLURM_COST.txt"
    ],
@@ -1298,9 +1280,9 @@
   },
   {
    "id": "T8",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 all on 12, unit",
+   "claim": "F.4 all on 12, unit",
    "artifacts": [
     "n12_unit_margin/n12_cover/FINAL_ROLLUP.txt",
     "aggregate.sh"
@@ -1311,9 +1293,9 @@
   },
   {
    "id": "T9",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.5 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87",
+   "claim": "F.4 the four full Paley sweeps: core-hours 34.03, 31.04, 26.89, 22.87",
    "artifacts": [
     "evidence/{rerun1_p23,p27,p31,p43}_majority.tar.zst"
    ],
@@ -1325,9 +1307,9 @@
   },
   {
    "id": "T10",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.5 live base states 2,591, 2,537, 4,007, 2,537",
+   "claim": "F.4 live base states 2,591, 2,537, 4,007, 2,537",
    "artifacts": [],
    "missing": [],
    "other_tokens": [
@@ -1338,9 +1320,9 @@
   },
   {
    "id": "T11",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.5 seconds per live base state 47.3, 44.0, 24.2, 32.5",
+   "claim": "F.4 seconds per live base state 47.3, 44.0, 24.2, 32.5",
    "artifacts": [],
    "missing": [],
    "other_tokens": [],
@@ -1348,9 +1330,9 @@
   },
   {
    "id": "T12",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.5 node counts",
+   "claim": "F.4 node counts",
    "artifacts": [],
    "missing": [],
    "other_tokens": [
@@ -1360,9 +1342,9 @@
   },
   {
    "id": "T13",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.5 P\u2084\u2083 \u2212 v takes 185.5 core-h",
+   "claim": "F.4 P\u2084\u2083 \u2212 v takes 185.5 core-h",
    "artifacts": [
     "verdicts/p43mv_majority/p43mv_times.txt"
    ],
@@ -1372,9 +1354,9 @@
   },
   {
    "id": "T14",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 \u0394\u2086 \u2212 5 certified refutation, unrestricted",
+   "claim": "F.4 \u0394\u2086 \u2212 5 certified refutation, unrestricted",
    "artifacts": [
     "certificates/d005mv04cert_d6/log/*.log"
    ],
@@ -1386,9 +1368,9 @@
   },
   {
    "id": "T15",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 \u0394\u2086 \u2212 5 sweep, unrestricted",
+   "claim": "F.4 \u0394\u2086 \u2212 5 sweep, unrestricted",
    "artifacts": [
     "evidence/d005mv04_sweep_markers.tar.zst"
    ],
@@ -1400,9 +1382,9 @@
   },
   {
    "id": "T16",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 \u0394\u2082\u2088 \u2212 5 sweep, unrestricted",
+   "claim": "F.4 \u0394\u2082\u2088 \u2212 5 sweep, unrestricted",
    "artifacts": [
     "verdicts/n22_obstructions/verdicts.tsv"
    ],
@@ -1412,9 +1394,9 @@
   },
   {
    "id": "T17",
-   "group": "8. The cost and node tables (Appendix G.5 and G.6)",
+   "group": "8. The cost and node tables (Appendix F.4)",
    "sections": [],
-   "claim": "G.6 the other rows: \u0394\u2081 \u2212 10 sweep 96.9 and certificate about 732; the 16 doubly regular tournaments 7,458.2; \u0394\u2081 \u2212 1 136.8, \u0394\u2081 \u2212 2 122.9, \u0394\u2081\u2081 \u2212 2 108.5, \u0394\u2081\u2081 \u2212 5 124.2, \u0394\u2081\u2081 \u2212 20 93.6",
+   "claim": "F.4 the other rows: \u0394\u2081 \u2212 10 sweep 96.9 and certificate about 732; the 16 doubly regular tournaments 7,458.2; \u0394\u2081 \u2212 1 136.8, \u0394\u2081 \u2212 2 122.9, \u0394\u2081\u2081 \u2212 2 108.5, \u0394\u2081\u2081 \u2212 5 124.2, \u0394\u2081\u2081 \u2212 20 93.6",
    "artifacts": [],
    "missing": [],
    "other_tokens": [],
@@ -1422,7 +1404,7 @@
   },
   {
    "id": "D1",
-   "group": "9. Exact enumeration counts (Appendix D)",
+   "group": "9. Exact enumeration counts (Section 2 and Section 6.4)",
    "sections": [],
    "claim": "D\u2081\u2081",
    "artifacts": [
@@ -1434,7 +1416,7 @@
   },
   {
    "id": "D2",
-   "group": "9. Exact enumeration counts (Appendix D)",
+   "group": "9. Exact enumeration counts (Section 2 and Section 6.4)",
    "sections": [],
    "claim": "D\u2081\u2082",
    "artifacts": [],
@@ -1444,7 +1426,7 @@
   },
   {
    "id": "D3",
-   "group": "9. Exact enumeration counts (Appendix D)",
+   "group": "9. Exact enumeration counts (Section 2 and Section 6.4)",
    "sections": [],
    "claim": "R\u2081\u2081",
    "artifacts": [
@@ -1458,7 +1440,7 @@
   },
   {
    "id": "D4",
-   "group": "9. Exact enumeration counts (Appendix D)",
+   "group": "9. Exact enumeration counts (Section 2 and Section 6.4)",
    "sections": [],
    "claim": "R\u2081\u2083",
    "artifacts": [
@@ -1470,7 +1452,7 @@
   },
   {
    "id": "D5",
-   "group": "9. Exact enumeration counts (Appendix D)",
+   "group": "9. Exact enumeration counts (Section 2 and Section 6.4)",
    "sections": [],
    "claim": "R\u2081\u2085",
    "artifacts": [
@@ -1484,7 +1466,7 @@
   },
   {
    "id": "D6",
-   "group": "9. Exact enumeration counts (Appendix D)",
+   "group": "9. Exact enumeration counts (Section 2 and Section 6.4)",
    "sections": [],
    "claim": "S\u2081\u2081",
    "artifacts": [
@@ -1496,7 +1478,7 @@
   },
   {
    "id": "D7",
-   "group": "9. Exact enumeration counts (Appendix D)",
+   "group": "9. Exact enumeration counts (Section 2 and Section 6.4)",
    "sections": [],
    "claim": "S\u2081\u2082",
    "artifacts": [],
@@ -1506,7 +1488,7 @@
   },
   {
    "id": "D8",
-   "group": "9. Exact enumeration counts (Appendix D)",
+   "group": "9. Exact enumeration counts (Section 2 and Section 6.4)",
    "sections": [],
    "claim": "S\u2081\u2083",
    "artifacts": [
@@ -1519,7 +1501,7 @@
   },
   {
    "id": "G1",
-   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.2)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.1)",
    "sections": [
     "C"
    ],
@@ -1537,7 +1519,7 @@
   },
   {
    "id": "G2",
-   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.2)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.1)",
    "sections": [
     "C"
    ],
@@ -1551,7 +1533,7 @@
   },
   {
    "id": "G3",
-   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.2)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.1)",
    "sections": [
     "C"
    ],
@@ -1569,10 +1551,10 @@
   },
   {
    "id": "G4",
-   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.2)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.1)",
    "sections": [
     "C",
-    "7.2"
+    "7.1"
    ],
    "claim": "At 20 vertices all **28,724** classes are 5-inducible, so every tournament on 19 vertices or fewer below the 36 is too",
    "artifacts": [
@@ -1585,7 +1567,7 @@
   },
   {
    "id": "G6",
-   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.2)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.1)",
    "sections": [
     "C"
    ],
@@ -1603,7 +1585,7 @@
   },
   {
    "id": "G7",
-   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.2)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.1)",
    "sections": [
     "C"
    ],
@@ -1623,9 +1605,9 @@
   },
   {
    "id": "Q1",
-   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.2)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.1)",
    "sections": [
-    "7.2"
+    "7.1"
    ],
    "claim": "**Question 1** (is N(5) = 22?) is open. G3 and G4 are the evidence the paper cites for it",
    "artifacts": [],
@@ -1635,9 +1617,9 @@
   },
   {
    "id": "C3",
-   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.2)",
+   "group": "11. Below 22 vertices and the conjectures (Appendix C, Section 7.1)",
    "sections": [
-    "7.2"
+    "7.1"
    ],
    "claim": "**Conjecture 3** (every k-inducible tournament is (k+2)-inducible with unit margin): at k = 5, Paley(19) and the second doubly regular tournament on 19 vertices, which are 5-inducible but not with unit margin, are **7-inducible with unit margin**",
    "artifacts": [
@@ -1682,7 +1664,7 @@
    "id": "E3",
    "group": "10. The engine itself",
    "sections": [],
-   "claim": "Figure G.1 is drawn from a real trace by a second, independent implementation of the search, which refuses to emit one unless seven cross-checks pass",
+   "claim": "Figure F.2 is drawn from a real trace by a second, independent implementation of the search, which refuses to emit one unless seven cross-checks pass",
    "artifacts": [
     "manuscript/figures/README.md",
     "paley7_trace.py",
@@ -1712,7 +1694,7 @@
    "number": 3,
    "title": "the two runtime-table cost figures with no artifact, CLOSED 2026-09-11",
    "status": "closed",
-   "detail": "Both figures of the runtime table (then Appendix A.4, now Appendix G.6) that had no artifact now have one. Row T4, Paley(23) with one arc reversed at 210.4 core-hours, is in `cluster/jz_p23arc/AGGREGATE_OUTPUT.txt`; note what that file says about its own `missing indices: 6996` line, since the scan stopped at the witness, which is sound for a positive certificate and would void a refutation. Row T7, the order-13 self-converse census at 1,310 core-hours, is in `cluster/jz_n13sc/SLURM_COST.txt`, which also records the trap that would have overstated it by 93%: the scheduler reports `AllocCPUS = 2` for a task that asks for one CPU, because it counts both hyperthreads of the physical core that `--hint=nomultithread` reserves, so `CPUTimeRAW` is exactly twice the worker time Appendix G.6 means."
+   "detail": "Both figures of the runtime table (then Appendix A.4, now Appendix F.4) that had no artifact now have one. Row T4, Paley(23) with one arc reversed at 210.4 core-hours, is in `cluster/jz_p23arc/AGGREGATE_OUTPUT.txt`; note what that file says about its own `missing indices: 6996` line, since the scan stopped at the witness, which is sound for a positive certificate and would void a refutation. Row T7, the order-13 self-converse census at 1,310 core-hours, is in `cluster/jz_n13sc/SLURM_COST.txt`, which also records the trap that would have overstated it by 93%: the scheduler reports `AllocCPUS = 2` for a task that asks for one CPU, because it counts both hyperthreads of the physical core that `--hint=nomultithread` reserves, so `CPUTimeRAW` is exactly twice the worker time Appendix F.4 means."
   },
   {
    "number": 4,
@@ -1742,12 +1724,12 @@
    "number": 8,
    "title": "the cluster-to-laptop factors are stated, not re-derived",
    "status": "open",
-   "detail": "Appendix G.6 reports cluster runs in laptop-equivalent core-hours, dividing each cluster total by a measured factor: 2.1 for the certificate of \u0394\u2081 \u2212 10, 3.55 for the 22- and 23-vertex sweeps, 5.13 for the self-converse census of order 13, and 3.85 and 4.28 for the censuses of orders 12 and 15. The gate re-derives each cluster total from shipped bytes and divides by the factor the manuscript states (check 9, T6\u2013T8, T15, T16); the paired runs that measured the factors (355 base states of \u0394\u2081\u2081 \u2212 5, and a seeded random sample of 8 and 12 census parts rerun on the laptop) are in the working repository (`KInduceDFS/paired_sample/`), not here. The rows of T17 are computed there too."
+   "detail": "Appendix F.4 reports cluster runs in laptop-equivalent core-hours, dividing each cluster total by a measured factor: 2.1 for the certificate of \u0394\u2081 \u2212 10, 3.55 for the 22- and 23-vertex sweeps, 5.13 for the self-converse census of order 13, and 3.85 and 4.28 for the censuses of orders 12 and 15. The gate re-derives each cluster total from shipped bytes and divides by the factor the manuscript states (check 9, T6\u2013T8, T15, T16); the paired runs that measured the factors (355 base states of \u0394\u2081\u2081 \u2212 5, and a seeded random sample of 8 and 12 census parts rerun on the laptop) are in the working repository (`KInduceDFS/paired_sample/`), not here. The rows of T17 are computed there too."
   }
  ],
  "counts": {
-  "claims": 106,
-  "established": 100,
+  "claims": 105,
+  "established": 99,
   "declared_gap": 6,
   "missing_artifacts": 0,
   "gaps": 8,

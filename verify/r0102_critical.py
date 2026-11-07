@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Section @sec:criticality: the ninth 22-vertex obstruction (Delta_1 - 10 with the arc between U and V reversed)
+"""Section @sec:twenty-two: the ninth 22-vertex obstruction (Delta_1 - 10 with the arc between U and V reversed)
 is vertex-critical.
 
     usage: r0102_critical.py DELTA1_10.bits U V WITNESSES.tar.zst [--shift]

@@ -152,14 +152,6 @@ for g in paley_bits.py make_paley_gf.py make_paley_minus.py vt21_family.py \
          gen_regular.py cayley_census.py deletion_classes.py vt21_all_reps.npy; do
   if [ -f "$K/$g" ]; then put "$K/$g" "$DST/tournaments/$g"; fi
 done
-# McKay's locally transitive catalogue, orders 11-14.  Appendix @app:locally-transitive is the one
-# result settled by construction rather than computation, so its artifact is a
-# verifier plus the family to run it over; these four files are 104 KB.
-for n in 11 12 13 14; do
-  f="$SRC/Tournaments/SourceFiles/locallytransitivetournaments$n.txt"
-  if [ -f "$f" ]; then put "$f" "$DST/tournaments/locally_transitive/$(basename "$f")"; fi
-done
-
 # families: the swept catalogues, with their verdict tables
 for f in vt21_hosts vt21_arcflip dr19_arcflip vt15 vt17 vt19 vt23 drt23 \
          drt15 drt19 drt_small vt20_descent; do
@@ -183,7 +175,7 @@ done
 # log, the tournament from its bit string, and every arc's support recomputed.
 for v in verify_witness.py verify_witness_bits.py \
          verify_paley_minus_witness.py tri_per_arc.py tri_ceiling.py \
-         appendix_e.py triangles_per_arc.py \
+         triangles_per_arc.py \
          verify_descent_witnesses.py level_coverage.py drt23_level_counts.py \
          critical_deletions.py host_facts.py sweep_cover_audit.py; do
   if [ -f "$K/$v" ]; then put "$K/$v" "$DST/verify/$v"; fi
@@ -293,7 +285,7 @@ if [ -d "$K/vt21_arcflip_shard" ]; then
   fi
   put "$T/vt21_arcflip_slices.tar.zst" "$DST/evidence/vt21_arcflip_slices.tar.zst"
 fi
-# The two deleted-vertex sweeps of Section @sec:not-vertex-critical, P31 - v and P43 - v.  Their 8,031
+# The two deleted-vertex sweeps of Section @sec:paley23-critical, P31 - v and P43 - v.  Their 8,031
 # per-base markers each are resumption state and gitignored at the source, so
 # what ships is the condensed times file the kit writes -- one line per base
 # state, from which the exact index cover and the 239.5 and 185.5 core-hours all
@@ -357,7 +349,7 @@ if [ -f "$K/jz_drt23mv/evidence/HARDNESS_378.tsv" ]; then
 fi
 # jz_reproduce keeps two directories one level down: the instance confs, which
 # are the only place a campaign's expected values live, and the SLURM logs that
-# are the evidence for Section @sec:replicate's independent-reproduction claim.
+# are the evidence for Section @sec:reproducibility's independent-reproduction claim.
 for sub in instances slurm; do
   [ -d "$K/jz_reproduce/$sub" ] || continue
   put_found "$DST/cluster/jz_reproduce/$sub" "$K/jz_reproduce/$sub"
@@ -401,14 +393,17 @@ done
 # must pass before it will emit a trace, and paley7_figure.py --check verifies
 # the caption's numbers against that trace -- so the figure is an artifact, not
 # an illustration.
-# EVERY figure artifact, by extension rather than by a hand-kept list.  The list
-# that used to stand here went stale the moment the figure of Appendix
-# @app:locally-transitive (Figure @fig:round) was added: README.md documented that figure and its checks while roundE_figure.py, roundE.tex
-# and roundE.pdf were not shipped at all, so the instructions referred to files
-# the package did not contain.  A list of names is correct exactly once.
+# EVERY figure artifact, by extension rather than by a hand-kept list.  A hand-kept
+# list once went stale the moment a figure was added: README.md documented that
+# figure and its checks while its script and outputs were not shipped, so the
+# instructions referred to files the package did not contain.  A list of names is
+# correct exactly once.
+# The one exclusion: roundE*, the figure of the locally transitive appendix, which
+# moved to the companion paper (without its figure); only superseded manuscript
+# versions in the source still include it, so the package does not ship it.
 put_found "$DST/manuscript/figures" "$SRC/figures" \
      \( -name '*.py' -o -name '*.tex' -o -name '*.pdf' -o -name '*.json' \
-        -o -name '*.log' -o -name '*.md' \)
+        -o -name '*.log' -o -name '*.md' \) ! -name 'roundE*'
 if [ -f "$SRC/check_manuscript_tables.py" ]; then put "$SRC/check_manuscript_tables.py" "$DST/tools/check_manuscript_tables.py"; fi
 return 0
 }

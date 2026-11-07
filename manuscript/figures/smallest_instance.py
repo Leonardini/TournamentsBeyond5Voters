@@ -19,7 +19,7 @@ fire.
   split    a REFINE lift ON it, which is the case that doubles a tuple
   empty    a mid-search empty domain, i.e. propagation refuting a subtree
   back     a node with more than one child explored, i.e. real backtracking
-  anchor   a branch cut by Corollary @cor:orbit-anchoring during the search
+  anchor   a branch cut by Lemma @lem:symmetry(b) during the search
   witness  the run ends in a witness rather than a refutation
 
 Both margin regimes are tried, and every base of every order from 3 to n-1.

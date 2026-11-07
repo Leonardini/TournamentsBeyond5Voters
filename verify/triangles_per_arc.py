@@ -9,7 +9,7 @@ directed triangle, then margin <= 3 and plain majority are the same question on
 that host, and a refutation at the tighter margin is a refutation at the looser
 one.
 
-The paper states the stronger form for the deleted-vertex hosts of Section @sec:not-vertex-critical:
+The paper states the stronger form for the deleted-vertex hosts of Section @sec:paley23-critical:
 every arc of P_q - v lies in at least (q-3)/4 directed triangles.  That is the
 claim this file checks, host by host, from the shipped bit strings.
 

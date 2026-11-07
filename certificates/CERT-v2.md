@@ -91,8 +91,8 @@ host has fewer vertex orbits or fewer ordered-pair orbits:
 
 | lemma | representatives | field |
 |---|---|---|
-| **Corollary @cor:orbit-anchoring**, ordered-pair anchoring | one ordered pair from each `Aut`-orbit on ordered pairs; some voter's top two is one of them | `pair-orbit(p1=0,1;p2=2,1)` |
-| **Corollary @cor:vertex-anchoring**, vertex anchoring | one vertex from each `Aut`-orbit on vertices; some voter ranks one of them first | `vertex-orbit(v1=0;v2=3;v3=7)` |
+| **Lemma @lem:symmetry(b)**, ordered-pair anchoring | one ordered pair from each `Aut`-orbit on ordered pairs; some voter's top two is one of them | `pair-orbit(p1=0,1;p2=2,1)` |
+| **Lemma @lem:symmetry(c)**, vertex anchoring | one vertex from each `Aut`-orbit on vertices; some voter ranks one of them first | `vertex-orbit(v1=0;v2=3;v3=7)` |
 | neither | every base state is live | `none` |
 
 Both take **any number** of representatives. The v1 blocks could express only
@@ -118,7 +118,7 @@ satisfy it — `{0,1} ∪ {2,1} ⊂ {0,1,2,3,4,11}` and `{2,6} ∪ {1,6} ⊂ {0,
 refuse an out-of-base representative, and gate check 3e is the control.
 
 What is **not** checkable from shipped bytes is orbit *completeness* — that the
-representatives meet every orbit. The manuscript flags it ("Corollary @cor:orbit-anchoring must be
+representatives meet every orbit. The manuscript flags it ("Lemma @lem:symmetry(b) must be
 given the full set of orbits") and it stays a human obligation, like the lemma
 itself. Recording the representatives in the hashed block is what makes it
 auditable instead of implicit. For a pair representative the gate does check the
@@ -127,7 +127,7 @@ recomputed from the `.bits`. Under v1's `q=`, it was not decidable at all.
 
 ## `quotient=` — the base quotient, when it is used
 
-Corollary @cor:quotient gives a second way to solve fewer cubes than there are base
+Lemma @lem:symmetry(e) gives a second way to solve fewer cubes than there are base
 states: an automorphism `h` of the host that maps the base onto itself permutes
 the base states, and it suffices to solve one cube per `h`-orbit. Such a block
 carries one more line, after `anchoring=`:
@@ -147,7 +147,7 @@ these, and refuses to combine it with anchoring.
 
 ## The names in the frozen verdicts
 
-The manuscript states one orbit principle, Theorem @thm:orbit, and every reduction
+The manuscript states one orbit principle, Lemma @lem:symmetry(a), and every reduction
 as a corollary of it. It has been renumbered twice: once when the reductions became
 corollaries, and again when its sections were reordered, which moved them from
 Section 2 to Section @sec:symmetry. `VERDICT.txt` files are hashed and stay as

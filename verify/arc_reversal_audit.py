@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Section @sec:criticality: reversing a non-rung arc from Y to X in Delta_1 - 10 leaves an obstruction.
+"""Section @sec:twenty-two: reversing a non-rung arc from Y to X in Delta_1 - 10 leaves an obstruction.
 
     usage: arc_reversal_audit.py HOST.bits U V BASE MARKERS.tar.zst [--drop N]
 

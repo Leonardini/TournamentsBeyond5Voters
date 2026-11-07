@@ -872,28 +872,13 @@ if [ "$mrc" -ne 0 ] || echo "$mout" | grep -q '^ FAIL'; then
 else
   ok "$msum"
 fi
-# The two drawn figures carry their own caption checks: each recomputes the
+# The drawn figure carries its own caption check: it recomputes the
 # quantities its caption quotes and requires the built manuscript to state them.
-for fc in "paley7_figure.py trace_maj.json" "roundE_figure.py"; do
+for fc in "paley7_figure.py trace_maj.json"; do
   frc=0; fout=$(cd "$ROOT/manuscript/figures" && python3 $fc --check ../Tournaments_not_inducible_by_five_voters_MSS.tex 2>&1) || frc=$?
   if [ "$frc" -eq 0 ]; then ok "figure caption re-derives: ${fc%% *}"
   else bad "figure caption drifted: ${fc%% *} (exit $frc)"; echo "$fout" | tail -3 | sed 's/^/        /'; fi
 done
-
-echo
-echo "== 10. the locally transitive construction (app:locally-transitive), verified on the family it quantifies over =="
-# The one result in the paper settled by construction rather than computation.
-# The verifier builds A, B and C from the appendix's own prose and requires every
-# support to be exactly 2, at every cut point of every locally transitive
-# tournament it can reach, with the family selected by its DEFINITION.
-eout=$(python3 "$ROOT/verify/appendix_e.py" 2>&1)
-if echo "$eout" | grep -q '^OK: 0 problem'; then
-  ok "app:locally-transitive: $(echo "$eout" | awk '/^ *[0-9]+ / {n+=$(NF-3); c+=$(NF-1)} END {printf "%d cut points verified over %d STRONG locally transitive tournaments, orders 3-14", c, n}')"
-  ok "control: $(echo "$eout" | grep 'outside the family' | sed 's/^ *//')"
-else
-  bad "the construction of app:locally-transitive did not verify"
-  echo "$eout" | grep 'FAIL' | sed 's/^/        /' | head -5
-fi
 
 echo
 echo "== 11. the 3-cycle hypothesis holds on every host that relied on it =="

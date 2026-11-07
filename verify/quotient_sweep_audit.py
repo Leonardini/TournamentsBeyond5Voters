@@ -4,7 +4,7 @@
     usage: quotient_sweep_audit.py HOST.bits MARKERS.tar.zst [--drop N]
 
 The search did not visit all 8,031 base states.  It kept one per orbit of an order-5
-subgroup H of Aut(T) (Corollary @cor:quotient) and anchored on the two vertices H fixes (Corollary
+subgroup H of Aut(T) (Lemma @lem:symmetry(e)) and anchored on the two vertices H fixes (Corollary
 2.3).  So a tiling of [0, 8031) is the wrong test, and this script derives the right one
 from the host:
 

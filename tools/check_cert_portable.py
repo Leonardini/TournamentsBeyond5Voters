@@ -53,7 +53,7 @@ ANCHOR_RE = re.compile(r'^(none|(pair|vertex)-orbit\(([^()]*)\))$')
 
 def check_anchoring(path, fields, bits, n):
     """The `anchoring=` field names the representatives that filtered the cube
-    set down to `cubes=`, under Corollary @cor:orbit-anchoring (ordered pairs) or Corollary @cor:vertex-anchoring
+    set down to `cubes=`, under Lemma @lem:symmetry(b) (ordered pairs) or Lemma @lem:symmetry(c)
     (vertices).  Two things are checkable from shipped bytes, and both are
     checked here because a wrong one silently shrinks the search:
 
@@ -89,10 +89,10 @@ def check_anchoring(path, fields, bits, n):
     reps = [f.split('=', 1)[1] for f in body.split(';')]
     if kind == 'vertex':
         vs = [[int(r)] for r in reps]
-        lemma, what = 'Corollary @cor:vertex-anchoring', 'vertex'
+        lemma, what = 'Lemma @lem:symmetry(c)', 'vertex'
     else:
         vs = [[int(x) for x in r.split(',')] for r in reps]
-        lemma, what = 'Corollary @cor:orbit-anchoring', 'ordered-pair'
+        lemma, what = 'Lemma @lem:symmetry(b)', 'ordered-pair'
     flat = [v for p in vs for v in p]
     outside = sorted({v for v in flat if v not in base})
     if outside:
@@ -120,7 +120,7 @@ def check_anchoring(path, fields, bits, n):
 
 def check_quotient(path, fields, bits, n):
     """The optional `quotient=automorphism(h(0),...,h(n-1))` field records
-    Corollary @cor:quotient, the base quotient: `cubes=` counts one representative per
+    Lemma @lem:symmetry(e), the base quotient: `cubes=` counts one representative per
     h-orbit of base states, while the coverage half still ranges over all of
     them.  Checkable from shipped bytes, and checked: h is a permutation of
     0..n-1, an automorphism of THIS host, and h maps the base onto itself.  The
@@ -170,7 +170,7 @@ def check_quotient(path, fields, bits, n):
         p = [h[x] for x in p]
         order += 1
     print("  ok    %s: quotient by an automorphism of order %d of the host that maps "
-          "the base onto itself (Corollary @cor:quotient); swapping two images breaks it"
+          "the base onto itself (Lemma @lem:symmetry(e)); swapping two images breaks it"
           % (name, order))
     return True
 

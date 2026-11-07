@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Audit a complete Corollary @cor:quotient search of a 22-vertex host from the host, its base and the markers.
+"""Audit a complete Lemma @lem:symmetry(e) search of a 22-vertex host from the host, its base and the markers.
 
     usage: quotient_sweep_audit_g.py HOST.bits BASE MARKERS.tar.zst [MARKERS2.tar.zst ...] [--drop N]
 
 The generalisation of quotient_sweep_audit.py (which is specific to Delta_1 - 10 and its anchors)
 to the four obstructions of Section @sec:twenty-two whose automorphism group has order 5: Delta_1 - 1,
-Delta_1 - 2, Delta_11 - 2 and Delta_11 - 5.  These searches used Corollary @cor:quotient alone, with no
+Delta_1 - 2, Delta_11 - 2 and Delta_11 - 5.  These searches used Lemma @lem:symmetry(e) alone, with no
 anchoring, over a base given explicitly (BASE, comma-separated 0-based vertices, as the search
 was run).  From the host it derives:
 

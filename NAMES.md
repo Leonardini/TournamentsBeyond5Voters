@@ -16,7 +16,7 @@ manuscript's vertex 5.
 | `dNNN` | 23 | The doubly regular tournament on line NNN + 1 of McKay's catalogue (`tournaments/drt23/`) | $\Delta_{NNN+1}$ |
 | `dNNN_mvVV` | 22 | `dNNN` with vertex VV deleted, the rest kept in order (`tournaments/drt23_del/`) | $\Delta_{NNN+1} - (VV+1)$; e.g. `d005_mv04` is $\Delta_6 - 5$ |
 | `dNNN_mvAA_BB`, `dNNN_mvAA_BB_CC` | 21, 20 | `dNNN` with two or three vertices deleted: the levels of Appendix @app:below22 (`HOSTS_level2.tsv`, `HOSTS_level3.tsv`) | — |
-| `d000mv09_rAA_BB` | 22 | Δ₁ − 10 with the arc between AA and BB reversed (Section @sec:criticality) | — |
+| `d000mv09_rAA_BB` | 22 | Δ₁ − 10 with the arc between AA and BB reversed (Section @sec:twenty-two) | — |
 | `t25_tmin6` | 25 | The circulant tournament on 25 vertices in which every arc lies in six directed triangles (Appendix @app:below22) | the circulant tournament on 25 vertices |
 | `p27_mv00_01` | 25 | Paley(27) with vertices 0 and 1 deleted (Appendix @app:below22) | $P_{27}$ less two vertices |
 | `t25_tmin6_mv…`, `p27_mv00_01_mv…` | 21 | Four further deletions from those two (Appendix @app:below22) | — |
@@ -43,7 +43,7 @@ of its adjacency matrix, row by row, with `1` meaning the row vertex beats the c
 
 Outside `README.md`, `CLAIMS.md` and `REPRODUCE.md`, files refer to the manuscript's sections,
 appendices, figures and results by their labels, written as the manuscript source writes them:
-`Section @sec:twenty-two`, `Appendix @app:below22`, `Corollary @cor:quotient`. Each label stands
+`Section @sec:twenty-two`, `Appendix @app:below22`, `Lemma @lem:symmetry(e)`. Each label stands
 beside its heading or statement in `manuscript/Tournaments_not_inducible_by_five_voters_MSS.md`,
 and a label does not change when the manuscript is renumbered. Two kinds of file are the
 exception. Run records (`VERDICT.txt` files and logs) keep the numbers of the manuscript as it

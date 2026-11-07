@@ -776,34 +776,34 @@ def main(mdpath, as_json):
                    nw == 0 and all(t == e + c for t, e, c in zip(tried, ex, cap)),
                    'tried - exhausted - capped over the 378 hosts')
 
-    # ----------------------- app:counts (appendix "Exact enumeration counts")
-    counts = find_table(tabs, '$d_n$') or find_table(tabs, 'D_n')
-    if counts is None:
-        missing('DERIVED', 'app:counts table', 'the table headed "$d_n$" or "D_n"')
+    # ----------------------- sec:families: the exact R_15 and S_13 the census sweeps cover
+    # The manuscript states both counts in the prose of Section @sec:families
+    # ("$R_{15} = 18{,}400{,}989{,}629$", "$S_{13} = 95{,}458{,}560$"); each is checked
+    # against what the cluster runs actually swept.
+    def stated(sym):
+        m = re.search(re.escape(sym) + r'\s*=\s*([\d{},]+)', md)
+        return num(m.group(1)) if m else None
+    want_r15, want_s13 = stated('$R_{15}'), stated('$S_{13}')
+    got = marker_sum('cluster/jz_n15/results_margin1/done', 'instances')
+    if want_r15 is None:
+        missing('DERIVED', 'sec:families R_15', 'the sentence stating "$R_{15} = ..."')
+    elif got is None:
+        skip('DERIVED', 'sec:families R_15', 'n15 markers absent')
     else:
-        want_r15 = [num(r[2]) for r in counts[1:] if num(r[0]) == 15]
-        want_s13 = [num(r[3]) for r in counts[1:] if num(r[0]) == 13]
-        got = marker_sum('cluster/jz_n15/results_margin1/done', 'instances')
-        if len(want_r15) != 1 or want_r15[0] is None:
-            missing('DERIVED', 'app:counts R_15', 'the R_n cell of the n = 15 row of the counts table')
-        elif got is None:
-            skip('DERIVED', 'app:counts R_15', 'n15 markers absent')
-        else:
-            record('DERIVED', 'app:counts R_15', want_r15[0], got, close(want_r15[0], got, 0),
-                   'sum of instances= over the 6,000 residue markers')
-        agg = os.path.join(ROOT, 'cluster', 'jz_n13sc', 'aggregate.sh')
-        if len(want_s13) != 1 or want_s13[0] is None:
-            missing('DERIVED', 'app:counts S_13', 'the S_n cell of the n = 13 row of the counts table')
-        elif not os.path.exists(agg):
-            skip('DERIVED', 'app:counts S_13', 'cluster/jz_n13sc/aggregate.sh absent')
-        else:
-            # the kit writes it with Python underscore separators
-            mm = re.search(r'TOTAL\s*=\s*([\d_]+)', open(agg).read())
-            assert mm, 'cluster/jz_n13sc/aggregate.sh has no TOTAL = line'
-            got13 = float(mm.group(1).replace('_', ''))
-            record('DERIVED', 'app:counts S_13', want_s13[0], got13,
-                   close(want_s13[0], got13, 0),
-                   'the total the order-13 kit reconciles its three parts against')
+        record('DERIVED', 'sec:families R_15', want_r15, got, close(want_r15, got, 0),
+               'sum of instances= over the 6,000 residue markers')
+    agg = os.path.join(ROOT, 'cluster', 'jz_n13sc', 'aggregate.sh')
+    if want_s13 is None:
+        missing('DERIVED', 'sec:families S_13', 'the sentence stating "$S_{13} = ..."')
+    elif not os.path.exists(agg):
+        skip('DERIVED', 'sec:families S_13', 'cluster/jz_n13sc/aggregate.sh absent')
+    else:
+        # the kit writes it with Python underscore separators
+        mm = re.search(r'TOTAL\s*=\s*([\d_]+)', open(agg).read())
+        assert mm, 'cluster/jz_n13sc/aggregate.sh has no TOTAL = line'
+        got13 = float(mm.group(1).replace('_', ''))
+        record('DERIVED', 'sec:families S_13', want_s13, got13, close(want_s13, got13, 0),
+               'the total the order-13 kit reconciles its three parts against')
 
     # -------------------------------------------------------------------- report
     bad = sum(1 for r in RESULTS if r['status'] == 'FAIL')

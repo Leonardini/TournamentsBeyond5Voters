@@ -48,6 +48,6 @@ totals sum to exactly D_11 = 903,753,248.
 
 ## Sources
 
-`margin1_scan.c`, `cert_m1k5.c` live in `Paley23Decide/` (manuscript Section G.3 /
+`margin1_scan.c`, `cert_m1k5.c` live in `Paley23Decide/` (manuscript Section 5.2 /
 the A(3) campaign); `verify_m1k5.c` is new (this directory's `bin/` holds ARM
 builds of all three).

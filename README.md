@@ -21,7 +21,7 @@ with the search.
 
 **Assessment: aligned on the central claim.** The verdict reproduced exactly — complete over all 8,031 base states, exact index cover, nothing capped, no witness — together with six further claims, among them an arc-reversal witness byte-identical to the published one and both certifications' ROOT (CNF) rebuilt cube by cube.
 
-**One correction.** An earlier version of this record reported the node count as diverging from the scaling table (then Appendix A.3, now Appendix G.5) by a factor of 123. That was a greedy-regex bug in this harness, which scraped `dom_nodes` where `nodes` was meant; the node count is simply **not measured** here. Costs and verdicts never depended on it. The authors independently hit the same trap in their own $q = 27$ reporting and have corrected it.
+**One correction.** An earlier version of this record reported the node count as diverging from the scaling table (then Appendix A.3, now Appendix F.4) by a factor of 123. That was a greedy-regex bug in this harness, which scraped `dom_nodes` where `nodes` was meant; the node count is simply **not measured** here. Costs and verdicts never depended on it. The authors independently hit the same trap in their own $q = 27$ reporting and have corrected it.
 
 | | paper | observed here |
 |---|---|---|
@@ -123,7 +123,6 @@ exercise.
 tools/claims_index.py --check   # CLAIMS.md == claims.tsv == claims.json, 0 missing paths
 tools/check_manuscript.py       # re-derive every manuscript figure we can, from shipped bytes
 tools/manifest.py --check       # MANIFEST.sha256 against the bytes on disk
-python3 verify/appendix_e.py    # verify Appendix J's construction on 1,238 tournaments
 engine/regression.sh            # the consolidated engine vs the versions that produced the results
 ```
 
@@ -139,7 +138,7 @@ audit must notice. A gate whose controls do not fire is not testing anything.
 
 **The gate passes in full.** Its check 9 re-derives every figure the manuscript
 prints that this package can re-derive. It once failed on the node count at
-$q = 27$ in Appendix G.5, where an earlier draft printed the run's `dom_nodes`
+$q = 27$ in Appendix F.4, where an earlier draft printed the run's `dom_nodes`
 counter instead of its `nodes` counter; the manuscript was corrected, and table 8
 of `CLAIMS.md` records the episode.
 
@@ -150,7 +149,7 @@ of `CLAIMS.md` records the episode.
 | `engine/` | `kinduce.c`, the depth-first placement search, one translation unit, with its man page. `kcover.c` is the order-12 witness-extension engine. `versions/` keeps the 24 historical implementations that originally produced each result, and `versions/REGRESSION.md` records the consolidated engine agreeing with each of them node for node on the published command lines |
 | `tournaments/` | the hosts as bit strings, plus the generators that build them and `deletion_classes.py`, which derives the deletion-class counts of Appendix I with nauty. `drt23_del/` holds the nine 22-vertex obstructions of Appendix H and the class lists of the levels below the doubly regular tournaments on 23 vertices; `descent_parents/` the two 25-vertex parents of Appendix C's other lineages |
 | `sat/` | the dissent-Boolean encoding, the cube tooling, the certification driver and the coverage check |
-| `verify/` | checkers that share no code with the search: witness verifiers that read the bit string and the ballots and recompute every arc's support; `appendix_e.py`, which builds Appendix J's three orders from its own prose and checks them over every locally transitive tournament of order 3–14; `triangles_per_arc.py`, which tests the 3-cycle hypothesis that turns a `--max-margin 3` run into a majority verdict; and for Section 6.2 and Appendix C, `verify_descent_witnesses.py` (each witness checked against a host rebuilt from its name), `drt23_level_counts.py` and `level_coverage.py` (class counts and coverage with `labelg`), `critical_deletions.py`, `host_facts.py` and `sweep_cover_audit.py` |
+| `verify/` | checkers that share no code with the search: witness verifiers that read the bit string and the ballots and recompute every arc's support; `triangles_per_arc.py`, which tests the 3-cycle hypothesis that turns a `--max-margin 3` run into a majority verdict; and for Section 6.2 and Appendix C, `verify_descent_witnesses.py` (each witness checked against a host rebuilt from its name), `drt23_level_counts.py` and `level_coverage.py` (class counts and coverage with `labelg`), `critical_deletions.py`, `host_facts.py` and `sweep_cover_audit.py` |
 | `certificates/` | the five machine-checked refutations (Paley(19) at unit margin, Paley(23), `h02_f00`, and Δ₆ − 5 and Δ₁ − 10 behind N(5) ≤ 22) — per-cube sha256 chains, published roots, and the verdict files that state their own scope. `CERT-v2.md` explains why each block now identifies its host by the sha256 of its adjacency rather than by the name of its construction |
 | `verdicts/` | one verdict record per result, the consolidated ledger with its supplement (`verdicts/ledger_supplement.tsv`, the unit-margin-only tournaments that the ledger's registry of catalogue families cannot hold), and the witness documents |
 | `evidence/` | chunk logs for every distributed sweep, compressed about 100×, plus the measurement JSON behind each configuration choice |

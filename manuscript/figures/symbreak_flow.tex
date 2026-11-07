@@ -24,7 +24,7 @@
   of its $H$-orbit (base-stabilizer quotient)};
 \node[q, below=of quo] (fix) {Does $H$ fix every\\representative?};
 \node[side, right=of fix] (pick) {Use whichever of anchoring and quotient leaves fewer base states};
-\node[act, below=of fix] (both) {Use both (quotient, part (b) or (c))};
+\node[act, below=of fix] (both) {Use both (quotient with anchoring)};
 \node[act, below=of both] (run) {Search the remaining base states, in parallel};
 \draw[->] (in) -- (aut);
 \draw[->] (aut) -- node[lab, above] {no} (none);

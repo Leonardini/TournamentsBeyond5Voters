@@ -35,8 +35,8 @@ reproducible on a fixed cadical build.
 ## No anchoring, so no anchoring lemma is in the trust chain
 
 `d005_mv04` has no non-trivial automorphism, so every orbit is a singleton and
-neither Corollary @cor:orbit-anchoring nor Corollary @cor:vertex-anchoring removes a single base state. **All 742,374
-base states of the base `{0,1,2,3,11,17}` were run.** Only Corollary @cor:lex (voters
+neither Lemma @lem:symmetry(b) nor Lemma @lem:symmetry(c) removes a single base state. **All 742,374
+base states of the base `{0,1,2,3,11,17}` were run.** Only Lemma @lem:symmetry(d) (voters
 may be lex-ordered) remains human, and the block records `anchoring=none`.
 The same rigidity is why this is the most expensive of the five certificates
 here, although its host is smaller than Paley(23).
