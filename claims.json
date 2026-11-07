@@ -1043,7 +1043,7 @@
    "id": "S11",
    "group": "4. The structured families (\u00a76.7)",
    "sections": [],
-   "claim": "Order 23 is complete for both families: every vertex-transitive tournament on 23 vertices other than Paley(23) is 5-inducible, and none of the **37** doubly regular ones is, at unit margin or unrestricted. Up to converse the 37 are 19 classes, each settled by a complete search; 16 ran on the cluster at about 26,500 cluster core-hours together",
+   "claim": "Order 23 is complete for both families: every vertex-transitive tournament on 23 vertices other than Paley(23) is 5-inducible, and none of the **37** doubly regular ones is, at unit margin or unrestricted. Up to converse the 37 form 19 classes, each settled by a complete search; 16 of the 19 ran on the cluster (Appendix G.6)",
    "artifacts": [
     "verdicts/verdict_ledger.tsv",
     "cluster/jz_drt23maj/jz_drt23maj.tsv",
@@ -1554,7 +1554,7 @@
    "sections": [
     "C"
    ],
-   "claim": "At 22 vertices all 378 were screened at up to 50 base states each, without a single witness (13,863 base states searched to the end)",
+   "claim": "At 22 vertices all 378 were screened at up to 50 base states each, without a single witness",
    "artifacts": [
     "cluster/jz_drt23mv/HARDNESS_378.tsv"
    ],

@@ -11,20 +11,20 @@
   q/.style={draw, diamond, aspect=3.2, align=center, inner sep=0pt, text width=40mm},
   side/.style={draw, rounded corners=2pt, align=center, text width=44mm, inner sep=4pt},
   lab/.style={font=\scriptsize, fill=white, inner sep=1pt}]
-\node[act] (in) {$T$, a base $B$ and its base states,\\voters sorted (Corollary 2.4)};
+\node[act] (in) {$T$, a base $B$ and its base states,\\voters sorted (voter lex-ordering)};
 \node[q, below=of in] (aut) {Is $\mathrm{Aut}(T)$\\non-trivial?};
 \node[side, right=of aut] (none) {Search every base state};
-\node[act, below=of aut] (anc) {Anchoring: one representative per orbit of ordered pairs (Corollary 2.2)
-  or of vertices (Corollary 2.3), whichever has fewer orbits};
+\node[act, below=of aut] (anc) {Anchoring: one representative per orbit of ordered pairs (orbit anchoring)
+  or of vertices (vertex anchoring), whichever has fewer orbits};
 \node[q, below=of anc] (inb) {Are all the\\representatives in $B$?};
 \node[side, right=of inb] (dfs) {Enforce anchoring during the search only (not available to SAT cubes)};
 \node[act, below=of inb] (filt) {Discard the base states in which no voter is anchored};
 \node[q, below=of filt] (sub) {Does a subgroup $H$ of $\mathrm{Aut}(T)$\\map some $C \subseteq B$ onto itself?};
 \node[act, below=of sub] (quo) {Keep the base states whose restriction to $C$ is the chosen base state
-  of its $H$-orbit (Corollary 2.5)};
+  of its $H$-orbit (base-stabilizer quotient)};
 \node[q, below=of quo] (fix) {Does $H$ fix every\\representative?};
 \node[side, right=of fix] (pick) {Use whichever of anchoring and quotient leaves fewer base states};
-\node[act, below=of fix] (both) {Use both (Corollary 2.5(b) or (c))};
+\node[act, below=of fix] (both) {Use both (quotient, part (b) or (c))};
 \node[act, below=of both] (run) {Search the remaining base states, in parallel};
 \draw[->] (in) -- (aut);
 \draw[->] (aut) -- node[lab, above] {no} (none);

@@ -860,11 +860,15 @@ echo "== 9. every number the manuscript prints that we can re-derive, re-derived
 # observed value from shipped bytes and compares.  A figure that changes in the
 # paper and not in the package fails here rather than passing against a copy
 # that drifted with it.
-mout=$(python3 "$ROOT/tools/check_manuscript.py" 2>&1)
+# The exit status decides, not only the printed FAIL lines: a check that crashes
+# (a hard-failed assertion about a shipped file's format) prints a traceback and
+# no FAIL line, and must not read as a pass.
+mrc=0; mout=$(python3 "$ROOT/tools/check_manuscript.py" 2>&1) || mrc=$?
 msum=$(echo "$mout" | tail -1)
-if echo "$mout" | grep -q '^ FAIL'; then
-  bad "manuscript figures do not all re-derive: $msum"
+if [ "$mrc" -ne 0 ] || echo "$mout" | grep -q '^ FAIL'; then
+  bad "manuscript figures do not all re-derive (exit $mrc): $msum"
   echo "$mout" | grep -A1 '^ FAIL' | sed 's/^/        /'
+  echo "$mout" | grep -A3 '^Traceback' | sed 's/^/        /'
 else
   ok "$msum"
 fi

@@ -253,9 +253,13 @@ code 20**, following the SAT-solver convention, not exit code 0.
 
 ## Provenance and integrity
 
-Every file here was copied from the working repository by
-`tools/assemble_from_source.sh`, so the provenance of the package is one
-readable list rather than a recollection. Re-running it is idempotent.
+The files that come from the working repository were copied by
+`tools/assemble_from_source.sh`, so their provenance is one readable list
+rather than a recollection; the script names the files that do not come from
+there. Re-running it against an identical source changes nothing. It never
+overwrites a package file that differs from its source unless that difference
+is accepted by naming the file and the exact source bytes (its sha256); without
+that it stops before copying anything and lists every differing file.
 
 `MANIFEST.sha256` hashes every shipped file. `tools/manifest.py --check`
 verifies it and reports CHANGED, MISSING and UNTRACKED separately, because they
