@@ -1074,19 +1074,6 @@
    "status": "established"
   },
   {
-   "id": "R2",
-   "group": "6a. The independent reproduction (\u00a78.2)",
-   "sections": [],
-   "claim": "At 70.9 and 567.6 cluster core-hours against the laptop's 25.1 and 236.0, i.e. 2.8\u00d7 and 2.4\u00d7",
-   "artifacts": [],
-   "missing": [],
-   "other_tokens": [
-    "solve 68.1 + check 2.8",
-    "solve 542.0 + check 25.6"
-   ],
-   "status": "established"
-  },
-  {
    "id": "R3",
    "group": "6a. The independent reproduction (\u00a78.2)",
    "sections": [],
@@ -1198,7 +1185,7 @@
    "sections": [
     "G.5"
    ],
-   "claim": "The cluster runs 2\u20135\u00d7 slower per core than the laptop, over six independent experiments",
+   "claim": "The cluster runs 2\u20135\u00d7 slower per core than the laptop",
    "artifacts": [
     "evidence/measurements/price43_series.json",
     "cluster/jz_reproduce/"
@@ -1759,8 +1746,8 @@
   }
  ],
  "counts": {
-  "claims": 107,
-  "established": 101,
+  "claims": 106,
+  "established": 100,
   "declared_gap": 6,
   "missing_artifacts": 0,
   "gaps": 8,

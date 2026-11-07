@@ -284,7 +284,6 @@ had actually run did.
 | id | claim | verdict artifact |
 |---|---|---|
 | R1 | Both refutations were re-solved from scratch on the cluster, under a different compiler and CaDiCaL build, and **ROOT (CNF) matched bit for bit** | `cluster/jz_reproduce/slurm/recert_1829004.out` (p19, `PORTABLE ROOT MATCHES`), `cluster/jz_reproduce/slurm/recert_1919064.out` (p23) |
-| R2 | At 70.9 and 567.6 cluster core-hours against the laptop's 25.1 and 236.0, i.e. 2.8× and 2.4× | the same two logs: `solve 68.1 + check 2.8` and `solve 542.0 + check 25.6` |
 | R3 | Both coverage instances were rebuilt on the cluster to their committed CNF hashes and refuted again, and `CERT (portable)` was re-derived there by running the composition rather than inferring it | `cluster/jz_reproduce/slurm/cert_p19.out`, `cert_p23.out` |
 | R4 | The four earlier attempts failed for reasons that say nothing about the result | `cluster/jz_reproduce/slurm/recert_{1827897,1828524,1829003,1843769}.out`, and `cluster/jz_reproduce/COMMANDS.md` says which failed how |
 
@@ -304,7 +303,7 @@ failure `sat/certroot.py` was written to end.
 | M3 | G.5 | The exact domain rule beats the capped one on decision quality alone: 992,378 nodes capped against 294,964 exact, identical verdicts, on a 29-instance Paley(19) benchmark | `evidence/measurements/`, `sat/leaf_bench.py` |
 | M4 | B.1 | LRAT over DRAT on measurement: 0.295 s vs 1.043 s per leaf end to end, 29× in checking alone | `sat/leaf_bench.py` |
 | M5 | G.6 | Choosing the base: four cheap proxies each inverted when measured, so only live-count × measured s/state is the objective. At q = 31 the class with 4,007 live states beat the class with 2,537 | `evidence/measurements/probe2_results.json`, `probe3_results.json`, `price31.json`, `evidence/README.md`; the class ranking re-derives from `python3 sat/base_survivors.py --q 31 --classes` |
-| M6 | G.5 | The cluster runs 2–5× slower per core than the laptop, over six independent experiments | `evidence/measurements/price43_series.json`, `cluster/jz_reproduce/` (R2 above contributes two of the six) |
+| M6 | G.5 | The cluster runs 2–5× slower per core than the laptop | `evidence/measurements/price43_series.json`, `cluster/jz_reproduce/` (the two recertification logs of R1, at 70.9 and 567.6 cluster core-hours against the laptop's 25.1 and 236.0) |
 | M7 | G.6 | Incremental refinement is worth about 110× in wall time, against a factor of a few for the dynamic order | `evidence/measurements/` |
 
 `evidence/README.md` is worth reading for M5: it records that the Paley(27)
