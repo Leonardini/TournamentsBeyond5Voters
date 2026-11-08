@@ -1,4 +1,4 @@
-# Can five voters produce any ranking? Reproducing *Tournaments determined by three and five voters*
+# Can five voters produce any ranking? Reproducing *Tournaments not inducible by three voters*
 
 **Paper:** [arXiv 2607.26690](https://arxiv.org/abs/2607.26690), L. Chindelevitch and A. Harutyunyan (29 pp., cs.DM)
 **Compute:** the author's Mac — 14 cores, 24 GB RAM, Apple clang 16, R 4.5.3, Python 3.12, OR-Tools 9.15, CPLEX 22.1 — every run launched through `orx exp run --backend local`, capped at 8 threads.

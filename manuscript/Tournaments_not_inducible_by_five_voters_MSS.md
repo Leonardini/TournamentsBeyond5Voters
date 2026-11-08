@@ -35,28 +35,22 @@ Corresponding author: Leonid Chindelevitch (`lchindel@ic.ac.uk`).
 
 ## Abstract {-}
 
-How many members must a committee have before its pairwise majorities can express any collective
-preference? With enough voters every pattern of pairwise majorities, or tournament, can arise, but a
-committee of $k$ voters produces only some; for odd $k$, let $N(k)$ be the least number of
-alternatives on which some tournament arises from no $k$ voters. Only $N(3) = 8$ is known (Shepardson
-and Tovey 2009; Eggermont et al. 2013). For five voters the best bounds were $11 \le N(5)$ (Bachmeier
-et al. 2019) and $N(5) \le 41$ (Eggermont et al. 2013, p. 271; Bachmeier et al. 2019), and the smallest
-explicit tournament known to escape five voters had over $6 \times 10^{8}$ vertices, from a theorem of
-Fidler (2011) (Bachmeier et al. 2019). We show $13 \le N(5) \le 22$. The upper bound comes from nine
-tournaments on 22 vertices that five voters cannot produce: eight one-vertex deletions of doubly regular
-tournaments on 23 vertices, including every deletion of one of them, and one arc reversal. The Paley
-tournament on 23 vertices, which Bachmeier et al. (2019) left open after six weeks of SAT solving, is
-beyond five voters, and so is every other doubly regular tournament on 23 vertices. The lower bound
-comes from an analysis of all tournaments on 12 vertices. Along the way, counting profiles against
-near-regular tournaments gives $N(5) \le 38$ and improves the counting bound for every odd $k \le 21$.
-An argument that searches no profiles shows that the Paley tournament on 43 vertices is also beyond
-five voters. Its predictability, the largest share of the voters that a profile can give to every
-majority at once, exceeds the threshold $3/5$ by only $2/1505$, so this result refutes the conjecture
-that a predictability above the threshold lets five voters produce a tournament. Both doubly regular
-tournaments on 19 vertices, the Paley tournament and one other, arise from five voters, but not with
-unit margin, that is, not with every majority carried by three votes to two. Our method is a search
-that places one alternative at a time and exploits the tournament's symmetries. We certify four of the
-negative results with machine-checkable proofs, and a public repository reproduces every result.
+How many voters are needed before their pairwise majorities can produce every tournament? For odd
+$k$, let $N(k)$ be the least number of vertices on which some tournament arises from no $k$ voters.
+Only $N(3) = 8$ is known (Shepardson and Tovey 2009; Eggermont et al. 2013). For five voters the best
+bounds were $11 \le N(5)$ (Bachmeier et al. 2019) and $N(5) \le 41$ (Eggermont et al. 2013, p. 271;
+Bachmeier et al. 2019). We show $13 \le N(5) \le 22$. The upper bound comes from nine tournaments on
+22 vertices that five voters cannot produce: eight one-vertex deletions of doubly regular tournaments
+on 23 vertices, including every deletion of one of them, and one arc reversal. The Paley tournament on
+23 vertices, which Bachmeier et al. (2019) left open after six weeks of SAT solving, is beyond five
+voters, and so is every other doubly regular tournament on 23 vertices. The lower bound comes from an
+analysis of all tournaments on 12 vertices. An argument that searches no profiles shows that the
+Paley tournament on 43 vertices is also beyond five voters. Its predictability, the largest share of
+the voters that a profile can give to every majority at once, exceeds the threshold $3/5$ by only
+$2/1505$, so this result refutes the conjecture that a predictability above the threshold lets five
+voters produce a tournament. Our method is a search that places one vertex at a time and exploits
+the tournament's symmetries. We certify four of the negative results with machine-checkable proofs,
+and a public repository reproduces every result.
 
 **Keywords:** majority voting; tournaments; McGarvey's theorem; Paley tournaments; constraint search; SAT
 
@@ -890,7 +884,7 @@ Biere A, Faller T, Fazekas K, Fleury M, Froleyks N, Pollitt F (2024) CaDiCaL 2.0
 Brakensiek J, Heule M, Mackey J, Narváez D (2020) The resolution of Keller's conjecture. In:
 *Automated Reasoning (IJCAR 2020)*, LNCS 12166, Springer, pp 48–65
 
-Chindelevitch L, Harutyunyan A (2026) Tournaments determined by three and five voters. Submitted to
+Chindelevitch L, Harutyunyan A (2026) Tournaments not inducible by three voters. Submitted to
 *Mathematical Social Sciences* jointly with this paper
 
 Chung FRK, Graham RL (1991) Quasi-random tournaments. *Journal of Graph Theory* 15(2):173–198

@@ -20,7 +20,7 @@ def _(mo):
         # Can five voters produce any ranking?
 
         A tutorial walk through the central claim of
-        [*Tournaments determined by three and five voters*](https://arxiv.org/abs/2607.26690)
+        [*Tournaments not inducible by three voters*](https://arxiv.org/abs/2607.26690)
         (Chindelevitch & Harutyunyan, arXiv 2607.26690) and its reproduction on a laptop.
 
         **The result, first.** A five-voter realization of the Paley tournament on 43 vertices
