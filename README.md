@@ -157,6 +157,7 @@ of `CLAIMS.md` records the episode.
 | `manuscript/` | the paper the claims come from, in its version of 2026-11-07, with its LaTeX source, its highlights, and `figures/` — the pipeline that draws Figure G.1 from a real trace, by a second implementation of the search that refuses to emit one unless seven cross-checks pass |
 | `n12_unit_margin/` | every check that the tournaments on at most 12 vertices are 5-inducible with unit margin (Appendix A): explicit profiles for the non-3-inducible tournaments on 8 and 9 vertices and the code that regenerates them, the integer program for n ≤ 10, the 11-vertex census, and the cluster records of the 12-vertex analysis. Its README says which part settles which order |
 | `counting_bounds/` | the counting bounds of Section 3: N(5) ≤ 38, and the improved bounds for every odd k ≤ 21 |
+| `paley47/` | the order of Paley(47) with 658 forward arcs behind the lower bounds in the q = 47 row of the Paley table, and its verifier |
 | `paley43/` | the proof that Paley(43) is not 5-inducible (Section 4, Appendices E and F), rebuilt end to end by `reproduce_paley43.sh`; `REPRODUCTION.md` records an independent re-run, written up in `reports/paley43-five-voters/` |
 | `notes_research_log.md` | the working notebook, kept for provenance |
 

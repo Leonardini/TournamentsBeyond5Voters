@@ -656,7 +656,7 @@ grows in proportion to \(C\) whenever the predictability stands off from
 the threshold. A subset dynamic program modulo \(\mathrm{Aut}(P)\) with
 a meet-in-the-middle step (Appendix D) gives \(\mathrm{MAS}(P) = 543\),
 so \(\mathrm{slack}_5(P) = 2715 - 2709 = 6\), the smallest value in
-Table 2; the others range from \(7\) to \(47\).
+Table 2; the others are at least \(7\).
 
 For an inducing profile \((\pi_1, \dots, \pi_5)\), let
 \(f_i = |\mathrm{fwd}_P(\pi_i)|\) and relabel the voters so that
@@ -731,8 +731,9 @@ representative and a shell order whose restrictions are disjoint, and
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1356}}
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1186}}
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.3559}}@{}}
-\caption{The Paley family: size, MAS, predictability, slack and
-status.}\tabularnewline*
+\caption{The Paley family: size, MAS, predictability, slack and status.
+For \(q = 47\) the entries are lower bounds, from an order with \(658\)
+forward arcs.}\tabularnewline*
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 \(q\)
@@ -778,7 +779,7 @@ status.}\tabularnewline*
 31 & 465 & 285 & \(19/31\) & 0.6129 & 30 & no (Sec. 6.1) \\*
 43 & 903 & 543 & \(181/301\) & 0.6013 & \textbf{6} & \textbf{no (Thm
 4.1)} \\*
-47 & 1081 & 658 & \(14/23\) & 0.6087 & 47 & open \\*
+47 & 1081 & \(\ge 658\) & \(\ge 14/23\) & 0.6087 & \(\ge 47\) & open \\*
 \end{longtable}
 
 \XrefCheck{table}{2}
@@ -1390,13 +1391,13 @@ for \(P_{43} - 2v\).
 some tournament is inducible by five voters but not at margin \(\le 3\),
 is open. Lemma 6.1 forces such a tournament to have an arc in \emph{no}
 directed triangle, which rules out every regular tournament. Conjecture
-7.1 of our companion paper states that the inclusion is strict at every
+8.1 of our companion paper states that the inclusion is strict at every
 odd \(k > 3\).
 
 \textbf{Conjecture 3.} \emph{For every odd \(k\), every \(k\)-inducible
 tournament is \((k+2)\)-inducible with unit margin.}
 
-Conjecture 3 extends Conjecture 7.1 of our companion paper, which
+Conjecture 3 extends Conjecture 8.1 of our companion paper, which
 concerns the classes for a single \(k\), to classes across different
 \(k\). Adding an order together with its reverse raises every support by
 one, so \(k\)-inducibility with margin at most \(M\) implies

@@ -310,6 +310,9 @@ else
   warn "arc-reversal witness or verifier absent"
 fi
 
+# the lower bound MAS(P_47) >= 658 of the Paley table (no exact value is claimed for q = 47)
+if out=$(python3 "$ROOT/paley47/verify_paley47_order.py" 2>&1); then ok "$out"
+else bad "paley47: the 658-forward order does not check"; echo "$out" | tail -2 | sed 's/^/        /'; fi
 echo
 echo "== 5b. the order-13 self-converse partition sums to the catalogue total =="
 # Three independently counted parts -- regular (excluded, settled elsewhere),

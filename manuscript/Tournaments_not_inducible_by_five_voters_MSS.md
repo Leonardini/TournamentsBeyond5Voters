@@ -11,7 +11,7 @@ xref-external:
   - "Dummit and Foote 2004, Section 4.1, Proposition 2"
   - "Chung and Graham (1991, Section 6)"
   
-  - "Conjecture 7.1 of our companion paper"
+  - "Conjecture 8.1 of our companion paper"
   - "Table 1 of Bachmeier et al. (2019)"
   - "Bachmeier et al. (2019, Table 4)"
 xref-global-statements:
@@ -357,7 +357,7 @@ and $|\mathrm{Aut}(P)| = q(q-1)/2 = 903$.
 
 In a witness every arc is forward for at least three of the five voters, so the voters have at least $3C$ forward arcs between them, while none has more than $\mathrm{MAS}$. The *slack*
 $$\mathrm{slack}_5(T) \;=\; 5\,\mathrm{MAS}(T) - 3C$$
-therefore bounds how far the voters can collectively fall short of the maximum. For an arc-transitive $T$ it equals $5C\,(\alpha^{*}(T) - 3/5)$, so it grows in proportion to $C$ whenever the predictability stands off from the threshold. A subset dynamic program modulo $\mathrm{Aut}(P)$ with a meet-in-the-middle step (Appendix @app:mas-dp) gives $\mathrm{MAS}(P) = 543$, so $\mathrm{slack}_5(P) = 2715 - 2709 = 6$, the smallest value in Table @tbl:paley-family; the others range from $7$ to $47$.
+therefore bounds how far the voters can collectively fall short of the maximum. For an arc-transitive $T$ it equals $5C\,(\alpha^{*}(T) - 3/5)$, so it grows in proportion to $C$ whenever the predictability stands off from the threshold. A subset dynamic program modulo $\mathrm{Aut}(P)$ with a meet-in-the-middle step (Appendix @app:mas-dp) gives $\mathrm{MAS}(P) = 543$, so $\mathrm{slack}_5(P) = 2715 - 2709 = 6$, the smallest value in Table @tbl:paley-family; the others are at least $7$.
 
 For an inducing profile $(\pi_1, \dots, \pi_5)$, let $f_i = |\mathrm{fwd}_P(\pi_i)|$
 and relabel the voters so that $f_1 \ge f_2 \ge \cdots \ge f_5$. Then $\sum_{i=1}^{5} f_i \ge 3C = 2709$ and $f_1 \le 543$, so
@@ -403,9 +403,9 @@ The exact check compared all $4{,}376{,}325{,}129$ pairs of an orbit representat
 | 23 | 253  | 161       | $7/11$     | 0.6364 | 46       | no (Thm @thm:paley23) |
 | 31 | 465  | 285       | $19/31$    | 0.6129 | 30       | no (Sec. @sec:paley23-31) |
 | 43 | 903  | 543       | $181/301$  | 0.6013 | **6**    | **no (Thm @thm:paley43)**    |
-| 47 | 1081 | 658       | $14/23$    | 0.6087 | 47       | open |
+| 47 | 1081 | $\ge 658$ | $\ge 14/23$ | 0.6087 | $\ge 47$ | open |
 
-Table: The Paley family: size, MAS, predictability, slack and status. {#tbl:paley-family}
+Table: The Paley family: size, MAS, predictability, slack and status. For $q = 47$ the entries are lower bounds, from an order with $658$ forward arcs. {#tbl:paley-family}
 
 The table shows that $\alpha^{*}$ is not monotone in $q$: it coincides at $q = 11$ and $q = 23$, and is larger at $q = 47$ than at $q = 43$, so it cannot be extrapolated. The slack is small only at $q = 43$, so the proof above exploits a numerical coincidence. $P_{11}$ and $P_{19}$ are 5-inducible, so non-5-inducibility is not generic to the family; the slack argument does not reach $P_{23}$ or $P_{31}$, which the search of Section @sec:results decides, and $P_{47}$ remains open.
 
@@ -796,12 +796,12 @@ $\delta_1, \delta_2$ are their levels; the right-hand side is $45$ for $P_{43} -
 unrestricted is strict (Sections @sec:paley19 and @sec:families); whether the second ever is, that is, whether some
 tournament is inducible by five voters but not at margin $\le 3$, is open. Lemma @lem:three-cycle forces
 such a tournament to have an arc in *no* directed triangle, which rules out every regular tournament.
-Conjecture 7.1 of our companion paper states that the inclusion is strict at every odd $k > 3$.
+Conjecture 8.1 of our companion paper states that the inclusion is strict at every odd $k > 3$.
 
 **Conjecture []{#conj:unit-margin-k2}.** *For every odd $k$, every $k$-inducible tournament is
 $(k+2)$-inducible with unit margin.*
 
-Conjecture @conj:unit-margin-k2 extends Conjecture 7.1 of our companion paper, which concerns the classes for a
+Conjecture @conj:unit-margin-k2 extends Conjecture 8.1 of our companion paper, which concerns the classes for a
 single $k$, to classes across different $k$. Adding an order together with its reverse raises every support by one, so $k$-inducibility with
 margin at most $M$ implies $(k+2)$-inducibility with margin at most $M$. Conjecture @conj:unit-margin-k2 strengthens
 this to unit margin, and with the inclusions within each $k$ it would nest every class at a lower
